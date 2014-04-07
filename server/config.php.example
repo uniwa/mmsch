@@ -1,0 +1,35 @@
+<?php
+set_time_limit(0);
+error_reporting(E_ALL ^ E_DEPRECATED ^ E_NOTICE ^ E_WARNING);
+
+date_default_timezone_set("Europe/Athens");
+
+ini_set('default_socket_timeout', 6000);
+ini_set('display_errors','On');
+ini_set('memory_limit','1024M');
+ini_set('output_buffering','on');
+ini_set('zlib.output_compression', 0);
+
+//= mmsch.teiath.gr ============================================================
+  $conOptions = array(
+      "Host"=>"localhost",
+      "Database"=>"mmsch", 
+      "Username"=>"root", 
+      "Password"=>"",
+  );
+
+  $Options = array(
+      "DefaultPageSize" => 300,
+      "AllPageSize" => "0",
+      "MaxPageSize" => 500,
+      "ServerURL" => "http://mmsch.teiath.gr/api",
+      "ServerUserName" => "mmsch",
+      "ServerPassWord" => "",
+      "ServerAdminUserName" => "mmschadmin",
+      "ServerAdminPassWord" => "",
+      "dbUnits" => "data/survey_units.txt",
+      "dbDides" => "data/survey_dides.txt",
+);
+
+
+?>

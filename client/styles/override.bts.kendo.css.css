@@ -1,0 +1,79 @@
+/*
+html *,
+body *
+{
+    font-family: Verdana ,Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+	font-size: 11px;
+}
+
+.sidebar-search-form h3 
+{
+    border: 0;
+}
+
+.sidebar-search-form .searchComponent
+{
+    border-radius: 0;
+    padding: 0px;
+}
+
+.sidebar-search-form .searchComponent > .k-header
+{
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: auto;
+}
+
+.sidebar-search-form .searchComponent .note
+{
+    margin:10px;
+    margin-bottom: 20px; 
+    font-size: 12px; 
+}
+
+.sidebar-search-form .searchComponent
+{
+    border-radius: 0;
+    padding: 0px;
+}
+
+.sidebar-search-form .searchComponent > .k-toolbar.at-bottom
+{
+    border-width: 0;
+    padding: 5px 10px 5px 10px;
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+
+.sidebar-search-form .searchComponent > .k-toolbar.at-top
+{
+    border-width: 0;
+    padding: 5px 10px 5px 10px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+
+*/

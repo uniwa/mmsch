@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="generator" content="ApiGen 2.8.0">
+
+	<title>Function GetUnitWorkers | mmsch.teiath.gr (beta 3)</title>
+
+	<script type="text/javascript" src="resources/combined.js?2259263873"></script>
+	<script type="text/javascript" src="elementlist.js?3776710774"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li class="active"><a href="package-GET.html">GET</a>
+						</li>
+				<li><a href="package-POST.html">POST</a>
+						</li>
+				<li><a href="package-PUT.html">PUT</a>
+						</li>
+				<li><a href="package-System.html">System</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+
+
+
+
+
+			<h3>Functions</h3>
+			<ul>
+				<li><a href="function-GetAddrspaces.html">GetAddrspaces</a></li>
+				<li><a href="function-GetAddrspaceTypes.html">GetAddrspaceTypes</a></li>
+				<li><a href="function-GetCategories.html">GetCategories</a></li>
+				<li><a href="function-GetCircuits.html">GetCircuits</a></li>
+				<li><a href="function-GetCircuitTypes.html">GetCircuitTypes</a></li>
+				<li><a href="function-GetConnections.html">GetConnections</a></li>
+				<li><a href="function-GetCpes.html">GetCpes</a></li>
+				<li><a href="function-GetEduAdmins.html">GetEduAdmins</a></li>
+				<li><a href="function-GetEducationLevels.html">GetEducationLevels</a></li>
+				<li><a href="function-GetGroups.html">GetGroups</a></li>
+				<li><a href="function-GetImplementationEntities.html">GetImplementationEntities</a></li>
+				<li><a href="function-GetIpMasks.html">GetIpMasks</a></li>
+				<li><a href="function-GetLdaps.html">GetLdaps</a></li>
+				<li><a href="function-GetLegalCharacters.html">GetLegalCharacters</a></li>
+				<li><a href="function-GetLevels.html">GetLevels</a></li>
+				<li><a href="function-GetMunicipalities.html">GetMunicipalities</a></li>
+				<li><a href="function-GetOperationShifts.html">GetOperationShifts</a></li>
+				<li><a href="function-GetOrientationTypes.html">GetOrientationTypes</a></li>
+				<li><a href="function-GetPrefectures.html">GetPrefectures</a></li>
+				<li><a href="function-GetRegionEduAdmins.html">GetRegionEduAdmins</a></li>
+				<li><a href="function-GetRelations.html">GetRelations</a></li>
+				<li><a href="function-GetRelationTypes.html">GetRelationTypes</a></li>
+				<li><a href="function-GetSchoolCommittees.html">GetSchoolCommittees</a></li>
+				<li><a href="function-GetSources.html">GetSources</a></li>
+				<li><a href="function-GetSpecialTypes.html">GetSpecialTypes</a></li>
+				<li><a href="function-GetStates.html">GetStates</a></li>
+				<li><a href="function-GetTaxOffices.html">GetTaxOffices</a></li>
+				<li><a href="function-GetTransferAreaMunicipalities.html">GetTransferAreaMunicipalities</a></li>
+				<li><a href="function-GetTransferAreas.html">GetTransferAreas</a></li>
+				<li><a href="function-GetTransitions.html">GetTransitions</a></li>
+				<li><a href="function-GetUnitDns.html">GetUnitDns</a></li>
+				<li><a href="function-GetUnits.html">GetUnits</a></li>
+				<li><a href="function-GetUnitTypes.html">GetUnitTypes</a></li>
+				<li class="active"><a href="function-GetUnitWorkers.html">GetUnitWorkers</a></li>
+				<li><a href="function-GetWorkerPositions.html">GetWorkerPositions</a></li>
+				<li><a href="function-GetWorkers.html">GetWorkers</a></li>
+				<li><a href="function-GetWorkerSpecializations.html">GetWorkerSpecializations</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text">
+		<input type="submit" value="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-GET.html" title="Summary of GET"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Function</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="function">
+	<h1>Function GetUnitWorkers</h1>
+
+
+	<div class="description">
+	
+<p><b>Συσχετίσεις Μονάδων με
+Εργαζόμενους</b></p>
+
+<p>Η συνάρτηση αυτή επιστρέφει όλές τις
+Συσχέτισεις των Μονάδων με του
+Εργαζόμενους σύμφωνα με τις παραμέτρους
+που έγινε η κλήση Η κλήση μπορεί να γίνει
+μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET
+:<br />
+<a
+href="http://mmsch.teiath.gr/api/unit_workers">http://mmsch.teiath.gr/api/unit_workers</a></p>
+
+<p>Τα αποτελέσματα είναι ταξινομημένα ως
+προς το Ονοματεπώνυμο του Εργαζομένου<br />
+Μέσω των παραμέτρων Πεδίο Ταξινόμησης (<a
+href="#$orderby">$orderby</a>) και Τύπος Ταξινόμησης (<a
+href="#$ordertype">$ordertype</a>) μπορεί να καθοριστεί το
+πεδίο και η σειρά ταξινόμησης</p>
+
+<p><br />
+<b>Πίνακας Παραμέτρων</b><br />
+Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+summary</a> εμφανίζονται όλοι οι παράμετροι με
+τους οποίους μπορεί να γίνει η κλήση της
+συνάρτησης<br />
+Όλοι οι παράμετροι είναι προαιρετικοί
+εκτός από αυτές που έχουν χαρακτηριστεί ως
+υποχρεωτικοί<br />
+Οι παράμετροι μπορούν να χρησιμοποιηθούν
+με οποιαδήποτε σειρά<br />
+Οι παράμετροι μπορούν να πάρουν τιμή "NULL"
+για να αναζητήσουν τις κενές εγγραφές στα
+αντίστοιχα πεδία</p>
+
+<p><br />
+<b>Πίνακας Αποτελεσμάτων</b><br />
+Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value
+summary</a> εμφανίζονται οι μεταβλητές που
+επιστρέφει η συνάρτηση<br />
+Όλες οι μεταβλητές επιστρέφονται σε ένα
+πίνακα σε JSON μορφή<br />
+Η μεταβλητή data είναι ο πίνακας με το
+λεξικό<br />
+Η μεταβλητή status καθορίζει αν η εκτέλεση της
+συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+προέκυψε κάποιο σφάλμα</p>
+
+<p><br />
+<b>Πίνακας Σφαλμάτων</b><br />
+Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+που μπορεί να προκύψουν κατά την κλήση της
+συνάρτησης<br />
+Οι περιγραφές των Σφαλμάτων καθώς και οι
+Κωδικοί τους είναι διαθέσιμες μέσω του
+πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+αντίστοιχα</p>
+
+<p><br />
+<b>Παραδείγματα Κλήσης</b><br />
+Παρακάτω εμφανίζεται μια σειρά από
+παραδείγματα κλήσης της συνάρτησης με
+διάφορους τρόπους :<br />
+<a href="#cURL">cURL</a> | <a href="#JavaScript">JavaScript</a> | <a
+href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a></p>
+
+<div><br />
+</div>
+
+<p><a id="cURL"></a>Παράδειγμα κλήσης της
+συνάρτησης με <b>cURL</b> (console) :</p>
+
+<pre>
+curl -X GET http:<span
+class="php-comment">//mmsch.teiath.gr/api/unit_workers \</span>
+   -H <span
+class="php-quote">&quot;Content-Type: application/json&quot;</span> \
+   -H <span
+class="php-quote">&quot;Accept: application/json&quot;</span> \
+   -u username:password \
+   -d <span
+class="php-quote">'{&quot;unit&quot;: &quot;1000002&quot;}'</span>
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="JavaScript"></a>Παράδειγμα κλήσης της
+συνάρτησης με <b>JavaScript</b> :</p>
+
+<pre>
+&lt;script&gt;
+   <span
+class="php-keyword1">var</span> params = JSON.stringify({ <span
+class="php-quote">&quot;unit&quot;</span>: <span
+class="php-quote">&quot;1000002&quot;</span> });
+
+   <span
+class="php-keyword1">var</span> http = <span
+class="php-keyword1">new</span> XMLHttpRequest();
+   http.open(<span
+class="php-quote">&quot;GET&quot;</span>, <span
+class="php-quote">&quot;http://mmsch.teiath.gr/api/unit_workers&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Accept&quot;</span>, <span
+class="php-quote">&quot;application/json&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Content-type&quot;</span>, <span
+class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Content-length&quot;</span>, params.length);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Authorization&quot;</span>, <span
+class="php-quote">&quot;Basic &quot;</span> + btoa(<span
+class="php-quote">'username'</span> + <span class="php-quote">':'</span> + <span
+class="php-quote">'password'</span>) );
+
+   http.onreadystatechange = <span
+class="php-keyword1">function</span>()
+   {
+       <span
+class="php-keyword1">if</span>(http.readyState == <span
+class="php-num">4</span> &amp;&amp; http.status == <span
+class="php-num">200</span>)
+       {
+           <span
+class="php-keyword1">var</span> result = JSON.parse(http.responseText);
+           document.write(result.status + <span
+class="php-quote">&quot; : &quot;</span> + result.message + <span
+class="php-quote">&quot; : &quot;</span> + result.data);
+       }
+   }
+
+   http.send(params);
+&lt;/script&gt;
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="PHP"></a>Παράδειγμα κλήσης της συνάρτησης
+με <b>PHP</b> :</p>
+
+<pre>
+<span class="xlang">&lt;?php</span>
+<span
+class="php-keyword2">header</span>(<span
+class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
+
+<span
+class="php-var">$params</span> = <span class="php-keyword1">array</span>(<span
+class="php-quote">&quot;unit&quot;</span> =&gt; <span
+class="php-quote">&quot;1000002&quot;</span>);
+
+<span
+class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
+class="php-quote">&quot;http://mmsch.teiath.gr/api/unit_workers&quot;</span>);
+
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_USERPWD, <span
+class="php-quote">&quot;username:password&quot;</span>);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
+class="php-quote">&quot;GET&quot;</span>);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_POSTFIELDS, <span
+class="php-keyword2">json_encode</span>( <span
+class="php-var">$params</span> ));
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
+class="php-keyword1">true</span>);
+
+<span class="php-var">$data</span> = <span
+class="php-keyword2">curl_exec</span>(<span class="php-var">$curl</span>);
+<span
+class="php-var">$data</span> = <span
+class="php-keyword2">json_decode</span>(<span
+class="php-var">$data</span>);
+<span class="php-keyword1">echo</span> <span
+class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
+class="php-keyword2">var_dump</span>( <span
+class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
+class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
+<span
+class="xlang">?&gt;</span>
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="Ajax"></a>Παράδειγμα κλήσης της
+συνάρτησης με <b>Ajax</b> :</p>
+
+<pre>
+&lt;script&gt;
+   <span class="php-var">$</span>.ajax({
+       type: <span
+class="php-quote">'GET'</span>,
+       url: <span
+class="php-quote">'http://mmsch.teiath.gr/api/unit_workers'</span>,
+       dataType: <span
+class="php-quote">&quot;json&quot;</span>,
+       data: {<span
+class="php-quote">'unit'</span>: <span
+class="php-quote">'1000002'</span>},
+       beforeSend: <span
+class="php-keyword1">function</span>(req) {
+           req.setRequestHeader(<span
+class="php-quote">'Authorization'</span>, btoa(<span
+class="php-quote">'username'</span> + <span
+class="php-quote">&quot;:&quot;</span> + <span
+class="php-quote">'password'</span>));
+       },
+       success: <span
+class="php-keyword1">function</span>(data){
+           console.<span
+class="php-keyword2">log</span>(data);
+       }
+   });
+&lt;/script&gt;
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα
+του λεξικού σε μορφή JSON :</p>
+
+<pre>
+{<span
+class="php-quote">&quot;data&quot;</span>:[
+        {
+                <span
+class="php-quote">&quot;unit_worker_id&quot;</span>: <span
+class="php-num">1</span>,
+                <span
+class="php-quote">&quot;mm_id&quot;</span>: <span
+class="php-num">1000017</span>,
+                <span
+class="php-quote">&quot;unit_registry_no&quot;</span>: <span
+class="php-quote">&quot;0500946&quot;</span>,
+                <span
+class="php-quote">&quot;unit_name&quot;</span>: <span
+class="php-quote">&quot;1ο ΕΣΠΕΡΙΝΟ ΓΥΜΝΑΣΙΟ ΚΟΡΥΔΑΛΛΟΥ&quot;</span>,
+                <span
+class="php-quote">&quot;unit_special_name&quot;</span>: <span
+class="php-quote">&quot;&quot;</span>,
+                <span
+class="php-quote">&quot;worker_id&quot;</span>: <span
+class="php-num">1</span>,
+                <span
+class="php-quote">&quot;worker_registry_no&quot;</span>: <span
+class="php-quote">&quot;147027&quot;</span>,
+                <span
+class="php-quote">&quot;tax_number&quot;</span>: <span
+class="php-quote">&quot;023863096&quot;</span>,
+                <span
+class="php-quote">&quot;lastname&quot;</span>: <span
+class="php-quote">&quot;ΓΑΒΑΛΑΣ&quot;</span>,
+                <span
+class="php-quote">&quot;firstname&quot;</span>: <span
+class="php-quote">&quot;ΗΛΙΑΣ&quot;</span>,
+                <span
+class="php-quote">&quot;fathername&quot;</span>: <span
+class="php-quote">&quot;ΔΗΜΟΣ&quot;</span>,
+                <span
+class="php-quote">&quot;sex&quot;</span>: <span
+class="php-quote">&quot;Α&quot;</span>,
+                <span
+class="php-quote">&quot;worker_specialization_id&quot;</span>: <span
+class="php-keyword1">null</span>,
+                <span
+class="php-quote">&quot;worker_specialization&quot;</span>: <span
+class="php-keyword1">null</span>,
+                <span
+class="php-quote">&quot;worker_position_id&quot;</span>: <span
+class="php-num">1</span>,
+                <span
+class="php-quote">&quot;worker_position&quot;</span>: <span
+class="php-quote">&quot;ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ&quot;</span>
+        },
+        {
+                <span
+class="php-quote">&quot;unit_worker_id&quot;</span>: <span
+class="php-num">2</span>,
+                <span
+class="php-quote">&quot;mm_id&quot;</span>: <span
+class="php-num">1000019</span>,
+                <span
+class="php-quote">&quot;unit_registry_no&quot;</span>: <span
+class="php-quote">&quot;0501002&quot;</span>,
+                <span
+class="php-quote">&quot;unit_name&quot;</span>: <span
+class="php-quote">&quot;ΠΡΟΤΥΠΟ ΠΕΙΡΑΜΑΤΙΚΟ ΓΥΜΝΑΣΙΟ ΨΥΧΙΚΟ&quot;</span>,
+                <span
+class="php-quote">&quot;unit_special_name&quot;</span>: <span
+class="php-quote">&quot;ΒΑΡΒΑΚΕΙΟ ΠΡΟΤΥΠΟ ΠΕΙΡΑΜΑΤΙΚΟ ΓΥΜΝΑΣΙΟ&quot;</span>,
+                <span
+class="php-quote">&quot;worker_id&quot;</span>: <span
+class="php-num">2</span>,
+                <span
+class="php-quote">&quot;worker_registry_no&quot;</span>: <span
+class="php-quote">&quot;154460&quot;</span>,
+                <span
+class="php-quote">&quot;tax_number&quot;</span>: <span
+class="php-quote">&quot;037432781&quot;</span>,
+                <span
+class="php-quote">&quot;lastname&quot;</span>: <span
+class="php-quote">&quot;ΜΩΡΑΙΤΗ&quot;</span>,
+                <span
+class="php-quote">&quot;firstname&quot;</span>: <span
+class="php-quote">&quot;ΜΑΡΙΑ&quot;</span>,
+                <span
+class="php-quote">&quot;fathername&quot;</span>: <span
+class="php-quote">&quot;ΑΝΕΣΤΗΣ&quot;</span>,
+                <span
+class="php-quote">&quot;sex&quot;</span>: <span
+class="php-quote">&quot;Γ&quot;</span>,
+                <span
+class="php-quote">&quot;worker_specialization_id&quot;</span>: <span
+class="php-keyword1">null</span>,
+                <span
+class="php-quote">&quot;worker_specialization&quot;</span>: <span
+class="php-keyword1">null</span>,
+                <span
+class="php-quote">&quot;worker_position_id&quot;</span>: <span
+class="php-num">1</span>,
+                <span
+class="php-quote">&quot;worker_position&quot;</span>: <span
+class="php-quote">&quot;ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ&quot;</span>
+        },
+        {
+                <span
+class="php-quote">&quot;unit_worker_id&quot;</span>: <span
+class="php-num">3</span>,
+                <span
+class="php-quote">&quot;mm_id&quot;</span>: <span
+class="php-num">1000021</span>,
+                <span
+class="php-quote">&quot;unit_registry_no&quot;</span>: <span
+class="php-quote">&quot;0501003&quot;</span>,
+                <span
+class="php-quote">&quot;unit_name&quot;</span>: <span
+class="php-quote">&quot;ΠΡΟΤΥΠΟ ΠΕΙΡΑΜΑΤΙΚΟ ΓΥΜΝΑΣΙΟ ΑΜΑΡΟΥΣΙΟ&quot;</span>,
+                <span
+class="php-quote">&quot;unit_special_name&quot;</span>: <span
+class="php-quote">&quot;ΑΝΑΒΡΥΤΩΝ&quot;</span>,
+                <span
+class="php-quote">&quot;worker_id&quot;</span>: <span
+class="php-num">3</span>,
+                <span
+class="php-quote">&quot;worker_registry_no&quot;</span>: <span
+class="php-quote">&quot;138905&quot;</span>,
+                <span
+class="php-quote">&quot;tax_number&quot;</span>: <span
+class="php-quote">&quot;022235579&quot;</span>,
+                <span
+class="php-quote">&quot;lastname&quot;</span>: <span
+class="php-quote">&quot;ΓΕΛΑΔΑΚΗ&quot;</span>,
+                <span
+class="php-quote">&quot;firstname&quot;</span>: <span
+class="php-quote">&quot;ΣΟΦΙΑ&quot;</span>,
+                <span
+class="php-quote">&quot;fathername&quot;</span>: <span
+class="php-quote">&quot;ΙΩΑΝΝΗΣ&quot;</span>,
+                <span
+class="php-quote">&quot;sex&quot;</span>: <span
+class="php-quote">&quot;Γ&quot;</span>,
+                <span
+class="php-quote">&quot;worker_specialization_id&quot;</span>: <span
+class="php-keyword1">null</span>,
+                <span
+class="php-quote">&quot;worker_specialization&quot;</span>: <span
+class="php-keyword1">null</span>,
+                <span
+class="php-quote">&quot;worker_position_id&quot;</span>: <span
+class="php-num">1</span>,
+                <span
+class="php-quote">&quot;worker_position&quot;</span>: <span
+class="php-quote">&quot;ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ&quot;</span>
+        },
+        {
+                <span
+class="php-quote">&quot;unit_worker_id&quot;</span>: <span
+class="php-num">4</span>,
+                <span
+class="php-quote">&quot;mm_id&quot;</span>: <span
+class="php-num">1000023</span>,
+                <span
+class="php-quote">&quot;unit_registry_no&quot;</span>: <span
+class="php-quote">&quot;0501004&quot;</span>,
+                <span
+class="php-quote">&quot;unit_name&quot;</span>: <span
+class="php-quote">&quot;ΠΡΟΤΥΠΟ ΠΕΙΡΑΜΑΤΙΚΟ ΓΥΜΝΑΣΙΟ ΝΕΑ ΣΜΥΡΝΗ&quot;</span>,
+                <span
+class="php-quote">&quot;unit_special_name&quot;</span>: <span
+class="php-quote">&quot;ΕΥΑΓΓΕΛΙΚΗ ΣΧΟΛΗ ΣΜΥΡΝΗΣ&quot;</span>,
+                <span
+class="php-quote">&quot;worker_id&quot;</span>: <span
+class="php-num">4</span>,
+                <span
+class="php-quote">&quot;worker_registry_no&quot;</span>: <span
+class="php-quote">&quot;189364&quot;</span>,
+                <span
+class="php-quote">&quot;tax_number&quot;</span>: <span
+class="php-quote">&quot;052195484&quot;</span>,
+                <span
+class="php-quote">&quot;lastname&quot;</span>: <span
+class="php-quote">&quot;ΛΙΝΑΡΔΟΣ&quot;</span>,
+                <span
+class="php-quote">&quot;firstname&quot;</span>: <span
+class="php-quote">&quot;ΝΙΚΟΛΑΟΣ&quot;</span>,
+                <span
+class="php-quote">&quot;fathername&quot;</span>: <span
+class="php-quote">&quot;ΒΑΣΙΛΕΙΟ&quot;</span>,
+                <span
+class="php-quote">&quot;sex&quot;</span>: <span
+class="php-quote">&quot;Α&quot;</span>,
+                <span
+class="php-quote">&quot;worker_specialization_id&quot;</span>: <span
+class="php-keyword1">null</span>,
+                <span
+class="php-quote">&quot;worker_specialization&quot;</span>: <span
+class="php-keyword1">null</span>,
+                <span
+class="php-quote">&quot;worker_position_id&quot;</span>: <span
+class="php-num">1</span>,
+                <span
+class="php-quote">&quot;worker_position&quot;</span>: <span
+class="php-quote">&quot;ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ&quot;</span>
+        }
+]}
+</pre>
+
+<div><br />
+</div>
+
+	</div>
+
+	<div class="info">
+		
+		<b>Package:</b> <a href="package-GET.html">GET</a><br>
+				<b>Author:</b>
+				ΤΕΙ Αθήνας<br>
+		<b>Located at</b> api/get/GetUnitWorkers.php<br>
+	</div>
+
+
+	<table class="summary" id="parameters">
+	<caption>Parameters summary</caption>
+	<tr id="$unit">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$unit</var></code></td>
+		<td>
+			 Μονάδα<br />
+Το Όνομα ή ο Κωδικός MM της Μονάδας<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
+Μονάδες : <code><a href="function-GetUnits.html">GetUnits()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ΜΜ της Μονάδας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα της Μονάδας<br />
+	Με την χρήση της παραμέτρου Τύπος
+	Αναζήτησης (<a href="#$searchtype">$searchtype</a>) μπορεί να
+	καθοριστεί ο τρόπος με τον οποίο θα
+	αναζητηθεί η τιμή της παραμέτρου στο Όνομα
+	της Μονάδας<br />
+	Αν η παράμετρος δεν έχει τιμή τότε η
+	αναζήτηση στο Όνομα της Μονάδας γίνεται με
+	τον Tύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code></li>
+
+	<li>array[integer|string]<br />
+	Σύνολο από Αριθμητικές και Αλφαριθμητικές
+	τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$worker">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$worker</var></code></td>
+		<td>
+			 Εργαζόμενος<br />
+Το Ονοματεπώνυμο ή ο Κωδικός του
+Εργαζομένου<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
+Εργαζόμενοι : <code><a href="function-GetWorkers.html">GetWorkers()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό του Εργαζομένου<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Ονοματεπώνυμο του Εργαζομένου<br />
+	Με την χρήση της παραμέτρου Τύπος
+	Αναζήτησης (<a href="#$searchtype">$searchtype</a>) μπορεί να
+	καθοριστεί ο τρόπος με τον οποίο θα
+	αναζητηθεί η τιμή της παραμέτρου στο
+	Ονοματεπώνυμο του Εργαζομένου<br />
+	Αν η παράμετρος δεν έχει τιμή τότε η
+	αναζήτηση στο Ονοματεπώνυμο του
+	Εργαζομένου γίνεται με τον Tύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code></li>
+
+	<li>array[integer|string]<br />
+	Σύνολο από Αριθμητικές και Αλφαριθμητικές
+	τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$worker_registry_no">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$worker_registry_no</var></code></td>
+		<td>
+			$registry_no Αριθμός Μητρώου<br />
+Ο Αριθμός Μητρώου του Εργαζομένου<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Αριθμός Μητρώου του Εργαζομένου<br />
+	Η αναζήτηση στον Αριθμός Μητρώου γίνεται με
+	τον Τύπο <code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με τον
+	Αριθμός Μητρώου του Εργαζομένου<br />
+	Η αναζήτηση στο Αριθμός Μητρώου γίνεται με
+	τον Τύπο <code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>array[integer|string]<br />
+	Σύνολο από Αριθμητικές και Αλφαριθμητικές
+	τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$worker_position">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$worker_position</var></code></td>
+		<td>
+			 Θέση Εργασίας Εργαζομένου<br />
+Το Όνομα ή ο Κωδικός της Θέσης Εργασίας του
+Εργαζομένου<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
+Λεξικό : <code><a href="function-GetWorkerPositions.html">GetWorkerPositions()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό της Θέσης Εργασίας του Εργαζομένου<br
+	/>
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα της Θέσης Εργασίας του Εργαζομένου<br
+	/>
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>array[integer|string]<br />
+	Σύνολο από Αριθμητικές και Αλφαριθμητικές
+	τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$worker_specialization">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$worker_specialization</var></code></td>
+		<td>
+			 Ειδικότητα Εργαζομένου<br />
+Το Όνομα ή ο Κωδικός της Ειδικότητας του
+Εργαζομένου<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
+Λεξικό : <code><a href="function-GetWorkerSpecializations.html">GetWorkerSpecializations()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό της Ειδικότητας του Εργαζομένου<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα της Ειδικότητας του Εργαζομένου<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>array[integer|string]<br />
+	Σύνολο από Αριθμητικές και Αλφαριθμητικές
+	τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$pagesize">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$pagesize</var></code></td>
+		<td>
+			 Αριθμός Εγγραφών/Σελίδα<br />
+Ο αριθμός των εγγραφών που θα επιστρέψουν
+ανα σελίδα<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε θα
+επιστραφούν όλες οι εγγραφές (<code><a href="class-Parameters.html#AllPageSize">Parameters::<b>AllPageSize</b></a></code>)<br />
+Λίστα Παραμέτρων Σελιδοποίησης : <code><a href="class-Parameters.html">Parameters</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η τιμή της παραμέτρου πρέπει να
+	είναι μεγαλύτερη από 0</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$page">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$page</var></code></td>
+		<td>
+			 Αριθμός Σελίδας<br />
+Ο αριθμός της σελίδας με τις <a
+href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
+σύμφωμα με τις παραμέτρους<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε θα
+επιστραφεί η πρώτη σελίδα<br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η τιμή της παραμέτρου πρέπει να
+	είναι μεγαλύτερη από 0</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$orderby">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$orderby</var></code></td>
+		<td>
+			 Πεδίο Ταξινόμησης<br />
+Το όνομα του πεδίου με το οποίο γίνεται η
+ταξινόμηση των εγγραφών<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε η
+ταξινόμηση γίνεται με το Ονοματεπώνυμο του
+Εργαζομένου<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+<ul>
+	<li>string<br />
+	Αλφαριθμητική : Η τιμή της παραμέτρου
+	μπορεί να είναι οποιοδήποτε πεδίο
+	επιστρέφει η συνάρτηση στον πίνακα data</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$ordertype">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$ordertype</var></code></td>
+		<td>
+			 Τύπος Ταξινόμησης<br />
+Ο Τύπος Ταξινόμησης με τον οποίο γίνεται η
+ταξινόμηση των εγγραφών<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε η
+ταξινόμηση γίνεται με Αύξουσα Σειρά (<code><a href="class-OrderEnumTypes.html#ASC">OrderEnumTypes::<b>ASC</b></a></code>)<br />
+Λίστα Τύπων Ταξινόμησης : <code><a href="class-OrderEnumTypes.html">OrderEnumTypes</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+<ul>
+	<li>string<br />
+	Αλφαριθμητική : Η τιμή της παραμέτρου
+	μπορεί να είναι ένας από τους Tύπους <code><a href="class-OrderEnumTypes.html">OrderEnumTypes</a></code></li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$searchtype">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$searchtype</var></code></td>
+		<td>
+			 Τύπος Αναζήτησης<br />
+Ο Τύπος Αναζήτησης με τον οποίο γίνεται η
+αναζήτηση στο Ονοματεπώνυμο (<a
+href="#$worker">$worker</a>) του Εργαζομένου καθώς και
+Όνομα (<a href="#$unit">$unit</a>) της Μονάδας<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε η
+αναζήτηση στο Ονοματεπώνυμο του
+Εργαζομένου και στο Όνομα της Μονάδας
+γίνεται με τον Τύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code><br />
+Αν οι παράμετροι έχουν Αριθμητική Τιμή τότε
+η αναζήτηση γίνεται με τον Κωδικό με Τύπο
+<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code><br />
+Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+<ul>
+	<li>string<br />
+	Αλφαριθμητική : Η τιμή της παραμέτρου
+	μπορεί να είναι ένας από τους Tύπους <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code></li>
+</ul>
+
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="returns">
+	<caption>Return value summary</caption>
+	<tr>
+		<td class="name"><code>
+			Array&lt;JSON&gt;
+		</code></td>
+		<td>
+			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
+:<br />
+<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+integer : <b>status</b> : Ο Κωδικός <code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code> του
+αποτελέσματος της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα <code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code> του
+αποτελέσματος της κλήσης<br />
+integer : <b>count</b> : Το πλήθος των εγγραφών της
+κλήσης σύμφωνα με τις παραμέτρους
+σελιδοποίησης<br />
+integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς
+τις παραμέτρους σελιδοποίησης<br />
+array : <b>data</b> : Ο Πίνακας με το λεξικό
+<ul>
+	<li>integer : <b>unit_worker_id</b> : Ο Κωδικός της
+	Συσχέτισης της Μονάδα με τον Εργαζόμενο</li>
+
+	<li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας
+	(Μονάδες : <code><a href="function-GetUnits.html">GetUnits()</a></code>)</li>
+
+	<li>string : <b>unit_registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της
+	Μονάδας</li>
+
+	<li>string : <b>unit_name</b> : Το Όνομα της Μονάδας</li>
+
+	<li>string : <b>special_unit_name</b> : Το Προσωνύμιο της
+	Μονάδας</li>
+
+	<li>integer : <b>worker_id</b> : Ο Κωδικός του
+	Εργαζόμενου</li>
+
+	<li>string : <b>worker_registry_no</b> : Ο Αριθμός Μητρώου του
+	Εργαζόμενου</li>
+
+	<li>string : <b>lastname</b> : Το Επώνυμο του
+	Εργαζόμενου</li>
+
+	<li>string : <b>firstname</b> : Το Όνομα του
+	Εργαζόμενου</li>
+
+	<li>string : <b>fathername</b> : Το Πατρώνυμο του
+	Εργαζόμενου</li>
+
+	<li>string : <b>fullname</b> : Το Ονοματεπώνυμο του
+	Εργαζόμενου</li>
+
+	<li>string : <b>sex</b> : Το Φύλο του Εργαζόμενου</li>
+
+	<li>string : <b>tax_number</b> : Ο Αριθμός Φορολογικού
+	Μητρώου του Εργαζόμενου</li>
+
+	<li>integer : <b>worker_position_id</b> : Ο Κωδικός της Θέσης
+	Εργασίας του Εργαζομένου</li>
+
+	<li>string : <b>worker_position</b> : Η Θέση Εργασίας του
+	Εργαζομένου (Λεξικό : <code><a href="function-GetWorkerPositions.html">GetWorkerPositions()</a></code>)</li>
+
+	<li>integer : <b>worker_specialization_id</b> : Ο Κωδικός της
+	Ειδικότητας του Εργαζομένου</li>
+
+	<li>string : <b>worker_specialization</b> : Η Ειδικότητα του
+	Εργαζομένου (Λεξικό : <code><a href="function-GetWorkerSpecializations.html">GetWorkerSpecializations()</a></code>)</li>
+</ul>
+
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="throws">
+	<caption>Thrown exceptions summary</caption>
+	<tr>
+		<td class="name"><code>
+			InvalidSearchType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSearchType">ExceptionMessages::<b>InvalidSearchType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidSearchType">ExceptionCodes::<b>InvalidSearchType</b></a></code><br />
+Ο Τύπος Αναζήτησης είναι λάθος
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingPageValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingPageValue">ExceptionMessages::<b>MissingPageValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingPageValue">ExceptionCodes::<b>MissingPageValue</b></a></code><br />
+Ο Αριθμός Σελίδας πρέπει να έχει τιμή
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageArray">ExceptionMessages::<b>InvalidPageArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidPageArray">ExceptionCodes::<b>InvalidPageArray</b></a></code><br />
+Ο Αριθμός Σελίδας δεν μπορεί να έχει
+πολλαπλές τιμές
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageNumber
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageNumber">ExceptionMessages::<b>InvalidPageNumber</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidPageNumber">ExceptionCodes::<b>InvalidPageNumber</b></a></code><br />
+Ο Αριθμός Σελίδας πρέπει να είναι
+μεγαλύτερος από 0
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageType">ExceptionMessages::<b>InvalidPageType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidPageType">ExceptionCodes::<b>InvalidPageType</b></a></code><br />
+Ο Αριθμός Σελίδας πρέπει να είναι
+αριθμητικός
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingPageSizeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingPageSizeValue">ExceptionMessages::<b>MissingPageSizeValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingPageSizeValue">ExceptionCodes::<b>MissingPageSizeValue</b></a></code><br />
+Ο Αριθμός Εγγραφών/Σελίδα πρέπει να έχει
+τιμή
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageSizeArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageSizeArray">ExceptionMessages::<b>InvalidPageSizeArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidPageSizeArray">ExceptionCodes::<b>InvalidPageSizeArray</b></a></code><br />
+Ο Αριθμός Εγγραφών/Σελίδα δεν μπορεί να
+έχει πολλαπλές τιμές
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageSizeNumber
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageSizeNumber">ExceptionMessages::<b>InvalidPageSizeNumber</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidPageSizeNumber">ExceptionCodes::<b>InvalidPageSizeNumber</b></a></code><br />
+Ο Αριθμός Εγγραφών/Σελίδα πρέπει να είναι
+από 0 έως 500
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageSizeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageSizeType">ExceptionMessages::<b>InvalidPageSizeType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidPageSizeType">ExceptionCodes::<b>InvalidPageSizeType</b></a></code><br />
+Ο Αριθμός Εγγραφών/Σελίδα πρέπει να είναι
+αριθμητικός
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitType">ExceptionMessages::<b>InvalidUnitType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitType">ExceptionCodes::<b>InvalidUnitType</b></a></code><br />
+Η Μονάδα πρέπει να είναι αριθμητική ή
+αλφαριθμητική
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidWorkerType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerType">ExceptionMessages::<b>InvalidWorkerType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidWorkerType">ExceptionCodes::<b>InvalidWorkerType</b></a></code><br />
+Ο Εργαζόμενος πρέπει να είναι αριθμητικός ή
+αλφαριθμητικός
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidWorkerRegistryNoType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerRegistryNoType">ExceptionMessages::<b>InvalidWorkerRegistryNoType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidWorkerRegistryNoType">ExceptionCodes::<b>InvalidWorkerRegistryNoType</b></a></code><br />
+Ο Αριθμός Μητρώου του Εργαζομένου πρέπει να
+είναι αριθμητικός ή αλφαριθμητικός
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidWorkerPositionType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerPositionType">ExceptionMessages::<b>InvalidWorkerPositionType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidWorkerPositionType">ExceptionCodes::<b>InvalidWorkerPositionType</b></a></code><br />
+Η Θέση Εργασίας πρέπει να είναι αριθμητική
+ή αλφαριθμητική
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidWorkerSpecializationType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerSpecializationType">ExceptionMessages::<b>InvalidWorkerSpecializationType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidWorkerSpecializationType">ExceptionCodes::<b>InvalidWorkerSpecializationType</b></a></code><br />
+Η Ειδικότητα Εργαζομένου πρέπει να είναι
+αριθμητική ή αλφαριθμητική
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOrderType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOrderType">ExceptionMessages::<b>InvalidOrderType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidOrderType">ExceptionCodes::<b>InvalidOrderType</b></a></code><br />
+Ο Τύπος Ταξινόμησης πρέπει να είναι ASC ή DESC
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOrderBy
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOrderBy">ExceptionMessages::<b>InvalidOrderBy</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidOrderBy">ExceptionCodes::<b>InvalidOrderBy</b></a></code><br />
+Το Πεδίο Ταξινόμησης πρέπει να είναι κάποιο
+από τα πεδία που επιστρέφει η συνάρτηση
+		</td>
+	</tr>
+	</table>
+
+</div>
+
+	<div id="footer">
+		mmsch.teiath.gr (beta 3) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

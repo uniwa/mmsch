@@ -1,0 +1,1 @@
+[12-Jan-2014 18:10:25 Europe/Athens] PHP Fatal error:  Cannot redeclare GetCpes() (previously declared in /Users/khitas/Sites/mmsch/api/get/GetCpes.php:327) in /Users/khitas/Sites/mmsch/api/get/GetLdaps.php on line 569

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="generator" content="ApiGen 2.8.0">
+
+	<title>Function PutCircuits | mmsch.teiath.gr (beta 3)</title>
+
+	<script type="text/javascript" src="resources/combined.js?2259263873"></script>
+	<script type="text/javascript" src="elementlist.js?3776710774"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li><a href="package-GET.html">GET</a>
+						</li>
+				<li><a href="package-POST.html">POST</a>
+						</li>
+				<li class="active"><a href="package-PUT.html">PUT</a>
+						</li>
+				<li><a href="package-System.html">System</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+
+
+
+
+
+			<h3>Functions</h3>
+			<ul>
+				<li><a href="function-PostUnits.html">PostUnits</a></li>
+				<li><a href="function-PutCategories.html">PutCategories</a></li>
+				<li class="active"><a href="function-PutCircuits.html">PutCircuits</a></li>
+				<li><a href="function-PutCircuitTypes.html">PutCircuitTypes</a></li>
+				<li><a href="function-PutConnections.html">PutConnections</a></li>
+				<li><a href="function-PutGroups.html">PutGroups</a></li>
+				<li><a href="function-PutLevels.html">PutLevels</a></li>
+				<li><a href="function-PutRelations.html">PutRelations</a></li>
+				<li><a href="function-PutUnits.html">PutUnits</a></li>
+				<li><a href="function-PutUnitWorkers.html">PutUnitWorkers</a></li>
+				<li><a href="function-PutWorkers.html">PutWorkers</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text">
+		<input type="submit" value="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-PUT.html" title="Summary of PUT"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Function</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="function">
+	<h1>Function PutCircuits</h1>
+
+
+	<div class="description">
+	
+<p><b>Ενημέρωση Τηλεπικοινωνιακών
+Κυκλωμάτων</b></p>
+
+<p>Η συνάρτηση αυτή ενημερώνει
+Τηλεπικοινωνιακά Κυκλώματα σύμφωνα με τις
+παραμέτρους που έγινε η κλήση</p>
+
+<p>Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο PUT :<br />
+<a
+href="http://mmsch.teiath.gr/api/circuits">http://mmsch.teiath.gr/api/circuits</a><br
+/>
+<br />
+</p>
+
+<p><br />
+<b>Πίνακας Παραμέτρων</b><br />
+Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+summary</a> εμφανίζονται όλοι οι παράμετροι με
+τους οποίους μπορεί να γίνει η κλήση της
+συνάρτησης<br />
+Όλοι οι παράμετροι είναι προαιρετικοί
+εκτός από αυτές που έχουν χαρακτηριστεί ως
+υποχρεωτικοί<br />
+Οι παράμετροι μπορούν να χρησιμοποιηθούν
+με οποιαδήποτε σειρά</p>
+
+<p><br />
+<b>Πίνακας Αποτελεσμάτων</b><br />
+Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value
+summary</a> εμφανίζονται οι μεταβλητές που
+επιστρέφει η συνάρτηση<br />
+Όλες οι μεταβλητές επιστρέφονται σε ένα
+πίνακα σε JSON μορφή<br />
+Η μεταβλητή data είναι ο πίνακας με το
+λεξικό<br />
+Η μεταβλητή status καθορίζει αν η εκτέλεση της
+συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+προέκυψε κάποιο σφάλμα</p>
+
+<p><br />
+<b>Πίνακας Σφαλμάτων</b><br />
+Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+που μπορεί να προκύψουν κατά την κλήση της
+συνάρτησης<br />
+Οι περιγραφές των Σφαλμάτων καθώς και οι
+Κωδικοί τους είναι διαθέσιμες μέσω του
+πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+αντίστοιχα</p>
+
+<p><br />
+<b>Παραδείγματα Κλήσης</b><br />
+Παρακάτω εμφανίζεται μια σειρά από
+παραδείγματα κλήσης της συνάρτησης με
+διάφορους τρόπους :<br />
+<a href="#cURL">cURL</a> | <a href="#JavaScript">JavaScript</a> | <a
+href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a></p>
+
+<div><br />
+</div>
+
+<p><a id="cURL"></a>Παράδειγμα κλήσης της
+συνάρτησης με <b>cURL</b> (console) :</p>
+
+<pre>
+curl -X PUT http:<span
+class="php-comment">//mmsch.teiath.gr/api/circuits \</span>
+  -H <span
+class="php-quote">&quot;Content-Type: application/json&quot;</span> \
+  -H <span
+class="php-quote">&quot;Accept: application/json&quot;</span> \
+  -u username:password \
+  -d <span
+class="php-quote">'{&quot;circuit_id&quot; : &quot;1550&quot;,
+       &quot;circuit_type_id&quot; : &quot;2&quot;, \
+       &quot;phone_number&quot; : &quot;value&quot;, \
+       &quot;status&quot; : &quot;TRUE&quot;, \
+       &quot;activated_date&quot; : &quot;2003-06-01 16:08:00&quot;, \
+       &quot;mm_id&quot; : &quot;1013390&quot;, \
+       &quot;paid_by_psd&quot; : &quot;TRUE&quot;, \
+       &quot;updated_date&quot; : &quot;2013-12-18 16:08:00&quot;, \
+       &quot;deactivated_date&quot; : &quot;null&quot;, \
+       &quot;bandwidth&quot; : &quot;24576/1024Kbps&quot;, \
+       &quot;readspeed&quot; : &quot;null&quot; }'</span>
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="JavaScript"></a>Παράδειγμα κλήσης της
+συνάρτησης με <b>JavaScript</b> :</p>
+
+<pre>
+&lt;script&gt;
+   <span
+class="php-keyword1">var</span> params = JSON.stringify({
+       <span
+class="php-quote">&quot;circuit_id&quot;</span> : <span
+class="php-quote">&quot;1550&quot;</span>,
+       <span
+class="php-quote">&quot;circuit_type_id&quot;</span> : <span
+class="php-quote">&quot;2&quot;</span>,
+       <span
+class="php-quote">&quot;phone_number&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+       <span
+class="php-quote">&quot;status&quot;</span> : <span
+class="php-quote">&quot;TRUE&quot;</span>,
+       <span
+class="php-quote">&quot;activated_date&quot;</span> : <span
+class="php-quote">&quot;2003-06-01 16:08:00&quot;</span>,
+       <span
+class="php-quote">&quot;mm_id&quot;</span> : <span
+class="php-quote">&quot;1013390&quot;</span>,
+       <span
+class="php-quote">&quot;paid_by_psd&quot;</span> : <span
+class="php-quote">&quot;TRUE&quot;</span>,
+       <span
+class="php-quote">&quot;updated_date&quot;</span> : <span
+class="php-quote">&quot;2013-12-18 16:08:00&quot;</span>,
+       <span
+class="php-quote">&quot;deactivated_date&quot;</span> : <span
+class="php-quote">&quot;null&quot;</span>,
+       <span
+class="php-quote">&quot;bandwidth&quot;</span> : <span
+class="php-quote">&quot;24576/1024Kbps&quot;</span>,
+       <span
+class="php-quote">&quot;readspeed&quot;</span> : <span
+class="php-quote">&quot;null&quot;</span> }
+   });
+
+   <span
+class="php-keyword1">var</span> http = <span
+class="php-keyword1">new</span> XMLHttpRequest();
+   http.open(<span
+class="php-quote">&quot;PUT&quot;</span>, <span
+class="php-quote">&quot;http://mmsch.teiath.gr/api/circuits&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Accept&quot;</span>, <span
+class="php-quote">&quot;application/json&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Content-type&quot;</span>, <span
+class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Content-length&quot;</span>, params.length);
+
+   http.onreadystatechange = <span
+class="php-keyword1">function</span>() {
+       <span
+class="php-keyword1">if</span>(http.readyState == <span
+class="php-num">4</span> &amp;&amp; http.status == <span
+class="php-num">200</span>) {
+           alert(http.responseText);
+       }
+   }
+
+   http.send(params);
+&lt;/script&gt;
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="PHP"></a>Παράδειγμα κλήσης της συνάρτησης
+με <b>PHP</b> :</p>
+
+<pre>
+<span class="xlang">&lt;?php</span>
+<span
+class="php-keyword2">header</span>(<span
+class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
+
+<span
+class="php-var">$params</span> = <span
+class="php-keyword1">array</span>(
+       <span
+class="php-quote">&quot;circuit_id&quot;</span> =&gt; <span
+class="php-quote">&quot;1550&quot;</span>,
+       <span
+class="php-quote">&quot;circuit_type_id&quot;</span> =&gt; <span
+class="php-quote">&quot;2&quot;</span>,
+       <span
+class="php-quote">&quot;phone_number&quot;</span> =&gt; <span
+class="php-quote">&quot;value&quot;</span>,
+       <span
+class="php-quote">&quot;status&quot;</span> =&gt; <span
+class="php-quote">&quot;TRUE&quot;</span>,
+       <span
+class="php-quote">&quot;activated_date&quot;</span> =&gt; <span
+class="php-quote">&quot;2003-06-01 16:08:00&quot;</span>,
+       <span
+class="php-quote">&quot;mm_id&quot;</span> =&gt; <span
+class="php-quote">&quot;1013390&quot;</span>,
+       <span
+class="php-quote">&quot;paid_by_psd&quot;</span> =&gt; <span
+class="php-quote">&quot;TRUE&quot;</span>,
+       <span
+class="php-quote">&quot;updated_date&quot;</span> =&gt; <span
+class="php-quote">&quot;2013-12-18 16:08:00&quot;</span>,
+       <span
+class="php-quote">&quot;deactivated_date&quot;</span> =&gt; <span
+class="php-quote">&quot;null&quot;</span>,
+       <span
+class="php-quote">&quot;bandwidth&quot;</span> =&gt; <span
+class="php-quote">&quot;24576/1024Kbps&quot;</span>,
+       <span
+class="php-quote">&quot;readspeed&quot;</span> =&gt; <span
+class="php-quote">&quot;null&quot;</span> }<span
+class="php-quote">'
+);
+
+$curl = curl_init(&quot;http://mmsch.teiath.gr/api/circuits&quot;);
+
+curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+curl_setopt($curl, CURLOPT_USERPWD, &quot;username:password&quot;);
+curl_setopt($curl, CURLOPT_CUSTOMREQUEST, &quot;PUT&quot;);
+curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode( $params ));
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+$data = json_decode( curl_exec($curl) );
+echo &quot;&lt;pre&gt;&quot;; var_dump( $data ); echo &quot;&lt;/pre&gt;&quot;;
+?&gt;
+</span></pre>
+
+<div><br />
+</div>
+
+<p><a id="Ajax"></a>Παράδειγμα κλήσης της
+συνάρτησης με <b>Ajax</b> :</p>
+
+<pre>
+&lt;script&gt;
+   <span class="php-var">$</span>.ajax({
+       type: <span
+class="php-quote">'PUT'</span>,
+       url: <span
+class="php-quote">'http://mmsch.teiath.gr/api/circuits'</span>,
+       dataType: <span
+class="php-quote">&quot;json&quot;</span>,
+       data: {
+         <span
+class="php-quote">&quot;circuit_id&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+         <span
+class="php-quote">&quot;mm_id&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+         <span
+class="php-quote">&quot;name&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+         <span
+class="php-quote">&quot;connectivity_type&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+         <span
+class="php-quote">&quot;phone_number&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+         <span
+class="php-quote">&quot;status&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+         <span
+class="php-quote">&quot;activated_date&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+         <span
+class="php-quote">&quot;bandwidth&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+         <span
+class="php-quote">&quot;readspeed&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>
+       },
+       beforeSend: <span
+class="php-keyword1">function</span>(req) {
+           req.setRequestHeader(<span
+class="php-quote">'Authorization'</span>, btoa(<span
+class="php-quote">'username'</span> + <span
+class="php-quote">&quot;:&quot;</span> + <span
+class="php-quote">'password'</span>));
+       },
+       success: <span
+class="php-keyword1">function</span>(data){
+           console.<span
+class="php-keyword2">log</span>(data);
+       }
+   });
+&lt;/script&gt;
+</pre>
+
+<div><br />
+</div>
+
+<p><br />
+<b>Πίνακας Δεδομένων</b><br />
+<a id="data"></a>Παρακάτω εμφανίζεται πίνακας σε
+μορφή JSON :</p>
+
+<pre>
+{
+   <span class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;PutCircuits&quot;</span>,
+   <span
+class="php-quote">&quot;circuit_id&quot;</span>: <span
+class="php-quote">&quot;10650&quot;</span>,
+   <span
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
+   <span
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;success&quot;</span>
+}
+</pre>
+
+<div><br />
+</div>
+
+	</div>
+
+	<div class="info">
+		
+		<b>Package:</b> <a href="package-PUT.html">PUT</a><br>
+				<b>Author:</b>
+				ΤΕΙ Αθήνας<br>
+		<b>Located at</b> api/put/PutCircuits.php<br>
+	</div>
+
+
+	<table class="summary" id="parameters">
+	<caption>Parameters summary</caption>
+	<tr id="$circuit_id">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$circuit_id</var></code></td>
+		<td>
+			 <b><i>Κωδικός Τηλεπικοινωνιακού
+Κυκλώματος</i></b><br />
+Ο Κωδικός του Τηλεπικοινωνιακού
+Κυκλώματος<br />
+Η παράμετρος είναι υποχρεωτική<br />
+Τηλεπικοινωνιακά Κυκλώματα : <code><a href="function-GetCircuits.html">GetCircuits()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό του Τηλεπικοινωνιακού Κυκλώματος<br
+	/>
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$mm_id">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$mm_id</var></code></td>
+		<td>
+			 Κωδικός ΜΜ Μονάδας<br />
+Ο Κωδικός ΜΜ της Μονάδας<br />
+Η παράμετρος είναι υποχρεωτική<br />
+Μονάδες : <code><a href="function-GetUnits.html">GetUnits()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ΜΜ της Μονάδας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$circuit_type_id">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$circuit_type_id</var></code></td>
+		<td>
+			 Κωδικός Τύπου Κυκλώματος<br />
+Ο Κωδικός του Τύπου του Τηλεπικοινωνιακού
+Κυκλώματος<br />
+Η παράμετρος είναι υποχρεωτική<br />
+Τύποι Τηλεπικοινωνιακών Κυκλωμάτων : <code><a href="function-GetCircuitTypes.html">GetCircuitTypes()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό του Τηλεπικοινωνιακού Κυκλώματος<br
+	/>
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$phone_number">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$phone_number</var></code></td>
+		<td>
+			 Τηλεφωνικός Αριθμός<br />
+Ο Τηλεφωνικός Αριθμός του
+Τηλεπικοινωνιακού Κυκλώματος
+		</td>
+	</tr>
+	<tr id="$status">
+		<td class="name"><code>boolean</code></td>
+		<td class="value"><code><var>$status</var></code></td>
+		<td>
+			 Ενεργό/Ανενεργό<br />
+Η Κατάσταση του Τηλεπικοινωνιακού
+Κυκλώματος
+		</td>
+	</tr>
+	<tr id="$activated_date">
+		<td class="name"><code>datetime</code></td>
+		<td class="value"><code><var>$activated_date</var></code></td>
+		<td>
+			 Ημερομηνία Ενεργοποίησης<br />
+Η Ημερομηνία Ενεργοποίησης του
+Τηλεπικοινωνιακού Κυκλώματος
+		</td>
+	</tr>
+	<tr id="$updated_date">
+		<td class="name"><code>datetime</code></td>
+		<td class="value"><code><var>$updated_date</var></code></td>
+		<td>
+			 Ημερομηνία Ενημέρωσης<br />
+Η Ημερομηνία Ενημέρωσης του
+Τηλεπικοινωνιακού Κυκλώματος
+		</td>
+	</tr>
+	<tr id="$deactivated_date">
+		<td class="name"><code>datetime</code></td>
+		<td class="value"><code><var>$deactivated_date</var></code></td>
+		<td>
+			 Ημερομηνία Απενεργοποίησης<br />
+Η Ημερομηνία Απενεργοποίησης του
+Τηλεπικοινωνιακού Κυκλώματος
+		</td>
+	</tr>
+	<tr id="$bandwidth">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$bandwidth</var></code></td>
+		<td>
+			 Εύρως Ζώνης<br />
+Το Εύρως Ζώνης του Τηλεπικοινωνιακού
+Κυκλώματος
+		</td>
+	</tr>
+	<tr id="$readspeed">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$readspeed</var></code></td>
+		<td>
+			 Ταχύτητα<br />
+Η Ταχύτητα του Τηλεπικοινωνιακού
+Κυκλώματος
+		</td>
+	</tr>
+	<tr id="$paid_by_psd">
+		<td class="name"><code>boolean</code></td>
+		<td class="value"><code><var>$paid_by_psd</var></code></td>
+		<td>
+			 Χρηματοδοτείται από το ΠΣΔ<br />
+Το Τηλεπικοινωνιακό Κύκλωμα
+Χρηματοδοτείται από το ΠΣΔ
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="returns">
+	<caption>Return value summary</caption>
+	<tr>
+		<td class="name"><code>
+			Array&lt;JSON&gt;
+		</code></td>
+		<td>
+			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
+:<br />
+
+<ul>
+	<li>sting : <b>method</b> : Το Όνομα της μεθόδου</li>
+
+	<li>integer : <b>status</b> : Ο Κωδικός της κατάστασης</li>
+
+	<li>string : <b>message</b> : Μήνυμα περιγραφής της
+	κατάστασης</li>
+
+	<li>integer : <b>circuit_id</b> : Ο Κωδικός του
+	Τηλεπικοινωνιακού Κυκλώματος</li>
+</ul>
+
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="throws">
+	<caption>Thrown exceptions summary</caption>
+	<tr>
+		<td class="name"><code>
+			MissingNameValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingNameValue">ExceptionMessages::<b>MissingNameValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingMMIdValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingMMIdValue">ExceptionMessages::<b>MissingMMIdValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMMIdType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMMIdType">ExceptionMessages::<b>InvalidMMIdType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMMIdValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMMIdValue">ExceptionMessages::<b>InvalidMMIdValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedLevelValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedLevelValue">ExceptionMessages::<b>DuplicatedLevelValue</b></a></code>
+		</td>
+	</tr>
+	</table>
+
+</div>
+
+	<div id="footer">
+		mmsch.teiath.gr (beta 3) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

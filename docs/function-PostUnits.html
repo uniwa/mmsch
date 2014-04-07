@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="generator" content="ApiGen 2.8.0">
+
+	<title>Function PostUnits | mmsch.teiath.gr (beta 3)</title>
+
+	<script type="text/javascript" src="resources/combined.js?2259263873"></script>
+	<script type="text/javascript" src="elementlist.js?3776710774"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li><a href="package-GET.html">GET</a>
+						</li>
+				<li><a href="package-POST.html">POST</a>
+						</li>
+				<li class="active"><a href="package-PUT.html">PUT</a>
+						</li>
+				<li><a href="package-System.html">System</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+
+
+
+
+
+			<h3>Functions</h3>
+			<ul>
+				<li class="active"><a href="function-PostUnits.html">PostUnits</a></li>
+				<li><a href="function-PutCategories.html">PutCategories</a></li>
+				<li><a href="function-PutCircuits.html">PutCircuits</a></li>
+				<li><a href="function-PutCircuitTypes.html">PutCircuitTypes</a></li>
+				<li><a href="function-PutConnections.html">PutConnections</a></li>
+				<li><a href="function-PutGroups.html">PutGroups</a></li>
+				<li><a href="function-PutLevels.html">PutLevels</a></li>
+				<li><a href="function-PutRelations.html">PutRelations</a></li>
+				<li><a href="function-PutUnits.html">PutUnits</a></li>
+				<li><a href="function-PutUnitWorkers.html">PutUnitWorkers</a></li>
+				<li><a href="function-PutWorkers.html">PutWorkers</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text">
+		<input type="submit" value="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-PUT.html" title="Summary of PUT"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Function</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="function">
+	<h1>Function PostUnits</h1>
+
+
+	<div class="description">
+	
+<p>Ενημέρωση : Μονάδας</p>
+
+<p>Η κλήση της συνάρτησης αυτής μπορεί να
+γίνει μέσω της παρακάτω διεύθυνσης με τη
+μέθοδο PUT :<br />
+<a
+href="http://mmsch.teiath.gr/api/units">http://mmsch.teiath.gr/api/units</a><br
+/>
+<br />
+</p>
+
+<p>Παράδειγμα κλήσης της μεθόδου με <b>cURL</b>
+(console) :</p>
+
+<pre>
+curl -X PUT http:<span
+class="php-comment">//mmsch.teiath.gr/api/units \</span>
+  -H <span
+class="php-quote">&quot;Content-Type: application/json&quot;</span> \
+  -H <span
+class="php-quote">&quot;Accept: application/json&quot;</span> \
+  -u username:password \
+  -d <span
+class="php-quote">'{&quot;mm_id&quot; : &quot;value&quot;, \
+       &quot;registry_no&quot; : &quot;value&quot;, \
+       &quot;gluc&quot; : &quot;value&quot;, \
+       &quot;source&quot; : &quot;value&quot;, \
+       &quot;name&quot; : &quot;value&quot;, \
+       &quot;category&quot; : &quot;value&quot;, \
+       &quot;state&quot; : &quot;value&quot;, ...... }'</span>
+</pre>
+
+<div><br />
+</div>
+
+<p>Παράδειγμα κλήσης της μεθόδου με
+<b>JavaScript</b> :</p>
+
+<pre>
+&lt;script&gt;
+   <span
+class="php-keyword1">var</span> params = JSON.stringify({ <span
+class="php-quote">&quot;mm_id&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+                                 <span
+class="php-quote">&quot;registry_no&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+                                 <span
+class="php-quote">&quot;gluc&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+                                 <span
+class="php-quote">&quot;source&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+                                 <span
+class="php-quote">&quot;name&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+                                 <span
+class="php-quote">&quot;category&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+                                 <span
+class="php-quote">&quot;state&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>, ...... });
+
+   <span
+class="php-keyword1">var</span> http = <span
+class="php-keyword1">new</span> XMLHttpRequest();
+   http.open(<span
+class="php-quote">&quot;PUT&quot;</span>, <span
+class="php-quote">&quot;http://mmsch.teiath.gr/api/units&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Accept&quot;</span>, <span
+class="php-quote">&quot;application/json&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Content-type&quot;</span>, <span
+class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Content-length&quot;</span>, params.length);
+
+   http.onreadystatechange = <span
+class="php-keyword1">function</span>() {
+       <span
+class="php-keyword1">if</span>(http.readyState == <span
+class="php-num">4</span> &amp;&amp; http.status == <span
+class="php-num">200</span>) {
+           alert(http.responseText);
+       }
+   }
+
+   http.send(params);
+&lt;/script&gt;
+</pre>
+
+<div><br />
+</div>
+
+<p>Παράδειγμα κλήσης της μεθόδου με <b>PHP</b> :</p>
+
+<pre>
+<span class="xlang">&lt;?php</span>
+<span
+class="php-keyword2">header</span>(<span
+class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
+
+<span
+class="php-var">$params</span> = <span
+class="php-keyword1">array</span>(
+     <span
+class="php-quote">&quot;mm_id&quot;</span> =&gt; <span
+class="php-quote">&quot;value&quot;</span>,
+     <span
+class="php-quote">&quot;registry_no&quot;</span> =&gt; <span
+class="php-quote">&quot;value&quot;</span>,
+     <span
+class="php-quote">&quot;gluc&quot;</span> =&gt; <span
+class="php-quote">&quot;value&quot;</span>,
+     <span
+class="php-quote">&quot;source&quot;</span> =&gt; <span
+class="php-quote">&quot;value&quot;</span>,
+     <span
+class="php-quote">&quot;name&quot;</span> =&gt; <span
+class="php-quote">&quot;value&quot;</span>,
+     <span
+class="php-quote">&quot;category&quot;</span> =&gt; <span
+class="php-quote">&quot;value&quot;</span>,
+     <span
+class="php-quote">&quot;state&quot;</span> =&gt; <span
+class="php-quote">&quot;value&quot;</span>, ...... );
+
+<span
+class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
+class="php-quote">&quot;http://mmsch.teiath.gr/api/units&quot;</span>);
+
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_USERPWD, <span
+class="php-quote">&quot;username:password&quot;</span>);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
+class="php-quote">&quot;PUT&quot;</span>);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_POSTFIELDS, <span
+class="php-keyword2">json_encode</span>( <span
+class="php-var">$params</span> ));
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
+class="php-keyword1">true</span>);
+
+<span class="php-var">$data</span> = <span
+class="php-keyword2">json_decode</span>( <span
+class="php-keyword2">curl_exec</span>(<span
+class="php-var">$curl</span>) );
+<span class="php-keyword1">echo</span> <span
+class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
+class="php-keyword2">var_dump</span>( <span
+class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
+class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
+<span
+class="xlang">?&gt;</span>
+</pre>
+
+<div><br />
+</div>
+
+<p>Παράδειγμα κλήσης της συνάρτησης με
+<b>Ajax</b> :</p>
+
+<pre>
+&lt;script&gt;
+   <span class="php-var">$</span>.ajax({
+       type: <span
+class="php-quote">'PUT'</span>,
+       url: <span
+class="php-quote">'http://mmsch.teiath.gr/api/units'</span>,
+       dataType: <span
+class="php-quote">&quot;json&quot;</span>,
+       data: {
+           <span
+class="php-quote">&quot;mm_id&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+           <span
+class="php-quote">&quot;registry_no&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+           <span
+class="php-quote">&quot;gluc&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+           <span
+class="php-quote">&quot;source&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+           <span
+class="php-quote">&quot;name&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+           <span
+class="php-quote">&quot;category&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+           <span
+class="php-quote">&quot;state&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>, ......
+       },
+       beforeSend: <span
+class="php-keyword1">function</span>(req) {
+           req.setRequestHeader(<span
+class="php-quote">'Authorization'</span>, btoa(<span
+class="php-quote">'username'</span> + <span
+class="php-quote">&quot;:&quot;</span> + <span
+class="php-quote">'password'</span>));
+       },
+       success: <span
+class="php-keyword1">function</span>(data){
+           console.<span
+class="php-keyword2">log</span>(data);
+       }
+   });
+&lt;/script&gt;
+</pre>
+
+<div><br />
+</div>
+
+	</div>
+
+	<div class="info">
+		
+		<b>Package:</b> <a href="package-PUT.html">PUT</a><br>
+				<b>Author:</b>
+				ΤΕΙ Αθήνας<br>
+		<b>Located at</b> api/post/to_check/PostUnits.php<br>
+	</div>
+
+
+	<table class="summary" id="parameters">
+	<caption>Parameters summary</caption>
+	<tr id="$registry_no">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$registry_no</var></code></td>
+		<td>
+			$mm_id Κωδικός ΜΜ<br />
+Ο Κωδικός ΜΜ της Μονάδας<br />
+Το πεδίο είναι υποχρεωτικό
+		</td>
+	</tr>
+	<tr id="$gluc">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$gluc</var></code></td>
+		<td>
+			$registry_no Κωδικός ΥΠΕΠΘ<br />
+Ο Κωδικός ΥΠΕΠΘ της Μονάδας<br />
+Το πεδίο είναι υποχρεωτικό
+		</td>
+	</tr>
+	<tr id="$source">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$source</var></code></td>
+		<td>
+			$gluc Κωδικός Gluc<br />
+Ο Κωδικός Gluc της Μονάδας
+		</td>
+	</tr>
+	<tr id="$name">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$name</var></code></td>
+		<td>
+			$source Πρωτογενής Πηγή<br />
+Η Πρωτογενής Πηγή της Μονάδας (Λεξικό : <code><a href="function-GetSources.html">GetSources()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία<br />
+Το πεδίο είναι υποχρεωτικό
+		</td>
+	</tr>
+	<tr id="$special_name">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$special_name</var></code></td>
+		<td>
+			$name Ονομασία<br />
+Το Όνομα της Μονάδας<br />
+Το πεδίο είναι υποχρεωτικό
+		</td>
+	</tr>
+	<tr id="$state">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$state</var></code></td>
+		<td>
+			$category Κατηγορία<br />
+Η Κατηγορία της Μονάδας (Λεξικό : <code><a href="function-GetCategories.html">GetCategories()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία<br />
+Το πεδίο είναι υποχρεωτικό
+		</td>
+	</tr>
+	<tr id="$region_edu_admin">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$region_edu_admin</var></code></td>
+		<td>
+			$state Κατάσταση<br />
+Η Κατάσταση της Μονάδας (Λεξικό : <code><a href="function-GetStates.html">GetStates()</a></code>)<br
+/>
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία<br />
+Το πεδίο είναι υποχρεωτικό
+		</td>
+	</tr>
+	<tr id="$edu_admin">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$edu_admin</var></code></td>
+		<td>
+			$education_level Βαθμίδα<br />
+Το Επίπεδο Εκπαίδευσης της μονάδας (Λεξικό :
+<code><a href="function-GetEducationLevels.html">GetEducationLevels()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία<br />
+Το πεδίο είναι υποχρεωτικό
+		</td>
+	</tr>
+	<tr id="$implementation_entity">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$implementation_entity</var></code></td>
+		<td>
+			$special_name Ειδική Ονομασία<br />
+Το Προσωνύμιο της Μονάδας
+		</td>
+	</tr>
+	<tr id="$transfer_area">
+		<td class="name"><code>boolean</code></td>
+		<td class="value"><code><var>$transfer_area</var></code></td>
+		<td>
+			$active Ενεργή/Ανενεργή<br />
+Καθορίζει αν η Μονάδα είναι Ενεργή ή
+Ανενεργή<br />
+Το πεδίο αυτό συνδυάζεται μαζί με το πεδίο
+<b>$suspended</b>
+		</td>
+	</tr>
+	<tr id="$prefecture">
+		<td class="name"><code>boolean</code></td>
+		<td class="value"><code><var>$prefecture</var></code></td>
+		<td>
+			$suspended Αναστολή<br />
+Καθορίζει αν η Μονάδα είναι σε Αναστολή<br />
+Το πεδίο αυτό συνδυάζεται μαζί με το πεδίο
+<b>$active</b>
+		</td>
+	</tr>
+	<tr id="$municipality">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$municipality</var></code></td>
+		<td>
+			$region_edu_admin Περιφέρεια<br />
+Η Περιφέρεια της Μονάδας (Λεξικό : <code><a href="function-GetRegionEduAdmins.html">GetRegionEduAdmins()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία
+		</td>
+	</tr>
+	<tr id="$education_level">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$education_level</var></code></td>
+		<td>
+			$edu_admin Διεύθυνση Εκπαίδευσης<br />
+Η Διεύθυνση Εκπαίδευσης της Μονάδας (Λεξικό
+: <code><a href="function-GetEduAdmins.html">GetEduAdmins()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία
+		</td>
+	</tr>
+	<tr id="$phone_number">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$phone_number</var></code></td>
+		<td>
+			$implementation_entity Φοράς Υλοποίησης<br />
+Ο Φοράς Υλοποίησης της μονάδας (Λεξικό : <code><a href="function-GetImplementationEntities.html">GetImplementationEntities()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία
+		</td>
+	</tr>
+	<tr id="$email">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$email</var></code></td>
+		<td>
+			$transfer_area Περιοχή Μετάθεσης<br />
+Η Περιοχή Μετάθεσης της Μονάδας (Λεξικό : <code><a href="function-GetTransferAreas.html">GetTransferAreas()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία
+		</td>
+	</tr>
+	<tr id="$fax_number">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$fax_number</var></code></td>
+		<td>
+			$municipality Δήμος ΟΤΑ<br />
+Ο Δήμος ΟΤΑ της Μονάδας (Λεξικό : <code><a href="function-GetMunicipalities.html">GetMunicipalities()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία
+		</td>
+	</tr>
+	<tr id="$street_address">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$street_address</var></code></td>
+		<td>
+			$prefecture Νομός<br />
+Ο Νομός της Μονάδας (Λεξικό : <code><a href="function-GetPrefectures.html">GetPrefectures()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία
+		</td>
+	</tr>
+	<tr id="$postal_code">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$postal_code</var></code></td>
+		<td>
+			$unit_type Τύπος Μονάδας<br />
+Ο Τύπος της Μονάδας (Λεξικό : <code><a href="function-GetUnitTypes.html">GetUnitTypes()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία<br />
+Το πεδίο είναι υποχρεωτικό
+		</td>
+	</tr>
+	<tr id="$tax_number">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$tax_number</var></code></td>
+		<td>
+			$operation_shift Ωράριο Λειτουργίας<br />
+Το Ωράριο Λειτουργίας της Μονάδας (Λεξικό :
+<code><a href="function-GetOperationShifts.html">GetOperationShifts()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία
+		</td>
+	</tr>
+	<tr id="$tax_office">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$tax_office</var></code></td>
+		<td>
+			$legal_character Νομικός Χαρακτήρας<br />
+Ο Νομικός Χαρακτήρας της Μονάδας (Λεξικό :
+<code><a href="function-GetLegalCharacters.html">GetLegalCharacters()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία
+		</td>
+	</tr>
+	<tr id="$area_team_number">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$area_team_number</var></code></td>
+		<td>
+			$orientation_type Προσανατολισμός<br />
+Ο Σχολικός Προσανατολισμός της Μονάδας
+(Λεξικό : <code><a href="function-GetOrientationTypes.html">GetOrientationTypes()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία
+		</td>
+	</tr>
+	<tr id="$category">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$category</var></code></td>
+		<td>
+			$special_type Ειδικός Χαρακτηρισμός<br />
+Καθορίζει αν η Μονάδα έχει Ειδικό
+Χαρακτηρισμό (Λεξικό : <code><a href="function-GetSpecialTypes.html">GetSpecialTypes()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία
+		</td>
+	</tr>
+	<tr id="$unit_type">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$unit_type</var></code></td>
+		<td>
+			$postal_code Ταχυδρομικός Κώδικας<br />
+Ο Ταχυδρομικός Κώδικας της Μονάδας
+		</td>
+	</tr>
+	<tr id="$operation_shift">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$operation_shift</var></code></td>
+		<td>
+			$area_team_number Ομάδα Σχολείων<br />
+Η Ομάδα Σχολείων της Μονάδας (1η έως 40η)
+		</td>
+	</tr>
+	<tr id="$legal_character">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$legal_character</var></code></td>
+		<td>
+			$email Ηλεκτρονική Αλληλογραφία<br />
+Η Ηλεκτρονική Αλληλογραφία της Μονάδας
+		</td>
+	</tr>
+	<tr id="$orientation_type">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$orientation_type</var></code></td>
+		<td>
+			$fax_number Αριθμός FAX<br />
+Ο Αριθμός Τηλεομοιοτυπίας (φαξ) της Μονάδας
+		</td>
+	</tr>
+	<tr id="$special_type">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$special_type</var></code></td>
+		<td>
+			$levels_count Πλήθος Τάξεων<br />
+Το Πλήθος των Τάξεων της Μονάδας
+		</td>
+	</tr>
+	<tr id="$levels_count">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$levels_count</var></code></td>
+		<td>
+			$street_address Οδός, Αριθμός<br />
+Η Διεύθυνση (Οδός και Αριθμός) της Μονάδας
+		</td>
+	</tr>
+	<tr id="$groups_count">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$groups_count</var></code></td>
+		<td>
+			$phone_number Τηλέφωνο Επικοινωνίας<br />
+Το Τηλέφωνο Επικοινωνίας της Μονάδας
+		</td>
+	</tr>
+	<tr id="$students_count">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$students_count</var></code></td>
+		<td>
+			$students_sum Πλήθος Μαθητών<br />
+Το Πλήθος των Μαθητών της Μονάδας
+		</td>
+	</tr>
+	<tr id="$latitude">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$latitude</var></code></td>
+		<td>
+			$groups_count Πλήθος Τμημάτων<br />
+Το Πλήθος των Τμημάτων της Μονάδας
+		</td>
+	</tr>
+	<tr id="$longitude">
+		<td class="name"><code>datetime</code></td>
+		<td class="value"><code><var>$longitude</var></code></td>
+		<td>
+			$last_update Ημερομηνία Τελευταίας Ενημέρωσης<br
+/>
+Η Ημερομηνία Τελευταίας Ενημέρωσης την
+Μονάδας
+		</td>
+	</tr>
+	<tr id="$positioning">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$positioning</var></code></td>
+		<td>
+			$tax_number Αριθμός Φορολογικού Μητρώου<br />
+Ο Αριθμός Φορολογικού Μητρώου της Μονάδας
+		</td>
+	</tr>
+	<tr id="$last_update">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$last_update</var></code></td>
+		<td>
+			$tax_office Δ.Ο.Υ.<br />
+Η Δ.Ο.Υ. της Μονάδας<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία
+		</td>
+	</tr>
+	<tr id="$last_sync">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$last_sync</var></code></td>
+		<td>
+			$comments Παρατηρήσεις / Σχόλια<br />
+Παρατηρήσεις / Σχόλια σχετικά με τη Μονάδα
+		</td>
+	</tr>
+	<tr id="$comments">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$comments</var></code></td>
+		<td>
+			$latitude Γεωγραφικό Πλάτος<br />
+Το Γεωγραφικό Πλάτος της Μονάδας
+		</td>
+	</tr>
+	<tr id="$fek">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$fek</var></code></td>
+		<td>
+			$longitude Γεωγραφικό Μήκος<br />
+Το Γεωγραφικό Μήκος της Μονάδας
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="returns">
+	<caption>Return value summary</caption>
+	<tr>
+		<td class="name"><code>
+			Array&lt;JSON&gt;
+		</code></td>
+		<td>
+			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
+:<br />
+
+<ul>
+	<li>sting : <b>method</b> : Το Όνομα της μεθόδου</li>
+
+	<li>integer : <b>status</b> : Ο Κωδικός της κατάστασης</li>
+
+	<li>string : <b>message</b> : Μήνυμα περιγραφής της
+	κατάστασης</li>
+
+	<li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της μονάδας</li>
+</ul>
+
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="throws">
+	<caption>Thrown exceptions summary</caption>
+	<tr>
+		<td class="name"><code>
+			MissingMMIdValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingMMIdValue">ExceptionMessages::<b>MissingMMIdValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMMIdType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMMIdType">ExceptionMessages::<b>InvalidMMIdType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMMIdValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMMIdValue">ExceptionMessages::<b>InvalidMMIdValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingNameValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingNameValue">ExceptionMessages::<b>MissingNameValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingCategoryValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingCategoryValue">ExceptionMessages::<b>MissingCategoryValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidCategoryValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidCategoryValue">ExceptionMessages::<b>InvalidCategoryValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingStateValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingStateValue">ExceptionMessages::<b>MissingStateValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidStateValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidStateValue">ExceptionMessages::<b>InvalidStateValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingSourceValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingSourceValue">ExceptionMessages::<b>MissingSourceValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSourceValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSourceValue">ExceptionMessages::<b>InvalidSourceValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitTypeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitTypeValue">ExceptionMessages::<b>MissingUnitTypeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitTypeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitTypeValue">ExceptionMessages::<b>InvalidUnitTypeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRegistryNoValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRegistryNoValue">ExceptionMessages::<b>MissingRegistryNoValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingEducationLevelValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingEducationLevelValue">ExceptionMessages::<b>MissingEducationLevelValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEducationLevelValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEducationLevelValue">ExceptionMessages::<b>InvalidEducationLevelValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRegionEduAdminValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRegionEduAdminValue">ExceptionMessages::<b>InvalidRegionEduAdminValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEduAdminValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEduAdminValue">ExceptionMessages::<b>InvalidEduAdminValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidImplementationEntityValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityValue">ExceptionMessages::<b>InvalidImplementationEntityValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidTransferAreaValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidTransferAreaValue">ExceptionMessages::<b>InvalidTransferAreaValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMunicipalityValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityValue">ExceptionMessages::<b>InvalidMunicipalityValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPrefectureValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPrefectureValue">ExceptionMessages::<b>InvalidPrefectureValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOperationShiftValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOperationShiftValue">ExceptionMessages::<b>InvalidOperationShiftValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLegalCharacterValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLegalCharacterValue">ExceptionMessages::<b>InvalidLegalCharacterValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOrientationTypeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOrientationTypeValue">ExceptionMessages::<b>InvalidOrientationTypeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSpecialTypeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSpecialTypeValue">ExceptionMessages::<b>InvalidSpecialTypeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidTaxOfficeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidTaxOfficeValue">ExceptionMessages::<b>InvalidTaxOfficeValue</b></a></code>
+		</td>
+	</tr>
+	</table>
+
+</div>
+
+	<div id="footer">
+		mmsch.teiath.gr (beta 3) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>
