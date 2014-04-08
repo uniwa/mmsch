@@ -173,7 +173,10 @@ header("Content-Type: text/html; charset=utf-8");
  * <br>{@see ExceptionCodes::InvalidConnectionValue}
  * <br>H Διασύνδεση δεν βρέθηκε
  *
- *
+ * @throws UsedConnectionByUnitNetworkSubnets {@see ExceptionMessages::UsedConnectionByUnitNetworkSubnets}
+ * <br>{@see ExceptionCodes::UsedConnectionByUnitNetworkSubnets}
+ * <br>Η Διασύνδεση Συσχετίζεται με Υποδικτύο της Μονάδας
+ * 
  */
 
 
@@ -195,9 +198,9 @@ function DeleteConnections(
     try
     {
 
-//======================================================================================================================
-//= Check if $connection_id record exists
-//======================================================================================================================
+    //======================================================================================================================
+    //= Check if $connection_id record exists
+    //======================================================================================================================
 
         $param = $connection_id;
         $table_column_name = 'connection_id';
@@ -248,10 +251,29 @@ function DeleteConnections(
         {
             throw new Exception(ExceptionMessages::MissingConnectionIDParam, ExceptionCodes::MissingConnectionIDParam);
         }
+        
+    //==============================================================================================================
+    //= Check if used by connection_unit_network_subnets
+    //==============================================================================================================
 
-//==============================================================================================================
-//= DELETE
-//==============================================================================================================
+        $sql = "SELECT
+                     connection_id
+                FROM connection_unit_network_subnets WHERE ".$filters["connection_id"];
+
+        //echo "<br><br>".$sql."<br><br>";
+        $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
+
+        $stmt = $db->query( $sql );
+        $main_row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if ( $stmt->rowCount() > 0 )
+        {
+            throw new Exception(ExceptionMessages::UsedConnectionByUnitNetworkSubnets, ExceptionCodes::UsedConnectionByUnitNetworkSubnets);
+        } 
+        
+    //==============================================================================================================
+    //= DELETE
+    //==============================================================================================================
 
         $sql = "DELETE FROM connections WHERE " . implode(", ", $filters);
         //echo "<br><br>".$sql."<br><br>";

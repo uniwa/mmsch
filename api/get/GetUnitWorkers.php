@@ -865,7 +865,7 @@ function GetUnitWorkers(
 
 
         $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder . $sqlLimit;
-        //echo "<br><br>".$sql."<br><br>";
+        echo "<br><br>".$sql."<br><br>";
 
         $stmt = $db->query( $sql );
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);

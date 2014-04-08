@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Function PostConnectionUnitNetworkSubnets | mmsch.teiath.gr-ver4</title>
+
+	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
+	<script type="text/javascript" src="elementlist.js?199228023"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li><a href="package-GET.html">GET</a>
+						</li>
+				<li class="active"><a href="package-POST.html">POST</a>
+						</li>
+				<li><a href="package-PUT.html">PUT</a>
+						</li>
+				<li><a href="package-System.html">System</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+
+
+
+
+
+			<h3>Functions</h3>
+			<ul>
+				<li><a href="function-PostCategories.html">PostCategories</a></li>
+				<li><a href="function-PostCircuits.html">PostCircuits</a></li>
+				<li><a href="function-PostCircuitTypes.html">PostCircuitTypes</a></li>
+				<li><a href="function-PostConnections.html">PostConnections</a></li>
+				<li class="active"><a href="function-PostConnectionUnitNetworkSubnets.html">PostConnectionUnitNetworkSubnets</a></li>
+				<li><a href="function-PostGroups.html">PostGroups</a></li>
+				<li><a href="function-PostLevels.html">PostLevels</a></li>
+				<li><a href="function-PostRelations.html">PostRelations</a></li>
+				<li><a href="function-PostTransitions.html">PostTransitions</a></li>
+				<li><a href="function-PostUnitDns.html">PostUnitDns</a></li>
+				<li><a href="function-PostUnitNetworkObjects.html">PostUnitNetworkObjects</a></li>
+				<li><a href="function-PostUnitNetworkSubnets.html">PostUnitNetworkSubnets</a></li>
+				<li><a href="function-PostUnitNetworkSubnetTypes.html">PostUnitNetworkSubnetTypes</a></li>
+				<li><a href="function-PostUnitWorkers.html">PostUnitWorkers</a></li>
+				<li><a href="function-PostWorkers.html">PostWorkers</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-POST.html" title="Summary of POST"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Function</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="function">
+	<h1>Function PostConnectionUnitNetworkSubnets</h1>
+
+
+	<div class="description">
+	
+<p><b>Καταχώρηση Συσχέτισης Διασύνδεσης και
+Υποδικτύου Μονάδας</b></p>
+
+<p>Η συνάρτηση αυτή καταχωρεί την Συσχέτιση
+Διασύνδεσης και Υποδικτύου Μονάδας σύμφωνα
+με τις παραμέτρους που έγινε η κλήση</p>
+
+<p>Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο POST :<br />
+<a
+href="http://mmsch.teiath.gr/api/connection_unit_network_subnets">http://mmsch.teiath.gr/api/connection_unit_network_subnets</a><br
+/>
+<br />
+</p>
+
+<p><br />
+<b>Πίνακας Παραμέτρων</b><br />
+Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+summary</a> εμφανίζονται όλοι οι παράμετροι με
+τους οποίους μπορεί να γίνει η κλήση της
+συνάρτησης<br />
+Όλοι οι παράμετροι είναι προαιρετικοί
+εκτός από αυτές που έχουν χαρακτηριστεί ως
+υποχρεωτικοί<br />
+Οι παράμετροι μπορούν να χρησιμοποιηθούν
+με οποιαδήποτε σειρά</p>
+<br />
+<b>Ορισμός Μοναδικών Τιμών Παραμέτρων</b><br />
+Παρακάτω ορίζονται οι παραμέτροι που έχουν
+μοναδικές τιμές και πραγματοποιειται
+ελεγχος:
+<ul>
+	<li><b>connection_id και unit_network_subnet_id</b><br />
+	GetConnectionUnitNetworkSubnets με search_type=EXACT &amp;
+	connection_id="value" &amp; unit_network_subnet_id = "value"</li>
+</ul>
+<br />
+
+<p><br />
+<b>Πίνακας Αποτελεσμάτων</b><br />
+Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value
+summary</a> εμφανίζονται οι μεταβλητές που
+επιστρέφει η συνάρτηση<br />
+Όλες οι μεταβλητές επιστρέφονται σε ένα
+πίνακα σε JSON μορφή<br />
+Η μεταβλητή data είναι ο πίνακας με το
+λεξικό<br />
+Η μεταβλητή status καθορίζει αν η εκτέλεση της
+συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+προέκυψε κάποιο σφάλμα</p>
+
+<p><br />
+<b>Πίνακας Σφαλμάτων</b><br />
+Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+που μπορεί να προκύψουν κατά την κλήση της
+συνάρτησης<br />
+Οι περιγραφές των Σφαλμάτων καθώς και οι
+Κωδικοί τους είναι διαθέσιμες μέσω του
+πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+αντίστοιχα</p>
+
+<p><br />
+<b>Παραδείγματα Κλήσης</b><br />
+Παρακάτω εμφανίζεται μια σειρά από
+παραδείγματα κλήσης της συνάρτησης με
+διάφορους τρόπους :<br />
+<a href="#cURL">cURL</a> | <a href="#JavaScript">JavaScript</a> | <a
+href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a></p>
+
+<div><br />
+</div>
+
+<p><a id="cURL"></a>Παράδειγμα κλήσης της
+συνάρτησης με <b>cURL</b> (console) :</p>
+
+<pre>
+curl -X POST http:<span
+class="php-comment">//mmsch.teiath.gr/api/connection_unit_network_subnets \</span>
+  -H <span
+class="php-quote">&quot;Content-Type: application/json&quot;</span> \
+  -H <span
+class="php-quote">&quot;Accept: application/json&quot;</span> \
+  -u username:password \
+  -d <span
+class="php-quote">'{&quot;connection_id&quot; : &quot;3554&quot;, \
+       &quot;unit_network_subnet_id&quot; : &quot;19937&quot; }'</span>
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="JavaScript"></a>Παράδειγμα κλήσης της
+συνάρτησης με <b>JavaScript</b> :</p>
+
+<pre>
+&lt;script&gt;
+   <span
+class="php-keyword1">var</span> params = JSON.stringify({
+       <span
+class="php-quote">&quot;connection_id&quot;</span> : <span
+class="php-quote">&quot;3554&quot;</span>,
+       <span
+class="php-quote">&quot;unit_network_subnet_id&quot;</span> : <span
+class="php-quote">&quot;19937&quot;</span>
+   });
+
+   <span
+class="php-keyword1">var</span> http = <span
+class="php-keyword1">new</span> XMLHttpRequest();
+   http.open(<span
+class="php-quote">&quot;POST&quot;</span>, <span
+class="php-quote">&quot;http://mmsch.teiath.gr/api/connection_unit_network_subnets&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Accept&quot;</span>, <span
+class="php-quote">&quot;application/json&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Content-type&quot;</span>, <span
+class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Content-length&quot;</span>, params.length);
+
+   http.onreadystatechange = <span
+class="php-keyword1">function</span>() {
+       <span
+class="php-keyword1">if</span>(http.readyState == <span
+class="php-num">4</span> &amp;&amp; http.status == <span
+class="php-num">200</span>) {
+           alert(http.responseText);
+       }
+   }
+
+   http.send(params);
+&lt;/script&gt;
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="PHP"></a>Παράδειγμα κλήσης της συνάρτησης
+με <b>PHP</b> :</p>
+
+<pre>
+<span class="xlang">&lt;?php</span>
+<span
+class="php-keyword2">header</span>(<span
+class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
+
+<span
+class="php-var">$params</span> = <span
+class="php-keyword1">array</span>(
+       <span
+class="php-quote">&quot;connection_id&quot;</span> =&gt; <span
+class="php-quote">&quot;3554&quot;</span>,
+       <span
+class="php-quote">&quot;unit_network_subnet_id&quot;</span> =&gt; <span
+class="php-quote">&quot;19937&quot;</span>
+);
+
+<span
+class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
+class="php-quote">&quot;http://mmsch.teiath.gr/api/connection_unit_network_subnets&quot;</span>);
+
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_USERPWD, <span
+class="php-quote">&quot;username:password&quot;</span>);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
+class="php-quote">&quot;POST&quot;</span>);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_POSTFIELDS, <span
+class="php-keyword2">json_encode</span>( <span
+class="php-var">$params</span> ));
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
+class="php-keyword1">true</span>);
+
+<span class="php-var">$data</span> = <span
+class="php-keyword2">json_decode</span>( <span
+class="php-keyword2">curl_exec</span>(<span
+class="php-var">$curl</span>) );
+<span class="php-keyword1">echo</span> <span
+class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
+class="php-keyword2">var_dump</span>( <span
+class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
+class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
+<span
+class="xlang">?&gt;</span>
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="Ajax"></a>Παράδειγμα κλήσης της
+συνάρτησης με <b>Ajax</b> :</p>
+
+<pre>
+&lt;script&gt;
+   <span class="php-var">$</span>.ajax({
+       type: <span
+class="php-quote">'POST'</span>,
+       url: <span
+class="php-quote">'http://mmsch.teiath.gr/api/connection_unit_network_subnets'</span>,
+       dataType: <span
+class="php-quote">&quot;json&quot;</span>,
+       data: {
+          <span
+class="php-quote">&quot;connection_id&quot;</span> : <span
+class="php-quote">&quot;3554&quot;</span>,
+          <span
+class="php-quote">&quot;unit_network_subnet_id&quot;</span> : <span
+class="php-quote">&quot;19937&quot;</span>
+       },
+       beforeSend: <span
+class="php-keyword1">function</span>(req) {
+           req.setRequestHeader(<span
+class="php-quote">'Authorization'</span>, btoa(<span
+class="php-quote">'username'</span> + <span
+class="php-quote">&quot;:&quot;</span> + <span
+class="php-quote">'password'</span>));
+       },
+       success: <span
+class="php-keyword1">function</span>(data){
+           console.<span
+class="php-keyword2">log</span>(data);
+       }
+   });
+&lt;/script&gt;
+</pre>
+
+<div><br />
+</div>
+
+<p><br />
+<b>Πίνακας Δεδομένων</b><br />
+<a id="data"></a>Παρακάτω εμφανίζεται πίνακας σε
+μορφή JSON :</p>
+
+<pre>
+{
+   <span class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;PostConnectionUnitNetworkSubnets&quot;</span>,
+   <span
+class="php-quote">&quot;connection_unit_network_subnet_id&quot;</span>: <span
+class="php-quote">&quot;&quot;</span>,
+   <span
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
+   <span
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;success&quot;</span>
+}
+</pre>
+
+<div><br />
+</div>
+
+	</div>
+
+	<div class="info">
+		
+		<b>Package:</b> <a href="package-POST.html">POST</a><br />
+				<b>Author:</b>
+				ΤΕΙ Αθήνας<br />
+		<b>Located at</b> api/post/PostConnectionUnitNetworkSubnets.php<br />
+	</div>
+
+
+	<table class="summary" id="parameters">
+	<caption>Parameters summary</caption>
+	<tr id="$connection_id">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$connection_id</var></code></td>
+		<td>
+			 Κωδικός Διασύνδεσης<br />
+Ο Κωδικός της Διασύνδεσης<br />
+Η παράμετρος είναι υποχρεωτική<br />
+Μονάδες : <code><a href="function-GetConnections.html">GetConnections()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό της Διασύνδεσης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$unit_network_subnet_id">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$unit_network_subnet_id</var></code></td>
+		<td>
+			 Κωδικός Υποδικτύου<br />
+Ο Κωδικός του Υποδικτύου<br />
+Η παράμετρος είναι υποχρεωτική<br />
+Υποδίκτυα : <code><a href="function-GetUnitNetworkSubnets.html">GetUnitNetworkSubnets()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό του Υποδικτύου<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="returns">
+	<caption>Return value summary</caption>
+	<tr>
+		<td class="name"><code>
+			Array&lt;JSON&gt;
+		</code></td>
+		<td>
+			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
+:<br />
+
+<ul>
+	<li>sting : <b>method</b> : Το Όνομα της μεθόδου</li>
+
+	<li>integer : <b>status</b> : Ο Κωδικός της κατάστασης</li>
+
+	<li>string : <b>message</b> : Μήνυμα περιγραφής της
+	κατάστασης</li>
+
+	<li>integer : <b>connection_unit_network_subnet_id</b> : Ο Κωδικός
+	της Διασύνδεσης του Υποδικτύου Μονάδας</li>
+</ul>
+
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="throws">
+	<caption>Thrown exceptions summary</caption>
+	<tr>
+		<td class="name"><code>
+			MissingConnectionIDValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingConnectionIDValue">ExceptionMessages::<b>MissingConnectionIDValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingConnectionIDValue">ExceptionCodes::<b>MissingConnectionIDValue</b></a></code><br />
+Ο Κωδικός της Διασύνδεσης πρέπει να έχει
+τιμή
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidConnectionIDArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidConnectionIDArray">ExceptionMessages::<b>InvalidConnectionIDArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidConnectionIDArray">ExceptionCodes::<b>InvalidConnectionIDArray</b></a></code><br />
+Ο Κωδικός της Διασύνδεσης δεν μπορεί να
+έχει πολλαπλές τιμέςς
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidConnectionValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidConnectionValue">ExceptionMessages::<b>InvalidConnectionValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidConnectionValue">ExceptionCodes::<b>InvalidConnectionValue</b></a></code><br />
+H Διασύνδεση δεν βρέθηκε
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidConnectionIDType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidConnectionIDType">ExceptionMessages::<b>InvalidConnectionIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidConnectionIDType">ExceptionCodes::<b>InvalidConnectionIDType</b></a></code><br />
+Ο Κωδικός της Διασύνδεσης πρέπει να είναι
+αριθμητικός
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingConnectionIDParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingConnectionIDParam">ExceptionMessages::<b>MissingConnectionIDParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingConnectionIDParam">ExceptionCodes::<b>MissingConnectionIDParam</b></a></code><br />
+Ο Κωδικός της Διασύνδεσης είναι
+υποχρεωτικό πεδίο
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitNetworkSubnetIDValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitNetworkSubnetIDValue">ExceptionMessages::<b>MissingUnitNetworkSubnetIDValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitNetworkSubnetIDValue">ExceptionCodes::<b>MissingUnitNetworkSubnetIDValue</b></a></code><br />
+Ο Κωδικός του Υποδικτύου της Μονάδας της
+Μονάδας πρέπει να έχει τιμή
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetIDArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetIDArray">ExceptionMessages::<b>InvalidUnitNetworkSubnetIDArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetIDArray">ExceptionCodes::<b>InvalidUnitNetworkSubnetIDArray</b></a></code><br />
+Ο Κωδικός του Υποδικτύου της Μονάδας δεν
+μπορεί να έχει πολλαπλές τιμές
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetValue">ExceptionMessages::<b>InvalidUnitNetworkSubnetValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetValue">ExceptionCodes::<b>InvalidUnitNetworkSubnetValue</b></a></code><br />
+Το Υποδικτύο της Μονάδας δεν βρέθηκε
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetIDType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetIDType">ExceptionMessages::<b>InvalidUnitNetworkSubnetIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetIDType">ExceptionCodes::<b>InvalidUnitNetworkSubnetIDType</b></a></code><br />
+Ο Κωδικός του Υποδικτύου της Μονάδας πρέπει
+να είναι αριθμητικός
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitNetworkSubnetIDParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitNetworkSubnetIDParam">ExceptionMessages::<b>MissingUnitNetworkSubnetIDParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitNetworkSubnetIDParam">ExceptionCodes::<b>MissingUnitNetworkSubnetIDParam</b></a></code><br />
+Ο Κωδικός του Υποδικτύου της Μονάδας είναι
+υποχρεωτικό πεδίο
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DifferenceConnectionUnitNetworkOSubnetMMIdValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DifferenceConnectionUnitNetworkOSubnetMMIdValue">ExceptionMessages::<b>DifferenceConnectionUnitNetworkOSubnetMMIdValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DifferenceConnectionUnitNetworkOSubnetMMIdValue">ExceptionCodes::<b>DifferenceConnectionUnitNetworkOSubnetMMIdValue</b></a></code><br />
+Δεν είναι δυνατή η εισαγωγή Διασύνδεσης και
+Υποδικτύου Μονάδας με διαφορετικό Κωδικό
+Σχολικής Μονάδας
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedConnectionUnitNetworkOSubnetValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedConnectionUnitNetworkOSubnetValue">ExceptionMessages::<b>DuplicatedConnectionUnitNetworkOSubnetValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedConnectionUnitNetworkOSubnetValue">ExceptionCodes::<b>DuplicatedConnectionUnitNetworkOSubnetValue</b></a></code><br />
+Η Διασύνδεση του Υποδικτύου της Μονάδας
+υπάρχει ήδη
+		</td>
+	</tr>
+	</table>
+
+</div>
+
+	<div id="footer">
+		mmsch.teiath.gr-ver4 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

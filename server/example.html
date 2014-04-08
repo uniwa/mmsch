@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<script>
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost/~khitas/mmsch/api/categories',
+        dataType: "json",
+        //contentType: "application/json; charset=UTF-8",
+        data : JSON.stringify({"category": "ΜΟΝΑΔΕΣ", "mm_id" : "1000"}),
+        //data : {"category" : "ΜΟΝΑΔΕΣ", "mm_id" : "1000"},
+        beforeSend: function(req) {
+            req.setRequestHeader('Authorization', "Basic " + btoa('mmsch' + ":" + 'mmsch'));
+        },
+        success: function(data){
+            console.log(data);
+        }
+    });
+</script>
+</body>
+</html>

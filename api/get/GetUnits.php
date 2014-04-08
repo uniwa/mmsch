@@ -1316,7 +1316,7 @@ function GetUnits(
                 if ( Validator::isNull($values) )
                     $paramFilters[] = "$table_name.$table_column_name is null";
                 else if ( Validator::isValue($values) )
-					$paramFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
+                    $paramFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
                 else
                     throw new Exception(ExceptionMessages::InvalidRegistryNoType." : ".$values, ExceptionCodes::InvalidRegistryNoType);
             }
@@ -2637,7 +2637,7 @@ function GetUnits(
         {
             $network_elements[ $network_element["mm_id"] ][ $network_element["unit_network_element_id"] ] = $network_element;
         }
-
+                
 //======================================================================================================================
 //= $array_connections
 //======================================================================================================================
@@ -2889,9 +2889,10 @@ function GetUnits(
 
 
             $data["network_elements"] = array();
+            // foreach ($groups[ $row["mm_id"] ][ $level["level_id"] ] as $group)
             foreach ($network_elements[ $row["mm_id"] ] as $network_element)
             {
-                $circuit = $circuits[ $row["mm_id"] ][ $network_element["circuit_id"] ];
+                //$circuit = $circuits[ $row["mm_id"] ][ $network_element["circuit_id"] ];
 
                 $data["network_elements"][] = array(
                     "unit_network_element_id" => $network_element["unit_network_element_id"] ? (int)$network_element["unit_network_element_id"] : null,
@@ -2906,8 +2907,7 @@ function GetUnits(
                     "is_connected"     => isset($network_element["is_connected"]) ? (bool)$network_element["is_connected"] : null,
                 );
             }
-
-
+            
             $data["connections"] = array();
             foreach ($connections[ $row["mm_id"] ] as $connection)
             {
@@ -2944,6 +2944,7 @@ function GetUnits(
                         "ip_nat_mask_id"   => $network_element["ip_nat_mask_id"] ? (int)$network_element["ip_nat_mask_id"] : null,
                         "ip_nat_mask"      => $network_element["ip_nat_mask"],
                     );
+                    
                 //}
                 //else
                 //    $connection_network_element = array();
@@ -2974,11 +2975,11 @@ function GetUnits(
 
 
                 $data["connections"][] = array(
-                    "connection_id"   => $connection["connection_id"] ? (int)$connection["connection_id"] : null,
-                    "network_element" => $connection_network_element,
-                    "circuit"         => $connection_circuit,
-                    "cpe"             => $connection_cpe,
-                    "ldap"            => $connection_ldap,
+                    "connection_id"         => $connection["connection_id"] ? (int)$connection["connection_id"] : null,
+                    "network_element"       => $connection_network_element,
+                    "circuit"               => $connection_circuit,
+                    "cpe"                   => $connection_cpe,
+                    "ldap"                  => $connection_ldap,
                 );
             }
 

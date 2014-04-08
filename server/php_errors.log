@@ -1,1 +1,14 @@
 [12-Jan-2014 18:10:25 Europe/Athens] PHP Fatal error:  Cannot redeclare GetCpes() (previously declared in /Users/khitas/Sites/mmsch/api/get/GetCpes.php:327) in /Users/khitas/Sites/mmsch/api/get/GetLdaps.php on line 569
+[18-Jan-2014 18:46:24 Europe/Athens] PHP Fatal error:  require_once(): Failed opening required '../api/put/PutConnections.php' (include_path='.:/usr/local/pear/share/pear:/php/includes:/usr/lib/php/pear:/usr/share/pear') in /Users/khitas/Sites/mmsch/server/system/includes.php on line 75
+[19-Jan-2014 19:52:51 Europe/Athens] PHP Fatal error:  Undefined class constant 'InvalidConnectionValue' in /Users/khitas/Sites/mmsch/api/delete/DeleteConnections.php on line 216
+[19-Jan-2014 21:12:37 Europe/Athens] PHP Fatal error:  Undefined class constant 'InvalidUnitNetworkElementpeValue' in /Users/khitas/Sites/mmsch/api/put/PutConnections.php on line 387
+[19-Jan-2014 21:13:04 Europe/Athens] PHP Fatal error:  Undefined class constant 'InvalidUnitNetworkElementValue' in /Users/khitas/Sites/mmsch/api/put/PutConnections.php on line 387
+[23-Jan-2014 18:55:59 Europe/Athens] PHP Fatal error:  Call to undefined function int() in /Users/khitas/Sites/mmsch/server/classes/Validator.php on line 226
+[11-Feb-2014 20:16:06 Europe/Athens] PHP Fatal error:  Call to undefined function DeleteCircuits() in /Users/khitas/Sites/mmsch/api/index.php on line 1076
+[11-Feb-2014 22:02:33 Europe/Athens] PHP Fatal error:  Call to undefined function DeleteCircuitTypes() in /Users/khitas/Sites/mmsch/api/index.php on line 292
+[11-Feb-2014 22:14:50 Europe/Athens] PHP Fatal error:  Call to undefined function PostCircuitTypes() in /Users/khitas/Sites/mmsch/api/index.php on line 292
+[12-Feb-2014 16:47:09 Europe/Athens] PHP Fatal error:  Call to undefined function PutCircuitTypes() in /Users/khitas/Sites/mmsch/api/index.php on line 297
+[12-Feb-2014 16:47:28 Europe/Athens] PHP Fatal error:  Call to undefined function PutCircuitTypes() in /Users/khitas/Sites/mmsch/api/index.php on line 297
+[12-Feb-2014 16:47:30 Europe/Athens] PHP Fatal error:  Call to undefined function PutCircuitTypes() in /Users/khitas/Sites/mmsch/api/index.php on line 297
+[12-Feb-2014 16:47:42 Europe/Athens] PHP Fatal error:  Call to undefined function PutCircuitTypes() in /Users/khitas/Sites/mmsch/api/index.php on line 297
+[12-Feb-2014 16:47:45 Europe/Athens] PHP Fatal error:  Call to undefined function PutCircuitTypes() in /Users/khitas/Sites/mmsch/api/index.php on line 297

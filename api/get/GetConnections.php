@@ -490,7 +490,7 @@ function GetConnections(
 
 
         if ( Validator::Missing('pagesize', $params) )
-            $pagesize = Parameters::AllPageSize;
+            $pagesize = Parameters::DefaultPageSize;
         else if ( Validator::isEqualTo($pagesize, 0) )
             $pagesize = Parameters::AllPageSize;
         else if ( Validator::isNull($pagesize) )
@@ -620,7 +620,12 @@ function GetConnections(
                 "ip_lan_mask",
                 "ip_nat",
                 "ip_mask_id",
-                "ip_nat_mask"
+                "ip_nat_mask",
+                "unit_network_subnet_id",
+                "subnet_name",
+                "subnet_ip",
+                "subnet_default_router",
+                "mask"
             );
 
             if (!in_array($orderby, $columns))
@@ -671,7 +676,8 @@ function GetConnections(
                     LEFT JOIN unit_network_elements ON connections.unit_network_element_id = unit_network_elements.unit_network_element_id
                     LEFT JOIN ip_masks ip_lan_masks ON unit_network_elements.ip_lan_mask_id = ip_lan_masks.ip_mask_id
                     LEFT JOIN ip_masks ip_nat_masks ON unit_network_elements.ip_nat_mask_id = ip_nat_masks.ip_mask_id
-                    LEFT JOIN circuit_types ON circuits.circuit_type_id = circuit_types.circuit_type_id";
+                    LEFT JOIN circuit_types ON circuits.circuit_type_id = circuit_types.circuit_type_id
+                    ";
 
         $sqlWhere = (count($filter) > 0 ? " WHERE " . implode(" AND ", $filter) : "" );
         $sqlOrder = " ORDER BY ". $orderby ." ". $ordertype;

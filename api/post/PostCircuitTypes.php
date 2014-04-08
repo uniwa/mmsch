@@ -270,4 +270,3 @@ function PostCircuitTypes(
     return $result;
 }
 ?>
-

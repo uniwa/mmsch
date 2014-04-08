@@ -194,9 +194,7 @@ class ExceptionCodes
     const InvalidAddrspaceTypeType = 500;
     /** {@see ExceptionMessages::DuplicatedAddrspaceTypeValue} */
     const DuplicatedAddrspaceTypeValue = 500;
-
-
-
+    
     //= GetSources
     /** {@see ExceptionMessages::MissingSourceIDParam} */
     const MissingSourceIDParam = 500;
@@ -717,8 +715,7 @@ class ExceptionCodes
     /** {@see ExceptionMessages::DuplicatedCircuitValue} */
     const DuplicatedCircuitValue = 500;
 
-
-    /** {@see ExceptionMessages::MissingCircuitPhoneNumberParam} */
+        /** {@see ExceptionMessages::MissingCircuitPhoneNumberParam} */
     const MissingCircuitPhoneNumberParam = 500;
     /** {@see ExceptionMessages::MissingCircuitPhoneNumberDValue} */
     const MissingCircuitPhoneNumberValue = 500;
@@ -741,13 +738,234 @@ class ExceptionCodes
     const InvalidCircuitReadspeedhType = 500;
     /** {@see ExceptionMessages::InvalidCircuitPaidByPsdType} */
     const InvalidCircuitPaidByPsdType = 500;
+   
+//##########################################################################################################################
+// IP/DNS
+//##########################################################################################################################
+    
+    //======================================================================================================================
+    // =UnitDns
+    //======================================================================================================================
+     /** {@see ExceptionMessages::MissingUnitDnsIDParam} */
+    const MissingUnitDnsIDParam = 500;
+     /** {@see ExceptionMessages::MissingUnitDnsIDValue} */
+    const MissingUnitDnsIDValue = 500;
+     /** {@see ExceptionMessages::InvalidUnitDnsIDType} */
+    const InvalidUnitDnsIDType = 500;
+     /** {@see ExceptionMessages::InvalidUnitDnsIDArray} */
+    const InvalidUnitDnsIDArray = 500; 
+    
+     /** {@see ExceptionMessages::MissingUnitDnsParam} */
+    const MissingUnitDnsParam = 500;   
+     /** {@see ExceptionMessages::MissingUnitDnsValue} */
+    const MissingUnitDnsValue = 500;
+     /** {@see ExceptionMessages::InvalidUnitDnsValue} */
+    const InvalidUnitDnsValue = 500;
+     /** {@see ExceptionMessages::InvalidUnitDnsType} */
+    const InvalidUnitDnsType = 500;
+     /** {@see ExceptionMessages::InvalidUnitDnsArray} */
+    const InvalidUnitDnsArray = 500; 
+    
+     /** {@see ExceptionMessages::DuplicatedUnitDnsValue} */
+    const DuplicatedUnitDnsValue = 500;
+    /** {@see ExceptionMessages::DuplicatedUnitExtDnsValue} */
+    const DuplicatedUnitExtDnsValue = 500;
+    /** {@see ExceptionMessages::DuplicatedUnitUidDnsValue} */
+    const DuplicatedUnitUidDnsValue = 500;
+    
+     /** {@see ExceptionMessages::MissingUnitExtDnsParam} */
+    const MissingUnitExtDnsParam = 500;
+     /** {@see ExceptionMessages::MissingUnitExtDnsValue} */
+    const MissingUnitExtDnsValue = 500;
+     /** {@see ExceptionMessages::InvalidUnitExtDnsType} */
+    const InvalidUnitExtDnsType = 500;
+     /** {@see ExceptionMessages::InvalidUnitExtDnsArray} */
+    const InvalidUnitExtDnsArray = 500;
 
+     /** {@see ExceptionMessages::MissingUnitUidParam} */
+    const MissingUnitUidParam = 500;
+     /** {@see ExceptionMessages::MissingUnitUidValue} */
+    const MissingUnitUidValue = 500;
+     /** {@see ExceptionMessages::InvalidUnitUidType} */
+    const InvalidUnitUidType = 500;
+     /** {@see ExceptionMessages::InvalidUnitUidArray} */
+    const InvalidUnitUidArray = 500;
+    
+    //======================================================================================================================
+    // =UnitNetworkSubnetTypes
+    //======================================================================================================================
+    /** {@see ExceptionMessages::MissingUnitNetworkSubnetTypeIDParam} */
+    const MissingUnitNetworkSubnetTypeIDParam = 500;
+    /** {@see ExceptionMessages::MissingUnitNetworkSubnetTypeIDValue} */
+    const MissingUnitNetworkSubnetTypeIDValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetTypeIDType} */
+    const InvalidUnitNetworkSubnetTypeIDType = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetTypeIDArray} */
+    const InvalidUnitNetworkSubnetTypeIDArray = 500;
+    /** {@see ExceptionMessages::MissingUnitNetworkSubnetTypeValue} */
+    const MissingUnitNetworkSubnetTypeValue = 500;
+    /** {@see ExceptionMessages::MissingUnitNetworkSubnetTypeParam} */
+    const MissingUnitNetworkSubnetTypeParam = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetTypeValue} */
+    const InvalidUnitNetworkSubnetTypeValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetTypeType} */
+    const InvalidUnitNetworkSubnetTypeType = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetTypeArray} */
+    const InvalidUnitNetworkSubnetTypeArray = 500;
+    /** {@see ExceptionMessages::DuplicatedUnitNetworkSubnetTypeValue} */
+    const DuplicatedUnitNetworkSubnetTypeValue = 500;
+    /** {@see ExceptionMessages::UsedUnitNetworkSubnetTypeByUnitNetworkSubnets} */
+    const UsedUnitNetworkSubnetTypeByUnitNetworkSubnets = 500;
+    
+    //======================================================================================================================
+    // =UnitNetworkSubnets
+    //======================================================================================================================
+    /** {@see ExceptionMessages::MissingUnitNetworkSubnetIDParam} */
+    const MissingUnitNetworkSubnetIDParam = 500;
+    /** {@see ExceptionMessages::MissingUnitNetworkSubnetIDValue} */
+    const MissingUnitNetworkSubnetIDValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetIDType} */
+    const InvalidUnitNetworkSubnetIDType = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetIDArray} */
+    const InvalidUnitNetworkSubnetIDArray = 500; 
+    
+    /** {@see ExceptionMessages::MissingUnitNetworkSubnetParam} */
+    const MissingUnitNetworkSubnetParam = 500;   
+    /** {@see ExceptionMessages::MissingUnitNetworkSubnetValue} */
+    const MissingUnitNetworkSubnetValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetValue} */
+    const InvalidUnitNetworkSubnetValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetType} */
+    const InvalidUnitNetworkSubnetType = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetArray} */
+    const InvalidUnitNetworkSubnetArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedUnitNetworkSubnetValue} */
+    const DuplicatedUnitNetworkSubnetValue = 500;
+    /** {@see ExceptionMessages::DuplicatedUnitNetworkSubnetNameValue} */
+    const DuplicatedUnitNetworkSubnetNameValue = 500;
+    /** {@see ExceptionMessages::DuplicatedUnitNetworkSubnetIpValue} */
+    const DuplicatedUnitNetworkSubnetIpValue = 500;
+    /** {@see ExceptionMessages::DuplicatedUnitNetworkSubnetMaskValue} */
+    const DuplicatedUnitNetworkSubnetMaskValue = 500;
+    /** {@see ExceptionMessages::UsedUnitNetworkSubnetByUnitNetworkObjects} */
+    const UsedUnitNetworkSubnetByUnitNetworkObjects = 500;
+    /** {@see ExceptionMessages::UsedUnitNetworkSubnetByConnections} */
+    const UsedUnitNetworkSubnetByConnections = 500;
+    
+    /** {@see ExceptionMessages::MissingUnitNetworkSubnetNameParam} */
+    const MissingUnitNetworkSubnetNameParam = 500;
+    /** {@see ExceptionMessages::MissingUnitNetworkSubnetNameValue} */
+    const MissingUnitNetworkSubnetNameValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetNameType} */
+    const InvalidUnitNetworkSubnetNameType = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetNameArray} */
+    const InvalidUnitNetworkSubnetNameArray = 500;
+    
+    /** {@see ExceptionMessages::MissingUnitNetworkSubnetΙpParam} */
+    const MissingUnitNetworkSubnetΙpParam = 500;
+    /** {@see ExceptionMessages::MissingUnitNetworkSubnetIpValue} */
+    const MissingUnitNetworkSubnetIpValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetIpType} */
+    const InvalidUnitNetworkSubnetIpType = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetIpArray} */
+    const InvalidUnitNetworkSubnetIpArray = 500;
+    
+    /** {@see ExceptionMessages::MissingUnitNetworkSubnetDefaultRouterParam} */
+    const MissingUnitNetworkSubnetDefaultRouterParam = 500;
+    /** {@see ExceptionMessages::MissingUnitNetworkSubnetDefaultRouterValue} */
+    const MissingUnitNetworkSubnetDefaultRouterValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetDefaultRouterType} */
+    const InvalidUnitNetworkSubnetDefaultRouterType = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetDefaultRouterArray} */
+    const InvalidUnitNetworkSubnetDefaultRouterArray = 500;
+    
+    /** {@see ExceptionMessages::MissingUnitNetworkSubnetMaskParam} */
+    const MissingUnitNetworkSubnetMaskParam = 500;
+    /** {@see ExceptionMessages::MissingUnitNetworkSubnetMaskValue} */
+    const MissingUnitNetworkSubnetMaskValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetMaskType} */
+    const InvalidUnitNetworkSubnetMaskType = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkSubnetMaskArray} */
+    const InvalidUnitNetworkSubnetMaskArray = 500;
 
-
-
-
-
-
+    //======================================================================================================================
+    // =UnitNetworkObjects
+    //======================================================================================================================
+    /** {@see ExceptionMessages::MissingUnitNetworkObjectIDParam} */
+    const MissingUnitNetworkObjectIDParam = 500;
+    /** {@see ExceptionMessages::MissingUnitNetworkObjectIDValue} */
+    const MissingUnitNetworkObjectIDValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkObjectIDType} */
+    const InvalidUnitNetworkObjectIDType = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkObjectIDArray} */
+    const InvalidUnitNetworkObjectIDArray = 500; 
+    /** {@see ExceptionMessages::MissingUnitNetworkObjectParam} */
+    const MissingUnitNetworkObjectParam = 500;   
+    /** {@see ExceptionMessages::MissingUnitNetworkObjectValue} */
+    const MissingUnitNetworkObjectValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkObjectValue} */
+    const InvalidUnitNetworkObjectValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkObjectType} */
+    const InvalidUnitNetworkObjectType = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedUnitNetworkObjectValue} */   
+    const DuplicatedUnitNetworkObjectValue = 500;
+    /** {@see ExceptionMessages::DuplicatedUnitNetworkObjectIpValue} */ 
+    const DuplicatedUnitNetworkObjectIpValue = 500;
+    /** {@see ExceptionMessages::DuplicatedUnitNetworkObjectDnsNameValue} */ 
+    const DuplicatedUnitNetworkObjectDnsNameValue = 500;
+    
+    
+    /** {@see ExceptionMessages::MissingUnitNetworkObjectIpParam} */
+    const MissingUnitNetworkObjectIpParam = 500;
+    /** {@see ExceptionMessages::MissingUnitNetworkObjectIpValue} */
+    const MissingUnitNetworkObjectIpValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkObjectIpType} */
+    const InvalidUnitNetworkObjectIpType = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkObjectIpArray} */
+    const InvalidUnitNetworkObjectIpArray = 500;
+    
+    /** {@see ExceptionMessages::MissingUnitNetworkObjectDnsNameParam} */
+    const MissingUnitNetworkObjectDnsNameParam = 500;
+    /** {@see ExceptionMessages::MissingUnitNetworkObjectDnsNameValue} */
+    const MissingUnitNetworkObjectDnsNameValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkObjectDnsNameType} */
+    const InvalidUnitNetworkObjectDnsNameType = 500;
+    /** {@see ExceptionMessages::InvalidUnitNetworkObjectDnsNameArray} */
+    const InvalidUnitNetworkObjectDnsNameArray = 500;
+    
+    /** {@see ExceptionMessages::InvalidUnitNetworkObjectDescriptionType} */
+    const InvalidUnitNetworkObjectDescriptionType = 500;
+      
+    //======================================================================================================================
+    // =ConnectionUnitNetworkSubnets
+    //======================================================================================================================
+    /** {@see ExceptionMessages::MissingConnectionUnitNetworkOSubnetIDParam} */
+    const MissingConnectionUnitNetworkOSubnetIDParam = 500;
+    /** {@see ExceptionMessages::MissingConnectionUnitNetworkOSubnetIDValue} */
+    const MissingConnectionUnitNetworkOSubnetIDValue = 500;
+    /** {@see ExceptionMessages::InvalidConnectionUnitNetworkOSubnetIDType} */
+    const InvalidConnectionUnitNetworkOSubnetIDType = 500;
+    /** {@see ExceptionMessages::InvalidConnectionUnitNetworkOSubnetIDArray} */
+    const InvalidConnectionUnitNetworkOSubnetIDArray = 500; 
+    
+    /** {@see ExceptionMessages::MissingConnectionUnitNetworkOSubnetParam} */
+    const MissingConnectionUnitNetworkOSubnetParam = 500;   
+    /** {@see ExceptionMessages::MissingConnectionUnitNetworkOSubnetValue} */
+    const MissingConnectionUnitNetworkOSubnetValue = 500;
+    /** {@see ExceptionMessages::InvalidConnectionUnitNetworkOSubnetValue} */
+    const InvalidConnectionUnitNetworkOSubnetValue = 500;
+    /** {@see ExceptionMessages::InvalidConnectionUnitNetworkOSubnetType} */
+    const InvalidConnectionUnitNetworkOSubnetType = 500;
+    /** {@see ExceptionMessages::InvalidConnectionUnitNetworkOSubnetArray} */
+    const InvalidConnectionUnitNetworkOSubnetArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedConnectionUnitNetworkOSubnetValue} */
+    const DuplicatedConnectionUnitNetworkOSubnetValue = 500;
+    /** {@see ExceptionMessages::DifferenceConnectionUnitNetworkOSubnetMMIdValue} */  
+    const DifferenceConnectionUnitNetworkOSubnetMMIdValue = 500;
+    
     //= GetUnits
     /** {@see ExceptionMessages::MissingUnitMMIDParam} */
     const MissingUnitMMIDParam = 500;
@@ -863,10 +1081,23 @@ class ExceptionCodes
     const InvalidConnectionIDType = 500;
     /** {@see ExceptionMessages::InvalidConnectionIDArray} */
     const InvalidConnectionIDArray = 500;
+ 
+    /** {@see ExceptionMessages::MissingConnectionParam} */
+    const MissingConnectionParam = 500;
+    /** {@see ExceptionMessages::MissingConnectionValue} */
+    const MissingConnectionValue = 500;
     /** {@see ExceptionMessages::InvalidConnectionValue} */
     const InvalidConnectionValue = 500;
+    /** {@see ExceptionMessages::InvalidConnectionType} */
+    const InvalidConnectionType = 500;
+    /** {@see ExceptionMessages::InvalidConnectionArray} */
+    const InvalidConnectionArray = 500;
+    
     /** {@see ExceptionMessages::DuplicatedConnectionValue} */
     const DuplicatedConnectionValue = 500;
+    /** {@see ExceptionMessages::UsedConnectionByUnitNetworkSubnets} */
+    const UsedConnectionByUnitNetworkSubnets = 500;
+    
 
 
 

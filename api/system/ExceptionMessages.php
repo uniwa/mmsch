@@ -86,9 +86,9 @@ class ExceptionMessages
 
 
     //= GetUnitDns
-    const InvalidUnitDNSType = 'Το DNS πρέπει να είναι αριθμητικό ή αλφαριθμητικό';
-    const InvalidExtUnitDnsType = 'Το ExtDNS πρέπει να είναι αλφαριθμητικό';
-    const InvalidUnitUIDType = 'Το UID πρέπει να είναι αλφαριθμητικό';
+//    const InvalidUnitDNSType = 'Το DNS πρέπει να είναι αριθμητικό ή αλφαριθμητικό';
+//    const InvalidExtUnitDnsType = 'Το ExtDNS πρέπει να είναι αλφαριθμητικό';
+//    const InvalidUnitUIDType = 'Το UID πρέπει να είναι αλφαριθμητικό';
 
 
     //= CircuitTypes
@@ -117,7 +117,6 @@ class ExceptionMessages
     const InvalidAddrspaceTypeValue = 'Ο Τύπος της Διευθυνσιοδότησης δεν υπάρχει στο λεξικό';
     const InvalidAddrspaceTypeType = 'Ο Τύπος της Διευθυνσιοδότησης πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const DuplicatedAddrspaceTypeValue = 'Ο Τύπος της Διευθυνσιοδότησης υπάρχει ήδη';
-
 
     //= GetSources
     const MissingSourceIDParam = 'Ο Κωδικός της Πρωτογενής Πηγής είναι υποχρεωτικό πεδίο';
@@ -416,10 +415,13 @@ class ExceptionMessages
     const MissingCircuitIDValue = 'Ο Κωδικός του Τηλεπικοινωνιακού Κυκλώματος πρέπει να έχει τιμή';
     const InvalidCircuitIDType = 'Ο Κωδικός του Τηλεπικοινωνιακού Κυκλώματος πρέπει να είναι αριθμητικός';
     const InvalidCircuitIDArray = 'Ο Κωδικός του Τηλεπικοινωνιακού Κυκλώματος δεν μπορεί να έχει πολλαπλές τιμές';
+    
     const MissingCircuitValue = 'Το Τηλεπικοινωνιακό Κύκλωμα πρέπει να έχει τιμή';
     const MissingCircuitParam = 'Το Τηλεπικοινωνιακό Κύκλωμα είναι υποχρεωτικό πεδίο';
     const InvalidCircuitValue = 'Το Τηλεπικοινωνιακό Κύκλωμα δεν υπάρχει στο λεξικό';
     const InvalidCircuitType = 'Το Τηλεπικοινωνιακό Κύκλωμα πρέπει να είναι αριθμητικό ή αλφαριθμητικό';
+    const InvalidCircuitArray = 'Το Τηλεπικοινωνιακό Κύκλωμα δεν μπορεί να έχει πολλαπλές τιμές';
+    
     const DuplicatedCircuitValue = 'Το Τηλεπικοινωνιακό Κύκλωμα υπάρχει ήδη';
 
     const MissingCircuitPhoneNumberParam = 'Ο Αριθμός του Κυκλώματος είναι υποχρεωτικό πεδίο';
@@ -433,12 +435,146 @@ class ExceptionMessages
     const InvalidCircuitDeactivatedDateType = 'Η Ημερομηνία Απενεργοποίησης του Τηλεπικοινωνιακού Κυκλώματος πρέπει να είναι Ημερομηνία (dd/mm/yyyy)';
     const InvalidCircuitBandwidthType = 'Το Εύρως Ζώνης του Τηλεπικοινωνιακού Κυκλώματος πρέπει να αλφαριθμητικό';
     const InvalidCircuitReadspeedhType = 'Η Ταχύτητα του Τηλεπικοινωνιακού Κυκλώματος πρέπει να είναιαλφαριθμητική';
-    const InvalidCircuitPaidByPsdType = 'Η Χρηματοδήτηση του Τηλεπικοινωνιακού Κυκλώματος από το ΠΣΔ πρέπει να είναι Ενεργή ή Ανανεργή';
+    const InvalidCircuitPaidByPsdType = 'Η Χρηματοδήτηση του Τηλεπικοινωνιακού Κυκλώματος από το ΠΣΔ πρέπει να είναι Ενεργή ή Ανενεργή';
 
+    
+//##########################################################################################################################
+// IP/DNS
+//##########################################################################################################################
+    
+    //======================================================================================================================
+    // =UnitDns
+    //======================================================================================================================
+    const MissingUnitDnsIDParam = 'Ο Κωδικός του DNS της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitDnsIDValue = 'Ο Κωδικός του DNS της Μονάδας της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitDnsIDType = 'Ο Κωδικός του DNS της Μονάδας πρέπει να είναι αριθμητικός';
+    const InvalidUnitDnsIDArray = 'Ο Κωδικός του DNS της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές'; 
+    
+    const MissingUnitDnsParam = 'Το DNS της Μονάδας είναι υποχρεωτικό πεδίο';   
+    const MissingUnitDnsValue = 'Το DNS της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitDnsValue = 'Το DNS της Μονάδας δεν υπάρχει στο λεξικό';
+    const InvalidUnitDnsType = 'Το DNS της Μονάδας πρέπει να είναι αριθμητικό ή αλφαριθμητικό';
+    const InvalidUnitDnsArray = 'Το DNS της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές'; 
+    
+    const DuplicatedUnitDnsValue = 'Το DNS της Μονάδας υπάρχει ήδη';
+    const DuplicatedUnitExtDnsValue = 'Το πλήρης DNS της Μονάδας υπάρχει ήδη';
+    const DuplicatedUnitUidDnsValue = 'Το Uid της Μονάδας της Μονάδας υπάρχει ήδη';
+    
+    const MissingUnitExtDnsParam = 'Το πλήρης DNS της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitExtDnsValue = 'Το πλήρης DNS της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitExtDnsType = 'Το πλήρης DNS της Μονάδας πρέπει να είναι αριθμητικό ή αλφαριθμητικό';
+    const InvalidUnitExtDnsArray = 'Το πλήρης DNS της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
 
+    const MissingUnitUidParam = 'Το Uid της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitUidValue = 'Το Uid της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitUidType = 'Το Uid της Μονάδας πρέπει να είναι αριθμητικό ή αλφαριθμητικό';
+    const InvalidUnitUidArray = 'Το Uid της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
 
-
-
+    //======================================================================================================================
+    // =UnitNetworkSubnetTypes
+    //======================================================================================================================
+    const MissingUnitNetworkSubnetTypeIDParam = 'Ο Κωδικός του Τύπου του IP δικτυακού στοιχείου είναι υποχρεωτικό πεδίο';
+    const MissingUnitNetworkSubnetTypeIDValue = 'Ο Κωδικός του Τύπου του IP δικτυακού στοιχείου πρέπει να έχει τιμή';
+    const InvalidUnitNetworkSubnetTypeIDType = 'Ο Κωδικός του Τύπου του IP δικτυακού στοιχείου πρέπει να είναι αριθμητικός';
+    const InvalidUnitNetworkSubnetTypeIDArray = 'Ο Κωδικός του Τύπου του IP δικτυακού στοιχείου δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitNetworkSubnetTypeValue = 'Ο Τύπος του IP δικτυακού στοιχείου πρέπει να έχει τιμή';
+    const MissingUnitNetworkSubnetTypeParam = 'Ο Τύπος του IP δικτυακού στοιχείου είναι υποχρεωτικό πεδίο';
+    const InvalidUnitNetworkSubnetTypeValue = 'Ο Τύπος του IP δικτυακού στοιχείου δεν υπάρχει στο λεξικό';
+    const InvalidUnitNetworkSubnetTypeType = 'Ο Τύπος του IP δικτυακού στοιχείου πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    const InvalidUnitNetworkSubnetTypeArray = 'Ο Τύπος του IP δικτυακού στοιχείου δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const DuplicatedUnitNetworkSubnetTypeValue = 'Ο Τύπος του IP δικτυακού στοιχείου υπάρχει ήδη';
+    const UsedUnitNetworkSubnetTypeByUnitNetworkSubnets = 'Ο Τύπος του IP δικτυακού στοιχείου χρησιμοποιείται από Υποδίκτυα Μονάδων';
+ 
+    //======================================================================================================================
+    // =UnitNetworkSubnets
+    //======================================================================================================================
+    const MissingUnitNetworkSubnetIDParam = 'Ο Κωδικός του Υποδικτύου της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitNetworkSubnetIDValue = 'Ο Κωδικός του Υποδικτύου της Μονάδας της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitNetworkSubnetIDType = 'Ο Κωδικός του Υποδικτύου της Μονάδας πρέπει να είναι αριθμητικός';
+    const InvalidUnitNetworkSubnetIDArray = 'Ο Κωδικός του Υποδικτύου της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές'; 
+    
+    const MissingUnitNetworkSubnetParam = 'Το Υποδικτύο της Μονάδας είναι υποχρεωτικό πεδίο';   
+    const MissingUnitNetworkSubnetValue = 'Το Υποδικτύο της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitNetworkSubnetValue = 'Το Υποδικτύο της Μονάδας δεν βρέθηκε';
+    const InvalidUnitNetworkSubnetType = 'Το Υποδικτύο της Μονάδας πρέπει να είναι αριθμητικό ή αλφαριθμητικό';
+    const InvalidUnitNetworkSubnetArray = 'Το Υποδικτύο της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές'; 
+    
+    const DuplicatedUnitNetworkSubnetValue = 'Το Υποδικτύο της Μονάδας υπάρχει ήδη';
+    const DuplicatedUnitNetworkSubnetNameValue = 'Το Όνομα του Υποδικτύο της Μονάδας υπάρχει ήδη';
+    const DuplicatedUnitNetworkSubnetIpValue = 'Η διεύθυνση IP του Υποδικτύο της Μονάδας υπάρχει ήδη';
+    const DuplicatedUnitNetworkSubnetMaskValue = 'Η Μάσκα του Υποδικτύο της Μονάδας υπάρχει ήδη';
+    const UsedUnitNetworkSubnetByUnitNetworkObjects = 'Το Υποδικτύο της Μονάδας χρησιμοποιείται από Δικτυακά Αντικείμενα Μονάδας';
+    const UsedUnitNetworkSubnetByConnections = 'Το Υποδικτύο της Μονάδας Συσχετίζεται με Διασύνδεση';
+   
+    const MissingUnitNetworkSubnetNameParam = 'Το Όνομα του Υποδικτύου της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitNetworkSubnetNameValue = 'Το Όνομα του Υποδικτύου της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitNetworkSubnetNameType = 'Το Όνομα του Υποδικτύου της Μονάδας πρέπει να είναι αλφαριθμητικό';
+    const InvalidUnitNetworkSubnetNameArray = 'Το Όνομα του Υποδικτύου της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitNetworkSubnetΙpParam = 'H IP του Υποδικτύου της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitNetworkSubnetIpValue = 'H IP του Υποδικτύου της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitNetworkSubnetIpType = 'H IP του Υποδικτύου της Μονάδας πρέπει να είναι αλφαριθμητική';
+    const InvalidUnitNetworkSubnetIpArray = 'H IP του Υποδικτύου της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitNetworkSubnetDefaultRouterParam = 'H Default Gateway του Υποδικτύου της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitNetworkSubnetDefaultRouterValue = 'H Default Gateway του Υποδικτύου της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitNetworkSubnetDefaultRouterType = 'H Default Gateway του Υποδικτύου της Μονάδας πρέπει να είναι αλφαριθμητική';
+    const InvalidUnitNetworkSubnetDefaultRouterArray = 'H Default Gateway του Υποδικτύου της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitNetworkSubnetMaskParam = 'H Μάσκα του Υποδικτύου της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitNetworkSubnetMaskValue = 'H Μάσκα του Υποδικτύου της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitNetworkSubnetMaskType = 'H Μάσκα του Υποδικτύου της Μονάδας πρέπει να είναι αλφαριθμητική';
+    const InvalidUnitNetworkSubnetMaskArray = 'H Μάσκα του Υποδικτύου της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    //======================================================================================================================
+    // =UnitNetworkObjects
+    //======================================================================================================================
+    const MissingUnitNetworkObjectIDParam = 'Ο Κωδικός των Δικτυακών Αντικειμένων της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitNetworkObjectIDValue = 'Ο Κωδικός των Δικτυακών Αντικειμένων της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitNetworkObjectIDType = 'Ο Κωδικός των Δικτυακών Αντικειμένων της Μονάδας πρέπει να είναι αριθμητικός';
+    const InvalidUnitNetworkObjectIDArray = 'Ο Κωδικός των Δικτυακών Αντικειμένων της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές'; 
+    
+    const MissingUnitNetworkObjectParam = 'Τα Δικτυακά Αντικείμενα της Μονάδας είναι υποχρεωτικό πεδίο';   
+    const MissingUnitNetworkObjectValue = 'Τα Δικτυακά Αντικείμενα της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitNetworkObjectValue = 'Τα Δικτυακά Αντικείμενα της Μονάδας δεν βρέθηκαν';
+    const InvalidUnitNetworkObjectType = 'Τα Δικτυακά Αντικείμενα της Μονάδας πρέπει να είναι αριθμητικό ή αλφαριθμητικό';
+    const InvalidUnitNetworkObjectArray = 'Τα Δικτυακά Αντικείμενα της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const DuplicatedUnitNetworkObjectValue = 'Τα Δικτυακά Αντικείμενα της Μονάδας υπάρχουν ήδη';
+    const DuplicatedUnitNetworkObjectIpValue = 'Η διεύθυνση IP του Δικτυακού Αντικειμένου της Μονάδας υπάρχει ήδη';
+    const DuplicatedUnitNetworkObjectDnsNameValue = 'Το DNS όνομα του Δικτυακού Αντικειμένου της Μονάδας υπάρχει ήδη';
+    
+    const MissingUnitNetworkObjectIpParam = 'Η IP των Δικτυακών Αντικειμένων της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitNetworkObjectIpValue = 'Η IP των Δικτυακών Αντικειμένων της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitNetworkObjectIpType = 'Η IP των Δικτυακών Αντικειμένων της Μονάδας πρέπει να έχει αριθμητική μορφή IP';
+    const InvalidUnitNetworkObjectIpArray = 'Η IP των Δικτυακών Αντικειμένων της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitNetworkObjectDnsNameParam = 'Το DNS Όνομα των Δικτυακών Αντικειμένων της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitNetworkObjectDnsNameValue = 'Το DNS Όνομα των Δικτυακών Αντικειμένων της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitNetworkObjectDnsNameType = 'Το DNS Όνομα των Δικτυακών Αντικειμένων της Μονάδας πρέπει να είναι αλφαριθμητικό';
+    const InvalidUnitNetworkObjectDnsNameArray = 'Το DNS Όνομα των Δικτυακών Αντικειμένων της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const InvalidUnitNetworkObjectDescriptionType = 'Η Περιγραφή των Δικτυακών Αντικειμένων της Μονάδας πρέπει να είναι αλφαριθμητική';
+    
+    //======================================================================================================================
+    // =ConnectionUnitNetworkSubnets
+    //======================================================================================================================
+    const MissingConnectionUnitNetworkOSubnetIDParam = 'Ο Κωδικός της Διασύνδεσης του Υποδικτύου της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingConnectionUnitNetworkOSubnetIDValue = 'Ο Κωδικός της Διασύνδεσης του Υποδικτύου της Μονάδας πρέπει να έχει τιμή';
+    const InvalidConnectionUnitNetworkOSubnetIDType = 'Ο Κωδικός της Διασύνδεσης του Υποδικτύου της Μονάδας πρέπει να είναι αριθμητικός';
+    const InvalidConnectionUnitNetworkOSubnetIDArray = 'Ο Κωδικός της Διασύνδεσης του Υποδικτύου της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές'; 
+    
+    const MissingConnectionUnitNetworkOSubnetParam = 'Η Διασύνδεση του Υποδικτύου της Μονάδας είναι υποχρεωτικό πεδίο';   
+    const MissingConnectionUnitNetworkOSubnetValue = 'Η Διασύνδεση του Υποδικτύου της Μονάδας πρέπει να έχει τιμή';
+    const InvalidConnectionUnitNetworkOSubnetValue = 'Η Διασύνδεση του Υποδικτύου της Μονάδας δεν βρέθηκε';
+    const InvalidConnectionUnitNetworkOSubnetType = 'Η Διασύνδεση του Υποδικτύου της Μονάδας πρέπει να είναι αριθμητικό ή αλφαριθμητικό';
+    const InvalidConnectionUnitNetworkOSubnetArray = 'Η Διασύνδεση του Υποδικτύου της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const DuplicatedConnectionUnitNetworkOSubnetValue = 'Η Διασύνδεση του Υποδικτύου της Μονάδας υπάρχει ήδη';
+    const DifferenceConnectionUnitNetworkOSubnetMMIdValue = 'Δεν είναι δυνατή η εισαγωγή Διασύνδεσης και Υποδικτύου Μονάδας με διαφορετικό Κωδικό Σχολικής Μονάδας';
+    
     //= GetUnits
     const MissingUnitMMIDParam = 'Ο Κωδικός ΜΜ είναι υποχρεωτικό πεδίο';
     const MissingUnitMMIDValue = 'Ο Κωδικός ΜΜ πρέπει να έχει τιμή';
@@ -506,11 +642,16 @@ class ExceptionMessages
     const MissingConnectionIDValue = 'Ο Κωδικός της Διασύνδεσης πρέπει να έχει τιμή';
     const InvalidConnectionIDType = 'Ο Κωδικός της Διασύνδεσης πρέπει να είναι αριθμητικός';
     const InvalidConnectionIDArray = 'Ο Κωδικός της Διασύνδεσης δεν μπορεί να έχει πολλαπλές τιμές';
-    //const MissingGroupValue = 'Το Τμήμα πρέπει να έχει τιμή';
-    //const MissingGroupParam = 'Το Τμήμα είναι υποχρεωτικό πεδίο';
+    
+    const MissingConnectionParam = 'H Διασύνδεση είναι υποχρεωτικό πεδίο';
+    const MissingConnectionValue = 'H Διασύνδεση πρέπει να έχει τιμή';
     const InvalidConnectionValue = 'H Διασύνδεση δεν βρέθηκε';
-    //const InvalidGroupType = 'Το Τμήμα πρέπει να είναι αριθμητική ή αλφαριθμητική';
+    const InvalidConnectionType = 'H Διασύνδεση πρέπει να είναι αριθμητική';
+    const InvalidConnectionArray = 'H Διασύνδεση δεν μπορεί να έχει πολλαπλές τιμές';
+   
     const DuplicatedConnectionValue = 'Το Τηλεπικοινωνιακό Κύκλωμα υπάρχει σε άλλη Διασύνδεση';
+    const UsedConnectionByUnitNetworkSubnets = 'Η Διασύνδεση Συσχετίζεται με Υποδικτύο της Μονάδας';
+
 
 
 

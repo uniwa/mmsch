@@ -15,8 +15,6 @@ $app->config('debug', true);
 
 $app->map('/school_committees', Authentication, SchoolCommitteesController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/unit_dns', Authentication, UnitDnsController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/circuit_types', Authentication, CircuitTypesController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/addrspace_types', Authentication, AddrspaceTypesController)
@@ -87,7 +85,16 @@ $app->map('/levels', Authentication, LevelsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/groups', Authentication, GroupsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-
+$app->map('/unit_dns', Authentication, UnitDnsController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/unit_network_subnet_types', Authentication, UnitNetworkSubnetTypesController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/unit_network_subnets', Authentication, UnitNetworkSubnetsController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/unit_network_objects', Authentication, UnitNetworkObjectsController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/connection_unit_network_subnets', Authentication, ConnectionUnitNetworkSubnetsController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 
 $app->get('/docs/*', function () use ($app) {
     $app->redirect("http://mmsch.teiath.gr/doc/");
@@ -238,37 +245,6 @@ function SchoolCommitteesController()
 
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
-
-
-function UnitDnsController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetUnitDns(
-                $params["unit_dns"],
-                $params["unit_ext_dns"],
-                $params["unit_uid"],
-                $params["unit"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
 
 function CircuitTypesController()
 {
@@ -1262,7 +1238,8 @@ function ConnectionsController()
                 $params["cpe_id"],
                 $params["ldap_id"],
                 $params["circuit_id"],
-                $params["unit_network_element_id"]
+                $params["unit_network_element_id"],
+                $params["unit_network_subnet_id"]
             );
             break;
         case MethodTypes::PUT :
@@ -1270,7 +1247,8 @@ function ConnectionsController()
                 $params["connection_id"],
                 $params["cpe_id"],
                 $params["ldap_id"],
-                $params["unit_network_element_id"]
+                $params["unit_network_element_id"],
+                $params["unit_network_subnet_id"]
             );
             break;
         case MethodTypes::DELETE :
@@ -1486,6 +1464,251 @@ function UnitsController()
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
 
+//##########################################################################################################################
+// IP/DNS
+//##########################################################################################################################
 
+function UnitDnsController()
+{
+    global $app;
+
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetUnitDns(
+                $params["unit_dns"],
+                $params["unit_ext_dns"],
+                $params["unit_uid"],
+                $params["unit"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+        break;
+        case MethodTypes::POST :
+            $result = PostUnitDns(
+                $params["unit_dns"],
+                $params["unit_ext_dns"],
+                $params["unit_uid"],
+                $params["mm_id"]
+            );
+        break;
+        case MethodTypes::PUT :
+               $result = PutUnitDns(
+                $params["unit_dns_id"],
+                $params["unit_dns"],
+                $params["unit_ext_dns"],
+                $params["unit_uid"],
+                $params["mm_id"]
+            );
+        break;
+        case MethodTypes::DELETE :
+               $result = DeleteUnitDns(
+                $params["unit_dns_id"]
+            );
+        break;    
+    }
+
+    PrepareResponse();
+
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function UnitNetworkSubnetTypesController()
+{
+    global $app;
+
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetUnitNetworkSubnetTypes(
+                $params["subnet_type"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+        break;
+        case MethodTypes::POST :
+            $result = PostUnitNetworkSubnetTypes(
+                $params["subnet_type"]
+            );
+        break;
+        case MethodTypes::PUT :
+            $result = PutUnitNetworkSubnetTypes(
+                $params["unit_network_subnet_type_id"],
+                $params["subnet_type"]
+            );
+        break;
+        case MethodTypes::DELETE :
+            $result = DeleteUnitNetworkSubnetTypes(
+                $params["unit_network_subnet_type_id"]
+            );
+        break;
+    }
+
+    PrepareResponse();
+
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function UnitNetworkSubnetsController()
+{
+    global $app;
+
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetUnitNetworkSubnets(
+                $params["unit_network_subnet"],
+                $params["subnet_name"],
+                $params["subnet_ip"],
+                $params["subnet_default_router"],
+                $params["mask"],
+                $params["unit"],
+                $params["unit_network_subnet_type"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+        break;
+        case MethodTypes::POST :
+            $result = PostUnitNetworkSubnets(
+                $params["subnet_name"],
+                $params["subnet_ip"],
+                $params["subnet_default_router"],
+                $params["mask"],
+                $params["mm_id"],
+                $params["unit_network_subnet_type_id"]
+            );
+        break;
+        case MethodTypes::PUT :
+            $result = PutUnitNetworkSubnets(
+                $params["unit_network_subnet_id"],
+                $params["subnet_name"],
+                $params["subnet_ip"],
+                $params["subnet_default_router"],
+                $params["mask"],
+                $params["mm_id"],
+                $params["unit_network_subnet_type_id"]
+            );
+        break;
+        case MethodTypes::DELETE :
+            $result = DeleteUnitNetworkSubnets(
+                $params["unit_network_subnet_id"]
+            );
+        break;
+    }
+
+    PrepareResponse();
+
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function UnitNetworkObjectsController()
+{
+    global $app;
+
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetUnitNetworkObjects(
+                $params["unit_network_object"],
+                $params["ip"],
+                $params["object_dns_name"],
+                $params["unit_network_subnet"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+        break;
+        case MethodTypes::POST :
+            $result = PostUnitNetworkObjects(
+                $params["ip"],
+                $params["object_dns_name"],
+                $params["description"],
+                $params["unit_network_subnet_id"]
+            );
+        break;
+        case MethodTypes::PUT :
+            $result = PutUnitNetworkObjects(
+                $params["unit_network_object_id"],
+                $params["ip"],
+                $params["object_dns_name"],
+                $params["description"],
+                $params["unit_network_subnet_id"]
+            );
+        break;
+        case MethodTypes::DELETE :
+            $result = DeleteUnitNetworkObjects(
+                $params["unit_network_object_id"]
+            );
+        break;
+    }
+
+    PrepareResponse();
+
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function ConnectionUnitNetworkSubnetsController()
+{
+    global $app;
+
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetConnectionUnitNetworkSubnets(
+                $params["connection_unit_network_subnet"],
+                $params["unit_network_subnet"],
+                $params["connection"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostConnectionUnitNetworkSubnets(
+                $params["connection_id"],
+                $params["unit_network_subnet_id"]   
+            );
+        break;
+        case MethodTypes::PUT :
+            $result = PutConnectionUnitNetworkSubnets(
+                $params["connection_unit_network_subnet_id"],
+                $params["connection_id"],
+                $params["unit_network_subnet_id"] 
+            );
+        break;
+        case MethodTypes::DELETE :
+            $result = DeleteConnectionUnitNetworkSubnets(
+                $params["connection_unit_network_subnet_id"]
+            );
+        break;
+    }
+
+    PrepareResponse();
+
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
 
 ?>

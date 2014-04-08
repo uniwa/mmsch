@@ -51,11 +51,37 @@ require_once ('../api/post/PostCircuitTypes.php');
 require_once ('../api/put/PutCircuitTypes.php');
 require_once ('../api/delete/DeleteCircuitTypes.php');
 
+//= UnitDns
+require_once ('../api/get/GetUnitDns.php');
+require_once ('../api/post/PostUnitDns.php');
+require_once ('../api/put/PutUnitDns.php');
+require_once ('../api/delete/DeleteUnitDns.php');
 
+//= UnitNetworkSubnetTypes
+require_once ('../api/get/GetUnitNetworkSubnetTypes.php');
+require_once ('../api/post/PostUnitNetworkSubnetTypes.php');
+require_once ('../api/put/PutUnitNetworkSubnetTypes.php');
+require_once ('../api/delete/DeleteUnitNetworkSubnetTypes.php');
 
+//UnitNetworkSubnets
+require_once ('../api/get/GetUnitNetworkSubnets.php');
+require_once ('../api/post/PostUnitNetworkSubnets.php');
+require_once ('../api/put/PutUnitNetworkSubnets.php');
+require_once ('../api/delete/DeleteUnitNetworkSubnets.php');
+
+//UnitNetworkObjects
+require_once ('../api/get/GetUnitNetworkObjects.php');
+require_once ('../api/post/PostUnitNetworkObjects.php');
+require_once ('../api/put/PutUnitNetworkObjects.php');
+require_once ('../api/delete/DeleteUnitNetworkObjects.php');
+
+//UnitConnectionNetworkSubnets
+require_once ('../api/get/GetConnectionUnitNetworkSubnets.php');
+require_once ('../api/post/PostConnectionUnitNetworkSubnets.php');
+require_once ('../api/put/PutConnectionUnitNetworkSubnets.php');
+require_once ('../api/delete/DeleteConnectionUnitNetworkSubnets.php');
 
 require_once ('../api/get/GetSchoolCommittees.php');
-require_once ('../api/get/GetUnitDns.php');
 require_once ('../api/get/GetAddrspaceTypes.php');
 require_once ('../api/get/GetSources.php');
 require_once ('../api/get/GetStates.php');
@@ -88,6 +114,8 @@ require_once ('../api/get/GetRelations.php');
 require_once ('../api/get/GetTransitions.php');
 require_once ('../api/get/GetLevels.php');
 require_once ('../api/get/GetGroups.php');
+
+
 
 
 

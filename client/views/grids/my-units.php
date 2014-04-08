@@ -642,8 +642,12 @@
 							
 						});
 
+						
+						
+						
 							
-						// GRID OF UNITS
+						
+						
 						var gridUnits = $("#grid-units").kendoGrid({
 					        dataSource: new kendo.data.DataSource({
 					            autoBind: true,
@@ -657,7 +661,7 @@
 					                total: "total"
 					            },
 					 			requestStart: function(e) {
-
+									
 					                if ($('#grid-units').data('kendoGrid').options.inSearching) {
 
 					                    if (typeof this['rqc'] == 'undefined')
@@ -669,10 +673,6 @@
 					                    var flts = $("#grid-units").data('kendoGrid').dataSource.filter().filters;
 					                    var val;
 					                    $.each(flts, function(fltIndex, flt) {
-
-					                    	if (flt.field == "searchtype"){
-												return;
-					                    	}
 
 					                        if (flt.value != "") {
 
@@ -752,7 +752,6 @@
 					                    
 										$.each(tags, function(i,v){
 					                    	//console.log(i + " " + v);
-											
 											
 											if (v != null && v != ""){
 												
@@ -1065,10 +1064,18 @@
 							});
 						});
 
-
+											
+						$("#txtQuickSearch").keydown(function(e) {
+							if (e.keyCode == 13) {
+								//gridUnits.options.inSearching = true;
+								gridUnits.dataSource.filter([
+									{field: 'name', value: $("#txtQuickSearch").val()},
+									{field: 'searchtype', value: "CONTAINALL"}
+								]);
+							}
+						});
 						
 						
-						// TRIGGER RIGHT PANE SHOW/HIDE 
 						$('body').on('click', '.preview-pane-toggle-button', function(e){
 							
 							var r = (preview_pane.width()-40)*-1;
@@ -1105,21 +1112,11 @@
 							resizeGrid("grid-units");
 						});
 
-						// TRIGGER ON PRESS ENTER IN QUICK SEARCH TEXTBOX
-						$("#txtQuickSearch").keydown(function(e) {
-							if (e.keyCode == 13) {
-								//gridUnits.options.inSearching = true;
-								gridUnits.dataSource.filter([
-									{field: 'name', value: $("#txtQuickSearch").val()},
-									{field: 'searchtype', value: "CONTAINALL"}
-								]);
-							}
-						});
-
-						// TRIGGER SEARCHING THROUGHT SEARCHBOX
 						$('body').on('click', '#btnSearch', function(e) {
 							
 					        e.preventDefault();
+
+					       
 					        
 					        $(this).button('loading');
 
@@ -1131,13 +1128,13 @@
 					            dsSrcParams.push({'field': v.name, 'value': v.value});
 					        });
 
-					        dsSrcParams.push({'field': 'searchtype', 'value': 'CONTAINANY'});
+
+					       
 					        
 					        $('#grid-units').data('kendoGrid').options.inSearching = true;
 					        $("#grid-units").data("kendoGrid").dataSource.filter(dsSrcParams);
 					    });
 
-						// CLEAR SELECTION IN SEARCHBOX
 						$("body").on('click', "#btnClear", function(e){
 					     	
 							e.preventDefault();

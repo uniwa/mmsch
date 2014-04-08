@@ -510,7 +510,7 @@ function GetCircuits(
 
 
         if ( Validator::Missing('pagesize', $params) )
-            $pagesize = Parameters::AllPageSize;
+            $pagesize = Parameters::DefaultPageSize;
         else if ( Validator::isEqualTo($pagesize, 0) )
             $pagesize = Parameters::AllPageSize;
         else if ( Validator::isNull($pagesize) )

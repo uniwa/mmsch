@@ -246,12 +246,6 @@ class Validator
         return isset($value) ? (bool)$value : null;
     }
 
-
-
-
-
-
-
     public static function IsNegative($value)
     {
         if (! is_scalar($value)) {
@@ -259,6 +253,47 @@ class Validator
         }
 
         return ( is_int($value) || (is_numeric($value) && $value == (int) $value) )  && ( $value <= 0 );
+    }
+    
+    
+    public static function IsIp($value){
+         return inet_pton($value) !== false;
+    }
+            
+    public static function IsValidMask($ip,$mask){
+     
+        if( filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) ){
+
+            if ($mask[0] == '/') {       
+               (int)$mask_num = ltrim ($mask,'/');  
+               
+                if ($mask_num >= 8 && $mask_num <= 32) {               
+                    return $mask_num;
+                } else {
+                    return false;
+                }   
+                
+            } else {
+                return false;
+            }
+            
+        } else if( filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) ){
+           if ($mask[0] == '/') {       
+               (int)$mask_num = ltrim ($mask,'/');  
+               
+                if ($mask_num >= 1 && $mask_num <= 128) {               
+                    return $mask_num;
+                } else {
+                    return false;
+                }   
+                
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+            
     }
 
 }

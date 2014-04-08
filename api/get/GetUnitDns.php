@@ -363,15 +363,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    <li>string : <b>registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της Μονάδας</li>
  * </ul>
  *
- *integer : ip_dns_id : Ο Κωδικός των Δικτυακών Στοιχείων
-string : unit_dns : Το DNS της Μονάδας
-string : ext_dns : Το DNS του Δρομολογητή
-string : username : To username
-integer : mm_id : Ο Κωδικός ΜΜ της Μονάδας (Μονάδες : GetUnits())
-string : registry_no : Ο Κωδικός ΥΠΕΠΘ της Μονάδας
-string : unit_name : Το Όνομα της Μονάδας
-string : unit_special_name : Το Προσωνύμιο της Μονάδας
-
+ *
  *
  *
  * @throws InvalidSearchType {@see ExceptionMessages::InvalidSearchType}
@@ -483,7 +475,7 @@ function GetUnitDns(
 
 
         if ( Validator::Missing('pagesize', $params) )
-            $pagesize = Parameters::AllPageSize;
+            $pagesize = Parameters::DefaultPageSize;
         else if ( Validator::isEqualTo($pagesize, 0) )
             $pagesize = Parameters::AllPageSize;
         else if ( Validator::isNull($pagesize) )
@@ -614,7 +606,7 @@ function GetUnitDns(
                     }
                 }
                 else
-                    throw new Exception(ExceptionMessages::InvalidExtUnitDnsType." : ".$values, ExceptionCodes::InvalidExtUnitDnsType);
+                    throw new Exception(ExceptionMessages::InvalidUnitExtDnsType." : ".$values, ExceptionCodes::InvalidUnitExtDnsType);
 
                 switch ($searchtype)
                 {

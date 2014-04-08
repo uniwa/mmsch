@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Function PutUnitNetworkSubnets | mmsch.teiath.gr-ver4</title>
+
+	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
+	<script type="text/javascript" src="elementlist.js?199228023"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li><a href="package-GET.html">GET</a>
+						</li>
+				<li><a href="package-POST.html">POST</a>
+						</li>
+				<li class="active"><a href="package-PUT.html">PUT</a>
+						</li>
+				<li><a href="package-System.html">System</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+
+
+
+
+
+			<h3>Functions</h3>
+			<ul>
+				<li><a href="function-PostUnits.html">PostUnits</a></li>
+				<li><a href="function-PutCategories.html">PutCategories</a></li>
+				<li><a href="function-PutCircuits.html">PutCircuits</a></li>
+				<li><a href="function-PutCircuitTypes.html">PutCircuitTypes</a></li>
+				<li><a href="function-PutConnections.html">PutConnections</a></li>
+				<li><a href="function-PutConnectionUnitNetworkSubnets.html">PutConnectionUnitNetworkSubnets</a></li>
+				<li><a href="function-PutGroups.html">PutGroups</a></li>
+				<li><a href="function-PutLevels.html">PutLevels</a></li>
+				<li><a href="function-PutRelations.html">PutRelations</a></li>
+				<li><a href="function-PutUnitDns.html">PutUnitDns</a></li>
+				<li><a href="function-PutUnitNetworkObjects.html">PutUnitNetworkObjects</a></li>
+				<li class="active"><a href="function-PutUnitNetworkSubnets.html">PutUnitNetworkSubnets</a></li>
+				<li><a href="function-PutUnitNetworkSubnetTypes.html">PutUnitNetworkSubnetTypes</a></li>
+				<li><a href="function-PutUnits.html">PutUnits</a></li>
+				<li><a href="function-PutUnitWorkers.html">PutUnitWorkers</a></li>
+				<li><a href="function-PutWorkers.html">PutWorkers</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-PUT.html" title="Summary of PUT"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Function</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="function">
+	<h1>Function PutUnitNetworkSubnets</h1>
+
+
+	<div class="description">
+	
+<p><b>Ενημέρωση Υποδικτύων Μονάδας</b></p>
+
+<p>Η συνάρτηση αυτή ενημερώνει Υποδικτύα
+Μονάδας σύμφωνα με τις παραμέτρους που
+έγινε η κλήση</p>
+
+<p>Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο PUT :<br />
+<a
+href="http://mmsch.teiath.gr/api/unit_network_subnets">http://mmsch.teiath.gr/api/unit_network_subnets</a><br
+/>
+<br />
+</p>
+
+<p><br />
+<b>Πίνακας Παραμέτρων</b><br />
+Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+summary</a> εμφανίζονται όλοι οι παράμετροι με
+τους οποίους μπορεί να γίνει η κλήση της
+συνάρτησης<br />
+Όλοι οι παράμετροι είναι προαιρετικοί
+εκτός από αυτές που έχουν χαρακτηριστεί ως
+υποχρεωτικοί<br />
+Οι παράμετροι μπορούν να χρησιμοποιηθούν
+με οποιαδήποτε σειρά</p>
+<br />
+<b>Ορισμός Μοναδικών Τιμών Παραμέτρων</b><br />
+Παρακάτω ορίζονται οι παραμέτροι που έχουν
+μοναδικές τιμές και πραγματοποιειται
+ελεγχος:
+<ul>
+	<li><b>unit_network_subnet_id</b><br />
+	GetUnitNetworkSubnets με search_type=EXACT &amp;
+	unit_network_subnet_id="value"</li>
+
+	<li><b>subnet_name</b><br />
+	GetUnitNetworkSubnets με search_type=EXACT &amp; subnet_name="value"</li>
+
+	<li><b>subnet_ip</b><br />
+	GetUnitNetworkSubnets με search_type=EXACT &amp; subnet_ip="value"</li>
+
+	<li><b>mask</b><br />
+	GetUnitNetworkSubnets με search_type=EXACT &amp; mask="value"</li>
+</ul>
+<br />
+
+<p><br />
+<b>Πίνακας Αποτελεσμάτων</b><br />
+Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value
+summary</a> εμφανίζονται οι μεταβλητές που
+επιστρέφει η συνάρτηση<br />
+Όλες οι μεταβλητές επιστρέφονται σε ένα
+πίνακα σε JSON μορφή<br />
+Η μεταβλητή data είναι ο πίνακας με το
+λεξικό<br />
+Η μεταβλητή status καθορίζει αν η εκτέλεση της
+συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+προέκυψε κάποιο σφάλμα</p>
+
+<p><br />
+<b>Πίνακας Σφαλμάτων</b><br />
+Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+που μπορεί να προκύψουν κατά την κλήση της
+συνάρτησης<br />
+Οι περιγραφές των Σφαλμάτων καθώς και οι
+Κωδικοί τους είναι διαθέσιμες μέσω του
+πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+αντίστοιχα</p>
+
+<p><br />
+<b>Παραδείγματα Κλήσης</b><br />
+Παρακάτω εμφανίζεται μια σειρά από
+παραδείγματα κλήσης της συνάρτησης με
+διάφορους τρόπους :<br />
+<a href="#cURL">cURL</a> | <a href="#JavaScript">JavaScript</a> | <a
+href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a></p>
+
+<div><br />
+</div>
+
+<p><a id="cURL"></a>Παράδειγμα κλήσης της
+συνάρτησης με <b>cURL</b> (console) :</p>
+
+<pre>
+curl -X PUT http:<span
+class="php-comment">//mmsch.teiath.gr/api/unit_network_subnets \</span>
+  -H <span
+class="php-quote">&quot;Content-Type: application/json&quot;</span> \
+  -H <span
+class="php-quote">&quot;Accept: application/json&quot;</span> \
+  -u username:password \
+  -d <span
+class="php-quote">'{&quot;unit_network_subnet_id&quot; : &quot;&quot;, \
+       &quot;subnet_name&quot; : &quot;&quot;, \
+       &quot;subnet_ip&quot; : &quot;&quot;, \
+       &quot;mask&quot; : &quot;&quot;, \
+       &quot;subnet_default_router&quot; : &quot;&quot;, \
+       &quot;mm_id&quot; : &quot;&quot;, \
+       &quot;unit_network_subnet_type_id&quot; : &quot;&quot; }'</span>
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="JavaScript"></a>Παράδειγμα κλήσης της
+συνάρτησης με <b>JavaScript</b> :</p>
+
+<pre>
+&lt;script&gt;
+   <span
+class="php-keyword1">var</span> params = JSON.stringify({
+       <span
+class="php-quote">&quot;unit_network_subnet_id&quot;</span> : <span
+class="php-quote">&quot;&quot;</span>,
+       <span
+class="php-quote">&quot;subnet_name&quot;</span> : <span
+class="php-quote">&quot;&quot;</span>,
+       <span
+class="php-quote">&quot;subnet_ip&quot;</span> : <span
+class="php-quote">&quot;&quot;</span>,
+       <span
+class="php-quote">&quot;mask&quot;</span> : <span
+class="php-quote">&quot;&quot;</span>,
+       <span
+class="php-quote">&quot;subnet_default_router&quot;</span> : <span
+class="php-quote">&quot;&quot;</span>,
+       <span
+class="php-quote">&quot;mm_id&quot;</span> : <span
+class="php-quote">&quot;&quot;</span>,
+       <span
+class="php-quote">&quot;unit_network_subnet_type_id&quot;</span> : <span
+class="php-quote">&quot;&quot;</span>
+   });
+
+   <span
+class="php-keyword1">var</span> http = <span
+class="php-keyword1">new</span> XMLHttpRequest();
+   http.open(<span
+class="php-quote">&quot;PUT&quot;</span>, <span
+class="php-quote">&quot;http://mmsch.teiath.gr/api/unit_network_subnets&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Accept&quot;</span>, <span
+class="php-quote">&quot;application/json&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Content-type&quot;</span>, <span
+class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Content-length&quot;</span>, params.length);
+
+   http.onreadystatechange = <span
+class="php-keyword1">function</span>() {
+       <span
+class="php-keyword1">if</span>(http.readyState == <span
+class="php-num">4</span> &amp;&amp; http.status == <span
+class="php-num">200</span>) {
+           alert(http.responseText);
+       }
+   }
+
+   http.send(params);
+&lt;/script&gt;
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="PHP"></a>Παράδειγμα κλήσης της συνάρτησης
+με <b>PHP</b> :</p>
+
+<pre>
+<span class="xlang">&lt;?php</span>
+<span
+class="php-keyword2">header</span>(<span
+class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
+
+<span
+class="php-var">$params</span> = <span
+class="php-keyword1">array</span>(
+       <span
+class="php-quote">&quot;unit_network_subnet_id&quot;</span> =&gt; <span
+class="php-quote">&quot;&quot;</span>,
+       <span
+class="php-quote">&quot;subnet_name&quot;</span> =&gt; <span
+class="php-quote">&quot;&quot;</span>,
+       <span
+class="php-quote">&quot;subnet_ip&quot;</span> =&gt; <span
+class="php-quote">&quot;&quot;</span>,
+       <span
+class="php-quote">&quot;mask&quot;</span> =&gt; <span
+class="php-quote">&quot;&quot;</span>,
+       <span
+class="php-quote">&quot;subnet_default_router&quot;</span> =&gt; <span
+class="php-quote">&quot;&quot;</span>,
+       <span
+class="php-quote">&quot;mm_id&quot;</span> =&gt; <span
+class="php-quote">&quot;&quot;</span>,
+       <span
+class="php-quote">&quot;unit_network_subnet_type_id&quot;</span> =&gt; <span
+class="php-quote">&quot;&quot;</span>
+);
+
+<span
+class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
+class="php-quote">&quot;http://mmsch.teiath.gr/api/unit_network_subnets&quot;</span>);
+
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_USERPWD, <span
+class="php-quote">&quot;username:password&quot;</span>);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
+class="php-quote">&quot;PUT&quot;</span>);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_POSTFIELDS, <span
+class="php-keyword2">json_encode</span>( <span
+class="php-var">$params</span> ));
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
+class="php-keyword1">true</span>);
+
+<span class="php-var">$data</span> = <span
+class="php-keyword2">json_decode</span>( <span
+class="php-keyword2">curl_exec</span>(<span
+class="php-var">$curl</span>) );
+<span class="php-keyword1">echo</span> <span
+class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
+class="php-keyword2">var_dump</span>( <span
+class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
+class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
+<span
+class="xlang">?&gt;</span>
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="Ajax"></a>Παράδειγμα κλήσης της
+συνάρτησης με <b>Ajax</b> :</p>
+
+<pre>
+&lt;script&gt;
+   <span class="php-var">$</span>.ajax({
+       type: <span
+class="php-quote">'PUT'</span>,
+       url: <span
+class="php-quote">'http://mmsch.teiath.gr/api/unit_network_subnets'</span>,
+       dataType: <span
+class="php-quote">&quot;json&quot;</span>,
+       data: {
+          <span
+class="php-quote">&quot;unit_network_subnet_id&quot;</span> : <span
+class="php-quote">&quot;&quot;</span>,
+          <span
+class="php-quote">&quot;subnet_name&quot;</span> : <span
+class="php-quote">&quot;&quot;</span>,
+          <span
+class="php-quote">&quot;subnet_ip&quot;</span> : <span
+class="php-quote">&quot;&quot;</span>,
+          <span
+class="php-quote">&quot;mask&quot;</span> : <span
+class="php-quote">&quot;&quot;</span>,
+          <span
+class="php-quote">&quot;subnet_default_router&quot;</span> : <span
+class="php-quote">&quot;&quot;</span>,
+          <span
+class="php-quote">&quot;mm_id&quot;</span> : <span
+class="php-quote">&quot;&quot;</span>,
+          <span
+class="php-quote">&quot;unit_network_subnet_type_id&quot;</span> : <span
+class="php-quote">&quot;&quot;</span>
+       },
+       beforeSend: <span
+class="php-keyword1">function</span>(req) {
+           req.setRequestHeader(<span
+class="php-quote">'Authorization'</span>, btoa(<span
+class="php-quote">'username'</span> + <span
+class="php-quote">&quot;:&quot;</span> + <span
+class="php-quote">'password'</span>));
+       },
+       success: <span
+class="php-keyword1">function</span>(data){
+           console.<span
+class="php-keyword2">log</span>(data);
+       }
+   });
+&lt;/script&gt;
+</pre>
+
+<div><br />
+</div>
+
+<p><br />
+<b>Πίνακας Δεδομένων</b><br />
+<a id="data"></a>Παρακάτω εμφανίζεται πίνακας σε
+μορφή JSON :</p>
+
+<pre>
+{
+   <span class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;PutUnitNetworkSubnets&quot;</span>,
+   <span
+class="php-quote">&quot;unit_network_subnet_id&quot;</span>: <span
+class="php-quote">&quot;&quot;</span>,
+   <span
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
+   <span
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;success&quot;</span>
+}
+</pre>
+
+<div><br />
+</div>
+
+	</div>
+
+	<div class="info">
+		
+		<b>Package:</b> <a href="package-PUT.html">PUT</a><br />
+				<b>Author:</b>
+				ΤΕΙ Αθήνας<br />
+		<b>Located at</b> api/put/PutUnitNetworkSubnets.php<br />
+	</div>
+
+
+	<table class="summary" id="parameters">
+	<caption>Parameters summary</caption>
+	<tr id="$unit_network_subnet_id">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$unit_network_subnet_id</var></code></td>
+		<td>
+			 <b><i>Κωδικός Υποδικτύου Μονάδας</i></b><br />
+Ο Κωδικός του Υποδικτύου Μονάδας<br />
+Η παράμετρος είναι υποχρεωτική<br />
+Υποδίκτυα Μονάδας : <code><a href="function-GetUnitNetworkSubnets.html">GetUnitNetworkSubnets()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικός του Υποδικτύου Μονάδας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$subnet_name">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$subnet_name</var></code></td>
+		<td>
+			$mm_id Κωδικός ΜΜ Μονάδας<br />
+Ο Κωδικός ΜΜ της Μονάδας<br />
+Η παράμετρος είναι υποχρεωτική<br />
+Μονάδες : <code><a href="function-GetUnits.html">GetUnits()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ΜΜ της Μονάδας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$subnet_ip">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$subnet_ip</var></code></td>
+		<td>
+			$unit_network_subnet_type_id Τύπος Υποδικτύου<br />
+Ο Κωδικός του Τύπου Υποδικτύου<br />
+Η παράμετρος είναι υποχρεωτική<br />
+Τύποι Υποδικτύου : <code><a href="function-GetUnitNetworkSubnetTypes.html">GetUnitNetworkSubnetTypes()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό του Τύπου Υποδικτύου<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$subnet_default_router">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$subnet_default_router</var></code></td>
+		<td>
+			$subnet_name Όνομα Υποδικτύου Μονάδας<br />
+Το Όνομα του Υποδικτύου Μονάδας<br />
+Η παράμετρος είναι υποχρεωτική<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+		</td>
+	</tr>
+	<tr id="$mask">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$mask</var></code></td>
+		<td>
+			$subnet_ip IP Υποδικτύου Μονάδας<br />
+Η IP Διευθυνση του Υποδικτύου Μονάδας<br />
+Η παράμετρος είναι υποχρεωτική<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+		</td>
+	</tr>
+	<tr id="$mm_id">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$mm_id</var></code></td>
+		<td>
+			$mask Μάσκα Υποδικτύου Μονάδας<br />
+Η Μάσκα του Υποδικτύου Μονάδας<br />
+Η παράμετρος είναι υποχρεωτική<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+		</td>
+	</tr>
+	<tr id="$unit_network_subnet_type_id">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$unit_network_subnet_type_id</var></code></td>
+		<td>
+			$subnet_default_router Gateway Υποδικτύου Μονάδας<br />
+Η Default Gateway του Υποδικτύου Μονάδας<br />
+Η παράμετροςείναι υποχρεωτική<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="returns">
+	<caption>Return value summary</caption>
+	<tr>
+		<td class="name"><code>
+			Array&lt;JSON&gt;
+		</code></td>
+		<td>
+			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
+:<br />
+
+<ul>
+	<li>sting : <b>method</b> : Το Όνομα της μεθόδου</li>
+
+	<li>integer : <b>status</b> : Ο Κωδικός της κατάστασης</li>
+
+	<li>string : <b>message</b> : Μήνυμα περιγραφής της
+	κατάστασης</li>
+
+	<li>integer : <b>unit_network_subnet_id</b> : Ο Κωδικός του
+	Υποδικτύου Μονάδας</li>
+</ul>
+
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="throws">
+	<caption>Thrown exceptions summary</caption>
+	<tr>
+		<td class="name"><code>
+			MissingUnitNetworkSubnetIDValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitNetworkSubnetIDValue">ExceptionMessages::<b>MissingUnitNetworkSubnetIDValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitNetworkSubnetIDValue">ExceptionCodes::<b>MissingUnitNetworkSubnetIDValue</b></a></code><br />
+Ο Κωδικός του Υποδικτύου της Μονάδας της
+Μονάδας πρέπει να έχει τιμή
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetIDArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetIDArray">ExceptionMessages::<b>InvalidUnitNetworkSubnetIDArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetIDArray">ExceptionCodes::<b>InvalidUnitNetworkSubnetIDArray</b></a></code><br />
+Ο Κωδικός του Υποδικτύου της Μονάδας δεν
+μπορεί να έχει πολλαπλές τιμές
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetValue">ExceptionMessages::<b>InvalidUnitNetworkSubnetValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetValue">ExceptionCodes::<b>InvalidUnitNetworkSubnetValue</b></a></code><br />
+Το Υποδικτύο της Μονάδας δεν βρέθηκε
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetIDType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetIDType">ExceptionMessages::<b>InvalidUnitNetworkSubnetIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetIDType">ExceptionCodes::<b>InvalidUnitNetworkSubnetIDType</b></a></code><br />
+Ο Κωδικός του Υποδικτύου της Μονάδας πρέπει
+να είναι αριθμητικός
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitNetworkSubnetIDParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitNetworkSubnetIDParam">ExceptionMessages::<b>MissingUnitNetworkSubnetIDParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitNetworkSubnetIDParam">ExceptionCodes::<b>MissingUnitNetworkSubnetIDParam</b></a></code><br />
+Ο Κωδικός του Υποδικτύου της Μονάδας είναι
+υποχρεωτικό πεδίο
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitNetworkSubnetNameValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitNetworkSubnetNameValue">ExceptionMessages::<b>MissingUnitNetworkSubnetNameValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitNetworkSubnetNameValue">ExceptionCodes::<b>MissingUnitNetworkSubnetNameValue</b></a></code><br />
+Το Όνομα του Υποδικτύου της Μονάδας πρέπει
+να έχει τιμή
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetNameArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetNameArray">ExceptionMessages::<b>InvalidUnitNetworkSubnetNameArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetNameArray">ExceptionCodes::<b>InvalidUnitNetworkSubnetNameArray</b></a></code><br />
+Το Όνομα του Υποδικτύου της Μονάδας δεν
+μπορεί να έχει πολλαπλές τιμές
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetNameType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetNameType">ExceptionMessages::<b>InvalidUnitNetworkSubnetNameType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetNameType">ExceptionCodes::<b>InvalidUnitNetworkSubnetNameType</b></a></code><br />
+Το Όνομα του Υποδικτύου της Μονάδας πρέπει
+να είναι αλφαριθμητικό
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitNetworkSubnetNameParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitNetworkSubnetNameParam">ExceptionMessages::<b>MissingUnitNetworkSubnetNameParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitNetworkSubnetNameParam">ExceptionCodes::<b>MissingUnitNetworkSubnetNameParam</b></a></code><br />
+Το Όνομα του Υποδικτύου της Μονάδας είναι
+υποχρεωτικό πεδίο
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedUnitNetworkSubnetValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedUnitNetworkSubnetValue">ExceptionMessages::<b>DuplicatedUnitNetworkSubnetValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedUnitNetworkSubnetValue">ExceptionCodes::<b>DuplicatedUnitNetworkSubnetValue</b></a></code><br />
+Το Όνομα του Υποδικτύο της Μονάδας υπάρχει
+ήδη
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitMMIDValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitMMIDValue">ExceptionMessages::<b>MissingUnitMMIDValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitMMIDValue">ExceptionCodes::<b>MissingUnitMMIDValue</b></a></code><br />
+Ο Κωδικός ΜΜ πρέπει να έχει τιμή
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitMMIDArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitMMIDArray">ExceptionMessages::<b>InvalidUnitMMIDArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitMMIDArray">ExceptionCodes::<b>InvalidUnitMMIDArray</b></a></code><br />
+Ο Κωδικός ΜΜ δεν μπορεί να έχει πολλαπλές
+τιμές
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitValue">ExceptionMessages::<b>InvalidUnitValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitValue">ExceptionCodes::<b>InvalidUnitValue</b></a></code><br />
+Η Μονάδα δεν βρέθηκε
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitMMIDType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitMMIDType">ExceptionMessages::<b>InvalidUnitMMIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitMMIDType">ExceptionCodes::<b>InvalidUnitMMIDType</b></a></code><br />
+Ο Κωδικός ΜΜ πρέπει να είναι αριθμητικός
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitMMIDParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitMMIDParam">ExceptionMessages::<b>MissingUnitMMIDParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitMMIDParam">ExceptionCodes::<b>MissingUnitMMIDParam</b></a></code><br />
+Ο Κωδικός ΜΜ είναι υποχρεωτικό πεδίο
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitNetworkSubnetTypeIDValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitNetworkSubnetTypeIDValue">ExceptionMessages::<b>MissingUnitNetworkSubnetTypeIDValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitNetworkSubnetTypeIDValue">ExceptionCodes::<b>MissingUnitNetworkSubnetTypeIDValue</b></a></code><br />
+Ο Κωδικός του Τύπου του IP δικτυακού
+στοιχείου πρέπει να έχει τιμή
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetTypeIDArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetTypeIDArray">ExceptionMessages::<b>InvalidUnitNetworkSubnetTypeIDArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetTypeIDArray">ExceptionCodes::<b>InvalidUnitNetworkSubnetTypeIDArray</b></a></code><br />
+Ο Κωδικός του Τύπου του IP δικτυακού
+στοιχείου δεν μπορεί να έχει πολλαπλές
+τιμές
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetTypeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetTypeValue">ExceptionMessages::<b>InvalidUnitNetworkSubnetTypeValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetTypeValue">ExceptionCodes::<b>InvalidUnitNetworkSubnetTypeValue</b></a></code><br />
+Ο Τύπος του IP δικτυακού στοιχείου δεν
+υπάρχει στο λεξικό
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetTypeIDType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetTypeIDType">ExceptionMessages::<b>InvalidUnitNetworkSubnetTypeIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetTypeIDType">ExceptionCodes::<b>InvalidUnitNetworkSubnetTypeIDType</b></a></code><br />
+Ο Κωδικός του Τύπου του IP δικτυακού
+στοιχείου πρέπει να είναι αριθμητικός
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitNetworkSubnetTypeIDParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitNetworkSubnetTypeIDParam">ExceptionMessages::<b>MissingUnitNetworkSubnetTypeIDParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitNetworkSubnetTypeIDParam">ExceptionCodes::<b>MissingUnitNetworkSubnetTypeIDParam</b></a></code><br />
+Ο Κωδικός του Τύπου του IP δικτυακού
+στοιχείου είναι υποχρεωτικό πεδίο
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitNetworkSubnetIpValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitNetworkSubnetIpValue">ExceptionMessages::<b>MissingUnitNetworkSubnetIpValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitNetworkSubnetIpValue">ExceptionCodes::<b>MissingUnitNetworkSubnetIpValue</b></a></code><br />
+H IP του Υποδικτύου της Μονάδας πρέπει να
+έχει τιμή
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetIpArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetIpArray">ExceptionMessages::<b>InvalidUnitNetworkSubnetIpArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetIpArray">ExceptionCodes::<b>InvalidUnitNetworkSubnetIpArray</b></a></code><br />
+H IP του Υποδικτύου της Μονάδας δεν μπορεί να
+έχει πολλαπλές τιμές
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetIpType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetIpType">ExceptionMessages::<b>InvalidUnitNetworkSubnetIpType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetIpType">ExceptionCodes::<b>InvalidUnitNetworkSubnetIpType</b></a></code><br />
+H IP του Υποδικτύου της Μονάδας πρέπει να
+είναι αλφαριθμητική
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitNetworkSubnetΙpParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitNetworkSubnetΙpParam">ExceptionMessages::<b>MissingUnitNetworkSubnetΙpParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitNetworkSubnetΙpParam">ExceptionCodes::<b>MissingUnitNetworkSubnetΙpParam</b></a></code><br />
+H IP του Υποδικτύου της Μονάδας είναι
+υποχρεωτικό πεδίο
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedUnitNetworkSubnetIpValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedUnitNetworkSubnetIpValue">ExceptionMessages::<b>DuplicatedUnitNetworkSubnetIpValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedUnitNetworkSubnetIpValue">ExceptionCodes::<b>DuplicatedUnitNetworkSubnetIpValue</b></a></code><br />
+Η διεύθυνση IP του Υποδικτύο της Μονάδας
+υπάρχει ήδη
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitNetworkSubnetDefaultRouterValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitNetworkSubnetDefaultRouterValue">ExceptionMessages::<b>MissingUnitNetworkSubnetDefaultRouterValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitNetworkSubnetDefaultRouterValue">ExceptionCodes::<b>MissingUnitNetworkSubnetDefaultRouterValue</b></a></code><br />
+H Default Gateway του Υποδικτύου της Μονάδας πρέπει
+να έχει τιμή
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetDefaultRouterArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetDefaultRouterArray">ExceptionMessages::<b>InvalidUnitNetworkSubnetDefaultRouterArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetDefaultRouterArray">ExceptionCodes::<b>InvalidUnitNetworkSubnetDefaultRouterArray</b></a></code><br />
+H Default Gateway του Υποδικτύου της Μονάδας δεν
+μπορεί να έχει πολλαπλές τιμές
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetDefaultRouterType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetDefaultRouterType">ExceptionMessages::<b>InvalidUnitNetworkSubnetDefaultRouterType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetDefaultRouterType">ExceptionCodes::<b>InvalidUnitNetworkSubnetDefaultRouterType</b></a></code><br />
+H Default Gateway του Υποδικτύου της Μονάδας πρέπει
+να είναι αλφαριθμητική
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitNetworkSubnetDefaultRouterParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitNetworkSubnetDefaultRouterParam">ExceptionMessages::<b>MissingUnitNetworkSubnetDefaultRouterParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitNetworkSubnetDefaultRouterParam">ExceptionCodes::<b>MissingUnitNetworkSubnetDefaultRouterParam</b></a></code><br />
+H Default Gateway του Υποδικτύου της Μονάδας είναι
+υποχρεωτικό πεδίο
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitNetworkSubnetMaskValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitNetworkSubnetMaskValue">ExceptionMessages::<b>MissingUnitNetworkSubnetMaskValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitNetworkSubnetMaskValue">ExceptionCodes::<b>MissingUnitNetworkSubnetMaskValue</b></a></code><br />
+H Μάσκα του Υποδικτύου της Μονάδας πρέπει να
+έχει τιμή
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetMaskArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetMaskArray">ExceptionMessages::<b>InvalidUnitNetworkSubnetMaskArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetMaskArray">ExceptionCodes::<b>InvalidUnitNetworkSubnetMaskArray</b></a></code><br />
+H Μάσκα του Υποδικτύου της Μονάδας δεν
+μπορεί να έχει πολλαπλές τιμές
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNetworkSubnetMaskType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkSubnetMaskType">ExceptionMessages::<b>InvalidUnitNetworkSubnetMaskType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkSubnetMaskType">ExceptionCodes::<b>InvalidUnitNetworkSubnetMaskType</b></a></code><br />
+H Μάσκα του Υποδικτύου της Μονάδας πρέπει να
+είναι αλφαριθμητική
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitNetworkSubnetMaskParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitNetworkSubnetMaskParam">ExceptionMessages::<b>MissingUnitNetworkSubnetMaskParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitNetworkSubnetMaskParam">ExceptionCodes::<b>MissingUnitNetworkSubnetMaskParam</b></a></code><br />
+H Μάσκα του Υποδικτύου της Μονάδας είναι
+υποχρεωτικό
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedUnitNetworkSubnetMaskValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedUnitNetworkSubnetMaskValue">ExceptionMessages::<b>DuplicatedUnitNetworkSubnetMaskValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedUnitNetworkSubnetMaskValue">ExceptionCodes::<b>DuplicatedUnitNetworkSubnetMaskValue</b></a></code><br />
+Η Μάσκα του Υποδικτύο της Μονάδας υπάρχει
+ήδη
+		</td>
+	</tr>
+	</table>
+
+</div>
+
+	<div id="footer">
+		mmsch.teiath.gr-ver4 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

@@ -237,7 +237,7 @@ function PutCircuitTypes(
         }
         else
         {
-            throw new Exception(ExceptionMessages::MissingConnectionIDParam, ExceptionCodes::MissingConnectionIDParam);
+            throw new Exception(ExceptionMessages::MissingCircuitIDParam, ExceptionCodes::MissingCircuitIDParam);
         }
 
 //======================================================================================================================
