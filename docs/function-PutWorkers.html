@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="generator" content="ApiGen 2.8.0">
+
+	<title>Function PutWorkers | mmsch.teiath.gr (beta 3)</title>
+
+	<script type="text/javascript" src="resources/combined.js?2259263873"></script>
+	<script type="text/javascript" src="elementlist.js?3776710774"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li><a href="package-GET.html">GET</a>
+						</li>
+				<li><a href="package-POST.html">POST</a>
+						</li>
+				<li class="active"><a href="package-PUT.html">PUT</a>
+						</li>
+				<li><a href="package-System.html">System</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+
+
+
+
+
+			<h3>Functions</h3>
+			<ul>
+				<li><a href="function-PostUnits.html">PostUnits</a></li>
+				<li><a href="function-PutCategories.html">PutCategories</a></li>
+				<li><a href="function-PutCircuits.html">PutCircuits</a></li>
+				<li><a href="function-PutCircuitTypes.html">PutCircuitTypes</a></li>
+				<li><a href="function-PutConnections.html">PutConnections</a></li>
+				<li><a href="function-PutGroups.html">PutGroups</a></li>
+				<li><a href="function-PutLevels.html">PutLevels</a></li>
+				<li><a href="function-PutRelations.html">PutRelations</a></li>
+				<li><a href="function-PutUnits.html">PutUnits</a></li>
+				<li><a href="function-PutUnitWorkers.html">PutUnitWorkers</a></li>
+				<li class="active"><a href="function-PutWorkers.html">PutWorkers</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text">
+		<input type="submit" value="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-PUT.html" title="Summary of PUT"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Function</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="function">
+	<h1>Function PutWorkers</h1>
+
+
+	<div class="description">
+	
+<p>Ενημέρωση : Εργαζόμενοι</p>
+
+<p>Η κλήση της συνάρτησης αυτής μπορεί να
+γίνει μέσω της παρακάτω διεύθυνσης με τη
+μέθοδο PUT :<br />
+<a
+href="http://mmsch.teiath.gr/api/workers">http://mmsch.teiath.gr/api/workers</a><br
+/>
+<br />
+</p>
+
+<p>Παράδειγμα κλήσης της μεθόδου με <b>cURL</b>
+(console) :</p>
+
+<pre>
+curl -X PUT http:<span
+class="php-comment">//mmsch.teiath.gr/api/workers \</span>
+  -H <span
+class="php-quote">&quot;Content-Type: application/json&quot;</span> \
+  -H <span
+class="php-quote">&quot;Accept: application/json&quot;</span> \
+  -u username:password \
+  -d <span
+class="php-quote">'{&quot;worker_id&quot; : &quot;value&quot;, \
+       &quot;worker_registry_no&quot; : &quot;value&quot;, \
+       &quot;lastname&quot; : &quot;value&quot;, \
+       &quot;firstname&quot; : &quot;value&quot;, \
+       &quot;fathername&quot; : &quot;value&quot;, \
+       &quot;sex&quot; : &quot;value&quot;, \
+       &quot;tax_number&quot; : &quot;value&quot;, \
+       &quot;worker_specialization&quot; : &quot;value&quot; }'</span>
+</pre>
+
+<div><br />
+</div>
+
+<p>Παράδειγμα κλήσης της μεθόδου με
+<b>JavaScript</b> :</p>
+
+<pre>
+&lt;script&gt;
+   <span
+class="php-keyword1">var</span> params = JSON.stringify({ <span
+class="php-quote">&quot;worker_id&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+                                 <span
+class="php-quote">&quot;worker_registry_no&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+                                 <span
+class="php-quote">&quot;lastname&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+                                 <span
+class="php-quote">&quot;firstname&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+                                 <span
+class="php-quote">&quot;fathername&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+                                 <span
+class="php-quote">&quot;sex&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+                                 <span
+class="php-quote">&quot;tax_number&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>
+                                 <span
+class="php-quote">&quot;worker_specialization&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span> });
+
+   <span
+class="php-keyword1">var</span> http = <span
+class="php-keyword1">new</span> XMLHttpRequest();
+   http.open(<span
+class="php-quote">&quot;PUT&quot;</span>, <span
+class="php-quote">&quot;http://mmsch.teiath.gr/api/workers&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Accept&quot;</span>, <span
+class="php-quote">&quot;application/json&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Content-type&quot;</span>, <span
+class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Content-length&quot;</span>, params.length);
+
+   http.onreadystatechange = <span
+class="php-keyword1">function</span>() {
+       <span
+class="php-keyword1">if</span>(http.readyState == <span
+class="php-num">4</span> &amp;&amp; http.status == <span
+class="php-num">200</span>) {
+           alert(http.responseText);
+       }
+   }
+
+   http.send(params);
+&lt;/script&gt;
+</pre>
+
+<div><br />
+</div>
+
+<p>Παράδειγμα κλήσης της μεθόδου με <b>PHP</b> :</p>
+
+<pre>
+<span class="xlang">&lt;?php</span>
+<span
+class="php-keyword2">header</span>(<span
+class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
+
+<span
+class="php-var">$params</span> = <span
+class="php-keyword1">array</span>(
+     <span
+class="php-quote">&quot;worker_id&quot;</span> =&gt; <span
+class="php-quote">&quot;value&quot;</span>,
+     <span
+class="php-quote">&quot;worker_registry_no&quot;</span> =&gt; <span
+class="php-quote">&quot;value&quot;</span>,
+     <span
+class="php-quote">&quot;lastname&quot;</span> =&gt; <span
+class="php-quote">&quot;value&quot;</span>,
+     <span
+class="php-quote">&quot;firstname&quot;</span> =&gt; <span
+class="php-quote">&quot;value&quot;</span>,
+     <span
+class="php-quote">&quot;fathername&quot;</span> =&gt; <span
+class="php-quote">&quot;value&quot;</span>,
+     <span
+class="php-quote">&quot;sex&quot;</span> =&gt; <span
+class="php-quote">&quot;value&quot;</span>,
+     <span
+class="php-quote">&quot;tax_number&quot;</span> =&gt; <span
+class="php-quote">&quot;value&quot;</span>,
+     <span
+class="php-quote">&quot;worker_specialization&quot;</span> =&gt; <span
+class="php-quote">&quot;value&quot;</span> );
+
+<span
+class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
+class="php-quote">&quot;http://mmsch.teiath.gr/api/workers&quot;</span>);
+
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_USERPWD, <span
+class="php-quote">&quot;username:password&quot;</span>);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
+class="php-quote">&quot;PUT&quot;</span>);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_POSTFIELDS, <span
+class="php-keyword2">json_encode</span>( <span
+class="php-var">$params</span> ));
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
+class="php-keyword1">true</span>);
+
+<span class="php-var">$data</span> = <span
+class="php-keyword2">json_decode</span>( <span
+class="php-keyword2">curl_exec</span>(<span
+class="php-var">$curl</span>) );
+<span class="php-keyword1">echo</span> <span
+class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
+class="php-keyword2">var_dump</span>( <span
+class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
+class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
+<span
+class="xlang">?&gt;</span>
+</pre>
+
+<div><br />
+</div>
+
+<p>Παράδειγμα κλήσης της συνάρτησης με
+<b>Ajax</b> :</p>
+
+<pre>
+&lt;script&gt;
+   <span class="php-var">$</span>.ajax({
+       type: <span
+class="php-quote">'PUT'</span>,
+       url: <span
+class="php-quote">'http://mmsch.teiath.gr/api/workers'</span>,
+       dataType: <span
+class="php-quote">&quot;json&quot;</span>,
+       data: {
+           <span
+class="php-quote">&quot;worker_id&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+           <span
+class="php-quote">&quot;worker_registry_no&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+           <span
+class="php-quote">&quot;lastname&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+           <span
+class="php-quote">&quot;firstname&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+           <span
+class="php-quote">&quot;fathername&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+           <span
+class="php-quote">&quot;sex&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+           <span
+class="php-quote">&quot;tax_number&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+           <span
+class="php-quote">&quot;worker_specialization&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>
+       },
+       beforeSend: <span
+class="php-keyword1">function</span>(req) {
+           req.setRequestHeader(<span
+class="php-quote">'Authorization'</span>, btoa(<span
+class="php-quote">'username'</span> + <span
+class="php-quote">&quot;:&quot;</span> + <span
+class="php-quote">'password'</span>));
+       },
+       success: <span
+class="php-keyword1">function</span>(data){
+           console.<span
+class="php-keyword2">log</span>(data);
+       }
+   });
+&lt;/script&gt;
+</pre>
+
+<div><br />
+</div>
+
+	</div>
+
+	<div class="info">
+		
+		<b>Package:</b> <a href="package-PUT.html">PUT</a><br>
+				<b>Author:</b>
+				ΤΕΙ Αθήνας<br>
+		<b>Located at</b> api/put/to_check/PutWorkers.php<br>
+	</div>
+
+
+	<table class="summary" id="parameters">
+	<caption>Parameters summary</caption>
+	<tr id="$worker_id">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$worker_id</var></code></td>
+		<td>
+			 <b><i>Κωδικός Εργαζόμενου</i></b><i></i><br />
+Ο Κωδικός του Εργαζόμενου<br />
+Το πεδίο είναι υποχρεωτικό
+		</td>
+	</tr>
+	<tr id="$registry_no">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$registry_no</var></code></td>
+		<td>
+			$worker_registry_no <b><i>Αριθμός Μητρώου</i></b><i></i><br />
+Ο Αριθμός Μητρώου του Εργαζόμενου<br />
+Το πεδίο είναι υποχρεωτικό
+		</td>
+	</tr>
+	<tr id="$lastname">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$lastname</var></code></td>
+		<td>
+			<b><i>$lastname Επώνυμο</i></b><i></i><br />
+Το Επώνυμο του Εργαζόμενου<br />
+Το πεδίο είναι υποχρεωτικό
+		</td>
+	</tr>
+	<tr id="$firstname">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$firstname</var></code></td>
+		<td>
+			<b><i>$firstname Όνομα</i></b><i></i><br />
+Το Όνομα του Εργαζόμενου<br />
+Το πεδίο είναι υποχρεωτικό
+		</td>
+	</tr>
+	<tr id="$fathername">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$fathername</var></code></td>
+		<td>
+			 Πατρώνυμο<br />
+Το Πατρώνυμο του Εργαζόμενου
+		</td>
+	</tr>
+	<tr id="$sex">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$sex</var></code></td>
+		<td>
+			 Φύλο<br />
+Το Φύλο του Εργαζόμενου
+		</td>
+	</tr>
+	<tr id="$tax_number">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$tax_number</var></code></td>
+		<td>
+			 Αριθμός Φορολογικού Μητρώου<br />
+Ο Αριθμός Φορολογικού Μητρώου του
+Εργαζόμενου
+		</td>
+	</tr>
+	<tr id="$worker_specialization">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$worker_specialization</var></code></td>
+		<td>
+			 Ειδικότητα<br />
+Η Ειδικότητα του Εργαζομένου<br />
+Λεξικό : Ειδικότητες Εργαζομένων <code><a href="function-GetWorkerSpecializations.html">GetWorkerSpecializations()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="returns">
+	<caption>Return value summary</caption>
+	<tr>
+		<td class="name"><code>
+			Array&lt;JSON&gt;
+		</code></td>
+		<td>
+			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
+:<br />
+
+<ul>
+	<li>sting : <b>method</b> : Το Όνομα της μεθόδου</li>
+
+	<li>integer : <b>status</b> : Ο Κωδικός της κατάστασης</li>
+
+	<li>string : <b>message</b> : Μήνυμα περιγραφής της
+	κατάστασης</li>
+
+	<li>integer : <b>worker_id</b> : Ο Κωδικός του
+	Εργαζόμενου</li>
+</ul>
+
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="throws">
+	<caption>Thrown exceptions summary</caption>
+	<tr>
+		<td class="name"><code>
+			MissingWorkerValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerValue">ExceptionMessages::<b>MissingWorkerValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidWorkerType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerType">ExceptionMessages::<b>InvalidWorkerType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidWorkerValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerValue">ExceptionMessages::<b>InvalidWorkerValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingWorkerRegistryNoValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerRegistryNoValue">ExceptionMessages::<b>MissingWorkerRegistryNoValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingWorkerLastnameValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerLastnameValue">ExceptionMessages::<b>MissingWorkerLastnameValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingWorkerFirstnameValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerFirstnameValue">ExceptionMessages::<b>MissingWorkerFirstnameValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidWorkerSpecializationValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerSpecializationValue">ExceptionMessages::<b>InvalidWorkerSpecializationValue</b></a></code>
+		</td>
+	</tr>
+	</table>
+
+</div>
+
+	<div id="footer">
+		mmsch.teiath.gr (beta 3) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

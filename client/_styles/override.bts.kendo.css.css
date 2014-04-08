@@ -1,0 +1,46 @@
+label {
+    line-height: none !important;
+    margin-bottom: 0px !important;
+}
+input {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+    font-size: 12px !important;
+    line-height: none !important;
+    margin-bottom: 0 !important;
+}
+
+.form-horizontal .control-group {
+    margin-bottom: 10px !important;
+}
+
+.k-dropdown,
+.k-dropdown-wrap,
+.k-multiselect,
+.k-multiselect-wrap
+{
+    min-height: 24px !important;
+    border-radius: 0px;
+    font-size: 12px;
+}
+
+.k-dropdown.k-header,
+.k-multiselect.k-header
+{
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+
+.k-dropdown.k-header.k-state-active,
+.k-multiselect.k-header.k-state-focused
+{
+    border-radius: 0px;
+    border-color: rgba(82, 168, 236, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+    outline: 0 none;
+}

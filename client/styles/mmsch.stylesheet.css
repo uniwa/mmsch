@@ -1,0 +1,486 @@
+@CHARSET "UTF-8";
+/*
+*{
+	margin:0; 
+	padding:0;
+}
+
+html, body{
+	margin:0;
+	padding:0;
+	height:100%;
+
+}
+
+body{
+	background:#FBFBFB;
+	color:#2A2A2A;
+	font:12px/1.5em Arial, Helvetica, sans-serif;
+}
+
+.mmsch_form  hr
+{
+	display: block;
+	position: relative;
+	padding:0;
+	margin:10px 0;
+	width: 100%;
+	clear: both;
+	border: none;
+	border-top:1px solid #D3D3D3;
+	border-bottom: 1px solid #FFFFFF;
+	font-size: 1px;
+	line-height: 0;
+	overflow: visible;
+}
+
+#wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+
+#wrapper .navbar.navbar-inverse{
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+   border-radius: 0 !important;
+          
+   background: #333;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#555), to(#2a2a2a));
+	background: -webkit-linear-gradient(top, #555, #2a2a2a);
+	background: -moz-linear-gradient(top, #555, #2a2a2a);
+	background: -o-linear-gradient(top, #555, #2a2a2a);
+	background: -ms-linear-gradient(top, #555, #2a2a2a);
+	background: linear-gradient(top, #555, #2a2a2a);
+	
+	border: 0px solid #444;
+	border-top: 1px solid #777;
+	border-bottom: 1px solid #444;
+	
+	font-size:14px;
+}
+
+.k-widget.span12{
+	margin-left: 0px !important;
+}
+
+.k-textbox.span12{
+	margin-bottom: 12px !important;
+}
+*/
+
+/* Top Bar -------------------------------------------------------------------------- */
+/*
+#topbar{
+
+	background-color:#000;
+
+	border-bottom:1px solid #000;
+
+	color:#BFBFBF;
+
+	
+
+	padding:8px 8px;
+
+}
+*/
+/* Header -------------------------------------------------------------------------- */
+
+/*
+#header{
+
+	background: #225C8C;
+
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0099FF', endColorstr='#003399');
+
+	background: -webkit-gradient(linear, left top, left bottom, from(#0099FF), to(#003399));
+
+	background: -moz-linear-gradient(top, #0099FF, #003399);
+
+	height:80px;
+
+	box-shadow: 0 0 3px #333333;
+
+	-moz-box-shadow: 0px 1px 3px #333333;
+
+	-webkit-box-shadow: 0px 1px 3px #333333;
+
+	filter: progid:DXImageTransform.Microsoft.Shadow(color=#999999,strength=3, direction=150);
+
+	clear:both;
+
+}*/
+
+/* Footer -------------------------------------------------------------------------- */
+/*
+#footer{
+
+	color:#C0C0C0;
+
+	text-shadow: 0 1px 1px #000;
+
+	background:#fff url(../img/footer-bg.png) repeat-x;
+
+	height:65px;
+
+	box-shadow: 0px -1px 4px #666666;
+
+	width:100%;
+
+	position:absolute;
+
+	clear:both;
+
+	bottom:0;
+}
+*/
+/* Container -------------------------------------------------------------------------- */
+/*
+#main-container {
+    margin: auto;
+    overflow: hidden;
+    padding: 10px 0;
+    width: 99%;
+}
+
+#container,
+{
+	background:#FFF;
+
+	padding:0 5px;
+
+	margin:auto;
+}
+
+
+#container .content-container {
+    border: 1px solid #DFDFDF;
+    border-radius: 8px;
+    margin: 15px 0 8px;
+    overflow: hidden;
+    padding: 8px;
+}
+
+
+#sidebar-inner {
+    float: left;
+    width: 17%;
+}
+
+
+#content-inner {
+    float: right;
+    width: 82%;
+}
+*/
+/* Nav -------------------------------------------------------------------------- */
+/*
+#nav .nav-header
+{
+    background: -moz-linear-gradient(center top , #F1F1F1, #DADADA) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #D6D6D6;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 1px 1px #FFFFFF inset;
+  
+    padding-left: 10px;
+    text-decoration: none !important;
+    text-transform: none !important;
+}
+
+#nav .nav-header .nav-title {
+    color: #272727;
+    font-size: 13px;
+    font-weight: bold;
+    margin-left: 5px;
+    padding: 2px 0 0 13px;
+}
+
+#nav .nav-body{
+
+	border:1px solid #D6D6D6;
+
+	border-top:1px solid #D1D1D1;
+
+	border-radius:0 0 5px 5px;
+
+	-moz-border-radius:0 0 5px 5px;
+
+	-webkit-border-radius:0 0 5px 5px;
+	
+
+}
+
+#sidebar-inner-2 .k-treeview,
+#sidebar-inner .k-treeview {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#sidebar-inner-2 #nav .nav-body .k-sprite,
+#sidebar-inner #nav .nav-body .k-sprite {
+        background-image: url("../img/coloricons-sprite.png");
+    }
+
+    .rootfolder { background-position: 0 0; }
+    .folder { background-position: 0 -16px; }
+    .pdf { background-position: 0 -32px; }
+    .html { background-position: 0 -48px; }
+    .image { background-position: 0 -64px; }
+
+
+#sidebar-inner-2 .k-treeview li.k-item span.k-in,
+#sidebar-inner .k-treeview li.k-item span.k-in{
+	font-size:10px;
+}
+*/
+/* ------------------ */
+/*
+.toggle-link{
+	margin: 0 0 10px;
+}
+
+.toggle-container {
+    background-color: #E6F4FF;
+    border: 1px solid #89BEE6;
+    border-radius: 5px;
+    margin: 0 auto 10px;
+}
+
+.toggle-search {
+    
+    margin: auto;
+    width: 90%;
+}
+
+.toggle-search .row-fluid{
+	margin-top:10px;
+}
+
+
+.row-fluid label {
+    font: 11px Arial,Helvetica,sans-serif;
+    color: #333333;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+
+.form-button-container {
+    margin: auto;
+    padding: 5px 0;
+    text-align: center;
+    width: 98%;
+}
+
+
+
+form [class*="span"],
+form [class*="col-dmd-"] 
+{
+    float: none;
+    margin-left: 0;
+    min-height: 0 !important;
+}
+
+
+.control-group {
+    margin-bottom: 0px !important;
+}
+
+.control-group > .k-widget,
+.control-group > a
+{
+	margin-bottom:10px !important;
+	display:block;
+}
+*/
+
+/* Units Grid , Inner Grid -------------------------------------------------------------------------- */
+/*
+
+dl {
+                margin-bottom: 20px;
+            }
+            .dl-horizontal {
+            }
+
+            .dl-horizontal:before, .dl-horizontal:after {
+                content: "";
+                display: table;
+                line-height: 0;
+            }
+            .dl-horizontal:after {
+                clear: both;
+            }
+            .dl-horizontal:before, .dl-horizontal:after {
+                content: "";
+                display: table;
+                line-height: 0;
+            }
+
+            .dl-horizontal dt {
+                clear: left;
+                float: left;
+                
+                text-align: right;
+                text-overflow: ellipsis;
+                
+                width: 180px;
+                text-align: left;
+                margin-left:10px;
+            }
+
+            dt {
+                font-weight: bold;
+            }
+            dt, dd {
+                line-height: 20px;
+            }
+
+            .dl-horizontal dd {
+                margin-left: 200px;
+            }
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+           
+ul.nav-manage{
+	border:0; 
+	margin:0; 
+	padding:0;
+	list-style:none;
+}           
+            
+            
+ul.nav-manage li{
+
+	background:#EEEEEE;
+
+	background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE);
+
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#EEEEEE));
+
+	border-top:1px solid #FFFFFF;
+
+	border-bottom:1px solid #D7D7D7;
+
+}
+
+ul.nav-manage li a{
+
+	font-weight:bold;
+
+	color: #0158C2;
+
+	text-decoration:none;
+
+	display:block;
+
+	padding:4px 0 0 30px;
+
+	line-height:30px;
+
+	background-position:3px center;
+
+	background-repeat:no-repeat;
+	
+	
+	transition: all 0.5s linear;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+
+}
+
+ul.nav-manage li.last{
+
+	border-bottom:none;
+
+	border-radius:0 0 0px 5px;
+
+	-moz-border-radius:0 0 0px 5px;
+
+	-webkit-border-radius:0 0 0px 5px; 
+
+}
+
+ul.nav-manage li a:hover{
+
+	color:#FF7315;
+
+	background-color:#E8E8E8;
+
+}
+
+ul.nav-manage li.selected{
+
+	color:#F60;
+
+	background:#FFF3CC;
+
+}
+
+
+
+ul.nav-manage li.selected a{
+
+	color:#F60;
+
+}
+
+
+
+ul.nav-manage li.selected a:hover{
+
+	color:#F60;
+
+	background-color:transparent;
+
+}
+
+
+.mmsch_form blockquote {
+    border-bottom: 1px solid #89BEE6;
+    border-left: 5px solid #89BEE6;
+    margin: 10px 0 20px;
+    padding: 0 0 10px 15px;
+}
+
+.mmsch_form blockquote p {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+
+#grid-units > table.k-selectable {
+    display: block;
+    height: auto;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+
+#grid-units > table.k-selectable td[role~="gridcell"]
+{ 
+white-space:nowrap !important;
+}
+
+.k-pager-wrap .k-pager-info.k-label,
+.k-grid-header .k-header > .k-link {
+	font-size:10px;
+	font-weight:bold;
+}
+
+
+*/
+
+            

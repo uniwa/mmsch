@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="generator" content="ApiGen 2.8.0">
+
+	<title>Function PostCategories | mmsch.teiath.gr (beta 3)</title>
+
+	<script type="text/javascript" src="resources/combined.js?2259263873"></script>
+	<script type="text/javascript" src="elementlist.js?3776710774"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li><a href="package-GET.html">GET</a>
+						</li>
+				<li class="active"><a href="package-POST.html">POST</a>
+						</li>
+				<li><a href="package-PUT.html">PUT</a>
+						</li>
+				<li><a href="package-System.html">System</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+
+
+
+
+
+			<h3>Functions</h3>
+			<ul>
+				<li class="active"><a href="function-PostCategories.html">PostCategories</a></li>
+				<li><a href="function-PostCircuits.html">PostCircuits</a></li>
+				<li><a href="function-PostCircuitTypes.html">PostCircuitTypes</a></li>
+				<li><a href="function-PostConnections.html">PostConnections</a></li>
+				<li><a href="function-PostGroups.html">PostGroups</a></li>
+				<li><a href="function-PostLevels.html">PostLevels</a></li>
+				<li><a href="function-PostRelations.html">PostRelations</a></li>
+				<li><a href="function-PostTransitions.html">PostTransitions</a></li>
+				<li><a href="function-PostUnitWorkers.html">PostUnitWorkers</a></li>
+				<li><a href="function-PostWorkers.html">PostWorkers</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text">
+		<input type="submit" value="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-POST.html" title="Summary of POST"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Function</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="function">
+	<h1>Function PostCategories</h1>
+
+
+	<div class="description">
+	
+<p>Καταχώρηση : Κατηγορίες</p>
+
+<p>Η μέθοδος αυτή χρησιμοποιείται για την
+Καταχώρηση του λεξικού των Κατηγοριών.<br />
+Η κλήση της μπορεί να γίνει μέσω της μεθόδου
+POST στην ηλεκτρονική διεύθυνση:<br />
+<a
+href="http://mmsch.teiath.gr/api/categories">http://mmsch.teiath.gr/api/categories</a><br
+/>
+</p>
+
+<div><br />
+</div>
+
+<p><a href="#parameters">Παράμετροι (Πίνακας : Parameters
+summary)</a><br />
+Στον πίνακα αυτό περιγράφονται οι
+παράμετροι που μπορούν να χρισημοποιηθούν
+στη κλήση της μεθόδου<br />
+Όλοι οι παράμετροι είναι προαιρετικοί
+εκτός από αυτές που έχουν χαρακτηριστεί ως
+υποχρεωτικοί<br />
+Οι παράμετροι μπορούν να χρησιμοποιηθούν
+με οποιαδήποτε σειρά</p>
+
+<div><br />
+</div>
+
+<p><a href="#returns">Αποτελέσματα (Πίνακας : Return value
+summary)</a><br />
+Στον πίνακα αυτό περιγράφονται οι
+μεταβλητές που επιστρέφει η μέθοδος<br />
+Όλες οι μεταβλητές επιστρέφονται σε ένα
+πίνακα σε μορφή JSON</p>
+
+<div><br />
+</div>
+
+<p><a href="#throws">Εξαιρέσεις (Πίνακας : Thrown exceptions
+summary)</a><br />
+Στον πίνακα αυτό εμφανίζεται μια σειρά από
+ιεραρχικούς ελέγχους που γίνονται κατά την
+εκτέλεση της μεθόδου οι οποίοι μπορούν να
+προκαλέσουν την διακοπή της εκτέλεσης της
+επιστρέφοντας το αντίστοιχο Κωδικό και
+Μύνημα Σφάλματος.<br />
+Η περιγραφή όλων των Σφαλμάτων είναι
+διαθέσιμη μέσω του πίνακα Μηνύματα
+Σφαλμάτων <code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code></p>
+
+<div><br />
+</div>
+
+<p>Παρακάτω εμφανίζεται μια σειρά από
+παραδείγματα κλήσης της μεθόδου με
+διάφορους τρόπους :<br />
+<a href="#cURL">cURL</a> | <a href="#JavaScript">JavaScript</a> | <a
+href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a></p>
+
+<div><br />
+</div>
+
+<p><a id="cURL"></a>Παράδειγμα κλήσης της μεθόδου με
+<b>cURL</b> (console) :</p>
+
+<pre>
+curl -X POST http:<span
+class="php-comment">//mmsch.teiath.gr/api/categories \</span>
+   -H <span
+class="php-quote">&quot;Content-Type: application/json&quot;</span> \
+   -H <span
+class="php-quote">&quot;Accept: application/json&quot;</span> \
+   -u username:password \
+   -d { <span
+class="php-quote">&quot;name&quot;</span> : <span
+class="php-quote">&quot;ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ&quot;</span> }<span
+class="php-quote">'
+</span></pre>
+
+<div><br />
+</div>
+
+<p><a id="JavaScript"></a>Παράδειγμα κλήσης της
+μεθόδου με <b>JavaScript</b> :</p>
+
+<pre>
+&lt;script&gt;
+   <span
+class="php-keyword1">var</span> params = JSON.stringify({<span
+class="php-quote">&quot;name&quot;</span> : <span
+class="php-quote">&quot;ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ&quot;</span>});
+
+   <span
+class="php-keyword1">var</span> http = <span
+class="php-keyword1">new</span> XMLHttpRequest();
+   http.open(<span
+class="php-quote">&quot;POST&quot;</span>, <span
+class="php-quote">&quot;http://mmsch.teiath.gr/api/categories&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Accept&quot;</span>, <span
+class="php-quote">&quot;application/json&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Content-type&quot;</span>, <span
+class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Content-length&quot;</span>, params.length);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Authorization&quot;</span>, <span
+class="php-quote">&quot;Basic &quot;</span> + btoa(<span
+class="php-quote">'username'</span> + <span class="php-quote">':'</span> + <span
+class="php-quote">'password'</span>) );
+
+   http.onreadystatechange = <span
+class="php-keyword1">function</span>()
+   {
+       <span
+class="php-keyword1">if</span>(http.readyState == <span
+class="php-num">4</span> &amp;&amp; http.status == <span
+class="php-num">200</span>)
+       {
+           <span
+class="php-keyword1">var</span> result = JSON.parse(http.responseText);
+           document.write(result.status + <span
+class="php-quote">&quot; : &quot;</span> + result.message);
+       }
+   }
+
+   http.send(params);
+&lt;/script&gt;
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="PHP"></a>Παράδειγμα κλήσης της μεθόδου με
+<b>PHP</b> :</p>
+
+<pre>
+<span class="xlang">&lt;?php</span>
+<span
+class="php-keyword2">header</span>(<span
+class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
+
+<span
+class="php-var">$params</span> = <span class="php-keyword1">array</span>(<span
+class="php-quote">&quot;name&quot;</span> =&gt; <span
+class="php-quote">&quot;ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ&quot;</span>);
+
+<span
+class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
+class="php-quote">&quot;http://mmsch.teiath.gr/api/categories&quot;</span>);
+
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_USERPWD, <span
+class="php-quote">&quot;username:password&quot;</span>);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
+class="php-quote">&quot;POST&quot;</span>);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_POSTFIELDS, <span
+class="php-keyword2">json_encode</span>( <span
+class="php-var">$params</span> ));
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
+class="php-keyword1">true</span>);
+
+<span class="php-var">$data</span> = <span
+class="php-keyword2">curl_exec</span>(<span class="php-var">$curl</span>);
+<span
+class="php-var">$data</span> = <span
+class="php-keyword2">json_decode</span>(<span
+class="php-var">$data</span>);
+<span class="php-keyword1">echo</span> <span
+class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
+class="php-keyword2">var_dump</span>( <span
+class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
+class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
+<span
+class="xlang">?&gt;</span>
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="PHP"></a>Παράδειγμα κλήσης της μεθόδου με
+<b>Ajax</b> :</p>
+
+<pre>
+&lt;script&gt;
+   <span class="php-var">$</span>.ajax({
+       type: <span
+class="php-quote">'POST'</span>,
+       url: <span
+class="php-quote">'http://mmsch.teiath.gr/api/categories'</span>,
+       dataType: <span
+class="php-quote">&quot;json&quot;</span>,
+       data: {
+           <span
+class="php-quote">&quot;name&quot;</span> : <span
+class="php-quote">&quot;ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ&quot;</span>
+       },
+       beforeSend: <span
+class="php-keyword1">function</span>(req) {
+           req.setRequestHeader(<span
+class="php-quote">'Authorization'</span>, btoa(<span
+class="php-quote">'username'</span> + <span
+class="php-quote">&quot;:&quot;</span> + <span
+class="php-quote">'password'</span>));
+       },
+       success: <span
+class="php-keyword1">function</span>(data){
+           console.<span
+class="php-keyword2">log</span>(data);
+       }
+   });
+&lt;/script&gt;
+</pre>
+
+<div><br />
+</div>
+
+	</div>
+
+	<div class="info">
+		
+		<b>Package:</b> <a href="package-POST.html">POST</a><br>
+				<b>Author:</b>
+				ΤΕΙ Αθήνας<br>
+		<b>Located at</b> api/post/to_check/PostCategories.php<br>
+	</div>
+
+
+	<table class="summary" id="parameters">
+	<caption>Parameters summary</caption>
+	<tr id="$name">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$name</var></code></td>
+		<td>
+			 <b>Όνομα</b><br />
+Το Όνομα της Κατηγορίας<br />
+Η τιμή της παραμέτρου πρέπει να είναι string :
+Αλφαριθμητική<br />
+Το πεδίο είναι υποχρεωτικό
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="returns">
+	<caption>Return value summary</caption>
+	<tr>
+		<td class="name"><code>
+			Array&lt;JSON&gt;
+		</code></td>
+		<td>
+			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
+:<br />
+
+<ul>
+	<li>string : <b>method</b> : Η μέθοδος κλήσης της
+	συνάρτησης</li>
+
+	<li>integer : <b>status</b> : Ο Κωδικός του
+	αποτελέσματος της κλήσης</li>
+
+	<li>string : <b>message</b> : Μήνυμα περιγραφής του
+	αποτελέσματος της κλήσης</li>
+
+	<li>integer : <b>category_id</b> : Ο Κωδικός της Κατηγορίας
+	που δημιουργήθηκε</li>
+</ul>
+
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="throws">
+	<caption>Thrown exceptions summary</caption>
+	<tr>
+		<td class="name"><code>
+			Unauthorized
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#Unauthorized">ExceptionMessages::<b>Unauthorized</b></a></code><br />
+Έλεγχος αν ο χρήστης υπάρχει και έχει
+δικαιώματα να χρησιμοποιείσει τη μέθοδο
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingNameParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingNameParam">ExceptionMessages::<b>MissingNameParam</b></a></code><br />
+Έλεγχος αν η παράμετρος <a href="#$name">$name</a>
+υπάρχει
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingNameValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingNameValue">ExceptionMessages::<b>MissingNameValue</b></a></code><br />
+Έλεγχος αν η παράμετρος <a href="#$name">$name</a> έχει
+τιμή
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidNameType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidNameType">ExceptionMessages::<b>InvalidNameType</b></a></code><br />
+Έλεγχος αν η παράμετρος <a href="#$name">$name</a>
+είναι Αλφαριθμητική
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedCategoryValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedCategoryValue">ExceptionMessages::<b>DuplicatedCategoryValue</b></a></code><br />
+Έλεγχος αν υπάρχει άλλη Κατηγορία με το
+Όνομα της Κατηγορίας που θα δημιουργηθεί
+για να αποφεχθουν οι διπλοεγγραφές
+		</td>
+	</tr>
+	</table>
+
+</div>
+
+	<div id="footer">
+		mmsch.teiath.gr (beta 3) API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title></title>
+
+        <link rel="stylesheet" type="text/css" media="screen" href="styles/kendo.common.min.css" >
+        <link rel="stylesheet" type="text/css" media="screen" href="styles/kendo.default.min.css" >
+
+        <style>
+            #main-grid,
+            #main-splitter,
+            #inner-splitter
+            {
+                border-width:0;
+                height:100%;
+            }
+
+            html,
+            body
+            {
+                margin:0;
+                padding:0;
+                height:100%;
+            }
+
+            html
+            {
+                overflow:hidden;
+            }
+        </style>
+
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/kendo.web.min.js"></script>
+
+        <script type="text/javascript">
+
+
+            function resizeGrid() {
+                var gridElement = $("#main-grid"),
+                        dataArea = gridElement.find(".k-grid-content"),
+                        gridHeight = gridElement.innerHeight(),
+                        otherElements = gridElement.children().not(".k-grid-content"),
+                        otherElementsHeight = 0;
+
+                otherElements.each(function() {
+                    otherElementsHeight += $(this).outerHeight();
+                });
+
+                dataArea.height(gridHeight - otherElementsHeight);
+            }
+
+
+
+            $(document).ready(function() {
+
+                $("#main-splitter").kendoSplitter({
+                    orientation: "horizontal",
+                    panes: [
+                        {collapsible: true, size: "20%"},
+                        {collapsible: false},
+                        {collapsible: true, size: "10%"}
+                    ],
+                    resize: function() {
+                        window.setTimeout(function() {
+                            //resizeGrid();
+                        }, 10);
+                    }
+                });
+
+                $("#inner-splitter").kendoSplitter({
+                    orientation: "vertical",
+                    panes: [
+                        {collapsible: true},
+                        {collapsible: true, size: "20%"}
+                    ],
+                    resize: function() {
+                        window.setTimeout(function() {
+                            resizeGrid();
+                        }, 10);
+                    }
+                });
+
+                $("#main-grid").kendoGrid({
+                    dataSource: {
+                        transport: {
+                            read: {
+                                //url: "http://localhost:8080/mmsch/units_json_loader.php",
+                                url: "http://mmsch.teiath.gr/units_json_loader.php",
+                                type: "POST"
+                            },
+                            dataType: "json"
+                        },
+                        schema: {
+                            data: "data",
+                            total: "total"
+                        },
+                        serverPaging: true,
+                        pageSize: 50
+                    },
+                    //groupable: true,
+                    sortable: true,
+                    resizable: true,
+                    pageable: true,
+                    selectable: "multiple, row",
+                    //scrollable: false,
+                    columns: [
+                        {
+                            field: "mm_id",
+                            title: "Κωδικός ΜΜ",
+                            width: 120
+                        },
+                        {
+                            field: "unit_name",
+                            title: "Ονομασία Μονάδας",
+                            headerAttributes: {
+                                //style: "display:none"
+                            }
+                        }
+                    ],
+                    dataBound: function(e) {
+                        resizeGrid();
+                    },
+                    change: function(e) {
+                            
+                        var selected = $.map(this.select(), function(item) {
+                            return (item);
+                        });
+                        
+                        var grid = $('#main-grid').data("kendoGrid");
+                        var dataItem = grid.dataItem(selected);
+                        //console.log(dataItem);
+                    }
+                });
+
+                $('#main-grid').data("kendoGrid").wrapper.prepend('<div class="k-grid-header"><table><thead><tr><th class="k-header">Μονάδες</th></tr></thead></table></div>');
+
+            });
+
+        </script>
+
+    </head>
+
+    <body>
+
+
+
+        <div id="main-splitter">
+            <div id="west-pane">Pane 1</div>
+            <div id="center-pane">
+                <div id="inner-splitter">
+
+
+                    <div id="main-grid"></div>
+
+                    <div>unit details</div>
+                </div>
+
+            </div>
+            <div id="east-pane">Pane 1</div>
+        </div>
+
+
+    </body>
+
+</html>
