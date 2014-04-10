@@ -172,6 +172,7 @@ function loadParameters()
 function Authentication()
 {
     global $app;
+    global $casOptions;
 
     if(isset($casOptions["NoAuth"]) && $casOptions["NoAuth"] == true) { return true; }
     try
