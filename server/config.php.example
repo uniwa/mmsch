@@ -9,6 +9,7 @@ ini_set('display_errors','On');
 ini_set('memory_limit','1024M');
 ini_set('output_buffering','on');
 ini_set('zlib.output_compression', 0);
+session_name('MMSCH');
 
 //= mmsch.teiath.gr ============================================================
   $conOptions = array(
