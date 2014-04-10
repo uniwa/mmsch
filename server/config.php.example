@@ -17,6 +17,10 @@ ini_set('zlib.output_compression', 0);
       "Username"=>"root", 
       "Password"=>"",
   );
+  $casOptions = array(
+      "Url" => "sso-test.sch.gr",
+      "Port" => 443,
+  );
 
   $Options = array(
       "DefaultPageSize" => 300,

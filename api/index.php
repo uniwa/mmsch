@@ -177,15 +177,19 @@ function Authentication()
     {
         if ( strtoupper($app->request()->getMethod()) == MethodTypes::GET )
         {
-            if (! ( (($_SERVER['PHP_AUTH_USER'] == "mmsch" ) && ($_SERVER['PHP_AUTH_PW'] == "mmsch")) ||
-                    (($_SERVER['PHP_AUTH_USER'] == "mmschadmin" ) && ($_SERVER['PHP_AUTH_PW'] == "mmschadmin")) ||
-                    (($_REQUEST['username'] == "mmsch" ) && ($_REQUEST['password'] == "mmsch")) ) )
-               throw new Exception(ExceptionMessages::Unauthorized, ExceptionCodes::Unauthorized);
+            phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'');
+            phpCAS::setNoCasServerValidation();
+            phpCAS::handleLogoutRequests(array($casOptions["Url"]));
+            if (!phpCAS::checkAuthentication())
+                throw new Exception(ExceptionMessages::Unauthorized, ExceptionCodes::Unauthorized);
         }
         else if ( in_array( strtoupper($app->request()->getMethod()), array( MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE )) )
         {
-            if (! (($_SERVER['PHP_AUTH_USER'] == "mmschadmin" ) && ($_SERVER['PHP_AUTH_PW'] == "mmschadmin")) )
-               throw new Exception(ExceptionMessages::Unauthorized, ExceptionCodes::Unauthorized);
+            phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'');
+            phpCAS::setNoCasServerValidation();
+            phpCAS::handleLogoutRequests(array($casOptions["Url"]));
+            if (!phpCAS::checkAuthentication())
+                throw new Exception(ExceptionMessages::Unauthorized, ExceptionCodes::Unauthorized);
         }
     }
     catch (Exception $e)
