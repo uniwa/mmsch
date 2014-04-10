@@ -21,6 +21,7 @@ session_name('MMSCH');
   $casOptions = array(
       "Url" => "sso-test.sch.gr",
       "Port" => 443,
+      "NoAuth" => true,
   );
 
   $Options = array(

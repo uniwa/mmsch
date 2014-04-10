@@ -172,7 +172,8 @@ function loadParameters()
 function Authentication()
 {
     global $app;
-    
+
+    if(isset($casOptions["NoAuth"]) && $casOptions["NoAuth"] == true) { return true; }
     try
     {
         if ( strtoupper($app->request()->getMethod()) == MethodTypes::GET )
