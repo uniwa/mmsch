@@ -7,7 +7,7 @@
 
 var itemsPerPage = 50;
 //var apiUrl = "../ver2/api/";
-var apiUrl = "../api/";
+var apiUrl = "api/";
 //var auth = btoa('mmsch' + ":" + 'mmsch');
 
 $.ajaxSetup({
