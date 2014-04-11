@@ -13,6 +13,8 @@ $app = new \Slim\Slim();
 
 $app->config('debug', true);
 
+$app->map('/auth', AuthController)
+    ->via(MethodTypes::GET);
 $app->map('/school_committees', Authentication, SchoolCommitteesController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/unit_dns', Authentication, UnitDnsController)
@@ -218,6 +220,20 @@ function toGreek($value)
 //= Functions
 //======================================================================================================================
 
+
+function AuthController()
+{
+    global $app;
+    global $casOptions;
+
+    phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'');
+    phpCAS::setNoCasServerValidation();
+    phpCAS::handleLogoutRequests(array($casOptions["Url"]));
+    if (!phpCAS::checkAuthentication())
+        phpCAS::forceAuthentication();
+
+    $app->response()->setBody( toGreek( json_encode( phpCAS::getAttributes() ) ) );
+}
 
 function SchoolCommitteesController()
 {
