@@ -11,6 +11,8 @@ require_once ('libs/db2php/DFC.class.php');
 require_once ('libs/db2php/DFCAggregate.class.php');
 require_once ('libs/db2php/DSC.class.php');
 
+require_once ('libs/doctrine/bootstrap.php');
+
 require_once ('libs/phpCAS/CAS.php');
 
 require_once ('classes/OrderTypes.php');
