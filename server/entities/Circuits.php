@@ -97,5 +97,91 @@ class Circuits
      */
     private $mm;
 
+    public function getCircuitId() {
+        return $this->circuitId;
+    }
 
+    public function setCircuitId($circuitId) {
+        $this->circuitId = $circuitId;
+    }
+
+    public function getPhoneNumber() {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber($phoneNumber) {
+        $this->phoneNumber = $phoneNumber;
+    }
+
+    public function getStatus() {
+        return $this->status;
+    }
+
+    public function setStatus($status) {
+        $this->status = $status;
+    }
+
+    public function getActivatedDate() {
+        return $this->activatedDate;
+    }
+
+    public function setActivatedDate(\DateTime $activatedDate) {
+        $this->activatedDate = $activatedDate;
+    }
+
+    public function getPaidByPsd() {
+        return $this->paidByPsd;
+    }
+
+    public function setPaidByPsd($paidByPsd) {
+        $this->paidByPsd = $paidByPsd;
+    }
+
+    public function getUpdatedDate() {
+        return $this->updatedDate;
+    }
+
+    public function setUpdatedDate(\DateTime $updatedDate) {
+        $this->updatedDate = $updatedDate;
+    }
+
+    public function getDeactivatedDate() {
+        return $this->deactivatedDate;
+    }
+
+    public function setDeactivatedDate(\DateTime $deactivatedDate) {
+        $this->deactivatedDate = $deactivatedDate;
+    }
+
+    public function getBandwidth() {
+        return $this->bandwidth;
+    }
+
+    public function setBandwidth($bandwidth) {
+        $this->bandwidth = $bandwidth;
+    }
+
+    public function getReadspeed() {
+        return $this->readspeed;
+    }
+
+    public function setReadspeed($readspeed) {
+        $this->readspeed = $readspeed;
+    }
+
+    public function getCircuitType() {
+        return $this->circuitType;
+    }
+
+    public function setCircuitType(\CircuitTypes $circuitType) {
+        $this->circuitType = $circuitType;
+    }
+
+    public function getMm() {
+        return $this->mm;
+    }
+
+    public function setMm(\Units $mm) {
+        $this->mm = $mm;
+    }
 }

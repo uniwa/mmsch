@@ -469,9 +469,9 @@ function GetCircuits(
     $pagesize, $page, $orderby, $ordertype, $searchtype
 )
 {
-    global $db;
+    global $db, $entityManager;
 
-    $filter = array();
+    $qb = $entityManager->createQueryBuilder();
     $result = array();
 
     $result["data"] = array();
@@ -530,25 +530,18 @@ function GetCircuits(
 
         if ( Validator::Exists('circuit', $params) )
         {
-            $table_name = "circuits";
-            $table_column_id = "circuit_id";
-            $table_column_name = "circuit_id";
-
             $param = Validator::toArray($circuit);
-
-            $paramFilters = array();
-
+            $orx = $qb->expr()->orX();
             foreach ($param as $values)
             {
                 if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
+                    $orx->add($qb->expr()->isNull("c.circuitId"));
                 else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
+                    $orx->add($qb->expr()->eq("c.circuitId", $db->quote(Validator::toID($values))));
                 else
                     throw new Exception(ExceptionMessages::InvalidCircuitIDType." : ".$values, ExceptionCodes::InvalidCircuitIDType);
             }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $qb->andWhere($orx);
         }
 
 //======================================================================================================================
@@ -557,27 +550,20 @@ function GetCircuits(
 
         if ( Validator::Exists('circuit_type', $params) )
         {
-            $table_name = "circuit_types";
-            $table_column_id = "circuit_type_id";
-            $table_column_name = "name";
-
             $param = Validator::toArray($circuit_type);
-
-            $paramFilters = array();
-
+            $orx = $qb->expr()->orX();
             foreach ($param as $values)
             {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
+                if ( Validator::isNull($circuit_type) )
+                    $orx->add($qb->expr()->isNull("c.circuitTypeId"));
+                else if ( Validator::isID($circuit_type) )
+                    $orx->add($qb->expr()->eq("ct.circuitTypeId", $db->quote(Validator::toID($circuit_type))));
+                else if ( Validator::isValue($circuit_type) )
+                    $orx->add($qb->expr()->eq("ct.name", $db->quote(Validator::toValue($circuit_type))));
                 else
-                    throw new Exception(ExceptionMessages::InvalidCircuitTypeType." : ".$values, ExceptionCodes::InvalidCircuitTypeType);
+                    throw new Exception(ExceptionMessages::InvalidCircuitTypeType." : ".$circuit_type, ExceptionCodes::InvalidCircuitTypeType);
             }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $qb->andWhere($orx);
         }
 
 //======================================================================================================================
@@ -586,64 +572,23 @@ function GetCircuits(
 
         if ( Validator::Exists('phone_number', $params) )
         {
-            $table_name = "circuits";
-            $table_column_id = "phone_number";
-            $table_column_name = "phone_number";
-
             $param = Validator::toArray($phone_number);
-
-            $paramFilters = array();
-
+            $orx = $qb->expr()->orX();
             foreach ($param as $values)
             {
-                $paramWordsFilters = array();
-
-                if ( Validator::isNull($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isValue($values) )
+                if ( Validator::isNull($values) ) {
+                    $qb->andWhere('c.phoneNumber IS NULL');
+                } else if ( Validator::isValue($values) )
                 {
-                    if ( $searchtype == SearchEnumTypes::Exact )
-                        $paramWordsFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                    else if ( $searchtype == SearchEnumTypes::Contain )
-                        $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
+                    if ( $searchtype == SearchEnumTypes::Contain )
+                        $orx->add($qb->expr()->like("c.phoneNumber", $db->quote('%'.Validator::toValue($values).'%')));
                     else
-                    {
-                        $words = Validator::toArray($values, " ");
-
-                        foreach ($words as $word)
-                        {
-                            switch ($searchtype)
-                            {
-                                case SearchEnumTypes::ContainAll :
-                                case SearchEnumTypes::ContainAny :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::StartWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::EndWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word) );
-                                    break;
-                            }
-                        }
-                    }
+                        $orx->add($qb->expr()->eq("c.phoneNumber", $db->quote(Validator::toValue($values))));
                 }
                 else
                     throw new Exception(ExceptionMessages::InvalidOrientationTypeType." : ".$values, ExceptionCodes::InvalidOrientationTypeType);
-
-                switch ($searchtype)
-                {
-                    case SearchEnumTypes::ContainAny :
-                        $paramFilters[] = "(" . implode(" OR ", $paramWordsFilters) . ")";
-                        break;
-                    default :
-                        $paramFilters[] = "(" . implode(" AND ", $paramWordsFilters) . ")";
-                        break;
-                }
-
             }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $qb->andWhere($orx);
         }
 
 //======================================================================================================================
@@ -652,27 +597,16 @@ function GetCircuits(
 
         if ( Validator::Exists('unit', $params) )
         {
-            $table_name = "units";
-            $table_column_id = "mm_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($unit);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                else
-                    throw new Exception(ExceptionMessages::InvalidUnitType." : ".$values, ExceptionCodes::InvalidUnitType);
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            if ( Validator::isNull($unit) )
+                $qb->andWhere('u.name IS NULL');
+            else if ( Validator::isID($unit) ) {
+                $qb->andWhere('u.mmId = :unit');
+                $qb->setParameter('unit', Validator::toID($unit));
+            } else if ( Validator::isValue($unit) ) {
+                $qb->andWhere('u.name = :unit');
+                $qb->setParameter('unit', Validator::toValue($unit));
+            } else
+                throw new Exception(ExceptionMessages::InvalidUnitType." : ".$unit, ExceptionCodes::InvalidUnitType);
         }
 
 //======================================================================================================================
@@ -690,28 +624,27 @@ function GetCircuits(
 //= $orderby
 //======================================================================================================================
 
+        $columns = array(
+            "c.circuitId" => "circuit_id",
+            "c.phoneNumber" => "phone_number",
+            "c.status" => "status" ,
+            "c.activatedDate" => "activated_date",
+            "c.updatedDate" => "updated_date",
+            "c.deactivatedDate" => "deactivated_date",
+            "c.paidByPsd" => "paid_by_psd",
+            "c.bandwidth" => "bandwidth",
+            "c.readspeed" => "readspeed",
+            "u.mmId" => "mm_id",
+            "u.registryId" => "registry_no",
+            "u.name" => "unit_name",
+            "u.specialName" => "special_unit_name",
+            "ct.circuitTypeId" => "connectivity_type_id",
+            "ct.name" => "connectivity_type",
+        );
         if ( Validator::Missing('orderby', $params) )
             $orderby = "mm_id";
         else
         {
-            $columns = array(
-                "circuit_id",
-                "phone_number",
-                "status" ,
-                "activated_date",
-                "updated_date",
-                "deactivated_date",
-                "paid_by_psd",
-                "bandwidth",
-                "readspeed",
-                "mm_id",
-                "registry_no",
-                "unit_name",
-                "special_unit_name",
-                "connectivity_type_id",
-                "connectivity_type",
-            );
-
             if (!in_array($orderby, $columns))
                 throw new Exception(ExceptionMessages::InvalidOrderBy." : ".$orderby, ExceptionCodes::InvalidOrderBy);
         }
@@ -720,67 +653,39 @@ function GetCircuits(
 //= E X E C U T E
 //======================================================================================================================
 
-        $sqlSelect = "SELECT
-                        circuits.circuit_id,
-                        circuits.phone_number,
-                        circuits.status,
-                        circuits.paid_by_psd,
-                        circuits.activated_date,
-                        circuits.updated_date,
-                        circuits.deactivated_date,
-                        circuits.bandwidth,
-                        circuits.readspeed,
-                        units.mm_id,
-                        units.registry_no,
-                        units.name as unit_name,
-                        units.special_name as special_unit_name,
-                        circuit_types.circuit_type_id,
-                        circuit_types.name as circuit_type
-                     ";
+        $qb->select('c');
+        $qb->from('Circuits', 'c');
+        $qb->join('c.mm', 'u'); // Unit
+        $qb->join('c.circuitType', 'ct');
+        $qb->orderBy(array_search($orderby, $columns), $ordertype);
 
-        $sqlFrom   = "FROM circuits
-                      LEFT JOIN circuit_types ON circuits.circuit_type_id = circuit_types.circuit_type_id
-                      LEFT JOIN units ON circuits.mm_id = units.mm_id";
+        $results = new Doctrine\ORM\Tools\Pagination\Paginator($qb->getQuery());
+        $results->getQuery()->setFirstResult($pagesize * ($page-1));
+        $results->getQuery()->setMaxResults($pagesize);
+        $result["total"] = count($results);
 
-        $sqlWhere = (count($filter) > 0 ? " WHERE " . implode(" AND ", $filter) : "" );
-        $sqlOrder = " ORDER BY ". $orderby ." ". $ordertype;
-        $sqlLimit = ($page && $pagesize) ? " LIMIT ".(($page - 1) * $pagesize).", ".$pagesize : "";
-
-
-        $sql = "SELECT count(*) as total " . $sqlFrom . $sqlWhere;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetch(PDO::FETCH_ASSOC);
-        $result["total"] = $rows["total"];
-
-
-        $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder . $sqlLimit;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $result["count"] = $stmt->rowCount();
-
-        foreach ($rows as $row)
+        $count = 0;
+        foreach ($results as $circuit)
         {
             $result["data"][] = array(
-                "circuit_id"        => Validator::toIntVal($row["circuit_id"]),
-                "phone_number"      => $row["phone_number"],
-                "status"            => Validator::toBoolVal($row["status"]),
-                "paid_by_psd"       => Validator::toBoolVal($row["paid_by_psd"]),
-                "updated_date"      => $row["updated_date"],
-                "deactivated_date"  => $row["deactivated_date"],
-                "bandwidth"         => $row["bandwidth"],
-                "readspeed"         => $row["readspeed"],
-                "mm_id"             => Validator::toIntVal($row["mm_id"]),
-                "registry_no"       => $row["registry_no"],
-                "unit_name"         => $row["unit_name"],
-                "special_unit_name" => $row["special_unit_name"],
-                "circuit_type_id"   => Validator::toIntVal($row["circuit_type_id"]),
-                "circuit_type"      => $row["circuit_type"],
+                "circuit_id"        => $circuit->getCircuitId(),
+                "phone_number"      => $circuit->getPhoneNumber(),
+                "status"            => $circuit->getStatus(),
+                "paid_by_psd"       => $circuit->getPaidByPsd(),
+                "updated_date"      => $circuit->getUpdatedDate()->format('Y-m-d H:i:s'),
+                "deactivated_date"  => $circuit->getDeactivatedDate() instanceof \DateTime ? $circuit->getDeactivatedDate()->format('Y-m-d H:i:s') : null,
+                "bandwidth"         => $circuit->getBandwidth(),
+                "readspeed"         => $circuit->getReadspeed(),
+                "mm_id"             => $circuit->getMm()->getMmId(),
+                "registry_no"       => $circuit->getMm()->getRegistryNo(),
+                "unit_name"         => $circuit->getMm()->getName(),
+                "special_unit_name" => $circuit->getMm()->getSpecialName(),
+                "circuit_type_id"   => $circuit->getCircuitType()->getCircuitTypeId(),
+                "circuit_type"      => $circuit->getCircuitType()->getName(),
             );
+            $count++;
         }
+        $result["count"] = $count;
 
         $result["status"] = ExceptionCodes::NoErrors;;
         $result["message"] = ExceptionMessages::NoErrors;
@@ -793,7 +698,7 @@ function GetCircuits(
 
     if ( Validator::isBoolean( $params["debug"] ) )
     {
-        $result["sql"] =  trim(preg_replace('/\s\s+/', ' ', $sql));
+        $result["sql"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
     }
 
     return $result;

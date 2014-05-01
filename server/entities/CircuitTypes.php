@@ -28,5 +28,19 @@ class CircuitTypes
      */
     private $name;
 
+    public function getCircuitTypeId() {
+        return $this->circuitTypeId;
+    }
 
+    public function setCircuitTypeId($circuitTypeId) {
+        $this->circuitTypeId = $circuitTypeId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
 }

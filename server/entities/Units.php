@@ -335,5 +335,315 @@ class Units
      */
     private $unitType;
 
+    public function getMmId() {
+        return $this->mmId;
+    }
 
+    public function setMmId($mmId) {
+        $this->mmId = $mmId;
+    }
+
+    public function getRegistryNo() {
+        return $this->registryNo;
+    }
+
+    public function setRegistryNo($registryNo) {
+        $this->registryNo = $registryNo;
+    }
+
+    public function getGluc() {
+        return $this->gluc;
+    }
+
+    public function setGluc($gluc) {
+        $this->gluc = $gluc;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function getSpecialName() {
+        return $this->specialName;
+    }
+
+    public function setSpecialName($specialName) {
+        $this->specialName = $specialName;
+    }
+
+    public function getActive() {
+        return $this->active;
+    }
+
+    public function setActive($active) {
+        $this->active = $active;
+    }
+
+    public function getSuspended() {
+        return $this->suspended;
+    }
+
+    public function setSuspended($suspended) {
+        $this->suspended = $suspended;
+    }
+
+    public function getAreaTeamNumber() {
+        return $this->areaTeamNumber;
+    }
+
+    public function setAreaTeamNumber($areaTeamNumber) {
+        $this->areaTeamNumber = $areaTeamNumber;
+    }
+
+    public function getStreetAddress() {
+        return $this->streetAddress;
+    }
+
+    public function setStreetAddress($streetAddress) {
+        $this->streetAddress = $streetAddress;
+    }
+
+    public function getPostalCode() {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode($postalCode) {
+        $this->postalCode = $postalCode;
+    }
+
+    public function getFaxNumber() {
+        return $this->faxNumber;
+    }
+
+    public function setFaxNumber($faxNumber) {
+        $this->faxNumber = $faxNumber;
+    }
+
+    public function getPhoneNumber() {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber($phoneNumber) {
+        $this->phoneNumber = $phoneNumber;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+    public function getStudentsCount() {
+        return $this->studentsCount;
+    }
+
+    public function setStudentsCount($studentsCount) {
+        $this->studentsCount = $studentsCount;
+    }
+
+    public function getGroupsCount() {
+        return $this->groupsCount;
+    }
+
+    public function setGroupsCount($groupsCount) {
+        $this->groupsCount = $groupsCount;
+    }
+
+    public function getLevelsCount() {
+        return $this->levelsCount;
+    }
+
+    public function setLevelsCount($levelsCount) {
+        $this->levelsCount = $levelsCount;
+    }
+
+    public function getLastUpdate() {
+        return $this->lastUpdate;
+    }
+
+    public function setLastUpdate(\DateTime $lastUpdate) {
+        $this->lastUpdate = $lastUpdate;
+    }
+
+    public function getTaxNumber() {
+        return $this->taxNumber;
+    }
+
+    public function setTaxNumber($taxNumber) {
+        $this->taxNumber = $taxNumber;
+    }
+
+    public function getComments() {
+        return $this->comments;
+    }
+
+    public function setComments($comments) {
+        $this->comments = $comments;
+    }
+
+    public function getLastSync() {
+        return $this->lastSync;
+    }
+
+    public function setLastSync(\DateTime $lastSync) {
+        $this->lastSync = $lastSync;
+    }
+
+    public function getLatitude() {
+        return $this->latitude;
+    }
+
+    public function setLatitude($latitude) {
+        $this->latitude = $latitude;
+    }
+
+    public function getLongitude() {
+        return $this->longitude;
+    }
+
+    public function setLongitude($longitude) {
+        $this->longitude = $longitude;
+    }
+
+    public function getPositioning() {
+        return $this->positioning;
+    }
+
+    public function setPositioning($positioning) {
+        $this->positioning = $positioning;
+    }
+
+    public function getCategory() {
+        return $this->category;
+    }
+
+    public function setCategory(\Categories $category) {
+        $this->category = $category;
+    }
+
+    public function getEducationLevel() {
+        return $this->educationLevel;
+    }
+
+    public function setEducationLevel(\EducationLevels $educationLevel) {
+        $this->educationLevel = $educationLevel;
+    }
+
+    public function getEduAdmin() {
+        return $this->eduAdmin;
+    }
+
+    public function setEduAdmin(\EduAdmins $eduAdmin) {
+        $this->eduAdmin = $eduAdmin;
+    }
+
+    public function getImplementationEntity() {
+        return $this->implementationEntity;
+    }
+
+    public function setImplementationEntity(\ImplementationEntities $implementationEntity) {
+        $this->implementationEntity = $implementationEntity;
+    }
+
+    public function getLegalCharacter() {
+        return $this->legalCharacter;
+    }
+
+    public function setLegalCharacter(\LegalCharacters $legalCharacter) {
+        $this->legalCharacter = $legalCharacter;
+    }
+
+    public function getMunicipality() {
+        return $this->municipality;
+    }
+
+    public function setMunicipality(\Municipalities $municipality) {
+        $this->municipality = $municipality;
+    }
+
+    public function getOperationShift() {
+        return $this->operationShift;
+    }
+
+    public function setOperationShift(\OperationShifts $operationShift) {
+        $this->operationShift = $operationShift;
+    }
+
+    public function getOrientationType() {
+        return $this->orientationType;
+    }
+
+    public function setOrientationType(\OrientationTypes $orientationType) {
+        $this->orientationType = $orientationType;
+    }
+
+    public function getPrefecture() {
+        return $this->prefecture;
+    }
+
+    public function setPrefecture(\Prefectures $prefecture) {
+        $this->prefecture = $prefecture;
+    }
+
+    public function getRegionEduAdmin() {
+        return $this->regionEduAdmin;
+    }
+
+    public function setRegionEduAdmin(\RegionEduAdmins $regionEduAdmin) {
+        $this->regionEduAdmin = $regionEduAdmin;
+    }
+
+    public function getSource() {
+        return $this->source;
+    }
+
+    public function setSource(\Sources $source) {
+        $this->source = $source;
+    }
+
+    public function getSpecialType() {
+        return $this->specialType;
+    }
+
+    public function setSpecialType(\SpecialTypes $specialType) {
+        $this->specialType = $specialType;
+    }
+
+    public function getState() {
+        return $this->state;
+    }
+
+    public function setState(\States $state) {
+        $this->state = $state;
+    }
+
+    public function getTaxOffice() {
+        return $this->taxOffice;
+    }
+
+    public function setTaxOffice(\TaxOffices $taxOffice) {
+        $this->taxOffice = $taxOffice;
+    }
+
+    public function getTransferArea() {
+        return $this->transferArea;
+    }
+
+    public function setTransferArea(\TransferAreas $transferArea) {
+        $this->transferArea = $transferArea;
+    }
+
+    public function getUnitType() {
+        return $this->unitType;
+    }
+
+    public function setUnitType(\UnitTypes $unitType) {
+        $this->unitType = $unitType;
+    }
 }
