@@ -179,7 +179,8 @@ function Authentication()
     {
         if ( strtoupper($app->request()->getMethod()) == MethodTypes::GET )
         {
-            phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'');
+            phpCAS::client(CAS_VERSION_2_0,$casOptions["Url"],$casOptions["Port"],'');
+            phpCAS::allowProxyChain(new CAS_ProxyChain_Any);
             phpCAS::setNoCasServerValidation();
             phpCAS::handleLogoutRequests(array($casOptions["Url"]));
             if (!phpCAS::checkAuthentication())
