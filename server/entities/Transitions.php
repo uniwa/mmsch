@@ -65,5 +65,51 @@ class Transitions
      */
     private $mm;
 
+    public function getTransitionId() {
+        return $this->transitionId;
+    }
 
+    public function setTransitionId($transitionId) {
+        $this->transitionId = $transitionId;
+    }
+
+    public function getFek() {
+        return $this->fek;
+    }
+
+    public function setFek($fek) {
+        $this->fek = $fek;
+    }
+
+    public function getTransitionDate() {
+        return $this->transitionDate;
+    }
+
+    public function setTransitionDate(\DateTime $transitionDate) {
+        $this->transitionDate = $transitionDate;
+    }
+
+    public function getFromState() {
+        return $this->fromState;
+    }
+
+    public function setFromState(\States $fromState) {
+        $this->fromState = $fromState;
+    }
+
+    public function getToState() {
+        return $this->toState;
+    }
+
+    public function setToState(\States $toState) {
+        $this->toState = $toState;
+    }
+
+    public function getMm() {
+        return $this->mm;
+    }
+
+    public function setMm(\Units $mm) {
+        $this->mm = $mm;
+    }
 }
