@@ -494,6 +494,7 @@ function PostUnits(
       
         $result["status"] = ExceptionCodes::NoErrors;;
         $result["message"] = ExceptionMessages::NoErrors;
+        $result["mm_id"] = $unit->getMmId();
         
     }
     catch (Exception $e) 
