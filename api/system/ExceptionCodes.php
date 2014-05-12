@@ -959,9 +959,15 @@ class ExceptionCodes
     const InvalidWorkerFirstnameType = 500;
     const InvalidWorkerFathernameType = 500;
     const InvalidWorkerSexType = 500;
-    
-    
-    
+
+
+
+    const MissingMMIdParam = 500;
+    const MissingMMIdValue = 500;
+    const InvalidMMIdType  = 500;
+    const InvalidMMIdValue = 500;
+
+
 
     const MissingActiveValue = 500;
     const InvalidActiveType = 500;
