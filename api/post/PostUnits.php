@@ -343,11 +343,11 @@ function PostUnits(
 
 //==============================================================================
 
-        unitsSetParam($unit, $name, ExceptionMessages::InvalidNameType, 'u', 'name');
+        unitsSetParam($unit, $name, ExceptionMessages::InvalidNameType, 'name');
 
 //==============================================================================
 
-        unitsSetParam($unit, $registry_no, ExceptionCodes::InvalidRegistryNoType, 'u', 'registryNo');
+        unitsSetParam($unit, $registry_no, ExceptionCodes::InvalidRegistryNoType, 'registryNo');
 
 //==============================================================================
 
