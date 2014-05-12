@@ -1445,6 +1445,7 @@ function UnitsController()
             );
             break;
         case MethodTypes::PUT :
+            $parameters = array_keys($params);
             $result = PutUnits(
                 in_array ("mm_id", $parameters) ? $params["mm_id"] : _MISSED_,
                 in_array ("registry_no", $parameters) ? $params["registry_no"] : _MISSED_,
