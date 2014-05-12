@@ -541,10 +541,18 @@ function unitsSetParam(&$unit, $param, $exceptionType, $field) {
     { } //throw new Exception(ExceptionMessages::MissingNameValue, ExceptionCodes::MissingNameValue);}
     else if ( Validator::IsValue($param) )
     {
-        $method = 'set'.ucfirst($field);
+        $method = 'set'.to_camel_case($field, true);
         $unit->$method($field, Validator::ToValue($param));
     }
     else
         throw new Exception($exceptionType." : ".$param, $exceptionType);
+}
+
+function to_camel_case($str, $capitalise_first_char = false) {
+    if($capitalise_first_char) {
+    $str[0] = strtoupper($str[0]);
+    }
+    $func = create_function('$c', 'return strtoupper($c[1]);');
+    return preg_replace_callback('/_([a-z])/', $func, $str);
 }
 ?>
