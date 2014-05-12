@@ -542,7 +542,7 @@ function unitsSetParam(&$unit, $param, $exceptionType, $field) {
     else if ( Validator::IsValue($param) )
     {
         $method = 'set'.to_camel_case($field, true);
-        $unit->$method($field, Validator::ToValue($param));
+        $unit->$method(Validator::ToValue($param));
     }
     else
         throw new Exception($exceptionType." : ".$param, $exceptionType);
