@@ -893,8 +893,8 @@ class ExceptionCodes
 
 
 
-
-
+    /** {@see ExceptionMessages::MissingMMIdParam} */
+    const MissingMMIdParam = 500;
     /** {@see ExceptionMessages::MissingMMIdValue} */
     const MissingMMIdValue = 500;
     /** {@see ExceptionMessages::InvalidMMIdType} */
@@ -959,14 +959,6 @@ class ExceptionCodes
     const InvalidWorkerFirstnameType = 500;
     const InvalidWorkerFathernameType = 500;
     const InvalidWorkerSexType = 500;
-
-
-
-    const MissingMMIdParam = 500;
-    const MissingMMIdValue = 500;
-    const InvalidMMIdType  = 500;
-    const InvalidMMIdValue = 500;
-
 
 
     const MissingActiveValue = 500;
