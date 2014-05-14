@@ -1,3 +1,9 @@
+<style>
+.tooltip{
+position: fixed;
+}
+</style>
+
 <div id="unit-<?php echo $_GET['mm_id']; ?>-preview"  
 	style="height: 100%;" 
 	class="unit-panel-details form-horizontal">
@@ -239,11 +245,11 @@
 				
 				<ul id="info-panelbar-<?php echo $_GET['mm_id']; ?>" class="nav navbar-nav">
 	        	
-					<li><a href="#holder-general-infos"><i class="fa fa-info"></i></a></li>
-					<li><a href="#holder-contact-infos"><i class="fa fa-phone"></i></a></li>
-					<li><a href="#holder-workers-infos" ><i class="fa fa-user"></i></a></li>
+					<li><a href="#holder-general-infos" data-toggle="tooltip" title="Γενικά στοιχεία"><i class="fa fa-info"></i></a></li>
+					<li><a href="#holder-contact-infos" data-toggle="tooltip" title="Στοιχεία Επικοινωνίας"><i class="fa fa-phone"></i></a></li>
+					<li><a href="#holder-workers-infos" data-toggle="tooltip" title="Εργαζόμενοι"><i class="fa fa-user"></i></a></li>
 					<li class="dropdown">
-						<a id="dLabel" href="#holder-net-infos" class="dropdown-toggle" data-toggle="dropdown" ><i class="fa fa-link"></i></a>
+						<a id="dLabel" href="#holder-net-infos" data-toggle="tooltip" title="Δικτυακά Στοιχεία" ><i class="fa fa-link"></i></a>
 						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 							<li><a href="#holder-set-ips" tabindex="-1">Set IPs</a></li>
 							<li><a href="#holder-circuits" tabindex="-1">Κυκλώματα</a></li>
@@ -252,9 +258,9 @@
 						</ul>
 					</li>
 	    		
-					<li><a href="#holder-geo-infos" ><i class="fa fa-map-marker"></i></a></li>
-					<li><a href="#holder-manage-infos"><i class="fa fa-building-o"></i></a></li>
-					<li><a href="#holder-transitions-infos"><i class="fa fa-random"></i></a></li>
+					<li><a href="#holder-geo-infos" data-toggle="tooltip" title="Τοπολογικά Στοιχεία"><i class="fa fa-map-marker"></i></a></li>
+					<li><a href="#holder-manage-infos" data-toggle="tooltip" title="Διοικητικά Στοιχεία"><i class="fa fa-building-o"></i></a></li>
+					<li><a href="#holder-transitions-infos" data-toggle="tooltip" title="Μεταβάσεις"><i class="fa fa-random"></i></a></li>
 	    		
 				</ul>
 				
@@ -1576,6 +1582,9 @@
 			$(window).on('resize', resizeTabContent );
 		}
 
+		$('[data-toggle="tooltip"]').tooltip({
+			'placement': 'top'
+		});
 		
 
     });
