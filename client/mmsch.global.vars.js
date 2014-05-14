@@ -43,7 +43,7 @@ var inMemoryImplEnt = new kendo.data.DataSource({
 		//console.log(e.response);
 		//e.sender.insert(0, { region_edu_admin_id: -1, name: "--Χωρίς Περιφέρεια--" });
 		if(typeof e.type !== 'undefined')
-			e.response.data.unshift({ implementation_entity_id: -1, name: "--Χωρίς ΦΥ--" });
+			e.response.data.unshift({ implementation_entity_id: -1, name: "--Χωρίς ΦΥ--", initials: "--Χωρίς ΦΥ--" });
 	}
 });
 
@@ -65,6 +65,11 @@ var inMemoryRegionEduAdmins = new kendo.data.DataSource({
 });
 
 // Διευθυνσεις Εκπαιδευσης
+$.each(staticData['EduAdmins']['data'], function(i,item){
+	var short_name = item.name.replace("ΔΙΕΥΘΥΝΣΗ ", "Δ.");
+	item["short_name"] = short_name;
+});
+
 var inMemoryEduAdmins = new kendo.data.DataSource({
 	//transport: tsEduAdmins,
 	data: staticData.EduAdmins,
@@ -75,7 +80,7 @@ var inMemoryEduAdmins = new kendo.data.DataSource({
 	},
 	requestEnd: function(e) {
 		if(typeof e.type !== 'undefined')
-			e.response.data.unshift({ edu_admin_id: -1, name: "--Χωρίς Διεύθυνση εκπαίδευσης--", region_edu_admin_id: -1 });
+			e.response.data.unshift({ edu_admin_id: -1, name: "--Χωρίς Διεύθυνση εκπαίδευσης--", region_edu_admin_id: -1, short_name: "--Χωρίς Διεύθυνση εκπαίδευσης--"  });
 	}
 });
 //inMemoryEduAdmins.insert(0, { edu_admin_id: -1, name: "--Χωρίς Διεύθυνση εκπαίδευσης--" });

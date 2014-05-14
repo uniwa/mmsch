@@ -179,7 +179,7 @@ inMeM_Prefectures.fetch(function() {
             	staticData['EduAdmins'] = new Object();
             	staticData['EduAdmins']['total'] = this.data().length;
             	staticData['EduAdmins']['data'] = this.data().toJSON();
-            	            	
+            	           	            	
             	inMeM_ImplEnt.fetch(function() {
             		
             		staticData['ImplEnt'] = new Object();

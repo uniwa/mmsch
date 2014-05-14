@@ -216,7 +216,7 @@ function ddls(){
 
         $("#src_eduAdmin").kendoMultiSelect({
             cascadeFrom: "src_regionEduAdmin",
-            dataTextField: "name",
+            dataTextField: "short_name",
             dataValueField: "edu_admin_id",
             optionLabel: "Επιλέξτε...",
             //dataSource: inMemoryEduAdmins.data(),
@@ -454,7 +454,7 @@ function ddls(){
         });
 
         $("#src_implementationEntity").kendoMultiSelect({
-            dataTextField: "name",
+            dataTextField: "initials",
             dataValueField: "implementation_entity_id",
             optionLabel: "Επιλέξτε...",
             //dataSource: inMemoryImplEnt.data(),
