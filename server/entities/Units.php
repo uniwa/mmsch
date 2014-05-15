@@ -24,7 +24,7 @@ class Units
     /**
      * @var string
      *
-     * @ORM\Column(name="registry_no", type="string", length=11, nullable=true)
+     * @ORM\Column(name="registry_no", type="string", length=11, nullable=true, unique=true)
      */
     private $registryNo;
 
@@ -38,7 +38,7 @@ class Units
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255, nullable=false, unique=true)
      */
     private $name;
 
