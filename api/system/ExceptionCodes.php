@@ -770,8 +770,6 @@ class ExceptionCodes
     const DuplicatedUnitDnsValue = 500;
     /** {@see ExceptionMessages::DuplicatedUnitExtDnsValue} */
     const DuplicatedUnitExtDnsValue = 500;
-    /** {@see ExceptionMessages::DuplicatedUnitUidDnsValue} */
-    const DuplicatedUnitUidDnsValue = 500;
     
      /** {@see ExceptionMessages::MissingUnitExtDnsParam} */
     const MissingUnitExtDnsParam = 500;
@@ -781,15 +779,6 @@ class ExceptionCodes
     const InvalidUnitExtDnsType = 500;
      /** {@see ExceptionMessages::InvalidUnitExtDnsArray} */
     const InvalidUnitExtDnsArray = 500;
-
-     /** {@see ExceptionMessages::MissingUnitUidParam} */
-    const MissingUnitUidParam = 500;
-     /** {@see ExceptionMessages::MissingUnitUidValue} */
-    const MissingUnitUidValue = 500;
-     /** {@see ExceptionMessages::InvalidUnitUidType} */
-    const InvalidUnitUidType = 500;
-     /** {@see ExceptionMessages::InvalidUnitUidArray} */
-    const InvalidUnitUidArray = 500;
     
     //======================================================================================================================
     // =UnitNetworkSubnetTypes
@@ -1099,27 +1088,6 @@ class ExceptionCodes
     const UsedConnectionByUnitNetworkSubnets = 500;
     
 
-
-
-    //= UnitNetworkElements
-    /** {@see ExceptionMessages::MissingUnitNetworkElementIDParam} */
-    const MissingUnitNetworkElementIDParam = 500;
-    /** {@see ExceptionMessages::MissingUnitNetworkElementIDValue} */
-    const MissingUnitNetworkElementIDValue = 500;
-    /** {@see ExceptionMessages::InvalidUnitNetworkElementIDType} */
-    const InvalidUnitNetworkElementIDType = 500;
-    /** {@see ExceptionMessages::InvalidUnitNetworkElementIDArray} */
-    const InvalidUnitNetworkElementIDArray = 500;
-    /** {@see ExceptionMessages::MissingUnitNetworkElementValue} */
-    const MissingUnitNetworkElementValue = 500;
-    /** {@see ExceptionMessages::MissingUnitNetworkElementParam} */
-    const MissingUnitNetworkElementParam = 500;
-    /** {@see ExceptionMessages::InvalidUnitNetworkElementValue} */
-    const InvalidUnitNetworkElementValue = 500;
-    /** {@see ExceptionMessages::InvalidUnitNetworkElementType} */
-    const InvalidUnitNetworkElementType = 500;
-    /** {@see ExceptionMessages::DuplicatedUnitNetworkElementValue} */
-    const DuplicatedUnitNetworkElementValue = 500;
 
 
 
