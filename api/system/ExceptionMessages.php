@@ -458,17 +458,11 @@ class ExceptionMessages
     
     const DuplicatedUnitDnsValue = 'Το DNS της Μονάδας υπάρχει ήδη';
     const DuplicatedUnitExtDnsValue = 'Το πλήρης DNS της Μονάδας υπάρχει ήδη';
-    const DuplicatedUnitUidDnsValue = 'Το Uid της Μονάδας της Μονάδας υπάρχει ήδη';
     
     const MissingUnitExtDnsParam = 'Το πλήρης DNS της Μονάδας είναι υποχρεωτικό πεδίο';
     const MissingUnitExtDnsValue = 'Το πλήρης DNS της Μονάδας πρέπει να έχει τιμή';
     const InvalidUnitExtDnsType = 'Το πλήρης DNS της Μονάδας πρέπει να είναι αριθμητικό ή αλφαριθμητικό';
     const InvalidUnitExtDnsArray = 'Το πλήρης DNS της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
-
-    const MissingUnitUidParam = 'Το Uid της Μονάδας είναι υποχρεωτικό πεδίο';
-    const MissingUnitUidValue = 'Το Uid της Μονάδας πρέπει να έχει τιμή';
-    const InvalidUnitUidType = 'Το Uid της Μονάδας πρέπει να είναι αριθμητικό ή αλφαριθμητικό';
-    const InvalidUnitUidArray = 'Το Uid της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
 
     //======================================================================================================================
     // =UnitNetworkSubnetTypes
@@ -653,19 +647,6 @@ class ExceptionMessages
     const UsedConnectionByUnitNetworkSubnets = 'Η Διασύνδεση Συσχετίζεται με Υποδικτύο της Μονάδας';
 
 
-
-
-
-    //= UnitNetworkElements
-    const MissingUnitNetworkElementIDParam = 'Ο Κωδικός των Δικτυακών Στοιχείων είναι υποχρεωτικό πεδίο';
-    const MissingUnitNetworkElementIDValue = 'Ο Κωδικός των Δικτυακών Στοιχείων πρέπει να έχει τιμή';
-    const InvalidUnitNetworkElementIDType = 'Ο Κωδικός των Δικτυακών Στοιχείων πρέπει να είναι αριθμητικός';
-    const InvalidUnitNetworkElementIDArray = 'Ο Κωδικός των Δικτυακών Στοιχείων δεν μπορεί να έχει πολλαπλές τιμές';
-    const MissingUnitNetworkElementValue = 'Τα Δικτυακά Στοιχεία πρέπει να έχουν τιμή';
-    const MissingUnitNetworkElementParam = 'Τα Δικτυακά Στοιχεία είναι υποχρεωτικό πεδίο';
-    const InvalidUnitNetworkElementValue = 'Τα Δικτυακά Στοιχεία δεν υπάρχουν στο λεξικό';
-    const InvalidUnitNetworkElementType = 'Τα Δικτυακά Στοιχεία  πρέπει να είναι αριθμητικά ή αλφαριθμητικά';
-    const DuplicatedUnitNetworkElementValue = 'Τα Δικτυακά Στοιχεία υπάρχουν ήδη';
 
 
 
