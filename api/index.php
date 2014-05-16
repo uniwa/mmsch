@@ -1237,18 +1237,14 @@ function ConnectionsController()
                 $params["mm_id"],
                 $params["cpe_id"],
                 $params["ldap_id"],
-                $params["circuit_id"],
-                $params["unit_network_element_id"],
-                $params["unit_network_subnet_id"]
+                $params["circuit_id"]
             );
             break;
         case MethodTypes::PUT :
             $result = PutConnections(
                 $params["connection_id"],
                 $params["cpe_id"],
-                $params["ldap_id"],
-                $params["unit_network_element_id"],
-                $params["unit_network_subnet_id"]
+                $params["ldap_id"]
             );
             break;
         case MethodTypes::DELETE :
@@ -1480,7 +1476,6 @@ function UnitDnsController()
             $result = GetUnitDns(
                 $params["unit_dns"],
                 $params["unit_ext_dns"],
-                $params["unit_uid"],
                 $params["unit"],
                 $params["pagesize"],
                 $params["page"],
@@ -1493,7 +1488,6 @@ function UnitDnsController()
             $result = PostUnitDns(
                 $params["unit_dns"],
                 $params["unit_ext_dns"],
-                $params["unit_uid"],
                 $params["mm_id"]
             );
         break;
@@ -1502,7 +1496,6 @@ function UnitDnsController()
                 $params["unit_dns_id"],
                 $params["unit_dns"],
                 $params["unit_ext_dns"],
-                $params["unit_uid"],
                 $params["mm_id"]
             );
         break;
