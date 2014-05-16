@@ -31,7 +31,6 @@ header("Content-Type: text/html; charset=utf-8");
  * <ul>
  *  <li><b>unit_dns_id</b><br>GetUnitDns με search_type=EXACT & unit_dns_id="value" </li>
  *  <li><b>unit_ext_dns</b><br>GetUnitDns με search_type=EXACT & unit_ext_dns="value" </li>
- *  <li><b>unit_uid</b><br>GetUnitDns με search_type=EXACT & unit_uid="value" </li>
  * </ul>
  * <br>
  *
@@ -65,7 +64,6 @@ header("Content-Type: text/html; charset=utf-8");
  *   -d '{"unit_dns_id" : "",
  *        "unit_dns" : "", \
  *        "unit_ext_dns" : "", \
- *        "unit_uid" : "", \
  *        "mm_id" : "" }'
  * </code>
  * <br>
@@ -79,7 +77,6 @@ header("Content-Type: text/html; charset=utf-8");
  *        "unit_dns_id" : ,
  *        "unit_dns" : "",
  *        "unit_ext_dns" : "",
- *        "unit_uid" : "",
  *        "mm_id" : }
  *    });
  *    
@@ -111,7 +108,6 @@ header("Content-Type: text/html; charset=utf-8");
  *        "unit_dns_id" => "",
  *        "unit_dns" => "",
  *        "unit_ext_dns" => "",
- *        "unit_uid" => "",
  *        "mm_id" => ""
  * );
  * 
@@ -142,7 +138,6 @@ header("Content-Type: text/html; charset=utf-8");
  *        "unit_dns_id" : ,
  *        "unit_dns" : "",
  *        "unit_ext_dns" : "",
- *        "unit_uid" : "",
  *        "mm_id" : 
  *        },
  *        beforeSend: function(req) {
@@ -204,12 +199,6 @@ header("Content-Type: text/html; charset=utf-8");
  * <br>Το ExtDNS της Μονάδας
  * <br>Η παράμετρος είναι υποχρεωτική
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- *
- * @param string $unit_uid Όνομα UID Μονάδας
- * <br>Το UID της Μονάδας
- * <br>Η παράμετρος είναι υποχρεωτική
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- *
  * 
  * @return Array<JSON> Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία : 
  * <br>
@@ -278,26 +267,6 @@ header("Content-Type: text/html; charset=utf-8");
  * <br>{@see ExceptionCodes::DuplicatedUnitExtDnsValue}
  * <br>Το πλήρης DNS της Μονάδας υπάρχει ήδη
  * 
- * @throws MissingUnitUidValue {@see ExceptionMessages::MissingUnitUidValue}
- * <br>{@see ExceptionCodes::MissingUnitUidValue}
- * <br>Το Uid της Μονάδας πρέπει να έχει τιμή
- *
- * @throws InvalidUnitUidArray {@see ExceptionMessages::InvalidUnitUidArray}
- * <br>{@see ExceptionCodes::InvalidUnitUidArray}
- * <br>Το Uid της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές
- *
- * @throws InvalidUnitUidType {@see ExceptionMessages::InvalidUnitUidType}
- * <br>{@see ExceptionCodes::InvalidUnitUidType}
- * <br>Το Uid της Μονάδας πρέπει να είναι αριθμητικό ή αλφαριθμητικό
- *
- * @throws MissingUnitUidParam {@see ExceptionMessages::MissingUnitUidParam}
- * <br>{@see ExceptionCodes::MissingUnitUidParam}
- * <br>Το Uid της Μονάδας είναι υποχρεωτικό πεδίο
- *
- * @throws DuplicatedUnitUidDnsValue {@see ExceptionMessages::DuplicatedUnitUidDnsValue}
- * <br>{@see ExceptionCodes::DuplicatedUnitUidDnsValue}
- * <br>Το Uid της Μονάδας της Μονάδας υπάρχει ήδη
- *
  * @throws MissingUnitMMIDValue {@see ExceptionMessages::MissingUnitMMIDValue}
  * <br>{@see ExceptionCodes::MissingUnitMMIDValue}
  * <br>Ο Κωδικός ΜΜ πρέπει να έχει τιμή
@@ -322,7 +291,7 @@ header("Content-Type: text/html; charset=utf-8");
 
 
 function PutUnitDns(
-    $unit_dns_id, $unit_dns, $unit_ext_dns, $unit_uid,
+    $unit_dns_id, $unit_dns, $unit_ext_dns,
     $mm_id
 )
 {
@@ -366,7 +335,6 @@ function PutUnitDns(
                         unit_dns_id,
                         unit_dns,
                         unit_ext_dns,
-                        unit_uid,
                         mm_id
                 FROM unit_dns WHERE ".$filters["unit_dns_id"];
 
@@ -481,67 +449,7 @@ function PutUnitDns(
                 throw new Exception(ExceptionMessages::DuplicatedUnitExtDnsValue ." : ".$rows[0]["unit_ext_dns"], ExceptionCodes::DuplicatedUnitExtDnsValue);
             }
         }  
-        
-//======================================================================================================================
-//= Check $unit_uid
-//======================================================================================================================
 
-        $param = $unit_uid;
-        $table_column_name = 'unit_uid';
-
-        if ( Validator::Exists($table_column_name, $params) )
-        {
-            if ( Validator::isNull($param) )
-            {
-                throw new Exception(ExceptionMessages::MissingUnitUidValue, ExceptionCodes::MissingUnitUidValue);
-            }
-            elseif ( Validator::isArray($param) )
-            {
-                throw new Exception(ExceptionMessages::InvalidUnitUidArray." : ".$param, ExceptionCodes::InvalidUnitUidArray);
-            }
-            elseif ( Validator::isValue($param) )
-            {
-                $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $param );
-            }
-            else
-            {
-                throw new Exception(ExceptionMessages::InvalidUnitUidType." : ".$param, ExceptionCodes::InvalidUnitUidType);
-            }
-        }
-        elseif ( Validator::isNull($main_row[0][ $table_column_name ]) )
-        {
-            throw new Exception(ExceptionMessages::MissingUnitUidParam, ExceptionCodes::MissingUnitUidParam);
-        }
-        else 
-        {
-            $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $main_row[0][ $table_column_name ] );
-        }
-
-//======================================================================================================================
-//= Check for unit_uid uniques
-//======================================================================================================================
-
-        if ( $filters["unit_uid"] )
-        {
-            $sql = "SELECT
-                    unit_dns_id,
-                    unit_uid
-                    FROM unit_dns WHERE ".$filters["unit_uid"]."
-                    AND NOT ".$filters["unit_dns_id"];
-                    
-
-            //echo "<br><br>".$sql."<br><br>";
-            $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-            $stmt = $db->query( $sql );
-            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            if ( $stmt->rowCount() > 0 )
-            {
-                throw new Exception(ExceptionMessages::DuplicatedUnitUidDnsValue ." : ".$rows[0]["unit_uid"], ExceptionCodes::DuplicatedUnitUidDnsValue);
-            }
-        }
-        
 //======================================================================================================================
 //= Check if $mm_id record exists
 //======================================================================================================================

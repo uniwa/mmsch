@@ -149,7 +149,6 @@ header("Content-Type: text/html; charset=utf-8");
  *  		"unit_dns_id": 2947,
  *  		"unit_dns": "gym-peir-ag-anarg",
  *  		"unit_ext_dns": null,
- *  		"unit_uid": "gaganpeira",
  *  		"mm_id": 1000025,
  *  		"name": "ΠΡΟΤΥΠΟ ΠΕΙΡΑΜΑΤΙΚΟ ΓΥΜΝΑΣΙΟ ΑΓ. ΑΝΑΡΓΥΡΩΝ",
  *  		"registry_no": "0501005"
@@ -158,7 +157,6 @@ header("Content-Type: text/html; charset=utf-8");
  *  		"unit_dns_id": 676,
  *  		"unit_dns": "1gym-peir-athin",
  *   		"unit_ext_dns": null,
- *  		"unit_uid": "1gympeir",
  *  		"mm_id": 1000027,
  *  		"name": "1ο ΠΡΟΤΥΠΟ ΠΕΙΡΑΜΑΤΙΚΟ ΓΥΜΝΑΣΙΟ ΑΘΗΝΑΣ",
  *  		"registry_no": "0501040"
@@ -167,7 +165,6 @@ header("Content-Type: text/html; charset=utf-8");
  *  		"unit_dns_id": 12932,
  *  		"unit_dns": "2gym-athin",
  *  		"unit_ext_dns": null,
- *  		"unit_uid": "2gymathi",
  *  		"mm_id": 1000028,
  *  		"registry_no": "0501050",
  *  		"name": "2ο ΔΙΑΠΟΛΙΤΙΣΜΙΚΟ ΓΥΜΝΑΣΙΟ ΑΘΗΝΩΝ"
@@ -176,7 +173,6 @@ header("Content-Type: text/html; charset=utf-8");
  *  		"unit_dns_id": 5905,
  *  		"unit_dns": "3gym-athin",
  *  		"unit_ext_dns": null,
- *  		"unit_uid": "3gymathi",
  *  		"mm_id": 1000030,
  *  		"name": "3ο ΗΜΕΡΗΣΙΟ ΓΥΜΝΑΣΙΟ ΑΘΗΝΑ",
  *  		"registry_no": "0501060"
@@ -185,7 +181,6 @@ header("Content-Type: text/html; charset=utf-8");
  *  		"unit_dns_id": 3840,
  *  		"unit_dns": "8gym-iliou",
  *  		"unit_ext_dns": null,
- *  		"unit_uid": "8gymilio"
  *  		"mm_id": 1000032,
  *  		"name": "8ο ΗΜΕΡΗΣΙΟ ΓΥΜΝΑΣΙΟ ΙΛΙΟΥ",
  *  		"registry_no": "0501067",
@@ -230,25 +225,6 @@ header("Content-Type: text/html; charset=utf-8");
  *       <br>Με την χρήση της παραμέτρου Τύπος Αναζήτησης (<a href="#$searchtype">$searchtype</a>) μπορεί να καθοριστεί ο τρόπος με τον οποίο
  *       θα αναζητηθεί η τιμή της παραμέτρου στο ExtDNS της Μονάδας
  *       <br>Αν η παράμετρος δεν έχει τιμή τότε η αναζήτηση στο ExtDNS της Μονάδας γίνεται με τον Tύπο {@see SearchEnumTypes::ContainAll}
- *    </li>
- *    <li>array[string]
- *       <br>Σύνολο από Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
- *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
- *    </li>
- * </ul>
- *
- *
- * @param string $unit_uid UID Μονάδας
- * <br>Το UID της Μονάδας
- * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : string|array[string]
- * <ul>
- *    <li>string
- *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το UID της Μονάδας
- *       <br>Με την χρήση της παραμέτρου Τύπος Αναζήτησης (<a href="#$searchtype">$searchtype</a>) μπορεί να καθοριστεί ο τρόπος με τον οποίο
- *       θα αναζητηθεί η τιμή της παραμέτρου στο UID της Μονάδας
- *       <br>Αν η παράμετρος δεν έχει τιμή τότε η αναζήτηση στο UID της Μονάδας γίνεται με τον Tύπο {@see SearchEnumTypes::ContainAll}
  *    </li>
  *    <li>array[string]
  *       <br>Σύνολο από Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
@@ -331,7 +307,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * @param string $searchtype Τύπος Αναζήτησης
  * <br>Ο Τύπος Αναζήτησης με τον οποίο γίνεται η αναζήτηση στα πεδία DNS Μονάδας (<a href="#$unit_dns">$unit_dns</a>),
- * ExtDNS Μονάδας (<a href="#$unit_ext_dns">$unit_ext_dns</a>), UID Μονάδας (<a href="#$unit_uid">$unit_uid</a>)
+ * ExtDNS Μονάδας (<a href="#$unit_ext_dns">$unit_ext_dns</a>)
  * <br>Η παράμετρος δεν είναι υποχρεωτική
  * <br>Αν η παράμετρος δεν έχει τιμή τότε η αναζήτηση στα πεδία αυτά γίνεται με τον Τύπο {@see SearchEnumTypes::ContainAll}
  * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
@@ -356,7 +332,6 @@ header("Content-Type: text/html; charset=utf-8");
  *    <li>integer : <b>unit_dns_id</b> : Ο Κωδικός του DNS Μονάδας</li>
  *    <li>string : <b>unit_dns</b> : Το Όνομα του DNS Μονάδας</li>
  *    <li>string : <b>unit_ext_dns</b> : Το Όνομα του ExtDNS Μονάδας</li>
- *    <li>string : <b>unit_uid</b> : Το Όνομα του UID Μονάδας</li>
  *    <li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας (Μονάδες : {@see GetUnits})</li>
  *    <li>string : <b>unit_name</b> : Το Όνομα της Μονάδας</li>
  *    <li>string : <b>special_unit_name</b> : Το Προσωνύμιο της Μονάδας</li>
@@ -410,10 +385,6 @@ header("Content-Type: text/html; charset=utf-8");
  * <br>{@see ExceptionCodes::InvalidExtUnitDnsType}
  * <br>Το ExtDNS πρέπει να είναι αλφαριθμητικό
  *
- * @throws InvalidUnitUIDType {@see ExceptionMessages::InvalidUnitUIDType}
- * <br>{@see ExceptionCodes::InvalidUnitUIDType}
- * <br>Το UID πρέπει να είναι αλφαριθμητικό
- *
  * @throws InvalidUnitType {@see ExceptionMessages::InvalidUnitType}
  * <br>{@see ExceptionCodes::InvalidUnitType}
  * <br>Η Μονάδα πρέπει να είναι αριθμητική ή αλφαριθμητική
@@ -430,7 +401,7 @@ header("Content-Type: text/html; charset=utf-8");
 
 
 function GetUnitDns(
-    $unit_dns, $unit_ext_dns, $unit_uid, $unit,
+    $unit_dns, $unit_ext_dns, $unit,
     $pagesize, $page, $orderby, $ordertype, $searchtype
 )
 {
@@ -624,72 +595,6 @@ function GetUnitDns(
         }
 
 //======================================================================================================================
-//= $unit_uid
-//======================================================================================================================
-
-        if ( Validator::Exists('unit_uid', $params) )
-        {
-            $table_name = "unit_dns";
-            $table_column_id = "unit_dns_id";
-            $table_column_name = "unit_uid";
-
-            $param = Validator::toArray($unit_uid);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                $paramWordsFilters = array();
-
-                if ( Validator::isNull($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isValue($values) )
-                {
-                    if ( $searchtype == SearchEnumTypes::Exact )
-                        $paramWordsFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                    else if ( $searchtype == SearchEnumTypes::Contain )
-                        $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
-                    else
-                    {
-                        $words = Validator::toArray($values, " ");
-
-                        foreach ($words as $word)
-                        {
-                            switch ($searchtype)
-                            {
-                                case SearchEnumTypes::ContainAll :
-                                case SearchEnumTypes::ContainAny :
-                                    $paramWordsFilters[] =  "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::StartWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::EndWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word) );
-                                    break;
-                            }
-                        }
-                    }
-                }
-                else
-                    throw new Exception(ExceptionMessages::InvalidUnitUIDType." : ".$values, ExceptionCodes::InvalidUnitUIDType);
-
-                switch ($searchtype)
-                {
-                    case SearchEnumTypes::ContainAny :
-                        $paramFilters[] = "(" . implode(" OR ", $paramWordsFilters) . ")";
-                        break;
-                    default :
-                        $paramFilters[] = "(" . implode(" AND ", $paramWordsFilters) . ")";
-                        break;
-                }
-
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
 //= $unit
 //======================================================================================================================
 
@@ -739,7 +644,6 @@ function GetUnitDns(
                 "unit_dns_id",
                 "unit_dns",
                 "unit_ext_dns" ,
-                "unit_uid",
                 "mm_id",
                 "unit_name",
                 "special_unit_name",
@@ -760,7 +664,6 @@ function GetUnitDns(
                         unit_dns.unit_dns_id,
                         unit_dns.unit_dns,
                         unit_dns.unit_ext_dns,
-                        unit_dns.unit_uid,
                         units.mm_id,
                         units.registry_no,
                         units.name as unit_name,
@@ -796,7 +699,6 @@ function GetUnitDns(
                 "unit_dns_id"       => (int)$row["unit_dns_id"],
                 "unit_dns"          => $row["unit_dns"],
                 "unit_ext_dns"      => $row["unit_ext_dns"],
-                "unit_uid"          => $row["unit_uid"],
                 "mm_id"             => (int)$row["mm_id"],
                 "unit_name"         => $row["unit_name"],
                 "special_unit_name" => $row["special_unit_name"],
