@@ -222,18 +222,6 @@ header("Content-Type: text/html; charset=utf-8");
  * </ul>
  *
  *
- * @param integer $unit_network_element_id Κωδικός Δικτυακών Στοιχείων
- * <br>Ο Κωδικός των Δικτυακών Στοιχείων
- * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
- * <br>Κυκλώματα : {@see GetUnitNetworkElements}
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer
- * <ul>
- *    <li>integer
- *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό των Δικτυακών Στοιχείων
- *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
- *    </li>
- * </ul>
  *
  *
  *
@@ -329,23 +317,12 @@ header("Content-Type: text/html; charset=utf-8");
  * <br>{@see ExceptionCodes::InvalidCircuitIDType}
  * <br>Ο Κωδικός του Τηλεπικοινωνιακού Κυκλώματος πρέπει να είναι αριθμητικός
  *
- * @throws InvalidUnitNetworkElementIDArray {@see ExceptionMessages::InvalidUnitNetworkElementIDArray}
- * <br>{@see ExceptionCodes::InvalidUnitNetworkElementIDArray}
- * <br>Ο Κωδικός των Δικτυακών Στοιχείων δεν μπορεί να έχει πολλαπλές τιμές
- *
- * @throws InvalidUnitNetworkElementValue {@see ExceptionMessages::InvalidUnitNetworkElementValue}
- * <br>{@see ExceptionCodes::InvalidUnitNetworkElementValue}
- * <br>Τα Δικτυακά Στοιχεία δεν υπάρχουν στο λεξικό
- *
- * @throws InvalidUnitNetworkElementIDType {@see ExceptionMessages::InvalidUnitNetworkElementIDType}
- * <br>{@see ExceptionCodes::InvalidUnitNetworkElementIDType}
- * <br>Ο Κωδικός των Δικτυακών Στοιχείων πρέπει να είναι αριθμητικός
  *
  */
 
 
 function PutConnections(
-    $connection_id, $cpe_id, $ldap_id, $unit_network_element_id
+    $connection_id, $cpe_id, $ldap_id
 )
 {
     global $db;
@@ -489,42 +466,6 @@ function PutConnections(
             else
             {
                 throw new Exception(ExceptionMessages::InvalidLdapIDType." : ".$param, ExceptionCodes::InvalidLdapIDType);
-            }
-        }
-
-//======================================================================================================================
-//= Check if $unit_network_element_id record exists
-//======================================================================================================================
-
-        $param = $unit_network_element_id;
-        $table_column_name = "unit_network_element_id";
-        $table_name = "unit_network_elements";
-
-        if ( Validator::Exists($table_column_name, $params) )
-        {
-            if ( Validator::isArray($param) )
-            {
-                throw new Exception(ExceptionMessages::InvalidUnitNetworkElementIDArray." : ".$param, ExceptionCodes::InvalidUnitNetworkElementIDArray);
-            }
-            elseif (Validator::isID($param) )
-            {
-                $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $param );
-
-                $sql = "SELECT $table_column_name FROM $table_name WHERE ".$filters[ $table_column_name ];
-                //echo "<br><br>".$sql."<br><br>";
-                $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-                $stmt = $db->query( $sql );
-                $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                if ( $stmt->rowCount() == 0 )
-                {
-                    throw new Exception(ExceptionMessages::InvalidUnitNetworkElementValue." : ".$param, ExceptionCodes::InvalidUnitNetworkElementValue);
-                }
-            }
-            else
-            {
-                throw new Exception(ExceptionMessages::InvalidUnitNetworkElementIDType." : ".$param, ExceptionCodes::InvalidUnitNetworkElementIDType);
             }
         }
 

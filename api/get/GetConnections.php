@@ -176,17 +176,41 @@ header("Content-Type: text/html; charset=utf-8");
  *        "circuit_type_id": null,
  *        "circuit_type": null
  *      },
- *      "network_element": {
- *        "unit_network_element_id": 184,
- *        "ip_router": "81.186.194.195",
- *        "router_dns": "r-100dim-athin",
- *        "ip_lan": "10.79.107.0",
- *        "ip_lan_mask_id": null,
- *        "ip_lan_mask": null,
- *        "ip_nat": "81.186.16.244",
- *        "ip_nat_mask_id": null,
- *        "ip_nat_mask": null
- *      }
+ *       "unit_network_subnets": [
+ *           {
+ *               "connection_unit_network_subnet_id": 550,
+ *               "connection_id": 184,
+ *               "unit_network_subnet_id": 184,
+ *               "subnet_name": null,
+ *               "subnet_ip": "10.79.107.0",
+ *               "subnet_default_router": null,
+ *               "mask": "/24",
+ *               "unit_network_subnet_type_id": 1,
+ *               "unit_network_subnet_type": "LAN"
+ *           },
+ *           {
+ *               "connection_unit_network_subnet_id": 551,
+ *               "connection_id": 184,
+ *               "unit_network_subnet_id": 5799,
+ *               "subnet_name": null,
+ *               "subnet_ip": "81.186.16.244",
+ *               "subnet_default_router": null,
+ *               "mask": "/30",
+ *               "unit_network_subnet_type_id": 2,
+ *               "unit_network_subnet_type": "NAT"
+ *           },
+ *           {
+ *               "connection_unit_network_subnet_id": 552,
+ *               "connection_id": 184,
+ *               "unit_network_subnet_id": 11411,
+ *               "subnet_name": null,
+ *               "subnet_ip": "81.186.194.195",
+ *               "subnet_default_router": null,
+ *               "mask": "/32",
+ *               "unit_network_subnet_type_id": 3,
+ *               "unit_network_subnet_type": "ROUTER_IP"
+ *           }
+ *       ]
  *    },
  *    {
  *      "connection_id": 1353,
@@ -217,17 +241,42 @@ header("Content-Type: text/html; charset=utf-8");
  *        "circuit_type_id": "2",
  *        "circuit_type": "aDSLoISDN"
  *      },
- *      "network_element": {
- *        "unit_network_element_id": 1353,
- *        "ip_router": "81.186.171.251",
- *        "router_dns": "r-100dim-thess",
- *        "ip_lan": "10.128.155.0",
- *        "ip_lan_mask_id": null,
- *        "ip_lan_mask": null,
- *        "ip_nat": "81.186.171.188",
- *        "ip_nat_mask_id": null,
- *        "ip_nat_mask": null
- *      }
+ *      "unit_network_subnets": [
+ *        {
+ *          "connection_unit_network_subnet_id": 4052,
+ *          "connection_id": 1353,
+ *          "unit_network_subnet_id": 1352,
+ *          "subnet_name": null,
+ *          "subnet_ip": "10.128.155.0",
+ *           "subnet_default_router": null,
+ *           "mask": "/24",
+ *           "unit_network_subnet_type_id": 1,
+ *           "unit_network_subnet_type": "LAN"
+ *       },
+ *       {
+ *          "connection_unit_network_subnet_id": 4053,
+ *           "connection_id": 1353,
+ *           "unit_network_subnet_id": 6964,
+ *           "subnet_name": null,
+ *           "subnet_ip": "81.186.171.188",
+ *           "subnet_default_router": null,
+ *           "mask": "/30",
+ *           "unit_network_subnet_type_id": 2,
+ *           "unit_network_subnet_type": "NAT"
+ *       },
+ *       {
+ *           "connection_unit_network_subnet_id": 4054,
+ *           "connection_id": 1353,
+ *           "unit_network_subnet_id": 12580,
+ *           "subnet_name": null,
+ *           "subnet_ip": "81.186.171.251",
+ *           "subnet_default_router": null,
+ *           "mask": "/32",
+ *           "unit_network_subnet_type_id": 3,
+ *           "unit_network_subnet_type": "ROUTER_IP"
+ *       }
+ *
+ *   ]
  *    }
  * ]}
  * </code>
@@ -372,20 +421,20 @@ header("Content-Type: text/html; charset=utf-8");
  *          <li>string : <b>circuit_type</b> : Ο Τύπος του Τηλεπικοινωνιακού Κυκλώματος (Λεξικό : {@see GetCircuitTypes})</li>
  *       </ul>
  *    </li>
- *
- *    <li>array : <b>network_element</b> : Δικτυακά Στοιχεία
- *       <ul>
- *          <li>integer : <b>unit_network_element_id</b> : Ο Κωδικός του Δικτυακού Στοιχείου</li>
- *          <li>string : <b>ip_router</b> : Η Διεύθυνση IP του Δρομολογητή</li>
- *          <li>string : <b>router_dns</b> : Το DNS του Δρομολογητή</li>
- *          <li>string : <b>ip_lan</b> :  H Διεύθυνση IP του Τοπικού Δικτύου</li>
- *          <li>integer : <b>ip_lan_mask_id</b> : Ο Κωδικός της Μάσκας του Τοπικού Δικτύου</li>
- *          <li>string : <b>ip_lan_mask</b> : Η Μάσκα του Τοπικού Δικτύου (Λεξικό : {@see GetIpMasks}</li>
- *          <li>string : <b>ip_nat</b> : Η Διεύθυνση IP Nat</li>
- *          <li>integer : <b>ip_nat_mask_id</b> : Ο Κωδικός της Μάσκας του Δρομολογητή</li>
- *          <li>string : <b>ip_nat_mask</b> : Η Μάσκα του Δρομολογητή (Λεξικό : {@see GetIpMasks}</li>
- *       </ul>
- *    </li>
+ *    <li>array : <b>network_subnet</b> : Υποδίκτυα Μονάδας
+ *        <ul>
+ *           <li>integer : <b>connection_unit_network_subnet_id</b> : Ο Κωδικός της Διασύνδεσης του Υποδικτύου Μονάδας</li>
+ *           <li>integer : <b>connection_id</b> : Ο Κωδικός της Διασύνδεσης (Διασυνδέσεις : {@see GetConnections})</li>
+ *           <li>integer : <b>unit_network_subnet_id</b> : Ο Κωδικός του Υποδικτύου Μονάδας ( Λεξικό :{@see GetUnitNetworkSubnets)}</li>
+ *           <li>string : <b>subnet_name</b> : Το Όνομα του Υποδικτύου Μονάδας</li>
+ *           <li>string : <b>subnet_ip</b> : Η IP Διευθυνση του Υποδικτύου Μονάδας</li>
+ *           <li>string : <b>mask</b> : Η Μάσκα του Υποδικτύου Μονάδας.</li>
+ *           <li>string : <b>subnet_default_router</b> : Η Default Gateway του Υποδικτύου Μονάδας</li>
+ *           <li>integer : <b>unit_network_subnet_type_id</b> : Ο Κωδικός του Τύπου Υποδικτύου</li>
+ *           <li>string : <b>unit_network_subnet_type</b> : Ο Τύπος του Τύπου Υποδικτύου (Λεξικό : {@see GetUnitNetworkSubnetTypes})</li>
+ *          </ul>
+ *      </li>
+ * 
  * </ul>
  *
  *
@@ -611,21 +660,7 @@ function GetConnections(
                 "cpe_id",
                 "cpe",
                 "ldap_id",
-                "ldap_uid",
-                "unit_network_element_id",
-                "ip_router",
-                "router_dns",
-                "ip_lan",
-                "ip_mask_id",
-                "ip_lan_mask",
-                "ip_nat",
-                "ip_mask_id",
-                "ip_nat_mask",
-                "unit_network_subnet_id",
-                "subnet_name",
-                "subnet_ip",
-                "subnet_default_router",
-                "mask"
+                "ldap_uid"
             );
 
             if (!in_array($orderby, $columns))
@@ -656,16 +691,7 @@ function GetConnections(
                         cpes.cpe_id,
                         cpes.name as cpe,
                         ldaps.ldap_id,
-                        ldaps.uid as ldap_uid,
-                        unit_network_elements.unit_network_element_id,
-                        unit_network_elements.ip_router,
-                        unit_network_elements.router_dns,
-                        unit_network_elements.ip_lan,
-                        ip_lan_masks.ip_mask_id,
-                        ip_lan_masks.name as ip_lan_mask,
-                        unit_network_elements.ip_nat,
-                        ip_nat_masks.ip_mask_id,
-                        ip_nat_masks.name as ip_nat_mask
+                        ldaps.uid as ldap_uid
                      ";
 
         $sqlFrom = "FROM connections
@@ -673,9 +699,6 @@ function GetConnections(
                     LEFT JOIN units ON connections.mm_id = units.mm_id
                     LEFT JOIN cpes ON connections.cpe_id = cpes.cpe_id
                     LEFT JOIN ldaps ON connections.ldap_id = ldaps.ldap_id
-                    LEFT JOIN unit_network_elements ON connections.unit_network_element_id = unit_network_elements.unit_network_element_id
-                    LEFT JOIN ip_masks ip_lan_masks ON unit_network_elements.ip_lan_mask_id = ip_lan_masks.ip_mask_id
-                    LEFT JOIN ip_masks ip_nat_masks ON unit_network_elements.ip_nat_mask_id = ip_nat_masks.ip_mask_id
                     LEFT JOIN circuit_types ON circuits.circuit_type_id = circuit_types.circuit_type_id
                     ";
 
@@ -698,11 +721,73 @@ function GetConnections(
         $stmt = $db->query( $sql );
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $result["count"] = $stmt->rowCount();
+   
+        $ids = "'0'";
+        foreach ($rows as $row)
+        {
+            $ids .= ($ids ? ", " : "") . "'".$row["connection_id"]."'";
+        }
+        
+//======================================================================================================================
+//= $array_connection_unit_network_subnets
+//======================================================================================================================
+        $sqlSelect = "SELECT connection_unit_network_subnets.connection_unit_network_subnet_id,
+                             connection_unit_network_subnets.connection_id,
+                             connection_unit_network_subnets.unit_network_subnet_id,
+                             unit_network_subnets.unit_network_subnet_id,
+                             unit_network_subnets.subnet_name,
+                             unit_network_subnets.subnet_ip,
+                             unit_network_subnets.subnet_default_router,
+                             unit_network_subnets.mask,
+                             unit_network_subnet_types.unit_network_subnet_type_id,
+                             unit_network_subnet_types.subnet_type as unit_network_subnet_type
+                             ";
 
+        $sqlFrom   = "FROM connection_unit_network_subnets
+                      LEFT JOIN unit_network_subnets ON connection_unit_network_subnets.unit_network_subnet_id = unit_network_subnets.unit_network_subnet_id
+                      LEFT JOIN unit_network_subnet_types ON unit_network_subnets.unit_network_subnet_type_id = unit_network_subnet_types.unit_network_subnet_type_id";
+
+        $sqlWhere = " WHERE connection_unit_network_subnets.connection_id in (".$ids.")";
+        $sqlOrder = " ORDER BY connection_unit_network_subnets.connection_unit_network_subnet_id ASC, connection_unit_network_subnets.unit_network_subnet_id ASC";
+
+        $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder;
+        //echo "<br><br>".$sql."<br><br>";
+
+        $unit_network_subnets_stmt = $db->query( $sql );
+        $array_unit_network_subnets = $unit_network_subnets_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($array_unit_network_subnets as $unit_network_subnet)
+        {
+            $unit_network_subnets[ $unit_network_subnet["connection_id"] ][ $unit_network_subnet["connection_unit_network_subnet_id"] ] = $unit_network_subnet;
+        }
+  
+//=================================/**=====================================================================================
+//= R E S U L T S
+//======================================================================================================================  
+        
         foreach ($rows as $row)
         {
 
+            $connection_unit_network_subnets["unit_network_subnets"] = array();
+        foreach ($unit_network_subnets[ $row["connection_id"] ] as $unit_network_subnet)
+            {
+         
+                $connection_unit_network_subnets["unit_network_subnets"][] = array(
+                    "connection_unit_network_subnet_id"       => $unit_network_subnet["connection_unit_network_subnet_id"] ? (int)$unit_network_subnet["connection_unit_network_subnet_id"] : null,
+                    "connection_id"                           => $unit_network_subnet["connection_id"]? (int)$unit_network_subnet["connection_id"] : null,
+                    "unit_network_subnet_id"                  => $unit_network_subnet["unit_network_subnet_id"] ? (int)$unit_network_subnet["unit_network_subnet_id"] : null,
+                    "unit_network_subnet_id"        => Validator::toIntVal($unit_network_subnet["unit_network_subnet_id"]),
+                    "subnet_name"                   => $unit_network_subnet["subnet_name"],
+                    "subnet_ip"                     => $unit_network_subnet["subnet_ip"],
+                    "subnet_default_router"         => $unit_network_subnet["subnet_default_router"],
+                    "mask"                          => $unit_network_subnet["mask"],
+                    "unit_network_subnet_type_id"   => Validator::toIntVal($unit_network_subnet["unit_network_subnet_type_id"]),
+                    "unit_network_subnet_type"      => $unit_network_subnet["unit_network_subnet_type"],
+                );
+            }
 
+       
+            
             $result["data"][] = array(
                 "connection_id" => $row["connection_id"] ? (int)$row["connection_id"] : null,
 
@@ -736,18 +821,8 @@ function GetConnections(
                     "circuit_type_id"  => $row["circuit_type_id"] ? $row["circuit_type_id"] : null,
                     "circuit_type"     => $row["circuit_type"],
                 ),
-
-                "network_element" => array(
-                    "unit_network_element_id" => $row["unit_network_element_id"] ? (int)$row["unit_network_element_id"] : null,
-                    "ip_router"        => $row["ip_router"],
-                    "router_dns"       => $row["router_dns"],
-                    "ip_lan"           => $row["ip_lan"],
-                    "ip_lan_mask_id"   => $row["ip_lan_mask_id"] ? (int)$row["ip_lan_mask_id"] : null,
-                    "ip_lan_mask"      => $row["ip_lan_mask_id"],
-                    "ip_nat"           => $row["ip_nat"],
-                    "ip_nat_mask_id"   => $row["ip_nat_mask_id"] ? (int)$row["ip_nat_mask_id"] : null,
-                    "ip_nat_mask"      => $row["ip_nat_mask_id"],
-                )
+                
+                "unit_network_subnets" => $connection_unit_network_subnets["unit_network_subnets"]
             );
         }
 
