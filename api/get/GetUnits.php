@@ -335,8 +335,7 @@ header("Content-Type: text/html; charset=utf-8");
  *      {
  *        "unit_dns_id": 7140,
  *        "unit_dns": "100dim-athin",
- *        "ext_dns": null,
- *        "unit_uid": "100dimat"
+ *        "ext_dns": null
  *      }
  *    ],
  *    "cpes": [
@@ -359,35 +358,54 @@ header("Content-Type: text/html; charset=utf-8");
  *        "circuit_type": "aDSLoISDN",
  *        "is_connected": true
  *      }
- *    ],
- *    "network_elements": [
- *      {
- *        "unit_network_element_id": 184,
- *        "ip_router": "81.186.194.195",
- *        "router_dns": "r-100dim-athin",
- *        "ip_lan": "10.79.107.0",
- *        "ip_lan_mask_id": 1,
- *        "ip_lan_mask": "\/24",
- *        "ip_nat": "81.186.16.244",
- *        "ip_nat_mask_id": 4,
- *        "ip_nat_mask": "\/30",
- *        "is_connected": true
- *      }
- *    ],
+ * ],
+ * "unit_network_subnets": [
+ *   {
+ *       "unit_network_subnet_id": 184,
+ *       "subnet_name": null,
+ *       "subnet_ip": "10.79.107.0",
+ *       "subnet_default_router": null,
+ *       "mask": "/24",
+ *       "mm_id": 1002553,
+ *       "registry_no": "9050097",
+ *       "unit_name": "100ο ΟΛΟΗΜΕΡΟ ΔΗΜΟΤΙΚΟ ΣΧΟΛΕΙΟ ΑΘΗΝΩΝ",
+ *       "special_unit_name": null,
+ *       "unit_network_subnet_type_id": 1,
+ *       "unit_network_subnet_type": "LAN",
+ *       "is_connected": true
+ *   },
+ *   {
+ *       "unit_network_subnet_id": 5799,
+ *       "subnet_name": null,
+ *       "subnet_ip": "81.186.16.244",
+ *       "subnet_default_router": null,
+ *       "mask": "/30",
+ *       "mm_id": 1002553,
+ *       "registry_no": "9050097",
+ *       "unit_name": "100ο ΟΛΟΗΜΕΡΟ ΔΗΜΟΤΙΚΟ ΣΧΟΛΕΙΟ ΑΘΗΝΩΝ",
+ *       "special_unit_name": null,
+ *       "unit_network_subnet_type_id": 2,
+ *       "unit_network_subnet_type": "NAT",
+ *       "is_connected": true
+ *   },
+ *   {
+ *       "unit_network_subnet_id": 11411,
+ *       "subnet_name": null,
+ *       "subnet_ip": "81.186.194.195",
+ *       "subnet_default_router": null,
+ *       "mask": "/32",
+ *       "mm_id": 1002553,
+ *       "registry_no": "9050097",
+ *       "unit_name": "100ο ΟΛΟΗΜΕΡΟ ΔΗΜΟΤΙΚΟ ΣΧΟΛΕΙΟ ΑΘΗΝΩΝ",
+ *       "special_unit_name": null,
+ *       "unit_network_subnet_type_id": 3,
+ *       "unit_network_subnet_type": "ROUTER_IP",
+ *       "is_connected": true
+ *   }
+ * ],
  *    "connections": [
  *      {
  *        "connection_id": 184,
- *        "network_element": {
- *          "unit_network_element_id": 184,
- *          "ip_router": "81.186.194.195",
- *          "router_dns": "r-100dim-athin",
- *          "ip_lan": "10.79.107.0",
- *          "ip_lan_mask_id": 1,
- *          "ip_lan_mask": "\/24",
- *          "ip_nat": "81.186.16.244",
- *          "ip_nat_mask_id": 4,
- *          "ip_nat_mask": "\/30"
- *        },
  *        "circuit": {
  *          "circuit_id": 543,
  *          "phone_number": "2109335964",
@@ -407,7 +425,42 @@ header("Content-Type: text/html; charset=utf-8");
  *        "ldap": {
  *          "ldap_id": null,
  *          "uid": null
- *        }
+ *        },
+ * "unit_network_subnets": [
+ *   {
+ *       "connection_unit_network_subnet_id": 550,
+ *       "connection_id": 184,
+ *       "unit_network_subnet_id": 184,
+ *       "subnet_name": null,
+ *       "subnet_ip": "10.79.107.0",
+ *       "subnet_default_router": null,
+ *       "mask": "/24",
+ *       "unit_network_subnet_type_id": 1,
+ *       "unit_network_subnet_type": "LAN"
+ *   },
+ *  {
+ *       "connection_unit_network_subnet_id": 551,
+ *       "connection_id": 184,
+ *       "unit_network_subnet_id": 5799,
+ *       "subnet_name": null,
+ *       "subnet_ip": "81.186.16.244",
+ *       "subnet_default_router": null,
+ *       "mask": "/30",
+ *       "unit_network_subnet_type_id": 2,
+ *       "unit_network_subnet_type": "NAT"
+ *   },
+ *   {
+ *       "connection_unit_network_subnet_id": 552,
+ *       "connection_id": 184,
+ *       "unit_network_subnet_id": 11411,
+ *       "subnet_name": null,
+ *       "subnet_ip": "81.186.194.195",
+ *       "subnet_default_router": null,
+ *       "mask": "/32",
+ *       "unit_network_subnet_type_id": 3,
+ *       "unit_network_subnet_type": "ROUTER_IP"
+ *          }
+ *          ]
  *      }
  *    ]
  *  }
@@ -1323,7 +1376,6 @@ function GetUnits(
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
         }
-
 //======================================================================================================================
 //= $tax_number
 //======================================================================================================================
@@ -2273,7 +2325,6 @@ function GetUnits(
             $ids .= ($ids ? ", " : "") . $row["mm_id"]; 
         }                       
 
-        //var_dump($ids);
 //======================================================================================================================
 //= $array_transitions
 //======================================================================================================================
@@ -2315,7 +2366,6 @@ function GetUnits(
                         unit_dns.unit_dns_id,
                         unit_dns.unit_dns,
                         unit_dns.unit_ext_dns,
-                        unit_dns.unit_uid,
                         unit_dns.mm_id
                      ";
 
@@ -2602,42 +2652,44 @@ function GetUnits(
         }
 
 //======================================================================================================================
-//= $array_network_elements
+//= $array_unit_network_subnets
 //======================================================================================================================
+        
+        $sqlSelect = "SELECT unit_network_subnets.unit_network_subnet_id,
+                             unit_network_subnets.subnet_name,
+                             unit_network_subnets.subnet_ip,
+                             unit_network_subnets.subnet_default_router,
+                             unit_network_subnets.mask,
+                             unit_network_subnets.mm_id,
+                             units.registry_no,
+                             units.name as unit_name,
+                             units.special_name as special_unit_name,
+                             unit_network_subnet_types.unit_network_subnet_type_id,
+                             unit_network_subnet_types.subnet_type as unit_network_subnet_type,
+                             connection_unit_network_subnets.unit_network_subnet_id is not null as is_connected
+                            ";
 
-        $sqlSelect = "SELECT
-                        unit_network_elements.unit_network_element_id,
-                        unit_network_elements.mm_id,
-                        unit_network_elements.ip_router,
-                        unit_network_elements.router_dns,
-                        unit_network_elements.ip_lan,
-                        unit_network_elements.ip_lan_mask_id,
-                        ip_lan_masks.name as ip_lan_mask,
-                        unit_network_elements.ip_nat,
-                        unit_network_elements.ip_nat_mask_id,
-                        ip_nat_masks.name as ip_nat_mask,
-                        connections.connection_id is not null as is_connected
-                     ";
+        $sqlFrom   = "FROM unit_network_subnets
+                      LEFT JOIN unit_network_subnet_types ON unit_network_subnets.unit_network_subnet_type_id = unit_network_subnet_types.unit_network_subnet_type_id
+                      LEFT JOIN units ON unit_network_subnets.mm_id = units.mm_id
+                      LEFT JOIN connections ON units.mm_id = connections.mm_id
+                      LEFT JOIN connection_unit_network_subnets ON unit_network_subnets.unit_network_subnet_id = connection_unit_network_subnets.unit_network_subnet_id and connections.connection_id=connection_unit_network_subnets.connection_id";
 
-        $sqlFrom   = "FROM unit_network_elements
-                      LEFT JOIN ip_masks as ip_lan_masks ON unit_network_elements.ip_lan_mask_id = ip_lan_masks.ip_mask_id
-                      LEFT JOIN ip_masks as ip_nat_masks ON unit_network_elements.ip_nat_mask_id = ip_nat_masks.ip_mask_id
-                      LEFT JOIN connections ON connections.unit_network_element_id = unit_network_elements.unit_network_element_id and connections.mm_id = unit_network_elements.mm_id";
-
-        $sqlWhere = " WHERE unit_network_elements.mm_id in (".$ids.")";
-        $sqlOrder = " ORDER BY unit_network_elements.mm_id ASC";
+        $sqlWhere = " WHERE unit_network_subnets.mm_id in (".$ids.")";
+        $sqlOrder = " ORDER BY unit_network_subnets.mm_id ASC";
 
         $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder;
         //echo "<br><br>".$sql."<br><br>";
 
         $stmt = $db->query( $sql );
-        $array_network_elements = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $array_unit_network_subnets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($array_network_elements as $network_element)
+        foreach ($array_unit_network_subnets as $unit_network_subnet)
         {
-            $network_elements[ $network_element["mm_id"] ][ $network_element["unit_network_element_id"] ] = $network_element;
+            $unit_network_subnets[ $unit_network_subnet["mm_id"] ][ $unit_network_subnet["unit_network_subnet_id"] ] = $unit_network_subnet;
         }
-                
+        
+        
 //======================================================================================================================
 //= $array_connections
 //======================================================================================================================
@@ -2647,7 +2699,6 @@ function GetUnits(
                         connections.mm_id,
                         connections.cpe_id,
                         connections.ldap_id,
-                        connections.unit_network_element_id,
                         connections.circuit_id
                       ";
 
@@ -2662,11 +2713,46 @@ function GetUnits(
         $stmt = $db->query( $sql );
         $array_connections = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        $connection_ids = "'0'";
         foreach ($array_connections as $connection)
         {
+            $connection_ids .= ($connection_ids ? ", " : "") . "'".$connection["connection_id"]."'";
             $connections[ $connection["mm_id"] ][] = $connection;
         }
 
+//======================================================================================================================
+//= $array_connection_unit_network_subnets
+//======================================================================================================================
+        $sqlSelect = "SELECT connection_unit_network_subnets.connection_unit_network_subnet_id,
+                             connection_unit_network_subnets.connection_id,
+                             connection_unit_network_subnets.unit_network_subnet_id,
+                             unit_network_subnets.unit_network_subnet_id,
+                             unit_network_subnets.subnet_name,
+                             unit_network_subnets.subnet_ip,
+                             unit_network_subnets.subnet_default_router,
+                             unit_network_subnets.mask,
+                             unit_network_subnet_types.unit_network_subnet_type_id,
+                             unit_network_subnet_types.subnet_type as unit_network_subnet_type
+                             ";
+
+        $sqlFrom   = "FROM connection_unit_network_subnets
+                      LEFT JOIN unit_network_subnets ON connection_unit_network_subnets.unit_network_subnet_id = unit_network_subnets.unit_network_subnet_id
+                      LEFT JOIN unit_network_subnet_types ON unit_network_subnets.unit_network_subnet_type_id = unit_network_subnet_types.unit_network_subnet_type_id";
+
+        $sqlWhere = " WHERE connection_unit_network_subnets.connection_id in (".$connection_ids.")";
+        $sqlOrder = " ORDER BY connection_unit_network_subnets.connection_unit_network_subnet_id ASC, connection_unit_network_subnets.unit_network_subnet_id ASC";
+
+        $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder;
+        //echo "<br><br>".$sql."<br><br>";
+
+        $stmt = $db->query( $sql );
+        $array_connection_unit_network_subnets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($array_connection_unit_network_subnets as $connection_unit_network_subnet)
+        {
+            $connection_unit_network_subnets[ $connection_unit_network_subnet["connection_id"] ][ $connection_unit_network_subnet["connection_unit_network_subnet_id"] ] = $connection_unit_network_subnet;
+        }
+        
 //======================================================================================================================
 //= R E S U L T S
 //======================================================================================================================
@@ -2841,8 +2927,7 @@ function GetUnits(
                 $data["unit_dns"][] = array(
                     "unit_dns_id" => $unit_dns["unit_dns_id"] ? (int)$unit_dns["unit_dns_id"] : null,
                     "unit_dns"    => $unit_dns["unit_dns"],
-                    "ext_dns"     => $unit_dns["ext_dns"],
-                    "unit_uid"    => $unit_dns["unit_uid"]
+                    "ext_dns"     => $unit_dns["ext_dns"]
                 );
             }
 
@@ -2886,31 +2971,51 @@ function GetUnits(
                     "is_connected"     => isset($circuit["is_connected"]) ? (bool)$circuit["is_connected"] : null,
                 );
             }
-
-
-            $data["network_elements"] = array();
+            
+           $data["unit_network_subnets"] = array();
             // foreach ($groups[ $row["mm_id"] ][ $level["level_id"] ] as $group)
-            foreach ($network_elements[ $row["mm_id"] ] as $network_element)
+            foreach ($unit_network_subnets[ $row["mm_id"] ] as $unit_network_subnet)
             {
                 //$circuit = $circuits[ $row["mm_id"] ][ $network_element["circuit_id"] ];
 
-                $data["network_elements"][] = array(
-                    "unit_network_element_id" => $network_element["unit_network_element_id"] ? (int)$network_element["unit_network_element_id"] : null,
-                    "ip_router"        => $network_element["ip_router"],
-                    "router_dns"       => $network_element["router_dns"],
-                    "ip_lan"           => $network_element["ip_lan"],
-                    "ip_lan_mask_id"   => $network_element["ip_lan_mask_id"] ? (int)$network_element["ip_lan_mask_id"] : null,
-                    "ip_lan_mask"      => $network_element["ip_lan_mask"],
-                    "ip_nat"           => $network_element["ip_nat"],
-                    "ip_nat_mask_id"   => $network_element["ip_nat_mask_id"] ? (int)$network_element["ip_nat_mask_id"] : null,
-                    "ip_nat_mask"      => $network_element["ip_nat_mask"],
-                    "is_connected"     => isset($network_element["is_connected"]) ? (bool)$network_element["is_connected"] : null,
+                $data["unit_network_subnets"][] = array(
+                    "unit_network_subnet_id"        => Validator::toIntVal($unit_network_subnet["unit_network_subnet_id"]),
+                    "subnet_name"                   => $unit_network_subnet["subnet_name"],
+                    "subnet_ip"                     => $unit_network_subnet["subnet_ip"],
+                    "subnet_default_router"         => $unit_network_subnet["subnet_default_router"],
+                    "mask"                          => $unit_network_subnet["mask"],
+                    "mm_id"                         => Validator::toIntVal($row["mm_id"]),
+                    "registry_no"                   => $unit_network_subnet["registry_no"],
+                    "unit_name"                     => $unit_network_subnet["unit_name"],
+                    "special_unit_name"             => $unit_network_subnet["special_unit_name"],
+                    "unit_network_subnet_type_id"   => Validator::toIntVal($unit_network_subnet["unit_network_subnet_type_id"]),
+                    "unit_network_subnet_type"      => $unit_network_subnet["unit_network_subnet_type"],
+                    "is_connected"     => isset($unit_network_subnet["is_connected"]) ? (bool)$unit_network_subnet["is_connected"] : null,
                 );
             }
             
             $data["connections"] = array();
             foreach ($connections[ $row["mm_id"] ] as $connection)
             {
+  
+                $has_unit_network_subnets = array();
+                foreach ($connection_unit_network_subnets[$connection["connection_id"]] as $connection_unit_network_subnet)
+                {
+                    $has_unit_network_subnets[] = array(
+                        "connection_unit_network_subnet_id"       => $connection_unit_network_subnet["connection_unit_network_subnet_id"] ? (int)$connection_unit_network_subnet["connection_unit_network_subnet_id"] : null,
+                        "connection_id"                           => $connection_unit_network_subnet["connection_id"]? (int)$connection_unit_network_subnet["connection_id"] : null,
+                        "unit_network_subnet_id"                  => $connection_unit_network_subnet["unit_network_subnet_id"] ? (int)$connection_unit_network_subnet["unit_network_subnet_id"] : null,
+                        "unit_network_subnet_id"        => Validator::toIntVal($connection_unit_network_subnet["unit_network_subnet_id"]),
+                        "subnet_name"                   => $connection_unit_network_subnet["subnet_name"],
+                        "subnet_ip"                     => $connection_unit_network_subnet["subnet_ip"],
+                        "subnet_default_router"         => $connection_unit_network_subnet["subnet_default_router"],
+                        "mask"                          => $connection_unit_network_subnet["mask"],
+                        "unit_network_subnet_type_id"   => Validator::toIntVal($connection_unit_network_subnet["unit_network_subnet_type_id"]),
+                        "unit_network_subnet_type"      => $connection_unit_network_subnet["unit_network_subnet_type"],
+                    );
+                }
+             
+                         
                 $circuit = $circuits[ $row["mm_id"] ][ $connection["circuit_id"] ];
                 //if ($circuit)
                 //{
@@ -2930,26 +3035,7 @@ function GetUnits(
                 //else
                 //    $connection_circuit = array();
 
-                $network_element = $network_elements[ $row["mm_id"] ][ $connection["unit_network_element_id"] ];
-                //if ($network_element)
-                //{
-                    $connection_network_element = array(
-                        "unit_network_element_id" => $network_element["unit_network_element_id"] ? (int)$network_element["unit_network_element_id"] : null,
-                        "ip_router"        => $network_element["ip_router"],
-                        "router_dns"       => $network_element["router_dns"],
-                        "ip_lan"           => $network_element["ip_lan"],
-                        "ip_lan_mask_id"   => $network_element["ip_lan_mask_id"] ? (int)$network_element["ip_lan_mask_id"] : null,
-                        "ip_lan_mask"      => $network_element["ip_lan_mask"],
-                        "ip_nat"           => $network_element["ip_nat"],
-                        "ip_nat_mask_id"   => $network_element["ip_nat_mask_id"] ? (int)$network_element["ip_nat_mask_id"] : null,
-                        "ip_nat_mask"      => $network_element["ip_nat_mask"],
-                    );
-                    
-                //}
-                //else
-                //    $connection_network_element = array();
-
-
+  
                 $cpe = $cpes[ $row["mm_id"] ][ $connection["cpe_id"] ];
                 //if ($cpe)
                 //{
@@ -2973,13 +3059,14 @@ function GetUnits(
                 //else
                 //    $connection_ldap = array();
 
-
+               
                 $data["connections"][] = array(
                     "connection_id"         => $connection["connection_id"] ? (int)$connection["connection_id"] : null,
-                    "network_element"       => $connection_network_element,
                     "circuit"               => $connection_circuit,
                     "cpe"                   => $connection_cpe,
                     "ldap"                  => $connection_ldap,
+                    "unit_network_subnets" => $has_unit_network_subnets
+
                 );
             }
 
