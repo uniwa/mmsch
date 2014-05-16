@@ -239,7 +239,6 @@ function DeleteUnitDns(
                         unit_dns_id,
                         unit_dns,
                         unit_ext_dns,
-                        unit_uid,
                         mm_id
                 FROM unit_dns WHERE ".$filters["unit_dns_id"];
 
