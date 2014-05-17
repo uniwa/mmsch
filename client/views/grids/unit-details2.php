@@ -109,7 +109,7 @@ position: fixed;
 								class="mmsch-grid"
 								
 								data-modelid="network_element_id"
-								data-selmodelid="unit_network_element_id"
+								data-selmodelid="unit_network_subnet_id"
 								
 								
 								data-role="grid" 
@@ -123,7 +123,7 @@ position: fixed;
 									{'title':'IP Υποδικτύου LAN', 'field': 'ip_lan'}, 
 									{'title':'IP Υποδικτύου NAT', 'field': 'ip_nat'}
 								]" 
-								data-bind="source: unitData.network_elements, events: {change: grdNetworksChangeListener, dataBound: grdBoundListener}"></div>
+								data-bind="source: unitData.unit_network_subnets, events: {change: grdNetworksChangeListener, dataBound: grdBoundListener}"></div>
 								
 							<p class="text-muted text-center"><small><em>Δεν υπάρχουν διαθέσιμα IP στοιχεία</em></small></p>
 							
@@ -424,10 +424,7 @@ position: fixed;
 												<td class="detail-term">DNS Μονάδας</td>
 												<td class="term-value">#= unit_dns #</td>
 											</tr>
-											<tr>
-												<td class="detail-term">Λογαριασμός Χρήστη</td>
-												<td class="term-value">#= unit_uid #</td>
-											</tr>
+											
 										</tbody>
 									</table>
 								</script>
@@ -446,10 +443,10 @@ position: fixed;
 						
 								<script id="tmpl-connection-list" type="text/x-kendo-template" >
 								# if (connections != null && connections.length > 0) { #
-									
-									
 																		
 									# for (var i = 0, len = connections.length;  i < len; i++ ){ #
+									
+									# var subnets = connections[i].unit_network_subnets;  #									
 									
 									<div class="mmsch-list-item">
 									<table class="table borderless">
@@ -459,7 +456,7 @@ position: fixed;
 												<button class="btn btn-default btn-xs editConnection" 
 															
 															data-connection_id="${connections[i]['connection_id']}"
-															data-network_element_id="${connections[i]['network_element']['unit_network_element_id']}"
+															data-network_element_id="${connections[i]['unit_network_subnets']['unit_network_subnet_id']}"
 															data-circuit_id="${connections[i]['circuit']['circuit_id']}"
 															data-cpe_id="${connections[i]['cpe']['cpe_id']}"
 															data-ldap_id="${connections[i]['ldap']['ldap_id']}"
@@ -472,22 +469,26 @@ position: fixed;
 												
 												</td>
 											</tr>
+											
+											# for (var j = 0, slen = subnets.length;  j < slen; j++ ){ #
 											<tr>
-												<td class="detail-term">IP Δρομολογητή</td>
-												<td class="term-value">${connections[i]["network_element"]["ip_router"]}</td>
+												<td class="detail-term">IP</td>
+												<td class="term-value">${subnets[j].subnet_ip}</td>
 											</tr>
 											<tr>
-												<td class="detail-term">DNS Δρομολογητή</td>
-												<td class="term-value">${connections[i]["network_element"]["router_dns"]}</td>
+												<td class="detail-term">Μάσκα</td>
+												<td class="term-value">${subnets[j].subnet_default_router}</td>
 											</tr>
 											<tr>
-												<td class="detail-term">IP Υποδικτύου LAN</td>
-												<td class="term-value">${connections[i]["network_element"]["ip_lan"]}</td>
+												<td class="detail-term">Default Gateway</td>
+												<td class="term-value">${subnets[j].mask}</td>
 											</tr>
 											<tr>
-												<td class="detail-term">IP Υποδικτύου NAT</td>
-												<td class="term-value">${connections[i]["network_element"]["ip_nat"]}</td>
+												<td class="detail-term">Τύπος</td>
+												<td class="term-value">${subnets[j].unit_network_subnet_type}</td>
 											</tr>
+											# } #
+											
 											<tr>
 												<td class="detail-term">Κύκλωμα</td>
 												<td class="term-value">
@@ -522,22 +523,22 @@ position: fixed;
 						</div>
 					
 						<div id="holder-set-ips" class="detail-section-tab">
-							<h4>Στοιχεία Set IPs</h4>
+							<h4>Υποδίκτυα</h4>
 							<div class="detail-section-tab-content">
-								<div class="data-table" id="unit-<?php echo $_GET['mm_id']; ?>-network_elements" data-bind="source: unitData" data-template="tmpl-network-network-list"></div>
+								<div class="data-table" id="unit-<?php echo $_GET['mm_id']; ?>-network_subnets" data-bind="source: unitData" data-template="tmpl-network-network-list"></div>
 								
 								<script id="tmpl-network-network-list" type="text/x-kendo-template">
-								# if (network_elements != null && network_elements.length > 0) { #
+								# if (unit_network_subnets != null && unit_network_subnets.length > 0) { #
 								
-									# for (var i = 0, len = network_elements.length;  i < len; i++ ){ #
+									# for (var i = 0, len = unit_network_subnets.length;  i < len; i++ ){ #
 									
-									# var network_element = network_elements[i]; #
+									# var unit_network_subnet = unit_network_subnets[i]; #
 									
 									<div class="mmsch-list-item">
 									<table class="table borderless">
 										<tbody>	
 											<tr><td class="detail-term term-head" colspan="2">Στοιχεία IP ${i+1}
-											# if (network_element.is_connected == true) { #
+											# if (unit_network_subnet.is_connected == true) { #
 											<span class="label label-warning">Mapped</span>
 											<button class="btn btn-default btn-xs toggleNetworkElementInfo"><span class="fa fa-expand"></span></button>
 											# } else { #
@@ -545,21 +546,21 @@ position: fixed;
 											<button class="btn btn-default btn-xs toggleNetworkElementInfo"><span class="fa fa-compress"></span></button>
 											# } #
 											</td></tr>							
-											<tr class="# if (network_element.is_connected) { # soft-hide # } #">
-												<td class="detail-term">IP Δρομολογητή</td>
-												<td class="term-value">${network_element.ip_router}</td>
+											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
+												<td class="detail-term">IP</td>
+												<td class="term-value">${unit_network_subnet.subnet_ip}</td>
 											</tr>
-											<tr class="# if (network_element.is_connected) { # soft-hide # } #">
-												<td class="detail-term">DNS Δρομολογητή</td>
-												<td class="term-value">${network_element.router_dns}</td>
+											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
+												<td class="detail-term">Μάσκα</td>
+												<td class="term-value">${unit_network_subnet.subnet_default_router}</td>
 											</tr>
-											<tr class="# if (network_element.is_connected) { # soft-hide # } #">
-												<td class="detail-term">IP Υποδικτύου LAN</td>
-												<td class="term-value">${network_element.ip_lan}</td>
+											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
+												<td class="detail-term">Default Gateway</td>
+												<td class="term-value">${unit_network_subnet.mask}</td>
 											</tr>
-											<tr class="# if (network_element.is_connected) { # soft-hide # } #">
-												<td class="detail-term">IP Υποδικτύου NAT</td>
-												<td class="term-value">${network_element.ip_nat}</td>
+											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
+												<td class="detail-term">Τύπος</td>
+												<td class="term-value">${unit_network_subnet.unit_network_subnet_type}</td>
 											</tr>
 										</tbody>
 									</table>
@@ -567,7 +568,7 @@ position: fixed;
 									# } #
 									
 								# } else { #
-								<p class="text-muted"><em>Δεν υπάρχουν IP στοιχεία</em></p>
+								<p class="text-muted"><em>Δεν υπάρχουν Υποδίκτυα</em></p>
 								# } #
 								</script>
 							
@@ -1040,14 +1041,14 @@ position: fixed;
 				var btn = $(e.target);
 				
 				var connection_id = $('form#frm_create_connection_' + mm_id + ' input#connection_id').val();
-				var unit_network_element_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_net_elem]:checked').val() || null;
+				var unit_network_subnet_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_net_elem]:checked').val() || null;
 				var circuit_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_circuits]:checked').val() || null;
 				var ldap_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_ldaps]:checked').val() || null;
 				var cpe_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_cpes]:checked').val() || null;
 				
 				var params = {
 					'mm_id': mm_id,
-					'unit_network_element_id':unit_network_element_id,
+					'unit_network_subnet_id':unit_network_subnet_id,
 					'circuit_id':circuit_id,
 					'ldap_id':ldap_id,
 					'cpe_id':cpe_id
@@ -1060,7 +1061,7 @@ position: fixed;
 				}
 				
 				// display or hide errors depending network element value
-				if (unit_network_element_id == null){
+				if (unit_network_subnet_id == null){
 					$form.find(".alert-danger.empty-network-element").show("fast");
 					return;
 				}else {
@@ -1156,9 +1157,9 @@ position: fixed;
 					}
 					
 					return "<input type=\"radio\"  " +
-							" id=\"net_elem_" + e.unit_network_element_id + "\" "+
+							" id=\"net_elem_" + e.unit_network_subnet_id + "\" "+
 							" name=\"group_net_elem\" " +
-							" value=\"" + e.unit_network_element_id + "\" "+ 
+							" value=\"" + e.unit_network_subnet_id + "\" "+ 
 							disabled + 
 							">";
 				}
@@ -1170,7 +1171,7 @@ position: fixed;
 					
 					if (e.is_connected){
 						
-						if (e.unit_network_element_id ==  editConnection.network_element_id){
+						if (e.unit_network_subnet_id ==  editConnection.network_element_id){
 							checked = "checked ";
 							
 							var tr = $("#grd-network-elements").find("input[value='"+editConnection.network_element_id+"'] ").closest("tr");
@@ -1183,9 +1184,9 @@ position: fixed;
 					}
 					
 					return "<input type=\"radio\"  " +
-							" id=\"net_elem_" + e.unit_network_element_id + "\" "+
+							" id=\"net_elem_" + e.unit_network_subnet_id + "\" "+
 							" name=\"group_net_elem\" " +
-							" value=\"" + e.unit_network_element_id + "\" "+ 
+							" value=\"" + e.unit_network_subnet_id + "\" "+ 
 							disabled + 
 							checked + 
 							">";
@@ -1369,12 +1370,12 @@ position: fixed;
 				
 					if (selectedRow.is_connected ){
 						
-						if(self.get("editedConnection")==null || (self.get("editedConnection")!=null && selectedRow.unit_network_element_id != self.get("editedConnection").network_element_id ))
+						if(self.get("editedConnection")==null || (self.get("editedConnection")!=null && selectedRow.unit_network_subnet_id != self.get("editedConnection").network_element_id ))
 						{
 							e.preventDefault();
 							grd.select().removeClass('k-state-selected');
 						}
-						else if (self.get("editedConnection")!=null && selectedRow.unit_network_element_id == self.get("editedConnection").network_element_id ){
+						else if (self.get("editedConnection")!=null && selectedRow.unit_network_subnet_id == self.get("editedConnection").network_element_id ){
 							var radio = grd.select().find("input[type='radio']");
 							radio.prop("checked", true);
 						}
