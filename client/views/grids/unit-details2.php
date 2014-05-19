@@ -108,7 +108,7 @@ position: fixed;
 							<div id="grd-network-elements" 
 								class="mmsch-grid"
 								
-								data-modelid="network_element_id"
+								data-modelid="unit_network_subnet_id"
 								data-selmodelid="unit_network_subnet_id"
 								
 								
@@ -117,11 +117,11 @@ position: fixed;
 								data-selectable="row"
 								
 								data-columns="[
-									{'title':'', 'width':'10px', template: '<span data-bind=\'html:renderRadioNetworkElement\' ></span>', encoded: true},										
-									{'title':'IP Δρομολογητή', 'field': 'ip_router'},
-									{'title':'DNS Δρομολογητή', 'field': 'router_dns'},
-									{'title':'IP Υποδικτύου LAN', 'field': 'ip_lan'}, 
-									{'title':'IP Υποδικτύου NAT', 'field': 'ip_nat'}
+									{'title':'', 'width':'10px', template: '<span data-bind=\'html:renderRadioNetworkSubnet\' ></span>', encoded: true},										
+									{'title':'IP', 'field': 'subnet_ip'},
+									{'title':'Μάσκα', 'field': 'subnet_default_router'},
+									{'title':'Default Gateway', 'field': 'mask'}, 
+									{'title':'Τύπος', 'field': 'unit_network_subnet_type'}
 								]" 
 								data-bind="source: unitData.unit_network_subnets, events: {change: grdNetworksChangeListener, dataBound: grdBoundListener}"></div>
 								
@@ -448,6 +448,8 @@ position: fixed;
 									
 									# var subnets = connections[i].unit_network_subnets;  #									
 									
+									# var safeSubnets = JSON.stringify(subnets); #
+
 									<div class="mmsch-list-item">
 									<table class="table borderless">
 										<tbody>
@@ -456,7 +458,7 @@ position: fixed;
 												<button class="btn btn-default btn-xs editConnection" 
 															
 															data-connection_id="${connections[i]['connection_id']}"
-															data-network_element_id="${connections[i]['unit_network_subnets']['unit_network_subnet_id']}"
+															data-subnets=${safeSubnets}
 															data-circuit_id="${connections[i]['circuit']['circuit_id']}"
 															data-cpe_id="${connections[i]['cpe']['cpe_id']}"
 															data-ldap_id="${connections[i]['ldap']['ldap_id']}"
@@ -1013,14 +1015,14 @@ position: fixed;
 			
 			editConnection: function(e){
 
-				console.log($(e.target).data());
+				//console.log($(e.target).data());
 
 				var self = this;
 				var data = $(e.target).data();
 				
 				self.set("editedConnection", {
 					connection_id: data.connection_id,
-					network_element_id: data.network_element_id,
+					subnets: data.subnets,
 					circuit_id: data.circuit_id,
 					cpe_id: data.cpe_id,
 					ldap_id:data.ldap_id
@@ -1029,6 +1031,7 @@ position: fixed;
 				//editedConnection = self.get("editedConnection");
 				
 				//console.log(self.get("editedConnection"));
+				
 				wnd_create_connection.center().open();
 			},
 
@@ -1041,18 +1044,32 @@ position: fixed;
 				var btn = $(e.target);
 				
 				var connection_id = $('form#frm_create_connection_' + mm_id + ' input#connection_id').val();
-				var unit_network_subnet_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_net_elem]:checked').val() || null;
+				//var unit_network_subnet_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_net_elem]:checked').val() || null;
 				var circuit_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_circuits]:checked').val() || null;
 				var ldap_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_ldaps]:checked').val() || null;
 				var cpe_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_cpes]:checked').val() || null;
+				var subnets = new Array();
+				$.each($("input[name='subnets[]']:checked"), function() {
+					subnets.push($(this).val());
+				});
+
+				//console.log(subnets);return;
 				
 				var params = {
-					'mm_id': mm_id,
-					'unit_network_subnet_id':unit_network_subnet_id,
-					'circuit_id':circuit_id,
-					'ldap_id':ldap_id,
-					'cpe_id':cpe_id
+					'mm_id': mm_id
 				};
+
+				if (circuit_id != null){
+					params["circuit_id"] = circuit_id;
+				}
+
+				if (ldap_id != null){
+					params["ldap_id"] = ldap_id;
+				}
+
+				if (cpe_id != null){
+					params["cpe_id"] = cpe_id;
+				}
 				
 				var method="POST";
 				if (connection_id != ""){
@@ -1060,8 +1077,8 @@ position: fixed;
 					method="PUT";
 				}
 				
-				// display or hide errors depending network element value
-				if (unit_network_subnet_id == null){
+				// display or hide errors none subnet is selected
+				if (subnets.length == 0){
 					$form.find(".alert-danger.empty-network-element").show("fast");
 					return;
 				}else {
@@ -1076,6 +1093,7 @@ position: fixed;
 					$form.find(".alert-danger.empty-circuit").hide();
 				}
 				
+				
 				btn.button("loading");
 				
 				$.ajax({ 
@@ -1084,6 +1102,17 @@ position: fixed;
 					data: params,
                     dataType: "json", 
                     success: function(resp){
+
+						var connection_id = resp.connection_id;
+						
+                    	// if new connection
+						if (method == "POST"){
+							// if subnets selected
+							if (subnets.length > 0){
+
+								self.postConnectionSubnet(connection_id ,subnets, 0);
+							}
+						}
 						
 						btn.button("reset");
 						
@@ -1104,6 +1133,34 @@ position: fixed;
 						);
 					}
 				});
+			},
+
+			postConnectionSubnet: function(connection_id, subnets, current){
+
+				if (current < subnets.length){
+					
+					$.ajax({
+						type: "POST",
+						url: apiUrl + "connection_unit_network_subnets", 
+						data: {
+					          "connection_id" : connection_id,
+					          "unit_network_subnet_id" : subnets[current]
+					    },
+	                    dataType: "json",
+						success: function(resp){
+							current++;
+
+							self.postConnectionSubnets(connection_id, subnets, current);
+						},
+
+						beforeSend: function(xhr){
+							xhr.setRequestHeader(
+								'Authorization',
+								make_base_auth ('mmschadmin', 'mmschadmin')
+							);
+						}
+					});
+				}
 			},
 
 			deleteConnection: function(e){
@@ -1141,11 +1198,17 @@ position: fixed;
 				}
 			},
 			
-			renderRadioNetworkElement: function(e){
-					
+			renderRadioNetworkSubnet: function(e){
+				
 				var self = this;
 				var editConnection = self.get("editedConnection");
-								
+
+				//console.log("render");
+				//console.log(editConnection);
+				
+				
+				
+				// create new connection				
 				if (editConnection === null)
 				{
 					
@@ -1156,25 +1219,38 @@ position: fixed;
 						return "<span class=\"k-icon k-i-cancel\" title=\"\"></span>";
 					}
 					
-					return "<input type=\"radio\"  " +
+					return "<input type=\"checkbox\"  " +
 							" id=\"net_elem_" + e.unit_network_subnet_id + "\" "+
-							" name=\"group_net_elem\" " +
+							" name=\"subnets[]\" " +
 							" value=\"" + e.unit_network_subnet_id + "\" "+ 
 							disabled + 
 							">";
 				}
-				else 
+				else // edit connection 
 				{
+					//console.log(editConnection.subnets.length);
+					var isCurrentSubnetInConnectionSubnets = function(currentSubnetID, subnets){
+
+						for (var i=0; i < editConnection.subnets.length; i++){
+							if (editConnection.subnets[i].unit_network_subnet_id == currentSubnetID){
+								console.log(editConnection.subnets[i].unit_network_subnet_id+ " " + currentSubnetID);
+								return true;	
+							}	
+						}
+						return false;
+					};
+					
 					var disabled = "";
 					var checked = "";
 					var cssClass = "";
 					
 					if (e.is_connected){
 						
-						if (e.unit_network_subnet_id ==  editConnection.network_element_id){
+						//if (e.unit_network_subnet_id ==  editConnection.network_element_id){
+						if (isCurrentSubnetInConnectionSubnets(e.unit_network_subnet_id, editConnection.subnets)){
 							checked = "checked ";
 							
-							var tr = $("#grd-network-elements").find("input[value='"+editConnection.network_element_id+"'] ").closest("tr");
+							var tr = $("#grd-network-elements").find("input[value='"+editConnection.unit_network_subnet_id+"'] ").closest("tr");
 							tr.addClass("k-state-selected");
 						}
 						else {
@@ -1183,9 +1259,9 @@ position: fixed;
 						}
 					}
 					
-					return "<input type=\"radio\"  " +
+					return "<input type=\"checkbox\"  " +
 							" id=\"net_elem_" + e.unit_network_subnet_id + "\" "+
-							" name=\"group_net_elem\" " +
+							" name=\"subnets[]\" " +
 							" value=\"" + e.unit_network_subnet_id + "\" "+ 
 							disabled + 
 							checked + 
