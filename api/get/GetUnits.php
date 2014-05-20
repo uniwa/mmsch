@@ -1261,7 +1261,7 @@ function GetUnits(
                 if ( Validator::isNull($values) )
                     $paramFilters[] = "$table_name.$table_column_name is null";
                 else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
+                    $paramFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
                 else
                     throw new Exception(ExceptionMessages::InvalidRegistryNoType." : ".$values, ExceptionCodes::InvalidRegistryNoType);
             }
