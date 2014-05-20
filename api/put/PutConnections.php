@@ -322,7 +322,7 @@ header("Content-Type: text/html; charset=utf-8");
 
 
 function PutConnections(
-    $connection_id, $cpe_id, $ldap_id
+    $connection_id, $cpe_id, $ldap_id, $circuit_id
 )
 {
     global $db;
@@ -469,6 +469,111 @@ function PutConnections(
             }
         }
 
+//======================================================================================================================
+//= Check if $circuit_id record exists
+//======================================================================================================================
+
+        $param = $circuit_id;
+        $table_column_name = "circuit_id";
+        $table_name = "circuits";
+
+        if ( Validator::Exists($table_column_name, $params) )
+        {
+            if ( Validator::isNull($param) )
+            {
+                throw new Exception(ExceptionMessages::MissingCircuitIDValue, ExceptionCodes::MissingCircuitIDValue);
+            }
+            elseif ( Validator::isArray($param) )
+            {
+                throw new Exception(ExceptionMessages::InvalidCircuitIDArray." : ".$param, ExceptionCodes::InvalidCircuitIDArray);
+            }
+            elseif (Validator::isID($param) )
+            {
+                $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $param );
+
+                $sql = "SELECT $table_column_name FROM $table_name WHERE ".$filters[ $table_column_name ];
+                //echo "<br><br>".$sql."<br><br>";
+                $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
+
+                $stmt = $db->query( $sql );
+                $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                if ( $stmt->rowCount() == 0 )
+                {
+                    throw new Exception(ExceptionMessages::InvalidCircuitValue." : ".$param, ExceptionCodes::InvalidCircuitValue);
+                }
+            }
+            else
+            {
+                throw new Exception(ExceptionMessages::InvalidCircuitIDType." : ".$param, ExceptionCodes::InvalidCircuitIDType);
+            }
+        }
+        elseif ( Validator::isNull($main_row[0][ $table_column_name ]) )
+        {
+            throw new Exception(ExceptionMessages::MissingCircuitIDParam, ExceptionCodes::MissingCircuitIDParam);
+        }
+        else 
+        {
+            $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $main_row[0][ $table_column_name ] );
+        }
+ 
+//======================================================================================================================
+//= Check connections has  connections.mm_id  == (connections.circuit_id -> circuits.mm_id)   
+//======================================================================================================================
+        $sql = "SELECT 
+                connections.mm_id as connection_mm_id
+                FROM connections
+                WHERE " . $filters["connection_id"] ;
+        
+        //echo "<br><br>".$sql."<br><br>";
+         $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
+
+         $stmt = $db->query( $sql );
+         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);    
+         $connection_mm_id = $rows[0]["connection_mm_id"];
+         
+        //circuits.mm_id     
+        $sql = "SELECT 
+                circuits.mm_id as circuit_mm_id
+                FROM circuits
+                WHERE " . $filters["circuit_id"] ;
+        
+        //echo "<br><br>".$sql."<br><br>";
+        $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
+
+        $stmt = $db->query( $sql );
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $circuit_mm_id = $rows[0]["circuit_mm_id"];    
+            
+        
+        if ( $connection_mm_id <> $circuit_mm_id ) {
+            throw new Exception(ExceptionMessages::DifferenceConnectioCircuitMMIdValue, ExceptionCodes::DifferenceConnectioCircuitMMIdValue);  
+        } 
+        
+        
+//======================================================================================================================
+//= Check for connection_circuit uniques
+//======================================================================================================================
+
+            $sql = "SELECT
+                    connection_id,
+                    circuit_id
+                    FROM connections WHERE 
+                    WHERE ( ".$filters["circuit_id"]. " )
+                    AND NOT ".$filters["connection_id"];
+
+            //echo "<br><br>".$sql."<br><br>";
+            $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
+
+            $stmt = $db->query( $sql );
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ( $stmt->rowCount() > 0 )
+            {
+                throw new Exception(ExceptionMessages::DuplicatedConnectionValue." : ".$rows[0]["circuit_id"], ExceptionCodes::DuplicatedConnectionValue);
+            }
+              
+        
 //======================================================================================================================
 //= UPDATE
 //======================================================================================================================
