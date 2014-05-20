@@ -644,6 +644,7 @@ class ExceptionMessages
     const InvalidConnectionArray = 'H Διασύνδεση δεν μπορεί να έχει πολλαπλές τιμές';
    
     const DuplicatedConnectionValue = 'Το Τηλεπικοινωνιακό Κύκλωμα υπάρχει σε άλλη Διασύνδεση';
+    const DifferenceConnectioCircuitMMIdValue = 'Δεν είναι δυνατή η εισαγωγή Διασύνδεσης και Κυκλώματος με διαφορετικό Κωδικό Σχολικής Μονάδας';
     const UsedConnectionByUnitNetworkSubnets = 'Η Διασύνδεση Συσχετίζεται με Υποδικτύο της Μονάδας';
 
 
