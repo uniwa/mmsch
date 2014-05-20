@@ -1244,7 +1244,8 @@ function ConnectionsController()
             $result = PutConnections(
                 $params["connection_id"],
                 $params["cpe_id"],
-                $params["ldap_id"]
+                $params["ldap_id"],
+                $params["circuit_id"]
             );
             break;
         case MethodTypes::DELETE :
