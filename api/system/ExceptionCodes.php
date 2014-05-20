@@ -1084,6 +1084,8 @@ class ExceptionCodes
     
     /** {@see ExceptionMessages::DuplicatedConnectionValue} */
     const DuplicatedConnectionValue = 500;
+    /** {@see ExceptionMessages::DifferenceConnectioCircuitMMIdValue} */
+    const DifferenceConnectioCircuitMMIdValue = 500;
     /** {@see ExceptionMessages::UsedConnectionByUnitNetworkSubnets} */
     const UsedConnectionByUnitNetworkSubnets = 500;
     
