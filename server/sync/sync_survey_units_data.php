@@ -21,7 +21,7 @@ function sync_survey_units_data()
     $logMessage = array();
 
     
-    $script_title = "Ανάκτηση Σχολικών Μονάδες από Survey";
+    $script_title = "Ανάκτηση Σχολικών Μονάδες από MySchool";
     echo "==================== ".$script_title." ====================".$br.$br; //$logMessage[] = $script_title."\n\n";
 
     $totalSyncTime = time();
@@ -35,19 +35,10 @@ function sync_survey_units_data()
     
     $canContinue = true;
 
-    $client = new nusoap_client('https://ws.is.sch.gr/Retriever.svc?wsdl', 'wsdl');
-    $err = $client->getError();
-
-    if ($err)
-    {
-        echo '<h2>Constructor error</h2><pre>' . $err . '</pre>';
-        $logMessage[] = "Constructor error : ".var_export($err, true);
-        $canContinue = false;
-    }
-
-    $client->setCredentials('schoolws', 'Apl0us+3fs!', 'basic');
-    $client->soap_defencoding = 'UTF-8';
-    $client->decode_utf8 = false;
+    $client = new SoapClient('https://mydev-srv.cti.gr/unitinfo/Srv.svc?singleWsdl', array(
+        'local_cert' => __DIR__.'/cert/file.combo.pem',
+        'soap_version' => SOAP_1_2,
+    ));
 
     $fLastUpdate = date('Y-m-d H:i:s');
 
@@ -71,14 +62,14 @@ function sync_survey_units_data()
 
         $syncTime = time();
 
-        $client->clearDebug();
-
         $param = array('StartAt' => $start, 
-                       'Count' => $buffer, 
-                       //'RegistryNo' => '2990094',
+                       'Count' => $buffer,
+                       'IncludeNonActive' => true,
+                       'RegistryNo' => '2990094',
                  );
 
-        $result = $client->call('GetUnits', array('parameters' => $param), '', '', false, true);
+        $result = $client->getUnits($param);
+        var_dump($result); die();
 
 
         // Check for a fault
