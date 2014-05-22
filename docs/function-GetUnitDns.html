@@ -383,9 +383,6 @@ class="php-quote">&quot;gym-peir-ag-anarg&quot;</span>,
 class="php-quote">&quot;unit_ext_dns&quot;</span>: <span
 class="php-keyword1">null</span>,
                 <span
-class="php-quote">&quot;unit_uid&quot;</span>: <span
-class="php-quote">&quot;gaganpeira&quot;</span>,
-                <span
 class="php-quote">&quot;mm_id&quot;</span>: <span
 class="php-num">1000025</span>,
                 <span
@@ -405,9 +402,6 @@ class="php-quote">&quot;1gym-peir-athin&quot;</span>,
                 <span
 class="php-quote">&quot;unit_ext_dns&quot;</span>: <span
 class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;unit_uid&quot;</span>: <span
-class="php-quote">&quot;1gympeir&quot;</span>,
                 <span
 class="php-quote">&quot;mm_id&quot;</span>: <span
 class="php-num">1000027</span>,
@@ -429,9 +423,6 @@ class="php-quote">&quot;2gym-athin&quot;</span>,
 class="php-quote">&quot;unit_ext_dns&quot;</span>: <span
 class="php-keyword1">null</span>,
                 <span
-class="php-quote">&quot;unit_uid&quot;</span>: <span
-class="php-quote">&quot;2gymathi&quot;</span>,
-                <span
 class="php-quote">&quot;mm_id&quot;</span>: <span
 class="php-num">1000028</span>,
                 <span
@@ -452,9 +443,6 @@ class="php-quote">&quot;3gym-athin&quot;</span>,
 class="php-quote">&quot;unit_ext_dns&quot;</span>: <span
 class="php-keyword1">null</span>,
                 <span
-class="php-quote">&quot;unit_uid&quot;</span>: <span
-class="php-quote">&quot;3gymathi&quot;</span>,
-                <span
 class="php-quote">&quot;mm_id&quot;</span>: <span
 class="php-num">1000030</span>,
                 <span
@@ -474,9 +462,6 @@ class="php-quote">&quot;8gym-iliou&quot;</span>,
                 <span
 class="php-quote">&quot;unit_ext_dns&quot;</span>: <span
 class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;unit_uid&quot;</span>: <span
-class="php-quote">&quot;8gymilio&quot;</span>
                 <span
 class="php-quote">&quot;mm_id&quot;</span>: <span
 class="php-num">1000032</span>,
@@ -566,38 +551,6 @@ string|array[string]
 	Αν η παράμετρος δεν έχει τιμή τότε η
 	αναζήτηση στο ExtDNS της Μονάδας γίνεται με
 	τον Tύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code></li>
-
-	<li>array[string]<br />
-	Σύνολο από Αλφαριθμητικές τιμές
-	διαχωρισμένες με κόμμα<br />
-	Η αναζήτηση γίνεται με οποιαδήποτε από
-	αυτές τις τιμές</li>
-</ul>
-
-		</td>
-	</tr>
-	<tr id="$unit_uid">
-		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$unit_uid</var></code></td>
-		<td>
-			 UID Μονάδας<br />
-Το UID της Μονάδας<br />
-Η παράμετρος δεν είναι υποχρεωτική<br />
-Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
-Η τιμή της παραμέτρου μπορεί να είναι :
-string|array[string]
-<ul>
-	<li>string<br />
-	Αλφαριθμητική : Η αναζήτηση γίνεται με το UID
-	της Μονάδας<br />
-	Με την χρήση της παραμέτρου Τύπος
-	Αναζήτησης (<a href="#$searchtype">$searchtype</a>) μπορεί να
-	καθοριστεί ο τρόπος με τον οποίο θα
-	αναζητηθεί η τιμή της παραμέτρου στο UID της
-	Μονάδας<br />
-	Αν η παράμετρος δεν έχει τιμή τότε η
-	αναζήτηση στο UID της Μονάδας γίνεται με τον
-	Tύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code></li>
 
 	<li>array[string]<br />
 	Σύνολο από Αλφαριθμητικές τιμές
@@ -730,8 +683,7 @@ href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 Ο Τύπος Αναζήτησης με τον οποίο γίνεται η
 αναζήτηση στα πεδία DNS Μονάδας (<a
 href="#$unit_dns">$unit_dns</a>), ExtDNS Μονάδας (<a
-href="#$unit_ext_dns">$unit_ext_dns</a>), UID Μονάδας (<a
-href="#$unit_uid">$unit_uid</a>)<br />
+href="#$unit_ext_dns">$unit_ext_dns</a>)<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε η
 αναζήτηση στα πεδία αυτά γίνεται με τον
@@ -778,8 +730,6 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 
 	<li>string : <b>unit_ext_dns</b> : Το Όνομα του ExtDNS
 	Μονάδας</li>
-
-	<li>string : <b>unit_uid</b> : Το Όνομα του UID Μονάδας</li>
 
 	<li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας
 	(Μονάδες : <code><a href="function-GetUnits.html">GetUnits()</a></code>)</li>
@@ -915,16 +865,6 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 			ExceptionMessages::InvalidExtUnitDnsType<br />
 <code><a href="class-ExceptionCodes.html#InvalidExtUnitDnsType">ExceptionCodes::<b>InvalidExtUnitDnsType</b></a></code><br />
 Το ExtDNS πρέπει να είναι αλφαριθμητικό
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidUnitUIDType
-		</code></td>
-		<td>
-			ExceptionMessages::InvalidUnitUIDType<br />
-<code><a href="class-ExceptionCodes.html#InvalidUnitUIDType">ExceptionCodes::<b>InvalidUnitUIDType</b></a></code><br />
-Το UID πρέπει να είναι αλφαριθμητικό
 		</td>
 	</tr>
 	<tr>

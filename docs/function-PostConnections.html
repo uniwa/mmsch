@@ -170,7 +170,7 @@ class="php-quote">&quot;Content-Type: application/json&quot;</span> \
 class="php-quote">&quot;Accept: application/json&quot;</span> \
    -u username:password \
    -d <span
-class="php-quote">'{&quot;mm_id&quot; : &quot;1016657&quot;, &quot;unit_network_element_id&quot; : &quot;100&quot;, &quot;circuit_id&quot; : &quot;345&quot;}'</span>
+class="php-quote">'{&quot;mm_id&quot; : &quot;1016657&quot;, &quot;circuit_id&quot; : &quot;345&quot;}'</span>
 </pre>
 
 <div><br />
@@ -186,8 +186,6 @@ class="php-keyword1">var</span> params = JSON.stringify({
        <span
 class="php-quote">&quot;mm_id&quot;</span> : <span
 class="php-quote">&quot;1016657&quot;</span>, <span
-class="php-quote">&quot;unit_network_element_id&quot;</span> : <span
-class="php-quote">&quot;100&quot;</span>, <span
 class="php-quote">&quot;circuit_id&quot;</span> : <span
 class="php-quote">&quot;345&quot;</span>
    });
@@ -250,8 +248,6 @@ class="php-keyword1">array</span>(
       <span
 class="php-quote">&quot;mm_id&quot;</span> =&gt; <span
 class="php-quote">&quot;1016657&quot;</span>, <span
-class="php-quote">&quot;unit_network_element_id&quot;</span> =&gt; <span
-class="php-quote">&quot;100&quot;</span>, <span
 class="php-quote">&quot;circuit_id&quot;</span> =&gt; <span
 class="php-quote">&quot;345&quot;</span>
    );
@@ -315,8 +311,6 @@ class="php-quote">&quot;json&quot;</span>,
          <span
 class="php-quote">&quot;mm_id&quot;</span> : <span
 class="php-quote">&quot;1016657&quot;</span>, <span
-class="php-quote">&quot;unit_network_element_id&quot;</span> : <span
-class="php-quote">&quot;100&quot;</span>, <span
 class="php-quote">&quot;circuit_id&quot;</span> : <span
 class="php-quote">&quot;345&quot;</span>
        },
@@ -451,26 +445,6 @@ Ldaps : <code><a href="function-GetLdaps.html">GetLdaps()</a></code><br />
 	<li>integer<br />
 	Αριθμητική : Η αναζήτηση γίνεται με τον
 	Κωδικό του Κυκλώματος<br />
-	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
-	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
-</ul>
-
-		</td>
-	</tr>
-	<tr id="$unit_network_element_id">
-		<td class="name"><code>integer</code></td>
-		<td class="value"><code><var>$unit_network_element_id</var></code></td>
-		<td>
-			 Κωδικός Δικτυακών Στοιχείων<br />
-Ο Κωδικός των Δικτυακών Στοιχείων<br />
-Η παράμετρος δεν είναι υποχρεωτική<br />
-Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
-Κυκλώματα : GetUnitNetworkElements<br />
-Η τιμή της παραμέτρου μπορεί να είναι : integer
-<ul>
-	<li>integer<br />
-	Αριθμητική : Η αναζήτηση γίνεται με τον
-	Κωδικό των Δικτυακών Στοιχείων<br />
 	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
 	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 </ul>
@@ -658,39 +632,6 @@ integer : <b>connection_id</b> : Ο Κωδικός της Διασύνδεσης
 <code><a href="class-ExceptionCodes.html#InvalidCircuitIDType">ExceptionCodes::<b>InvalidCircuitIDType</b></a></code><br />
 Ο Κωδικός του Τηλεπικοινωνιακού Κυκλώματος
 πρέπει να είναι αριθμητικός
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidUnitNetworkElementIDArray
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkElementIDArray">ExceptionMessages::<b>InvalidUnitNetworkElementIDArray</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkElementIDArray">ExceptionCodes::<b>InvalidUnitNetworkElementIDArray</b></a></code><br />
-Ο Κωδικός των Δικτυακών Στοιχείων δεν
-μπορεί να έχει πολλαπλές τιμές
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidUnitNetworkElementValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkElementValue">ExceptionMessages::<b>InvalidUnitNetworkElementValue</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkElementValue">ExceptionCodes::<b>InvalidUnitNetworkElementValue</b></a></code><br />
-Τα Δικτυακά Στοιχεία δεν υπάρχουν στο
-λεξικό
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidUnitNetworkElementIDType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidUnitNetworkElementIDType">ExceptionMessages::<b>InvalidUnitNetworkElementIDType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidUnitNetworkElementIDType">ExceptionCodes::<b>InvalidUnitNetworkElementIDType</b></a></code><br />
-Ο Κωδικός των Δικτυακών Στοιχείων πρέπει να
-είναι αριθμητικός
 		</td>
 	</tr>
 	</table>
