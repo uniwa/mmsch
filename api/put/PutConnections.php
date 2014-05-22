@@ -558,7 +558,7 @@ function PutConnections(
             $sql = "SELECT
                     connection_id,
                     circuit_id
-                    FROM connections WHERE 
+                    FROM connections 
                     WHERE ( ".$filters["circuit_id"]. " )
                     AND NOT ".$filters["connection_id"];
 
