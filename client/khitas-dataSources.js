@@ -1,7 +1,7 @@
 var itemsPerPage = 50;
 //var apiUrl = "../ver2/api/";
 var apiUrl = "api/";
-var auth = btoa('mmsch' + ":" + 'mmsch');
+//var auth = btoa('mmsch' + ":" + 'mmsch');
 /** 
  * Μονάδες
  */
@@ -13,7 +13,7 @@ var tsUnits = {
             //"method": "GetUnits"
         },
         beforeSend: function(req) {
-            req.setRequestHeader('Authorization', auth);
+            //req.setRequestHeader('Authorization', auth);
         },
         dataType: "json"
     },

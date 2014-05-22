@@ -179,20 +179,27 @@ function loadParameters()
 function Authentication()
 {
     global $app;
-    
+    global $casOptions;
+
+    if(isset($casOptions["NoAuth"]) && $casOptions["NoAuth"] == true) { return true; }
     try
     {
         if ( strtoupper($app->request()->getMethod()) == MethodTypes::GET )
         {
-            if (! ( (($_SERVER['PHP_AUTH_USER'] == "mmsch" ) && ($_SERVER['PHP_AUTH_PW'] == "mmsch")) ||
-                    (($_SERVER['PHP_AUTH_USER'] == "mmschadmin" ) && ($_SERVER['PHP_AUTH_PW'] == "mmschadmin")) ||
-                    (($_REQUEST['username'] == "mmsch" ) && ($_REQUEST['password'] == "mmsch")) ) )
-               throw new Exception(ExceptionMessages::Unauthorized, ExceptionCodes::Unauthorized);
+            phpCAS::client(CAS_VERSION_2_0,$casOptions["Url"],$casOptions["Port"],'');
+            phpCAS::allowProxyChain(new CAS_ProxyChain_Any);
+            phpCAS::setNoCasServerValidation();
+            phpCAS::handleLogoutRequests(array($casOptions["Url"]));
+            if (!phpCAS::checkAuthentication())
+                throw new Exception(ExceptionMessages::Unauthorized, ExceptionCodes::Unauthorized);
         }
         else if ( in_array( strtoupper($app->request()->getMethod()), array( MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE )) )
         {
-            if (! (($_SERVER['PHP_AUTH_USER'] == "mmschadmin" ) && ($_SERVER['PHP_AUTH_PW'] == "mmschadmin")) )
-               throw new Exception(ExceptionMessages::Unauthorized, ExceptionCodes::Unauthorized);
+            phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'');
+            phpCAS::setNoCasServerValidation();
+            phpCAS::handleLogoutRequests(array($casOptions["Url"]));
+            if (!phpCAS::checkAuthentication())
+                throw new Exception(ExceptionMessages::Unauthorized, ExceptionCodes::Unauthorized);
         }
     }
     catch (Exception $e)
@@ -218,7 +225,6 @@ function toGreek($value)
 //======================================================================================================================
 //= Functions
 //======================================================================================================================
-
 
 function SchoolCommitteesController()
 {
@@ -1371,89 +1377,91 @@ function UnitsController()
                 $params["searchtype"]
             );
             break;
-//        case MethodTypes::POST :
-//            $result = PostUnits(
-//                in_array ("registry_no", $parameters) ? $params["registry_no : _MISSED_,
-//                in_array ("gluc", $parameters) ? $params["gluc : _MISSED_,
-//                in_array ("source", $parameters) ? $params["source : _MISSED_,
-//                in_array ("name", $parameters) ? $params["name : _MISSED_,
-//                in_array ("special_name", $parameters) ? $params["special_name : _MISSED_,
-//                in_array ("state", $parameters) ? $params["state : _MISSED_,
-//                in_array ("region_edu_admin", $parameters) ? $params["region_edu_admin : _MISSED_,
-//                in_array ("edu_admin", $parameters) ? $params["edu_admin : _MISSED_,
-//                in_array ("implementation_entity", $parameters) ? $params["implementation_entity : _MISSED_,
-//                in_array ("transfer_area", $parameters) ? $params["transfer_area : _MISSED_,
-//                in_array ("prefecture", $parameters) ? $params["prefecture : _MISSED_,
-//                in_array ("municipality", $parameters) ? $params["municipality : _MISSED_,
-//                in_array ("education_level", $parameters) ? $params["education_level : _MISSED_,
-//                in_array ("phone_number", $parameters) ? $params["phone_number : _MISSED_,
-//                in_array ("email", $parameters) ? $params["email : _MISSED_,
-//                in_array ("fax_number", $parameters) ? $params["fax_number : _MISSED_,
-//                in_array ("street_address", $parameters) ? $params["street_address : _MISSED_,
-//                in_array ("postal_code", $parameters) ? $params["postal_code : _MISSED_,
-//                in_array ("tax_number", $parameters) ? $params["tax_number : _MISSED_,
-//                in_array ("tax_office", $parameters) ? $params["tax_office : _MISSED_,
-//                in_array ("area_team_number", $parameters) ? $params["area_team_number : _MISSED_,
-//                in_array ("category", $parameters) ? $params["category : _MISSED_,
-//                in_array ("unit_type", $parameters) ? $params["unit_type : _MISSED_,
-//                in_array ("operation_shift", $parameters) ? $params["operation_shift : _MISSED_,
-//                in_array ("legal_character", $parameters) ? $params["legal_character : _MISSED_,
-//                in_array ("orientation_type", $parameters) ? $params["orientation_type : _MISSED_,
-//                in_array ("special_type", $parameters) ? $params["special_type : _MISSED_,
-//                in_array ("levels_count", $parameters) ? $params["levels_count"], : _MISSED_,
-//                in_array ("groups_count", $parameters) ? $params["groups_count"], : _MISSED_,
-//                in_array ("students_count", $parameters) ? $params["students_count"], : _MISSED_,
-//                in_array ("latitude", $parameters) ? $params["latitude"], : _MISSED_,
-//                in_array ("longitude", $parameters) ? $params["longitude : _MISSED_,
-//                in_array ("positioning", $parameters) ? $params["positioning : _MISSED_,
-//                in_array ("last_update", $parameters) ? $params["last_update : _MISSED_,
-//                in_array ("last_sync", $parameters) ? $params["last_sync : _MISSED_,
-//                in_array ("comments", $parameters) ? $params["comments : _MISSED_,
-//                in_array ("fek", $parameters) ? $params["fek : _MISSED_
-//            );
-//            break;
-//        case MethodTypes::PUT :
-//            $result = PutUnits(
-//                in_array ("mm_id", $parameters) ? $params["mm_id : _MISSED_,
-//                in_array ("registry_no", $parameters) ? $params["registry_no : _MISSED_,
-//                in_array ("gluc", $parameters) ? $params["gluc : _MISSED_,
-//                in_array ("source", $parameters) ? $params["source : _MISSED_,
-//                in_array ("name", $parameters) ? $params["name : _MISSED_,
-//                in_array ("special_name", $parameters) ? $params["special_name : _MISSED_,
-//                in_array ("state", $parameters) ? $params["state : _MISSED_,
-//                in_array ("region_edu_admin", $parameters) ? $params["region_edu_admin : _MISSED_,
-//                in_array ("edu_admin", $parameters) ? $params["edu_admin : _MISSED_,
-//                in_array ("implementation_entity", $parameters) ? $params["implementation_entity : _MISSED_,
-//                in_array ("transfer_area", $parameters) ? $params["transfer_area : _MISSED_,
-//                in_array ("prefecture", $parameters) ? $params["prefecture : _MISSED_,
-//                in_array ("municipality", $parameters) ? $params["municipality : _MISSED_,
-//                in_array ("education_level", $parameters) ? $params["education_level : _MISSED_,
-//                in_array ("phone_number", $parameters) ? $params["phone_number : _MISSED_,
-//                in_array ("email", $parameters) ? $params["email : _MISSED_,
-//                in_array ("fax_number", $parameters) ? $params["fax_number : _MISSED_,
-//                in_array ("street_address", $parameters) ? $params["street_address : _MISSED_,
-//                in_array ("postal_code", $parameters) ? $params["postal_code : _MISSED_,
-//                in_array ("tax_number", $parameters) ? $params["tax_number : _MISSED_,
-//                in_array ("tax_office", $parameters) ? $params["tax_office : _MISSED_,
-//                in_array ("area_team_number", $parameters) ? $params["area_team_number : _MISSED_,
-//                in_array ("category", $parameters) ? $params["category : _MISSED_,
-//                in_array ("unit_type", $parameters) ? $params["unit_type : _MISSED_,
-//                in_array ("operation_shift", $parameters) ? $params["operation_shift : _MISSED_,
-//                in_array ("legal_character", $parameters) ? $params["legal_character : _MISSED_,
-//                in_array ("orientation_type", $parameters) ? $params["orientation_type : _MISSED_,
-//                in_array ("special_type", $parameters) ? $params["special_type : _MISSED_,
-//                in_array ("levels_count", $parameters) ? $params["levels_count"], : _MISSED_,
-//                in_array ("groups_count", $parameters) ? $params["groups_count"], : _MISSED_,
-//                in_array ("students_count", $parameters) ? $params["students_count"], : _MISSED_,
-//                in_array ("latitude", $parameters) ? $params["latitude"], : _MISSED_,
-//                in_array ("longitude", $parameters) ? $params["longitude : _MISSED_,
-//                in_array ("positioning", $parameters) ? $params["positioning : _MISSED_,
-//                in_array ("last_update", $parameters) ? $params["last_update : _MISSED_,
-//                in_array ("last_sync", $parameters) ? $params["last_sync : _MISSED_,
-//                in_array ("comments", $parameters) ? $params["comments : _MISSED_,
-//                in_array ("fek", $parameters) ? $params["fek : _MISSED_
-//            );
-//            break;
+        case MethodTypes::POST :
+            $parameters = array_keys($params);
+            $result = PostUnits(
+                in_array ("registry_no", $parameters) ? $params["registry_no"] : _MISSED_,
+                in_array ("gluc", $parameters) ? $params["gluc"] : _MISSED_,
+                in_array ("source", $parameters) ? $params["source"] : _MISSED_,
+                in_array ("name", $parameters) ? $params["name"] : _MISSED_,
+                in_array ("special_name", $parameters) ? $params["special_name"] : _MISSED_,
+                in_array ("state", $parameters) ? $params["state"] : _MISSED_,
+                in_array ("region_edu_admin", $parameters) ? $params["region_edu_admin"] : _MISSED_,
+                in_array ("edu_admin", $parameters) ? $params["edu_admin"] : _MISSED_,
+                in_array ("implementation_entity", $parameters) ? $params["implementation_entity"] : _MISSED_,
+                in_array ("transfer_area", $parameters) ? $params["transfer_area"] : _MISSED_,
+                in_array ("prefecture", $parameters) ? $params["prefecture"] : _MISSED_,
+                in_array ("municipality", $parameters) ? $params["municipality"] : _MISSED_,
+                in_array ("education_level", $parameters) ? $params["education_level"] : _MISSED_,
+                in_array ("phone_number", $parameters) ? $params["phone_number"] : _MISSED_,
+                in_array ("email", $parameters) ? $params["email"] : _MISSED_,
+                in_array ("fax_number", $parameters) ? $params["fax_number"] : _MISSED_,
+                in_array ("street_address", $parameters) ? $params["street_address"] : _MISSED_,
+                in_array ("postal_code", $parameters) ? $params["postal_code"] : _MISSED_,
+                in_array ("tax_number", $parameters) ? $params["tax_number"] : _MISSED_,
+                in_array ("tax_office", $parameters) ? $params["tax_office"] : _MISSED_,
+                in_array ("area_team_number", $parameters) ? $params["area_team_number"] : _MISSED_,
+                in_array ("category", $parameters) ? $params["category"] : _MISSED_,
+                in_array ("unit_type", $parameters) ? $params["unit_type"] : _MISSED_,
+                in_array ("operation_shift", $parameters) ? $params["operation_shift"] : _MISSED_,
+                in_array ("legal_character", $parameters) ? $params["legal_character"] : _MISSED_,
+                in_array ("orientation_type", $parameters) ? $params["orientation_type"] : _MISSED_,
+                in_array ("special_type", $parameters) ? $params["special_type"] : _MISSED_,
+                in_array ("levels_count", $parameters) ? $params["levels_count"] : _MISSED_,
+                in_array ("groups_count", $parameters) ? $params["groups_count"] : _MISSED_,
+                in_array ("students_count", $parameters) ? $params["students_count"] : _MISSED_,
+                in_array ("latitude", $parameters) ? $params["latitude"] : _MISSED_,
+                in_array ("longitude", $parameters) ? $params["longitude"] : _MISSED_,
+                in_array ("positioning", $parameters) ? $params["positioning"] : _MISSED_,
+                in_array ("last_update", $parameters) ? $params["last_update"] : _MISSED_,
+                in_array ("last_sync", $parameters) ? $params["last_sync"] : _MISSED_,
+                in_array ("comments", $parameters) ? $params["comments"] : _MISSED_,
+                in_array ("fek", $parameters) ? $params["fek"] : _MISSED_
+            );
+            break;
+        case MethodTypes::PUT :
+            $parameters = array_keys($params);
+            $result = PutUnits(
+                in_array ("mm_id", $parameters) ? $params["mm_id"] : _MISSED_,
+                in_array ("registry_no", $parameters) ? $params["registry_no"] : _MISSED_,
+                in_array ("gluc", $parameters) ? $params["gluc"] : _MISSED_,
+                in_array ("source", $parameters) ? $params["source"] : _MISSED_,
+                in_array ("name", $parameters) ? $params["name"] : _MISSED_,
+                in_array ("special_name", $parameters) ? $params["special_name"] : _MISSED_,
+                in_array ("state", $parameters) ? $params["state"] : _MISSED_,
+                in_array ("region_edu_admin", $parameters) ? $params["region_edu_admin"] : _MISSED_,
+                in_array ("edu_admin", $parameters) ? $params["edu_admin"] : _MISSED_,
+                in_array ("implementation_entity", $parameters) ? $params["implementation_entity"] : _MISSED_,
+                in_array ("transfer_area", $parameters) ? $params["transfer_area"] : _MISSED_,
+                in_array ("prefecture", $parameters) ? $params["prefecture"] : _MISSED_,
+                in_array ("municipality", $parameters) ? $params["municipality"] : _MISSED_,
+                in_array ("education_level", $parameters) ? $params["education_level"] : _MISSED_,
+                in_array ("phone_number", $parameters) ? $params["phone_number"] : _MISSED_,
+                in_array ("email", $parameters) ? $params["email"] : _MISSED_,
+                in_array ("fax_number", $parameters) ? $params["fax_number"] : _MISSED_,
+                in_array ("street_address", $parameters) ? $params["street_address"] : _MISSED_,
+                in_array ("postal_code", $parameters) ? $params["postal_code"] : _MISSED_,
+                in_array ("tax_number", $parameters) ? $params["tax_number"] : _MISSED_,
+                in_array ("tax_office", $parameters) ? $params["tax_office"] : _MISSED_,
+                in_array ("area_team_number", $parameters) ? $params["area_team_number"] : _MISSED_,
+                in_array ("category", $parameters) ? $params["category"] : _MISSED_,
+                in_array ("unit_type", $parameters) ? $params["unit_type"] : _MISSED_,
+                in_array ("operation_shift", $parameters) ? $params["operation_shift"] : _MISSED_,
+                in_array ("legal_character", $parameters) ? $params["legal_character"] : _MISSED_,
+                in_array ("orientation_type", $parameters) ? $params["orientation_type"] : _MISSED_,
+                in_array ("special_type", $parameters) ? $params["special_type"] : _MISSED_,
+                in_array ("levels_count", $parameters) ? $params["levels_count"] : _MISSED_,
+                in_array ("groups_count", $parameters) ? $params["groups_count"] : _MISSED_,
+                in_array ("students_count", $parameters) ? $params["students_count"] : _MISSED_,
+                in_array ("latitude", $parameters) ? $params["latitude"] : _MISSED_,
+                in_array ("longitude", $parameters) ? $params["longitude"] : _MISSED_,
+                in_array ("positioning", $parameters) ? $params["positioning"] : _MISSED_,
+                in_array ("last_update", $parameters) ? $params["last_update"] : _MISSED_,
+                in_array ("last_sync", $parameters) ? $params["last_sync"] : _MISSED_,
+                in_array ("comments", $parameters) ? $params["comments"] : _MISSED_,
+                in_array ("fek", $parameters) ? $params["fek"] : _MISSED_
+            );
+            break;
     }
 
     PrepareResponse();
