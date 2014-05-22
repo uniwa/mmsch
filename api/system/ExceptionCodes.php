@@ -1084,6 +1084,8 @@ class ExceptionCodes
     
     /** {@see ExceptionMessages::DuplicatedConnectionValue} */
     const DuplicatedConnectionValue = 500;
+    /** {@see ExceptionMessages::DifferenceConnectioCircuitMMIdValue} */
+    const DifferenceConnectioCircuitMMIdValue = 500;
     /** {@see ExceptionMessages::UsedConnectionByUnitNetworkSubnets} */
     const UsedConnectionByUnitNetworkSubnets = 500;
     
@@ -1092,8 +1094,8 @@ class ExceptionCodes
 
 
 
-
-
+    /** {@see ExceptionMessages::MissingMMIdParam} */
+    const MissingMMIdParam = 500;
     /** {@see ExceptionMessages::MissingMMIdValue} */
     const MissingMMIdValue = 500;
     /** {@see ExceptionMessages::InvalidMMIdType} */
@@ -1136,6 +1138,7 @@ class ExceptionCodes
     
     const InvalidGlucType = 500;
     const InvalidSpecialNameType = 500;
+    const InvalidPhoneNumberType = 500;
 
     const InvalidFaxNumberType = 500;
     const InvalidEmailType = 500;
@@ -1157,9 +1160,7 @@ class ExceptionCodes
     const InvalidWorkerFirstnameType = 500;
     const InvalidWorkerFathernameType = 500;
     const InvalidWorkerSexType = 500;
-    
-    
-    
+
 
     const MissingActiveValue = 500;
     const InvalidActiveType = 500;

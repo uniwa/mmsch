@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 $username = "";
 $password = "";
 
@@ -34,6 +35,21 @@ else {
 	print("This page is protected by HTTP Authentication.<br>\n");
 	
 	die();
+=======
+require_once ('server/config.php');
+require_once ('server/libs/phpCAS/CAS.php');
+if(!isset($casOptions["NoAuth"]) || $casOptions["NoAuth"] != true) {
+    // initialize phpCAS using SAML
+    phpCAS::proxy(CAS_VERSION_2_0,$casOptions["Url"],$casOptions["Port"],'');
+    // no SSL validation for the CAS server, only for testing environments
+    phpCAS::setNoCasServerValidation();
+    // handle backend logout requests from CAS server
+    phpCAS::handleLogoutRequests(array($casOptions["Url"]));
+    // force CAS authentication
+    if (!phpCAS::checkAuthentication())
+      phpCAS::forceAuthentication();
+    // at this step, the user has been authenticated by the CAS server and the user's login name can be read with //phpCAS::getUser(). for this test, simply print who is the authenticated user and his attributes.
+>>>>>>> d88b4af3e023f0db0c5dcb3c362e5a59f5e443c6
 }
 ?>
 <!DOCTYPE html>

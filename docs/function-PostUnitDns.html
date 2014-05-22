@@ -132,9 +132,6 @@ summary</a> εμφανίζονται όλοι οι παράμετροι με
 <ul>
 	<li><b>unit_ext_dns</b><br />
 	GetUnitDns με search_type=EXACT &amp; unit_ext_dns="value"</li>
-
-	<li><b>unit_uid</b><br />
-	GetUnitDns με search_type=EXACT &amp; unit_uid="value"</li>
 </ul>
 <br />
 
@@ -188,7 +185,6 @@ class="php-quote">&quot;Accept: application/json&quot;</span> \
   -d <span
 class="php-quote">'{&quot;unit_dns&quot; : &quot;&quot;, \
        &quot;unit_ext_dns&quot; : &quot;&quot;, \
-       &quot;unit_uid&quot; : &quot;&quot;, \
        &quot;mm_id&quot; :  }'</span>
 </pre>
 
@@ -207,9 +203,6 @@ class="php-quote">&quot;unit_dns&quot;</span> : <span
 class="php-quote">&quot;&quot;</span>,
        <span
 class="php-quote">&quot;unit_ext_dns&quot;</span> : <span
-class="php-quote">&quot;&quot;</span>,
-       <span
-class="php-quote">&quot;unit_uid&quot;</span> : <span
 class="php-quote">&quot;&quot;</span>,
        <span
 class="php-quote">&quot;mm_id&quot;</span> :
@@ -264,9 +257,6 @@ class="php-quote">&quot;unit_dns&quot;</span> =&gt; <span
 class="php-quote">&quot;&quot;</span>,
        <span
 class="php-quote">&quot;unit_ext_dns&quot;</span> =&gt; <span
-class="php-quote">&quot;&quot;</span>,
-       <span
-class="php-quote">&quot;unit_uid&quot;</span> =&gt; <span
 class="php-quote">&quot;&quot;</span>,
        <span
 class="php-quote">&quot;mm_id&quot;</span> =&gt;
@@ -331,9 +321,6 @@ class="php-quote">&quot;unit_dns&quot;</span> : <span
 class="php-quote">&quot;&quot;</span>,
        <span
 class="php-quote">&quot;unit_ext_dns&quot;</span> : <span
-class="php-quote">&quot;&quot;</span>,
-       <span
-class="php-quote">&quot;unit_uid&quot;</span> : <span
 class="php-quote">&quot;&quot;</span>,
        <span
 class="php-quote">&quot;mm_id&quot;</span> :
@@ -424,22 +411,12 @@ class="php-quote">&quot;success&quot;</span>
 Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
-	<tr id="$unit_uid">
-		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$unit_uid</var></code></td>
-		<td>
-			$unit_ext_dns ExtDNS Μονάδας<br />
-Το ExtDNS της Μονάδας<br />
-Η παράμετρος είναι υποχρεωτική<br />
-Η τιμή της παραμέτρου μπορεί να είναι : string
-		</td>
-	</tr>
 	<tr id="$mm_id">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$mm_id</var></code></td>
 		<td>
-			$unit_uid Όνομα UID Μονάδας<br />
-Το UID της Μονάδας<br />
+			$unit_ext_dns ExtDNS Μονάδας<br />
+Το ExtDNS της Μονάδας<br />
 Η παράμετρος είναι υποχρεωτική<br />
 Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
@@ -567,58 +544,6 @@ class="php-quote">&quot;success&quot;</span>
 			<code><a href="class-ExceptionMessages.html#DuplicatedUnitExtDnsValue">ExceptionMessages::<b>DuplicatedUnitExtDnsValue</b></a></code><br />
 <code><a href="class-ExceptionCodes.html#DuplicatedUnitExtDnsValue">ExceptionCodes::<b>DuplicatedUnitExtDnsValue</b></a></code><br />
 Το πλήρης DNS της Μονάδας υπάρχει ήδη
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			MissingUnitUidValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#MissingUnitUidValue">ExceptionMessages::<b>MissingUnitUidValue</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#MissingUnitUidValue">ExceptionCodes::<b>MissingUnitUidValue</b></a></code><br />
-Το Uid της Μονάδας πρέπει να έχει τιμή
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidUnitUidArray
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidUnitUidArray">ExceptionMessages::<b>InvalidUnitUidArray</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidUnitUidArray">ExceptionCodes::<b>InvalidUnitUidArray</b></a></code><br />
-Το Uid της Μονάδας δεν μπορεί να έχει
-πολλαπλές τιμές
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidUnitUidType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidUnitUidType">ExceptionMessages::<b>InvalidUnitUidType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidUnitUidType">ExceptionCodes::<b>InvalidUnitUidType</b></a></code><br />
-Το Uid της Μονάδας πρέπει να είναι αριθμητικό
-ή αλφαριθμητικό
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			MissingUnitUidParam
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#MissingUnitUidParam">ExceptionMessages::<b>MissingUnitUidParam</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#MissingUnitUidParam">ExceptionCodes::<b>MissingUnitUidParam</b></a></code><br />
-Το Uid της Μονάδας είναι υποχρεωτικό πεδίο
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			DuplicatedUnitUidDnsValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#DuplicatedUnitUidDnsValue">ExceptionMessages::<b>DuplicatedUnitUidDnsValue</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#DuplicatedUnitUidDnsValue">ExceptionCodes::<b>DuplicatedUnitUidDnsValue</b></a></code><br />
-Το Uid της Μονάδας της Μονάδας υπάρχει ήδη
 		</td>
 	</tr>
 	<tr>

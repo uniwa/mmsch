@@ -1,8 +1,6 @@
 /server/config.php
 /server/sync/*
+.buildpath
 /.settings
 .project
-.buildpath
-.gitignore
-/client/gen_static_data.php
-/api/.htaccess
+/api/.gitignore

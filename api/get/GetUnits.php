@@ -1261,7 +1261,7 @@ function GetUnits(
                 if ( Validator::isNull($values) )
                     $paramFilters[] = "$table_name.$table_column_name is null";
                 else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
+                    $paramFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
                 else
                     throw new Exception(ExceptionMessages::InvalidRegistryNoType." : ".$values, ExceptionCodes::InvalidRegistryNoType);
             }
@@ -2655,7 +2655,10 @@ function GetUnits(
 //= $array_unit_network_subnets
 //======================================================================================================================
         
-        $sqlSelect = "SELECT unit_network_subnets.unit_network_subnet_id,
+        $sqlSelect = "SELECT
+                             connection_unit_network_subnets.connection_id,
+                             connection_unit_network_subnets.unit_network_subnet_id,
+                             unit_network_subnets.unit_network_subnet_id,
                              unit_network_subnets.subnet_name,
                              unit_network_subnets.subnet_ip,
                              unit_network_subnets.subnet_default_router,
@@ -2666,18 +2669,17 @@ function GetUnits(
                              units.special_name as special_unit_name,
                              unit_network_subnet_types.unit_network_subnet_type_id,
                              unit_network_subnet_types.subnet_type as unit_network_subnet_type,
+                             connection_unit_network_subnets.connection_unit_network_subnet_id,
                              connection_unit_network_subnets.unit_network_subnet_id is not null as is_connected
-                            ";
+                        ";
 
-        $sqlFrom   = "FROM unit_network_subnets
-                      LEFT JOIN unit_network_subnet_types ON unit_network_subnets.unit_network_subnet_type_id = unit_network_subnet_types.unit_network_subnet_type_id
-                      LEFT JOIN units ON unit_network_subnets.mm_id = units.mm_id
-                      LEFT JOIN connections ON units.mm_id = connections.mm_id
-                      LEFT JOIN connection_unit_network_subnets ON unit_network_subnets.unit_network_subnet_id = connection_unit_network_subnets.unit_network_subnet_id and connections.connection_id=connection_unit_network_subnets.connection_id";
-
-        $sqlWhere = " WHERE unit_network_subnets.mm_id in (".$ids.")";
+        $sqlFrom   = "  FROM unit_network_subnets
+                        LEFT JOIN units ON unit_network_subnets.mm_id = units.mm_id
+                        LEFT JOIN unit_network_subnet_types ON unit_network_subnets.unit_network_subnet_type_id = unit_network_subnet_types.unit_network_subnet_type_id
+                        LEFT JOIN connection_unit_network_subnets ON unit_network_subnets.unit_network_subnet_id=connection_unit_network_subnets.unit_network_subnet_id";
+        $sqlWhere = " WHERE unit_network_subnets.mm_id in (".$ids.") ";
         $sqlOrder = " ORDER BY unit_network_subnets.mm_id ASC";
-
+        
         $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder;
         //echo "<br><br>".$sql."<br><br>";
 
@@ -2737,9 +2739,11 @@ function GetUnits(
 
         $sqlFrom   = "FROM connection_unit_network_subnets
                       LEFT JOIN unit_network_subnets ON connection_unit_network_subnets.unit_network_subnet_id = unit_network_subnets.unit_network_subnet_id
-                      LEFT JOIN unit_network_subnet_types ON unit_network_subnets.unit_network_subnet_type_id = unit_network_subnet_types.unit_network_subnet_type_id";
+                      LEFT JOIN unit_network_subnet_types ON unit_network_subnets.unit_network_subnet_type_id = unit_network_subnet_types.unit_network_subnet_type_id
+                      LEFT JOIN connections ON connection_unit_network_subnets.connection_id = connections.connection_id                      
+                     ";
 
-        $sqlWhere = " WHERE connection_unit_network_subnets.connection_id in (".$connection_ids.")";
+        $sqlWhere = " WHERE connection_unit_network_subnets.connection_id in (".$connection_ids.") AND connections.mm_id=unit_network_subnets.mm_id";
         $sqlOrder = " ORDER BY connection_unit_network_subnets.connection_unit_network_subnet_id ASC, connection_unit_network_subnets.unit_network_subnet_id ASC";
 
         $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder;
@@ -2990,6 +2994,7 @@ function GetUnits(
                     "special_unit_name"             => $unit_network_subnet["special_unit_name"],
                     "unit_network_subnet_type_id"   => Validator::toIntVal($unit_network_subnet["unit_network_subnet_type_id"]),
                     "unit_network_subnet_type"      => $unit_network_subnet["unit_network_subnet_type"],
+                    "connection_unit_network_subnet_id"   => Validator::toIntVal($unit_network_subnet["connection_unit_network_subnet_id"]),
                     "is_connected"     => isset($unit_network_subnet["is_connected"]) ? (bool)$unit_network_subnet["is_connected"] : null,
                 );
             }
