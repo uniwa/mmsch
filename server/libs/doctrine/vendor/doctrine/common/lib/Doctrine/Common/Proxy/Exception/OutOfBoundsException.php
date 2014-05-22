@@ -19,44 +19,25 @@
 
 namespace Doctrine\Common\Proxy\Exception;
 
-use UnexpectedValueException as BaseUnexpectedValueException;
+use Doctrine\Common\Persistence\Proxy;
+use OutOfBoundsException as BaseOutOfBoundsException;
 
 /**
- * Proxy Unexpected Value Exception.
+ * Proxy Invalid Argument Exception.
  *
  * @link   www.doctrine-project.org
- * @since  2.4
- * @author Marco Pivetta <ocramius@gmail.com>
+ * @author Fredrik Wendel <fredrik_w@users.sourceforge.net>
  */
-class UnexpectedValueException extends BaseUnexpectedValueException implements ProxyException
+class OutOfBoundsException extends BaseOutOfBoundsException implements ProxyException
 {
     /**
-     * @return self
-     */
-    public static function proxyDirectoryNotWritable($proxyDirectory)
-    {
-        return new self(sprintf('Your proxy directory "%s" must be writable', $proxyDirectory));
-    }
-
-    /**
-     * @param string     $className
-     * @param string     $methodName
-     * @param string     $parameterName
-     * @param \Exception $previous
+     * @param string $className
+     * @param string $idField
      *
      * @return self
      */
-    public static function invalidParameterTypeHint($className, $methodName, $parameterName, \Exception $previous)
+    public static function missingPrimaryKeyValue($className, $idField)
     {
-        return new self(
-            sprintf(
-                'The type hint of parameter "%s" in method "%s" in class "%s" is invalid.',
-                $parameterName,
-                $methodName,
-                $className
-            ),
-            0,
-            $previous
-        );
+        return new self(sprintf("Missing value for primary key %s on %s", $idField, $className));
     }
 }
