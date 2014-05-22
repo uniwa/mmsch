@@ -1,0 +1,9 @@
+tests/phpunit.xml
+tests/temp/*.php
+scripts/
+vendor/
+tags
+.vimrc.local
+/composer.lock
+/composer.phar
+.idea
