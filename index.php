@@ -24,7 +24,7 @@ if (empty($username) || empty($password)) {
 
     die();
 
-} else if ($username == "mmsch" && $password == "mmsch") {
+} else if (($username == "mmsch" && $password == "mmsch") || ($username == "mmschadmin" && $password == "mmschadmin")) {
 	//continue
 }
 else {
