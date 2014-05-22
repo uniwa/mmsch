@@ -2,6 +2,8 @@
 // bootstrap.php
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
+use Doctrine\Common\EventManager;
+use Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain;
 
 require_once "vendor/autoload.php";
 
@@ -23,5 +25,18 @@ $conn = array(
     'charset'  => 'UTF8',
 );
 
+$driverChain = new MappingDriverChain();
+// load superclass metadata mapping only, into driver chain
+// also registers Gedmo annotations.NOTE: you can personalize it
+$annotationReader = $config->getMetadataDriverImpl()->getReader();
+Gedmo\DoctrineExtensions::registerAbstractMappingIntoDriverChainORM($driverChain, $annotationReader);
+
+$evm = new EventManager();
+// loggable, not used in example
+$loggableListener = new \Gedmo\Loggable\LoggableListener;
+$loggableListener->setAnnotationReader($annotationReader);
+$loggableListener->setUsername('admin');
+$evm->addEventSubscriber($loggableListener);
+
 // obtaining the entity manager
-$entityManager = EntityManager::create($conn, $config);
+$entityManager = EntityManager::create($conn, $config, $evm);
