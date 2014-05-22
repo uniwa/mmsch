@@ -1,41 +1,4 @@
 <?php
-<<<<<<< HEAD
-$username = "";
-$password = "";
-
-
-if (isset($_SERVER['PHP_AUTH_USER'])) {
-    $username = $_SERVER['PHP_AUTH_USER'];
-    $password = $_SERVER['PHP_AUTH_PW'];
-
-
-} elseif (isset($_SERVER['HTTP_AUTHENTICATION'])) {
-
-        if (strpos(strtolower($_SERVER['HTTP_AUTHENTICATION']),'basic')===0)
-          list($username,$password) = explode(':',base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
-
-}
-
-if (empty($username) || empty($password)) {
-
-    header('WWW-Authenticate: Basic realm="My Realm"');
-    header('HTTP/1.0 401 Unauthorized');
-    
-    print("This page is protected by HTTP Authentication.<br>\n");
-
-    die();
-
-} else if (($username == "mmsch" && $password == "mmsch") || ($username == "mmschadmin" && $password == "mmschadmin")) {
-	//continue
-}
-else {
-	header('WWW-Authenticate: Basic realm="My Realm"');
-	header('HTTP/1.0 401 Unauthorized');
-	
-	print("This page is protected by HTTP Authentication.<br>\n");
-	
-	die();
-=======
 require_once ('server/config.php');
 require_once ('server/libs/phpCAS/CAS.php');
 if(!isset($casOptions["NoAuth"]) || $casOptions["NoAuth"] != true) {
@@ -49,7 +12,6 @@ if(!isset($casOptions["NoAuth"]) || $casOptions["NoAuth"] != true) {
     if (!phpCAS::checkAuthentication())
       phpCAS::forceAuthentication();
     // at this step, the user has been authenticated by the CAS server and the user's login name can be read with //phpCAS::getUser(). for this test, simply print who is the authenticated user and his attributes.
->>>>>>> d88b4af3e023f0db0c5dcb3c362e5a59f5e443c6
 }
 ?>
 <!DOCTYPE html>
