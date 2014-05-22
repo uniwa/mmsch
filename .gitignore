@@ -1,4 +1,6 @@
 /server/config.php
-/server/config.php
-/nbproject
 /server/sync/*
+.buildpath
+/.settings
+.project
+/api/.gitignore
