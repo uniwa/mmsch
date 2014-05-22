@@ -1,2 +1,8 @@
 /server/config.php
 /server/sync/*
+/.settings
+.project
+.buildpath
+.gitignore
+/client/gen_static_data.php
+/api/.htaccess
