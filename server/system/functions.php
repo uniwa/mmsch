@@ -328,5 +328,39 @@ function humanTiming($time)
     
     return $value;
 }
+
+function getPage($params) {
+    if ( Validator::Missing('page', $params) )
+        $page = 1;
+    else if ( Validator::isNull($page) )
+        throw new Exception(ExceptionMessages::MissingPageValue, ExceptionCodes::MissingPageValue);
+    elseif ( Validator::isArray($page) )
+        throw new Exception(ExceptionMessages::InvalidPageArray, ExceptionCodes::InvalidPageArray);
+    elseif (Validator::isLowerThan($page, 0, true) )
+        throw new Exception(ExceptionMessages::InvalidPageNumber, ExceptionCodes::InvalidPageNumber);
+    elseif (!Validator::isGreaterThan($page, 0) )
+        throw new Exception(ExceptionMessages::InvalidPageType, ExceptionCodes::InvalidPageType);
+    else
+        return Validator::toInteger($page);
+}
+
+function getPageSize($params, $useAllPageSize = false) {
+    if ( Validator::Missing('pagesize', $params) )
+        $pagesize = $useAllPageSize == true ? Parameters::AllPageSize : Parameters::DefaultPageSize;
+    else if ( Validator::isEqualTo($pagesize, 0) )
+        $pagesize = Parameters::AllPageSize;
+    else if ( Validator::isNull($pagesize) )
+        throw new Exception(ExceptionMessages::MissingPageSizeValue, ExceptionCodes::MissingPageSizeValue);
+    elseif ( Validator::isArray($pagesize) )
+        throw new Exception(ExceptionMessages::InvalidPageSizeArray, ExceptionCodes::InvalidPageSizeArray);
+    elseif ( (Validator::isLowerThan($pagesize, 0) ) )
+        throw new Exception(ExceptionMessages::InvalidPageSizeNumber, ExceptionCodes::InvalidPageSizeNumber);
+    elseif (!Validator::isGreaterThan($pagesize, 0) )
+        throw new Exception(ExceptionMessages::InvalidPageSizeType, ExceptionCodes::InvalidPageSizeType);
+    else
+        $pagesize = Validator::toInteger($pagesize);
+    
+    return $pagesize;
+}
      
 ?>
