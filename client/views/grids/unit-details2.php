@@ -1038,11 +1038,11 @@ position: fixed;
 			saveConnection: function(e){
 				
 				var self = this;
-				
+			
 				var $form = $("#frm_create_connection_" + mm_id);
-				
+			
 				var btn = $(e.target);
-				
+			
 				var connection_id = $('form#frm_create_connection_' + mm_id + ' input#connection_id').val();
 				//var unit_network_subnet_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_net_elem]:checked').val() || null;
 				var circuit_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_circuits]:checked').val() || null;
@@ -1054,10 +1054,10 @@ position: fixed;
 				});
 
 				//console.log(subnets);return;
-				
+
 				var params = {
 					'mm_id': mm_id
-				};
+				};			
 
 				if (circuit_id != null){
 					params["circuit_id"] = circuit_id;
@@ -1095,36 +1095,129 @@ position: fixed;
 				
 				
 				btn.button("loading");
+
+				var editConnection = self.get("editedConnection");
+				var connectionSubnets = new Array();
 				
-				$.ajax({ 
+				if (editConnection != null){
+
+					$.each(editConnection.subnets, function(i,t){
+						connectionSubnets.push(
+							{
+								"connection_unit_network_subnet_id": (t.connection_unit_network_subnet_id).toString(),
+								 "unit_network_subnet_id": (t.unit_network_subnet_id).toString()
+							}
+						);
+					});
+				}
+
+				var subnets2add = [];
+				$.each(subnets, function(key,value) {
+					
+				    var found = false;
+
+				    $.each(connectionSubnets, function(k, connectionSubnet){
+					    if (connectionSubnet.unit_network_subnet_id == value){
+					    	found = true;
+					    	return;
+					    }
+					});
+
+					if (!found)
+				    subnets2add.push(value);
+				});
+
+
+				var subnets2delete = [];
+				$.each(connectionSubnets, function(key,connectionSubnet) {
+					
+					var found = false;
+
+				    $.each(subnets, function(k, subnet){
+					    if (connectionSubnet.unit_network_subnet_id == subnet){
+					    	found = true;
+					    	return;
+					    }
+					});
+
+					if (!found)
+					subnets2delete.push(connectionSubnet.connection_unit_network_subnet_id);
+				    
+				});
+				
+				$.ajax({
 					type: method,
 					url: apiUrl + "connections", 
 					data: params,
                     dataType: "json", 
+
                     success: function(resp){
 
-						var connection_id = resp.connection_id;
-						
-                    	// if new connection
-						if (method == "POST"){
-							// if subnets selected
-							if (subnets.length > 0){
+                    	if (method == "POST"){
+							connection_id = resp.connection_id;
+                    	}
 
-								self.postConnectionSubnet(connection_id ,subnets, 0);
-							}
-						}
+                    	var addConnectionRequests = [];
+                    	if (subnets2add.length > 0){
+                        	for (var i = 0; i < subnets2add.length; i++){
+                        		addConnectionRequests.push(
+									$.ajax({
+										type: "POST",
+										url: apiUrl + "connection_unit_network_subnets", 
+										data: {
+											"connection_id" : connection_id,
+										    "unit_network_subnet_id" : subnets2add[i]
+										},
+						                dataType: "json",
+						                beforeSend: function(xhr){
+											xhr.setRequestHeader(
+												'Authorization',
+												make_base_auth ('mmschadmin', 'mmschadmin')
+											);
+										}
+									})
+                                );
+                        	}
+                    	}
+
+                    	var deleteConnectionRequests = [];
+                    	if (subnets2delete.length > 0){
+                        	for (var i = 0; i < subnets2delete.length; i++){
+                        		deleteConnectionRequests.push(
+									$.ajax({
+										type: "DELETE",
+										url: apiUrl + "connection_unit_network_subnets?connection_unit_network_subnet_id=" + subnets2delete[i], 
+						                dataType: "json",
+						                beforeSend: function(xhr){
+											xhr.setRequestHeader(
+												'Authorization',
+												make_base_auth ('mmschadmin', 'mmschadmin')
+											);
+										}
+									})
+                                );
+                        	}
+                    	}
 						
-						btn.button("reset");
-						
-						//at this point every check passes show display sucess msg depending on method post/put
-						if (method == "POST"){
-							$form.find(".alert-success.success-create").show("fast")
-						}
-						if (method == "PUT"){
-							$form.find(".alert-success.success-update").show("fast")
-						}
-				
-						self.get("unitSource").read();
+                    	$.when.apply($, addConnectionRequests).then(
+                            function(){
+                            	$.when.apply($, deleteConnectionRequests).then(
+                                	function(){
+                                		btn.button("reset");
+
+                						//at this point every check passes show display sucess msg depending on method post/put
+                						if (method == "POST"){
+                							$form.find(".alert-success.success-create").show("fast");
+                						}
+                						if (method == "PUT"){
+                							$form.find(".alert-success.success-update").show("fast");
+                						}
+
+                						self.get("unitSource").read();
+                                	}
+                                );
+                            }	
+                        );
 					},
 					beforeSend: function(xhr){
 						xhr.setRequestHeader(
@@ -1135,35 +1228,8 @@ position: fixed;
 				});
 			},
 
-			postConnectionSubnet: function(connection_id, subnets, current){
-
-				if (current < subnets.length){
-					
-					$.ajax({
-						type: "POST",
-						url: apiUrl + "connection_unit_network_subnets", 
-						data: {
-					          "connection_id" : connection_id,
-					          "unit_network_subnet_id" : subnets[current]
-					    },
-	                    dataType: "json",
-						success: function(resp){
-							current++;
-
-							self.postConnectionSubnets(connection_id, subnets, current);
-						},
-
-						beforeSend: function(xhr){
-							xhr.setRequestHeader(
-								'Authorization',
-								make_base_auth ('mmschadmin', 'mmschadmin')
-							);
-						}
-					});
-				}
-			},
-
 			deleteConnection: function(e){
+
 				e.preventDefault();
 				
 				var btn = $(e.target);
@@ -1174,27 +1240,63 @@ position: fixed;
 				var conf = confirm("Είστε σίγουροι ότι θέλετε να διαγράψετε τη διασύνδεση;");
 				
 				if (conf == true){ 
-				
+					
 					btn.button("loading");
 					
-					$.ajax({ 
-						type: "DELETE",
-						url: apiUrl + "connections?connection_id=" + data.connection_id,
-						dataType: "json", 
-						success: function(resp){
-							
-							btn.button("reset");
-							
-							self.get("unitSource").read();
-						},
-						beforeSend: function(xhr){
-							
-							xhr.setRequestHeader(
-								'Authorization',
-								make_base_auth ('mmschadmin', 'mmschadmin')
-							);
+					var conx = null;
+					$.each(self.get("unitData").connections, function(idx, connection){
+						if (data.connection_id = connection.connection_id){
+							conx = connection;
+							return 0;
 						}
-					});					
+					});
+					
+					var deleteConnectionSubnetsRequests = new Array();
+					
+					if (conx != null){
+
+						$.each(conx.unit_network_subnets, function(i,connection_subnet){
+								
+							deleteConnectionSubnetsRequests.push(
+								$.ajax({ 
+									type: "DELETE",
+									url: apiUrl + "connection_unit_network_subnets?connection_unit_network_subnet_id=" + connection_subnet.connection_unit_network_subnet_id,
+									dataType: "json", 
+									success: function(resp){},
+									beforeSend: function(xhr){
+											
+										xhr.setRequestHeader(
+											'Authorization',
+											make_base_auth ('mmschadmin', 'mmschadmin')
+										);
+									}
+								})		
+							);
+							
+						});
+
+						$.when.apply($, deleteConnectionSubnetsRequests).then(function(){
+
+							$.ajax({ 
+								type: "DELETE",
+								url: apiUrl + "connections?connection_id=" + data.connection_id,
+								dataType: "json", 
+								success: function(resp){
+									
+									btn.button("reset");
+									
+									self.get("unitSource").read();
+								},
+								beforeSend: function(xhr){
+									
+									xhr.setRequestHeader(
+										'Authorization',
+										make_base_auth ('mmschadmin', 'mmschadmin')
+									);
+								}
+							});		
+						});
+					}
 				}
 			},
 			
@@ -1233,7 +1335,7 @@ position: fixed;
 
 						for (var i=0; i < editConnection.subnets.length; i++){
 							if (editConnection.subnets[i].unit_network_subnet_id == currentSubnetID){
-								console.log(editConnection.subnets[i].unit_network_subnet_id+ " " + currentSubnetID);
+								//console.log(editConnection.subnets[i].unit_network_subnet_id+ " " + currentSubnetID);
 								return true;	
 							}	
 						}
@@ -1591,7 +1693,7 @@ position: fixed;
 		footer.insertAfter(content);
 		
 		viewModel.unitSource.fetch(function(){
-			
+			console.log("read unit");
 			kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
 			
 			//viewModel.set("unitData", this.data()[0]);
