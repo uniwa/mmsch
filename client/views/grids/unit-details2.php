@@ -292,14 +292,18 @@ position: fixed;
 									<td class="term-value">#= gluc #</td>
 								</tr>
 								# } #
+								# if (edu_admin != null) { #
 								<tr>    
 									<td class="detail-term">Διεύθυνση εκπαίδευσης</td>
 									<td class="term-value">#= edu_admin.replace("ΔΙΕΥΘΥΝΣΗ","") #</td>
 								</tr>
+								# } #
+								# if (implementation_entity_id != null) { #
 								<tr>
 									<td class="detail-term">Φορέας Υλοποίησης</td>
 									<td class="term-value"><a href="##" class="btn btn-xs btn-default btnShowImplementationEntityInfo" data-implementation_entity_id="#= implementation_entity_id #">#= implementation_entity_initials #</a></td>
 								</tr>
+								# } #
 								<tr>
 									<td class="detail-term">Τηλέφωνο Επικοινωνίας</td>
 									<td class="term-value">#= phone_number #</td>
