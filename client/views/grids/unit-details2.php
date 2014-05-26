@@ -479,7 +479,9 @@ position: fixed;
 											# for (var j = 0, slen = subnets.length;  j < slen; j++ ){ #
 											<tr>
 												<td class="detail-term">IP</td>
-												<td class="term-value">${subnets[j].subnet_ip}</td>
+												<td class="term-value">
+													<a class="data" href="telnet://${subnets[j].subnet_ip}">${subnets[j].subnet_ip}</a>
+												</td>
 											</tr>
 											<tr>
 												<td class="detail-term">Μάσκα</td>
@@ -554,7 +556,9 @@ position: fixed;
 											</td></tr>							
 											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
 												<td class="detail-term">IP</td>
-												<td class="term-value">${unit_network_subnet.subnet_ip}</td>
+												<td class="term-value">
+													<a class="data" href="telnet://${unit_network_subnet.subnet_ip}">${unit_network_subnet.subnet_ip}</a>
+												</td>
 											</tr>
 											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
 												<td class="detail-term">Μάσκα</td>
@@ -1003,7 +1007,14 @@ position: fixed;
 					var view = this.view();
 					
 					viewModel.set("unitData", view[0]);
-					
+
+					/*
+					console.log("view model change");
+					console.log(viewModel.get("unitData"));
+
+					kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
+					kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
+					*/
 				}
 			}),
 			
@@ -1096,8 +1107,7 @@ position: fixed;
 				}else {
 					$form.find(".alert-danger.empty-circuit").hide();
 				}
-				
-				
+								
 				btn.button("loading");
 
 				var editConnection = self.get("editedConnection");
@@ -1105,7 +1115,16 @@ position: fixed;
 				
 				if (editConnection != null){
 
-					$.each(editConnection.subnets, function(i,t){
+					//find connection
+					var editedConnection = null;
+					$.each(self.get("unitData").connections, function(idx, conx){
+						if (conx.connection_id == editConnection.connection_id){
+							editedConnection = conx;
+							return;
+						}
+					});
+					
+					$.each(editedConnection.unit_network_subnets, function(i,t){
 						connectionSubnets.push(
 							{
 								"connection_unit_network_subnet_id": (t.connection_unit_network_subnet_id).toString(),
@@ -1160,7 +1179,7 @@ position: fixed;
                     	if (method == "POST"){
 							connection_id = resp.connection_id;
                     	}
-
+						console.log(addConnectionRequests);
                     	var addConnectionRequests = [];
                     	if (subnets2add.length > 0){
                         	for (var i = 0; i < subnets2add.length; i++){
@@ -1218,6 +1237,7 @@ position: fixed;
                 						}
 
                 						self.get("unitSource").read();
+                						
                                 	}
                                 );
                             }	
@@ -1308,11 +1328,6 @@ position: fixed;
 				
 				var self = this;
 				var editConnection = self.get("editedConnection");
-
-				//console.log("render");
-				//console.log(editConnection);
-				
-				
 				
 				// create new connection				
 				if (editConnection === null)
@@ -1334,26 +1349,13 @@ position: fixed;
 				}
 				else // edit connection 
 				{
-					//console.log(editConnection.subnets.length);
-					var isCurrentSubnetInConnectionSubnets = function(currentSubnetID, subnets){
-
-						for (var i=0; i < editConnection.subnets.length; i++){
-							if (editConnection.subnets[i].unit_network_subnet_id == currentSubnetID){
-								//console.log(editConnection.subnets[i].unit_network_subnet_id+ " " + currentSubnetID);
-								return true;	
-							}	
-						}
-						return false;
-					};
-					
 					var disabled = "";
 					var checked = "";
 					var cssClass = "";
 					
 					if (e.is_connected){
 						
-						//if (e.unit_network_subnet_id ==  editConnection.network_element_id){
-						if (isCurrentSubnetInConnectionSubnets(e.unit_network_subnet_id, editConnection.subnets)){
+						if (self.isSubnetInConnectionSubnets(e.unit_network_subnet_id)){
 							checked = "checked ";
 							
 							var tr = $("#grd-network-elements").find("input[value='"+editConnection.unit_network_subnet_id+"'] ").closest("tr");
@@ -1373,6 +1375,36 @@ position: fixed;
 							checked + 
 							">";
 				}
+			},
+
+			isSubnetInConnectionSubnets: function(currentSubnetID){
+
+				var self = this;
+				
+				var editConnection = self.get("editedConnection");
+				var editedConnection = null;
+
+				if (editConnection == null){
+					return false;
+				}
+				else {
+					$.each(self.get("unitData").connections, function(idx, conx){
+						if (conx.connection_id == editConnection.connection_id){
+							editedConnection = conx;
+							return;
+						}
+					});
+				}
+
+				for (var i=0; i < editedConnection.unit_network_subnets.length; i++){
+					
+					if (editedConnection.unit_network_subnets[i].unit_network_subnet_id == currentSubnetID){
+						return true;	
+					}	
+				}
+
+				return false;
+				
 			},
 			
 			renderRadioCircuit: function(e){
@@ -1542,6 +1574,7 @@ position: fixed;
 			},
 			
 			grdNetworksChangeListener: function(e){
+				/*
 				var self = this;
 				
 				var grd = e.sender;
@@ -1558,15 +1591,16 @@ position: fixed;
 							grd.select().removeClass('k-state-selected');
 						}
 						else if (self.get("editedConnection")!=null && selectedRow.unit_network_subnet_id == self.get("editedConnection").network_element_id ){
-							var radio = grd.select().find("input[type='radio']");
+							var radio = grd.select().find("input[type='checkbox']");
 							radio.prop("checked", true);
 						}
 
 					} else {
-						var radio = grd.select().find("input[type='radio']");					
+						var radio = grd.select().find("input[type='checkbox']");					
 						radio.prop("checked", true);
 					}
 				}
+				*/
 			},
 			
 			grdCircuitsChangeListener: function(e){
@@ -1654,6 +1688,7 @@ position: fixed;
 			}
 
 		});
+		//END VIEWMODEL DECLARATION 
 		
 		
 		
@@ -1695,6 +1730,7 @@ position: fixed;
 		var content = $("#wnd_create_connection_" + mm_id + " .wnd-footer").parent().parent().find(".k-window-content");
 		var footer = $("#wnd_create_connection_" + mm_id + " .wnd-footer");
 		footer.insertAfter(content);
+
 		
 		viewModel.unitSource.fetch(function(){
 			console.log("read unit");
