@@ -292,14 +292,18 @@ position: fixed;
 									<td class="term-value">#= gluc #</td>
 								</tr>
 								# } #
+								# if (edu_admin != null) { #
 								<tr>    
 									<td class="detail-term">Διεύθυνση εκπαίδευσης</td>
 									<td class="term-value">#= edu_admin.replace("ΔΙΕΥΘΥΝΣΗ","") #</td>
 								</tr>
+								# } #
+								# if (implementation_entity_id != null) { #
 								<tr>
 									<td class="detail-term">Φορέας Υλοποίησης</td>
 									<td class="term-value"><a href="##" class="btn btn-xs btn-default btnShowImplementationEntityInfo" data-implementation_entity_id="#= implementation_entity_id #">#= implementation_entity_initials #</a></td>
 								</tr>
+								# } #
 								<tr>
 									<td class="detail-term">Τηλέφωνο Επικοινωνίας</td>
 									<td class="term-value">#= phone_number #</td>
@@ -475,7 +479,9 @@ position: fixed;
 											# for (var j = 0, slen = subnets.length;  j < slen; j++ ){ #
 											<tr>
 												<td class="detail-term">IP</td>
-												<td class="term-value">${subnets[j].subnet_ip}</td>
+												<td class="term-value">
+													<a class="data" href="telnet://${subnets[j].subnet_ip}">${subnets[j].subnet_ip}</a>
+												</td>
 											</tr>
 											<tr>
 												<td class="detail-term">Μάσκα</td>
@@ -550,7 +556,9 @@ position: fixed;
 											</td></tr>							
 											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
 												<td class="detail-term">IP</td>
-												<td class="term-value">${unit_network_subnet.subnet_ip}</td>
+												<td class="term-value">
+													<a class="data" href="telnet://${unit_network_subnet.subnet_ip}">${unit_network_subnet.subnet_ip}</a>
+												</td>
 											</tr>
 											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
 												<td class="detail-term">Μάσκα</td>
@@ -999,7 +1007,14 @@ position: fixed;
 					var view = this.view();
 					
 					viewModel.set("unitData", view[0]);
-					
+
+					/*
+					console.log("view model change");
+					console.log(viewModel.get("unitData"));
+
+					kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
+					kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
+					*/
 				}
 			}),
 			
@@ -1038,11 +1053,11 @@ position: fixed;
 			saveConnection: function(e){
 				
 				var self = this;
-				
+			
 				var $form = $("#frm_create_connection_" + mm_id);
-				
+			
 				var btn = $(e.target);
-				
+			
 				var connection_id = $('form#frm_create_connection_' + mm_id + ' input#connection_id').val();
 				//var unit_network_subnet_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_net_elem]:checked').val() || null;
 				var circuit_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_circuits]:checked').val() || null;
@@ -1054,10 +1069,10 @@ position: fixed;
 				});
 
 				//console.log(subnets);return;
-				
+
 				var params = {
 					'mm_id': mm_id
-				};
+				};			
 
 				if (circuit_id != null){
 					params["circuit_id"] = circuit_id;
@@ -1092,39 +1107,141 @@ position: fixed;
 				}else {
 					$form.find(".alert-danger.empty-circuit").hide();
 				}
-				
-				
+								
 				btn.button("loading");
+
+				var editConnection = self.get("editedConnection");
+				var connectionSubnets = new Array();
 				
-				$.ajax({ 
+				if (editConnection != null){
+
+					//find connection
+					var editedConnection = null;
+					$.each(self.get("unitData").connections, function(idx, conx){
+						if (conx.connection_id == editConnection.connection_id){
+							editedConnection = conx;
+							return;
+						}
+					});
+					
+					$.each(editedConnection.unit_network_subnets, function(i,t){
+						connectionSubnets.push(
+							{
+								"connection_unit_network_subnet_id": (t.connection_unit_network_subnet_id).toString(),
+								 "unit_network_subnet_id": (t.unit_network_subnet_id).toString()
+							}
+						);
+					});
+				}
+
+				var subnets2add = [];
+				$.each(subnets, function(key,value) {
+					
+				    var found = false;
+
+				    $.each(connectionSubnets, function(k, connectionSubnet){
+					    if (connectionSubnet.unit_network_subnet_id == value){
+					    	found = true;
+					    	return;
+					    }
+					});
+
+					if (!found)
+				    subnets2add.push(value);
+				});
+
+
+				var subnets2delete = [];
+				$.each(connectionSubnets, function(key,connectionSubnet) {
+					
+					var found = false;
+
+				    $.each(subnets, function(k, subnet){
+					    if (connectionSubnet.unit_network_subnet_id == subnet){
+					    	found = true;
+					    	return;
+					    }
+					});
+
+					if (!found)
+					subnets2delete.push(connectionSubnet.connection_unit_network_subnet_id);
+				    
+				});
+				
+				$.ajax({
 					type: method,
 					url: apiUrl + "connections", 
 					data: params,
                     dataType: "json", 
+
                     success: function(resp){
 
-						var connection_id = resp.connection_id;
-						
-                    	// if new connection
-						if (method == "POST"){
-							// if subnets selected
-							if (subnets.length > 0){
+                    	if (method == "POST"){
+							connection_id = resp.connection_id;
+                    	}
+						console.log(addConnectionRequests);
+                    	var addConnectionRequests = [];
+                    	if (subnets2add.length > 0){
+                        	for (var i = 0; i < subnets2add.length; i++){
+                        		addConnectionRequests.push(
+									$.ajax({
+										type: "POST",
+										url: apiUrl + "connection_unit_network_subnets", 
+										data: {
+											"connection_id" : connection_id,
+										    "unit_network_subnet_id" : subnets2add[i]
+										},
+						                dataType: "json",
+						                beforeSend: function(xhr){
+											xhr.setRequestHeader(
+												'Authorization',
+												make_base_auth ('mmschadmin', 'mmschadmin')
+											);
+										}
+									})
+                                );
+                        	}
+                    	}
 
-								self.postConnectionSubnet(connection_id ,subnets, 0);
-							}
-						}
+                    	var deleteConnectionRequests = [];
+                    	if (subnets2delete.length > 0){
+                        	for (var i = 0; i < subnets2delete.length; i++){
+                        		deleteConnectionRequests.push(
+									$.ajax({
+										type: "DELETE",
+										url: apiUrl + "connection_unit_network_subnets?connection_unit_network_subnet_id=" + subnets2delete[i], 
+						                dataType: "json",
+						                beforeSend: function(xhr){
+											xhr.setRequestHeader(
+												'Authorization',
+												make_base_auth ('mmschadmin', 'mmschadmin')
+											);
+										}
+									})
+                                );
+                        	}
+                    	}
 						
-						btn.button("reset");
-						
-						//at this point every check passes show display sucess msg depending on method post/put
-						if (method == "POST"){
-							$form.find(".alert-success.success-create").show("fast")
-						}
-						if (method == "PUT"){
-							$form.find(".alert-success.success-update").show("fast")
-						}
-				
-						self.get("unitSource").read();
+                    	$.when.apply($, addConnectionRequests).then(
+                            function(){
+                            	$.when.apply($, deleteConnectionRequests).then(
+                                	function(){
+                                		btn.button("reset");
+
+                						//at this point every check passes show display sucess msg depending on method post/put
+                						if (method == "POST"){
+                							$form.find(".alert-success.success-create").show("fast");
+                						}
+                						if (method == "PUT"){
+                							$form.find(".alert-success.success-update").show("fast");
+                						}
+
+                						self.get("unitSource").read();
+                						
+                                	}
+                                );
+                            }	
+                        );
 					},
 					beforeSend: function(xhr){
 						xhr.setRequestHeader(
@@ -1135,35 +1252,8 @@ position: fixed;
 				});
 			},
 
-			postConnectionSubnet: function(connection_id, subnets, current){
-
-				if (current < subnets.length){
-					
-					$.ajax({
-						type: "POST",
-						url: apiUrl + "connection_unit_network_subnets", 
-						data: {
-					          "connection_id" : connection_id,
-					          "unit_network_subnet_id" : subnets[current]
-					    },
-	                    dataType: "json",
-						success: function(resp){
-							current++;
-
-							self.postConnectionSubnets(connection_id, subnets, current);
-						},
-
-						beforeSend: function(xhr){
-							xhr.setRequestHeader(
-								'Authorization',
-								make_base_auth ('mmschadmin', 'mmschadmin')
-							);
-						}
-					});
-				}
-			},
-
 			deleteConnection: function(e){
+
 				e.preventDefault();
 				
 				var btn = $(e.target);
@@ -1174,27 +1264,63 @@ position: fixed;
 				var conf = confirm("Είστε σίγουροι ότι θέλετε να διαγράψετε τη διασύνδεση;");
 				
 				if (conf == true){ 
-				
+					
 					btn.button("loading");
 					
-					$.ajax({ 
-						type: "DELETE",
-						url: apiUrl + "connections?connection_id=" + data.connection_id,
-						dataType: "json", 
-						success: function(resp){
-							
-							btn.button("reset");
-							
-							self.get("unitSource").read();
-						},
-						beforeSend: function(xhr){
-							
-							xhr.setRequestHeader(
-								'Authorization',
-								make_base_auth ('mmschadmin', 'mmschadmin')
-							);
+					var conx = null;
+					$.each(self.get("unitData").connections, function(idx, connection){
+						if (data.connection_id = connection.connection_id){
+							conx = connection;
+							return 0;
 						}
-					});					
+					});
+					
+					var deleteConnectionSubnetsRequests = new Array();
+					
+					if (conx != null){
+
+						$.each(conx.unit_network_subnets, function(i,connection_subnet){
+								
+							deleteConnectionSubnetsRequests.push(
+								$.ajax({ 
+									type: "DELETE",
+									url: apiUrl + "connection_unit_network_subnets?connection_unit_network_subnet_id=" + connection_subnet.connection_unit_network_subnet_id,
+									dataType: "json", 
+									success: function(resp){},
+									beforeSend: function(xhr){
+											
+										xhr.setRequestHeader(
+											'Authorization',
+											make_base_auth ('mmschadmin', 'mmschadmin')
+										);
+									}
+								})		
+							);
+							
+						});
+
+						$.when.apply($, deleteConnectionSubnetsRequests).then(function(){
+
+							$.ajax({ 
+								type: "DELETE",
+								url: apiUrl + "connections?connection_id=" + data.connection_id,
+								dataType: "json", 
+								success: function(resp){
+									
+									btn.button("reset");
+									
+									self.get("unitSource").read();
+								},
+								beforeSend: function(xhr){
+									
+									xhr.setRequestHeader(
+										'Authorization',
+										make_base_auth ('mmschadmin', 'mmschadmin')
+									);
+								}
+							});		
+						});
+					}
 				}
 			},
 			
@@ -1202,11 +1328,6 @@ position: fixed;
 				
 				var self = this;
 				var editConnection = self.get("editedConnection");
-
-				//console.log("render");
-				//console.log(editConnection);
-				
-				
 				
 				// create new connection				
 				if (editConnection === null)
@@ -1228,26 +1349,13 @@ position: fixed;
 				}
 				else // edit connection 
 				{
-					//console.log(editConnection.subnets.length);
-					var isCurrentSubnetInConnectionSubnets = function(currentSubnetID, subnets){
-
-						for (var i=0; i < editConnection.subnets.length; i++){
-							if (editConnection.subnets[i].unit_network_subnet_id == currentSubnetID){
-								console.log(editConnection.subnets[i].unit_network_subnet_id+ " " + currentSubnetID);
-								return true;	
-							}	
-						}
-						return false;
-					};
-					
 					var disabled = "";
 					var checked = "";
 					var cssClass = "";
 					
 					if (e.is_connected){
 						
-						//if (e.unit_network_subnet_id ==  editConnection.network_element_id){
-						if (isCurrentSubnetInConnectionSubnets(e.unit_network_subnet_id, editConnection.subnets)){
+						if (self.isSubnetInConnectionSubnets(e.unit_network_subnet_id)){
 							checked = "checked ";
 							
 							var tr = $("#grd-network-elements").find("input[value='"+editConnection.unit_network_subnet_id+"'] ").closest("tr");
@@ -1267,6 +1375,36 @@ position: fixed;
 							checked + 
 							">";
 				}
+			},
+
+			isSubnetInConnectionSubnets: function(currentSubnetID){
+
+				var self = this;
+				
+				var editConnection = self.get("editedConnection");
+				var editedConnection = null;
+
+				if (editConnection == null){
+					return false;
+				}
+				else {
+					$.each(self.get("unitData").connections, function(idx, conx){
+						if (conx.connection_id == editConnection.connection_id){
+							editedConnection = conx;
+							return;
+						}
+					});
+				}
+
+				for (var i=0; i < editedConnection.unit_network_subnets.length; i++){
+					
+					if (editedConnection.unit_network_subnets[i].unit_network_subnet_id == currentSubnetID){
+						return true;	
+					}	
+				}
+
+				return false;
+				
 			},
 			
 			renderRadioCircuit: function(e){
@@ -1436,6 +1574,7 @@ position: fixed;
 			},
 			
 			grdNetworksChangeListener: function(e){
+				/*
 				var self = this;
 				
 				var grd = e.sender;
@@ -1452,15 +1591,16 @@ position: fixed;
 							grd.select().removeClass('k-state-selected');
 						}
 						else if (self.get("editedConnection")!=null && selectedRow.unit_network_subnet_id == self.get("editedConnection").network_element_id ){
-							var radio = grd.select().find("input[type='radio']");
+							var radio = grd.select().find("input[type='checkbox']");
 							radio.prop("checked", true);
 						}
 
 					} else {
-						var radio = grd.select().find("input[type='radio']");					
+						var radio = grd.select().find("input[type='checkbox']");					
 						radio.prop("checked", true);
 					}
 				}
+				*/
 			},
 			
 			grdCircuitsChangeListener: function(e){
@@ -1548,6 +1688,7 @@ position: fixed;
 			}
 
 		});
+		//END VIEWMODEL DECLARATION 
 		
 		
 		
@@ -1589,9 +1730,10 @@ position: fixed;
 		var content = $("#wnd_create_connection_" + mm_id + " .wnd-footer").parent().parent().find(".k-window-content");
 		var footer = $("#wnd_create_connection_" + mm_id + " .wnd-footer");
 		footer.insertAfter(content);
+
 		
 		viewModel.unitSource.fetch(function(){
-			
+			console.log("read unit");
 			kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
 			
 			//viewModel.set("unitData", this.data()[0]);
