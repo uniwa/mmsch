@@ -1,6 +1,16 @@
-/server/config.php
-/server/sync/*
+server/config.php
+server/sync/*
 .buildpath
-/.settings
+.settings
 .project
-/api/.gitignore
+api/.gitignore
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
