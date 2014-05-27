@@ -15,11 +15,11 @@ position: fixed;
 			<tbody>
 			<tr>
 				<td class="detail-term">Όνομα </td>
-				<td class="term-value">#= name #</td>
+				<td class="term-value">#= implementation_entity #</td>
 			</tr>
 			<tr>
 				<td class="detail-term">Αρχικά </td>
-				<td class="term-value">#= initials #</td>
+				<td class="term-value">#= implementation_entity_initials #</td>
 			</tr>
 			<tr>
 				<td class="detail-term">Διεύθυνση (Οδός και Αριθμός) </td>
