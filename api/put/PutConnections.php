@@ -362,11 +362,11 @@ function PutConnections(
                 $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $connection_id );
 
                 $sql = "SELECT
-                            connection_id,
-                            mm_id,
-                            cpe_id,
-                            ldap_id,
-                            circuit_id
+                        connection_id,
+                        mm_id,
+                        cpe_id,
+                        ldap_id,
+                        circuit_id
                         FROM connections WHERE ".$filters["connection_id"];
                 //echo "<br><br>".$sql."<br><br>";
                 $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
