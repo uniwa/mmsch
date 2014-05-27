@@ -2,7 +2,7 @@
 function ddls(){
 	
 		$("#src_category").kendoMultiSelect({
-        dataTextField: "name",
+        dataTextField: "category",
         dataValueField: "category_id",
         optionLabel: "Επιλέξτε...",
         //dataSource: dsCategories,
@@ -75,7 +75,7 @@ function ddls(){
     });
 
 		$("#src_educationLevel").kendoMultiSelect({
-        dataTextField: "name",
+        dataTextField: "education_level",
         dataValueField: "education_level_id",
         optionLabel: "Επιλέξτε...",
         //dataSource: dsEducationLevels,
@@ -139,7 +139,7 @@ function ddls(){
     });
 
 		$("#src_unitType").kendoMultiSelect({
-        dataTextField: "name",
+        dataTextField: "unit_type",
         dataValueField: "unit_type_id",
         optionLabel: "Επιλέξτε...",
         dataSource: inMemoryUnitTypes,
@@ -157,7 +157,7 @@ function ddls(){
 
     
 		$("#src_regionEduAdmin").kendoMultiSelect({
-            dataTextField: "name",
+            dataTextField: "region_edu_admin",
             dataValueField: "region_edu_admin_id",
             optionLabel: "Επιλέψτε...",
             //dataSource: dsRegionEduAdmins,
@@ -269,7 +269,7 @@ function ddls(){
 
         $("#src_transferArea").kendoMultiSelect({
             //cascadeFrom: "src_regionEduAdmin",
-            dataTextField: "name",
+            dataTextField: "transfer_area",
             dataValueField: "transfer_area_id",
             optionLabel: "Επιλέξτε...",
             dataSource: inMemoryTransferAreas,
@@ -289,7 +289,7 @@ function ddls(){
 
         $("#src_orientationType").kendoMultiSelect({
             cascadeFrom: "src_category",
-			dataTextField: "name",
+			dataTextField: "orientation_type",
             dataValueField: "orientation_type_id",
             optionLabel: "Επιλέξτε...",
             dataSource: inMemoryOrientationTypes,
@@ -325,7 +325,7 @@ function ddls(){
 
         $("#src_operationShift").kendoMultiSelect({
             cascadeFrom: "src_category",
-			dataTextField: "name",
+			dataTextField: "operation_shift",
             dataValueField: "operation_shift_id",
             optionLabel: "Επιλέξτε...",
             dataSource: inMemoryOperationShifts,
@@ -360,7 +360,7 @@ function ddls(){
         });
 
         $("#src_prefecture").kendoMultiSelect({
-            dataTextField: "name",
+            dataTextField: "prefecture",
             dataValueField: "prefecture_id",
             optionLabel: "Επιλέξτε...",
             /*
@@ -419,7 +419,7 @@ function ddls(){
 
         $("#src_municipality").kendoMultiSelect({
             cascadeFrom: "src_prefecture",
-			dataTextField: "name",
+			dataTextField: "municipality",
             dataValueField: "municipality_id",
             optionLabel: "Επιλέξτε...",
             dataSource: inMemoryMunicipalities.data(),
@@ -454,7 +454,7 @@ function ddls(){
         });
 
         $("#src_implementationEntity").kendoMultiSelect({
-            dataTextField: "initials",
+            dataTextField: "implementation_entity_initials",
             dataValueField: "implementation_entity_id",
             optionLabel: "Επιλέξτε...",
             //dataSource: inMemoryImplEnt.data(),
@@ -482,7 +482,7 @@ function ddls(){
         });
 
         $("#src_source").kendoMultiSelect({
-            dataTextField: "name",
+            dataTextField: "source",
             dataValueField: "source_id",
             optionLabel: "Επιλέξτε...",
             dataSource: inMemorySources,
@@ -509,7 +509,7 @@ function ddls(){
         });
 
         $("#src_state").kendoMultiSelect({
-            dataTextField: "name",
+            dataTextField: "state",
             dataValueField: "state_id",
             optionLabel: "Επιλέξτε...",
 			//dataSource: inMemoryStates,
@@ -542,7 +542,7 @@ function ddls(){
 
         $("#src_specialType").kendoMultiSelect({
             cascadeFrom: "src_category",
-			dataTextField: "name",
+			dataTextField: "special_type",
             dataValueField: "special_type_id",
             optionLabel: "Επιλέξτε...",
 			dataSource: inMemorySpecialTypes,
@@ -578,7 +578,7 @@ function ddls(){
 		
 		$("#src_legalCharacter").kendoMultiSelect({
             cascadeFrom: "src_category",
-			dataTextField: "name",
+			dataTextField: "legal_character",
             dataValueField: "legal_character_id",
             optionLabel: "Επιλέξτε...",
 			dataSource: staticData.LegalCharacters.data,

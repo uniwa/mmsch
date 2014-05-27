@@ -43,7 +43,7 @@ var inMemoryImplEnt = new kendo.data.DataSource({
 		//console.log(e.response);
 		//e.sender.insert(0, { region_edu_admin_id: -1, name: "--Χωρίς Περιφέρεια--" });
 		if(typeof e.type !== 'undefined')
-			e.response.data.unshift({ implementation_entity_id: -1, name: "--Χωρίς ΦΥ--", initials: "--Χωρίς ΦΥ--" });
+			e.response.data.unshift({ implementation_entity_id: -1, implementation_entity: "--Χωρίς ΦΥ--", implementation_entity_initials: "--Χωρίς ΦΥ--" });
 	}
 });
 
@@ -60,13 +60,13 @@ var inMemoryRegionEduAdmins = new kendo.data.DataSource({
 		//console.log(e.response);
 		//e.sender.insert(0, { region_edu_admin_id: -1, name: "--Χωρίς Περιφέρεια--" });
 		if(typeof e.type !== 'undefined')
-			e.response.data.unshift({ region_edu_admin_id: -1, name: "--Χωρίς Περιφέρεια--" });
+			e.response.data.unshift({ region_edu_admin_id: -1, region_edu_admin: "--Χωρίς Περιφέρεια--" });
 	}
 });
 
 // Διευθυνσεις Εκπαιδευσης
 $.each(staticData['EduAdmins']['data'], function(i,item){
-	var short_name = item.name.replace("ΔΙΕΥΘΥΝΣΗ ", "Δ.");
+	var short_name = item.edu_admin.replace("ΔΙΕΥΘΥΝΣΗ ", "Δ.");
 	item["short_name"] = short_name;
 });
 
@@ -80,7 +80,7 @@ var inMemoryEduAdmins = new kendo.data.DataSource({
 	},
 	requestEnd: function(e) {
 		if(typeof e.type !== 'undefined')
-			e.response.data.unshift({ edu_admin_id: -1, name: "--Χωρίς Διεύθυνση εκπαίδευσης--", region_edu_admin_id: -1, short_name: "--Χωρίς Διεύθυνση εκπαίδευσης--"  });
+			e.response.data.unshift({ edu_admin_id: -1, edu_admin: "--Χωρίς Διεύθυνση εκπαίδευσης--", region_edu_admin_id: -1, short_name: "--Χωρίς Διεύθυνση εκπαίδευσης--"  });
 	}
 });
 //inMemoryEduAdmins.insert(0, { edu_admin_id: -1, name: "--Χωρίς Διεύθυνση εκπαίδευσης--" });
@@ -96,7 +96,7 @@ var inMemoryTransferAreas = new kendo.data.DataSource({
 	},
 	requestEnd: function(e) {
 		if(typeof e.type !== 'undefined')
-			e.response.data.unshift({ transfer_area_id: -1, name: "--Χωρίς Περιοχή Μετάθεσης--", region_edu_admin_id: -1, edu_admin_id: -1 });
+			e.response.data.unshift({ transfer_area_id: -1, transfer_area: "--Χωρίς Περιοχή Μετάθεσης--", region_edu_admin_id: -1, edu_admin_id: -1 });
 	}
 });
 
@@ -111,7 +111,7 @@ var inMemoryPrefectures = new kendo.data.DataSource({
 	},
 	requestEnd: function(e) {
 		if(typeof e.type !== 'undefined'){
-			e.response.data.unshift({ prefecture_id: -1, name: "--Χωρίς Νομό--"});
+			e.response.data.unshift({ prefecture_id: -1, prefecture: "--Χωρίς Νομό--"});
 		}
 	}
 });
@@ -127,7 +127,7 @@ var inMemoryMunicipalities = new kendo.data.DataSource({
 	},
 	requestEnd: function(e) {
 		if(typeof e.type !== 'undefined'){
-			e.response.data.unshift({ municipality_id :-1, name: "--Χωρίς Δήμο--", prefecture_id: -1});
+			e.response.data.unshift({ municipality_id :-1, municipality: "--Χωρίς Δήμο--", prefecture_id: -1});
 		}	
 	}
 });
