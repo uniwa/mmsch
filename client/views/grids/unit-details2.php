@@ -477,6 +477,8 @@ position: fixed;
 											</tr>
 											
 											# for (var j = 0, slen = subnets.length;  j < slen; j++ ){ #
+											<tr><td colspan="2" class="connectionSubnet" ><table class="table borderless"><tbody>
+
 											<tr>
 												<td class="detail-term">IP</td>
 												<td class="term-value">
@@ -495,6 +497,8 @@ position: fixed;
 												<td class="detail-term">Τύπος</td>
 												<td class="term-value">${subnets[j].unit_network_subnet_type}</td>
 											</tr>
+
+											</tbody></table></td></tr>
 											# } #
 											
 											<tr>
