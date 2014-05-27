@@ -366,7 +366,6 @@ function PutConnections(
                             mm_id,
                             cpe_id,
                             ldap_id,
-                            unit_network_element_id,
                             circuit_id
                         FROM connections WHERE ".$filters["connection_id"];
                 //echo "<br><br>".$sql."<br><br>";
