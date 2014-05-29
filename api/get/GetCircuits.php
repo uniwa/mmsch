@@ -493,8 +493,8 @@ function GetCircuits(
         else
             throw new Exception(ExceptionMessages::InvalidSearchType." : ".$searchtype, ExceptionCodes::InvalidSearchType);
 
-        $page = getPage($params);
-        $pagesize = getPageSize($params);
+        $page = getPage($page, $params);
+        $pagesize = getPageSize($pagesize, $params);
 
 //======================================================================================================================
 //= $circuit

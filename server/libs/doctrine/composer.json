@@ -4,6 +4,9 @@
         "symfony/yaml": "2.*",
         "gedmo/doctrine-extensions": "dev-master"
     },
+    "config": {
+        "preferred-install": "dist"
+    },
     "autoload": {
         "psr-0": {"": "src/"}
     }
