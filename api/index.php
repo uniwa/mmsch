@@ -97,7 +97,7 @@ $app->map('/connection_unit_network_subnets', Authentication, ConnectionUnitNetw
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 
 $app->get('/docs/*', function () use ($app) {
-    $app->redirect("http://mmsch.teiath.gr/doc/");
+    $app->redirect("http://mmsch.teiath.gr/docs/");
 });
 
 $app->notFound(function () use ($app) 
