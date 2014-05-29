@@ -1011,7 +1011,7 @@ function GetUnits(
     $special_type, $levels_count, $groups_count, $students_count, $latitude, $longitude, $positioning, $last_update, $last_sync, $comments,
     $pagesize, $page, $orderby, $ordertype, $searchtype )
 {
-    global $db;
+    global $db, $entityManager;
     
     $filter = array();
     $result = array();
@@ -2763,6 +2763,8 @@ function GetUnits(
         
         foreach ($rows as $row)
         {
+            $doctrineUnit = $entityManager->getRepository('Units')->find($row["mm_id"]);
+            $logEntries = $entityManager->getRepository('Gedmo\Loggable\Entity\LogEntry')->getLogEntries($doctrineUnit);
             $data = array(
                 "mm_id"                    => $row["mm_id"] ? (int)$row["mm_id"] : null,
                 "registry_no"              => $row["registry_no"],
@@ -2822,6 +2824,7 @@ function GetUnits(
                 "last_sync"                => $row["last_sync"],
                 "last_update"              => $row["last_update"],
                 "comments"                 => $row["comments"],
+                "version"                  => count($logEntries),
             );
 
 
