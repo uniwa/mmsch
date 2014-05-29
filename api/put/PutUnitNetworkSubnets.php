@@ -611,31 +611,6 @@ function PutUnitNetworkSubnets(
         {
             throw new Exception(ExceptionMessages::MissingUnitNetworkSubnetMaskParam, ExceptionCodes::MissingUnitNetworkSubnetMaskParam);
         }
-        
- //======================================================================================================================
-//= Check for mask uniques
-//======================================================================================================================
-
-        if ( $filters["mask"] )
-        {
-            $sql = "SELECT
-                    unit_network_subnet_id,
-                    mask
-                    FROM unit_network_subnets 
-                    WHERE ".$filters["mask"]."
-                    AND NOT ".$filters["unit_network_subnet_id"];
-
-            //echo "<br><br>".$sql."<br><br>";
-            $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-            $stmt = $db->query( $sql );
-            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            if ( $stmt->rowCount() > 0 )
-            {
-                throw new Exception(ExceptionMessages::DuplicatedUnitNetworkSubnetMaskValue." : ".$rows[0]["mask"], ExceptionCodes::DuplicatedUnitNetworkSubnetMaskValue);
-            }
-        }
               
 //======================================================================================================================
 //= Check $subnet_default_router
