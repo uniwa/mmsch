@@ -329,7 +329,7 @@ function humanTiming($time)
     return $value;
 }
 
-function getPage($params) {
+function getPage($page, $params) {
     if ( Validator::Missing('page', $params) )
         $page = 1;
     else if ( Validator::isNull($page) )
@@ -342,9 +342,11 @@ function getPage($params) {
         throw new Exception(ExceptionMessages::InvalidPageType, ExceptionCodes::InvalidPageType);
     else
         return Validator::toInteger($page);
+
+    return $page;
 }
 
-function getPageSize($params, $useAllPageSize = false) {
+function getPageSize($pagesize, $params, $useAllPageSize = false) {
     if ( Validator::Missing('pagesize', $params) )
         $pagesize = $useAllPageSize == true ? Parameters::AllPageSize : Parameters::DefaultPageSize;
     else if ( Validator::isEqualTo($pagesize, 0) )

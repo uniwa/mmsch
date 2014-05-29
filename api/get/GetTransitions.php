@@ -59,7 +59,7 @@ header("Content-Type: text/html; charset=utf-8");
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password \
- *       -d '{"to_state": "ΣΕ ΑΝΑΣΤΟΛΗ"}' 
+ *       -d '{"unit": "100001"}'
  * </code>
  * <br>
  * 
@@ -68,7 +68,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <a id="JavaScript"></a>Παράδειγμα κλήσης της συνάρτησης με <b>JavaScript</b> :
  * <code>
  * <script>
- *    var params = JSON.stringify({ "to_state": "ΣΕ ΑΝΑΣΤΟΛΗ" });
+ *    var params = JSON.stringify({ "unit": "100001" });
  *    
  *    var http = new XMLHttpRequest();
  *    http.open("GET", "http://mmsch.teiath.gr/api/transitions");
@@ -98,7 +98,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <?php
  * header("Content-Type: text/html; charset=utf-8");
  * 
- * $params = array("to_state" => "ΣΕ ΑΝΑΣΤΟΛΗ");
+ * $params = array("unit" => "100001");
  * 
  * $curl = curl_init("http://mmsch.teiath.gr/api/transitions");
  * 
@@ -124,7 +124,7 @@ header("Content-Type: text/html; charset=utf-8");
  *        type: 'GET',
  *        url: 'http://mmsch.teiath.gr/api/transitions',
  *        dataType: "json",
- *        data:{'to_state': 'ΣΕ ΑΝΑΣΤΟΛΗ'},
+ *        data:{'unit': '100001'},
  *        beforeSend: function(req) {
  *            req.setRequestHeader('Authorization', btoa('username' + ":" + 'password'));
  *        },
@@ -142,97 +142,34 @@ header("Content-Type: text/html; charset=utf-8");
  * <br><a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα του λεξικού σε μορφή JSON :
  * <code>
  * {"data":[
- *  	{
- *  		"transition_id": 19406,
- *  		"fek": null,
- *  		"transition_date": null,
- *  		"mm_id": 1009574,
- *  		"unit_registry_no": "9450124",
- *  		"unit_name": "ΝΗΠΙΑΓΩΓΕΙΟ ΠΛΑΤΑΝΟΥ",
- *  		"special_unit_name": "",
- *  		"from_state_id": null,
- *  		"from_state": null,
- *  		"to_state_id": 1,
- *  		"to_state": "ΕΝΕΡΓΗ"
- *  	},
- *  	{
- *  		"transition_id": 19405,
- *  		"fek": null,
- *  		"transition_date": null,
- *  		"mm_id": 1015319,
- *  		"unit_registry_no": "2001010",
- *  		"unit_name": "1ο ΗΜΕΡΗΣΙΟ ΓΥΜΝΑΣΙΟ ΙΩΑΝΝΙΝΩΝ",
- *  		"special_unit_name": "",
- *  		"from_state_id": null,
- *  		"from_state": null,
- *  		"to_state_id": 1,
- *  		"to_state": "ΕΝΕΡΓΗ"
- *  	},
- *  	{
- *  		"transition_id": 19404,
- *  		"fek": null,
- *  		"transition_date": null,
- *  		"mm_id": 1011130,
- *  		"unit_registry_no": "9520877",
- *  		"unit_name": "20ο ΟΛΟΗΜΕΡΟ ΔΗΜΟΤΙΚΟ ΣΧΟΛΕΙΟ ΕΥΟΣΜΟΥ",
- *  		"special_unit_name": "",
- *  		"from_state_id": null,
- *  		"from_state": null,
- *  		"to_state_id": 1,
- *  		"to_state": "ΕΝΕΡΓΗ"
- *  	},
- *  	{
- *  		"transition_id": 19403,
- *  		"fek": null,
- *  		"transition_date": null,
- *  		"mm_id": 1016037,
- *  		"unit_registry_no": "3701060",
- *  		"unit_name": "ΗΜΕΡΗΣΙΟ ΓΥΜΝΑΣΙΟ ΠΟΛΥΣΙΤΟΥ ΞΑΝΘΗΣ",
- *  		"special_unit_name": "ΓΥΜΝΑΣΙΟ ΠΟΛΥΣΙΤΟΥ",
- *  		"from_state_id": null,
- *  		"from_state": null,
- *  		"to_state_id": 1,
- *  		"to_state": "ΕΝΕΡΓΗ"
- *  	},
- *  	{
- *  		"transition_id": 19402,
- *  		"fek": null,
- *  		"transition_date": null,
- *  		"mm_id": 1016220,
- *  		"unit_registry_no": "4144001",
- *  		"unit_name": "ΗΜΕΡΗΣΙΟ ΓΕΝΙΚΟ ΛΥΚΕΙΟ ΑΤΣΙΠΟΠΟΥΛΟΥ",
- *  		"special_unit_name": "",
- *  		"from_state_id": null,
- *  		"from_state": null,
- *  		"to_state_id": 1,
- *  		"to_state": "ΕΝΕΡΓΗ"
- *  	}		
+ *      {
+ *          "id":26565,
+ *          "action":"update",
+ *          "logged_at":"2014-05-21 20:28:26",
+ *          "objectId":"1019424",
+ *          "objectClass":"Units",
+ *          "version":1,
+ *          "data":{
+ *              "name":"ΚΠΕ ΑΡΧΑΝΩΝ-ΡΟΥΒΑ-ΓΟΥΒΩΝ",
+ *              "regionEduAdmin": {
+ *                  "regionEduAdminId":6
+ *              }
+ *          },
+ *          "username":"admin"
+ *      },
+ *      {
+ *          "id":26564,
+ *          "action":"create",
+ *          "logged_at":"2014-05-21 20:28:22",
+ *          "objectId":"1019423",
+ *          "objectClass":"Units",
+ *          "version":1,
+ *          "data":{},
+ *          "username":"admin"
+ *      }
  * ]}
  * </code>
  * <br>
- * 
- * 
- *
- *  
- * @param mixed
- * <br>Η Αρχική Κατάσταση της Μονάδας κατά την Μετάβαση 
- * <br>Λεξικό : Καταστάσεις {@see GetStates}
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- *  
- * @param mixed $to_state  Κατάσταση
- * <br>Η Τελική Κατάσταση της Μονάδας κατά την Μετάβαση 
- * <br>Λεξικό : Καταστάσεις {@see GetStates}
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
  *
  * @param mixed $unit Μονάδα
  * <br>Το Όνομα ή ο Κωδικός MM της Μονάδας
@@ -247,8 +184,6 @@ header("Content-Type: text/html; charset=utf-8");
  *    </li>
  *    <li>string
  *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Μονάδας
- *       <br>Με την χρήση της παραμέτρου Τύπος Αναζήτησης (<a href="#$searchtype">$searchtype</a>) μπορεί να καθοριστεί ο τρόπος με τον οποίο
- *       θα αναζητηθεί η τιμή της παραμέτρου
  *       <br>Αν η παράμετρος δεν έχει τιμή τότε η αναζήτηση γίνεται με τον Tύπο {@see SearchEnumTypes::ContainAll}
  *    </li>
  *    <li>array[integer|string]
@@ -256,51 +191,6 @@ header("Content-Type: text/html; charset=utf-8");
  *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
  *    </li>
  * </ul>
- *
- *
- * @param mixed $from_state Αρχική Κατάσταση Μονάδας
- * <br>Το Όνομα ή ο Κωδικός της Αρχική Κατάστασης της Μονάδας
- * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
- * <br>Λεξικό : {@see GetStates}
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- * <ul>
- *    <li>integer
- *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό της Αρχική Κατάστασης της Μονάδας
- *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
- *    </li>
- *    <li>string
- *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Αρχική Κατάστασης της Μονάδας
- *       <br>Η αναζήτηση στο Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
- *    </li>
- *    <li>array[integer|string]
- *       <br>Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
- *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
- *    </li>
- * </ul>
- *
- *
- *  @param mixed $from_state Τελική Κατάσταση Μονάδας
- * <br>Το Όνομα ή ο Κωδικός της Τελικής Κατάστασης της Μονάδας
- * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
- * <br>Λεξικό : {@see GetStates}
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- * <ul>
- *    <li>integer
- *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό της Τελικής Κατάστασης της Μονάδας
- *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
- *    </li>
- *    <li>string
- *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Τελικής Κατάστασης της Μονάδας
- *       <br>Η αναζήτηση στο Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
- *    </li>
- *    <li>array[integer|string]
- *       <br>Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
- *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
- *    </li>
- * </ul>
- *
  *
  * @param integer $pagesize Αριθμός Εγγραφών/Σελίδα
  * <br>Ο αριθμός των εγγραφών που θα επιστρέψουν ανα σελίδα
@@ -313,6 +203,7 @@ header("Content-Type: text/html; charset=utf-8");
  *       <br>Αριθμητική : Η τιμή της παραμέτρου πρέπει να είναι μεγαλύτερη από 0
  *    </li>
  * </ul>
+ *
  *
  *
  * @param integer $page Αριθμός Σελίδας
@@ -350,20 +241,6 @@ header("Content-Type: text/html; charset=utf-8");
  *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see OrderEnumTypes}
  *    </li>
  * </ul>
- *
- *
- * @param string $searchtype Τύπος Αναζήτησης
- * <br>Ο Τύπος Αναζήτησης με τον οποίο γίνεται η αναζήτηση στο Όνομα της Μονάδας (<a href="#$unit">$unit</a>)
- * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Αν η παράμετρος δεν έχει τιμή τότε η αναζήτηση γίνεται με τον Τύπο {@see SearchEnumTypes::ContainAll}
- * <br>Αν η παράμετρος Μονάδα (<a href="#$unit">$unit</a>) έχει Αριθμητική Τιμή τότε η αναζήτηση γίνεται με τον Κωδικό ΜΜ με Τύπο {@see SearchEnumTypes::Exact}
- * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- * <ul>
- *    <li>string
- *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see SearchEnumTypes}
- *    </li>
- * </ul>
  * 
  * 
  *
@@ -374,26 +251,19 @@ header("Content-Type: text/html; charset=utf-8");
  * <br>string : <b>message</b> : Το Μήνυμα {@see ExceptionMessages} του αποτελέσματος της κλήσης
  * <br>integer : <b>count</b> : Το πλήθος των εγγραφών της κλήσης σύμφωνα με τις παραμέτρους σελιδοποίησης
  * <br>integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς τις παραμέτρους σελιδοποίησης
- * <br>array : <b>data</b> : Ο Πίνακας με το λεξικό
+ * <br>array : <b>data</b> : Ο Πίνακας με το λεξικό των μεταβάσεων
  * <ul>
- *      <li>integer : <b>transition_id</b> : Ο Κωδικός της Μετάβασης</li>
- *      <li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας (Μονάδες : {@see GetUnits})</li>
- *      <li>string : <b>registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της Μονάδας</li>
- *      <li>string : <b>unit_name</b> : Το Όνομα της Μονάδας</li>
- *      <li>string : <b>special_unit_name</b> : Το Προσωνύμιο της Μονάδας</li>
- *      <li>string : <b>fek</b> : Ο Αριθμός ΦΕΚ της Ματαβάσης</li>
- *      <li>date : <b>transition_date</b> : Η Ημερομηνία της Μετάβασης</li>
- *      <li>integer : <b>from_state_id</b> : Ο Κωδικός της Αρχικής Κατάστασης της Μονάδας κατά την Μετάβαση</li>
- *      <li>string : <b>from_state</b> : Η Αρχική Κατάσταση της Μονάδας κατά την Μετάβαση (Λεξικό : {@see GetStates})</li>
- *      <li>integer : <b>to_state_id</b> : Ο Κωδικός της Τελικής Κατάστασης της Μονάδας κατά την Μετάβαση</li>
- *      <li>string : <b>to_state</b> : Η Τελική Κατάσταση της Μονάδας κατά την Μετάβαση (Λεξικό : {@see GetStates})</li>
+ *      <li>integer : <b>id</b> : Ο Κωδικός της μετάβασης</li>
+ *      <li>integer : <b>action</b> : Τύπος μετάβασης (create, update, remove)</li>
+ *      <li>integer : <b>objectId</b> : Ο Κωδικός ΜΜ του αντικειμένου</li>
+ *      <li>string : <b>objectClass</b> : Ο τύπος του αντικειμένου</li>
+ *      <li>string : <b>loggedAt</b> : Ημ/νία μετάβασης</li>
+ *      <li>string : <b>username</b> : Χρήστης που προκάλεσε τη μετάβαση</li>
+ *      <li>string : <b>version</b> : Έκδοση του αντικειμένου</li>
+ *      <li>array : <b>data</b> : Λεξικό των πεδίων που άλλαξαν</li>
  * </ul>
  * 
  *  
- *
- * @throws InvalidSearchType {@see ExceptionMessages::InvalidSearchType}
- * <br>{@see ExceptionCodes::InvalidSearchType}
- * <br>Ο Τύπος Αναζήτησης είναι λάθος
  *
  * @throws MissingPageValue {@see ExceptionMessages::MissingPageValue}
  * <br>{@see ExceptionCodes::MissingPageValue}
@@ -431,14 +301,6 @@ header("Content-Type: text/html; charset=utf-8");
  * <br>{@see ExceptionCodes::InvalidHostUnitType}
  * <br>Η Μονάδα πρέπει να είναι αριθμητική ή αλφαριθμητική
  *
- * @throws InvalidFromStateType {@see ExceptionMessages::InvalidFromStateType}
- * <br>{@see ExceptionCodes::InvalidFromStateType}
- * <br>Η Αρχική Κατάσταση της Μονάδας πρέπει να είναι αριθμητική ή αλφαριθμητική
- *
- * @throws InvalidToStateType {@see ExceptionMessages::InvalidToStateType}
- * <br>{@see ExceptionCodes::InvalidToStateType}
- * <br>Η Τελική Κατάσταση της Μονάδας πρέπει να είναι αριθμητική ή αλφαριθμητική
- *
  * @throws InvalidOrderType {@see ExceptionMessages::InvalidOrderType}
  * <br>{@see ExceptionCodes::InvalidOrderType}
  * <br>Ο Τύπος Ταξινόμησης πρέπει να είναι ASC ή DESC
@@ -451,13 +313,12 @@ header("Content-Type: text/html; charset=utf-8");
  */
 
 function GetTransitions(
-    $unit, $from_state, $to_state,
-    $pagesize, $page, $orderby, $ordertype, $searchtype
+    $unit, $pagesize, $page, $orderby, $ordertype
 )
 {
-    global $db;
+    global $db, $entityManager;
 
-    $filter = array();
+    $qb = $entityManager->createQueryBuilder();
     $result = array();
 
     $result["data"] = array();
@@ -473,43 +334,8 @@ function GetTransitions(
 //= Paging
 //======================================================================================================================
 
-        if ( Validator::Missing('searchtype', $params) )
-            $searchtype = SearchEnumTypes::ContainAll ;
-        else if ( SearchEnumTypes::isValidValue( $searchtype ) || SearchEnumTypes::isValidName( $searchtype ) )
-            $searchtype = SearchEnumTypes::getValue($searchtype);
-        else
-            throw new Exception(ExceptionMessages::InvalidSearchType." : ".$searchtype, ExceptionCodes::InvalidSearchType);
-
-
-        if ( Validator::Missing('page', $params) )
-            $page = 1;
-        else if ( Validator::isNull($page) )
-            throw new Exception(ExceptionMessages::MissingPageValue, ExceptionCodes::MissingPageValue);
-        elseif ( Validator::isArray($page) )
-            throw new Exception(ExceptionMessages::InvalidPageArray, ExceptionCodes::InvalidPageArray);
-        elseif (Validator::isLowerThan($page, 0, true) )
-            throw new Exception(ExceptionMessages::InvalidPageNumber, ExceptionCodes::InvalidPageNumber);
-        elseif (!Validator::isGreaterThan($page, 0) )
-            throw new Exception(ExceptionMessages::InvalidPageType, ExceptionCodes::InvalidPageType);
-        else
-            $page = Validator::toInteger($page);
-
-
-
-        if ( Validator::Missing('pagesize', $params) )
-            $pagesize = Parameters::AllPageSize;
-        else if ( Validator::isEqualTo($pagesize, 0) )
-            $pagesize = Parameters::AllPageSize;
-        else if ( Validator::isNull($pagesize) )
-            throw new Exception(ExceptionMessages::MissingPageSizeValue, ExceptionCodes::MissingPageSizeValue);
-        elseif ( Validator::isArray($pagesize) )
-            throw new Exception(ExceptionMessages::InvalidPageSizeArray, ExceptionCodes::InvalidPageSizeArray);
-        elseif ( (Validator::isLowerThan($pagesize, 0) ) )
-            throw new Exception(ExceptionMessages::InvalidPageSizeNumber, ExceptionCodes::InvalidPageSizeNumber);
-        elseif (!Validator::isGreaterThan($pagesize, 0) )
-            throw new Exception(ExceptionMessages::InvalidPageSizeType, ExceptionCodes::InvalidPageSizeType);
-        else
-            $pagesize = Validator::toInteger($pagesize);
+        $page = getPage($page, $params);
+        $pagesize = getPageSize($pagesize, $params);
 
 //======================================================================================================================
 //= $unit
@@ -517,124 +343,22 @@ function GetTransitions(
 
         if ( Validator::Exists('unit', $params) )
         {
-            $table_name = "units";
-            $table_column_id = "mm_id";
-            $table_column_name = "name";
-
             $param = Validator::toArray($unit);
-
-            $paramFilters = array();
-
+            $orx = $qb->expr()->orX();
             foreach ($param as $values)
             {
-                $paramWordsFilters = array();
-
                 if ( Validator::isNull($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                {
-                    if ( $searchtype == SearchEnumTypes::Exact )
-                        $paramWordsFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                    else if ( $searchtype == SearchEnumTypes::Contain )
-                        $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
-                    else
-                    {
-                        $words = Validator::toArray($values, " ");
-
-                        foreach ($words as $word)
-                        {
-                            switch ($searchtype)
-                            {
-                                case SearchEnumTypes::ContainAll :
-                                case SearchEnumTypes::ContainAny :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::StartWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::EndWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word) );
-                                    break;
-                            }
-                        }
-                    }
+                    $orx->add($qb->expr()->isNull("t.objectId"));
+                else if ( Validator::isID($values) ) {
+                    $orx->add($qb->expr()->eq("t.objectId", $db->quote(Validator::toID($values))));
+                }
+                else if ( Validator::isValue($values) ) {
+                    throw new Exception(ExceptionMessages::InvalidUnitType." : ".$values, ExceptionCodes::InvalidUnitType);
                 }
                 else
                     throw new Exception(ExceptionMessages::InvalidUnitType." : ".$values, ExceptionCodes::InvalidUnitType);
-
-                switch ($searchtype)
-                {
-                    case SearchEnumTypes::ContainAny :
-                        $paramFilters[] = "(" . implode(" OR ", $paramWordsFilters) . ")";
-                        break;
-                    default :
-                        $paramFilters[] = "(" . implode(" AND ", $paramWordsFilters) . ")";
-                        break;
-                }
-
             }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $from_state
-//======================================================================================================================
-
-        if ( Validator::Exists('from_state', $params) )
-        {
-            $table_name = "from_states";
-            $table_column_id = "state_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($from_state);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                else
-                    throw new Exception(ExceptionMessages::InvalidFromStateType." : ".$values, ExceptionCodes::InvalidFromStateType);
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $to_state
-//======================================================================================================================
-
-        if ( Validator::Exists('to_state', $params) )
-        {
-            $table_name = "to_states";
-            $table_column_id = "state_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($to_state);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                else
-                    throw new Exception(ExceptionMessages::InvalidToStateType." : ".$values, ExceptionCodes::InvalidToStateType);
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $qb->andWhere($orx);
         }
 
 //======================================================================================================================
@@ -652,87 +376,48 @@ function GetTransitions(
 //= $orderby
 //======================================================================================================================
 
-        if ( Validator::Exists('orderby', $params) )
+        $columns = array(
+            "t.action" => "action",
+            "t.objectId" => "objectId",
+            "t.loggedAt" => "loggedAt",
+        );
+        if ( Validator::Missing('orderby', $params) )
+            $orderby = "loggedAt";
+        else
         {
-            $columns = array(
-                "transition_id",
-                "fek",
-                "transition_date",
-                "mm_id",
-                "unit_registry_no",
-                "unit_name",
-                "special_unit_name",
-                "from_state_id",
-                "from_state",
-                "to_state_id",
-                "to_state"
-            );
-
             if (!in_array($orderby, $columns))
                 throw new Exception(ExceptionMessages::InvalidOrderBy." : ".$orderby, ExceptionCodes::InvalidOrderBy);
         }
-        else
-            $orderby = "transition_date";
 
 //======================================================================================================================
 //= E X E C U T E
 //======================================================================================================================
 
-        $sqlSelect = "SELECT
-                        transitions.transition_id,
-                        transitions.fek,
-                        transitions.transition_date,
-                        units.mm_id,
-                        units.registry_no as unit_registry_no,
-                        units.name as unit_name,
-                        units.special_name as special_unit_name,
-                        from_states.state_id as from_state_id,
-                        from_states.name as from_state,
-                        to_states.state_id as to_state_id,
-                        to_states.name as to_state
-                     ";
+        $qb->select('t');
+        $qb->from('Gedmo\Loggable\Entity\LogEntry', 't');
+        $qb->orderBy(array_search($orderby, $columns), $ordertype);
 
-        $sqlFrom = "FROM transitions
-                      LEFT JOIN units ON transitions.mm_id = units.mm_id
-                      LEFT JOIN states from_states ON transitions.from_state_id = from_states.state_id
-                      LEFT JOIN states to_states ON transitions.to_state_id = to_states.state_id";
+        $results = new Doctrine\ORM\Tools\Pagination\Paginator($qb->getQuery());
+        $results->getQuery()->setFirstResult($pagesize * ($page-1));
+        $results->getQuery()->setMaxResults($pagesize);
+        $result["total"] = count($results);
 
-        $sqlWhere = (count($filter) > 0 ? " WHERE " . implode(" AND ", $filter) : "" );
-        $sqlOrder = " ORDER BY ". $orderby ." ". $ordertype;
-        $sqlLimit = ($page && $pagesize) ? " LIMIT ".(($page - 1) * $pagesize).", ".$pagesize : "";
-
-
-        $sql = "SELECT count(*) as total " . $sqlFrom . $sqlWhere;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetch(PDO::FETCH_ASSOC);
-        $result["total"] = $rows["total"];
-
-
-        $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder . $sqlLimit;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $result["count"] = $stmt->rowCount();
-
-        foreach ($rows as $row)
+        $count = 0;
+        foreach ($results as $logEntry)
         {
             $result["data"][] = array(
-                "transition_id"     => $row["transition_id"] ? (int)$row["transition_id"] : null,
-                "fek"               => $row["fek"],
-                "transition_date"   => $row["transition_date"],
-                "mm_id"             => $row["mm_id"] ? (int)$row["mm_id"] : null,
-                "unit_registry_no"  => $row["unit_registry_no"],
-                "unit_name"         => $row["unit_name"],
-                "special_unit_name" => $row["special_unit_name"],
-                "from_state_id"     => $row["from_state_id"] ? (int)$row["from_state_id"] : null,
-                "from_state"        => $row["from_state"],
-                "to_state_id"       => $row["to_state_id"] ? (int)$row["to_state_id"] : null,
-                "to_state"          => $row["to_state"],
+                "id"        => $logEntry->getId(),
+                "action"      => $logEntry->getAction(),
+                "loggedAt"      => $logEntry->getLoggedAt()->format('Y-m-d H:i:s'),
+                "objectId"            => $logEntry->getObjectId(),
+                "objectClass"       => $logEntry->getObjectClass(),
+                "version"       => $logEntry->getVersion(),
+                "data"       => $logEntry->getData(),
+                "username"       => $logEntry->getUsername(),
             );
+            $count++;
         }
+        $result["count"] = $count;
 
         $result["status"] = ExceptionCodes::NoErrors;;
         $result["message"] = ExceptionMessages::NoErrors;

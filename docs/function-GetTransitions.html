@@ -6,8 +6,8 @@
 
 	<title>Function GetTransitions | mmsch.teiath.gr-ver4</title>
 
-	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?199228023"></script>
+	<script type="text/javascript" src="resources/combined.js?2275267683"></script>
+	<script type="text/javascript" src="elementlist.js?3760627893"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -207,7 +207,7 @@ class="php-quote">&quot;Content-Type: application/json&quot;</span> \
 class="php-quote">&quot;Accept: application/json&quot;</span> \
    -u username:password \
    -d <span
-class="php-quote">'{&quot;to_state&quot;: &quot;ΣΕ ΑΝΑΣΤΟΛΗ&quot;}'</span>
+class="php-quote">'{&quot;unit&quot;: &quot;100001&quot;}'</span>
 </pre>
 
 <div><br />
@@ -220,8 +220,8 @@ class="php-quote">'{&quot;to_state&quot;: &quot;ΣΕ ΑΝΑΣΤΟΛΗ&quot;}'</s
 &lt;script&gt;
    <span
 class="php-keyword1">var</span> params = JSON.stringify({ <span
-class="php-quote">&quot;to_state&quot;</span>: <span
-class="php-quote">&quot;ΣΕ ΑΝΑΣΤΟΛΗ&quot;</span> });
+class="php-quote">&quot;unit&quot;</span>: <span
+class="php-quote">&quot;100001&quot;</span> });
 
    <span
 class="php-keyword1">var</span> http = <span
@@ -277,8 +277,8 @@ class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
 
 <span
 class="php-var">$params</span> = <span class="php-keyword1">array</span>(<span
-class="php-quote">&quot;to_state&quot;</span> =&gt; <span
-class="php-quote">&quot;ΣΕ ΑΝΑΣΤΟΛΗ&quot;</span>);
+class="php-quote">&quot;unit&quot;</span> =&gt; <span
+class="php-quote">&quot;100001&quot;</span>);
 
 <span
 class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
@@ -336,8 +336,8 @@ class="php-quote">'http://mmsch.teiath.gr/api/transitions'</span>,
        dataType: <span
 class="php-quote">&quot;json&quot;</span>,
        data:{<span
-class="php-quote">'to_state'</span>: <span
-class="php-quote">'ΣΕ ΑΝΑΣΤΟΛΗ'</span>},
+class="php-quote">'unit'</span>: <span
+class="php-quote">'100001'</span>},
        beforeSend: <span
 class="php-keyword1">function</span>(req) {
            req.setRequestHeader(<span
@@ -364,183 +364,67 @@ class="php-keyword2">log</span>(data);
 του λεξικού σε μορφή JSON :</p>
 
 <pre>
-{<span
-class="php-quote">&quot;data&quot;</span>:[
-        {
-                <span
-class="php-quote">&quot;transition_id&quot;</span>: <span
-class="php-num">19406</span>,
-                <span
-class="php-quote">&quot;fek&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;transition_date&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;mm_id&quot;</span>: <span
-class="php-num">1009574</span>,
-                <span
-class="php-quote">&quot;unit_registry_no&quot;</span>: <span
-class="php-quote">&quot;9450124&quot;</span>,
-                <span
-class="php-quote">&quot;unit_name&quot;</span>: <span
-class="php-quote">&quot;ΝΗΠΙΑΓΩΓΕΙΟ ΠΛΑΤΑΝΟΥ&quot;</span>,
-                <span
-class="php-quote">&quot;special_unit_name&quot;</span>: <span
-class="php-quote">&quot;&quot;</span>,
-                <span
-class="php-quote">&quot;from_state_id&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;from_state&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;to_state_id&quot;</span>: <span
+{<span class="php-quote">&quot;data&quot;</span>:[
+     {
+         <span
+class="php-quote">&quot;id&quot;</span>:<span
+class="php-num">26565</span>,
+         <span
+class="php-quote">&quot;action&quot;</span>:<span
+class="php-quote">&quot;update&quot;</span>,
+         <span
+class="php-quote">&quot;logged_at&quot;</span>:<span
+class="php-quote">&quot;2014-05-21 20:28:26&quot;</span>,
+         <span
+class="php-quote">&quot;objectId&quot;</span>:<span
+class="php-quote">&quot;1019424&quot;</span>,
+         <span
+class="php-quote">&quot;objectClass&quot;</span>:<span
+class="php-quote">&quot;Units&quot;</span>,
+         <span
+class="php-quote">&quot;version&quot;</span>:<span
 class="php-num">1</span>,
-                <span
-class="php-quote">&quot;to_state&quot;</span>: <span
-class="php-quote">&quot;ΕΝΕΡΓΗ&quot;</span>
-        },
-        {
-                <span
-class="php-quote">&quot;transition_id&quot;</span>: <span
-class="php-num">19405</span>,
-                <span
-class="php-quote">&quot;fek&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;transition_date&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;mm_id&quot;</span>: <span
-class="php-num">1015319</span>,
-                <span
-class="php-quote">&quot;unit_registry_no&quot;</span>: <span
-class="php-quote">&quot;2001010&quot;</span>,
-                <span
-class="php-quote">&quot;unit_name&quot;</span>: <span
-class="php-quote">&quot;1ο ΗΜΕΡΗΣΙΟ ΓΥΜΝΑΣΙΟ ΙΩΑΝΝΙΝΩΝ&quot;</span>,
-                <span
-class="php-quote">&quot;special_unit_name&quot;</span>: <span
-class="php-quote">&quot;&quot;</span>,
-                <span
-class="php-quote">&quot;from_state_id&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;from_state&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;to_state_id&quot;</span>: <span
+         <span
+class="php-quote">&quot;data&quot;</span>:{
+             <span
+class="php-quote">&quot;name&quot;</span>:<span
+class="php-quote">&quot;ΚΠΕ ΑΡΧΑΝΩΝ-ΡΟΥΒΑ-ΓΟΥΒΩΝ&quot;</span>,
+             <span
+class="php-quote">&quot;regionEduAdmin&quot;</span>: {
+                 <span
+class="php-quote">&quot;regionEduAdminId&quot;</span>:<span
+class="php-num">6</span>
+             }
+         },
+         <span
+class="php-quote">&quot;username&quot;</span>:<span
+class="php-quote">&quot;admin&quot;</span>
+     },
+     {
+         <span
+class="php-quote">&quot;id&quot;</span>:<span
+class="php-num">26564</span>,
+         <span
+class="php-quote">&quot;action&quot;</span>:<span
+class="php-quote">&quot;create&quot;</span>,
+         <span
+class="php-quote">&quot;logged_at&quot;</span>:<span
+class="php-quote">&quot;2014-05-21 20:28:22&quot;</span>,
+         <span
+class="php-quote">&quot;objectId&quot;</span>:<span
+class="php-quote">&quot;1019423&quot;</span>,
+         <span
+class="php-quote">&quot;objectClass&quot;</span>:<span
+class="php-quote">&quot;Units&quot;</span>,
+         <span
+class="php-quote">&quot;version&quot;</span>:<span
 class="php-num">1</span>,
-                <span
-class="php-quote">&quot;to_state&quot;</span>: <span
-class="php-quote">&quot;ΕΝΕΡΓΗ&quot;</span>
-        },
-        {
-                <span
-class="php-quote">&quot;transition_id&quot;</span>: <span
-class="php-num">19404</span>,
-                <span
-class="php-quote">&quot;fek&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;transition_date&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;mm_id&quot;</span>: <span
-class="php-num">1011130</span>,
-                <span
-class="php-quote">&quot;unit_registry_no&quot;</span>: <span
-class="php-quote">&quot;9520877&quot;</span>,
-                <span
-class="php-quote">&quot;unit_name&quot;</span>: <span
-class="php-quote">&quot;20ο ΟΛΟΗΜΕΡΟ ΔΗΜΟΤΙΚΟ ΣΧΟΛΕΙΟ ΕΥΟΣΜΟΥ&quot;</span>,
-                <span
-class="php-quote">&quot;special_unit_name&quot;</span>: <span
-class="php-quote">&quot;&quot;</span>,
-                <span
-class="php-quote">&quot;from_state_id&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;from_state&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;to_state_id&quot;</span>: <span
-class="php-num">1</span>,
-                <span
-class="php-quote">&quot;to_state&quot;</span>: <span
-class="php-quote">&quot;ΕΝΕΡΓΗ&quot;</span>
-        },
-        {
-                <span
-class="php-quote">&quot;transition_id&quot;</span>: <span
-class="php-num">19403</span>,
-                <span
-class="php-quote">&quot;fek&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;transition_date&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;mm_id&quot;</span>: <span
-class="php-num">1016037</span>,
-                <span
-class="php-quote">&quot;unit_registry_no&quot;</span>: <span
-class="php-quote">&quot;3701060&quot;</span>,
-                <span
-class="php-quote">&quot;unit_name&quot;</span>: <span
-class="php-quote">&quot;ΗΜΕΡΗΣΙΟ ΓΥΜΝΑΣΙΟ ΠΟΛΥΣΙΤΟΥ ΞΑΝΘΗΣ&quot;</span>,
-                <span
-class="php-quote">&quot;special_unit_name&quot;</span>: <span
-class="php-quote">&quot;ΓΥΜΝΑΣΙΟ ΠΟΛΥΣΙΤΟΥ&quot;</span>,
-                <span
-class="php-quote">&quot;from_state_id&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;from_state&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;to_state_id&quot;</span>: <span
-class="php-num">1</span>,
-                <span
-class="php-quote">&quot;to_state&quot;</span>: <span
-class="php-quote">&quot;ΕΝΕΡΓΗ&quot;</span>
-        },
-        {
-                <span
-class="php-quote">&quot;transition_id&quot;</span>: <span
-class="php-num">19402</span>,
-                <span
-class="php-quote">&quot;fek&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;transition_date&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;mm_id&quot;</span>: <span
-class="php-num">1016220</span>,
-                <span
-class="php-quote">&quot;unit_registry_no&quot;</span>: <span
-class="php-quote">&quot;4144001&quot;</span>,
-                <span
-class="php-quote">&quot;unit_name&quot;</span>: <span
-class="php-quote">&quot;ΗΜΕΡΗΣΙΟ ΓΕΝΙΚΟ ΛΥΚΕΙΟ ΑΤΣΙΠΟΠΟΥΛΟΥ&quot;</span>,
-                <span
-class="php-quote">&quot;special_unit_name&quot;</span>: <span
-class="php-quote">&quot;&quot;</span>,
-                <span
-class="php-quote">&quot;from_state_id&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;from_state&quot;</span>: <span
-class="php-keyword1">null</span>,
-                <span
-class="php-quote">&quot;to_state_id&quot;</span>: <span
-class="php-num">1</span>,
-                <span
-class="php-quote">&quot;to_state&quot;</span>: <span
-class="php-quote">&quot;ΕΝΕΡΓΗ&quot;</span>
-        }
+         <span
+class="php-quote">&quot;data&quot;</span>:{},
+         <span
+class="php-quote">&quot;username&quot;</span>:<span
+class="php-quote">&quot;admin&quot;</span>
+     }
 ]}
 </pre>
 
@@ -564,55 +448,7 @@ class="php-quote">&quot;ΕΝΕΡΓΗ&quot;</span>
 		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$unit</var></code></td>
 		<td>
-			<br />
-Η Αρχική Κατάσταση της Μονάδας κατά την
-Μετάβαση<br />
-Λεξικό : Καταστάσεις <code><a href="function-GetStates.html">GetStates()</a></code><br />
-Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
-<ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
-
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
-
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
-</ul>
-
-		</td>
-	</tr>
-	<tr id="$from_state">
-		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$from_state</var></code></td>
-		<td>
-			$to_state Κατάσταση<br />
-Η Τελική Κατάσταση της Μονάδας κατά την
-Μετάβαση<br />
-Λεξικό : Καταστάσεις <code><a href="function-GetStates.html">GetStates()</a></code><br />
-Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
-<ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
-
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
-
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
-</ul>
-
-		</td>
-	</tr>
-	<tr id="$to_state">
-		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$to_state</var></code></td>
-		<td>
-			$unit Μονάδα<br />
+			 Μονάδα<br />
 Το Όνομα ή ο Κωδικός MM της Μονάδας<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
@@ -629,10 +465,6 @@ mixed{integer|string|array[integer|string]}
 	<li>string<br />
 	Αλφαριθμητική : Η αναζήτηση γίνεται με το
 	Όνομα της Μονάδας<br />
-	Με την χρήση της παραμέτρου Τύπος
-	Αναζήτησης (<a href="#$searchtype">$searchtype</a>) μπορεί να
-	καθοριστεί ο τρόπος με τον οποίο θα
-	αναζητηθεί η τιμή της παραμέτρου<br />
 	Αν η παράμετρος δεν έχει τιμή τότε η
 	αναζήτηση γίνεται με τον Tύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code></li>
 
@@ -646,81 +478,10 @@ mixed{integer|string|array[integer|string]}
 		</td>
 	</tr>
 	<tr id="$pagesize">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$pagesize</var></code></td>
 		<td>
-			$from_state Αρχική Κατάσταση Μονάδας<br />
-Το Όνομα ή ο Κωδικός της Αρχική Κατάστασης
-της Μονάδας<br />
-Η παράμετρος δεν είναι υποχρεωτική<br />
-Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
-Λεξικό : <code><a href="function-GetStates.html">GetStates()</a></code><br />
-Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
-<ul>
-	<li>integer<br />
-	Αριθμητική : Η αναζήτηση γίνεται με τον
-	Κωδικό της Αρχική Κατάστασης της Μονάδας<br
-	/>
-	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
-	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
-
-	<li>string<br />
-	Αλφαριθμητική : Η αναζήτηση γίνεται με το
-	Όνομα της Αρχική Κατάστασης της Μονάδας<br />
-	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
-	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
-
-	<li>array[integer|string]<br />
-	Σύνολο από Αριθμητικές και Αλφαριθμητικές
-	τιμές διαχωρισμένες με κόμμα<br />
-	Η αναζήτηση γίνεται με οποιαδήποτε από
-	αυτές τις τιμές</li>
-</ul>
-
-		</td>
-	</tr>
-	<tr id="$page">
-		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$page</var></code></td>
-		<td>
-			$from_state Τελική Κατάσταση Μονάδας<br />
-Το Όνομα ή ο Κωδικός της Τελικής Κατάστασης
-της Μονάδας<br />
-Η παράμετρος δεν είναι υποχρεωτική<br />
-Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
-Λεξικό : <code><a href="function-GetStates.html">GetStates()</a></code><br />
-Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
-<ul>
-	<li>integer<br />
-	Αριθμητική : Η αναζήτηση γίνεται με τον
-	Κωδικό της Τελικής Κατάστασης της Μονάδας<br
-	/>
-	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
-	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
-
-	<li>string<br />
-	Αλφαριθμητική : Η αναζήτηση γίνεται με το
-	Όνομα της Τελικής Κατάστασης της Μονάδας<br
-	/>
-	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
-	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
-
-	<li>array[integer|string]<br />
-	Σύνολο από Αριθμητικές και Αλφαριθμητικές
-	τιμές διαχωρισμένες με κόμμα<br />
-	Η αναζήτηση γίνεται με οποιαδήποτε από
-	αυτές τις τιμές</li>
-</ul>
-
-		</td>
-	</tr>
-	<tr id="$orderby">
-		<td class="name"><code>integer</code></td>
-		<td class="value"><code><var>$orderby</var></code></td>
-		<td>
-			$pagesize Αριθμός Εγγραφών/Σελίδα<br />
+			 Αριθμός Εγγραφών/Σελίδα<br />
 Ο αριθμός των εγγραφών που θα επιστρέψουν
 ανα σελίδα<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
@@ -736,11 +497,11 @@ mixed{integer|string|array[integer|string]}
 
 		</td>
 	</tr>
-	<tr id="$ordertype">
+	<tr id="$page">
 		<td class="name"><code>integer</code></td>
-		<td class="value"><code><var>$ordertype</var></code></td>
+		<td class="value"><code><var>$page</var></code></td>
 		<td>
-			$page Αριθμός Σελίδας<br />
+			 Αριθμός Σελίδας<br />
 Ο αριθμός της σελίδας με τις <a
 href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 σύμφωμα με τις παραμέτρους<br />
@@ -756,11 +517,11 @@ href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 
 		</td>
 	</tr>
-	<tr id="$searchtype">
+	<tr id="$orderby">
 		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$searchtype</var></code></td>
+		<td class="value"><code><var>$orderby</var></code></td>
 		<td>
-			$orderby Πεδίο Ταξινόμησης<br />
+			 Πεδίο Ταξινόμησης<br />
 Το όνομα του πεδίου με το οποίο γίνεται η
 ταξινόμηση των εγγραφών<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
@@ -773,6 +534,26 @@ href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 	Αλφαριθμητική : Η τιμή της παραμέτρου
 	μπορεί να είναι οποιοδήποτε πεδίο
 	επιστρέφει η συνάρτηση στον πίνακα data</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$ordertype">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$ordertype</var></code></td>
+		<td>
+			 Τύπος Ταξινόμησης<br />
+Ο Τύπος Ταξινόμησης με τον οποίο γίνεται η
+ταξινόμηση των εγγραφών<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε η
+ταξινόμηση γίνεται με Αύξουσα Σειρά (<code><a href="class-OrderEnumTypes.html#ASC">OrderEnumTypes::<b>ASC</b></a></code>)<br />
+Λίστα Τύπων Ταξινόμησης : <code><a href="class-OrderEnumTypes.html">OrderEnumTypes</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+<ul>
+	<li>string<br />
+	Αλφαριθμητική : Η τιμή της παραμέτρου
+	μπορεί να είναι ένας από τους Tύπους <code><a href="class-OrderEnumTypes.html">OrderEnumTypes</a></code></li>
 </ul>
 
 		</td>
@@ -800,39 +581,29 @@ integer : <b>count</b> : Το πλήθος των εγγραφών της
 σελιδοποίησης<br />
 integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς
 τις παραμέτρους σελιδοποίησης<br />
-array : <b>data</b> : Ο Πίνακας με το λεξικό
+array : <b>data</b> : Ο Πίνακας με το λεξικό των
+μεταβάσεων
 <ul>
-	<li>integer : <b>transition_id</b> : Ο Κωδικός της
-	Μετάβασης</li>
+	<li>integer : <b>id</b> : Ο Κωδικός της μετάβασης</li>
 
-	<li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας
-	(Μονάδες : <code><a href="function-GetUnits.html">GetUnits()</a></code>)</li>
+	<li>integer : <b>action</b> : Τύπος μετάβασης (create, update,
+	remove)</li>
 
-	<li>string : <b>registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της
-	Μονάδας</li>
+	<li>integer : <b>objectId</b> : Ο Κωδικός ΜΜ του
+	αντικειμένου</li>
 
-	<li>string : <b>unit_name</b> : Το Όνομα της Μονάδας</li>
+	<li>string : <b>objectClass</b> : Ο τύπος του
+	αντικειμένου</li>
 
-	<li>string : <b>special_unit_name</b> : Το Προσωνύμιο της
-	Μονάδας</li>
+	<li>string : <b>loggedAt</b> : Ημ/νία μετάβασης</li>
 
-	<li>string : <b>fek</b> : Ο Αριθμός ΦΕΚ της
-	Ματαβάσης</li>
+	<li>string : <b>username</b> : Χρήστης που προκάλεσε τη
+	μετάβαση</li>
 
-	<li>date : <b>transition_date</b> : Η Ημερομηνία της
-	Μετάβασης</li>
+	<li>string : <b>version</b> : Έκδοση του αντικειμένου</li>
 
-	<li>integer : <b>from_state_id</b> : Ο Κωδικός της Αρχικής
-	Κατάστασης της Μονάδας κατά την Μετάβαση</li>
-
-	<li>string : <b>from_state</b> : Η Αρχική Κατάσταση της
-	Μονάδας κατά την Μετάβαση (Λεξικό : <code><a href="function-GetStates.html">GetStates()</a></code>)</li>
-
-	<li>integer : <b>to_state_id</b> : Ο Κωδικός της Τελικής
-	Κατάστασης της Μονάδας κατά την Μετάβαση</li>
-
-	<li>string : <b>to_state</b> : Η Τελική Κατάσταση της
-	Μονάδας κατά την Μετάβαση (Λεξικό : <code><a href="function-GetStates.html">GetStates()</a></code>)</li>
+	<li>array : <b>data</b> : Λεξικό των πεδίων που
+	άλλαξαν</li>
 </ul>
 
 		</td>
@@ -841,16 +612,6 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 
 	<table class="summary" id="throws">
 	<caption>Thrown exceptions summary</caption>
-	<tr>
-		<td class="name"><code>
-			InvalidSearchType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidSearchType">ExceptionMessages::<b>InvalidSearchType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidSearchType">ExceptionCodes::<b>InvalidSearchType</b></a></code><br />
-Ο Τύπος Αναζήτησης είναι λάθος
-		</td>
-	</tr>
 	<tr>
 		<td class="name"><code>
 			MissingPageValue
@@ -947,28 +708,6 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 <code><a href="class-ExceptionCodes.html#InvalidHostUnitType">ExceptionCodes::<b>InvalidHostUnitType</b></a></code><br />
 Η Μονάδα πρέπει να είναι αριθμητική ή
 αλφαριθμητική
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidFromStateType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidFromStateType">ExceptionMessages::<b>InvalidFromStateType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidFromStateType">ExceptionCodes::<b>InvalidFromStateType</b></a></code><br />
-Η Αρχική Κατάσταση της Μονάδας πρέπει να
-είναι αριθμητική ή αλφαριθμητική
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidToStateType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidToStateType">ExceptionMessages::<b>InvalidToStateType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidToStateType">ExceptionCodes::<b>InvalidToStateType</b></a></code><br />
-Η Τελική Κατάσταση της Μονάδας πρέπει να
-είναι αριθμητική ή αλφαριθμητική
 		</td>
 	</tr>
 	<tr>

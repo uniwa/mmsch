@@ -1193,13 +1193,10 @@ function TransitionsController()
         case MethodTypes::GET :
             $result = GetTransitions(
                 $params["unit"],
-                $params["from_state"],
-                $params["to_state"],
                 $params["pagesize"],
                 $params["page"],
                 $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
+                $params["ordertype"]
             );
             break;
 //        case MethodTypes::POST :
