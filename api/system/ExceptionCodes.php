@@ -1082,10 +1082,16 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidConnectionArray} */
     const InvalidConnectionArray = 500;
     
-    /** {@see ExceptionMessages::DuplicatedConnectionValue} */
-    const DuplicatedConnectionValue = 500;
+    /** {@see ExceptionMessages::DuplicatedConnectionCircuitValue} */
+    const DuplicatedConnectionCircuitValue = 500;
+    /** {@see ExceptionMessages::DuplicatedConnectionLdapValue} */
+    const DuplicatedConnectionLdapValue = 500;
     /** {@see ExceptionMessages::DifferenceConnectioCircuitMMIdValue} */
-    const DifferenceConnectioCircuitMMIdValue = 500;
+    const DifferenceConnectionCircuitMMIdValue = 500;
+    /** {@see ExceptionMessages::DifferenceConnectionLdapMMIdValue} */
+    const DifferenceConnectionLdapMMIdValue = 500;
+    /** {@see ExceptionMessages::DifferenceConnectionCpeMMIdValue} */
+    const DifferenceConnectionCpeMMIdValue = 500;
     /** {@see ExceptionMessages::UsedConnectionByUnitNetworkSubnets} */
     const UsedConnectionByUnitNetworkSubnets = 500;
     

@@ -363,7 +363,7 @@ function PutConnections(
 
                 $sql = "SELECT
                         connection_id,
-                        mm_id,
+                        mm_id as connection_mm_id,
                         cpe_id,
                         ldap_id,
                         circuit_id
@@ -378,7 +378,7 @@ function PutConnections(
                 {
                     throw new Exception(ExceptionMessages::InvalidConnectionValue." : ".$connection_id, ExceptionCodes::InvalidConnectionValue);
                 }
-
+                $connection_mm_id = $main_row[0]["connection_mm_id"]; 
             }
             else
             {
@@ -388,84 +388,6 @@ function PutConnections(
         else
         {
             throw new Exception(ExceptionMessages::MissingConnectionIDParam, ExceptionCodes::MissingConnectionIDParam);
-        }
-
-//======================================================================================================================
-//= Check for duplicates
-//======================================================================================================================
-
-        //Οι παράμετροι $mm_id και $circuit_id Απενεργοποιήθηκαν
-
-//======================================================================================================================
-//= Check if $cpe_id record exists
-//======================================================================================================================
-
-        $param = $cpe_id;
-        $table_column_name = "cpe_id";
-        $table_name = "cpes";
-
-        if ( Validator::Exists($table_column_name, $params) )
-        {
-            if ( Validator::isArray($param) )
-            {
-                throw new Exception(ExceptionMessages::InvalidCpeIDArray." : ".$param, ExceptionCodes::InvalidCpeIDArray);
-            }
-            elseif (Validator::isID($param) )
-            {
-                $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $param );
-
-                $sql = "SELECT $table_column_name FROM $table_name WHERE ".$filters[ $table_column_name ];
-                //echo "<br><br>".$sql."<br><br>";
-                $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-                $stmt = $db->query( $sql );
-                $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                if ( $stmt->rowCount() == 0 )
-                {
-                    throw new Exception(ExceptionMessages::InvalidCpeValue." : ".$param, ExceptionCodes::InvalidCpeValue);
-                }
-            }
-            else
-            {
-                throw new Exception(ExceptionMessages::InvalidCpeIDType." : ".$param, ExceptionCodes::InvalidCpeIDType);
-            }
-        }
-
-//======================================================================================================================
-//= Check if $ldap_id record exists
-//======================================================================================================================
-
-        $param = $ldap_id;
-        $table_column_name = "ldap_id";
-        $table_name = "ldaps";
-
-        if ( Validator::Exists($table_column_name, $params) )
-        {
-            if ( Validator::isArray($param) )
-            {
-                throw new Exception(ExceptionMessages::InvalidLdapIDArray." : ".$param, ExceptionCodes::InvalidLdapIDArray);
-            }
-            elseif (Validator::isID($param) )
-            {
-                $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $param );
-
-                $sql = "SELECT $table_column_name FROM $table_name WHERE ".$filters[ $table_column_name ];
-                //echo "<br><br>".$sql."<br><br>";
-                $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-                $stmt = $db->query( $sql );
-                $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                if ( $stmt->rowCount() == 0 )
-                {
-                    throw new Exception(ExceptionMessages::InvalidLdapValue." : ".$param, ExceptionCodes::InvalidLdapValue);
-                }
-            }
-            else
-            {
-                throw new Exception(ExceptionMessages::InvalidLdapIDType." : ".$param, ExceptionCodes::InvalidLdapIDType);
-            }
         }
 
 //======================================================================================================================
@@ -490,17 +412,44 @@ function PutConnections(
             {
                 $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $param );
 
-                $sql = "SELECT $table_column_name FROM $table_name WHERE ".$filters[ $table_column_name ];
+                $sql = "SELECT $table_column_name ,mm_id as circuit_mm_id FROM $table_name WHERE ".$filters[ $table_column_name ];
                 //echo "<br><br>".$sql."<br><br>";
                 $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
 
                 $stmt = $db->query( $sql );
-                $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 if ( $stmt->rowCount() == 0 )
                 {
                     throw new Exception(ExceptionMessages::InvalidCircuitValue." : ".$param, ExceptionCodes::InvalidCircuitValue);
                 }
+                
+                //=======RULES==================================================           
+                //check connection mm_id rule
+                $circuit_mm_id = $rows[0]["circuit_mm_id"];
+                if ( $connection_mm_id <> $circuit_mm_id ) {
+                    throw new Exception(ExceptionMessages::DifferenceConnectionCircuitMMIdValue, ExceptionCodes::DifferenceConnectionCircuitMMIdValue);  
+                } 
+                
+                //check connections circuit for duplicates
+                $sql = "SELECT
+                        connection_id,
+                        circuit_id
+                        FROM connections 
+                        WHERE ( ".$filters["circuit_id"]. " )
+                        AND NOT ".$filters["connection_id"];
+
+                //echo "<br><br>".$sql."<br><br>";
+                $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
+
+                $stmt = $db->query( $sql );
+                $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                if ( $stmt->rowCount() > 0 )
+                {
+                    throw new Exception(ExceptionMessages::DuplicatedConnectionCircuitValue." : ".$rows[0]["circuit_id"], ExceptionCodes::DuplicatedConnectionCircuitValue);
+                }          
+                //=======RULES==================================================
             }
             else
             {
@@ -515,63 +464,114 @@ function PutConnections(
         {
             $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $main_row[0][ $table_column_name ] );
         }
- 
-//======================================================================================================================
-//= Check connections has  connections.mm_id  == (connections.circuit_id -> circuits.mm_id)   
-//======================================================================================================================
-        $sql = "SELECT 
-                connections.mm_id as connection_mm_id
-                FROM connections
-                WHERE " . $filters["connection_id"] ;
-        
-        //echo "<br><br>".$sql."<br><br>";
-         $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-         $stmt = $db->query( $sql );
-         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);    
-         $connection_mm_id = $rows[0]["connection_mm_id"];
-         
-        //circuits.mm_id     
-        $sql = "SELECT 
-                circuits.mm_id as circuit_mm_id
-                FROM circuits
-                WHERE " . $filters["circuit_id"] ;
-        
-        //echo "<br><br>".$sql."<br><br>";
-        $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $circuit_mm_id = $rows[0]["circuit_mm_id"];    
-            
-        
-        if ( $connection_mm_id <> $circuit_mm_id ) {
-            throw new Exception(ExceptionMessages::DifferenceConnectioCircuitMMIdValue, ExceptionCodes::DifferenceConnectioCircuitMMIdValue);  
-        } 
-        
         
 //======================================================================================================================
-//= Check for connection_circuit uniques
+//= Check if $ldap_id record exists
 //======================================================================================================================
 
-            $sql = "SELECT
-                    connection_id,
-                    circuit_id
-                    FROM connections 
-                    WHERE ( ".$filters["circuit_id"]. " )
-                    AND NOT ".$filters["connection_id"];
+        $param = $ldap_id;
+        $table_column_name = "ldap_id";
+        $table_name = "ldaps";
 
-            //echo "<br><br>".$sql."<br><br>";
-            $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-            $stmt = $db->query( $sql );
-            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            if ( $stmt->rowCount() > 0 )
+        if ( Validator::Exists($table_column_name, $params) )
+        {
+            if ( Validator::isArray($param) )
             {
-                throw new Exception(ExceptionMessages::DuplicatedConnectionValue." : ".$rows[0]["circuit_id"], ExceptionCodes::DuplicatedConnectionValue);
+                throw new Exception(ExceptionMessages::InvalidLdapIDArray." : ".$param, ExceptionCodes::InvalidLdapIDArray);
             }
-              
+            elseif (Validator::isID($param) )
+            {
+                $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $param );
+
+                $sql = "SELECT $table_column_name ,mm_id as ldap_mm_id FROM $table_name WHERE ".$filters[ $table_column_name ];
+                //echo "<br><br>".$sql."<br><br>";
+                $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
+
+                $stmt = $db->query( $sql );
+                $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                if ( $stmt->rowCount() == 0 )
+                {
+                    throw new Exception(ExceptionMessages::InvalidLdapValue." : ".$param, ExceptionCodes::InvalidLdapValue);
+                }
+
+                //=======RULES==================================================
+                //check connection mm_id rule
+                $ldap_mm_id = $rows[0]["ldap_mm_id"]; 
+                if ($connection_mm_id <> $ldap_mm_id ) {
+                    throw new Exception(ExceptionMessages::DifferenceConnectionLdapMMIdValue, ExceptionCodes::DifferenceConnectionLdapMMIdValue);  
+                } 
+                
+                //check connection unique rule
+                $sql = "SELECT connection_id,
+                               ldap_id
+                               FROM connections 
+                               WHERE ( ".$filters["ldap_id"]. " )
+                               AND NOT ".$filters["connection_id"];
+
+                //echo "<br><br>".$sql."<br><br>";
+                $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
+
+                $stmt = $db->query( $sql );
+                $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                if ( $stmt->rowCount() > 0 )
+                {
+                    throw new Exception(ExceptionMessages::DuplicatedConnectionLdapValue." : ".$rows[0]["ldap_id"], ExceptionCodes::DuplicatedConnectionLdapValue);
+                }
+                //=======RULES==================================================
+                
+            }
+            else
+            {
+                throw new Exception(ExceptionMessages::InvalidLdapIDType." : ".$param, ExceptionCodes::InvalidLdapIDType);
+            }
+        }
+
+//======================================================================================================================
+//= Check if $cpe_id record exists
+//======================================================================================================================
+
+        $param = $cpe_id;
+        $table_column_name = "cpe_id";
+        $table_name = "cpes";
+
+        if ( Validator::Exists($table_column_name, $params) )
+        {
+            if ( Validator::isArray($param) )
+            {
+                throw new Exception(ExceptionMessages::InvalidCpeIDArray." : ".$param, ExceptionCodes::InvalidCpeIDArray);
+            }
+            elseif (Validator::isID($param) )
+            {
+                $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $param );
+
+                $sql = "SELECT $table_column_name ,mm_id as cpe_mm_id FROM $table_name WHERE ".$filters[ $table_column_name ];
+                //echo "<br><br>".$sql."<br><br>";
+                $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
+
+                $stmt = $db->query( $sql );
+                $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                if ( $stmt->rowCount() == 0 )
+                {
+                    throw new Exception(ExceptionMessages::InvalidCpeValue." : ".$param, ExceptionCodes::InvalidCpeValue);
+                }
+                
+                //=======RULES==================================================
+                //check connection mm_id rule
+                $cpe_mm_id = $rows[0]["cpe_mm_id"];
+                if ( $connection_mm_id <> $cpe_mm_id ) {
+                    throw new Exception(ExceptionMessages::DifferenceConnectionCpeMMIdValue, ExceptionCodes::DifferenceConnectionCpeMMIdValue);  
+                }
+                //=======RULES==================================================
+                
+            }
+            else
+            {
+                throw new Exception(ExceptionMessages::InvalidCpeIDType." : ".$param, ExceptionCodes::InvalidCpeIDType);
+            }
+        }
         
 //======================================================================================================================
 //= UPDATE

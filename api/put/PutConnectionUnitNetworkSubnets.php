@@ -481,7 +481,7 @@ function PutConnectionUnitNetworkSubnets(
         
         
 //======================================================================================================================
-//= Check for connection_unit_network_subnet uniques
+//= Check connection_unit_network_subnet for duplicates
 //======================================================================================================================
 
             $sql = "SELECT
@@ -489,7 +489,7 @@ function PutConnectionUnitNetworkSubnets(
                     connection_id,
                     unit_network_subnet_id
                     FROM connection_unit_network_subnets 
-                    WHERE ( ".$filters["connection_id"]." AND ".$filters["unit_network_subnet_id"]. " )
+                    WHERE " .$filters["unit_network_subnet_id"]. "
                     AND NOT ".$filters["connection_unit_network_subnet_id"];
 
             //echo "<br><br>".$sql."<br><br>";
@@ -500,7 +500,7 @@ function PutConnectionUnitNetworkSubnets(
 
             if ( $stmt->rowCount() > 0 )
             {
-                throw new Exception(ExceptionMessages::DuplicatedConnectionUnitNetworkOSubnetValue." : ".$rows[0]["mask"], ExceptionCodes::DuplicatedConnectionUnitNetworkOSubnetValue);
+                throw new Exception(ExceptionMessages::DuplicatedConnectionUnitNetworkOSubnetValue." : ".$rows[0]["unit_network_subnet_id"], ExceptionCodes::DuplicatedConnectionUnitNetworkOSubnetValue);
             }
               
 //======================================================================================================================

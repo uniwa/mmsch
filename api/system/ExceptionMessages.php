@@ -643,8 +643,11 @@ class ExceptionMessages
     const InvalidConnectionType = 'H Διασύνδεση πρέπει να είναι αριθμητική';
     const InvalidConnectionArray = 'H Διασύνδεση δεν μπορεί να έχει πολλαπλές τιμές';
    
-    const DuplicatedConnectionValue = 'Το Τηλεπικοινωνιακό Κύκλωμα υπάρχει σε άλλη Διασύνδεση';
-    const DifferenceConnectioCircuitMMIdValue = 'Δεν είναι δυνατή η εισαγωγή Διασύνδεσης και Κυκλώματος με διαφορετικό Κωδικό Σχολικής Μονάδας';
+    const DuplicatedConnectionCircuitValue = 'Το Τηλεπικοινωνιακό Κύκλωμα υπάρχει σε άλλη Διασύνδεση';
+    const DuplicatedConnectionLdapValue = 'Ο Ldap Λογαριασμός υπάρχει σε άλλη Διασύνδεση';
+    const DifferenceConnectionCircuitMMIdValue = 'Δεν είναι δυνατή η εισαγωγή Διασύνδεσης και Κυκλώματος με διαφορετικό Κωδικό Σχολικής Μονάδας';
+    const DifferenceConnectionLdapMMIdValue = 'Δεν είναι δυνατή η εισαγωγή Διασύνδεσης και Ldap Λογαριασμού με διαφορετικό Κωδικό Σχολικής Μονάδας';
+    const DifferenceConnectionCpeMMIdValue = 'Δεν είναι δυνατή η εισαγωγή Διασύνδεσης και Cpe με διαφορετικό Κωδικό Σχολικής Μονάδας';
     const UsedConnectionByUnitNetworkSubnets = 'Η Διασύνδεση Συσχετίζεται με Υποδικτύο της Μονάδας';
 
 

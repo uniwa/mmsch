@@ -382,7 +382,7 @@ function PostConnectionUnitNetworkSubnets(
         
         
 //======================================================================================================================
-//= Check for connection_unit_network_subnet uniques
+//= Check connection_unit_network_subnet for duplicates
 //======================================================================================================================
 
             $sql = "SELECT
@@ -390,7 +390,7 @@ function PostConnectionUnitNetworkSubnets(
                     connection_id,
                     unit_network_subnet_id
                     FROM connection_unit_network_subnets 
-                    WHERE ( ".$filters["connection_id"]." AND ".$filters["unit_network_subnet_id"]. " )";
+                    WHERE " .$filters["unit_network_subnet_id"];
 
             //echo "<br><br>".$sql."<br><br>";
             $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
