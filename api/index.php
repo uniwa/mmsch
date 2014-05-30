@@ -17,8 +17,6 @@ $app->map('/school_committees', Authentication, SchoolCommitteesController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/circuit_types', Authentication, CircuitTypesController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/addrspace_types', Authentication, AddrspaceTypesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/sources', Authentication, SourcesController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/states', Authentication, StatesController)
@@ -26,8 +24,6 @@ $app->map('/states', Authentication, StatesController)
 $app->map('/relation_types', Authentication, RelationTypesController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/categories', Authentication, CategoriesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/ip_masks', Authentication, IpMasksController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/prefectures', Authentication, PrefecturesController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
@@ -44,8 +40,6 @@ $app->map('/operation_shifts', Authentication, OperationShiftsController)
 $app->map('/unit_types', Authentication, UnitTypesController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/education_levels', Authentication, EducationLevelsController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/addrspaces', Authentication, AddrspacesController )
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/region_edu_admins', Authentication, RegionEduAdminsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
@@ -294,33 +288,6 @@ function CircuitTypesController()
 }
 
 
-
-function AddrspaceTypesController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetAddrspaceTypes(
-                $params["addrspace_type"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
 function SourcesController()
 {
     global $app;
@@ -412,32 +379,6 @@ function CategoriesController()
         case MethodTypes::GET :
             $result = GetCategories(
                 $params["category"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-function IpMasksController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetIpMasks(
-                $params["ip_mask"],
                 $params["pagesize"],
                 $params["page"],
                 $params["orderby"],
@@ -655,35 +596,6 @@ function EducationLevelsController()
         case MethodTypes::GET :
             $result = GetEducationLevels(
                 $params["education_level"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-function AddrspacesController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetAddrspaces(
-                $params["addrspace"],
-                $params["ip_mask"],
-                $params["prefecture"],
-                $params["addrspace_type"],
                 $params["pagesize"],
                 $params["page"],
                 $params["orderby"],
