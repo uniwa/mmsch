@@ -412,7 +412,7 @@ function PutConnections(
             {
                 $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $param );
 
-                $sql = "SELECT $table_column_name ,mm_id as circuit_mm_id FROM $table_name WHERE ".$filters[ $table_column_name ];
+                $sql = "SELECT $table_column_name ,mm_id as circuit_mm_id ,status as circuit_status FROM $table_name WHERE ".$filters[ $table_column_name ];
                 //echo "<br><br>".$sql."<br><br>";
                 $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
 
@@ -424,7 +424,14 @@ function PutConnections(
                     throw new Exception(ExceptionMessages::InvalidCircuitValue." : ".$param, ExceptionCodes::InvalidCircuitValue);
                 }
                 
-                //=======RULES==================================================           
+                //=======RULES==================================================     
+                
+                //check status of circuit.Must be 1
+                $circuit_status = $rows[0]["circuit_status"];
+                if ( $circuit_status <> '1' ) {
+                    throw new Exception(ExceptionMessages::BanConnectionCircuitStatusValue, ExceptionCodes::BanConnectionCircuitStatusValue);    
+                } 
+                
                 //check connection mm_id rule
                 $circuit_mm_id = $rows[0]["circuit_mm_id"];
                 if ( $connection_mm_id <> $circuit_mm_id ) {

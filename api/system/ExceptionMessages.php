@@ -648,6 +648,7 @@ class ExceptionMessages
     const DifferenceConnectionCircuitMMIdValue = 'Δεν είναι δυνατή η εισαγωγή Διασύνδεσης και Κυκλώματος με διαφορετικό Κωδικό Σχολικής Μονάδας';
     const DifferenceConnectionLdapMMIdValue = 'Δεν είναι δυνατή η εισαγωγή Διασύνδεσης και Ldap Λογαριασμού με διαφορετικό Κωδικό Σχολικής Μονάδας';
     const DifferenceConnectionCpeMMIdValue = 'Δεν είναι δυνατή η εισαγωγή Διασύνδεσης και Cpe με διαφορετικό Κωδικό Σχολικής Μονάδας';
+    const BanConnectionCircuitStatusValue = 'Δεν είναι δυνατή η εισαγωγή Καταργημένου Κυκλώματος ';
     const UsedConnectionByUnitNetworkSubnets = 'Η Διασύνδεση Συσχετίζεται με Υποδικτύο της Μονάδας';
 
 

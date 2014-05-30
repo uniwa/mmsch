@@ -1092,6 +1092,8 @@ class ExceptionCodes
     const DifferenceConnectionLdapMMIdValue = 500;
     /** {@see ExceptionMessages::DifferenceConnectionCpeMMIdValue} */
     const DifferenceConnectionCpeMMIdValue = 500;
+    /** {@see ExceptionMessages::BanConnectionCircuitStatusValue} */
+    const BanConnectionCircuitStatusValue = 500;
     /** {@see ExceptionMessages::UsedConnectionByUnitNetworkSubnets} */
     const UsedConnectionByUnitNetworkSubnets = 500;
     
