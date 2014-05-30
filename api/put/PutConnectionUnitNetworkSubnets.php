@@ -3,8 +3,7 @@
  *
  * @version 1.0.3
  * @author  ΤΕΙ Αθήνας
- * @package PUT
- * 
+ * @package PUT 
  */
  
 header("Content-Type: text/html; charset=utf-8");
@@ -19,20 +18,20 @@ header("Content-Type: text/html; charset=utf-8");
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο PUT :
  * <br> http://mmsch.teiath.gr/api/connection_unit_network_subnets <br><br>
  *
- *
+ * <br><b>Κανόνες Ενημέρωσης Διασύνδεσης Υποδικτύου Μονάδας</b>
+ * <ul>   
+ *  <li>H σχολική μονάδα που αντιστοιχεί στο connection_id,unit_netwok_subnet_id θα πρέπει να είναι ίδια μεταξύ τους.</li>
+ *  <li>Μια Διασύνδεση μπορεί να έχει περισότερα από ένα Υποδίκτυα Μονάδας.</li>
+ *  <li>Ένα Υποδίκτυο Μονάδας ανήκει σε μια και μοναδική Διασύνδεση Υποδικτύου Μονάδας.</li>
+ *  <li>Ένα Υποδίκτυο Μονάδας  είναι μοναδικό ανά σχολική μονάδα, ένα Υποδίκτυο Μονάδας μπορεί να ανήκει σε μια και μόνο σχολική μονάδα.</li>
+ * </ul>
+ * 
  * <br><b>Πίνακας Παραμέτρων</b>
  * <br>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters summary</a> εμφανίζονται όλοι οι παράμετροι με τους οποίους
  * μπορεί να γίνει η κλήση της συνάρτησης
  * <br>Όλοι οι παράμετροι είναι προαιρετικοί εκτός από αυτές που έχουν χαρακτηριστεί ως υποχρεωτικοί
  * <br>Οι παράμετροι μπορούν να χρησιμοποιηθούν με οποιαδήποτε σειρά
  *
- * <br><b>Ορισμός Μοναδικών Τιμών Παραμέτρων</b>
- * <br>Παρακάτω ορίζονται οι παραμέτροι που έχουν μοναδικές τιμές και πραγματοποιειται ελεγχος:
- * <ul>
- *  <li><b>connection_unit_network_subnet_id</b><br>GetConnectionUnitNetworkSubnets με search_type=EXACT & connection_unit_network_subnet_id="value" </li>
- *  <li><b>connection_id και unit_network_subnet_id</b><br>GetConnectionUnitNetworkSubnets με search_type=EXACT & connection_id="value" & unit_network_subnet_id = "value" </li>
- * </ul>
- * <br>
  *
  * <br><b>Πίνακας Αποτελεσμάτων</b>
  * <br>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value summary</a> εμφανίζονται οι μεταβλητές που επιστρέφει η συνάρτηση
