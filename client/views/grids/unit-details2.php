@@ -637,7 +637,17 @@ position: fixed;
 												[ΙΔΙΩΤΙΚΟ]
 												# } #
 											</td>
-										</tr>	
+										</tr>
+										<tr class="# if (circuit.is_connected) { # soft-hide # } #">
+											<td class="detail-term">Κατάσταση</td>
+											<td class="term-value">
+												# if(circuit.status == 1){ #
+												Ενεργό
+												# } else if (circuit.status == 0) { #
+												Ανενεργό
+												# } #
+											</td>
+										</tr>		
 									</tr>
 									</table>
 									</tbody>
