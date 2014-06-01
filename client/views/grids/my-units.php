@@ -3,7 +3,30 @@
 					<div id="ribbon">
 						<div class="ribbon-menu">
 							<div class="pull-right">
+							
+								
+									<div class="btn-group">
+									  
+									<button id="btnShowColumnChooser" class="btn btn-sm btn-info dropdown-toggle btn-popover" data-toggle="dropdown"><i class="fa fa-th fa-1x">&nbsp</i>Επιλογή Στηλών</button>
+									
+									</div>
+									
+									<div class="btn-group">
+		  								<button type="button" class="btn btn-sm btn-info btn-popover"  id="btnShowDlgSearch"><i class="fa fa-search fa-1x">&nbsp</i>Αναζήτηση...</button>
+		  								<button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown">
+		    								<span class="caret"></span>
+		    								<span class="sr-only">Toggle Dropdown</span>
+		  								</button>
+		  								<ul class="dropdown-menu dropdown-menu-right" role="menu">
+		    								<li><a href="#" id="lnkShowDlgSearchByCircuits btn-popover">Τηλεπικοινωνιακά Κυκλώματα</a></li>
+		    								<li><a href="#" id="lnkShowDlgSearchBySubnets btn-popover">Υποδίκτυα</a></li>
+		  								</ul>
+									</div>
+								
+									
+								<!-- 
 								<button class="k-button global-search" title="Αναζήτηση (Πληκτρολογήστε 's')"><i class="fa fa-search fa-2x"></i></button>
+								-->
 							</div>
 						</div>
 					</div>
@@ -14,7 +37,14 @@
 							<i class="fa fa-search"></i>
 						</div>
 						<div class="grid-units-filters pull-left" style=""></div>
-						<div class="pull-right"><button id="btnShowColumnChooser" class="k-button">Επιλογή Στηλών <sub class="label label-danger">beta</sub></button></div>
+						<div class="pull-right">
+							<!-- 
+							<button id="btnShowColumnChooser" class="k-button">Επιλογή Στηλών <sub class="label label-danger">beta</sub></button>
+							-->
+						</div>
+					
+						
+					
 					</div>
 					
 					<div 	class="splitter-holder" 
@@ -469,7 +499,22 @@
 							
 							if (action === 'show' || (action ==="" && visible === false)){
 								$('#myModal').show();
-								resetPopPosition();
+								//resetPopPosition();
+								$('#myModal').position({
+									
+									my: "right top+10",
+									at: "right bottom",
+									of:$('#btnShowDlgSearch'),
+									collision: "fit"
+								});
+
+								$('#myModal').find('.arrow').position({
+									
+									my: "center",
+									at: "center bottom+8",
+									of:$('#btnShowDlgSearch')
+									//collision: "fit"
+								});
 							}
 							else if (action === 'hide' || (action ==="" && visible === true)){
 								$('#myModal').hide();
@@ -634,11 +679,26 @@
 							
 							//ele.css({"left": (f.left - s) + ($('#btnShowColumnChooser').outerWidth())  + "px"});
 							
-							ele.css({"z-index": 103310,"right":"auto","left": (f.left - s) + ($('#btnShowColumnChooser').outerWidth())  + "px" });
+							//ele.css({"z-index": 103310,"right":"auto","left": (f.left - s) + ($('#btnShowColumnChooser').outerWidth())  + "px" });
+							ele.css({"z-index": 103310});
+							ele.position({
+								
+								my: "right top+10",
+								at: "right bottom",
+								of:$('#btnShowColumnChooser'),
+								collision: "fit"
+							});
 
+							ele.find('.arrow').position({
+								
+								my: "center",
+								at: "center bottom+8",
+								of:$('#btnShowColumnChooser')
+								//collision: "fit"
+							});
 							
 
-							ele.find('.arrow').css({"right": "auto", "left": (f.left-s)+ ($('#btnShowColumnChooser').outerWidth()/2 + 21)  + "px"});
+							//ele.find('.arrow').css({"right": "auto", "left": (f.left-s)+ ($('#btnShowColumnChooser').outerWidth()/2 + 21)  + "px"});
 							
 						});
 
@@ -1237,7 +1297,7 @@
 						
 						
 
-						$('.global-search').click(function(e){
+						$('#btnShowDlgSearch').click(function(e){
 							
 							//$('#myModal').toggle();
 							//resetPopPosition();
@@ -1256,22 +1316,38 @@
 
 
 					function resetPopPosition(){
+						
 						if ($('.popover:visible').length>0){
 							
-							var f = $('.global-search').offset();
+							var f = $('#btnShowDlgSearch').offset();
 							var s = $('#myModal').outerWidth();
-							
+							/*
 							//$('#myModal').css({"left": (f.left - (s - 30)) + "px"});
-							$('#myModal').css({"left": (f.left - s) + ($('.global-search').outerWidth())  + "px"});
+							$('#myModal').css({"left": (f.left - s) + ($('#btnShowDlgSearch').outerWidth())  + "px"});
 							
-							$('#myModal').css({"top":  (f.top + $('.global-search').outerHeight()) + "px"});
+							$('#myModal').css({"top":  (f.top + $('#btnShowDlgSearch').outerHeight()) + "px"});
 							
 							$('.arrow').css({"right":"auto"});
-							//$('.arrow').css({"left": (f.left - s) + ($('.global-search').outerWidth()/2)  + "px"});
+							//$('.arrow').css({"left": (f.left - s) + ($('#btnShowDlgSearch').outerWidth()/2)  + "px"});
 
-							$('.arrow').css({"right": "auto", "left": (f.left-s)+ ($('.global-search').outerWidth()/2 + 11)  + "px"});
-							
+							$('.arrow').css({"right": "auto", "left": (f.left-s)+ ($('#btnShowDlgSearch').outerWidth()/2 + 11)  + "px"});
+							*/
 
+							$('#myModal').position({
+								
+								my: "right top+10",
+								at: "right bottom",
+								of:$('#btnShowDlgSearch'),
+								collision: "fit"
+							});
+
+							$('#myModal').find('.arrow').position({
+								
+								my: "center",
+								at: "center bottom+8",
+								of:$('#btnShowDlgSearch')
+								//collision: "fit"
+							});
 							
 						}
 					}
