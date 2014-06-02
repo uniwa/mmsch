@@ -69,6 +69,8 @@ if(!isset($casOptions["NoAuth"]) || $casOptions["NoAuth"] != true) {
 
 <script type="text/javascript" src="client/vendors/kendo/js/jquery.min.js"></script>
 
+<script type="text/javascript" src="client/vendors/jquery-ui/js/jquery-ui.custom.min.js"></script>
+
 <script type="text/javascript" src="client/vendors/kendo/js/kendo.web.min.js"></script>
 <script type="text/javascript" src="client/vendors/kendo/js/cultures/kendo.culture.el-GR.min.js"></script>
   

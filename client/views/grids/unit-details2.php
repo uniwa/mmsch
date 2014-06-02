@@ -119,8 +119,8 @@ position: fixed;
 								data-columns="[
 									{'title':'', 'width':'10px', template: '<span data-bind=\'html:renderRadioNetworkSubnet\' ></span>', encoded: true},										
 									{'title':'IP', 'field': 'subnet_ip'},
-									{'title':'Μάσκα', 'field': 'subnet_default_router'},
-									{'title':'Default Gateway', 'field': 'mask'}, 
+									{'title':'Μάσκα', 'field': 'mask'},
+									{'title':'Default Gateway', 'field': 'subnet_default_router'}, 
 									{'title':'Τύπος', 'field': 'unit_network_subnet_type'}
 								]" 
 								data-bind="source: unitData.unit_network_subnets, events: {change: grdNetworksChangeListener, dataBound: grdBoundListener}"></div>
@@ -487,11 +487,11 @@ position: fixed;
 											</tr>
 											<tr>
 												<td class="detail-term">Μάσκα</td>
-												<td class="term-value">${subnets[j].subnet_default_router}</td>
+												<td class="term-value">${subnets[j].mask}</td>
 											</tr>
 											<tr>
 												<td class="detail-term">Default Gateway</td>
-												<td class="term-value">${subnets[j].mask}</td>
+												<td class="term-value">${subnets[j].subnet_default_router}</td>
 											</tr>
 											<tr>
 												<td class="detail-term">Τύπος</td>
@@ -566,11 +566,11 @@ position: fixed;
 											</tr>
 											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
 												<td class="detail-term">Μάσκα</td>
-												<td class="term-value">${unit_network_subnet.subnet_default_router}</td>
+												<td class="term-value">${unit_network_subnet.mask}</td>
 											</tr>
 											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
 												<td class="detail-term">Default Gateway</td>
-												<td class="term-value">${unit_network_subnet.mask}</td>
+												<td class="term-value">${unit_network_subnet.subnet_default_router}</td>
 											</tr>
 											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
 												<td class="detail-term">Τύπος</td>
@@ -637,7 +637,17 @@ position: fixed;
 												[ΙΔΙΩΤΙΚΟ]
 												# } #
 											</td>
-										</tr>	
+										</tr>
+										<tr class="# if (circuit.is_connected) { # soft-hide # } #">
+											<td class="detail-term">Κατάσταση</td>
+											<td class="term-value">
+												# if(circuit.status == 1){ #
+												Ενεργό
+												# } else { #
+												Ανενεργό
+												# } #
+											</td>
+										</tr>		
 									</tr>
 									</table>
 									</tbody>
@@ -1415,15 +1425,22 @@ position: fixed;
 				
 				var self = this;
 				var editConnection = self.get("editedConnection");
+
+				if (e.status != 1){
+					//console.log($("#grd-circuits").find("tr[data-uid='"+e.uid+"'] "));
+					$("#grd-circuits").find("tr[data-uid='"+e.uid+"'] ").hide();
+				}
+				
 				
 				if (editConnection == null)
 				{
 					var disabled = "";
+					
 					if (e.is_connected){
 						disabled="disabled";
 						return "<span class=\"k-icon k-i-cancel\"></span>";
 					}
-					
+									
 					return "<input type=\"radio\"  " +
 							" id=\"circuit_" + e.circuit_id + "\" "+
 							" name=\"group_circuits\" " +
@@ -1462,6 +1479,8 @@ position: fixed;
 			},
 			
 			renderRadioCpe: function(e){
+
+				console.log("render");
 				
 				var self = this;
 				var editConnection = self.get("editedConnection");
@@ -1565,7 +1584,16 @@ position: fixed;
 				
 				var grd = e.sender;
 				var notificationEmpty = grd.element.parent().find("p");	
-							
+
+
+				var id = grd.element.attr("id");
+
+				if (id == "grd-circuits") {
+					$.each(grd.dataSource.data(), function(idx, circuit){
+						//console.log(circuit.status);
+					});
+				}
+				
 				if (grd.dataSource.total() == 0){
 					grd.element.hide();
 					notificationEmpty.show()
