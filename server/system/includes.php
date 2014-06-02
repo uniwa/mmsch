@@ -3,13 +3,13 @@ require_once ('config.php');
 require_once ('system/connection.php');
 require_once ('system/functions.php');
 
-//require_once ('libs/db2php/Db2PhpEntity.class.php');
-//require_once ('libs/db2php/Db2PhpEntityBase.class.php');
-//require_once ('libs/db2php/Db2PhpEntityModificationTracking.class.php');
-//require_once ('libs/db2php/DFCInterface.class.php');
-//require_once ('libs/db2php/DFC.class.php');
-//require_once ('libs/db2php/DFCAggregate.class.php');
-//require_once ('libs/db2php/DSC.class.php');
+require_once ('libs/db2php/Db2PhpEntity.class.php');
+require_once ('libs/db2php/Db2PhpEntityBase.class.php');
+require_once ('libs/db2php/Db2PhpEntityModificationTracking.class.php');
+require_once ('libs/db2php/DFCInterface.class.php');
+require_once ('libs/db2php/DFC.class.php');
+require_once ('libs/db2php/DFCAggregate.class.php');
+require_once ('libs/db2php/DSC.class.php');
 
 // Doctrine & Entities autoloading
 require_once ('libs/doctrine/bootstrap.php');
