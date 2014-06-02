@@ -3,7 +3,30 @@
 					<div id="ribbon">
 						<div class="ribbon-menu">
 							<div class="pull-right">
+							
+								
+									<div class="btn-group">
+									  
+									<button id="btnShowColumnChooser" class="btn btn-sm btn-info dropdown-toggle btn-popover" data-toggle="dropdown"><i class="fa fa-th fa-1x">&nbsp</i>Επιλογή Στηλών</button>
+									
+									</div>
+									
+									<div class="btn-group">
+		  								<button type="button" class="btn btn-sm btn-info btn-popover"  id="btnShowDlgSearch"><i class="fa fa-search fa-1x">&nbsp</i>Αναζήτηση...</button>
+		  								<button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" id="btnShowAltSearch">
+		    								<span class="caret"></span>
+		    								<span class="sr-only">Toggle Dropdown</span>
+		  								</button>
+		  								<ul class="dropdown-menu dropdown-menu-right" role="menu">
+		    								<li><a href="javascript:void(0)" id="lnkShowDlgSearchByCircuits" class="btn-popover">Τηλεπικοινωνιακά Κυκλώματα</a></li>
+		    								<li><a href="javascript:void(0)" id="lnkShowDlgSearchBySubnets"  class="btn-popover">Υποδίκτυα</a></li>
+		  								</ul>
+									</div>
+								
+									
+								<!-- 
 								<button class="k-button global-search" title="Αναζήτηση (Πληκτρολογήστε 's')"><i class="fa fa-search fa-2x"></i></button>
+								-->
 							</div>
 						</div>
 					</div>
@@ -14,7 +37,14 @@
 							<i class="fa fa-search"></i>
 						</div>
 						<div class="grid-units-filters pull-left" style=""></div>
-						<div class="pull-right"><button id="btnShowColumnChooser" class="k-button">Επιλογή Στηλών <sub class="label label-danger">beta</sub></button></div>
+						<div class="pull-right">
+							<!-- 
+							<button id="btnShowColumnChooser" class="k-button">Επιλογή Στηλών <sub class="label label-danger">beta</sub></button>
+							-->
+						</div>
+					
+						
+					
 					</div>
 					
 					<div 	class="splitter-holder" 
@@ -119,10 +149,53 @@
 					
 					</div>
 					
+
+<div class="popover bottom in mmsch-modal-wnd" id="dlgWndSearchBySubnets" tabindex="-1" style="display:none; width:50%; position: absolute: left:auto; z-index: 33010;border-radius:0px;" >
+	<div class="arrow" style=""></div>
+  	<div class="modal-dialog1">
+    	<div class="modal-content1">
+	    	<div class="modal-header">
+       			<h4 class="modal-title " id="myModalLabel">Αναζήτηση με δικτυακά στοιχεία</h4>
+    		</div>
+    		<div class="modal-body">
+				<form id="frmSearchBySubnets" class="mmsch-form">
+       				<div class="container" style="width:inherit; height:400px; overflow:auto;">
+       				Υπό κατασκευή...
+       				</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button id="" type="button" class="k-button default">Καθαρισμός</button>
+       			<button id="" type="button" class="k-button primary">Αναζήτηση</button>
+    		</div>
+		</div>
+	</div>
+</div>								
 					
+<div class="popover bottom in mmsch-modal-wnd" id="dlgWndSearchByCircuits" tabindex="-1" style="display:none; width:50%; position: absolute: left:auto; z-index: 33010;border-radius:0px;" >
+	<div class="arrow" style=""></div>
+  	<div class="modal-dialog1">
+    	<div class="modal-content1">
+	    	<div class="modal-header">
+       			<h4 class="modal-title " id="myModalLabel">Αναζήτηση με κυκλώματα</h4>
+    		</div>
+    		<div class="modal-body">
+				<form id="frmSearchByCircuits" class="mmsch-form">
+       				<div class="container" style="width:inherit; height:400px; overflow:auto;">
+       				Υπό κατασκευή...
+       				</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button id="" type="button" class="k-button default">Καθαρισμός</button>
+       			<button id="" type="button" class="k-button primary">Αναζήτηση</button>
+    		</div>
+		</div>
+	</div>
+</div>								
+		
 					
-					
-<div class="popover bottom in" id="myModal" tabindex="-1" style="display:none; width:50%; position: absolute: left:auto; z-index: 33010;border-radius:0px;" >
+<div class="popover bottom in mmsch-modal-wnd" id="dlgWndSearchBy" tabindex="-1" style="display:none; width:50%; position: absolute: left:auto; z-index: 33010;border-radius:0px;" >
   <div class="arrow" style=""></div>
   <div class="modal-dialog1">
     <div class="modal-content1">
@@ -131,7 +204,7 @@
         <h4 class="modal-title " id="myModalLabel">Αναζήτηση</h4>
       </div>
       <div class="modal-body">
-		<form id="searchForm" class="mmsch-form">
+		<form id="frmSearchBy" class="mmsch-form">
         <div class="container" style="width:inherit; height:400px; overflow:auto;">
 										
 										<blockquote>
@@ -366,7 +439,7 @@
 		</form>	
 	  </div>
       <div class="modal-footer">
-		<button id="btnClear" type="button" class="k-button default">Καθαρισμός</button>
+		<button id="btnClearfrmSearchBy" type="button" class="k-button default">Καθαρισμός</button>
         <button id="btnSearch" type="button" class="k-button primary">Αναζήτηση</button>
       </div>
     </div><!-- /.modal-content -->
@@ -465,14 +538,104 @@
 							
 							var action = (typeof action != 'undefined') ? action : "";
 							
-							var visible = $('#myModal').is(":visible");
+							var visible = $('#dlgWndSearchBy').is(":visible");
 							
 							if (action === 'show' || (action ==="" && visible === false)){
-								$('#myModal').show();
-								resetPopPosition();
+
+								$('#btnShowColumnChooser').popover('hide');
+								$('#lnkShowDlgSearchByCircuits').popover('hide');
+								$('#lnkShowDlgSearchBySubnets').popover('hide');
+								
+								$('#dlgWndSearchBy').show();
+								//resetPopPosition();
+								$('#dlgWndSearchBy').position({
+									
+									my: "right top+10",
+									at: "right bottom",
+									of:$('#btnShowDlgSearch'),
+									collision: "fit"
+								});
+
+								$('#dlgWndSearchBy').find('.arrow').position({
+									
+									my: "center",
+									at: "center bottom+8",
+									of:$('#btnShowDlgSearch')
+									//collision: "fit"
+								});
 							}
 							else if (action === 'hide' || (action ==="" && visible === true)){
-								$('#myModal').hide();
+								$('#dlgWndSearchBy').hide();
+							}
+						},
+
+						toggleSearchBySubnetsBoxModal: function(action){
+
+							var dlgWndID = "dlgWndSearchBySubnets";
+							
+							var action = (typeof action != 'undefined') ? action : "";
+							
+							var visible = $('#' + dlgWndID).is(":visible");
+							
+							if (action === 'show' || (action ==="" && visible === false)){
+
+								$('#lnkShowDlgSearchByCircuits').popover('hide');
+								
+								$('#' + dlgWndID).show();
+								//resetPopPosition();
+								$('#' + dlgWndID).position({
+									
+									my: "right top+10",
+									at: "right bottom",
+									of:$('#btnShowDlgSearch'),
+									collision: "fit"
+								});
+
+								$('#' + dlgWndID).find('.arrow').position({
+									
+									my: "center",
+									at: "center bottom+8",
+									of:$('#btnShowDlgSearch')
+									//collision: "fit"
+								});
+							}
+							else if (action === 'hide' || (action ==="" && visible === true)){
+								$('#' + dlgWndID).hide();
+							}
+						},
+
+						toggleSearchByCircuitsBoxModal: function(action){
+
+							var dlgWndID = "dlgWndSearchByCircuits";
+							
+							var action = (typeof action != 'undefined') ? action : "";
+							
+							var visible = $('#' + dlgWndID).is(":visible");
+							
+							if (action === 'show' || (action ==="" && visible === false)){
+
+								$('#lnkShowDlgSearchBySubnets').popover('hide');
+								
+								$('#' + dlgWndID).show();
+								//resetPopPosition();
+								$('#' + dlgWndID).position({
+									
+									my: "right top+10",
+									at: "right bottom",
+									of:$('#btnShowDlgSearch'),
+									collision: "fit"
+								});
+
+								$('#' + dlgWndID).find('.arrow').position({
+									
+									my: "center",
+									at: "center bottom+8",
+									of:$('#btnShowDlgSearch')
+									//collision: "fit"
+								});
+							}
+							else if (action === 'hide' || (action ==="" && visible === true)){
+								$('#' + dlgWndID).hide();
 							}
 						},
 						
@@ -486,8 +649,8 @@
 									
 									console.log("show search box");
 									/*
-									if ($('#myModal').not(":visible")){
-										$('#myModal').show();
+									if ($('#dlgWndSearchBy').not(":visible")){
+										$('#dlgWndSearchBy').show();
 										resetPopPosition();
 									}
 									*/
@@ -497,8 +660,8 @@
 
 									console.log("close search box");
 									/*
-									if ($('#myModal').is(":visible")){
-										$('#myModal').hide();
+									if ($('#dlgWndSearchBy').is(":visible")){
+										$('#dlgWndSearchBy').hide();
 									}
 									*/
 									self.toggleSearchBoxModal('hide');
@@ -534,7 +697,7 @@
 						
 						mmschApp.modules['units']._onWindowKeyUp();
 						
-						$("#myModal").appendTo("body");
+						$("#dlgWndSearchBy").appendTo("body");
 
 						//var objMmsch = new mmsch();
 						mmschApp.modules['units'].init();
@@ -559,6 +722,10 @@
 
 
 						$('#btnShowColumnChooser').on('shown.bs.popover', function (e) {
+
+							$('#dlgWndSearchBy').hide();
+							$('#lnkShowDlgSearchByCircuits').popover('hide');
+							$('#lnkShowDlgSearchBySubnets').popover('hide');
 							
 							var bsPopoverEl = $(this).data('bs.popover'),
 							ele = bsPopoverEl.tip();
@@ -634,11 +801,26 @@
 							
 							//ele.css({"left": (f.left - s) + ($('#btnShowColumnChooser').outerWidth())  + "px"});
 							
-							ele.css({"z-index": 103310,"right":"auto","left": (f.left - s) + ($('#btnShowColumnChooser').outerWidth())  + "px" });
+							//ele.css({"z-index": 103310,"right":"auto","left": (f.left - s) + ($('#btnShowColumnChooser').outerWidth())  + "px" });
+							ele.css({"z-index": 103310});
+							ele.position({
+								
+								my: "right top+10",
+								at: "right bottom",
+								of:$('#btnShowColumnChooser'),
+								collision: "fit"
+							});
 
+							ele.find('.arrow').position({
+								
+								my: "center",
+								at: "center bottom+8",
+								of:$('#btnShowColumnChooser')
+								//collision: "fit"
+							});
 							
 
-							ele.find('.arrow').css({"right": "auto", "left": (f.left-s)+ ($('#btnShowColumnChooser').outerWidth()/2 + 21)  + "px"});
+							//ele.find('.arrow').css({"right": "auto", "left": (f.left-s)+ ($('#btnShowColumnChooser').outerWidth()/2 + 21)  + "px"});
 							
 						});
 
@@ -1120,7 +1302,7 @@
 					        
 					        $(this).button('loading');
 
-					        var formData = $("#searchForm").serializeArray();
+					        var formData = $("#frmSearchBy").serializeArray();
 					        
 					        var dsSrcParams = [];
 
@@ -1135,11 +1317,11 @@
 					        $("#grid-units").data("kendoGrid").dataSource.filter(dsSrcParams);
 					    });
 
-						$("body").on('click', "#btnClear", function(e){
+						$("body").on('click', "#btnClearfrmSearchBy", function(e){
 					     	
 							e.preventDefault();
 					     	
-							$("#searchForm")[0].reset();
+							$("#frmSearchBy")[0].reset();
 					     	
 							$("#src_regionEduAdmin").data('kendoMultiSelect').dataSource.filter({});
 					     	$("#src_eduAdmin").data('kendoMultiSelect').dataSource.filter({});
@@ -1158,7 +1340,7 @@
 							
 					     });
 						
-						//$("body #myModal #searchForm .container blockquote").unbind('click');
+						//$("body #dlgWndSearchBy #frmSearchBy .container blockquote").unbind('click');
 						var headerClickHandler = function(){
 							
 							var $target = $(this);
@@ -1175,10 +1357,10 @@
 						
 						};
 						
-						$("body").off('click', "#myModal #searchForm .container blockquote" );
-						$("body").on('click', "#myModal #searchForm .container blockquote", headerClickHandler);
+						$("body").off('click', "#dlgWndSearchBy #frmSearchBy .container blockquote" );
+						$("body").on('click', "#dlgWndSearchBy #frmSearchBy .container blockquote", headerClickHandler);
 
-						$('body').on('keypress', '#searchForm', function(e) {
+						$('body').on('keypress', '#frmSearchBy', function(e) {
 							if (e.keyCode == 13 && e.target.type != "textarea") {
 								$("#btnSearch").trigger("click");
 							}
@@ -1237,12 +1419,26 @@
 						
 						
 
-						$('.global-search').click(function(e){
+						$('#btnShowDlgSearch').click(function(e){
 							
-							//$('#myModal').toggle();
+							//$('#dlgWndSearchBy').toggle();
 							//resetPopPosition();
 							mmschApp.modules['units'].toggleSearchBoxModal();
 						});
+
+						$('#lnkShowDlgSearchBySubnets').click(function(e){
+							mmschApp.modules['units'].toggleSearchBySubnetsBoxModal();
+						});
+
+						$('#lnkShowDlgSearchByCircuits').click(function(e){
+							mmschApp.modules['units'].toggleSearchByCircuitsBoxModal();
+						});
+						
+						$('#btnShowAltSearch').click(function(e){
+							$('#dlgWndSearchBy').hide();
+							$('#btnShowColumnChooser').popover('hide');	
+						});
+						
 
 						
 						ddls();
@@ -1256,22 +1452,38 @@
 
 
 					function resetPopPosition(){
+						
 						if ($('.popover:visible').length>0){
 							
-							var f = $('.global-search').offset();
-							var s = $('#myModal').outerWidth();
+							var f = $('#btnShowDlgSearch').offset();
+							var s = $('#dlgWndSearchBy').outerWidth();
+							/*
+							//$('#dlgWndSearchBy').css({"left": (f.left - (s - 30)) + "px"});
+							$('#dlgWndSearchBy').css({"left": (f.left - s) + ($('#btnShowDlgSearch').outerWidth())  + "px"});
 							
-							//$('#myModal').css({"left": (f.left - (s - 30)) + "px"});
-							$('#myModal').css({"left": (f.left - s) + ($('.global-search').outerWidth())  + "px"});
-							
-							$('#myModal').css({"top":  (f.top + $('.global-search').outerHeight()) + "px"});
+							$('#dlgWndSearchBy').css({"top":  (f.top + $('#btnShowDlgSearch').outerHeight()) + "px"});
 							
 							$('.arrow').css({"right":"auto"});
-							//$('.arrow').css({"left": (f.left - s) + ($('.global-search').outerWidth()/2)  + "px"});
+							//$('.arrow').css({"left": (f.left - s) + ($('#btnShowDlgSearch').outerWidth()/2)  + "px"});
 
-							$('.arrow').css({"right": "auto", "left": (f.left-s)+ ($('.global-search').outerWidth()/2 + 11)  + "px"});
-							
+							$('.arrow').css({"right": "auto", "left": (f.left-s)+ ($('#btnShowDlgSearch').outerWidth()/2 + 11)  + "px"});
+							*/
 
+							$('#dlgWndSearchBy').position({
+								
+								my: "right top+10",
+								at: "right bottom",
+								of:$('#btnShowDlgSearch'),
+								collision: "fit"
+							});
+
+							$('#dlgWndSearchBy').find('.arrow').position({
+								
+								my: "center",
+								at: "center bottom+8",
+								of:$('#btnShowDlgSearch')
+								//collision: "fit"
+							});
 							
 						}
 					}
