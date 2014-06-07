@@ -596,6 +596,25 @@ function ddls(){
                 }
             }
         });
+		
+		$("#src_subnetType").kendoMultiSelect({
+            dataTextField: "subnet_type",
+            dataValueField: "unit_network_subnet_type_id",
+            optionLabel: "Επιλέξτε...",
+		
+			dataSource: staticData.SubnetTypes.data,
+			
+            index: 0,
+            autoBind: true,
+            change: function() {
+                var value = this.value();
+                $('#src_subnetType').val(value);
+            },
+            dataBound: function() {
+                
+                this.trigger('change');
+            }
+        });
 }
 
 function destroyDDL(){
@@ -616,6 +635,7 @@ function destroyDDL(){
 	$("#src_state").data('kendoMultiSelect').destroy();
 	$("#src_specialType").data('kendoMultiSelect').destroy();
 	$("#src_legalCharacter").data('kendoMultiSelect').destroy();
+	$("#src_subnetType").data('kendoMultiSelect').destroy();
 	
 	
 	$("#myModal").remove();

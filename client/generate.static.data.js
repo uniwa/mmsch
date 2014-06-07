@@ -149,6 +149,25 @@ var inMeM_LegalCharacters = new kendo.data.DataSource({
 	}
 });
 
+//Τύποι Υποδικτύων
+var inMeM_SubnetTypes = new kendo.data.DataSource({
+	transport: tsSubnetTypes,
+	serverFiltering: false,
+	schema: {
+		data: "data",
+		total: "total"
+	}
+});
+
+//Τύποι Κυκλωμάτων
+var inMeM_CircuitTypes = new kendo.data.DataSource({
+	transport: tsCircuitTypes,
+	serverFiltering: false,
+	schema: {
+		data: "data",
+		total: "total"
+	}
+});
 
 
 var staticData = new Object();
@@ -246,6 +265,18 @@ inMeM_Prefectures.fetch(function() {
 															staticData['LegalCharacters'] = new Object();
 															staticData['LegalCharacters']['total'] = this.data().length;
 															staticData['LegalCharacters']['data'] = this.data().toJSON();
+															
+															inMeM_SubnetTypes.fetch(function(){
+																staticData['SubnetTypes'] = new Object();
+																staticData['SubnetTypes']['total'] = this.data().length;
+																staticData['SubnetTypes']['data'] = this.data().toJSON();
+																
+																inMeM_CircuitTypes.fetch(function(){
+																	staticData['CircuitTypes'] = new Object();
+																	staticData['CircuitTypes']['total'] = this.data().length;
+																	staticData['CircuitTypes']['data'] = this.data().toJSON();
+																});
+															});
 														});
 													});
 												});

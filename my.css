@@ -328,7 +328,7 @@ table {
 	
 }
 
-#frmSearchBy .container blockquote {
+.mmsch-form blockquote {
 	border-left:none;
 	padding:0;
 	cursor: pointer;
@@ -338,13 +338,13 @@ table {
 	font-weight: bold;
 }
 
-#frmSearchBy .container blockquote  i {
+.mmsch-form blockquote  i {
 	margin: 2px 5px 0 0 !important;
 	display:inline-block !important;
 	width:16px;
 }
 
-#frmSearchBy .container blockquote: focus{
+.mmsch-form blockquote: focus{
 	color:red;
 	outline: none;
 }
