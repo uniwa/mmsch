@@ -3,30 +3,13 @@
 					<div id="ribbon">
 						<div class="ribbon-menu">
 							<div class="pull-right">
-							
-								
-									<div class="btn-group">
-									  
-									<button id="btnShowColumnChooser" class="btn btn-sm btn-info dropdown-toggle btn-popover" data-toggle="dropdown"><i class="fa fa-th fa-1x">&nbsp</i>Επιλογή Στηλών</button>
+								<div class="btn-group">
+									<button id="btnShowColumnChooser" class="btn btn-sm btn-info dropdown-toggle btn-popover" data-toggle="dropdown"><i class="fa fa-th fa-1x">&nbsp</i>Επιλογή Στηλών</button>									
+								</div>
 									
-									</div>
-									
-									<div class="btn-group">
-		  								<button type="button" class="btn btn-sm btn-info btn-popover"  id="btnShowDlgSearch"><i class="fa fa-search fa-1x">&nbsp</i>Αναζήτηση...</button>
-		  								<button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" id="btnShowAltSearch">
-		    								<span class="caret"></span>
-		    								<span class="sr-only">Toggle Dropdown</span>
-		  								</button>
-		  								<ul class="dropdown-menu dropdown-menu-right" role="menu">
-		    								<li><a href="javascript:void(0)" id="lnkShowDlgSearchByCircuits" class="btn-popover">Τηλεπικοινωνιακά Κυκλώματα</a></li>
-		    								<li><a href="javascript:void(0)" id="lnkShowDlgSearchBySubnets"  class="btn-popover">Υποδίκτυα</a></li>
-		  								</ul>
-									</div>
-								
-									
-								<!-- 
-								<button class="k-button global-search" title="Αναζήτηση (Πληκτρολογήστε 's')"><i class="fa fa-search fa-2x"></i></button>
-								-->
+								<div class="btn-group">
+		  							<button type="button" class="btn btn-sm btn-info btn-popover"  id="btnShowDlgSearch"><i class="fa fa-search fa-1x">&nbsp</i>Αναζήτηση...</button>		  								
+								</div>
 							</div>
 						</div>
 					</div>
@@ -150,51 +133,6 @@
 					</div>
 					
 
-<div class="popover bottom in mmsch-modal-wnd" id="dlgWndSearchBySubnets" tabindex="-1" style="display:none; width:50%; position: absolute: left:auto; z-index: 33010;border-radius:0px;" >
-	<div class="arrow" style=""></div>
-  	<div class="modal-dialog1">
-    	<div class="modal-content1">
-	    	<div class="modal-header">
-       			<h4 class="modal-title " id="myModalLabel">Αναζήτηση με δικτυακά στοιχεία</h4>
-    		</div>
-    		<div class="modal-body">
-				<form id="frmSearchBySubnets" class="mmsch-form">
-       				<div class="container" style="width:inherit; height:400px; overflow:auto;">
-       				Υπό κατασκευή...
-       				</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button id="" type="button" class="k-button default">Καθαρισμός</button>
-       			<button id="" type="button" class="k-button primary">Αναζήτηση</button>
-    		</div>
-		</div>
-	</div>
-</div>								
-					
-<div class="popover bottom in mmsch-modal-wnd" id="dlgWndSearchByCircuits" tabindex="-1" style="display:none; width:50%; position: absolute: left:auto; z-index: 33010;border-radius:0px;" >
-	<div class="arrow" style=""></div>
-  	<div class="modal-dialog1">
-    	<div class="modal-content1">
-	    	<div class="modal-header">
-       			<h4 class="modal-title " id="myModalLabel">Αναζήτηση με κυκλώματα</h4>
-    		</div>
-    		<div class="modal-body">
-				<form id="frmSearchByCircuits" class="mmsch-form">
-       				<div class="container" style="width:inherit; height:400px; overflow:auto;">
-       				Υπό κατασκευή...
-       				</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button id="" type="button" class="k-button default">Καθαρισμός</button>
-       			<button id="" type="button" class="k-button primary">Αναζήτηση</button>
-    		</div>
-		</div>
-	</div>
-</div>								
-		
-					
 <div class="popover bottom in mmsch-modal-wnd" id="dlgWndSearchBy" tabindex="-1" style="display:none; width:50%; position: absolute: left:auto; z-index: 33010;border-radius:0px;" >
   <div class="arrow" style=""></div>
   <div class="modal-dialog1">
@@ -204,9 +142,18 @@
         <h4 class="modal-title " id="myModalLabel">Αναζήτηση</h4>
       </div>
       <div class="modal-body">
-		<form id="frmSearchBy" class="mmsch-form">
+		
         <div class="container" style="width:inherit; height:400px; overflow:auto;">
-										
+        
+        <ul class="nav nav-tabs">
+			<li class="active"><a href="#mainSearch" data-toggle="tab">Κύρια</a></li>
+  			<li><a href="#subnetSearch" data-toggle="tab">Υποδίκτυα</a></li>
+  			<li><a href="#circuitSearch" data-toggle="tab">Κυκλώματα</a></li>
+		</ul>
+
+		<div class="tab-content" style="padding-top:25px;">
+			<div class="tab-pane active" id="mainSearch">	
+			<form id="frmUnitMainSearch" class="mmsch-form">							
 										<blockquote>
   												<i class="fa fa-chevron-down"></i><span>ΓΕΝΙΚΑ ΣΤΟΙΧΕΙΑ</span>
 										</blockquote>
@@ -433,13 +380,94 @@
 											
 										</div>
 										
-										
+										</form>
+    								</div>
+    								
+    								<div class="tab-pane" id="circuitSearch">
+    									<form id="frmUnitCircuitSearch" class="mmsch-form">
+    									<div>
+    										<div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="" class="control-label">Τηλ. Αριθμός</label>
+													<input type="text" name="phone_number" class="k-textbox col-md-12" />
+												</div>
+					    					</div>
+					    					<div class="col-md-4">
+												<div class="form-group">
+													<label for="" class="control-label">Τύπος Κυκλώματος</label>
+													<input name="circuit_type" id="src_circuitType" class="bt-col-full" />
+												</div>
+					    					</div>
+					    					<div class="col-md-4">
+												<div class="form-group">
+													<label for="" class="control-label">Κωδικός ΜΜ</label>
+													<input type="text" name="unit" class="k-textbox col-md-12" />
+												</div>
+					    					</div>
+					    					</div>
+					    				</div>	
+					    				
+    									</form>
+    								</div>
+    								
+    								<div class="tab-pane" id="subnetSearch">
+    									<form id="frmUnitSubnetSearch" class="mmsch-form">
+       									<div>
+				       					<div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="" class="control-label">IP Υποδικτύου</label>
+													<input type="text" name="subnet_ip" class="k-textbox col-md-12" />
+												</div>
+					    					</div>
+					    					<div class="col-md-4">
+												<div class="form-group">
+													<label for="" class="control-label">Μάσκα Υποδικτύου</label>
+													<input type="text" name="mask" class="k-textbox col-md-12" />
+												</div>
+					    					</div>
+					    					<div class="col-md-4">
+												<div class="form-group">
+													<label for="" class="control-label">Κωδικός ΜΜ</label>
+													<input type="text" name="unit" class="k-textbox col-md-12" />
+												</div>
+					    					</div>
+					    				</div>	
+					    				
+					    				<div class="clear">&nbsp</div>
+					    				
+					    				<div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="" class="control-label">Default Gateway</label>
+													<input type="text" name="subnet_default_router" class="k-textbox col-md-12" />
+												</div>
+					    					</div>
+					    					<div class="col-md-4">
+												<div class="form-group">
+													<label for="" class="control-label">Όνομα Υποδικτύου</label>
+													<input type="text" name="unit_network_subnet" class="k-textbox col-md-12" />
+												</div>
+					    					</div>
+					    					<div class="col-md-4">
+												<div class="form-group">
+													<label for="" class="control-label">Τύπος Υποδικτύου</label>
+													<input name="unit_network_subnet_type" id="src_subnetType"  class="bt-col-full" />
+												</div>
+					    					</div>
+					    				</div>
+					    				</div>	
+       				
+										</form>
+    								</div>
     								
 									</div>
-		</form>	
+				</div>
+			
 	  </div>
       <div class="modal-footer">
-		<button id="btnClearfrmSearchBy" type="button" class="k-button default">Καθαρισμός</button>
+		<button id="btnClearFrmSearch" type="button" class="k-button default">Καθαρισμός</button>
         <button id="btnSearch" type="button" class="k-button primary">Αναζήτηση</button>
       </div>
     </div><!-- /.modal-content -->
@@ -543,8 +571,7 @@
 							if (action === 'show' || (action ==="" && visible === false)){
 
 								$('#btnShowColumnChooser').popover('hide');
-								$('#lnkShowDlgSearchByCircuits').popover('hide');
-								$('#lnkShowDlgSearchBySubnets').popover('hide');
+								$('.popover').hide();
 								
 								$('#dlgWndSearchBy').show();
 								//resetPopPosition();
@@ -566,76 +593,6 @@
 							}
 							else if (action === 'hide' || (action ==="" && visible === true)){
 								$('#dlgWndSearchBy').hide();
-							}
-						},
-
-						toggleSearchBySubnetsBoxModal: function(action){
-
-							var dlgWndID = "dlgWndSearchBySubnets";
-							
-							var action = (typeof action != 'undefined') ? action : "";
-							
-							var visible = $('#' + dlgWndID).is(":visible");
-							
-							if (action === 'show' || (action ==="" && visible === false)){
-
-								$('#lnkShowDlgSearchByCircuits').popover('hide');
-								
-								$('#' + dlgWndID).show();
-								//resetPopPosition();
-								$('#' + dlgWndID).position({
-									
-									my: "right top+10",
-									at: "right bottom",
-									of:$('#btnShowDlgSearch'),
-									collision: "fit"
-								});
-
-								$('#' + dlgWndID).find('.arrow').position({
-									
-									my: "center",
-									at: "center bottom+8",
-									of:$('#btnShowDlgSearch')
-									//collision: "fit"
-								});
-							}
-							else if (action === 'hide' || (action ==="" && visible === true)){
-								$('#' + dlgWndID).hide();
-							}
-						},
-
-						toggleSearchByCircuitsBoxModal: function(action){
-
-							var dlgWndID = "dlgWndSearchByCircuits";
-							
-							var action = (typeof action != 'undefined') ? action : "";
-							
-							var visible = $('#' + dlgWndID).is(":visible");
-							
-							if (action === 'show' || (action ==="" && visible === false)){
-
-								$('#lnkShowDlgSearchBySubnets').popover('hide');
-								
-								$('#' + dlgWndID).show();
-								//resetPopPosition();
-								$('#' + dlgWndID).position({
-									
-									my: "right top+10",
-									at: "right bottom",
-									of:$('#btnShowDlgSearch'),
-									collision: "fit"
-								});
-
-								$('#' + dlgWndID).find('.arrow').position({
-									
-									my: "center",
-									at: "center bottom+8",
-									of:$('#btnShowDlgSearch')
-									//collision: "fit"
-								});
-							}
-							else if (action === 'hide' || (action ==="" && visible === true)){
-								$('#' + dlgWndID).hide();
 							}
 						},
 						
@@ -698,6 +655,7 @@
 						mmschApp.modules['units']._onWindowKeyUp();
 						
 						$("#dlgWndSearchBy").appendTo("body");
+						
 
 						//var objMmsch = new mmsch();
 						mmschApp.modules['units'].init();
@@ -724,8 +682,8 @@
 						$('#btnShowColumnChooser').on('shown.bs.popover', function (e) {
 
 							$('#dlgWndSearchBy').hide();
-							$('#lnkShowDlgSearchByCircuits').popover('hide');
-							$('#lnkShowDlgSearchBySubnets').popover('hide');
+							$('#dlgWndSearchBySubnets').hide();
+							$('#dlgWndSearchByCircuits').hide();
 							
 							var bsPopoverEl = $(this).data('bs.popover'),
 							ele = bsPopoverEl.tip();
@@ -1021,6 +979,24 @@
 					            },
 					            requestEnd: function(e) {
 					            	$('#btnSearch').button('reset');
+					            	
+					            	var data = e.response.data;
+					            	
+					            	if(data.length > 0){
+
+					            		if (typeof data[0].unit_name == "undefined"){
+											return;
+							            }
+					            		else{ 
+						            		//return;
+					            		}
+						            	    
+					            		var results_no = data.length;
+					                    
+					                    for(var i=0; i < results_no; i++){
+				                    		data[i]['name'] = data[i].unit_name;
+					                    }
+					                }
 									/*
 					                if ($('#grid-units').data('kendoGrid').options.inSearching) {
 
@@ -1286,57 +1262,83 @@
 								preview_pane.removeClass("unpinned").addClass("pinned");
 								var ks = $('.splitter-holder-inner').data('kendoSplitter');
 								ks.expand('.k-pane:last');
-								
+
 								preview_pane.unbind("mouseenter");
 								preview_pane.unbind("mouseleave");
 							}
-							
+
 							resizeGrid("grid-units");
 						});
 
 						$('body').on('click', '#btnSearch', function(e) {
-							
-					        e.preventDefault();
 
-					       
-					        
+							e.preventDefault();
 					        $(this).button('loading');
-
-					        var formData = $("#frmSearchBy").serializeArray();
 					        
+							var grid = $('#grid-units').data('kendoGrid');
+							grid.dataSource.transport.options.read.url = apiUrl + "units";
+
+							var $frm = $("#dlgWndSearchBy").find("form:visible");
+							var frmID = $frm.attr("id");
+
+							var endPoint = "units";
+							
+							if (frmID == "frmUnitMainSearch"){
+								endPoint = "units";
+							}
+							else if (frmID == "frmUnitSubnetSearch"){
+								endPoint = "unit_network_subnets";
+							}
+							else if (frmID == "frmUnitCircuitSearch"){
+								endPoint = "circuits";
+							}
+							else {
+								endPoint = "units";
+							}
+
+							grid.dataSource.transport.options.read.url = apiUrl + endPoint;
+
+					        var frmData = $frm.serializeArray();
+
 					        var dsSrcParams = [];
 
-					        $.each(formData, function(i, v) {
+					        $.each(frmData, function(i, v) {
 					            dsSrcParams.push({'field': v.name, 'value': v.value});
 					        });
 
-
-					       
-					        
-					        $('#grid-units').data('kendoGrid').options.inSearching = true;
-					        $("#grid-units").data("kendoGrid").dataSource.filter(dsSrcParams);
+					        grid.options.inSearching = true;
+					        grid.dataSource.filter(dsSrcParams);
 					    });
 
-						$("body").on('click', "#btnClearfrmSearchBy", function(e){
+						$("body").on('click', "#btnClearFrmSearch", function(e){
 					     	
 							e.preventDefault();
-					     	
-							$("#frmSearchBy")[0].reset();
-					     	
-							$("#src_regionEduAdmin").data('kendoMultiSelect').dataSource.filter({});
-					     	$("#src_eduAdmin").data('kendoMultiSelect').dataSource.filter({});
-					     	$("#src_transferArea").data('kendoMultiSelect').dataSource.filter({});
+
+							var grid = $('#grid-units').data('kendoGrid');
+							grid.dataSource.transport.options.read.url = apiUrl + "units";
+
+							var $frm = $("#dlgWndSearchBy").find("form:visible");
+							var frmID = $frm.attr("id");
 							
-							$("#src_prefecture").data('kendoMultiSelect').dataSource.filter({});
-							$("#src_municipality").data('kendoMultiSelect').dataSource.filter({});
-							
-							$("#src_category").data('kendoMultiSelect').dataSource.filter({});
-							$("#src_orientationType").data('kendoMultiSelect').dataSource.filter({});
-							$("#src_operationShift").data('kendoMultiSelect').dataSource.filter({});
-							$("#src_specialType").data('kendoMultiSelect').dataSource.filter({});
-							$("#src_unitType").data('kendoMultiSelect').dataSource.filter({});
-							
-							$("#src_educationLevel").data('kendoMultiSelect').dataSource.filter({});
+							$frm[0].reset();
+
+							if (frmID == "frmUnitMainSearch"){
+								
+								$("#src_regionEduAdmin").data('kendoMultiSelect').dataSource.filter({});
+						     	$("#src_eduAdmin").data('kendoMultiSelect').dataSource.filter({});
+						     	$("#src_transferArea").data('kendoMultiSelect').dataSource.filter({});
+								
+								$("#src_prefecture").data('kendoMultiSelect').dataSource.filter({});
+								$("#src_municipality").data('kendoMultiSelect').dataSource.filter({});
+								
+								$("#src_category").data('kendoMultiSelect').dataSource.filter({});
+								$("#src_orientationType").data('kendoMultiSelect').dataSource.filter({});
+								$("#src_operationShift").data('kendoMultiSelect').dataSource.filter({});
+								$("#src_specialType").data('kendoMultiSelect').dataSource.filter({});
+								$("#src_unitType").data('kendoMultiSelect').dataSource.filter({});
+								
+								$("#src_educationLevel").data('kendoMultiSelect').dataSource.filter({});
+							}
 							
 					     });
 						
@@ -1357,10 +1359,10 @@
 						
 						};
 						
-						$("body").off('click', "#dlgWndSearchBy #frmSearchBy .container blockquote" );
-						$("body").on('click', "#dlgWndSearchBy #frmSearchBy .container blockquote", headerClickHandler);
+						$("body").off('click', "#dlgWndSearchBy .mmsch-form blockquote" );
+						$("body").on('click', "#dlgWndSearchBy .mmsch-form blockquote", headerClickHandler);
 
-						$('body').on('keypress', '#frmSearchBy', function(e) {
+						$('body').on('keypress', '#dlgWndSearchBy', function(e) {
 							if (e.keyCode == 13 && e.target.type != "textarea") {
 								$("#btnSearch").trigger("click");
 							}
@@ -1426,18 +1428,8 @@
 							mmschApp.modules['units'].toggleSearchBoxModal();
 						});
 
-						$('#lnkShowDlgSearchBySubnets').click(function(e){
-							mmschApp.modules['units'].toggleSearchBySubnetsBoxModal();
-						});
-
-						$('#lnkShowDlgSearchByCircuits').click(function(e){
-							mmschApp.modules['units'].toggleSearchByCircuitsBoxModal();
-						});
+												
 						
-						$('#btnShowAltSearch').click(function(e){
-							$('#dlgWndSearchBy').hide();
-							$('#btnShowColumnChooser').popover('hide');	
-						});
 						
 
 						
