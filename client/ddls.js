@@ -615,6 +615,7 @@ function ddls(){
                 this.trigger('change');
             }
         });
+
 		
 		$("#src_circuitType").kendoMultiSelect({
             dataTextField: "circuit_type",
