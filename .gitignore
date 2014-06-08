@@ -12,4 +12,4 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
-/server/myschool_client/certs/*
+/server/myschool_client/MyschoolUnitInfoJClient.jar
