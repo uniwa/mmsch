@@ -33,6 +33,7 @@ session_name('MMSCH');
       "ServerPassWord" => "",
       "ServerAdminUserName" => "mmschadmin",
       "ServerAdminPassWord" => "",
+      "javaBin" => "java.exe",
       "dbUnits" => "data/survey_units.txt",
       "dbDides" => "data/survey_dides.txt",
 );
