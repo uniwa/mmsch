@@ -12,7 +12,7 @@ require_once 'sync/sync_survey_committees.php';
 //==============================================================================
 
 //$data    = json_decode( sync_survey_units_data() );
-$data = exec('cd '.__DIR__.'/../myschool_client && "'.$Options['javaBin'].'" -Dfile.encoding=UTF-8 -jar MyschoolUnitInfoJClient.jar units '.$Options["dbUnits"]);
+$data = exec('cd '.__DIR__.'/../myschool_client && "'.$Options['javaBin'].'" -Dfile.encoding=UTF-8 -jar MyschoolUnitInfoJClient.jar units '.getcwd().'/'.$Options["dbUnits"]);
 $data = json_decode($data);
 $message = $data->message;
 //
