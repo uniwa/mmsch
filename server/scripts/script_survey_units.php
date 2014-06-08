@@ -5,13 +5,15 @@ chdir( "../" );
 
 require_once('system/includes.php');
 require_once('libs/nusoap/nusoap.php');
-require_once 'sync/sync_survey_units_data.php';
+//require_once 'sync/sync_survey_units_data.php';
 require_once 'sync/sync_survey_units.php';
 require_once 'sync/sync_survey_committees.php';
 
 //==============================================================================
 
-$data    = json_decode( sync_survey_units_data() );
+//$data    = json_decode( sync_survey_units_data() );
+$data = exec('cd '.__DIR__.'/../myschool_client && "'.$Options['javaBin'].'" -Dfile.encoding=UTF-8 -jar MyschoolUnitInfoJClient.jar units '.$Options["dbUnits"]);
+$data = json_decode($data);
 $message = $data->message;
 //
 $sql = "INSERT INTO system_sync_logs SET "
