@@ -505,8 +505,12 @@ class Units
         return $this->lastUpdate;
     }
 
-    public function setLastUpdate(\DateTime $lastUpdate) {
-        $this->lastUpdate = $lastUpdate;
+    public function setLastUpdate($lastUpdate) {
+        if(is_string($lastUpdate) && $lastUpdate != '') {
+            $this->lastUpdate = \DateTime::createFromFormat('Y-m-d H:i:s', $lastUpdate);
+        } else if($lastUpdate instanceof \DateTime) {
+            $this->lastUpdate = $lastUpdate;
+        }
     }
 
     public function getTaxNumber() {
@@ -529,8 +533,12 @@ class Units
         return $this->lastSync;
     }
 
-    public function setLastSync(\DateTime $lastSync) {
-        $this->lastSync = $lastSync;
+    public function setLastSync($lastSync) {
+        if(is_string($lastSync) && $lastSync != '') {
+            $this->lastSync = \DateTime::createFromFormat('Y-m-d H:i:s', $lastSync);
+        } else if($lastSync instanceof \DateTime) {
+            $this->lastSync = $lastSync;
+        }
     }
 
     public function getLatitude() {

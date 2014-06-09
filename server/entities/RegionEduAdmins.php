@@ -28,5 +28,19 @@ class RegionEduAdmins
      */
     private $name;
 
+    public function getRegionEduAdminId() {
+        return $this->regionEduAdminId;
+    }
 
+    public function setRegionEduAdminId($regionEduAdminId) {
+        $this->regionEduAdminId = $regionEduAdminId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
 }

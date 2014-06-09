@@ -32,7 +32,6 @@ require_once ('../api/system/Parameters.php');
 
 require_once ('classes/sync/SyncEduAdmins.class.php');
 require_once ('classes/sync/SyncTransferAreas.class.php');
-require_once ('classes/sync/SyncTypes.class.php');
 
 require_once ('classes/Validator.php');
 

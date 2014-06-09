@@ -38,5 +38,27 @@ class TransferAreas
      */
     private $eduAdmin;
 
+    public function getTransferAreaId() {
+        return $this->transferAreaId;
+    }
 
+    public function setTransferAreaId($transferAreaId) {
+        $this->transferAreaId = $transferAreaId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function getEduAdmin() {
+        return $this->eduAdmin;
+    }
+
+    public function setEduAdmin(\EduAdmins $eduAdmin) {
+        $this->eduAdmin = $eduAdmin;
+    }
 }

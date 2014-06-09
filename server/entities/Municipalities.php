@@ -38,5 +38,27 @@ class Municipalities
      */
     private $prefecture;
 
+    public function getMunicipalityId() {
+        return $this->municipalityId;
+    }
 
+    public function setMunicipalityId($municipalityId) {
+        $this->municipalityId = $municipalityId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function getPrefecture() {
+        return $this->prefecture;
+    }
+
+    public function setPrefecture(\Prefectures $prefecture) {
+        $this->prefecture = $prefecture;
+    }
 }
