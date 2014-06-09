@@ -57,7 +57,7 @@ function sync_survey_units()
         $listener->init($totalRowsCounter, $progressbar_block, $rowToStop, $totalRowsErrors,
             $totalRowsInstalled, $totalRowsUpdated, $totalRowsSkipped,
             $blockRowsErrors, $blockRowsInstalled, $blockRowsUpdated, $blockRowsSkiped,
-            $logMessage, $last_sync);
+            $logMessage, $errorMessages, $last_sync);
         try {
             $parser = new JsonStreamingParser_Parser($stream, $listener);
             $parser->parse();
@@ -119,12 +119,12 @@ function sync_survey_units()
 class UnitsParseListener implements \JsonStreamingParser_Listener {
     private $_level;
     private $_stack;
-    private $_key;
+    private $_keyStack;
 
     public function init(&$totalRowsCounter, &$progressbar_block, &$rowToStop, &$totalRowsErrors,
             &$totalRowsInstalled, &$totalRowsUpdated, &$totalRowsSkipped,
             &$blockRowsErrors, &$blockRowsInstalled, &$blockRowsUpdated, &$blockRowsSkiped,
-            &$logMessage, &$lastSync) {
+            &$logMessage, &$errorMessages, &$lastSync) {
         
         $this->totalRowsCounter =& $totalRowsCounter;
         $this->progressbar_block =& $progressbar_block;
@@ -138,12 +138,13 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
         $this->blockRowsUpdated =& $blockRowsUpdated;
         $this->blockRowsSkiped =& $blockRowsSkiped;
         $this->logMessage =& $logMessage;
+        $this->errorMessages =& $errorMessages;
         $this->lastSync =& $lastSync;
 
 
         $msg = "Ανάκτηση Λεξικών";
         $br = ($_SERVER["argv"] ? "\n" : "<br>");
-        echo $msg.$br.$br; $logMessage[] = $msg."\n\n";
+        echo $msg.$br.$br; $this->logMessage[] = $msg."\n\n";
         ob_get_flush(); ob_flush(); flush();
 
         load_region_edu_admins($this->a_region_edu_admins, $this->o_region_edu_admins);
@@ -169,7 +170,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
     public function start_document() {
         $this->_level = 0;
         $this->_stack = array();
-        $this->_key = null;
+        $this->_keyStack = array();
     }
 
     public function end_document() {
@@ -202,15 +203,15 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
     // Key will always be a string
     public function key($key) {
-        $this->_key = ucfirst($key);
+        array_push($this->_keyStack, ucfirst($key));
     }
 
     // Note that value may be a string, integer, boolean, null
     public function value($value) {
         $obj = array_pop($this->_stack);
-        if ($this->_key) {
-            $obj[$this->_key] = $value;
-            $this->_key = null;
+        $key = array_pop($this->_keyStack);
+        if ($key) {
+            $obj[$key] = $value;
         } else {
             array_push($obj, $value);
         }
@@ -243,20 +244,20 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             $accented = array('Ά', 'ά', 'Έ', 'έ', 'Ή', 'ή', 'Ό', 'ό', 'Ύ', 'ύ', 'Ώ', 'ώ', 'Ί', 'ί');
             $nonaccented = array('α', 'α', 'ε', 'ε', 'η', 'η', 'ο', 'ο', 'υ', 'υ', 'ω', 'ω', 'ι', 'ι');
 
-            $region_edu_admin_id = $this->getDictionary($unit, $unit["Perifereia"], $this->a_region_edu_admins, $this->o_region_edu_admins, 'InvalidRegionEduAdminValue', 'RegionEduAdmins', 'name', load_region_edu_admins);
+            $region_edu_admin_id = $this->getDictionary($unit, $unit["Perifereia"], $this->a_region_edu_admins, $this->o_region_edu_admins, 'InvalidRegionEduAdminValue', 'RegionEduAdmins', 'regionEduAdminId', 'name', load_region_edu_admins);
 
-            $edu_admin_id = $this->getDictionary($unit, $unit["Diefthinsi"], $this->a_edu_admins, $this->o_edu_admins, 'InvalidEduAdminValue', 'EduAdmins', 'name', load_edu_admins);
+            $edu_admin_id = $this->getDictionary($unit, $unit["Diefthinsi"], $this->a_edu_admins, $this->o_edu_admins, 'InvalidEduAdminValue', 'EduAdmins', 'eduAdminId', 'name', load_edu_admins);
 
             $implementation_entity_id = $this->o_edu_admins[$edu_admin_id]->implementation_entity_id;
 
-            $transfer_area_id = $this->getDictionary($unit, $unit["PostingTransferArea"], $this->a_transfer_areas, $this->o_transfer_areas, 'InvalidEduAdminValue', 'TransferAreas', 'name', load_transfer_areas);
+            $transfer_area_id = $this->getDictionary($unit, $unit["PostingTransferArea"], $this->a_transfer_areas, $this->o_transfer_areas, 'InvalidEduAdminValue', 'TransferAreas', 'transferAreaId', 'name', load_transfer_areas);
 
-            $prefecture_id = $this->getDictionary($unit, $unit["Prefecture"], $this->a_prefectures, $this->o_prefectures, 'InvalidEduAdminValue', 'Prefectures', 'name', load_prefectures);
+            $prefecture_id = $this->getDictionary($unit, $unit["Prefecture"], $this->a_prefectures, $this->o_prefectures, 'InvalidEduAdminValue', 'Prefectures', 'prefectureId', 'name', load_prefectures);
 
-            $municipality_id = $this->getDictionary($unit, $unit["Municipality"], $this->a_municipalities, $this->o_municipalities, 'InvalidEduAdminValue', 'Municipalities', 'name', load_municipalities);
+            $municipality_id = $this->getDictionary($unit, $unit["Municipality"], $this->a_municipalities, $this->o_municipalities, 'InvalidEduAdminValue', 'Municipalities', 'municipalityId', 'name', load_municipalities);
 ;
 
-            $sync_unit_type_id = $this->getDictionary($unit, mb_strtoupper(str_replace($accented, $nonaccented, $unit["SchoolType"]), 'UTF-8'), $this->a_sync_unit_types, $this->o_sync_unit_types, 'InvalidEduAdminValue', 'SyncTypes', 'name', load_unit_types);
+            $sync_unit_type_id = $this->getDictionary($unit, mb_strtoupper(str_replace($accented, $nonaccented, $unit["SchoolType"]), 'UTF-8'), $this->a_sync_unit_types, $this->o_sync_unit_types, 'InvalidEduAdminValue', 'SyncTypes', 'syncTypeId', 'name', load_sync_unit_types);
 
             if ($sync_unit_type_id)
             {
@@ -266,7 +267,8 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 $orientation_type_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->orientation_type_id;
                 $special_type_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->special_type_id;
             }
-            $tax_office_id = $this->getDictionary($unit, $unit["SchoolDOY"], $this->a_tax_offices, $this->o_tax_offices, 'InvalidEduAdminValue', 'TaxOffices', 'name', load_tax_offices);
+
+            $tax_office_id = $this->getDictionary($unit, $unit["SchoolDOY"], $this->a_tax_offices, $this->o_tax_offices, 'InvalidEduAdminValue', 'TaxOffices', 'taxOfficeId', 'name', load_tax_offices);
 
             $unit["SchoolLevel"] = trim($unit["SchoolLevel"]);
             $education_level_id = $unit["SchoolLevel"];
@@ -335,7 +337,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 //echo "<pre>"; var_dump( $unit ); echo "</pre>";
 
                 $sql = "SELECT mm_id FROM units "
-                     . "WHERE registry_no = '".mysql_escape_string(trim($unit["RegistryNo"]))."' and source_id = 1";
+                     . "WHERE registry_no = '".mysql_escape_string(trim($unit["RegistryNo"]))."' and source_id = 5";
                 //echo "<br><br>".$sql."<br><br>";
 
                 $stmt = $db->query( $sql );
@@ -367,7 +369,6 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 }
                 else
                 {
-                    var_dump($data); die();
                     $this->isError = true;
 
                     $this->blockRowsErrors++;
@@ -454,19 +455,27 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
         $this->totalRowsCounter++;
     }
 
-    private function getDictionary($unit, $value, &$a_values, &$o_values, $exceptionString, $classname, $attr, callable $reloadFunc) {
+    private function getDictionary($unit, $value, &$a_values, &$o_values, $exceptionString, $classname, $idAttr, $attr, callable $reloadFunc) {
         global $entityManager;
 
         $value = trim($value);
         if ($value)
         {
             if (!in_array($value, $a_values)) {
-                $obj = new $classname();
-                $method = 'set'.ucfirst($attr);
-                $obj->$method($value);
-                $entityManager->persist($obj);
-                $entityManager->flush($obj);
+                $obj = $entityManager->getRepository($classname)->findOneBy(array(
+                    $attr => $value,
+                ));
+                if(!isset($obj)) {
+                    $obj = new $classname();
+                    $setMethod = 'set'.ucfirst($attr);
+                    $obj->$setMethod($value);
+                    $entityManager->persist($obj);
+                    $entityManager->flush($obj);
+                }
                 $reloadFunc($a_values, $o_values);
+                //$idMethod = 'get'.ucfirst($idAttr);
+                //$attrMethod = 'get'.ucfirst($attr);
+                //$a_values[$obj->$idMethod()] = $obj->$attrMethod();
             }
             if (!in_array($value, $a_values)) {
                 $this->isError = true;
