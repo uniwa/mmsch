@@ -48,5 +48,35 @@ class EduAdmins
      */
     private $regionEduAdmin;
 
+    public function getEduAdminId() {
+        return $this->eduAdminId;
+    }
 
+    public function setEduAdminId($eduAdminId) {
+        $this->eduAdminId = $eduAdminId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function getImplementationEntity() {
+        return $this->implementationEntity;
+    }
+
+    public function setImplementationEntity(\ImplementationEntities $implementationEntity) {
+        $this->implementationEntity = $implementationEntity;
+    }
+
+    public function getRegionEduAdmin() {
+        return $this->regionEduAdmin;
+    }
+
+    public function setRegionEduAdmin(\RegionEduAdmins $regionEduAdmin) {
+        $this->regionEduAdmin = $regionEduAdmin;
+    }
 }

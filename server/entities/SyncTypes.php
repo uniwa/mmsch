@@ -78,5 +78,59 @@ class SyncTypes
      */
     private $unitType;
 
+    public function getSyncTypeId() {
+        return $this->syncTypeId;
+    }
 
+    public function setSyncTypeId($syncTypeId) {
+        $this->syncTypeId = $syncTypeId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function getLegalCharacter() {
+        return $this->legalCharacter;
+    }
+
+    public function setLegalCharacter(\LegalCharacters $legalCharacter) {
+        $this->legalCharacter = $legalCharacter;
+    }
+
+    public function getOperationShift() {
+        return $this->operationShift;
+    }
+
+    public function setOperationShift(\OperationShifts $operationShift) {
+        $this->operationShift = $operationShift;
+    }
+
+    public function getOrientationType() {
+        return $this->orientationType;
+    }
+
+    public function setOrientationType(\OrientationTypes $orientationType) {
+        $this->orientationType = $orientationType;
+    }
+
+    public function getSpecialType() {
+        return $this->specialType;
+    }
+
+    public function setSpecialType(\SpecialTypes $specialType) {
+        $this->specialType = $specialType;
+    }
+
+    public function getUnitType() {
+        return $this->unitType;
+    }
+
+    public function setUnitType(\UnitTypes $unitType) {
+        $this->unitType = $unitType;
+    }
 }

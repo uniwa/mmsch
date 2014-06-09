@@ -3,7 +3,6 @@ header("Content-Type: text/html; charset=utf-8");
 
 function sync_survey_units()
 {
-    global $db;
     global $Options;
     
     $rowToStop = 0;
@@ -14,9 +13,12 @@ function sync_survey_units()
     $totalRowsUpdated = 0;
     $totalRowsSkipped = 0;
     $totalRowsCounter = 0;
+    $blockRowsErrors = 0;
+    $blockRowsInstalled = 0;
+    $blockRowsUpdated = 0;
+    $blockRowsSkiped = 0;
 
     $logMessage = array();
-    $totalErrorMessages = array();
 
     $br = ($_SERVER["argv"] ? "\n" : "<br>");
 
@@ -40,29 +42,6 @@ function sync_survey_units()
     }
     else 
     {
-        $units_array = unserialize( file_get_contents( $Options["dbUnits"] ) );
-
-        $msg = "Ανάκτηση Λεξικών";
-        echo $msg.$br.$br; $logMessage[] = $msg."\n\n";
-        ob_get_flush(); ob_flush(); flush();
-
-        load_region_edu_admins($a_region_edu_admins, $o_region_edu_admins);
-        load_edu_admins($a_edu_admins, $o_edu_admins);
-        load_transfer_areas($a_transfer_areas, $o_transfer_areas);
-        load_municipalities($a_municipalities, $o_municipalities);
-        load_prefectures($a_prefectures, $o_prefectures);
-        load_unit_types($a_unit_types, $o_unit_types);
-        load_operation_shifts($a_operation_shifts, $o_operation_shifts);
-        load_legal_characters($a_legal_characters, $o_legal_characters);
-        load_orientation_types($a_orientation_types, $o_orientation_types);
-        load_special_types($a_special_types, $o_special_types);
-        load_sync_unit_types($a_sync_unit_types, $o_sync_unit_types);
-        load_tax_offices($a_tax_offices, $o_tax_offices);
-        load_education_levels($a_education_levels, $o_education_levels);
-        load_states($a_states, $o_states);
-        load_implementation_entities($a_implementation_entities, $o_implementation_entities);
-        load_categories($a_categories, $o_categories);
-
         $msg = "Έναρξη Συγχρονισμού : ".$last_sync;
         echo $msg.$br.$br; $logMessage[] = $msg."\n\n";
         ob_get_flush(); ob_flush(); flush();
@@ -72,654 +51,19 @@ function sync_survey_units()
         echo $msg; //$logMessage[] = $msg;
         ob_get_flush(); ob_flush(); flush();
 
-        foreach ($units_array as $unit)
-        {
-            $isError = false;
-
-            if ( ($totalRowsCounter > 0 ) && (($totalRowsCounter % $progressbar_block) == 0) )
-            {
-                $msg = ':'.$totalRowsCounter;
-                echo $msg; //$logMessage[] = $msg;
-                ob_get_flush(); ob_flush(); flush();
-            }
-
-            if (($rowToStop <> 0 ) && ($totalRowsCounter == $rowToStop)) break;
-
-            //var_dump($unit); echo "<br><br>";
-
-            if (true) //trim($unit["RegistryNo"]) == '9400001')
-            {
-
-                if ((trim($unit["Perifereia"]) <> "ΣΥΝΤΟΝΙΣΤΙΚΟ ΓΡΑΦΕΙΟ ΕΚΚΛΗΣΙΑΣΤΙΚΩΝ") &&
-                    (trim($unit["Perifereia"]) <> "ΣΥΝΤΟΝΙΣΤΙΚΟ ΓΡΑΦΕΙΟ ΜΕΙΟΝΟΤΙΚΩΝ") &&
-                    (trim($unit["Perifereia"]) <> "ΣΙΒΙΤΑΝΙΔΕΙΟΣ"))
-                {
-
-    //= Unit =======================================================================
-
-                    $unit["Perifereia"] = trim($unit["Perifereia"]);
-                    if ($unit["Perifereia"])
-                    {
-                        if (!in_array($unit["Perifereia"], $a_region_edu_admins))
-                        {
-                            $isError = true;
-                            $totalRowsErrors++;
-                            $errorMessages[] = "[Script] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
-                                             . ExceptionCodes::InvalidRegionEduAdminValue ." : ".ExceptionMessages::InvalidRegionEduAdminValue
-                                             . " '".$unit["Perifereia"]."'";
-        //                    $sql = "INSERT INTO region_edu_admins SET name='".mysql_escape_string($unit["Perifereia"])."'";
-        //                    $db->query($sql);
-        //                    load_region_edu_admins($a_region_edu_admins, $o_region_edu_admins);
-                        }
-                    }
-                    $region_edu_admin_id = array_search($unit["Perifereia"], $a_region_edu_admins);
-
-
-                    $unit["Diefthinsi"] = trim($unit["Diefthinsi"]);
-                    if ($unit["Diefthinsi"])
-                    {
-                        if (!in_array($unit["Diefthinsi"], $a_edu_admins))
-                        {
-                            $isError = true;
-                            $totalRowsErrors++;
-                            $errorMessages[] = "[Script] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
-                                             . ExceptionCodes::InvalidEduAdminValue ." : ".ExceptionMessages::InvalidEduAdminValue
-                                             . " '".$unit["Diefthinsi"]."'";
-
-        //                    $sql = "INSERT INTO edu_admins SET "
-        //                            . "name='".mysql_escape_string($unit["Diefthinsi"])."'"
-        //                            . ($region_edu_admin_id ? ", region_edu_admin_id='".$region_edu_admin_id."'" : "");
-        //                    $db->query($sql);
-        //                    load_edu_admins($a_edu_admins, $o_edu_admins);
-                        }
-                    }
-                    $edu_admin_id = array_search($unit["Diefthinsi"], $a_edu_admins);
-
-                    $implementation_entity_id = $o_edu_admins[$edu_admin_id]->implementation_entity_id;
-
-
-                    $unit["PostingTransferArea"] = trim($unit["PostingTransferArea"]);
-                    if ($unit["PostingTransferArea"])
-                    {
-                        if (!in_array($unit["PostingTransferArea"], $a_transfer_areas))
-                        {
-                            $isError = true;
-                            $totalRowsErrors++;
-                            $errorMessages[] = "[Script] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
-                                             . ExceptionCodes::InvalidTransferAreaValue ." : ".ExceptionMessages::InvalidTransferAreaValue
-                                             . " '".$unit["PostingTransferArea"]."'";
-        //                    $sql = "INSERT INTO transfer_areas SET "
-        //                            . "name='".mysql_escape_string($unit["PostingTransferArea"])."'"
-        //                            . ($edu_admin_id ? ", edu_admin_id='".$edu_admin_id."'" : "");
-        //                    //echo "<br><br>".$sql."<br><br>";
-        //                    $db->query($sql);
-        //                    load_transfer_areas($a_transfer_areas, $o_transfer_areas);
-                        }
-                        //Μόνο κατά την Δημιουργία
-        //                else if ($edu_admin_id)
-        //                {
-        //                    $transfer_area_id = array_search($unit["PostingTransferArea"], $a_transfer_areas);
-        //
-        //                    if ( !$o_transfer_areas[$transfer_area_id]->edu_admin_id )
-        //                    {
-        //                        $sql = "UPDATE transfer_areas SET "
-        //                                . "name='".mysql_escape_string($unit["PostingTransferArea"])."'"
-        //                                . ($edu_admin_id ? ", edu_admin_id='".$edu_admin_id."'" : "")
-        //                                . " WHERE transfer_area_id='".$transfer_area_id."'";
-        //                        //echo "<br><br>".$sql."<br><br>";
-        //                        $db->query($sql);
-        //                        load_transfer_areas($a_transfer_areas, $o_transfer_areas);
-        //                    }
-        //                }
-                    }
-                    $transfer_area_id = array_search($unit["PostingTransferArea"], $a_transfer_areas);
-
-
-                    $unit["Prefecture"] = trim($unit["Prefecture"]);
-                    if ($unit["Prefecture"])
-                    {
-                        if (!in_array($unit["Prefecture"], $a_prefectures))
-                        {
-                            $isError = true;
-                            $totalRowsErrors++;
-                            $errorMessages[] = "[Script] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
-                                             . ExceptionCodes::InvalidPrefectureValue ." : ".ExceptionMessages::InvalidPrefectureValue
-                                             . " '".$unit["Prefecture"]."'";
-        //                    $sql = "INSERT INTO prefectures SET "
-        //                            . "name='".mysql_escape_string($unit["Prefecture"])."'";
-        //                    $db->query($sql);
-        //                    load_prefectures($a_prefectures, $o_prefectures);
-                        } 
-                    }
-                    $prefecture_id = array_search($unit["Prefecture"], $a_prefectures);
-
-
-                    $unit["Municipality"] = trim($unit["Municipality"]);
-                    if ($unit["Municipality"])
-                    {
-                        if (!in_array($unit["Municipality"], $a_municipalities))
-                        {
-                            $isError = true;
-                            $totalRowsErrors++;
-                            $errorMessages[] = "[Script] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
-                                             . ExceptionCodes::InvalidMunicipalityValue ." : ".ExceptionMessages::InvalidMunicipalityValue
-                                             . " '".$unit["Municipality"]."'";
-        //                    $sql = "INSERT INTO municipalities SET "
-        //                            . "name='".mysql_escape_string($unit["Municipality"])."'"
-        //                            . ($transfer_area_id ? ", transfer_area_id='".$transfer_area_id."'" : "")
-        //                            . ($prefecture_id ? ", prefecture_id='".$prefecture_id."'" : "");
-        //                    $db->query($sql);
-        //                    load_municipalities($a_municipalities, $o_municipalities);
-                        }           
-                        //Μόνο κατά την Δημιουργία
-        //                else if ($transfer_area_id && $prefecture_id)
-        //                {
-        //                    $municipality_id = array_search($unit["Municipality"], $a_municipalities);
-        //
-        //                    if ( !$o_municipalities[$municipality_id]->transfer_area_id || !$o_municipalities[$municipality_id]->prefecture_id)
-        //                    {
-        //                        $sql = "UPDATE municipalities SET "
-        //                            . "name='".mysql_escape_string($unit["Municipality"])."'"
-        //                            . ($transfer_area_id ? ", transfer_area_id='".$transfer_area_id."'" : "")
-        //                            . ($prefecture_id ? ", prefecture_id='".$prefecture_id."'" : "")
-        //                            . " WHERE municipality_id='".$municipality_id."'";
-        //                        $db->query($sql);
-        //                        load_municipalities($a_municipalities, $o_municipalities);
-        //                    }
-        //                }
-                    }
-                    $municipality_id = array_search($unit["Municipality"], $a_municipalities);
-
-
-
-                    $unit["SchoolType"] = trim($unit["SchoolType"]);
-                    if ($unit["SchoolType"])
-                    {
-                        if (!in_array($unit["SchoolType"], $a_sync_unit_types))
-                        {
-                            $isError = true;
-                            $totalRowsErrors++;
-                            $errorMessages[] = "[Script] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
-                                             . ExceptionCodes::InvalidUnitTypeValue ." : ".ExceptionMessages::InvalidUnitTypeValue
-                                             . " '".$unit["SchoolType"]."'";
-        //                    $sql = "INSERT INTO sync_types SET "
-        //                            . "name='".mysql_escape_string($unit["SchoolType"])."'";
-        //                    $db->query($sql);
-        //                    load_sync_unit_types($a_sync_unit_types, $o_sync_unit_types);
-                        }
-                    }
-                    $sync_unit_type_id = array_search($unit["SchoolType"], $a_sync_unit_types);
-
-                    if ($sync_unit_type_id)
-                    {
-                        $unit_type_id = $o_sync_unit_types[ $sync_unit_type_id ]->unit_type_id;
-                        $operation_shift_id = $o_sync_unit_types[ $sync_unit_type_id ]->operation_shift_id;
-                        $legal_character_id = $o_sync_unit_types[ $sync_unit_type_id ]->legal_character_id;
-                        $orientation_type_id = $o_sync_unit_types[ $sync_unit_type_id ]->orientation_type_id;
-                        $special_type_id = $o_sync_unit_types[ $sync_unit_type_id ]->special_type_id;
-                    }
-
-
-                    $unit["SchoolDOY"] = trim($unit["SchoolDOY"]);
-                    if ($unit["SchoolDOY"])
-                    {
-                        if (!in_array($unit["SchoolDOY"], $a_tax_offices))
-                        {
-                            $isError = true;
-                            $totalRowsErrors++;
-                            $errorMessages[] = "[Script] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
-                                             . ExceptionCodes::InvalidTaxOfficeValue ." : ".ExceptionMessages::InvalidTaxOfficeValue
-                                             . " '".$unit["SchoolDOY"]."'";
-        //                    $sql = "INSERT INTO tax_offices SET "
-        //                            . "name='".mysql_escape_string($unit["SchoolDOY"])."'";
-        //                    $db->query($sql);
-        //                    load_tax_offices($a_tax_offices, $o_tax_offices);
-                        }
-                    }
-                    $tax_office_id = array_search($unit["SchoolDOY"], $a_tax_offices);
-
-
-                    $unit["SchoolLevel"] = trim($unit["SchoolLevel"]);
-                    $education_level_id = $unit["SchoolLevel"];
-
-
-                    $unit["Active"] = trim($unit["Active"]);
-                    $unit["Anastoli"] = trim($unit["Anastoli"]);
-
-                    if (($unit["Active"] == "true") && ($unit["Anastoli"] == "false"))
-                        $state_id = array_search("ΕΝΕΡΓΗ", $a_states);
-                    else if (($unit["Active"] == "true") && ($unit["Anastoli"] == "true"))
-                        $state_id = array_search("ΣΕ ΑΝΑΣΤΟΛΗ", $a_states);
-                    else if (($unit["Active"] == "false") && ($unit["Anastoli"] == "true"))
-                        $state_id = array_search("ΚΑΤΑΡΓΗΜΕΝΗ", $a_states);
-                    else if (($unit["Active"] == "false") && ($unit["Anastoli"] == "false"))
-                        $state_id = array_search("ΚΑΤΑΡΓΗΜΕΝΗ", $a_states);
-
-
-                    $category_id = array_search("ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ", $a_categories);
-
-
-                    if (!$isError)
-                    {
-                        $params = array(
-                            "registry_no"           => trim($unit["RegistryNo"]),
-                            //"gluc" => "",
-                            "source"                => "SURVEY",
-                            "name"                  => trim($unit["Name"]),
-                            "special_name"          => trim($unit["SpecialName"]),
-                            "category"              => $a_categories[ $category_id ],
-                            "active"                => trim($unit["Active"]),
-                            "suspended"             => trim($unit["Anastoli"]),
-                            "state"                 => $a_states[ $state_id ],
-                            "region_edu_admin"      => $a_region_edu_admins[ $region_edu_admin_id ],
-                            "edu_admin"             => $a_edu_admins[ $edu_admin_id ],
-                            "implementation_entity" => $a_implementation_entities[ $implementation_entity_id ],
-                            "transfer_area"         => $a_transfer_areas[ $transfer_area_id ],
-                            "municipality"          => $a_municipalities[ $municipality_id ],
-                            "prefecture"            => $a_prefectures[ $prefecture_id ],
-                            "unit_type"             => $a_unit_types[ $unit_type_id ],
-                            "operation_shift"       => $a_operation_shifts[ $operation_shift_id ],
-                            "legal_character"       => $a_legal_characters[ $legal_character_id ],
-                            "orientation_type"      => $a_orientation_types[ $orientation_type_id ],
-                            "special_type"          => $a_special_types[ $special_type_id ],
-                            "education_level"       => $a_education_levels[ $education_level_id ],
-                            "postal_code"           => trim($unit["PostalCode"]),
-                            "area_team_number"      => trim($unit["AreaTeam"]),
-                            "email"                 => trim($unit["Email"]),
-                            "fax_number"            => trim($unit["FaxNumber"]),
-                            "street_address"        => trim($unit["StreetAddress"]),
-                            "phone_number"          => trim($unit["TelephoneNumber"]),
-                            "levels_count"          => trim($unit["LevelsCount"]),
-                            "groups_count"          => trim($unit["GroupsCount"]),
-                            "students_count"        => trim($unit["StudentsSum"]),
-                            "last_sync"             => $last_sync,
-                            "last_update"           => trim($unit["LastUpdated"]),
-                            "tax_number"            => trim($unit["SchoolAFM"]),
-                            "tax_office"            => $a_tax_offices[ $tax_office_id ],
-                            //"comments" => trim(""),
-                            //"latitude" => NULL,
-                            //"longitude" => NULL,
-                            //"positioning" => NULL,
-                            "fek"          => trim($unit["SchoolCreationFEK"]),
-                        );
-
-                        //echo "<pre>"; var_dump( $unit ); echo "</pre>";
-
-                        $sql = "SELECT mm_id FROM units "
-                             . "WHERE registry_no = '".mysql_escape_string(trim($unit["RegistryNo"]))."' and source_id = 1";
-                        //echo "<br><br>".$sql."<br><br>";
-
-                        $stmt = $db->query( $sql );        
-                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                        if ( $row["mm_id"] )
-                        {
-                            $params["mm_id"] = $row["mm_id"];
-                        }
-
-                        $curl = curl_init($Options["ServerURL"]."/units");
-                        curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-                        curl_setopt($curl, CURLOPT_USERPWD, $Options["ServerAdminUserName"].":".$Options["ServerAdminPassWord"]);
-                        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
-                        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $params["mm_id"] ? "PUT" : "POST");
-                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-
-                        $data = curl_exec($curl);
-                        $data = json_decode( $data );
-
-                        //echo "<pre>"; var_dump( $data ); echo "</pre>";
-
-                        $isNew = is_null($params["mm_id"]);
-
-                        if ( $data->status == 200 )
-                        {
-                            $mm_id = $data->mm_id;
-                        }
-                        else
-                        {
-                            $isError = true;
-
-                            $blockRowsErrors++;
-                            $totalRowsErrors++;
-
-                            $errorMessages[] = "[Script] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
-                                             . $data->status." : ".$data->message;
-                        }
-                    }
-
-    //= Workers ====================================================================
-
-                    if ((!$isError) && (trim ($unit["Manager"]["RegistryNo"]) <> ""))
-                    {
-                        $params = array(
-                            "registry_no" => trim($unit["Manager"]["RegistryNo"]),
-                            "lastname" => trim($unit["Manager"]["Lastname"]),
-                            "firstname" => trim($unit["Manager"]["Firstname"]),
-                            "fathername" => trim($unit["Manager"]["FatherFirstname"]),
-                            "sex" => trim($unit["Manager"]["Sex"]),
-                            "tax_number" => trim($unit["Manager"]["TaxNumber"]),
-                        );
-
-                        $sql = "SELECT worker_id FROM workers "
-                             . "WHERE registry_no = '".mysql_escape_string(trim($unit["Manager"]["RegistryNo"]))."'";
-
-                        //echo "<br><br>".$sql."<br><br>";
-
-                        $stmt = $db->query( $sql );        
-                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                        if ( $row["worker_id"] )
-                        {
-                            $params["worker_id"] = $row["worker_id"];
-                        }
-
-                        $curl = curl_init($Options["ServerURL"]."/workers");
-                        curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-                        curl_setopt($curl, CURLOPT_USERPWD, $Options["ServerAdminUserName"].":".$Options["ServerAdminPassWord"]);
-                        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
-                        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $params["worker_id"] ? "PUT" : "POST");
-                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-                        $data = curl_exec($curl);
-                        $data = json_decode( $data );
-
-                        //echo "<pre>"; var_dump( $data ); echo "</pre>";
-
-                        if ($data->status == 200 )
-                        {
-                            $worker_id = $data->worker_id;
-                        }    
-                        else
-                        {
-                            $isError = true;
-
-                            $blockRowsErrors++;
-                            $totalRowsErrors++;
-
-                            $errorMessages[] = "[Workers] registry_no : ".$unit["RegistryNo"]." => ".$data->status." : ".$data->message;
-                        }
-                    }
-
-
-            //
-            //                    //= UnitWorkers ============================================
-            //                    if ((!$isError) && $fMmId && $fWorkerId)
-            //                    {
-            //                        $params = array(
-            //                            "mm_id" => $fMmId,
-            //                            "worker_registry_no" => trim($unit["Manager"]["RegistryNo"]),
-            //                            "worker_position" => "ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ",
-            //                        );
-            //
-            //                        $oUnitWorker = new UnitWorkersExt($db);
-            //                        
-            //                        $filter = array(
-            //                            new DFC(UnitWorkersExt::FIELD_MM_ID, $fMmId, DFC::EXACT),
-            //                            new DFC(UnitWorkersExt::FIELD_WORKER_POSITION_ID, 1, DFC::EXACT)
-            //                        );
-            //
-            //                        $arrayUnitWorkers = $oUnitWorker->findByFilter($db, $filter, true);
-            //
-            //                        if (count( $arrayUnitWorkers ) > 0)
-            //                        {
-            //                            $oUnitWorker = $arrayUnitWorkers[0];
-            //                            $params["unit_worker_id"] = $oUnitWorker->getUnitWorkerId();
-            //                        }
-            //                        
-            //                        $curl = curl_init($Options["ServerURL"]."/unit_workers");
-            //                        curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-            //                        curl_setopt($curl, CURLOPT_USERPWD, $Options["ServerAdminUserName"].":".$Options["ServerAdminPassWord"]);
-            //                        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
-            //                        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $oUnitWorker->getUnitWorkerId() ? "PUT" : "POST");
-            //                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            //                        
-            //                        $data = curl_exec($curl);
-            //                        $data = json_decode( $data );
-            //                        
-            //                        //var_dump($data);
-            //                        
-            //                        if ( ! ($data->status == 200 ))
-            //                        {
-            //                            $isError = true;
-            //                            $blockRowsErrors++;
-            //                            $totalRowsErrors++;
-            //                            $errorMessages[] = $unit["RegistryNo"]." => ".$data->status." : ".$data->message;
-            //                        }    
-            //                    }
-            //                                     
-            //
-            //                    //= Committees =============================================
-            //                    if ((!$isError) && $fMmId && (trim($unit["SchoolCommitteeAFM"] ) <> ""))
-            //                    {
-            //                        switch (trim($unit["SchoolLevel"]))
-            //                        {
-            //                            case 1: $fName = "ΣΧΟΛΙΚΗ ΕΠΙΤΡΟΠΗ ΠΡΩΤΟΒΑΘΜΙΑΣ ".$unit["Municipality"];  break;
-            //                            case 2: $fName = "ΣΧΟΛΙΚΗ ΕΠΙΤΡΟΠΗ ΔΕΥΤΕΡΟΒΑΘΜΙΑΣ ".$unit["Municipality"];  break;
-            //                            default : $fName = ""; break;
-            //                        }
-            //                                             
-            //                        $filter = array(
-            //                            new DFC(UnitsExt::FIELD_NAME, $fName, DFC::EXACT),
-            //                            new DFC(UnitsExt::FIELD_SOURCE_ID, 1, DFC::EXACT)
-            //                        );
-            //                        
-            //                        $oCommittee = new UnitsExt($db);
-            //
-            //                        $arrayCommittees = $oCommittee->findByFilter($db, $filter, true);
-            //
-            //                        if ( count( $arrayCommittees ) > 0 ) 
-            //                        { 
-            //                            $oCommittee = $arrayCommittees[0];
-            //                        }
-            //                        
-            //                        //echo "<pre>"; var_dump($oCommittee); echo "</pre>";
-            //                      
-            //                        if ($oCommittee->getMmId())
-            //                        {
-            //                            $params = array(
-            //                                "host_mm_id" => $oCommittee->getMmId(),
-            //                                "guest_mm_id" => $fMmId,
-            //                                "relation_state" => true,
-            //                                "true_date" => null,
-            //                                "true_fek" => null,
-            //                                "false_date" => null,
-            //                                "false_fek" => null,
-            //                                "relation_type" => "ΕΞΥΠΗΡΕΤΕΙ", //3
-            //                            );
-            //                            
-            //                            
-            //                            $oRelation = new RelationsExt($db);
-            //                        
-            //                            $filter = array(
-            //                                new DFC(RelationsExt::FIELD_HOST_MM_ID, $oCommittee->getMmId(), DFC::EXACT),
-            //                                new DFC(RelationsExt::FIELD_GUEST_MM_ID, $fMmId, DFC::EXACT),
-            //                                new DFC(RelationsExt::FIELD_RELATION_TYPE_ID, 3, DFC::EXACT),
-            //                            );
-            //
-            //                            $arrayRelations = $oRelation->findByFilter($db, $filter, true);
-            //
-            //                            if (count( $arrayRelations ) > 0)
-            //                            {
-            //                                $oRelation = $arrayRelations[0];
-            //                                $params["relation_id"] = $oRelation->getRelationId();
-            //                            }
-            //
-            //                            $curl = curl_init($Options["ServerURL"]."/relations");
-            //                            curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-            //                            curl_setopt($curl, CURLOPT_USERPWD, $Options["ServerAdminUserName"].":".$Options["ServerAdminPassWord"]);
-            //                            curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
-            //                            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $oRelation->getRelationId() ? "PUT" : "POST");
-            //                            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            //                        
-            //
-            //                            $data = curl_exec($curl);
-            //                            $data = json_decode( $data );
-            //
-            //                            //echo "<pre>"; var_dump($data); echo "</pre>";
-            //                            
-            //                            if ( ! ($data->status == 200 ))
-            //                            {
-            //                                $isError = true;
-            //                                $blockRowsErrors++; 
-            //                                $totalRowsErrors++;
-            //                                $errorMessages[] = $unit["RegistryNo"]." => ".$data->status." : ".$data->message;
-            //                            }    
-            //                        }
-            //                    }
-            //                    
-            //   
-            //                    //= Levels & Groups ========================================
-            //                    if (!$isError)
-            //                    {
-            //                        if (is_array($unit["Levels"]["Level"]))
-            //                        {
-            //                            if (key_exists("Groups", $unit["Levels"]["Level"]))
-            //                            {
-            //                                $tmp_level = $unit["Levels"]["Level"];
-            //                                unset($unit["Levels"]["Level"]);
-            //                                $unit["Levels"]["Level"][0] = $tmp_level;
-            //                            }
-            //                        }
-            //                        
-            //                        foreach ($unit["Levels"]["Level"] as $level)
-            //                        {
-            //                            if (trim ($level["Name"]) <> "")
-            //                            {
-            //                                $params = array(
-            //                                    "mm_id" => $fMmId,
-            //                                    "name" => trim ($level["Name"]),
-            //                                    "groups_count" => $level["GroupsCount"],
-            //                                    "students_count" => $level["StudentsSum"],
-            //                                );
-            //
-            //                                $oLevel = new LevelsExt($db);
-            //
-            //                                $filter = array(
-            //                                    new DFC(LevelsExt::FIELD_MM_ID, $fMmId, DFC::EXACT),
-            //                                    new DFC(LevelsExt::FIELD_NAME, trim($level["Name"]), DFC::EXACT)
-            //                                );
-            //
-            //                                $arrayLevels = $oLevel->findByFilter($db, $filter, true);
-            //
-            //                                if (count( $arrayLevels ) > 0)
-            //                                {
-            //                                    $oLevel = $arrayLevels[0];
-            //                                    $params["level_id"] = $oLevel->getLevelId();
-            //                                }
-            //
-            //                                $curl = curl_init($Options["ServerURL"]."/levels");
-            //                                curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-            //                                curl_setopt($curl, CURLOPT_USERPWD, $Options["ServerAdminUserName"].":".$Options["ServerAdminPassWord"]);
-            //                                curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
-            //                                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $oLevel->getLevelId() ? "PUT" : "POST");
-            //                                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            //
-            //                                $data = curl_exec($curl);
-            //                                $data = json_decode( $data );
-            //                                
-            //                                //var_dump($data);
-            //                                
-            //                                if ( ! ($data->status == 200 ))
-            //                                {
-            //                                    $isError = true;
-            //                                    $blockRowsErrors++;
-            //                                    $totalRowsErrors++;
-            //                                    $errorMessages[] = $unit["RegistryNo"]." => ".$data->status." : ".$data->message;
-            //                                }  
-            //                                else
-            //                                {
-            //                                    $fLevelId = $data->level_id;
-            //                                }
-            //                                
-            //                                
-            //                                if (key_exists("Name", $level["Groups"]["Group"]))
-            //                                {
-            //                                    $tmp_group = $level["Groups"]["Group"];
-            //                                    unset($level["Groups"]["Group"]);
-            //                                    $level["Groups"]["Group"][0] = $tmp_group;
-            //                                }
-            //
-            //
-            //                                foreach ($level["Groups"]["Group"] as $group )
-            //                                {
-            //                                    if (trim ($level["Name"]) <> "")
-            //                                    {
-            //                                        $params = array(
-            //                                            "mm_id" => $fMmId,
-            //                                            "level" => $level["Name"],
-            //                                            "name" => $group["Name"],
-            //                                            "students_count" => $group["Students"],
-            //                                        );
-            //
-            //                                        $oGroup = new GroupsExt($db);
-            //
-            //                                        $filter = array(
-            //                                            new DFC(GroupsExt::FIELD_MM_ID, $fMmId, DFC::EXACT),
-            //                                            new DFC(GroupsExt::FIELD_LEVEL_ID, $fLevelId, DFC::EXACT),
-            //                                            new DFC(GroupsExt::FIELD_NAME, trim($group["Name"]), DFC::EXACT)
-            //                                        );
-            //
-            //                                        $arrayGroups = $oGroup->findByFilter($db, $filter, true);
-            //
-            //                                        if (count( $arrayGroups ) > 0)
-            //                                        {
-            //                                            $oGroup = $arrayGroups[0];
-            //                                            $params["group_id"] = $oGroup->getGroupId();
-            //                                        }
-            //
-            //                                        $curl = curl_init($Options["ServerURL"]."/groups");
-            //                                        curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-            //                                        curl_setopt($curl, CURLOPT_USERPWD, $Options["ServerAdminUserName"].":".$Options["ServerAdminPassWord"]);
-            //                                        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
-            //                                        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $oGroup->getGroupId() ? "PUT" : "POST");
-            //                                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            //
-            //                                        $data = curl_exec($curl);
-            //                                        $data = json_decode( $data );
-            //
-            //                                        //var_dump($data);
-            //
-            //                                        if ( ! ($data->status == 200 ))
-            //                                        {
-            //                                            $isError = true;
-            //                                            $blockRowsErrors++;
-            //                                            $totalRowsErrors++;
-            //                                            $errorMessages[] = $unit["RegistryNo"]." => ".$data->status." : ".$data->message;
-            //                                        }  
-            //                                    }
-            //                                }
-            //
-            //                            }
-            //                            else 
-            //                            {
-            //                                $fLevelId = null;
-            //                            }
-            //                        }
-            //                    }
-
-                    if ( ! $isError )
-                    {
-                        if ($isNew)
-                        {
-                            $blockRowsInstalled++;
-                            $totalRowsInstalled++;
-                        }
-                        else
-                        {
-                            $blockRowsUpdated++;
-                            $totalRowsUpdated++;
-                        }
-                    }
-                }
-                else
-                {
-                    $blockRowsSkiped++;
-                    $totalRowsSkipped++;
-                }
-            }
-
-            $totalRowsCounter++;
+        // DO THE PARSING HERE
+        $stream = fopen($Options["dbUnits"], 'r');
+        $listener = new UnitsParseListener();
+        $listener->init($totalRowsCounter, $progressbar_block, $rowToStop, $totalRowsErrors,
+            $totalRowsInstalled, $totalRowsUpdated, $totalRowsSkipped,
+            $blockRowsErrors, $blockRowsInstalled, $blockRowsUpdated, $blockRowsSkiped,
+            $logMessage, $errorMessages, $last_sync);
+        try {
+            $parser = new JsonStreamingParser_Parser($stream, $listener);
+            $parser->parse();
+        } catch (Exception $e) {
+            fclose($stream);
+            throw $e;
         }
 
         echo $br.$br; //$logMessage[] = "\n\n";
@@ -770,5 +114,381 @@ function sync_survey_units()
     );
     
     return json_encode($result);
+}
+
+class UnitsParseListener implements \JsonStreamingParser_Listener {
+    private $_level;
+    private $_stack;
+    private $_keyStack;
+
+    public function init(&$totalRowsCounter, &$progressbar_block, &$rowToStop, &$totalRowsErrors,
+            &$totalRowsInstalled, &$totalRowsUpdated, &$totalRowsSkipped,
+            &$blockRowsErrors, &$blockRowsInstalled, &$blockRowsUpdated, &$blockRowsSkiped,
+            &$logMessage, &$errorMessages, &$lastSync) {
+        
+        $this->totalRowsCounter =& $totalRowsCounter;
+        $this->progressbar_block =& $progressbar_block;
+        $this->rowToStop =& $rowToStop;
+        $this->totalRowsErrors =& $totalRowsErrors;
+        $this->totalRowsInstalled =& $totalRowsInstalled;
+        $this->totalRowsUpdated =& $totalRowsUpdated;
+        $this->totalRowsSkipped =& $totalRowsSkipped;
+        $this->blockRowsErrors =& $blockRowsErrors;
+        $this->blockRowsInstalled =& $blockRowsInstalled;
+        $this->blockRowsUpdated =& $blockRowsUpdated;
+        $this->blockRowsSkiped =& $blockRowsSkiped;
+        $this->logMessage =& $logMessage;
+        $this->errorMessages =& $errorMessages;
+        $this->lastSync =& $lastSync;
+
+
+        $msg = "Ανάκτηση Λεξικών";
+        $br = ($_SERVER["argv"] ? "\n" : "<br>");
+        echo $msg.$br.$br; $this->logMessage[] = $msg."\n\n";
+        ob_get_flush(); ob_flush(); flush();
+
+        load_region_edu_admins($this->a_region_edu_admins, $this->o_region_edu_admins);
+        load_edu_admins($this->a_edu_admins, $this->o_edu_admins);
+        load_transfer_areas($this->a_transfer_areas, $this->o_transfer_areas);
+        load_municipalities($this->a_municipalities, $this->o_municipalities);
+        load_prefectures($this->a_prefectures, $this->o_prefectures);
+        load_unit_types($this->a_unit_types, $this->o_unit_types);
+        load_operation_shifts($this->a_operation_shifts, $this->o_operation_shifts);
+        load_legal_characters($this->a_legal_characters, $this->o_legal_characters);
+        load_orientation_types($this->a_orientation_types, $this->o_orientation_types);
+        load_special_types($this->a_special_types, $this->o_special_types);
+        load_sync_unit_types($this->a_sync_unit_types, $this->o_sync_unit_types);
+        load_tax_offices($this->a_tax_offices, $this->o_tax_offices);
+        load_education_levels($this->a_education_levels, $this->o_education_levels);
+        load_states($this->a_states, $this->o_states);
+        load_implementation_entities($this->a_implementation_entities, $this->o_implementation_entities);
+        load_categories($this->a_categories, $this->o_categories);
+    }
+
+    public function file_position($line, $char) {}
+
+    public function start_document() {
+        $this->_level = 0;
+        $this->_stack = array();
+        $this->_keyStack = array();
+    }
+
+    public function end_document() {
+        // w00t!
+    }
+
+    public function start_object() {
+        array_push($this->_stack, array());
+        $this->_level++;
+    }
+
+    public function end_object() {
+        $obj = array_pop($this->_stack);
+        $this->_level--;
+        if (empty($this->_stack)) {
+            // doc is DONE!
+        } else {
+            if($this->_level == 1) { $this->addUnit($obj); return; }
+            $this->value($obj);
+        }
+    }
+
+    public function start_array() {
+        $this->start_object();
+    }
+
+    public function end_array() {
+        $this->end_object();
+    }
+
+    // Key will always be a string
+    public function key($key) {
+        array_push($this->_keyStack, ucfirst($key));
+    }
+
+    // Note that value may be a string, integer, boolean, null
+    public function value($value) {
+        $obj = array_pop($this->_stack);
+        $key = array_pop($this->_keyStack);
+        if ($key) {
+            $obj[$key] = $value;
+        } else {
+            array_push($obj, $value);
+        }
+        array_push($this->_stack, $obj);
+    }
+
+    public function whitespace($whitespace) {
+      // do nothing
+    }
+
+    public function addUnit($unit) {
+        global $db, $Options;
+        $this->isError = false;
+
+        if ( ($this->totalRowsCounter > 0 ) && (($this->totalRowsCounter % $this->progressbar_block) == 0) )
+        {
+            $msg = ':'.$this->totalRowsCounter;
+            echo $msg; //$logMessage[] = $msg;
+            ob_get_flush(); ob_flush(); flush();
+        }
+
+        if (($this->rowToStop <> 0 ) && ($this->totalRowsCounter == $this->rowToStop)) break;
+
+        if ((trim($unit["Perifereia"]) <> "ΣΥΝΤΟΝΙΣΤΙΚΟ ΓΡΑΦΕΙΟ ΕΚΚΛΗΣΙΑΣΤΙΚΩΝ") &&
+            (trim($unit["Perifereia"]) <> "ΣΥΝΤΟΝΙΣΤΙΚΟ ΓΡΑΦΕΙΟ ΜΕΙΟΝΟΤΙΚΩΝ") &&
+            (trim($unit["Perifereia"]) <> "ΣΙΒΙΤΑΝΙΔΕΙΟΣ"))
+        {
+
+//= Unit =======================================================================
+            $accented = array('Ά', 'ά', 'Έ', 'έ', 'Ή', 'ή', 'Ό', 'ό', 'Ύ', 'ύ', 'Ώ', 'ώ', 'Ί', 'ί');
+            $nonaccented = array('α', 'α', 'ε', 'ε', 'η', 'η', 'ο', 'ο', 'υ', 'υ', 'ω', 'ω', 'ι', 'ι');
+
+            $region_edu_admin_id = $this->getDictionary($unit, $unit["Perifereia"], $this->a_region_edu_admins, $this->o_region_edu_admins, 'InvalidRegionEduAdminValue', 'RegionEduAdmins', 'regionEduAdminId', 'name', load_region_edu_admins);
+
+            $edu_admin_id = $this->getDictionary($unit, $unit["Diefthinsi"], $this->a_edu_admins, $this->o_edu_admins, 'InvalidEduAdminValue', 'EduAdmins', 'eduAdminId', 'name', load_edu_admins);
+
+            $implementation_entity_id = $this->o_edu_admins[$edu_admin_id]->implementation_entity_id;
+
+            $transfer_area_id = $this->getDictionary($unit, $unit["PostingTransferArea"], $this->a_transfer_areas, $this->o_transfer_areas, 'InvalidEduAdminValue', 'TransferAreas', 'transferAreaId', 'name', load_transfer_areas);
+
+            $prefecture_id = $this->getDictionary($unit, $unit["Prefecture"], $this->a_prefectures, $this->o_prefectures, 'InvalidEduAdminValue', 'Prefectures', 'prefectureId', 'name', load_prefectures);
+
+            $municipality_id = $this->getDictionary($unit, $unit["Municipality"], $this->a_municipalities, $this->o_municipalities, 'InvalidEduAdminValue', 'Municipalities', 'municipalityId', 'name', load_municipalities);
+;
+
+            $sync_unit_type_id = $this->getDictionary($unit, mb_strtoupper(str_replace($accented, $nonaccented, $unit["SchoolType"]), 'UTF-8'), $this->a_sync_unit_types, $this->o_sync_unit_types, 'InvalidEduAdminValue', 'SyncTypes', 'syncTypeId', 'name', load_sync_unit_types);
+
+            if ($sync_unit_type_id)
+            {
+                $unit_type_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->unit_type_id;
+                $operation_shift_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->operation_shift_id;
+                $legal_character_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->legal_character_id;
+                $orientation_type_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->orientation_type_id;
+                $special_type_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->special_type_id;
+            }
+
+            $tax_office_id = $this->getDictionary($unit, $unit["SchoolDOY"], $this->a_tax_offices, $this->o_tax_offices, 'InvalidEduAdminValue', 'TaxOffices', 'taxOfficeId', 'name', load_tax_offices);
+
+            $unit["SchoolLevel"] = trim($unit["SchoolLevel"]);
+            $education_level_id = $unit["SchoolLevel"];
+
+            $unit["Active"] = trim($unit["Active"]);
+            $unit["Anastoli"] = trim($unit["Anastoli"]);
+
+            if (($unit["Active"] == "true") && ($unit["Anastoli"] == "false"))
+                $state_id = array_search("ΕΝΕΡΓΗ", $this->a_states);
+            else if (($unit["Active"] == "true") && ($unit["Anastoli"] == "true"))
+                $state_id = array_search("ΣΕ ΑΝΑΣΤΟΛΗ", $this->a_states);
+            else if (($unit["Active"] == "false") && ($unit["Anastoli"] == "true"))
+                $state_id = array_search("ΚΑΤΑΡΓΗΜΕΝΗ", $this->a_states);
+            else if (($unit["Active"] == "false") && ($unit["Anastoli"] == "false"))
+                $state_id = array_search("ΚΑΤΑΡΓΗΜΕΝΗ", $this->a_states);
+
+
+            $category_id = array_search("ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ", $this->a_categories);
+
+
+            if (!$this->isError)
+            {
+                $lastUpdate = \DateTime::createFromFormat('Y-m-d\TH:i:s.u', trim($unit["LastUpdated"]));
+                $params = array(
+                    "registry_no"           => trim($unit["RegistryNo"]),
+                    //"gluc" => "",
+                    "source"                => "MySchool",
+                    "name"                  => trim($unit["Name"]),
+                    "special_name"          => trim($unit["SpecialName"]),
+                    "category"              => $this->a_categories[ $category_id ],
+                    "active"                => trim($unit["Active"]),
+                    "suspended"             => trim($unit["Anastoli"]),
+                    "state"                 => $this->a_states[ $state_id ],
+                    "region_edu_admin"      => $this->a_region_edu_admins[ $region_edu_admin_id ],
+                    "edu_admin"             => $this->a_edu_admins[ $edu_admin_id ],
+                    "implementation_entity" => $this->a_implementation_entities[ $implementation_entity_id ],
+                    "transfer_area"         => $this->a_transfer_areas[ $transfer_area_id ],
+                    "municipality"          => $this->a_municipalities[ $municipality_id ],
+                    "prefecture"            => $this->a_prefectures[ $prefecture_id ],
+                    "unit_type"             => $this->a_unit_types[ $unit_type_id ],
+                    "operation_shift"       => $this->a_operation_shifts[ $operation_shift_id ],
+                    "legal_character"       => $this->a_legal_characters[ $legal_character_id ],
+                    "orientation_type"      => $this->a_orientation_types[ $orientation_type_id ],
+                    "special_type"          => $this->a_special_types[ $special_type_id ],
+                    "education_level"       => $this->a_education_levels[ $education_level_id ],
+                    "postal_code"           => trim($unit["PostalCode"]),
+                    "area_team_number"      => trim($unit["AreaTeam"]),
+                    "email"                 => trim($unit["Email"]),
+                    "fax_number"            => trim($unit["FaxNumber"]),
+                    "street_address"        => trim($unit["StreetAddress"]),
+                    "phone_number"          => trim($unit["TelephoneNumber"]),
+                    "levels_count"          => trim($unit["LevelsCount"]),
+                    "groups_count"          => trim($unit["GroupsCount"]),
+                    "students_count"        => trim($unit["StudentsSum"]),
+                    "last_sync"             => $this->lastSync,
+                    "last_update"           => $lastUpdate instanceof \DateTime ? $lastUpdate->format('Y-m-d H:i:s') : null,
+                    "tax_number"            => trim($unit["SchoolAFM"]),
+                    "tax_office"            => $this->a_tax_offices[ $tax_office_id ],
+                    //"comments" => trim(""),
+                    //"latitude" => NULL,
+                    //"longitude" => NULL,
+                    //"positioning" => NULL,
+                    "fek"          => trim($unit["SchoolCreationFEK"]),
+                );
+
+                //echo "<pre>"; var_dump( $unit ); echo "</pre>";
+
+                $sql = "SELECT mm_id FROM units "
+                     . "WHERE registry_no = '".mysql_escape_string(trim($unit["RegistryNo"]))."' and source_id = 5";
+                //echo "<br><br>".$sql."<br><br>";
+
+                $stmt = $db->query( $sql );
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ( $row["mm_id"] )
+                {
+                    $params["mm_id"] = $row["mm_id"];
+                }
+
+                $curl = curl_init($Options["ServerURL"]."/units");
+                curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+                curl_setopt($curl, CURLOPT_USERPWD, $Options["ServerAdminUserName"].":".$Options["ServerAdminPassWord"]);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $params["mm_id"] ? "PUT" : "POST");
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+
+                $data = curl_exec($curl);
+                $data = json_decode( $data );
+
+                //echo "<pre>"; var_dump( $data ); echo "</pre>";
+
+                $isNew = is_null($params["mm_id"]);
+
+                if ( $data->status == 200 )
+                {
+                    //$mm_id = $data->mm_id;
+                }
+                else
+                {
+                    $this->isError = true;
+
+                    $this->blockRowsErrors++;
+                    $this->totalRowsErrors++;
+
+                    $this->errorMessages[] = "[Script] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
+                                     . $data->status." : ".$data->message;
+                }
+            }
+
+//= Workers ====================================================================
+
+            if ((!$this->isError) && (trim ($unit["Manager"]) != 'null') && (trim ($unit["Manager"]["RegistryNo"]) != ""))
+            {
+                if(trim($unit["Manager"]["Sex"]) == 'Θ') { $unit["Manager"]["Sex"] = 'Γ'; }
+                if(trim($unit["Manager"]["Sex"]) == 'n') { $unit["Manager"]["Sex"] = null; }
+                $params = array(
+                    "registry_no" => trim($unit["Manager"]["RegistryNo"]),
+                    "lastname" => trim($unit["Manager"]["Lastname"]),
+                    "firstname" => trim($unit["Manager"]["Firstname"]),
+                    "fathername" => trim($unit["Manager"]["FatherFirstname"]),
+                    "sex" => trim($unit["Manager"]["Sex"]),
+                    "tax_number" => trim($unit["Manager"]["TaxNumber"]),
+                );
+
+                $sql = "SELECT worker_id FROM workers "
+                     . "WHERE registry_no = '".mysql_escape_string(trim($unit["Manager"]["RegistryNo"]))."'";
+
+                //echo "<br><br>".$sql."<br><br>";
+
+                $stmt = $db->query( $sql );
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ( $row["worker_id"] )
+                {
+                    $params["worker_id"] = $row["worker_id"];
+                }
+
+                $curl = curl_init($Options["ServerURL"]."/workers");
+                curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+                curl_setopt($curl, CURLOPT_USERPWD, $Options["ServerAdminUserName"].":".$Options["ServerAdminPassWord"]);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $params["worker_id"] ? "PUT" : "POST");
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+                $data = curl_exec($curl);
+                $data = json_decode( $data );
+
+                //echo "<pre>"; var_dump( $data ); echo "</pre>";
+
+                if ($data->status == 200 )
+                {
+                    //$worker_id = $data->worker_id;
+                }
+                else
+                {
+                    $this->isError = true;
+
+                    $this->blockRowsErrors++;
+                    $this->totalRowsErrors++;
+
+                    $this->errorMessages[] = "[Workers] registry_no : ".$unit["RegistryNo"]." => ".$data->status." : ".$data->message;
+                }
+            }
+
+            if ( ! $this->isError )
+            {
+                if ($isNew)
+                {
+                    $this->blockRowsInstalled++;
+                    $this->totalRowsInstalled++;
+                }
+                else
+                {
+                    $this->blockRowsUpdated++;
+                    $this->totalRowsUpdated++;
+                }
+            }
+        }
+        else
+        {
+            $this->blockRowsSkiped++;
+            $this->totalRowsSkipped++;
+        }
+
+        $this->totalRowsCounter++;
+    }
+
+    private function getDictionary($unit, $value, &$a_values, &$o_values, $exceptionString, $classname, $idAttr, $attr, callable $reloadFunc) {
+        global $entityManager;
+
+        $value = trim($value);
+        if ($value)
+        {
+            if (!in_array($value, $a_values)) {
+                $obj = $entityManager->getRepository($classname)->findOneBy(array(
+                    $attr => $value,
+                ));
+                if(!isset($obj)) {
+                    $obj = new $classname();
+                    $setMethod = 'set'.ucfirst($attr);
+                    $obj->$setMethod($value);
+                    $entityManager->persist($obj);
+                    $entityManager->flush($obj);
+                }
+                $reloadFunc($a_values, $o_values);
+                //$idMethod = 'get'.ucfirst($idAttr);
+                //$attrMethod = 'get'.ucfirst($attr);
+                //$a_values[$obj->$idMethod()] = $obj->$attrMethod();
+            }
+            if (!in_array($value, $a_values)) {
+                $this->isError = true;
+                $this->totalRowsErrors++;
+                $this->errorMessages[] = "[Script] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
+                                 . constant('ExceptionCodes::'.$exceptionString) ." : ".constant('ExceptionMessages::'.$exceptionString)
+                                 . " '".$unit["Perifereia"]."'";
+            }
+        }
+        return array_search($value, $a_values);
+    }
+
 }
 ?>

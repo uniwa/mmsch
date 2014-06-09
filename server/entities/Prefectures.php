@@ -28,5 +28,19 @@ class Prefectures
      */
     private $name;
 
+    public function getPrefectureId() {
+        return $this->prefectureId;
+    }
 
+    public function setPrefectureId($prefectureId) {
+        $this->prefectureId = $prefectureId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
 }

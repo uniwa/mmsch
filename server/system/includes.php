@@ -32,7 +32,6 @@ require_once ('../api/system/Parameters.php');
 
 require_once ('classes/sync/SyncEduAdmins.class.php');
 require_once ('classes/sync/SyncTransferAreas.class.php');
-require_once ('classes/sync/SyncTypes.class.php');
 
 require_once ('classes/Validator.php');
 
@@ -166,7 +165,7 @@ require_once ('../api/get/GetGroups.php');
 
 
 require_once ('../api/post/PostUnits.php');
-//require_once ('../api/post/PostWorkers.php');
+require_once ('../api/post/PostWorkers.php');
 //require_once ('../api/post/PostUnitWorkers.php');
 //require_once ('../api/post/PostRelations.php');
 //require_once ('../api/post/PostLevels.php');
@@ -174,7 +173,7 @@ require_once ('../api/post/PostUnits.php');
 //require_once ('../api/post/PostConnectivityTypes.php');
 //
 require_once ('../api/put/PutUnits.php');
-//require_once ('../api/put/PutWorkers.php');
+require_once ('../api/put/PutWorkers.php');
 //require_once ('../api/put/PutUnitWorkers.php');
 //require_once ('../api/put/PutRelations.php');
 //require_once ('../api/put/PutLevels.php');

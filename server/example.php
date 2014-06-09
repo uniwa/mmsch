@@ -3,7 +3,7 @@ header("Content-Type: text/html; charset=utf-8");
 
 require_once('config.php');
 
-$server = $Options["ServerURL"]."/unit_dns";
+$server = $Options["ServerURL"]."/workers";
 
 $params = array(
     
@@ -60,7 +60,8 @@ $params = array(
 //    "deactivated_date" => "null",
 //    "bandwidth" => "24576/1024Kbps",
 //    "readspeed" => "null",
-
+    "worker_id" => "16593",
+    "registry_no" => "888888",
     "debug" => true
 );
 
@@ -69,7 +70,7 @@ $curl = curl_init($server);
 curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 curl_setopt($curl, CURLOPT_USERPWD, $Options["ServerAdminUserName"] . ":" . $Options["ServerAdminPassWord"]);
 //curl_setopt($curl, CURLOPT_USERPWD, $Options["ServerUserName"] . ":" . $Options["ServerUserName"]);
-curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
 curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 

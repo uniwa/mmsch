@@ -65,7 +65,7 @@ function load_region_edu_admins(&$a_region_edu_admins, &$o_region_edu_admins)
     
     foreach ($data->data as $item)
     {
-        $a_region_edu_admins[$item->region_edu_admin_id] = $item->name;
+        $a_region_edu_admins[$item->region_edu_admin_id] = $item->region_edu_admin;
         $o_region_edu_admins[$item->region_edu_admin_id] = $item;
     }
 }
@@ -77,7 +77,7 @@ function load_edu_admins(&$a_edu_admins, &$o_edu_admins)
     $data = loadData("/edu_admins");
     foreach ($data->data as $item)
     {
-        $a_edu_admins[$item->edu_admin_id] = $item->name;
+        $a_edu_admins[$item->edu_admin_id] = $item->edu_admin;
         $o_edu_admins[$item->edu_admin_id] = $item;
     }
 }
@@ -89,7 +89,7 @@ function load_transfer_areas(&$a_transfer_areas, &$o_transfer_areas)
     $data = loadData("/transfer_areas");
     foreach ($data->data as $item)
     {
-        $a_transfer_areas[$item->transfer_area_id] = $item->name;
+        $a_transfer_areas[$item->transfer_area_id] = $item->transfer_area;
         $o_transfer_areas[$item->transfer_area_id] = $item;
     }
 }
@@ -101,7 +101,7 @@ function load_municipalities(&$a_municipalities, &$o_municipalities)
     $data = loadData("/municipalities");
     foreach ($data->data as $item)
     {
-        $a_municipalities[$item->municipality_id] = $item->name;
+        $a_municipalities[$item->municipality_id] = $item->municipality;
         $o_municipalities[$item->municipality_id] = $item;
     }
 }
@@ -113,7 +113,7 @@ function load_prefectures(&$a_prefectures, &$o_prefectures)
     $data = loadData("/prefectures");
     foreach ($data->data as $item)
     {
-        $a_prefectures[$item->prefecture_id] = $item->name;
+        $a_prefectures[$item->prefecture_id] = $item->prefecture;
         $o_prefectures[$item->prefecture_id] = $item;
     }
 }
@@ -125,7 +125,7 @@ function load_unit_types(&$a_unit_types, &$o_unit_types)
     $data = loadData("/unit_types");
     foreach ($data->data as $item)
     {
-        $a_unit_types[$item->unit_type_id] = $item->name;
+        $a_unit_types[$item->unit_type_id] = $item->unit_type;
         $o_unit_types[$item->unit_type_id] = $item;
     }
 }
@@ -137,7 +137,7 @@ function load_operation_shifts(&$a_operation_shifts, &$o_operation_shifts)
     $data = loadData("/operation_shifts");
     foreach ($data->data as $item)
     {
-        $a_operation_shifts[$item->operation_shift_id] = $item->name;
+        $a_operation_shifts[$item->operation_shift_id] = $item->operation_shift;
         $o_operation_shifts[$item->operation_shift_id] = $item;
     }
 }
@@ -149,7 +149,7 @@ function load_legal_characters(&$a_legal_characters, &$o_legal_characters)
     $data = loadData("/legal_characters");
     foreach ($data->data as $item)
     {
-        $a_legal_characters[$item->legal_character_id] = $item->name;
+        $a_legal_characters[$item->legal_character_id] = $item->legal_character;
         $o_legal_characters[$item->legal_character_id] = $item;
     }
 }
@@ -161,7 +161,7 @@ function load_orientation_types(&$a_orientation_types, &$o_orientation_types)
     $data = loadData("/orientation_types");
     foreach ($data->data as $item)
     {
-        $a_orientation_types[$item->orientation_type_id] = $item->name;
+        $a_orientation_types[$item->orientation_type_id] = $item->orientation_type;
         $o_orientation_types[$item->orientation_type_id] = $item;
     }
 }
@@ -173,7 +173,7 @@ function load_special_types(&$a_special_types, &$o_special_types)
     $data = loadData("/special_types");
     foreach ($data->data as $item)
     {
-        $a_special_types[$item->special_type_id] = $item->name;
+        $a_special_types[$item->special_type_id] = $item->special_type;
         $o_special_types[$item->special_type_id] = $item;
     }
 }
@@ -207,7 +207,7 @@ function load_tax_offices(&$a_tax_offices, &$o_tax_offices)
     $data = loadData("/tax_offices");
     foreach ($data->data as $item)
     {
-        $a_tax_offices[$item->tax_office_id] = $item->name;
+        $a_tax_offices[$item->tax_office_id] = $item->tax_office;
         $o_tax_offices[$item->tax_office_id] = $item;
     }
 }
@@ -219,7 +219,7 @@ function load_education_levels(&$a_education_levels, &$o_education_levels)
     $data = loadData("/education_levels");
     foreach ($data->data as $item)
     {
-        $a_education_levels[$item->education_level_id] = $item->name;
+        $a_education_levels[$item->education_level_id] = $item->education_level;
         $o_education_levels[$item->education_level_id] = $item;
     }
 }
@@ -231,7 +231,7 @@ function load_states(&$a_states, &$o_states)
     $data = loadData("/states");
     foreach ($data->data as $item)
     {
-        $a_states[$item->state_id] = $item->name;
+        $a_states[$item->state_id] = $item->state;
         $o_states[$item->state_id] = $item;
     }
 }
@@ -243,7 +243,7 @@ function load_implementation_entities(&$a_implementation_entities, &$o_implement
     $data = loadData("/implementation_entities");
     foreach ($data->data as $item)
     {
-        $a_implementation_entities[$item->implementation_entity_id] = $item->name;
+        $a_implementation_entities[$item->implementation_entity_id] = $item->implementation_entity;
         $o_implementation_entities[$item->implementation_entity_id] = $item;
     }
 }
@@ -256,7 +256,7 @@ function load_categories(&$a_categories, &$o_categories)
     $data = loadData("/categories");
     foreach ($data->data as $item)
     {
-        $a_categories[$item->category_id] = $item->name;
+        $a_categories[$item->category_id] = $item->category;
         $o_categories[$item->category_id] = $item;
     }
 }
