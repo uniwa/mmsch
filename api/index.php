@@ -874,29 +874,31 @@ function WorkersController()
                 $params["searchtype"]
             );
             break;
-//        case MethodTypes::POST :
-//            $result = PostWorkers(
-//                in_array ("registry_no", $parameters) ? $params["registry_no : _MISSED_,
-//                in_array ("lastname", $parameters) ? $params["lastname : _MISSED_,
-//                in_array ("firstname", $parameters) ? $params["firstname : _MISSED_,
-//                in_array ("fathername", $parameters) ? $params["fathername : _MISSED_,
-//                in_array ("sex", $parameters) ? $params["sex : _MISSED_,
-//                in_array ("tax_number", $parameters) ? $params["tax_number : _MISSED_,
-//                in_array ("worker_specialization", $parameters) ? $params["worker_specialization : _MISSED_
-//            );
-//            break;
-//        case MethodTypes::PUT :
-//            $result = PutWorkers(
-//                in_array ("worker_id", $parameters) ? $params["worker_id : _MISSED_,
-//                in_array ("registry_no", $parameters) ? $params["registry_no : _MISSED_,
-//                in_array ("lastname", $parameters) ? $params["lastname : _MISSED_,
-//                in_array ("firstname", $parameters) ? $params["firstname : _MISSED_,
-//                in_array ("fathername", $parameters) ? $params["fathername : _MISSED_,
-//                in_array ("sex", $parameters) ? $params["sex : _MISSED_,
-//                in_array ("tax_number", $parameters) ? $params["tax_number : _MISSED_,
-//                in_array ("worker_specialization", $parameters) ? $params["worker_specialization : _MISSED_
-//            );
-//            break;
+        case MethodTypes::POST :
+            $parameters = array_keys($params);
+            $result = PostWorkers(
+                in_array ("registry_no", $parameters) ? $params["registry_no"] : _MISSED_,
+                in_array ("lastname", $parameters) ? $params["lastname"] : _MISSED_,
+                in_array ("firstname", $parameters) ? $params["firstname"] : _MISSED_,
+                in_array ("fathername", $parameters) ? $params["fathername"] : _MISSED_,
+                in_array ("sex", $parameters) ? $params["sex"] : _MISSED_,
+                in_array ("tax_number", $parameters) ? $params["tax_number"] : _MISSED_,
+                in_array ("worker_specialization", $parameters) ? $params["worker_specialization"] : _MISSED_
+            );
+            break;
+        case MethodTypes::PUT :
+            $parameters = array_keys($params);
+            $result = PutWorkers(
+                in_array ("worker_id", $parameters) ? $params["worker_id"] : _MISSED_,
+                in_array ("registry_no", $parameters) ? $params["registry_no"] : _MISSED_,
+                in_array ("lastname", $parameters) ? $params["lastname"] : _MISSED_,
+                in_array ("firstname", $parameters) ? $params["firstname"] : _MISSED_,
+                in_array ("fathername", $parameters) ? $params["fathername"] : _MISSED_,
+                in_array ("sex", $parameters) ? $params["sex"] : _MISSED_,
+                in_array ("tax_number", $parameters) ? $params["tax_number"] : _MISSED_,
+                in_array ("worker_specialization", $parameters) ? $params["worker_specialization"] : _MISSED_
+            );
+            break;
     }
 
     $app->response()->setStatus(200);
