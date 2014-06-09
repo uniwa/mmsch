@@ -381,8 +381,10 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
 //= Workers ====================================================================
 
-            if ((!$this->isError) && (trim ($unit["Manager"]["RegistryNo"]) <> ""))
+            if ((!$this->isError) && (trim ($unit["Manager"]) != 'null') && (trim ($unit["Manager"]["RegistryNo"]) != ""))
             {
+                if(trim($unit["Manager"]["Sex"]) == 'Θ') { $unit["Manager"]["Sex"] = 'Γ'; }
+                if(trim($unit["Manager"]["Sex"]) == 'n') { $unit["Manager"]["Sex"] = null; }
                 $params = array(
                     "registry_no" => trim($unit["Manager"]["RegistryNo"]),
                     "lastname" => trim($unit["Manager"]["Lastname"]),
