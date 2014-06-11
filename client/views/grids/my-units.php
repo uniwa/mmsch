@@ -386,6 +386,17 @@
     								<div class="tab-pane" id="circuitSearch">
     									<form id="frmUnitCircuitSearch" class="mmsch-form">
 
+    									<div class="row">
+       										<div class="col-md-12">
+       											<select class="searchtype" name="searchtype">
+                            						<option value="contain">Περιέχει</option>
+                            						<option value="exact">Ισούται με</option>
+                        						</select>
+       										</div>
+       									</div>
+       									
+       									<div class="clear">&nbsp</div>
+       									
     									<div>
     										<div class="row">
 											<div class="col-md-4">
@@ -415,6 +426,18 @@
     								<div class="tab-pane" id="subnetSearch">
     									<form id="frmUnitSubnetSearch" class="mmsch-form">
        									<div>
+       									
+       									<div class="row">
+       										<div class="col-md-12">
+       											<select class="searchtype" name="searchtype">
+                            						<option value="contain">Περιέχει</option>
+                            						<option value="exact">Ισούται με</option>
+                        						</select>
+       										</div>
+       									</div>
+       									
+       									<div class="clear">&nbsp</div>
+       									
 				       					<div class="row">
 											<div class="col-md-4">
 												<div class="form-group">
@@ -644,7 +667,9 @@
 					
 					
 					$(document).ready(function() {
-						
+
+						$(".searchtype").kendoDropDownList({});
+		                    
 						if (typeof mmschApp.modules['units'] == 'undefined'){
 							$.extend(mmschApp.modules, {'units': mmsch});
 						}
@@ -1301,6 +1326,7 @@
 
 					        var frmData = $frm.serializeArray();
 
+					        console.log(frmData);
 					        var dsSrcParams = [];
 
 					        $.each(frmData, function(i, v) {
