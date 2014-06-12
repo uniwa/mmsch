@@ -23,6 +23,13 @@ session_name('MMSCH');
       "Port" => 443,
       "NoAuth" => true,
   );
+  $ldapOptions = array(
+      "host" => "test.ldap.com",
+      "port" => 389,
+      "username" => 'uid=test,ou=people,dc=test,dc=gr',
+      "password" => 'testtest',
+      "baseDn" => "ou=people, dc=test, dc=gr",
+  );
 
   $Options = array(
       "DefaultPageSize" => 300,

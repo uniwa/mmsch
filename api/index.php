@@ -173,36 +173,39 @@ function loadParameters()
 function Authentication()
 {
     global $app;
-    global $casOptions;
+    global $ldapOptions;
 
-    if(isset($casOptions["NoAuth"]) && $casOptions["NoAuth"] == true) { return true; }
     try
     {
-        if ( strtoupper($app->request()->getMethod()) == MethodTypes::GET )
-        {
-            phpCAS::client(CAS_VERSION_2_0,$casOptions["Url"],$casOptions["Port"],'');
-            phpCAS::allowProxyChain(new CAS_ProxyChain_Any);
-            phpCAS::setNoCasServerValidation();
-            phpCAS::handleLogoutRequests(array($casOptions["Url"]));
-            if (!phpCAS::checkAuthentication())
-                throw new Exception(ExceptionMessages::Unauthorized, ExceptionCodes::Unauthorized);
-        }
-        else if ( in_array( strtoupper($app->request()->getMethod()), array( MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE )) )
-        {
-            phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'');
-            phpCAS::setNoCasServerValidation();
-            phpCAS::handleLogoutRequests(array($casOptions["Url"]));
-            if (!phpCAS::checkAuthentication())
-                throw new Exception(ExceptionMessages::Unauthorized, ExceptionCodes::Unauthorized);
+        if(isset($app->request->headers['Php-Auth-User']) && isset($app->request->headers['Php-Auth-Pw'])) {
+            $apcKey = 'mm_auth_'.md5($app->request->headers['Php-Auth-User'].$app->request->headers['Php-Auth-Pw']);
+            if(!($userObj = apc_fetch($apcKey))) {
+                $ldap = new \Zend\Ldap\Ldap($ldapOptions);
+                $ldap->bind('uid='.$app->request->headers['Php-Auth-User'].',ou=people,dc=sch,dc=gr', $app->request->headers['Php-Auth-Pw']);
+                $result = $ldap->search('(&(objectClass=*)(uid='.$app->request->headers['Php-Auth-User'].'))', null, \Zend\Ldap\Ldap::SEARCH_SCOPE_ONE);
+                if($result->count() == 1) {
+                    $userObj = $result->getFirst();
+                    apc_store($apcKey, $userObj, 3600); // Cache for 1 hour to prevent requests on every call
+                } else {
+                    throw new Exception(ExceptionMessages::Unauthorized, ExceptionCodes::Unauthorized); // Multiple users with this username?? Fail
+                }
+            }
+            // userObj has all the user attributes now - We can check roles
+        } else {
+            throw new Exception(ExceptionMessages::Unauthorized, ExceptionCodes::Unauthorized); // Empty username/pass - Maybe guest access?
         }
     }
     catch (Exception $e)
     {
+        if($e instanceof \Zend\Ldap\Exception\LdapException) {
+            $result["message"] = "[".$app->request()->getMethod()."][".__FUNCTION__."]:Invalid credentials";
+        } else {
+            $result["message"] = "[".$app->request()->getMethod()."][".__FUNCTION__."]:".$e->getMessage();
+        }
         $result["status"] = $e->getCode();
-        $result["message"] = "[".$app->request()->getMethod()."][".__FUNCTION__."]:".$e->getMessage();
 
         echo json_encode($result ? $result : array());
-        
+
         $app->stop();
     }
 }
