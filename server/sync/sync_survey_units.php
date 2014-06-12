@@ -250,11 +250,11 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
             $implementation_entity_id = $this->o_edu_admins[$edu_admin_id]->implementation_entity_id;
 
-            $transfer_area_id = $this->getDictionary($unit, $unit["PostingTransferArea"], $this->a_transfer_areas, $this->o_transfer_areas, 'InvalidEduAdminValue', 'TransferAreas', 'transferAreaId', 'name', load_transfer_areas);
+            $transfer_area_id = $this->getDictionary($unit, $unit["PostingTransferArea"], $this->a_transfer_areas, $this->o_transfer_areas, 'InvalidTransferAreaValue', 'TransferAreas', 'transferAreaId', 'name', load_transfer_areas);
 
-            $prefecture_id = $this->getDictionary($unit, $unit["Prefecture"], $this->a_prefectures, $this->o_prefectures, 'InvalidEduAdminValue', 'Prefectures', 'prefectureId', 'name', load_prefectures);
+            $prefecture_id = $this->getDictionary($unit, $unit["Prefecture"], $this->a_prefectures, $this->o_prefectures, 'InvalidPrefectureValue', 'Prefectures', 'prefectureId', 'name', load_prefectures);
 
-            $municipality_id = $this->getDictionary($unit, $unit["Municipality"], $this->a_municipalities, $this->o_municipalities, 'InvalidEduAdminValue', 'Municipalities', 'municipalityId', 'name', load_municipalities);
+            $municipality_id = $this->getDictionary($unit, $unit["Municipality"], $this->a_municipalities, $this->o_municipalities, 'InvalidMunicipalityValue', 'Municipalities', 'municipalityId', 'name', load_municipalities);
 ;
 
             $sync_unit_type_id = $this->getDictionary($unit, mb_strtoupper(str_replace($accented, $nonaccented, $unit["SchoolType"]), 'UTF-8'), $this->a_sync_unit_types, $this->o_sync_unit_types, 'InvalidEduAdminValue', 'SyncTypes', 'syncTypeId', 'name', load_sync_unit_types);
@@ -268,7 +268,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 $special_type_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->special_type_id;
             }
 
-            $tax_office_id = $this->getDictionary($unit, $unit["SchoolDOY"], $this->a_tax_offices, $this->o_tax_offices, 'InvalidEduAdminValue', 'TaxOffices', 'taxOfficeId', 'name', load_tax_offices);
+            $tax_office_id = $this->getDictionary($unit, $unit["SchoolDOY"], $this->a_tax_offices, $this->o_tax_offices, 'InvalidTaxOfficeValue', 'TaxOffices', 'taxOfficeId', 'name', load_tax_offices);
 
             $unit["SchoolLevel"] = trim($unit["SchoolLevel"]);
             $education_level_id = $unit["SchoolLevel"];
@@ -337,7 +337,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 //echo "<pre>"; var_dump( $unit ); echo "</pre>";
 
                 $sql = "SELECT mm_id FROM units "
-                     . "WHERE registry_no = '".mysql_escape_string(trim($unit["RegistryNo"]))."' and source_id = 5";
+                     . "WHERE registry_no = '".mysql_escape_string(trim($unit["RegistryNo"]))."' and (source_id = 1 OR source_id = 5)";
                 //echo "<br><br>".$sql."<br><br>";
 
                 $stmt = $db->query( $sql );
