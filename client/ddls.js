@@ -628,7 +628,7 @@ function ddls(){
             autoBind: true,
             change: function() {
                 var value = this.value();
-                $('#src_subnetType').val(value);
+                $('#src_circuitType').val(value);
             },
             dataBound: function() {
                 
