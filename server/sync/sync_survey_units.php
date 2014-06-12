@@ -460,35 +460,43 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
     private function getDictionary($unit, $value, &$a_values, &$o_values, $exceptionString, $classname, $idAttr, $attr, callable $reloadFunc) {
         global $entityManager;
 
-        $value = trim($value);
+        $origValue = $value;
+        $value = mb_strtoupper($this->convert_greek_accents(trim($value)), 'UTF-8'); // ΔΟΥ κΑΛΑΜΠΑΚΑΣ...
+        $converted_values = array_map(array($this, 'convert_greek_accents'), $a_values);
         if ($value)
         {
-            if (!in_array($value, $a_values)) {
+            if (!in_array($value, $converted_values)) {
                 $obj = $entityManager->getRepository($classname)->findOneBy(array(
                     $attr => $value,
                 ));
                 if(!isset($obj)) {
                     $obj = new $classname();
                     $setMethod = 'set'.ucfirst($attr);
-                    $obj->$setMethod($value);
+                    $obj->$setMethod($origValue);
                     $entityManager->persist($obj);
                     $entityManager->flush($obj);
                 }
                 $reloadFunc($a_values, $o_values);
+                $converted_values = array_map(array($this, 'convert_greek_accents'), $a_values);
                 //$idMethod = 'get'.ucfirst($idAttr);
                 //$attrMethod = 'get'.ucfirst($attr);
                 //$a_values[$obj->$idMethod()] = $obj->$attrMethod();
             }
-            if (!in_array($value, $a_values)) {
+            if (!in_array($value, $converted_values)) {
                 $this->isError = true;
                 $this->totalRowsErrors++;
                 $this->errorMessages[] = "[Script] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
                                  . constant('ExceptionCodes::'.$exceptionString) ." : ".constant('ExceptionMessages::'.$exceptionString)
-                                 . " '".$unit["Perifereia"]."'";
+                                 . " '".$value."'";
             }
         }
-        return array_search($value, $a_values);
+        return array_search($value, $converted_values);
     }
 
+    function convert_greek_accents($str) {
+        $unwanted_array = array('Ά' => 'Α', 'ά' => 'α', 'Έ' => 'Ε', 'έ' => 'ε', 'Ή' => 'Η', 'ή' => 'η', 'Ί' => 'Ι', 'ί' => 'ι', 'Ό' => 'Ο', 'ό' => 'ο', 'Ύ' => 'Υ', 'ύ' => 'υ', 'Ώ' => 'Ω', 'ώ' => 'ω', 'ϊ' => 'ι','ϋ' => 'υ', 'Ϊ' => 'Ι', 'Ϋ' => 'Υ');
+        $str = str_replace(array_keys($unwanted_array), array_values($unwanted_array), $str);
+        return $str;
+    }
 }
 ?>
