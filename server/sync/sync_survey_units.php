@@ -460,6 +460,8 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
     private function getDictionary($unit, $value, &$a_values, &$o_values, $exceptionString, $classname, $idAttr, $attr, callable $reloadFunc) {
         global $entityManager;
 
+        if(trim($value) == 'null') { return -1; }
+
         $origValue = $value;
         $value = mb_strtoupper($this->convert_greek_accents(trim($value)), 'UTF-8'); // ΔΟΥ κΑΛΑΜΠΑΚΑΣ...
         $converted_values = array_map(array($this, 'convert_greek_accents'), $a_values);

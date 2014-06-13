@@ -1209,7 +1209,7 @@ position: fixed;
 						                beforeSend: function(xhr){
 											xhr.setRequestHeader(
 												'Authorization',
-												make_base_auth ('mmschadmin', 'mmschadmin')
+												make_base_auth (user.backendUsername, user.backendPassword)
 											);
 										}
 									})
@@ -1228,7 +1228,7 @@ position: fixed;
 						                beforeSend: function(xhr){
 											xhr.setRequestHeader(
 												'Authorization',
-												make_base_auth ('mmschadmin', 'mmschadmin')
+												make_base_auth (user.backendUsername, user.backendPassword)
 											);
 										}
 									})
@@ -1260,7 +1260,7 @@ position: fixed;
 					beforeSend: function(xhr){
 						xhr.setRequestHeader(
 							'Authorization',
-							make_base_auth ('mmschadmin', 'mmschadmin')
+							make_base_auth (user.backendUsername, user.backendPassword)
 						);
 					}
 				});
@@ -1305,7 +1305,7 @@ position: fixed;
 											
 										xhr.setRequestHeader(
 											'Authorization',
-											make_base_auth ('mmschadmin', 'mmschadmin')
+											make_base_auth (user.backendUsername, user.backendPassword)
 										);
 									}
 								})		
@@ -1329,7 +1329,7 @@ position: fixed;
 									
 									xhr.setRequestHeader(
 										'Authorization',
-										make_base_auth ('mmschadmin', 'mmschadmin')
+										make_base_auth (user.backendUsername, user.backendPassword)
 									);
 								}
 							});		
