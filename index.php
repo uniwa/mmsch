@@ -12,7 +12,14 @@ if(!isset($casOptions["NoAuth"]) || $casOptions["NoAuth"] != true) {
     if (!phpCAS::checkAuthentication())
       phpCAS::forceAuthentication();
     // at this step, the user has been authenticated by the CAS server and the user's login name can be read with //phpCAS::getUser(). for this test, simply print who is the authenticated user and his attributes.
+    $user = phpCAS::getAttributes();
+} else {
+    $user = array(
+        'uid' => $frontendOptions['backendUsername'],
+    );
 }
+$user['backendUsername'] = $frontendOptions['backendUsername'];
+$user['backendPassword'] = $frontendOptions['backendPassword'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +40,9 @@ if(!isset($casOptions["NoAuth"]) || $casOptions["NoAuth"] != true) {
 
 <script type="text/javascript" src="client/static.data.js"></script>
 
- 
+<script type="text/javascript">
+    var user = JSON.parse(atob("<?php echo base64_encode(json_encode($user)); ?>"));
+</script>
  
 <style type="text/css">
 	

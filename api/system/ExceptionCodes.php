@@ -26,7 +26,9 @@ class ExceptionCodes
 
 
     /** {@see ExceptionMessages::Unauthorized} */
-    const Unauthorized = 500;
+    const Unauthorized = 401;
+    const UserAccesDenied = 401;
+    const UserNoPermissions = 401;
 
 
 

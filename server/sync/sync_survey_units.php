@@ -250,11 +250,11 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
             $implementation_entity_id = $this->o_edu_admins[$edu_admin_id]->implementation_entity_id;
 
-            $transfer_area_id = $this->getDictionary($unit, $unit["PostingTransferArea"], $this->a_transfer_areas, $this->o_transfer_areas, 'InvalidEduAdminValue', 'TransferAreas', 'transferAreaId', 'name', load_transfer_areas);
+            $transfer_area_id = $this->getDictionary($unit, $unit["PostingTransferArea"], $this->a_transfer_areas, $this->o_transfer_areas, 'InvalidTransferAreaValue', 'TransferAreas', 'transferAreaId', 'name', load_transfer_areas);
 
-            $prefecture_id = $this->getDictionary($unit, $unit["Prefecture"], $this->a_prefectures, $this->o_prefectures, 'InvalidEduAdminValue', 'Prefectures', 'prefectureId', 'name', load_prefectures);
+            $prefecture_id = $this->getDictionary($unit, $unit["Prefecture"], $this->a_prefectures, $this->o_prefectures, 'InvalidPrefectureValue', 'Prefectures', 'prefectureId', 'name', load_prefectures);
 
-            $municipality_id = $this->getDictionary($unit, $unit["Municipality"], $this->a_municipalities, $this->o_municipalities, 'InvalidEduAdminValue', 'Municipalities', 'municipalityId', 'name', load_municipalities);
+            $municipality_id = $this->getDictionary($unit, $unit["Municipality"], $this->a_municipalities, $this->o_municipalities, 'InvalidMunicipalityValue', 'Municipalities', 'municipalityId', 'name', load_municipalities);
 ;
 
             $sync_unit_type_id = $this->getDictionary($unit, mb_strtoupper(str_replace($accented, $nonaccented, $unit["SchoolType"]), 'UTF-8'), $this->a_sync_unit_types, $this->o_sync_unit_types, 'InvalidEduAdminValue', 'SyncTypes', 'syncTypeId', 'name', load_sync_unit_types);
@@ -268,7 +268,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 $special_type_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->special_type_id;
             }
 
-            $tax_office_id = $this->getDictionary($unit, $unit["SchoolDOY"], $this->a_tax_offices, $this->o_tax_offices, 'InvalidEduAdminValue', 'TaxOffices', 'taxOfficeId', 'name', load_tax_offices);
+            $tax_office_id = $this->getDictionary($unit, $unit["SchoolDOY"], $this->a_tax_offices, $this->o_tax_offices, 'InvalidTaxOfficeValue', 'TaxOffices', 'taxOfficeId', 'name', load_tax_offices);
 
             $unit["SchoolLevel"] = trim($unit["SchoolLevel"]);
             $education_level_id = $unit["SchoolLevel"];
@@ -337,7 +337,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 //echo "<pre>"; var_dump( $unit ); echo "</pre>";
 
                 $sql = "SELECT mm_id FROM units "
-                     . "WHERE registry_no = '".mysql_escape_string(trim($unit["RegistryNo"]))."' and source_id = 5";
+                     . "WHERE registry_no = '".mysql_escape_string(trim($unit["RegistryNo"]))."' and (source_id = 1 OR source_id = 5)";
                 //echo "<br><br>".$sql."<br><br>";
 
                 $stmt = $db->query( $sql );
@@ -460,35 +460,45 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
     private function getDictionary($unit, $value, &$a_values, &$o_values, $exceptionString, $classname, $idAttr, $attr, callable $reloadFunc) {
         global $entityManager;
 
-        $value = trim($value);
+        if(trim($value) == 'null') { return -1; }
+
+        $origValue = $value;
+        $value = mb_strtoupper($this->convert_greek_accents(trim($value)), 'UTF-8'); // ΔΟΥ κΑΛΑΜΠΑΚΑΣ...
+        $converted_values = array_map(array($this, 'convert_greek_accents'), $a_values);
         if ($value)
         {
-            if (!in_array($value, $a_values)) {
+            if (!in_array($value, $converted_values)) {
                 $obj = $entityManager->getRepository($classname)->findOneBy(array(
                     $attr => $value,
                 ));
                 if(!isset($obj)) {
                     $obj = new $classname();
                     $setMethod = 'set'.ucfirst($attr);
-                    $obj->$setMethod($value);
+                    $obj->$setMethod($origValue);
                     $entityManager->persist($obj);
                     $entityManager->flush($obj);
                 }
                 $reloadFunc($a_values, $o_values);
+                $converted_values = array_map(array($this, 'convert_greek_accents'), $a_values);
                 //$idMethod = 'get'.ucfirst($idAttr);
                 //$attrMethod = 'get'.ucfirst($attr);
                 //$a_values[$obj->$idMethod()] = $obj->$attrMethod();
             }
-            if (!in_array($value, $a_values)) {
+            if (!in_array($value, $converted_values)) {
                 $this->isError = true;
                 $this->totalRowsErrors++;
                 $this->errorMessages[] = "[Script] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
                                  . constant('ExceptionCodes::'.$exceptionString) ." : ".constant('ExceptionMessages::'.$exceptionString)
-                                 . " '".$unit["Perifereia"]."'";
+                                 . " '".$value."'";
             }
         }
-        return array_search($value, $a_values);
+        return array_search($value, $converted_values);
     }
 
+    function convert_greek_accents($str) {
+        $unwanted_array = array('Ά' => 'Α', 'ά' => 'α', 'Έ' => 'Ε', 'έ' => 'ε', 'Ή' => 'Η', 'ή' => 'η', 'Ί' => 'Ι', 'ί' => 'ι', 'Ό' => 'Ο', 'ό' => 'ο', 'Ύ' => 'Υ', 'ύ' => 'υ', 'Ώ' => 'Ω', 'ώ' => 'ω', 'ϊ' => 'ι','ϋ' => 'υ', 'Ϊ' => 'Ι', 'Ϋ' => 'Υ');
+        $str = mb_strtoupper(str_replace(array_keys($unwanted_array), array_values($unwanted_array), $str), 'UTF-8');
+        return $str;
+    }
 }
 ?>

@@ -1,21 +1,21 @@
-/*function make_base_auth(user, password) {
+function make_base_auth(user, password) {
   var tok = user + ':' + password;
   var hash = Base64.encode(tok);
   //var hash = btoa(tok);
   return "Basic " + hash;
-}*/
+}
 
 var itemsPerPage = 50;
 //var apiUrl = "../ver2/api/";
 var apiUrl = "api/";
-//var auth = btoa('mmsch' + ":" + 'mmsch');
+//var auth = btoa(user.backendUsername + ":" + user.backendPassword);
 
 $.ajaxSetup({
     beforeSend: function(req) {
         req.setRequestHeader(
-            'Authorization'
+            'Authorization',
             //auth
-            //make_base_auth ('mmsch', 'mmsch')
+            make_base_auth (user.backendUsername, user.backendPassword)
         );
     }
 });

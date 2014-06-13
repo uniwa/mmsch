@@ -14,7 +14,7 @@ $.ajaxSetup({
     beforeSend: function(req) {
         req.setRequestHeader(
             'Authorization',
-            make_base_auth ('mmsch', 'mmsch')
+            make_base_auth (user.backendUsername, user.backendPassword)
         );
     }
 });

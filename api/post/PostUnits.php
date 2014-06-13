@@ -520,18 +520,18 @@ function unitsSetAssociation(&$unit, $param, $repo, $field, $exceptionType, $req
         if(!$required) { return; }
         throw new Exception(constant('ExceptionMessages::'.$missingValue), constant('ExceptionCodes::'.$missingValue));
     } else if ( Validator::IsID($param) )
-        $retriedObject = $entityManager->getRepository($repo)->find(Validator::ToID($param));
+        $retrievedObject = $entityManager->getRepository($repo)->find(Validator::ToID($param));
     else if ( Validator::IsValue($param) )
-        $retriedObject = $entityManager->getRepository($repo)->findOneBy(array('name' => Validator::ToValue($param)));
+        $retrievedObject = $entityManager->getRepository($repo)->findOneBy(array('name' => Validator::ToValue($param)));
     else
         throw new Exception(constant('ExceptionMessages::'.$invalidType), constant('ExceptionCodes::'.$invalidType));
 
-    if ( !isset($retriedObject) )
+    if ( !isset($retrievedObject) )
         throw new Exception(constant('ExceptionMessages::'.$invalidValue), constant('ExceptionCodes::'.$invalidValue));
     else
     {
         $method = 'set'.ucfirst($field);
-        $unit->$method($retriedObject);
+        $unit->$method($retrievedObject);
     }
 }
 

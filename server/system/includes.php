@@ -18,6 +18,7 @@ spl_autoload_register(function($class) {
 });
 
 require_once ('libs/phpCAS/CAS.php');
+require_once('classes/UserRoles.php');
 
 require_once ('classes/OrderTypes.php');
 require_once ('../api/system/OrderEnumTypes.php');
