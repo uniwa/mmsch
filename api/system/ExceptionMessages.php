@@ -23,6 +23,8 @@ class ExceptionMessages
     const NoErrors = 'success';
     
     const Unauthorized = 'HTTP Error 401 Unauthorized';
+    const UserAccesDenied = 'Ο χρήστης δεν έχει πρόσβαση';
+    const UserNoPermissions = 'Ο χρήστης δεν έχει συγκεριμενα δικαιώματα πρόσβασης';
     
     const MethodNotFound = 'Η Μέθοδος δεν βρέθηκε';
     
