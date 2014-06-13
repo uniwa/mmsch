@@ -215,15 +215,12 @@ function UserRolesPermission(){
 
     global $app;
 
-    $user = $app->request->user['uid'];
-    $user_role = $app->request->user['title'];
-
     $controller = substr($app->request()->getPathInfo(),1);
     $method = $app->request()->getMethod();
 
     try {
 
-        $check = UserRoles::checkUserRolePermissions($controller,$method,$user_role);
+        $check = UserRoles::checkUserRolePermissions($controller,$method,$app->request->user);
 
         if ($check!==true){
                     throw new Exception(ExceptionMessages::Unauthorized, ExceptionCodes::Unauthorized);
@@ -232,8 +229,8 @@ function UserRolesPermission(){
     }
     catch (Exception $e)
     {
-        $result["user"] = $user;
-        $result["user_role"] = $user_role;
+        $result["user"] = $app->request->user['uid'];
+        $result["user_role"] = UserRoles::getRole($app->request->user);
         $result["status"] = $e->getCode();
         $result["message"] = "[".$method."][".$controller."]:".$e->getMessage();
 
