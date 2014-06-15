@@ -30,6 +30,10 @@ session_name('MMSCH');
       "password" => 'testtest',
       "baseDn" => "ou=people, dc=test, dc=gr",
   );
+  $frontendOptions = array(
+      "backendUsername" => "someuser",
+      "backendPassword" => "somepass",
+  );
 
   $Options = array(
       "DefaultPageSize" => 300,

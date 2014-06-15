@@ -2,6 +2,8 @@
 header("Content-Type: text/html; charset=utf-8");
 header('Content-Type: application/json');
 
+enableCORS();
+
 chdir("../server");
 
 require_once('system/includes.php');
@@ -119,6 +121,24 @@ $app->run();
 
 //==============================================================================
 
+function enableCORS() {
+    if (isset($_SERVER['HTTP_ORIGIN'])) {
+        header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+        header('Access-Control-Allow-Credentials: true');
+        header('Access-Control-Max-Age: 86400');    // cache for 1 day
+    }
+    // Access-Control headers are received during OPTIONS requests
+    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+
+        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+            header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+
+        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+            header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+
+    }
+}
+
 function PrepareResponse()
 {
     global $app;
@@ -126,9 +146,6 @@ function PrepareResponse()
     $app->contentType('application/json');
     $app->response()->headers()->set('Content-Type', 'application/json; charset=utf-8');
     $app->response()->headers()->set('X-Powered-By', 'ΤΕΙ Αθήνας');
-    $app->response()->headers()->set('Access-Control-Allow-Origin', '*');
-    $app->response()->headers()->set('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-    $app->response()->headers()->set('Access-Control-Allow-Credentials', 'true');
     $app->response()->setStatus(200);
 }
 
