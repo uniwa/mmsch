@@ -126,6 +126,9 @@ function PrepareResponse()
     $app->contentType('application/json');
     $app->response()->headers()->set('Content-Type', 'application/json; charset=utf-8');
     $app->response()->headers()->set('X-Powered-By', 'ΤΕΙ Αθήνας');
+    $app->response()->headers()->set('Access-Control-Allow-Origin', '*');
+    $app->response()->headers()->set('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+    $app->response()->headers()->set('Access-Control-Allow-Credentials', 'true');
     $app->response()->setStatus(200);
 }
 
