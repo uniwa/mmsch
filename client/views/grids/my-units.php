@@ -411,12 +411,7 @@
 													<input name="circuit_type" id="src_circuitType" class="bt-col-full" />
 												</div>
 					    					</div>
-					    					<div class="col-md-4">
-												<div class="form-group">
-													<label for="" class="control-label">Κωδικός ΜΜ</label>
-													<input type="text" name="unit" class="k-textbox col-md-12" />
-												</div>
-					    					</div>
+					    					
 					    					</div>
 					    				</div>	
 					    				
@@ -453,8 +448,8 @@
 					    					</div>
 					    					<div class="col-md-4">
 												<div class="form-group">
-													<label for="" class="control-label">Κωδικός ΜΜ</label>
-													<input type="text" name="unit" class="k-textbox col-md-12" />
+													<label for="" class="control-label">Default Gateway</label>
+													<input type="text" name="subnet_default_router" class="k-textbox col-md-12" />
 												</div>
 					    					</div>
 					    				</div>	
@@ -462,12 +457,7 @@
 					    				<div class="clear">&nbsp</div>
 					    				
 					    				<div class="row">
-											<div class="col-md-4">
-												<div class="form-group">
-													<label for="" class="control-label">Default Gateway</label>
-													<input type="text" name="subnet_default_router" class="k-textbox col-md-12" />
-												</div>
-					    					</div>
+											
 					    					<div class="col-md-4">
 												<div class="form-group">
 													<label for="" class="control-label">Όνομα Υποδικτύου</label>

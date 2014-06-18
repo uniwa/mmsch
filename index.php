@@ -54,6 +54,7 @@ $user['backendPassword'] = $frontendOptions['backendPassword'];
 
 <script type="text/javascript">
     var user = JSON.parse(atob("<?php echo base64_encode(json_encode($user)); ?>"));
+    var g_casUrl = "<?php echo $casOptions['Url'] ?>";
 </script>
  
 <style type="text/css">
@@ -386,6 +387,10 @@ $(document).ready(function() {
 		});
 	}
 
+	// Build logout link
+	$("#lnkLogout").attr("href", "http://" + g_casUrl + "/logout");
+	$("#lnkLogout").html("<strong>" + user.uid + " [Logout]" + "</strong>");
+
 }); // end of
 
 
@@ -526,7 +531,6 @@ function evalLexicalId(cacheData, model_id, value){
 			<span style="font-size:16px;font-weight:bold; text-shadow: 1px 1px 2px #111111; color: #fff;">&nbsp;Μητρώο Μονάδων <sub class="label label-danger">ΒΕΤΑ Version</sub></span> 
 		</div>
 		
-		
 		<div class="pull-right">
 			<a style="font-size:16px;font-weight:bold" href="http://mmsch.teiath.gr/docs/package-GET.html" target="_blank">API</a>
 		</div>
@@ -535,7 +539,10 @@ function evalLexicalId(cacheData, model_id, value){
 			<span style="font-size:16px;font-weight:bold; text-shadow: 1px 1px 2px #111111; color: #fff;">ΤΕΙ ΑΘΗΝΑΣ&nbsp;&nbsp;</span> 
 		</div>
 		
-		  
+		<div class="pull-right">
+			<a href="#" id="lnkLogout" class="btn btn-sm btn-warning"></a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+		</div> 		 
 		
 	</div>
 
