@@ -16,6 +16,18 @@ if(!isset($casOptions["NoAuth"]) || $casOptions["NoAuth"] != true) {
 } else {
     $user = array(
         'uid' => $frontendOptions['backendUsername'],
+        'mail' => $frontendOptions['backendUsername'].'@sch.gr',
+        'title' => 'ΠΡΟΣΩΠΙΚΟ ΠΣΔ',
+        'ou' => 'ΤΕΙ ΑΘΗΝΑΣ',
+        'cn' => 'ΝΙΚΟΥΔΗΣ ΔΗΜΟΣΘΕΝΗΣ',
+        'gsnBranch' => 'ΠΕ20',
+        'edupersonorgunitdn' => array(
+            'ou=teiath,ou=partners,ou=units,dc=sch,dc=gr',
+            'ou=partners,ou=units,dc=sch,dc=gr'
+        ),
+        'l' => 'ou=teiath,ou=partners,ou=units,dc=sch,dc=gr',
+        'memberof' => '',
+        'umdobject' => 'Personel',
     );
 }
 $user['backendUsername'] = $frontendOptions['backendUsername'];
