@@ -805,8 +805,9 @@
 						
 						
 						var gridUnits = $("#grid-units").kendoGrid({
+							autoBind: false,	
 					        dataSource: new kendo.data.DataSource({
-					            autoBind: true,
+					           
 					            transport: tsUnits,
 					            serverFiltering: true,
 					            serverPaging: true,
@@ -816,6 +817,7 @@
 					                data: "data",
 					                total: "total"
 					            },
+					            //filters: {"field": "implementation_entity", "value": 11},
 					 			requestStart: function(e) {
 									
 					                if ($('#grid-units').data('kendoGrid').options.inSearching) {
@@ -837,63 +839,64 @@
 					                            switch (flt.field) {
 												
 													case "education_level":
-														val = evalLexicalId(staticData.ΕducationLevels.data, 'education_level_id',  flt.value);
+														val = evalLexicalId(staticData.ΕducationLevels.data, 'education_level_id',  flt.value, "education_level");
 														break;
 														
 													case "category":
-														val = evalLexicalId(staticData.Categories.data, 'category_id',  flt.value);
+														val = evalLexicalId(staticData.Categories.data, 'category_id',  flt.value, "category");
 														break;
 														
 													case "state":
-														val = evalLexicalId(staticData.States.data, 'state_id',  flt.value);
+														val = evalLexicalId(staticData.States.data, 'state_id',  flt.value, "implementation_entity");
 														break;
 													
 													case "transfer_area":
-														val = evalLexicalId(staticData.TransferAreas.data, 'transfer_area_id',  flt.value);
+														val = evalLexicalId(staticData.TransferAreas.data, 'transfer_area_id',  flt.value, "implementation_entity");
 														break;
 														
 					                                case "prefecture":
-														val = evalLexicalId(staticData.Prefectures.data, 'prefecture_id',  flt.value);
+														val = evalLexicalId(staticData.Prefectures.data, 'prefecture_id',  flt.value, "implementation_entity");
 					                                    break;
 
 					                                case "municipality":
-														val = evalLexicalId(staticData.Municipalities.data, 'municipality_id',  flt.value);
+														val = evalLexicalId(staticData.Municipalities.data, 'municipality_id',  flt.value, "implementation_entity");
 					                                    break;
 
 					                                case "region_edu_admin":
-														val = evalLexicalId(staticData.RegionEduAdmins.data, 'region_edu_admin_id',  flt.value);
+														val = evalLexicalId(staticData.RegionEduAdmins.data, 'region_edu_admin_id',  flt.value, "implementation_entity");
 					                                    break;
 
 					                                case "edu_admin":
-														val = evalLexicalId(staticData.EduAdmins.data, 'edu_admin_id',  flt.value);
+														val = evalLexicalId(staticData.EduAdmins.data, 'edu_admin_id',  flt.value, "implementation_entity");
 					                                    break;
 
 					                                case "implementation_entity":
-														val = evalLexicalId(staticData.ImplEnt.data, 'implementation_entity_id',  flt.value);
+														val = evalLexicalId(staticData.ImplEnt.data, 'implementation_entity_id',  flt.value, "implementation_entity");
+														console.log(val);
 					                                    break;
 														
 					                                case "unit_type":
-														val = evalLexicalId(staticData.UnitTypes.data, 'unit_type_id',  flt.value);
+														val = evalLexicalId(staticData.UnitTypes.data, 'unit_type_id',  flt.value, "implementation_entity");
 					                                    break;
 													
 													case "orientation_type":
-														val = evalLexicalId(staticData.OrientationTypes.data, 'orientation_type_id',  flt.value);
+														val = evalLexicalId(staticData.OrientationTypes.data, 'orientation_type_id',  flt.value, "implementation_entity");
 					                                    break;
 														
 													case "operation_shift":
-														val = evalLexicalId(staticData.OperationShifts.data, 'operation_shift_id',  flt.value);
+														val = evalLexicalId(staticData.OperationShifts.data, 'operation_shift_id',  flt.value, "implementation_entity");
 					                                    break;
 													
 													case "special_type":
-														val = evalLexicalId(staticData.SpecialTypes.data, 'special_type_id',  flt.value);
+														val = evalLexicalId(staticData.SpecialTypes.data, 'special_type_id',  flt.value, "implementation_entity");
 					                                    break;
 														
 													case "source":
-														val = evalLexicalId(staticData.Sources.data, 'source_id',  flt.value);
+														val = evalLexicalId(staticData.Sources.data, 'source_id',  flt.value, "implementation_entity");
 					                                    break;
 														
 													case "legal_character":
-														val = evalLexicalId(staticData.LegalCharacters.data, 'legal_character_id',  flt.value);
+														val = evalLexicalId(staticData.LegalCharacters.data, 'legal_character_id',  flt.value, "implementation_entity");
 					                                    break;
 
 					                            }
@@ -905,7 +908,8 @@
 
 					                    
 										$(".grid-units-filters").empty();
-					                    
+
+
 										$.each(tags, function(i,v){
 					                    	//console.log(i + " " + v);
 											
@@ -1160,7 +1164,7 @@
 					        ],
 					        //editable: "inline",
 					        selectedRow: null,
-					        inSearching: false,
+					        inSearching: true,
 					        detailTemplate: kendo.template($("#unit-details-template").html()),
 					        detailInit: detailInit,
 					        detailExpand: function(e) {
@@ -1216,6 +1220,12 @@
 							}
 
 					    }).data('kendoGrid');
+
+						// start - get units from server
+						gridUnits.dataSource.filter([
+							{field: "implementation_entity", value: g_impEnt[0].implementation_entity_id}
+						]);
+						// end - get units from server
 
 						$("body").on("click", "#grid-units .k-grid-content tr[role='row'].k-master-row", function(e){
 
@@ -1316,7 +1326,6 @@
 
 					        var frmData = $frm.serializeArray();
 
-					        console.log(frmData);
 					        var dsSrcParams = [];
 
 					        $.each(frmData, function(i, v) {

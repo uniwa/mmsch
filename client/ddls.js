@@ -423,16 +423,6 @@ function ddls(){
             dataValueField: "municipality_id",
             optionLabel: "Επιλέξτε...",
             dataSource: inMemoryMunicipalities.data(),
-			/*
-			dataSource: new kendo.data.DataSource({
-                serverFiltering: true,
-                transport: tsMunicipalities,
-                schema: {
-                    data: "data",
-                    total: "total"
-                }
-            }),
-			*/
             autoBind: false,
             change: function() {
                 var value = this.value();
@@ -457,19 +447,8 @@ function ddls(){
             dataTextField: "implementation_entity_initials",
             dataValueField: "implementation_entity_id",
             optionLabel: "Επιλέξτε...",
-            //dataSource: inMemoryImplEnt.data(),
 			dataSource: staticData.ImplEnt.data,
-            /*
-             dataSource: new kendo.data.DataSource({
-             serverFiltering: true,
-             transport: tsImplementationEntities,
-             schema: {
-             data: "data",
-             total: "total"
-             }
-             }),
-             autoBind: true,
-             */
+			//value: [g_impEnt[0].implementation_entity_id], 
             change: function() {
                 var value = this.value();
                 $('#src_implementationEntity').val(value);
@@ -478,24 +457,20 @@ function ddls(){
                 //var totalItems = this.dataSource.total();
                 //var lbl = this.element.parent().prev();
                 //lbl.find('.badge').html(totalItems);
+            	this.trigger('change');
             }
         });
-
+        
+        //start - Implement personalized default filters based on CAS attributes
+        $("#src_implementationEntity").data("kendoMultiSelect").value([g_impEnt[0].implementation_entity_id]);
+        $('#src_implementationEntity').val(g_impEnt[0].implementation_entity_id);
+        //end - Implement personalized default filters based on CAS attributes
+        
         $("#src_source").kendoMultiSelect({
             dataTextField: "source",
             dataValueField: "source_id",
             optionLabel: "Επιλέξτε...",
             dataSource: inMemorySources,
-			/*
-			dataSource: new kendo.data.DataSource({
-                serverFiltering: true,
-                transport: tsSources,
-                schema: {
-                    data: "data",
-                    total: "total"
-                }
-            }),
-			*/
             autoBind: true,
             change: function() {
                 var value = this.value();
@@ -512,18 +487,7 @@ function ddls(){
             dataTextField: "state",
             dataValueField: "state_id",
             optionLabel: "Επιλέξτε...",
-			//dataSource: inMemoryStates,
 			dataSource: staticData.States.data,
-			/*
-            dataSource: new kendo.data.DataSource({
-                serverFiltering: true,
-                transport: tsStates,
-                schema: {
-                    data: "data",
-                    total: "total"
-                }
-            }),
-			*/
             index: 0,
             autoBind: true,
             change: function() {
@@ -546,16 +510,6 @@ function ddls(){
             dataValueField: "special_type_id",
             optionLabel: "Επιλέξτε...",
 			dataSource: inMemorySpecialTypes,
-			/*
-            dataSource: new kendo.data.DataSource({
-                serverFiltering: true,
-                transport: tsSpecialTypes,
-                schema: {
-                    data: "data",
-                    total: "total"
-                }
-            }),
-			*/
             autoBind: false,
             change: function() {
                 var value = this.value();

@@ -55,6 +55,13 @@ $user['backendPassword'] = $frontendOptions['backendPassword'];
 <script type="text/javascript">
     var user = JSON.parse(atob("<?php echo base64_encode(json_encode($user)); ?>"));
     var g_casUrl = "<?php echo $casOptions['Url'] ?>";
+
+	// start - Implement personalized default filters based on CAS a
+    var tmp_regExp = /ou=([^,]+)/;
+    var tmp_matches = (user.edupersonorgunitdn[0]).match(tmp_regExp);
+    var g_impEntDomain = tmp_matches[1];
+	// end - Implement personalized default filters based on CAS attributes
+    
 </script>
  
 <style type="text/css">
@@ -129,6 +136,16 @@ $user['backendPassword'] = $frontendOptions['backendPassword'];
 <link type="text/css" href="my.css" rel="stylesheet" media="all" />
 
 <script>
+
+// start - Implement personalized default filters based on CAS attributes
+function g_findImpEnt(domain){
+	return $.grep(staticData.ImplEnt.data, function(item){
+		return (item.domain == domain);
+	});
+};
+
+var g_impEnt = g_findImpEnt(g_impEntDomain);
+// end - Implement personalized default filters based on CAS attributes
 
 (function($){
 	  $.event.special.destroyed = {
@@ -473,7 +490,7 @@ function renderer(cacheData, model_id, value) {
     return val;
 }
 
-function evalLexicalId(cacheData, model_id, value){
+function evalLexicalId(cacheData, model_id, value, return_value){
 
 	var val = "";
 
@@ -486,7 +503,7 @@ function evalLexicalId(cacheData, model_id, value){
 
 			$.grep(cacheData, function(item){
 				if (item[model_id] == substr[i]){
-					tmp.push(item.name);
+					tmp.push(item[return_value]);
 				}
 			});
         }
@@ -497,7 +514,7 @@ function evalLexicalId(cacheData, model_id, value){
         //cacheData.filter([{field: model_id, value: parseInt(value)}]);
 		$.grep(cacheData, function(item){
 			if (item[model_id] == value){
-				val = item.name;
+				val = item[return_value];
 			}
 		});
     }
