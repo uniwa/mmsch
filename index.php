@@ -238,7 +238,7 @@ $(document).ready(function() {
 		
 		$(".nav-tree-prefectures").kendoTreeView({
 			dataSource: hDataPrefAndMun,
-            dataTextField: [ "name", "name" ],
+            dataTextField: [ "prefecture", "municipality" ],
             animation:false,
             select : function(e){
 				
@@ -262,7 +262,7 @@ $(document).ready(function() {
 		
 		$(".nav-tree-regions").kendoTreeView({
 			dataSource: hDataRegionAndEdu,
-            dataTextField: [ "name", "name" ],
+            dataTextField: [ "region_edu_admin", "edu_admin" ],
             animation:false,
             select : function(e){
 				

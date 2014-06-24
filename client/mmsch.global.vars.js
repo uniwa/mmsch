@@ -270,7 +270,7 @@ inMemoryPrefectures.fetch(function() {
     	$.each(hDataPrefAndMun, function(i, v) {
     		
     		inMemoryMunicipalities.filter(
-    				{field: "prefecture", value: v.name}
+    				{field: "prefecture_id", value: v.prefecture_id}
     		);
 
             //v['spriteCssClass'] = "folder";
@@ -299,7 +299,7 @@ inMemoryPrefectures.fetch(function() {
             	$.each(hDataRegionAndEdu, function(i, v) {
             		
             		inMemoryEduAdmins.filter(
-            				{field: "region_edu_admin", value: v.name}
+            				{field: "region_edu_admin_id", value: v.region_edu_admin_id}
                     );
 
                     //v['spriteCssClass'] = "folder";

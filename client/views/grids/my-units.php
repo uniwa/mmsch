@@ -19,7 +19,7 @@
 							<input id="txtQuickSearch" type="text" class="k-textbox" style="">
 							<i class="fa fa-search"></i>
 						</div>
-						<div class="grid-units-filters pull-left" style=""></div>
+						<div class="grid-units-filters pull-left" style="font-size:8pt;"></div>
 						<div class="pull-right">
 							<!-- 
 							<button id="btnShowColumnChooser" class="k-button">Επιλογή Στηλών <sub class="label label-danger">beta</sub></button>
@@ -847,56 +847,56 @@
 														break;
 														
 													case "state":
-														val = evalLexicalId(staticData.States.data, 'state_id',  flt.value, "implementation_entity");
+														val = evalLexicalId(staticData.States.data, 'state_id',  flt.value, "state");
 														break;
 													
 													case "transfer_area":
-														val = evalLexicalId(staticData.TransferAreas.data, 'transfer_area_id',  flt.value, "implementation_entity");
+														val = evalLexicalId(staticData.TransferAreas.data, 'transfer_area_id',  flt.value, "transfer_area");
 														break;
 														
 					                                case "prefecture":
-														val = evalLexicalId(staticData.Prefectures.data, 'prefecture_id',  flt.value, "implementation_entity");
+														val = evalLexicalId(staticData.Prefectures.data, 'prefecture_id',  flt.value, "prefecture");
 					                                    break;
 
 					                                case "municipality":
-														val = evalLexicalId(staticData.Municipalities.data, 'municipality_id',  flt.value, "implementation_entity");
+														val = evalLexicalId(staticData.Municipalities.data, 'municipality_id',  flt.value, "municipality");
 					                                    break;
 
 					                                case "region_edu_admin":
-														val = evalLexicalId(staticData.RegionEduAdmins.data, 'region_edu_admin_id',  flt.value, "implementation_entity");
+														val = evalLexicalId(staticData.RegionEduAdmins.data, 'region_edu_admin_id',  flt.value, "region_edu_admin");
 					                                    break;
 
 					                                case "edu_admin":
-														val = evalLexicalId(staticData.EduAdmins.data, 'edu_admin_id',  flt.value, "implementation_entity");
+														val = evalLexicalId(staticData.EduAdmins.data, 'edu_admin_id',  flt.value, "edu_admin");
 					                                    break;
 
 					                                case "implementation_entity":
+														
 														val = evalLexicalId(staticData.ImplEnt.data, 'implementation_entity_id',  flt.value, "implementation_entity");
-														console.log(val);
 					                                    break;
 														
 					                                case "unit_type":
-														val = evalLexicalId(staticData.UnitTypes.data, 'unit_type_id',  flt.value, "implementation_entity");
+														val = evalLexicalId(staticData.UnitTypes.data, 'unit_type_id',  flt.value, "unit_type");
 					                                    break;
 													
 													case "orientation_type":
-														val = evalLexicalId(staticData.OrientationTypes.data, 'orientation_type_id',  flt.value, "implementation_entity");
+														val = evalLexicalId(staticData.OrientationTypes.data, 'orientation_type_id',  flt.value, "orientation_type");
 					                                    break;
 														
 													case "operation_shift":
-														val = evalLexicalId(staticData.OperationShifts.data, 'operation_shift_id',  flt.value, "implementation_entity");
+														val = evalLexicalId(staticData.OperationShifts.data, 'operation_shift_id',  flt.value, "operation_shift");
 					                                    break;
 													
 													case "special_type":
-														val = evalLexicalId(staticData.SpecialTypes.data, 'special_type_id',  flt.value, "implementation_entity");
+														val = evalLexicalId(staticData.SpecialTypes.data, 'special_type_id',  flt.value, "special_type");
 					                                    break;
 														
 													case "source":
-														val = evalLexicalId(staticData.Sources.data, 'source_id',  flt.value, "implementation_entity");
+														val = evalLexicalId(staticData.Sources.data, 'source_id',  flt.value, "source");
 					                                    break;
 														
 													case "legal_character":
-														val = evalLexicalId(staticData.LegalCharacters.data, 'legal_character_id',  flt.value, "implementation_entity");
+														val = evalLexicalId(staticData.LegalCharacters.data, 'legal_character_id',  flt.value, "legal_character");
 					                                    break;
 
 					                            }
@@ -911,16 +911,18 @@
 
 
 										$.each(tags, function(i,v){
-					                    	//console.log(i + " " + v);
+					                    	console.log(i + " " + v);
 											
 											if (v != null && v != ""){
 												
 												var $div = $("<div/>", {id: "btn-filter-cnt-" + i, class: "btn-filter-cnt pull-left"})
-														.css({"max-width":"180px", "margin-right":"10px"})
+														.css({"margin-right":"10px"})
 														.attr("title", v)
 														.append(
 															$("<div/>", {class: "pull-left"})
-																.css({"display": "inline-block", "max-width":"150px", "white-space":"nowrap", "overflow":"hidden", "text-overflow": "ellipsis"})
+																.css({"display": "inline-block","white-space":"nowrap", "text-overflow": "ellipsis"})
+																.append(dictionary[i])
+																.append(": ")
 																.append(v)
 														)
 														.append(
