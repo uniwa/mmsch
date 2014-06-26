@@ -241,7 +241,7 @@ function PutWorkers(
     CRUDUtils::entitySetParam($Worker, $tax_number, ExceptionCodes::InvalidWorkerTaxNumberType, 'taxNumber');
 
     //==============================================================================
-    CRUDUtils::entitySetAssociation($Worker, $worker_specialization, 'WorkerSpecializations', 'workerSpecialization', 'WorkerSpecialization');
+    CRUDUtils::entitySetParam($Worker, $worker_specialization, ExceptionCodes::InvalidWorkerSpecializationType, 'workerSpecialization');
   
     //==============================================================================
     CRUDUtils::entitySetAssociation($Worker, $source, 'Sources', 'source', 'Source');
