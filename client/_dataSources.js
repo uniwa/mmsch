@@ -1,6 +1,4 @@
-function make_base_auth(user, password) {
-  var tok = user + ':' + password;
-  var hash = Base64.encode(tok);
+function make_base_auth(hash) {
   //var hash = btoa(tok);
   return "Basic " + hash;
 }
@@ -8,14 +6,14 @@ function make_base_auth(user, password) {
 var itemsPerPage = 50;
 //var apiUrl = "../ver2/api/";
 var apiUrl = "api/";
-//var auth = btoa(user.backendUsername + ":" + user.backendPassword);
+//var auth = user.backendAuthorizationHash;
 
 $.ajaxSetup({
     beforeSend: function(req) {
         req.setRequestHeader(
             'Authorization',
             //auth
-            make_base_auth (user.backendUsername, user.backendPassword)
+            make_base_auth (user.backendAuthorizationHash)
         );
     }
 });

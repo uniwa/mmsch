@@ -30,8 +30,7 @@ if(!isset($casOptions["NoAuth"]) || $casOptions["NoAuth"] != true) {
         'umdobject' => 'Personel',
     );
 }
-$user['backendUsername'] = $frontendOptions['backendUsername'];
-$user['backendPassword'] = $frontendOptions['backendPassword'];
+$user['backendAuthorizationHash'] = base64_encode($frontendOptions['backendUsername'].':'.$frontendOptions['backendPassword']);
 ?>
 <!DOCTYPE html>
 <html>
