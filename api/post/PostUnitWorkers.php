@@ -197,13 +197,13 @@ function PostUnitWorkers( $mm_id, $worker, $worker_position )
     {
 
 //==============================================================================
-    unitsSetAssociation($unitWorker, $mm_id, 'Units', 'mm', 'Unit');
+    CRUDUtils::entitySetAssociation($unitWorker, $mm_id, 'Units', 'mm', 'Unit');
   
 //==============================================================================
-    unitsSetAssociation($unitWorker, $worker, 'Workers', 'worker', 'Worker');
+    CRUDUtils::entitySetAssociation($unitWorker, $worker, 'Workers', 'worker', 'Worker');
 
 //==============================================================================
-    unitsSetAssociation($unitWorker, $worker_position, 'WorkerPositions', 'workerPosition', 'WorkerPosition');
+    CRUDUtils::entitySetAssociation($unitWorker, $worker_position, 'WorkerPositions', 'workerPosition', 'WorkerPosition');
 
 //==============================================================================
 
