@@ -667,7 +667,7 @@ function GetUnitWorkers(
         {
             $table_name = "workers";
             $table_column_id = "worker_id";
-            $table_column_name = "concat(workers.lastname, ' ', workers.firstname)";
+            $table_column_name = "concat_ws(' ', workers.lastname , workers.firstname)";
 
             $param = Validator::toArray($worker);
 
@@ -900,7 +900,7 @@ function GetUnitWorkers(
                         workers.registry_no as worker_registry_no,
                         workers.lastname,
                         workers.firstname,
-                        concat(workers.lastname, ' ', workers.firstname) as fullname,
+                        concat_ws(' ', workers.lastname, workers.firstname) as fullname,
                         workers.fathername,
                         workers.sex,
                         workers.tax_number,
@@ -933,7 +933,7 @@ function GetUnitWorkers(
 
 
         $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder . $sqlLimit;
-        echo "<br><br>".$sql."<br><br>";
+        //echo "<br><br>".$sql."<br><br>";
 
         $stmt = $db->query( $sql );
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);

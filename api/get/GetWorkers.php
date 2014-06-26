@@ -530,7 +530,7 @@ function GetWorkers(
         {
             $table_name = "workers";
             $table_column_id = "worker_id";
-            $table_column_name = "concat(workers.lastname, ' ', workers.firstname)";
+            $table_column_name = "concat_ws(' ', workers.lastname, workers.firstname)";
 
             $param = Validator::toArray($worker);
 
@@ -723,7 +723,7 @@ function GetWorkers(
                         workers.tax_number,
                         workers.lastname,
                         workers.firstname,
-                        concat(workers.lastname, ' ', workers.firstname) as fullname,
+                        concat_ws(' ', workers.lastname, workers.firstname) as fullname,
                         workers.fathername,
                         workers.sex,
                         worker_specializations.worker_specialization_id,
