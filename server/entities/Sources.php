@@ -28,5 +28,20 @@ class Sources
      */
     private $name;
 
+    public function getSourceId() {
+        return $this->sourceId;
+    }
+
+    public function setSourceId($sourceId) {
+        $this->sourceId = $sourceId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
 
 }

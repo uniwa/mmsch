@@ -72,6 +72,16 @@ class Workers
      * })
      */
     private $workerSpecialization;
+    
+    /**
+     * @var \Sources
+     *
+     * @ORM\ManyToOne(targetEntity="Sources")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="source_id", referencedColumnName="source_id")
+     * })
+     */
+    private $source;
 
     public function getWorkerId() {
         return $this->workerId;
@@ -135,6 +145,14 @@ class Workers
 
     public function setWorkerSpecialization(\WorkerSpecializations $workerSpecialization) {
         $this->workerSpecialization = $workerSpecialization;
+    }
+
+    public function getSource() {
+        return $this->source;
+    }
+
+    public function setSource(\Sources $source) {
+        $this->source = $source;
     }
 
 }

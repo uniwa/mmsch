@@ -27,6 +27,21 @@ class WorkerSpecializations
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
+    
+    public function getWorkerSpecializationId() {
+        return $this->workerSpecializationId;
+    }
 
+    public function setWorkerSpecializationId($workerSpecializationId) {
+        $this->workerSpecializationId = $workerSpecializationId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
 
 }
