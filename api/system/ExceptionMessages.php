@@ -398,6 +398,8 @@ class ExceptionMessages
     const MissingWorkerIDValue = 'Ο Κωδικός του Εργαζομένου πρέπει να έχει τιμή';
     const InvalidWorkerIDType = 'Ο Κωδικός του Εργαζομένου πρέπει να είναι αριθμητικός';
     const InvalidWorkerIDArray = 'Ο Κωδικός του Εργαζομένου δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingWorkerParam = 'Ο Εργαζόμενος είναι υποχρεωτικό πεδίο';
     const MissingWorkerValue = 'Ο Εργαζόμενος πρέπει να έχει τιμή';
     const InvalidWorkerType = 'Ο Εργαζόμενος πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const InvalidWorkerValue = 'Ο Εργαζόμενος δεν βρέθηκε';
@@ -576,6 +578,7 @@ class ExceptionMessages
     const MissingUnitMMIDValue = 'Ο Κωδικός ΜΜ πρέπει να έχει τιμή';
     const InvalidUnitMMIDType = 'Ο Κωδικός ΜΜ πρέπει να είναι αριθμητικός';
     const InvalidUnitMMIDArray = 'Ο Κωδικός ΜΜ δεν μπορεί να έχει πολλαπλές τιμές';
+    
     const MissingUnitValue = 'Η Μονάδα πρέπει να έχει τιμή';
     const MissingUnitParam = 'Η Μονάδα είναι υποχρεωτικό πεδίο';
     const InvalidUnitValue = 'Η Μονάδα δεν βρέθηκε';
@@ -654,16 +657,21 @@ class ExceptionMessages
     const UsedConnectionByUnitNetworkSubnets = 'Η Διασύνδεση Συσχετίζεται με Υποδικτύο της Μονάδας';
 
 
-
-
-
-
-
-
-
-
-
-
+    //======================================================================================================================
+    // =UnitWorkers
+    //======================================================================================================================
+    const MissingUnitWorkerIDParam = 'Ο Κωδικός της Συσχέτισης Εργαζομενου - Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitWorkerIDValue = 'Ο Κωδικός της Συσχέτισης Εργαζομενου - Μονάδας  πρέπει να έχει τιμή';
+    const InvalidUnitWorkerIDType = 'Ο Κωδικός της Συσχέτισης Εργαζομενου - Μονάδας  πρέπει να είναι αριθμητικός';
+    const InvalidUnitWorkerIDArray = 'Ο Κωδικός της Συσχέτισης Εργαζομενου - Μονάδας  δεν μπορεί να έχει πολλαπλές τιμές'; 
+    
+    const MissingUnitWorkerParam = 'Η Συσχέτιση Εργαζομενου - Μονάδας είναι υποχρεωτικό πεδίο';   
+    const MissingUnitWorkerValue = 'Η Συσχέτιση Εργαζομενου - Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitWorkerValue = 'Η Συσχέτιση Εργαζομενου - Μονάδας δεν βρέθηκε';
+    const InvalidUnitWorkerType = 'Η Συσχέτιση Εργαζομενου - Μονάδας πρέπει να είναι αριθμητικό ή αλφαριθμητικό';
+    const InvalidUnitWorkerArray = 'Η Συσχέτιση Εργαζομενου - Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const DuplicatedUnitWorkerValue = 'Η Συσχέτιση Εργαζομένου και Μονάδας υπάρχει ήδη';
 
 
 
@@ -749,11 +757,7 @@ class ExceptionMessages
 
 
 
-    
-    const MissingUnitWorkerIDValue = 'Ο Κωδικός Συσχέτισης ($unit_worker_id) πρέπει να έχει τιμή';
-    const InvalidUnitWorkerIDType = 'Ο Κωδικός Συσχέτισης ($unit_worker_id) πρέπει να είναι αριθμητικός';
-    const InvalidUnitWorkerValue = 'Η Συσχέτιση Εργαζομένου και Μονάδας βρέθηκε';
-    const DuplicatedUnitWorkerValue = 'Η Συσχέτιση Εργαζομένου και Μονάδας υπάρχει ήδη';
+ 
 
     const MissingRelationIDValue = 'Ο Κωδικός Συσχέτισης ($relation_id) πρέπει να έχει τιμή';
     const InvalidRelationIDType  = 'Ο Κωδικός Συσχέτισης ($relation_id) πρέπει να είναι αριθμητικός';
