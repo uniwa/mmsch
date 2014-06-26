@@ -1074,21 +1074,21 @@ function UnitWorkersController()
                 $params["searchtype"]
             );
             break;
-//        case MethodTypes::POST :
-//            $result = PostUnitWorkers(
-//                $params["mm_id"],
-//                $params["worker_registry_no"],
-//                $params["worker_position
-//            );
-//            break;
-//        case MethodTypes::PUT :
-//            $result = PutUnitWorkers(
-//                $params["unit_worker_id,
-//                $params["mm_id"],
-//                $params["worker_registry_no"],
-//                $params["worker_position
-//            );
-//            break;
+        case MethodTypes::POST :
+            $result = PostUnitWorkers(
+                $params["mm_id"],
+                $params["worker"],
+                $params["worker_position"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutUnitWorkers(
+                $params["unit_worker_id"],
+                $params["mm_id"],
+                $params["worker"],
+                $params["worker_position"]
+            );
+            break;
     }
 
     PrepareResponse();

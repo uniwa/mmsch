@@ -125,6 +125,7 @@ require_once ('../api/get/GetGroups.php');
 
 
 
+
 //require_once ('classes/extends/IpMasksExt.class.php');
 //require_once ('classes/extends/AddrspaceTypesExt.class.php');
 //require_once ('classes/extends/AddrspacesExt.class.php');
@@ -161,12 +162,9 @@ require_once ('../api/get/GetGroups.php');
 //require_once ('classes/extends/CpesExt.class.php');
 //require_once ('classes/extends/CircuitsExt.class.php');
 
-
-
-
-
 require_once ('../api/post/PostUnits.php');
 require_once ('../api/post/PostWorkers.php');
+
 //require_once ('../api/post/PostUnitWorkers.php');
 //require_once ('../api/post/PostRelations.php');
 //require_once ('../api/post/PostLevels.php');
@@ -185,6 +183,8 @@ require_once ('../api/put/PutWorkers.php');
 //require_once ('../api/post/PostCategories.php');
 //require_once ('../api/post/PostTransitions.php');
 
-
+//DOCTRINE READY FUNCTIONS
+require_once ('../api/post/PostUnitWorkers.php');
+require_once ('../api/put/PutUnitWorkers.php');
 
 ?>

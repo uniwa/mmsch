@@ -3,14 +3,14 @@
  *
  * @version 1.0.3
  * @author  ΤΕΙ Αθήνας
- * @package PUT
+ * @package POST
  * 
  */
  
 header("Content-Type: text/html; charset=utf-8");
 
-/**
- * Ενημέρωση : Συσχετίσεις Εργαζομένων και Μονάδων
+/** 
+ * Καταχώρηση : Συσχετίσεις Εργαζομένων και Μονάδων
  * 
  * 
  * 
@@ -171,9 +171,6 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  *
  * 
- * @throws MissingUnitWorkerIDValue {@see ExceptionMessages::MissingUnitWorkerIDValue}
- * @throws InvalidUnitWorkerIDType {@see ExceptionMessages::InvalidUnitWorkerIDType}
- * @throws InvalidUnitWorkerValue {@see ExceptionMessages::InvalidUnitWorkerValue}
  * @throws MissingMMIdValue {@see ExceptionMessages::MissingMMIdValue}
  * @throws InvalidMMIdType {@see ExceptionMessages::InvalidMMIdType}
  * @throws InvalidMMIdValue {@see ExceptionMessages::InvalidMMIdValue} 
@@ -181,53 +178,24 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws InvalidWorkerValue {@see ExceptionMessages::InvalidWorkerValue}
  * @throws MissingWorkerPositionValue {@see ExceptionMessages::MissingWorkerPositionValue}
  * @throws InvalidWorkerPositionValue {@see ExceptionMessages::InvalidWorkerPositionValue}
+ * @throws DuplicatedUnitWorkerValue {@see ExceptionMessages::DuplicatedUnitWorkerValue}
  * 
  * 
  */
 
 
-function PutUnitWorkers( $unit_worker_id, $mm_id, $worker, $worker_position )
+function PostUnitWorkers( $mm_id, $worker, $worker_position )
 {
     global $entityManager;
     
+    $unitWorker = new UnitWorkers();
     $result = array();
 
     $result["method"] = __FUNCTION__;
-
+   
     try
     {
-//        if (! trim($unit_worker_id) )
-//            throw new Exception(ExceptionMessages::MissingUnitWorkerIDValue, ExceptionCodes::MissingUnitWorkerIDValue);
-//        else if (!is_numeric($unit_worker_id))
-//            throw new Exception(ExceptionMessages::InvalidUnitWorkerIDType, ExceptionCodes::InvalidUnitWorkerIDType);
-//        else
-//            $fUnitWorkerId = $unit_worker_id;
-//        
-//        $oUnitWorker = new UnitWorkersExt($db);
-//        
-//        $filter = new DFC(UnitWorkersExt::FIELD_UNIT_WORKER_ID, $fUnitWorkerId, DFC::EXACT);
-//        
-//        $arrayUnitWorkers = $oUnitWorker->findByFilter($db, $filter, true);
-//
-//        if (count($arrayUnitWorkers) == 0)
-//        {
-//            throw new Exception(ExceptionMessages::InvalidUnitWorkerValue." : ".$fUnitWorkerId, ExceptionCodes::InvalidUnitWorkerValue);
-//        }
-//        else
-//        {
-        if ( $$unit_worker_id === _MISSED_ )
-            throw new Exception(ExceptionMessages::MissingUnitWorkerIDParam, ExceptionCodes::MissingUnitWorkerIDParam);
-        else if ( Validator::IsNull($unit_worker_id) )
-            throw new Exception(ExceptionMessages::MissingUnitWorkerIDValue, ExceptionCodes::MissingUnitWorkerIDValue);
-        else if ( Validator::IsID($unit_worker_id) )
-            $unit_worker_id = Validator::ToID($unit_worker_id);
-        else
-            throw new Exception(ExceptionMessages::InvalidUnitWorkerIDType." : ".$unit_worker_id, ExceptionCodes::InvalidUnitWorkerIDType);
 
-        $unitWorker = $entityManager->find('UnitWorkers', $unit_worker_id);
-        if(!isset($unit_worker_id))
-            throw new Exception(ExceptionMessages::InvalidUnitWorkerValue." : ".$mm_id, ExceptionCodes::InvalidUnitWorkerValue);
-        
 //==============================================================================
     unitsSetAssociation($unitWorker, $mm_id, 'Units', 'mm', 'Unit');
   
