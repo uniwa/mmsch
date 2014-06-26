@@ -36,14 +36,15 @@ class CRUDUtils {
         { } //throw new Exception(ExceptionMessages::MissingNameValue, ExceptionCodes::MissingNameValue);}
         else if ( Validator::IsValue($param) )
         {
-            $method = 'set'.$this->to_camel_case($field, true);
+            
+            $method = 'set'.self::to_camel_case($field, true);
             $entity->$method(Validator::ToValue($param));
         }
         else
             throw new Exception($exceptionType." : ".$param, $exceptionType);
     }
 
-    private function to_camel_case($str, $capitalise_first_char = false) {
+    private static function to_camel_case($str, $capitalise_first_char = false) {
         if($capitalise_first_char) {
         $str[0] = strtoupper($str[0]);
         }
