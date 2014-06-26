@@ -51,5 +51,36 @@ class UnitWorkers
      */
     private $workerPosition;
 
+    public function getUnitWorkerId() {
+        return $this->unitWorkerId;
+    }
+
+    public function setUnitWorkerId($unitWorkerId) {
+        $this->unitWorkerId = $unitWorkerId;
+    }
+
+    public function getMm() {
+        return $this->mm;
+    }
+
+    public function setMm(\Units $mm) {
+        $this->mm = $mm;
+    }
+
+    public function getWorker() {
+        return $this->worker;
+    }
+
+    public function setWorker(\Workers $worker) {
+        $this->worker = $worker;
+    }
+
+    public function getWorkerPosition() {
+        return $this->workerPosition;
+    }
+
+    public function setWorkerPosition(\WorkerPositions $workerPosition) {
+        $this->workerPosition = $workerPosition;
+    }
 
 }

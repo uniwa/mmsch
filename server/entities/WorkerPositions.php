@@ -27,6 +27,21 @@ class WorkerPositions
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
+    
+    public function getWorkerPositionId() {
+        return $this->workerPositionId;
+    }
 
+    public function setWorkerPositionId($workerPositionId) {
+        $this->workerPositionId = $workerPositionId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
 
 }
