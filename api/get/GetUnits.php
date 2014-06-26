@@ -982,6 +982,8 @@ header("Content-Type: text/html; charset=utf-8");
  *              <li>string : <b>sex</b> : Το Φύλο του Εργαζόμενου</li>
  *              <li>string : <b>worker_specialization</b> : Η Ειδικότητα του Εργαζομένου (Λεξικό : {@see GetWorkerSpecializations})</li>
  *              <li>string : <b>worker_position</b> : Η Θέση Εργασίας του Εργαζομένου (Λεξικό : {@see GetWorkerPositions})</li>
+ *              <li>integer : <b>worker_source_id</b> : Ο Κωδικός της Πρωτογενής Πηγής του Εργαζομένου</li>
+ *               <li>string : <b>worker_source</b> : Η Πρωτογενής Πηγή του Εργαζομένου (Λεξικό : {@see GetSources})</li>
  *              <li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
  *          </ul>
  *          <br>
@@ -2535,13 +2537,16 @@ function GetUnits(
                         worker_specializations.worker_specialization_id, 
                         worker_specializations.name as worker_specialization, 
                         worker_positions.worker_position_id, 
-                        worker_positions.name as worker_position
+                        worker_positions.name as worker_position,
+                        sources.source_id as worker_source_id, 
+                        sources.name as worker_source
                      ";
         
         $sqlFrom   = "FROM unit_workers 
                       LEFT JOIN workers ON unit_workers.worker_id = workers.worker_id
                       LEFT JOIN worker_positions ON unit_workers.worker_position_id = worker_positions.worker_position_id
-                      LEFT JOIN worker_specializations ON workers.worker_specialization_id = worker_specializations.worker_specialization_id";
+                      LEFT JOIN worker_specializations ON workers.worker_specialization_id = worker_specializations.worker_specialization_id
+                      LEFT JOIN sources ON workers.source_id = sources.source_id";
 
         $sqlWhere = " WHERE unit_workers.mm_id in (".$ids.")";
         $sqlOrder = " ORDER BY unit_workers.mm_id ASC";
@@ -2923,7 +2928,9 @@ function GetUnits(
                     "worker_specialization_id" => $worker["worker_specialization_id"] ? (int)$worker["worker_specialization_id"] : null,
                     "worker_specialization"    => $worker["worker_specialization"],
                     "worker_position_id"       => $worker["worker_position_id"] ? (int)$worker["worker_position_id"] : null,
-                    "worker_position"          => $worker["worker_position"]
+                    "worker_position"          => $worker["worker_position"],
+                    "worker_source_id"         => (int)$row["worker_source_id"],
+                    "worker_source"            => $row["worker_source"]
                 );
             }
 

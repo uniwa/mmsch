@@ -921,6 +921,7 @@ function WorkersController()
                 $params["worker"],
                 $params["registry_no"],
                 $params["worker_specialization"],
+                $params["source"],
                 $params["pagesize"],
                 $params["page"],
                 $params["orderby"],
@@ -931,26 +932,28 @@ function WorkersController()
         case MethodTypes::POST :
             $parameters = array_keys($params);
             $result = PostWorkers(
-                in_array ("registry_no", $parameters) ? $params["registry_no"] : _MISSED_,
-                in_array ("lastname", $parameters) ? $params["lastname"] : _MISSED_,
-                in_array ("firstname", $parameters) ? $params["firstname"] : _MISSED_,
-                in_array ("fathername", $parameters) ? $params["fathername"] : _MISSED_,
-                in_array ("sex", $parameters) ? $params["sex"] : _MISSED_,
-                in_array ("tax_number", $parameters) ? $params["tax_number"] : _MISSED_,
-                in_array ("worker_specialization", $parameters) ? $params["worker_specialization"] : _MISSED_
+                $params["registry_no"],
+                $params["lastname"],
+                $params["firstname"],
+                $params["fathername"],
+                $params["sex"],
+                $params["tax_number"],
+                $params["worker_specialization"],
+                $params["source"]
             );
             break;
         case MethodTypes::PUT :
             $parameters = array_keys($params);
             $result = PutWorkers(
-                in_array ("worker_id", $parameters) ? $params["worker_id"] : _MISSED_,
-                in_array ("registry_no", $parameters) ? $params["registry_no"] : _MISSED_,
-                in_array ("lastname", $parameters) ? $params["lastname"] : _MISSED_,
-                in_array ("firstname", $parameters) ? $params["firstname"] : _MISSED_,
-                in_array ("fathername", $parameters) ? $params["fathername"] : _MISSED_,
-                in_array ("sex", $parameters) ? $params["sex"] : _MISSED_,
-                in_array ("tax_number", $parameters) ? $params["tax_number"] : _MISSED_,
-                in_array ("worker_specialization", $parameters) ? $params["worker_specialization"] : _MISSED_
+                $params["worker_id"],
+                $params["registry_no"],
+                $params["lastname"],
+                $params["firstname"],
+                $params["fathername"],
+                $params["sex"],
+                $params["tax_number"],
+                $params["worker_specialization"],
+                $params["source"]
             );
             break;
     }
@@ -1067,6 +1070,7 @@ function UnitWorkersController()
                 $params["worker_registry_no"],
                 $params["worker_position"],
                 $params["worker_specialization"],
+                $params["source"],
                 $params["pagesize"],
                 $params["page"],
                 $params["orderby"],

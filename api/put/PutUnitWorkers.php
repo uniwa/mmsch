@@ -196,25 +196,7 @@ function PutUnitWorkers( $unit_worker_id, $mm_id, $worker, $worker_position )
 
     try
     {
-//        if (! trim($unit_worker_id) )
-//            throw new Exception(ExceptionMessages::MissingUnitWorkerIDValue, ExceptionCodes::MissingUnitWorkerIDValue);
-//        else if (!is_numeric($unit_worker_id))
-//            throw new Exception(ExceptionMessages::InvalidUnitWorkerIDType, ExceptionCodes::InvalidUnitWorkerIDType);
-//        else
-//            $fUnitWorkerId = $unit_worker_id;
-//        
-//        $oUnitWorker = new UnitWorkersExt($db);
-//        
-//        $filter = new DFC(UnitWorkersExt::FIELD_UNIT_WORKER_ID, $fUnitWorkerId, DFC::EXACT);
-//        
-//        $arrayUnitWorkers = $oUnitWorker->findByFilter($db, $filter, true);
-//
-//        if (count($arrayUnitWorkers) == 0)
-//        {
-//            throw new Exception(ExceptionMessages::InvalidUnitWorkerValue." : ".$fUnitWorkerId, ExceptionCodes::InvalidUnitWorkerValue);
-//        }
-//        else
-//        {
+
         if ( $$unit_worker_id === _MISSED_ )
             throw new Exception(ExceptionMessages::MissingUnitWorkerIDParam, ExceptionCodes::MissingUnitWorkerIDParam);
         else if ( Validator::IsNull($unit_worker_id) )

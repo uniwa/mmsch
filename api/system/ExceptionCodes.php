@@ -1195,6 +1195,7 @@ class ExceptionCodes
     const InvalidWorkerFirstnameType = 500;
     const InvalidWorkerFathernameType = 500;
     const InvalidWorkerSexType = 500;
+    const InvalidWorkerTaxNumberType = 500;
 
 
     const MissingActiveValue = 500;

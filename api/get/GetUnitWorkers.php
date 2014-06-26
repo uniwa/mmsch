@@ -155,7 +155,9 @@ header("Content-Type: text/html; charset=utf-8");
  *  		"worker_specialization_id": null,
  *  		"worker_specialization": null,
  *  		"worker_position_id": 1,
- *  		"worker_position": "ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ"
+ *  		"worker_position": "ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ",
+ *             "source_id" : "0",
+ *              "source" : "null"
  *  	},
  *  	{
  *  		"unit_worker_id": 2,
@@ -173,7 +175,9 @@ header("Content-Type: text/html; charset=utf-8");
  *  		"worker_specialization_id": null,
  *  		"worker_specialization": null,
  *  		"worker_position_id": 1,
- *  		"worker_position": "ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ"
+ *  		"worker_position": "ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ",
+ *              "source_id" : "0",
+ *              "source" : "null"
  *  	},
  *  	{
  *  		"unit_worker_id": 3,
@@ -191,7 +195,9 @@ header("Content-Type: text/html; charset=utf-8");
  *  		"worker_specialization_id": null,
  *  		"worker_specialization": null,
  *  		"worker_position_id": 1,
- *  		"worker_position": "ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ"
+ *  		"worker_position": "ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ",
+ *              "source_id" : "0",
+ *              "source" : "null"
  *  	},
  *  	{
  *  		"unit_worker_id": 4,
@@ -209,7 +215,9 @@ header("Content-Type: text/html; charset=utf-8");
  *  		"worker_specialization_id": null,
  *  		"worker_specialization": null,
  *  		"worker_position_id": 1,
- *  		"worker_position": "ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ"
+ *  		"worker_position": "ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ",
+ *              "source_id" : "0",
+ *              "source" : "null"
  *  	}
  * ]}
  * </code>
@@ -328,8 +336,28 @@ header("Content-Type: text/html; charset=utf-8");
  *          <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
  *       </li>
  *    </ul>
- *
- *
+ * 
+ * @param mixed $source Πρωτογενής Πηγή
+ * <br>Το Όνομα ή ο Κωδικός της Πρωτογενής Πηγής του Εργαζομένου
+ * <br>Η παράμετρος δεν είναι υποχρεωτική
+ * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
+ * <br>Λεξικό : Πρωτογενείς Πηγές Εργαζομενων {@see GetSources})
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
+ *    <ul>
+ *       <li>integer
+ *          <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό της Πρωτογενής Πηγής του Εργαζομένου
+ *          <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *       </li>
+ *       <li>string
+ *          <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Πρωτογενής Πηγής του Εργαζομένου
+ *          <br>Η αναζήτηση στο Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *       </li>
+ *       <li>array[integer|string]
+ *          <br>Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
+ *          <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *       </li>
+ *    </ul>
+ * 
  * @param integer $pagesize Αριθμός Εγγραφών/Σελίδα
  * <br>Ο αριθμός των εγγραφών που θα επιστρέψουν ανα σελίδα
  * <br>Η παράμετρος δεν είναι υποχρεωτική
@@ -424,6 +452,8 @@ header("Content-Type: text/html; charset=utf-8");
  *   <li>string : <b>worker_position</b> : Η Θέση Εργασίας του Εργαζομένου (Λεξικό : {@see GetWorkerPositions})</li>
  *   <li>integer : <b>worker_specialization_id</b> : Ο Κωδικός της Ειδικότητας του Εργαζομένου</li>
  *   <li>string : <b>worker_specialization</b> : Η Ειδικότητα του Εργαζομένου (Λεξικό : {@see GetWorkerSpecializations})</li>
+ *   <li>integer : <b>source_id</b> : Ο Κωδικός της Πρωτογενής Πηγής του Εργαζομένου</li>
+ *   <li>string : <b>source</b> : Η Πρωτογενής Πηγή του Εργαζομένου (Λεξικό : {@see GetSources})</li>
  *  </ul>
  *
  *
@@ -484,6 +514,10 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws InvalidWorkerSpecializationType {@see ExceptionMessages::InvalidWorkerSpecializationType}
  * <br>{@see ExceptionCodes::InvalidWorkerSpecializationType}
  * <br>Η Ειδικότητα Εργαζομένου πρέπει να είναι αριθμητική ή αλφαριθμητική
+ * 
+ * @throws InvalidSourceType {@see ExceptionMessages::InvalidSourceType}
+ * <br>{@see ExceptionCodes::InvalidSourceType}
+ * <br>Η Πρωτογενής Πηγή του Εργαζομένου πρέπει να είναι αριθμητική ή αλφαριθμητική
  *
  * @throws InvalidOrderType {@see ExceptionMessages::InvalidOrderType}
  * <br>{@see ExceptionCodes::InvalidOrderType}
@@ -498,7 +532,7 @@ header("Content-Type: text/html; charset=utf-8");
 
 
 function GetUnitWorkers(
-    $unit, $worker, $worker_registry_no, $worker_position, $worker_specialization,
+    $unit, $worker, $worker_registry_no, $worker_position, $worker_specialization, $source,
     $pagesize, $page, $orderby, $ordertype, $searchtype
 )
 {
@@ -543,7 +577,7 @@ function GetUnitWorkers(
 
 
         if ( Validator::Missing('pagesize', $params) )
-            $pagesize = Parameters::AllPageSize;
+            $pagesize = Parameters::DefaultPageSize;
         else if ( Validator::isEqualTo($pagesize, 0) )
             $pagesize = Parameters::AllPageSize;
         else if ( Validator::isNull($pagesize) )
@@ -781,6 +815,35 @@ function GetUnitWorkers(
         }
 
 //======================================================================================================================
+//= $source
+//======================================================================================================================
+
+        if ( Validator::Exists('source', $params) )
+        {
+            $table_name = "sources";
+            $table_column_id = "source_id";
+            $table_column_name = "name";
+
+            $param = Validator::toArray($source);
+
+            $paramFilters = array();
+
+            foreach ($param as $values)
+            {
+                if ( Validator::isNull($values) )
+                    $paramFilters[] = "$table_name.$table_column_name is null";
+                else if ( Validator::isID($values) )
+                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
+                else if ( Validator::isValue($values) )
+                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
+                else
+                    throw new Exception(ExceptionMessages::InvalidUnitType." : ".$values, ExceptionCodes::InvalidUnitType);
+            }
+
+            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+        }
+        
+//======================================================================================================================
 //= $ordertype
 //======================================================================================================================
 
@@ -814,7 +877,9 @@ function GetUnitWorkers(
                 "worker_specialization_id",
                 "worker_specialization",
                 "worker_position_id",
-                "worker_position"
+                "worker_position",
+                "source_id",
+                "source"
             );
 
             if (!in_array($orderby, $columns))
@@ -842,14 +907,17 @@ function GetUnitWorkers(
                         worker_specializations.worker_specialization_id,
                         worker_specializations.name as worker_specialization,
                         worker_positions.worker_position_id,
-                        worker_positions.name as worker_position
+                        worker_positions.name as worker_position,
+                        sources.source_id, 
+                        sources.name as source
                      ";
 
         $sqlFrom   = "FROM unit_workers
                       LEFT JOIN units ON unit_workers.mm_id = units.mm_id
                       LEFT JOIN workers ON unit_workers.worker_id = workers.worker_id
                       LEFT JOIN worker_positions ON unit_workers.worker_position_id = worker_positions.worker_position_id
-                      LEFT JOIN worker_specializations ON workers.worker_specialization_id = worker_specializations.worker_specialization_id";
+                      LEFT JOIN worker_specializations ON workers.worker_specialization_id = worker_specializations.worker_specialization_id
+                      LEFT JOIN sources ON workers.source_id = sources.source_id";
 
         $sqlWhere = (count($filter) > 0 ? " WHERE " . implode(" AND ", $filter) : "" );
         $sqlOrder = " ORDER BY ". $orderby ." ". $ordertype;
@@ -891,6 +959,8 @@ function GetUnitWorkers(
                 "worker_position"          => $row["worker_position"],
                 "worker_specialization_id" => $row["worker_specialization_id"] ? (bool)$row["worker_specialization_id"] : $row["worker_specialization_id"],
                 "worker_specialization"    => $row["worker_specialization"],
+                "source_id"                => (int)$row["source_id"],
+                "source"                   => $row["source"]
             );
         }
 
