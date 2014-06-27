@@ -24,14 +24,9 @@ header("Content-Type: text/html; charset=utf-8");
  *   -H "Content-Type: application/json" \
  *   -H "Accept: application/json" \
  *   -u username:password \
- *   -d '{"worker_id" : "value", \
- *        "registry_no" : "value", \
- *        "lastname" : "value", \
- *        "firstname" : "value", \
- *        "fathername" : "value", \
- *        "sex" : "value", \
- *        "tax_number" : "value", \
- *        "worker_specialization" : "value" }'
+ *   -d '{"mm_id" : "value", \
+ *        "worker" : "value", \
+ *        "worker_position" : "value" }'
  * </code>
  * <br>
  * 
@@ -40,14 +35,9 @@ header("Content-Type: text/html; charset=utf-8");
  * Παράδειγμα κλήσης της μεθόδου με <b>JavaScript</b> :
  * <code>
  * <script>
- *    var params = JSON.stringify({ "worker_id" : "value",
- *                                  "registry_no" : "value",
- *                                  "lastname" : "value",
- *                                  "firstname" : "value",
- *                                  "fathername" : "value", 
- *                                  "sex" : "value",
- *                                  "tax_number" : "value"
- *                                  "worker_specialization" : "value" });
+ *    var params = JSON.stringify({ "mm_id" : "value",
+ *                                  "worker" : "value"
+ *                                  "worker_position" : "value" });
  *    
  *    var http = new XMLHttpRequest();
  *    http.open("PUT", "http://mmsch.teiath.gr/api/unit_workers");
@@ -74,14 +64,9 @@ header("Content-Type: text/html; charset=utf-8");
  * header("Content-Type: text/html; charset=utf-8");
  * 
  * $params = array(
- *      "worker_id" => "value", 
- *      "registry_no" => "value", 
- *      "lastname" => "value", 
- *      "firstname" => "value", 
- *      "fathername" => "value", 
- *      "sex" => "value", 
- *      "tax_number" => "value",
- *      "worker_specialization" => "value" );
+ *      "mm_id" => "value", 
+ *      "worker" => "value", 
+ *      "worker_position" => "value" );
  * 
  * $curl = curl_init("http://mmsch.teiath.gr/api/unit_workers");
  * 
@@ -107,14 +92,9 @@ header("Content-Type: text/html; charset=utf-8");
  *        url: 'http://mmsch.teiath.gr/api/unit_workers',
  *        dataType: "json",
  *        data: {
- *            "worker_id" : "value",
- *            "registry_no" : "value",
- *            "lastname" : "value",
- *            "firstname" : "value",
- *            "fathername" : "value",
- *            "sex" : "value",
- *            "tax_number" : "value",
- *            "worker_specialization" : "value"
+ *            "mm_id" : "value",
+ *            "worker" : "value",
+ *            "worker_position" : "value"
  *        },
  *        beforeSend: function(req) {
  *            req.setRequestHeader('Authorization', btoa('username' + ":" + 'password'));
@@ -129,33 +109,16 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * 
  *  
- * @param integer $worker_id Κωδικός Εργαζόμενου
+ * @param integer $worker Κωδικός Εργαζόμενου
  * <br>Ο Κωδικός του Εργαζόμενου
  * <br>Το πεδίο είναι υποχρεωτικό
  * 
- * @param string $worker_registry_no Αριθμός Μητρώου
+ * @param string $mm_id Αριθμός Μητρώου
  * <br>Ο Αριθμός Μητρώου του Εργαζόμενου
  * <br>Το πεδίο είναι υποχρεωτικό
  * 
- * @param string $lastname Επώνυμο
- * <br>Το Επώνυμο του Εργαζόμενου
- * <br>Το πεδίο είναι υποχρεωτικό
- * 
- * @param string $firstname Όνομα
- * <br>Το Όνομα του Εργαζόμενου
- * <br>Το πεδίο είναι υποχρεωτικό
- * 
- * @param string $fathername Πατρώνυμο
- * <br>Το Πατρώνυμο του Εργαζόμενου
- * 
- * @param string $sex Φύλο
- * <br>Το Φύλο του Εργαζόμενου
- * 
- * @param string $tax_number Αριθμός Φορολογικού Μητρώου
- * <br>Ο Αριθμός Φορολογικού Μητρώου του Εργαζόμενου
- * 
- * @param mixed $worker_specialization Ειδικότητα
- * <br>Η Ειδικότητα του Εργαζομένου (Λεξικό : {@see GetWorkerSpecializations})
+ * @param mixed $worker_position Θεση Εργασίας
+ * <br>Η Θεση Εργασίας του Εργαζομένου (Λεξικό : {@see GetWorkerPositions})
  * <br>Αν η τιμή της παραμέτρου είναι αριθμητική η αναζήτηση γίνεται με τον κωδικό αλλιώς με την ονομασία
  * 
  * 
@@ -174,11 +137,9 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws MissingMMIdValue {@see ExceptionMessages::MissingMMIdValue}
  * @throws InvalidMMIdType {@see ExceptionMessages::InvalidMMIdType}
  * @throws InvalidMMIdValue {@see ExceptionMessages::InvalidMMIdValue} 
- * @throws MissingWorkerRegistryNoValue {@see ExceptionMessages::MissingWorkerRegistryNoValue}
  * @throws InvalidWorkerValue {@see ExceptionMessages::InvalidWorkerValue}
  * @throws MissingWorkerPositionValue {@see ExceptionMessages::MissingWorkerPositionValue}
  * @throws InvalidWorkerPositionValue {@see ExceptionMessages::InvalidWorkerPositionValue}
- * @throws DuplicatedUnitWorkerValue {@see ExceptionMessages::DuplicatedUnitWorkerValue}
  * 
  * 
  */

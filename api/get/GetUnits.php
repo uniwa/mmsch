@@ -328,7 +328,9 @@ header("Content-Type: text/html; charset=utf-8");
  *        "worker_specialization_id": null,
  *        "worker_specialization": null,
  *        "worker_position_id": 1,
- *        "worker_position": "ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ"
+ *        "worker_position": "ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ",
+ *        "worker_source_id" : "0",
+ *        "worker_source" : "null"
  *      }
  *    ],
  *    "unit_dns": [

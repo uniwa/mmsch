@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Function GetWorkers | mmsch.teiath.gr-ver4</title>
+	<title>Function GetWorkers | mmsch.teiath.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?1564576636"></script>
+	<script type="text/javascript" src="elementlist.js?2547949507"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -391,10 +391,16 @@ class="php-quote">&quot;tax_number&quot;</span>: <span
 class="php-quote">&quot;xxxxxxxxxx&quot;</span>,
                 <span
 class="php-quote">&quot;worker_specialization_id&quot;</span>: <span
-class="php-keyword1">null</span>
+class="php-keyword1">null</span>,
                 <span
 class="php-quote">&quot;worker_specialization&quot;</span>: <span
-class="php-keyword1">null</span>
+class="php-keyword1">null</span>,
+             <span
+class="php-quote">&quot;source_id&quot;</span> : <span
+class="php-quote">&quot;0&quot;</span>,
+             <span
+class="php-quote">&quot;source&quot;</span> : <span
+class="php-quote">&quot;null&quot;</span>
         },
         {
                 <span
@@ -423,10 +429,16 @@ class="php-quote">&quot;tax_number&quot;</span>: <span
 class="php-quote">&quot;value&quot;</span>,
                 <span
 class="php-quote">&quot;worker_specialization_id&quot;</span>: <span
-class="php-keyword1">null</span>
+class="php-keyword1">null</span>,
                 <span
 class="php-quote">&quot;worker_specialization&quot;</span>: <span
-class="php-keyword1">null</span>
+class="php-keyword1">null</span>,
+             <span
+class="php-quote">&quot;source_id&quot;</span> : <span
+class="php-quote">&quot;0&quot;</span>,
+             <span
+class="php-quote">&quot;source&quot;</span> : <span
+class="php-quote">&quot;null&quot;</span>
         },
         {
                 <span
@@ -455,10 +467,16 @@ class="php-quote">&quot;tax_number&quot;</span>: <span
 class="php-quote">&quot;value&quot;</span>,
                 <span
 class="php-quote">&quot;worker_specialization_id&quot;</span>: <span
-class="php-keyword1">null</span>
+class="php-keyword1">null</span>,
                 <span
 class="php-quote">&quot;worker_specialization&quot;</span>: <span
-class="php-keyword1">null</span>
+class="php-keyword1">null</span>,
+             <span
+class="php-quote">&quot;source_id&quot;</span> : <span
+class="php-quote">&quot;0&quot;</span>,
+             <span
+class="php-quote">&quot;source&quot;</span> : <span
+class="php-quote">&quot;null&quot;</span>
         },
         {
                 <span
@@ -487,10 +505,16 @@ class="php-quote">&quot;tax_number&quot;</span>: <span
 class="php-quote">&quot;value&quot;</span>,
                 <span
 class="php-quote">&quot;worker_specialization_id&quot;</span>: <span
-class="php-keyword1">null</span>
+class="php-keyword1">null</span>,
                 <span
 class="php-quote">&quot;worker_specialization&quot;</span>: <span
-class="php-keyword1">null</span>
+class="php-keyword1">null</span>,
+             <span
+class="php-quote">&quot;source_id&quot;</span> : <span
+class="php-quote">&quot;0&quot;</span>,
+             <span
+class="php-quote">&quot;source&quot;</span> : <span
+class="php-quote">&quot;null&quot;</span>
         },
         {
                 <span
@@ -519,10 +543,16 @@ class="php-quote">&quot;tax_number&quot;</span>: <span
 class="php-quote">&quot;value&quot;</span>,
                 <span
 class="php-quote">&quot;worker_specialization_id&quot;</span>: <span
-class="php-keyword1">null</span>
+class="php-keyword1">null</span>,
                 <span
 class="php-quote">&quot;worker_specialization&quot;</span>: <span
-class="php-keyword1">null</span>
+class="php-keyword1">null</span>,
+             <span
+class="php-quote">&quot;source_id&quot;</span> : <span
+class="php-quote">&quot;0&quot;</span>,
+             <span
+class="php-quote">&quot;source&quot;</span> : <span
+class="php-quote">&quot;null&quot;</span>
         }
 ]}
 </pre>
@@ -636,6 +666,42 @@ mixed{integer|string|array[integer|string]}
 	<li>string<br />
 	Αλφαριθμητική : Η αναζήτηση γίνεται με το
 	Όνομα της Ειδικότητας του Εργαζομένου<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>array[integer|string]<br />
+	Σύνολο από Αριθμητικές και Αλφαριθμητικές
+	τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$source">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$source</var></code></td>
+		<td>
+			 Πρωτογενής Πηγή<br />
+Το Όνομα ή ο Κωδικός της Πρωτογενής Πηγής
+του Εργαζομένου<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
+Λεξικό : Πρωτογενείς Πηγές Εργαζομενων <code><a href="function-GetSources.html">GetSources()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό της Πρωτογενής Πηγής του
+	Εργαζομένου<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα της Πρωτογενής Πηγής του
+	Εργαζομένου<br />
 	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
 	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
@@ -807,6 +873,12 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 
 	<li>string : <b>worker_specialization</b> : Η Ειδικότητα του
 	Εργαζομένου (Λεξικό : <code><a href="function-GetWorkerSpecializations.html">GetWorkerSpecializations()</a></code>)</li>
+
+	<li>integer : <b>source_id</b> : Ο Κωδικός της Πρωτογενής
+	Πηγής του Εργαζομένου</li>
+
+	<li>string : <b>source</b> : Η Πρωτογενής Πηγή του
+	Εργαζομένου (Λεξικό : <code><a href="function-GetSources.html">GetSources()</a></code>)</li>
 </ul>
 
 		</td>
@@ -947,6 +1019,17 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 	</tr>
 	<tr>
 		<td class="name"><code>
+			InvalidSourceType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSourceType">ExceptionMessages::<b>InvalidSourceType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidSourceType">ExceptionCodes::<b>InvalidSourceType</b></a></code><br />
+Η Πρωτογενής Πηγή του Εργαζομένου πρέπει να
+είναι αριθμητική ή αλφαριθμητική
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
 			InvalidOrderType
 		</code></td>
 		<td>
@@ -971,7 +1054,7 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 </div>
 
 	<div id="footer">
-		mmsch.teiath.gr-ver4 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		mmsch.teiath.gr API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

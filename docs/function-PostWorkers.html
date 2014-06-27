@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Function PostWorkers | mmsch.teiath.gr-ver4</title>
+	<title>Function PostWorkers | mmsch.teiath.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?1564576636"></script>
+	<script type="text/javascript" src="elementlist.js?2547949507"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -128,7 +128,8 @@ class="php-quote">'{&quot;worker_registry_no&quot; : &quot;value&quot;, \
        &quot;fathername&quot; : &quot;value&quot;, \
        &quot;sex&quot; : &quot;value&quot;, \
        &quot;tax_number&quot; : &quot;value&quot;, \
-       &quot;worker_specialization&quot; : &quot;value&quot; }'</span>
+       &quot;worker_specialization&quot; : &quot;value&quot;, \
+       &quot;source&quot; : &quot;value&quot; }'</span>
 </pre>
 
 <div><br />
@@ -160,6 +161,9 @@ class="php-quote">&quot;tax_number&quot;</span> : <span
 class="php-quote">&quot;value&quot;</span>,
                                 <span
 class="php-quote">&quot;worker_specialization&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+                                <span
+class="php-quote">&quot;source&quot;</span> : <span
 class="php-quote">&quot;value&quot;</span> });
 
    <span
@@ -225,6 +229,9 @@ class="php-quote">&quot;tax_number&quot;</span> =&gt; <span
 class="php-quote">&quot;value&quot;</span>,
      <span
 class="php-quote">&quot;worker_specialization&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+     <span
+class="php-quote">&quot;source&quot;</span> : <span
 class="php-quote">&quot;value&quot;</span>);
 
 <span
@@ -301,6 +308,9 @@ class="php-quote">&quot;tax_number&quot;</span> : <span
 class="php-quote">&quot;value&quot;</span>,
            <span
 class="php-quote">&quot;worker_specialization&quot;</span> : <span
+class="php-quote">&quot;value&quot;</span>,
+           <span
+class="php-quote">&quot;source&quot;</span> : <span
 class="php-quote">&quot;value&quot;</span>
        },
        beforeSend: <span
@@ -330,71 +340,107 @@ class="php-keyword2">log</span>(data);
 		<b>Package:</b> <a href="package-POST.html">POST</a><br />
 				<b>Author:</b>
 				ΤΕΙ Αθήνας<br />
-		<b>Located at</b> api/post/to_check/PostWorkers.php<br />
+		<b>Located at</b> api/post/PostWorkers.php<br />
 	</div>
 
 
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
 	<tr id="$registry_no">
-		<td class="name"><code>integer</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$registry_no</var></code></td>
 		<td>
-			$worker_id <b><i>Κωδικός Εργαζόμενου</i></b><i></i><br />
-Ο Κωδικός του Εργαζόμενου<br />
-Το πεδίο είναι υποχρεωτικό
+			 Αριθμός Μητρώου<br />
+Ο Αριθμός Μητρώου του Εργαζόμενου
 		</td>
 	</tr>
 	<tr id="$lastname">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$lastname</var></code></td>
 		<td>
-			$registry_no <b><i>Αριθμός Μητρώου</i></b><i></i><br />
-Ο Αριθμός Μητρώου του Εργαζόμενου<br />
-Το πεδίο είναι υποχρεωτικό
+			 Επώνυμο<br />
+Το Επώνυμο του Εργαζόμενου
 		</td>
 	</tr>
 	<tr id="$firstname">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$firstname</var></code></td>
 		<td>
-			<b><i>$lastname Επώνυμο</i></b><i></i><br />
-Το Επώνυμο του Εργαζόμενου<br />
-Το πεδίο είναι υποχρεωτικό
+			 Όνομα<br />
+Το Όνομα του Εργαζόμενου
 		</td>
 	</tr>
 	<tr id="$fathername">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$fathername</var></code></td>
 		<td>
-			<b><i>$firstname Όνομα</i></b><i></i><br />
-Το Όνομα του Εργαζόμενου<br />
-Το πεδίο είναι υποχρεωτικό
+			 Πατρώνυμο<br />
+Το Πατρώνυμο του Εργαζόμενου
 		</td>
 	</tr>
 	<tr id="$sex">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$sex</var></code></td>
 		<td>
-			$fathername Πατρώνυμο<br />
-Το Πατρώνυμο του Εργαζόμενου
+			 Φύλο<br />
+Το Φύλο του Εργαζόμενου
 		</td>
 	</tr>
 	<tr id="$tax_number">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$tax_number</var></code></td>
 		<td>
-			$sex Φύλο<br />
-Το Φύλο του Εργαζόμενου
+			 Αριθμός Φορολογικού Μητρώου<br />
+Ο Αριθμός Φορολογικού Μητρώου του
+Εργαζόμενου
 		</td>
 	</tr>
 	<tr id="$worker_specialization">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$worker_specialization</var></code></td>
 		<td>
-			$tax_number Αριθμός Φορολογικού Μητρώου<br />
-Ο Αριθμός Φορολογικού Μητρώου του
-Εργαζόμενου
+			 Ειδικότητα<br />
+Η Ειδικότητα του Εργαζομένου<br />
+Το πεδίο είναι υποχρεωτικό<br />
+Λεξικό : Ειδικότητες Εργαζομένων <code><a href="function-GetWorkerSpecializations.html">GetWorkerSpecializations()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$source">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$source</var></code></td>
+		<td>
+			 Πρωτογενής Πηγή<br />
+Η Πρωτογενής Πηγή του Εργαζόμενου<br />
+Το πεδίο είναι υποχρεωτικό<br />
+Λεξικό : Πρωτογενείς Πηγές Εργαζομενων <code><a href="function-GetSources.html">GetSources()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
 		</td>
 	</tr>
 	</table>
@@ -461,10 +507,10 @@ class="php-keyword2">log</span>(data);
 	</tr>
 	<tr>
 		<td class="name"><code>
-			DuplicatedWorkerValue
+			InvalidSourceValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#DuplicatedWorkerValue">ExceptionMessages::<b>DuplicatedWorkerValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidSourceValue">ExceptionMessages::<b>InvalidSourceValue</b></a></code>
 		</td>
 	</tr>
 	</table>
@@ -472,7 +518,7 @@ class="php-keyword2">log</span>(data);
 </div>
 
 	<div id="footer">
-		mmsch.teiath.gr-ver4 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		mmsch.teiath.gr API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

@@ -132,16 +132,16 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * 
  *  
- * @param integer $worker_id <b><i>Κωδικός Εργαζόμενου</b></i>
+ * @param integer $worker_id Κωδικός Εργαζόμενου
  * <br>Ο Κωδικός του Εργαζόμενου
  * 
- * @param string $worker_registry_no <b><i>Αριθμός Μητρώου</b></i>
+ * @param string $worker_registry_no Αριθμός Μητρώου
  * <br>Ο Αριθμός Μητρώου του Εργαζόμενου
  * 
- * @param string <b><i>$lastname Επώνυμο</b></i>
+ * @param string $lastname Επώνυμο
  * <br>Το Επώνυμο του Εργαζόμενου
  * 
- * @param string <b><i>$firstname Όνομα</b></i>
+ * @param string $firstname Όνομα
  * <br>Το Όνομα του Εργαζόμενου
  * 
  * @param string $fathername Πατρώνυμο
@@ -157,7 +157,12 @@ header("Content-Type: text/html; charset=utf-8");
  * <br>Η Ειδικότητα του Εργαζομένου 
  * <br>Το πεδίο είναι υποχρεωτικό
  * <br>Λεξικό : Ειδικότητες Εργαζομένων {@see GetWorkerSpecializations})
- * <br>Αν η τιμή της παραμέτρου είναι αριθμητική η αναζήτηση γίνεται με τον κωδικό αλλιώς με την ονομασία
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
+ *    <ul>
+ *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
+ *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
+ *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
+ *    </ul>
  * 
  * @param mixed $source Πρωτογενής Πηγή
  * <br>Η Πρωτογενής Πηγή του Εργαζόμενου
