@@ -366,6 +366,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 if ( $data->status == 200 )
                 {
                     //$mm_id = $data->mm_id;
+                    $params['mm_id'] = $data->mm_id;
                 }
                 else
                 {
@@ -380,58 +381,9 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             }
 
 //= Workers ====================================================================
-
             if ((!$this->isError) && (trim ($unit["Manager"]) != 'null') && (trim ($unit["Manager"]["RegistryNo"]) != ""))
             {
-                if(trim($unit["Manager"]["Sex"]) == 'Θ') { $unit["Manager"]["Sex"] = 'Γ'; }
-                if(trim($unit["Manager"]["Sex"]) == 'n') { $unit["Manager"]["Sex"] = null; }
-                $params = array(
-                    "registry_no" => trim($unit["Manager"]["RegistryNo"]),
-                    "lastname" => trim($unit["Manager"]["Lastname"]),
-                    "firstname" => trim($unit["Manager"]["Firstname"]),
-                    "fathername" => trim($unit["Manager"]["FatherFirstname"]),
-                    "sex" => trim($unit["Manager"]["Sex"]),
-                    "tax_number" => trim($unit["Manager"]["TaxNumber"]),
-                );
-
-                $sql = "SELECT worker_id FROM workers "
-                     . "WHERE registry_no = '".mysql_escape_string(trim($unit["Manager"]["RegistryNo"]))."'";
-
-                //echo "<br><br>".$sql."<br><br>";
-
-                $stmt = $db->query( $sql );
-                $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                if ( $row["worker_id"] )
-                {
-                    $params["worker_id"] = $row["worker_id"];
-                }
-
-                $curl = curl_init($Options["ServerURL"]."/workers");
-                curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-                curl_setopt($curl, CURLOPT_USERPWD, $Options["ServerAdminUserName"].":".$Options["ServerAdminPassWord"]);
-                curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
-                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $params["worker_id"] ? "PUT" : "POST");
-                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-                $data = curl_exec($curl);
-                $data = json_decode( $data );
-
-                //echo "<pre>"; var_dump( $data ); echo "</pre>";
-
-                if ($data->status == 200 )
-                {
-                    //$worker_id = $data->worker_id;
-                }
-                else
-                {
-                    $this->isError = true;
-
-                    $this->blockRowsErrors++;
-                    $this->totalRowsErrors++;
-
-                    $this->errorMessages[] = "[Workers] registry_no : ".$unit["RegistryNo"]." => ".$data->status." : ".$data->message;
-                }
+                $this->addWorker($params, $unit["Manager"], 'ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ');
             }
 
             if ( ! $this->isError )
@@ -455,6 +407,107 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
         }
 
         $this->totalRowsCounter++;
+    }
+
+    public function addWorker($unit, $worker, $position) {
+        global $db,$Options;
+        // Worker
+        if(trim($worker["Sex"]) == 'Θ') { $worker["Sex"] = 'Γ'; }
+        if(trim($worker["Sex"]) == 'n') { $worker["Sex"] = null; }
+        $params = array(
+            "registry_no" => trim($worker["RegistryNo"]),
+            "lastname" => trim($worker["Lastname"]),
+            "firstname" => trim($worker["Firstname"]),
+            "fathername" => trim($worker["FatherFirstname"]),
+            "sex" => trim($worker["Sex"]),
+            "tax_number" => trim($worker["TaxNumber"]),
+            "source" => "MySchool",
+        );
+
+        $sql = "SELECT worker_id FROM workers "
+             . "WHERE registry_no = '".mysql_escape_string(trim($worker["RegistryNo"]))."'";
+
+        //echo "<br><br>".$sql."<br><br>";
+
+        $stmt = $db->query( $sql );
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ( $row["worker_id"] )
+        {
+            $params["worker_id"] = $row["worker_id"];
+        }
+
+        $curl = curl_init($Options["ServerURL"]."/workers");
+        curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($curl, CURLOPT_USERPWD, $Options["ServerAdminUserName"].":".$Options["ServerAdminPassWord"]);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $params["worker_id"] ? "PUT" : "POST");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $data = curl_exec($curl);
+        $data = json_decode( $data );
+
+        //echo "<pre>"; var_dump( $data ); echo "</pre>";
+
+        if ($data->status == 200 )
+        {
+            //$worker_id = $data->worker_id;
+        }
+        else
+        {
+            $this->isError = true;
+
+            $this->blockRowsErrors++;
+            $this->totalRowsErrors++;
+
+            $this->errorMessages[] = "[Workers] registry_no : ".$unit["RegistryNo"]." => ".$data->status." : ".$data->message;
+        }
+
+        // Unit workers
+        $params = array(
+            'worker' => $data->worker_id,
+            'mm_id' => $unit['mm_id'],
+            'worker_position' => $position,
+        );
+
+        $sql = "SELECT unit_worker_id FROM unit_workers "
+             . "WHERE worker_id = '".mysql_escape_string(trim($data->worker_id))."' AND mm_id = '".mysql_escape_string(trim($unit['mm_id']))."'";
+
+        //echo "<br><br>".$sql."<br><br>";
+
+        $stmt = $db->query( $sql );
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ( $row["unit_worker_id"] )
+        {
+            $params["unit_worker_id"] = $row["unit_worker_id"];
+        }
+
+        $curl = curl_init($Options["ServerURL"]."/unit_workers");
+        curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($curl, CURLOPT_USERPWD, $Options["ServerAdminUserName"].":".$Options["ServerAdminPassWord"]);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $params["unit_worker_id"] ? "PUT" : "POST");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $data = curl_exec($curl);
+        $data = json_decode( $data );
+
+        //echo "<pre>"; var_dump( $data ); echo "</pre>";
+
+        if ($data->status == 200 )
+        {
+            //$unit_worker_id = $data->unit_worker_id;
+        }
+        else
+        {
+            $this->isError = true;
+
+            $this->blockRowsErrors++;
+            $this->totalRowsErrors++;
+
+            $this->errorMessages[] = "[Workers] registry_no : ".$unit["RegistryNo"]." => ".$data->status." : ".$data->message;
+        }
     }
 
     private function getDictionary($unit, $value, &$a_values, &$o_values, $exceptionString, $classname, $idAttr, $attr, callable $reloadFunc) {
