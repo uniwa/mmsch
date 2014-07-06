@@ -503,6 +503,11 @@ function ddls(){
                 this.trigger('change');
             }
         });
+        
+        //start - Implement Implement personalized default filters #2
+        $("#src_state").data("kendoMultiSelect").value([1]);
+        $('#src_state').val(1);
+        //end - Implement personalized default filters #2
 
         $("#src_specialType").kendoMultiSelect({
             cascadeFrom: "src_category",
