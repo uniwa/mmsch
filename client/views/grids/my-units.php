@@ -1252,7 +1252,7 @@
 							gridUnits.selectedRow = dataItem;
 							kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), true);
 
-							$( ".summary-pane" ).load( "client/views/grids/unit-details2.php?mm_id=" + dataItem.mm_id, function(){
+							$( ".summary-pane" ).load( "client/views/grids/unit-details.php?mm_id=" + dataItem.mm_id, function(){
 							});
 						});
 
