@@ -1,41 +1,47 @@
 <?php
 require_once ('server/config.php');
 require_once ('server/libs/phpCAS/CAS.php');
-if(!isset($casOptions["NoAuth"]) || $casOptions["NoAuth"] != true) {
-    // initialize phpCAS using SAML
-    phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'');
-    // no SSL validation for the CAS server, only for testing environments
-    phpCAS::setNoCasServerValidation();
-    // handle backend logout requests from CAS server
-    phpCAS::handleLogoutRequests(array($casOptions["Url"]));
-    if(isset($_GET['logout']) && $_GET['logout'] == 'true') {
-        phpCAS::logout();
-        exit();
+if(!isset($_GET['auth']) || $_GET['auth'] != '0') {
+    if(!isset($casOptions["NoAuth"]) || $casOptions["NoAuth"] != true) {
+        // initialize phpCAS using SAML
+        phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'');
+        // no SSL validation for the CAS server, only for testing environments
+        phpCAS::setNoCasServerValidation();
+        // handle backend logout requests from CAS server
+        phpCAS::handleLogoutRequests(array($casOptions["Url"]));
+        if(isset($_GET['logout']) && $_GET['logout'] == 'true') {
+            phpCAS::logout();
+            exit();
+        } else {
+            // force CAS authentication
+            if (!phpCAS::checkAuthentication())
+              phpCAS::forceAuthentication();
+        }
+        // at this step, the user has been authenticated by the CAS server and the user's login name can be read with //phpCAS::getUser(). for this test, simply print who is the authenticated user and his attributes.
+        $user = phpCAS::getAttributes();
     } else {
-        // force CAS authentication
-        if (!phpCAS::checkAuthentication())
-          phpCAS::forceAuthentication();
+        $user = array(
+            'uid' => $frontendOptions['backendUsername'],
+            'mail' => $frontendOptions['backendUsername'].'@sch.gr',
+            'title' => 'ΠΡΟΣΩΠΙΚΟ ΠΣΔ',
+            'ou' => 'ΤΕΙ ΑΘΗΝΑΣ',
+            'cn' => 'ΝΙΚΟΥΔΗΣ ΔΗΜΟΣΘΕΝΗΣ',
+            'gsnBranch' => 'ΠΕ20',
+            'edupersonorgunitdn' => array(
+                'ou=teiath,ou=partners,ou=units,dc=sch,dc=gr',
+                'ou=partners,ou=units,dc=sch,dc=gr'
+            ),
+            'l' => 'ou=teiath,ou=partners,ou=units,dc=sch,dc=gr',
+            'memberof' => '',
+            'umdobject' => 'Personel',
+        );
     }
-    // at this step, the user has been authenticated by the CAS server and the user's login name can be read with //phpCAS::getUser(). for this test, simply print who is the authenticated user and his attributes.
-    $user = phpCAS::getAttributes();
+    $user['backendAuthorizationHash'] = base64_encode($frontendOptions['backendUsername'].':'.$frontendOptions['backendPassword']);
 } else {
-    $user = array(
-        'uid' => $frontendOptions['backendUsername'],
-        'mail' => $frontendOptions['backendUsername'].'@sch.gr',
-        'title' => 'ΠΡΟΣΩΠΙΚΟ ΠΣΔ',
-        'ou' => 'ΤΕΙ ΑΘΗΝΑΣ',
-        'cn' => 'ΝΙΚΟΥΔΗΣ ΔΗΜΟΣΘΕΝΗΣ',
-        'gsnBranch' => 'ΠΕ20',
-        'edupersonorgunitdn' => array(
-            'ou=teiath,ou=partners,ou=units,dc=sch,dc=gr',
-            'ou=partners,ou=units,dc=sch,dc=gr'
-        ),
-        'l' => 'ou=teiath,ou=partners,ou=units,dc=sch,dc=gr',
-        'memberof' => '',
-        'umdobject' => 'Personel',
-    );
+    $user = array();
+    $user['edupersonorgunitdn'] = array('ou=null');
+    $user['backendAuthorizationHash'] = base64_encode('anonymous:anonymous');
 }
-$user['backendAuthorizationHash'] = base64_encode($frontendOptions['backendUsername'].':'.$frontendOptions['backendPassword']);
 ?>
 <!DOCTYPE html>
 <html>

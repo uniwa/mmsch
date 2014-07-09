@@ -1,60 +1,3 @@
-<?php
-require_once ('server/config.php');
-require_once ('server/libs/phpCAS/CAS.php');
-
-if (isset($_GET['auth'])){
-	
-	if ($_GET['auth']==1){
-		
-		if(!isset($casOptions["NoAuth"]) || $casOptions["NoAuth"] != true) {
-			// initialize phpCAS using SAML
-			phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'');
-			// no SSL validation for the CAS server, only for testing environments
-			phpCAS::setNoCasServerValidation();
-			// handle backend logout requests from CAS server
-			phpCAS::handleLogoutRequests(array($casOptions["Url"]));
-			if(isset($_GET['logout']) && $_GET['logout'] == 'true') {
-				phpCAS::logout();
-				exit();
-			} else {
-				// force CAS authentication
-				if (!phpCAS::checkAuthentication()){
-					phpCAS::forceAuthentication();
-				}
-				else {
-					header("Location: /main.php");
-					exit();
-				}
-			}
-			// at this step, the user has been authenticated by the CAS server and the user's login name can be read with //phpCAS::getUser(). for this test, simply print who is the authenticated user and his attributes.
-			$user = phpCAS::getAttributes();
-		} else {
-		    $user = array(
-		        'uid' => $frontendOptions['backendUsername'],
-		        'mail' => $frontendOptions['backendUsername'].'@sch.gr',
-		        'title' => 'ΠΡΟΣΩΠΙΚΟ ΠΣΔ',
-		        'ou' => 'ΤΕΙ ΑΘΗΝΑΣ',
-		        'cn' => 'ΝΙΚΟΥΔΗΣ ΔΗΜΟΣΘΕΝΗΣ',
-		        'gsnBranch' => 'ΠΕ20',
-		        'edupersonorgunitdn' => array(
-		            'ou=teiath,ou=partners,ou=units,dc=sch,dc=gr',
-		            'ou=partners,ou=units,dc=sch,dc=gr'
-		        ),
-		        'l' => 'ou=teiath,ou=partners,ou=units,dc=sch,dc=gr',
-		        'memberof' => '',
-		        'umdobject' => 'Personel',
-		    );
-		    
-		    header("Location: /main.php");
-		    exit();
-		}
-	}
-	else if ($_GET['auth']==0){
-		header("Location: /main.php");
-		exit();
-	}
-}
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,8 +77,8 @@ if (isset($_GET['auth'])){
         <p class="lead"></p>
         <center>
         <p>
-	       	<a role="button" href="/index.php?auth=1" class="btn btn-success">Πιστοποιημένη πρόσβαση</a>&nbsp;
-        	<a role="button" href="/index.php?auth=0" class="btn btn-success">Δημόσια πρόσβαση</a>
+	       	<a role="button" href="/main.php?auth=1" class="btn btn-success">Πιστοποιημένη πρόσβαση</a>&nbsp;
+        	<a role="button" href="/main.php?auth=0" class="btn btn-success">Δημόσια πρόσβαση</a>
         </p>
         </center>
         </div>

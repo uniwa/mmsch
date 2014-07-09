@@ -1225,7 +1225,7 @@
 
 						// start - get units from server
 						gridUnits.dataSource.filter([
-							{field: "implementation_entity", value: g_impEnt[0].implementation_entity_id},
+							{field: "implementation_entity", value: typeof g_impEnt[0] != 'undefined' ? g_impEnt[0].implementation_entity_id : null},
 							{field: "state", value: 1}
 							
 						]);

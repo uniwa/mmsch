@@ -462,8 +462,10 @@ function ddls(){
         });
         
         //start - Implement personalized default filters based on CAS attributes
-        $("#src_implementationEntity").data("kendoMultiSelect").value([g_impEnt[0].implementation_entity_id]);
-        $('#src_implementationEntity').val(g_impEnt[0].implementation_entity_id);
+        if(typeof g_impEnt[0] != 'undefined') {
+            $("#src_implementationEntity").data("kendoMultiSelect").value([g_impEnt[0].implementation_entity_id]);
+            $('#src_implementationEntity').val(g_impEnt[0].implementation_entity_id);
+        }
         //end - Implement personalized default filters based on CAS attributes
         
         $("#src_source").kendoMultiSelect({

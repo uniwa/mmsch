@@ -197,7 +197,7 @@ function Authentication()
 
     try
     {
-        if(isset($app->request->headers['Php-Auth-User']) && isset($app->request->headers['Php-Auth-Pw'])) {
+        if(isset($app->request->headers['Php-Auth-User']) && isset($app->request->headers['Php-Auth-Pw']) && $app->request->headers['Php-Auth-User'] != 'anonymous') {
             $apcKey = 'mm_auth_'.md5($app->request->headers['Php-Auth-User'].$app->request->headers['Php-Auth-Pw']);
             if(!($userObj = apc_fetch($apcKey))) {
                 $ldap = new \Zend\Ldap\Ldap($ldapOptions);
@@ -213,7 +213,7 @@ function Authentication()
             // userObj has all the user attributes now - We can check roles
             $app->request->user = $userObj;
         } else {
-            throw new Exception(ExceptionMessages::UserAccesDenied, ExceptionCodes::UserAccesDenied); // Empty username/pass - Maybe guest access?
+            // Guest access
         }
     }
     catch (Exception $e)
@@ -241,6 +241,7 @@ function UserRolesPermission(){
     try {
 
         $check = UserRoles::checkUserRolePermissions($controller,$method,$app->request->user);
+        $app->request->userRoles = UserRoles::getRole($app->request->user);
 
         if ($check!==true){
                     throw new Exception(ExceptionMessages::Unauthorized, ExceptionCodes::Unauthorized);
