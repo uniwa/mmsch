@@ -236,11 +236,7 @@ position: fixed;
        	
        	<div class="item-header">
        		
-<<<<<<< HEAD
        		<h5 style=""><strong data-bind="text: unitData.name"></strong>&nbsp;<a href="/main.php?mm_id=<?php echo $_GET['mm_id']; ?>" target="_blank" class="btn btn-default btn-xs" id="loadUnitCard"><i class="glyphicon glyphicon-new-window"></i></a></h5>
-=======
-       		<h5 style=""><strong data-bind="text: unitData.name"></strong>&nbsp;<a href="/?mm_id=<?php echo $_GET['mm_id']; ?>" target="_blank" class="btn btn-default btn-xs" id="loadUnitCard"><i class="glyphicon glyphicon-new-window"></i></a></h5>
->>>>>>> 355563996a56b629a9f0c2d98966a2f0402fc327
        		
        	</div>
        	
