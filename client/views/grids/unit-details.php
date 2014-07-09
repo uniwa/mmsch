@@ -1,3 +1,6 @@
+<?php 
+$isAnonymous = @ $_GET['is_anonymous'];
+?>
 <style>
 .tooltip{
 position: fixed;
@@ -248,7 +251,7 @@ position: fixed;
 					<li><a href="#holder-general-infos" data-toggle="tooltip" title="Γενικά στοιχεία"><i class="fa fa-info"></i></a></li>
 					<li><a href="#holder-contact-infos" data-toggle="tooltip" title="Στοιχεία Επικοινωνίας"><i class="fa fa-phone"></i></a></li>
 					
-					<?php if (isset($user['uid'])) { ?>
+					<?php if (!$isAnonymous) { ?>
 					<li><a href="#holder-workers-infos" data-toggle="tooltip" title="Εργαζόμενοι"><i class="fa fa-user"></i></a></li>
 					<li class="dropdown">
 						<a id="dLabel" href="#holder-net-infos" data-toggle="tooltip" title="Δικτυακά Στοιχεία" ><i class="fa fa-link"></i></a>
@@ -365,7 +368,7 @@ position: fixed;
 					</div>
                 </div>
 
-                <?php if (isset($user['uid'])) { ?>
+                <?php if (!$isAnonymous) { ?>
 				    <div id="holder-workers-infos" class="detail-section">
 					<div class="detail-section-header"><h3>Εργαζόμενοι</h3></div>
 					<div class="detail-section-tab">
@@ -416,7 +419,7 @@ position: fixed;
                 </div>
 				<?php } ?>
 
-				<?php if (isset($user['uid'])) { ?>
+				<?php if (!$isAnonymous) { ?>
 					<div id="holder-net-infos" class="detail-section">
 					
 						<div class="detail-section-header"><h3>Δικτυακά Στοιχεία</h3></div>
@@ -742,7 +745,7 @@ position: fixed;
 				
                 
                 
-				<?php if (isset($user['uid'])) { ?>
+				<?php if (!$isAnonymous) { ?>
                 <div id="holder-geo-infos" class="detail-section">
 					
 					<div class="detail-section-header"><h3>Τοπολογικά Στοιχεία</h3></div>
@@ -796,7 +799,7 @@ position: fixed;
                 </div>
 				<?php } ?>
 
-				<?php if (isset($user['uid'])) { ?>
+				<?php if (!$isAnonymous) { ?>
                 <div id="holder-manage-infos" class="detail-section">
 					<div class="detail-section-header"><h3>Διοικητικά Στοιχεία</h3></div>
 					<div class="detail-section-tab">
@@ -826,7 +829,7 @@ position: fixed;
                 </div>
 				<?php } ?>
 
-				<?php if (isset($user['uid'])) { ?>
+				<?php if (!$isAnonymous) { ?>
                 <div id="holder-transitions-infos" class="detail-section">
 					<div class="detail-section-header"><h3>Μεταβάσεις</h3></div>
                     <div class="detail-section-tab">

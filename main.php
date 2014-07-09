@@ -42,6 +42,10 @@ if(!isset($_GET['auth']) || $_GET['auth'] != '0') {
     $user['edupersonorgunitdn'] = array('ou=null');
     $user['backendAuthorizationHash'] = base64_encode('anonymous:anonymous');
 }
+if (isset($user['uid'])) 
+	$isAnonymous = 0;
+else
+	$isAnonymous = 1;
 ?>
 <!DOCTYPE html>
 <html>
@@ -70,6 +74,7 @@ if(!isset($_GET['auth']) || $_GET['auth'] != '0') {
     var tmp_regExp = /ou=([^,]+)/;
     var tmp_matches = (user.edupersonorgunitdn[0]).match(tmp_regExp);
     var g_impEntDomain = tmp_matches[1];
+    var g_isAnonymous = <?php echo $isAnonymous; ?>;
 	// end - Implement personalized default filters based on CAS attributes
     
 </script>
@@ -405,11 +410,11 @@ $(document).ready(function() {
 	});
 
 	if (mm_id == "") {
-		$('#bodyInner').load( "client/views/grids/my-units.php" , function(e){
+		$('#bodyInner').load( "client/views/grids/my-units.php?is_anonymous=" + g_isAnonymous  , function(e){
 			resizeGrid('.mmsch-grid');
 		});
 	} else {
-		$( "#bodyInner" ).load( "client/views/grids/unit-card.php?mm_id=" + mm_id, function(){
+		$( "#bodyInner" ).load( "client/views/grids/unit-card.php?mm_id=" + mm_id + "&is_anonymous=" + g_isAnonymous, function(){
 
 		});
 	}
@@ -606,7 +611,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 				<div class="ddd" >
 				
 								<ul>
-									<li class="load-page Selected"><a href="client/views/grids/my-units.php">Μονάδες</a></li>
+									<li class="load-page Selected"><a href="client/views/grids/my-units.php?is_anonymous=<?php echo $isAnonymous; ?>">Μονάδες</a></li>
 									<li>
 										<a href="#">Νομοι/Δήμοι</a>
 										<ul><li style="height:100%; overflow-x:hidden; overflow-y:auto">

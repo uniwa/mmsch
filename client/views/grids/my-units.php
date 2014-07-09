@@ -1,4 +1,7 @@
-					<div id="mod-units" class="main-pane" style="position: absolute; left:0; top:0; bottom:0; height: 100%; width:100%;">
+<?php 
+$isAnonymous = @ $_GET['is_anonymous'];
+?>
+<div id="mod-units" class="main-pane" style="position: absolute; left:0; top:0; bottom:0; height: 100%; width:100%;">
 					
 					<div id="ribbon">
 						<div class="ribbon-menu">
@@ -1252,7 +1255,7 @@
 							gridUnits.selectedRow = dataItem;
 							kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), true);
 
-							$( ".summary-pane" ).load( "client/views/grids/unit-details.php?mm_id=" + dataItem.mm_id, function(){
+							$( ".summary-pane" ).load( "client/views/grids/unit-details.php?mm_id=" + dataItem.mm_id + "&is_anonymous=" + <?php echo $isAnonymous; ?> , function(){
 							});
 						});
 
