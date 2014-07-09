@@ -59,7 +59,9 @@
     								<li>Host Relations</li>
 									<li>Guest Relations</li>
 									-->
+									<?php if (isset($user['uid'])) { ?>
     								<li>Μεταβάσεiς</li>
+									<?php } ?>
    								</ul>
 							    <div class="unit-contact-info clearfix">
     								<dl class="dl-horizontal">
@@ -109,7 +111,9 @@
 
 								<div><div class="grid-details-guest-relations"></div></div>
 								-->
+								<?php if (isset($user['uid'])) { ?>	
 								<div class="clearfix"><div class="grid-details-transitions"></div></div>
+								<?php } ?>
 
 							</div>
 

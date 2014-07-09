@@ -579,8 +579,8 @@ function evalLexicalId(cacheData, model_id, value, return_value){
     			<i class="fa fa-user fa-1x"></i>&nbsp;&nbsp;<span id="vUsername"></span>&nbsp;&nbsp;<span class="caret"></span>
     		</button>
   			<ul class="dropdown-menu" role="menu">
-    			<li><a href="#"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
-    			<li><a href="http://mmsch.teiath.gr/docs/package-GET.html">Οδηγός API</a></li>
+    			<li><a href="/hlp/user_guide_frontend_ver2.docx" target="_blank"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
+    			<li><a href="http://mmsch.teiath.gr/docs/package-GET.html" target="_blank">Οδηγός API</a></li>
     			<li class="divider"></li>
     			<li><a href="#" id="lnkLogout"><i class="fa fa-sign-out fa-1x"></i>&nbsp;&nbsp;Αποσύνδεση</a></li>
   			</ul>
@@ -640,7 +640,9 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 											<li class="load-page"><a href="client/views/grids/states.php">Καταστάσεις</a></li>
 											<li class="load-page"><a href="client/views/grids/worker-specializations.php">Κατηγορίες Εργαζομένων</a></li>
 											<li class="load-page"><a href="client/views/grids/worker-positions.php">Θέσεις Εργαζομένων</a></li>
+											<!-- 
 											<li class="load-page"><a href="client/views/grids/workers.php">Εργαζόμενοι</a></li>
+											 -->
 										</ul>
 									</li>
 								</ul>
