@@ -628,6 +628,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 										</span>
 										</li></ul>
 									</li>
+									<?php if (!$isAnonymous) { ?>
 									<li>
 										<a href="#">Διαχείριση</a>
 										<ul class="">
@@ -650,6 +651,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 											 -->
 										</ul>
 									</li>
+									<?php } ?>
 								</ul>
 							
 					
