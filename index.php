@@ -84,6 +84,11 @@
 					
 					<div class="row">&nbsp;</div>
 					
+					<div class="row">
+						<div class="col-md-12">
+						<center><img src="/img/icon.jpg" class="" /></center>
+						</div>	
+					</div>
 					
 					<div class="row">&nbsp;</div>
 					<div class="row">
