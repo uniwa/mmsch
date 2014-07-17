@@ -76,7 +76,7 @@
 			<div class="row">
 				<div class="col-md-8">
 					<div class="row">
-						<div class="col-md-12"><h2>Κεντρικό Μητρώο Μονάδων <br/>Πανελλήνιου Σχολικού Δικτύου</h2></div>
+						<div class="col-md-12"><h2 style="color: #fff;font-weight: bold; text-shadow: 1px 1px 2px #111111;">Κεντρικό Μητρώο Μονάδων <br/>Πανελλήνιου Σχολικού Δικτύου</h2></div>
 					</div>
 				</div>
 				
