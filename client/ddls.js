@@ -1,6 +1,8 @@
 //$(document).ready(function() {	
 function ddls(){
 	
+	if (typeof $("#src_category").data('kendoMultiSelect') != "object"){
+			
 		$("#src_category").kendoMultiSelect({
         dataTextField: "category",
         dataValueField: "category_id",
@@ -73,7 +75,9 @@ function ddls(){
             //lbl.find('.badge').html(totalItems);
         }
     });
+}
 
+	if (typeof $("#src_educationLevel").data('kendoMultiSelect') != "object"){
 		$("#src_educationLevel").kendoMultiSelect({
         dataTextField: "education_level",
         dataValueField: "education_level_id",
@@ -137,7 +141,9 @@ function ddls(){
              */
         }
     });
+}
 
+if (typeof $("#src_unitType").data('kendoMultiSelect') != "object"){
 		$("#src_unitType").kendoMultiSelect({
         dataTextField: "unit_type",
         dataValueField: "unit_type_id",
@@ -154,8 +160,9 @@ function ddls(){
             //lbl.find('.badge').html(totalItems);
         }
     });
-
+}
     
+if (typeof $("#src_regionEduAdmin").data('kendoMultiSelect') != "object"){
 		$("#src_regionEduAdmin").kendoMultiSelect({
             dataTextField: "region_edu_admin",
             dataValueField: "region_edu_admin_id",
@@ -212,9 +219,11 @@ function ddls(){
                 //lbl.find('.badge').html(totalItems);
             }
         });
+}
         //$src_regionEduAdmin.data('kendoMultiSelect').dataSource.insert(0, { region_edu_admin_id: -1, name: "--Χωρίς Περιφέρεια--" });
 
-        $("#src_eduAdmin").kendoMultiSelect({
+if (typeof $("#src_eduAdmin").data('kendoMultiSelect') != "object"){
+		$("#src_eduAdmin").kendoMultiSelect({
             cascadeFrom: "src_regionEduAdmin",
             dataTextField: "short_name",
             dataValueField: "edu_admin_id",
@@ -264,9 +273,10 @@ function ddls(){
                 //this.dataSource.insert(0, { edu_admin_id: -1, name: "--Χωρίς Διεύθυνση εκπαίδευσης--" });
             }
         });
-        
+}     
 		//$("#src_eduAdmin").data('kendoMultiSelect').enable(true);
 
+if (typeof $("#src_transferArea").data('kendoMultiSelect') != "object"){
         $("#src_transferArea").kendoMultiSelect({
             //cascadeFrom: "src_regionEduAdmin",
             dataTextField: "transfer_area",
@@ -284,9 +294,10 @@ function ddls(){
                 //lbl.find('.badge').html(totalItems);
             }
         });
-        
+}    
 		//$("#src_transferArea").data('kendoMultiSelect').enable(true);
 
+if (typeof $("#src_orientationType").data('kendoMultiSelect') != "object"){
         $("#src_orientationType").kendoMultiSelect({
             cascadeFrom: "src_category",
 			dataTextField: "orientation_type",
@@ -322,7 +333,9 @@ function ddls(){
                 //lbl.find('.badge').html(totalItems);
             }
         });
+}
 
+if (typeof $("#src_operationShift").data('kendoMultiSelect') != "object"){
         $("#src_operationShift").kendoMultiSelect({
             cascadeFrom: "src_category",
 			dataTextField: "operation_shift",
@@ -358,7 +371,9 @@ function ddls(){
                 //lbl.find('.badge').html(totalItems);
             }
         });
+}
 
+if (typeof $("#src_prefecture").data('kendoMultiSelect') != "object"){
         $("#src_prefecture").kendoMultiSelect({
             dataTextField: "prefecture",
             dataValueField: "prefecture_id",
@@ -416,7 +431,9 @@ function ddls(){
                 //lbl.find('.label').html(totalItems);
             }
         });
+}
 
+if (typeof $("#src_municipality").data('kendoMultiSelect') != "object"){
         $("#src_municipality").kendoMultiSelect({
             cascadeFrom: "src_prefecture",
 			dataTextField: "municipality",
@@ -442,7 +459,9 @@ function ddls(){
                 //lbl.find('.label').html(totalItems);
             }
         });
+}
 
+if (typeof $("#src_implementationEntity").data('kendoMultiSelect') != "object"){
         $("#src_implementationEntity").kendoMultiSelect({
             dataTextField: "implementation_entity_initials",
             dataValueField: "implementation_entity_id",
@@ -460,7 +479,7 @@ function ddls(){
             	this.trigger('change');
             }
         });
-        
+}       
         //start - Implement personalized default filters based on CAS attributes
         if(typeof g_impEnt[0] != 'undefined') {
             $("#src_implementationEntity").data("kendoMultiSelect").value([g_impEnt[0].implementation_entity_id]);
@@ -468,6 +487,8 @@ function ddls(){
         }
         //end - Implement personalized default filters based on CAS attributes
         
+        
+        if (typeof $("#src_source").data('kendoMultiSelect') != "object"){        
         $("#src_source").kendoMultiSelect({
             dataTextField: "source",
             dataValueField: "source_id",
@@ -484,7 +505,9 @@ function ddls(){
                 //lbl.find('.badge').html(totalItems);
             }
         });
+        }
 
+        if (typeof $("#src_state").data('kendoMultiSelect') != "object"){
         $("#src_state").kendoMultiSelect({
             dataTextField: "state",
             dataValueField: "state_id",
@@ -505,12 +528,14 @@ function ddls(){
                 this.trigger('change');
             }
         });
+        }
         
         //start - Implement Implement personalized default filters #2
         $("#src_state").data("kendoMultiSelect").value([1]);
         $('#src_state').val(1);
         //end - Implement personalized default filters #2
 
+        if (typeof $("#src_specialType").data('kendoMultiSelect') != "object"){
         $("#src_specialType").kendoMultiSelect({
             cascadeFrom: "src_category",
 			dataTextField: "special_type",
@@ -536,7 +561,9 @@ function ddls(){
                 //lbl.find('.badge').html(totalItems);
             }
         });
+        }
 		
+        if (typeof $("#src_legalCharacter").data('kendoMultiSelect') != "object"){
 		$("#src_legalCharacter").kendoMultiSelect({
             cascadeFrom: "src_category",
 			dataTextField: "legal_character",
@@ -557,7 +584,9 @@ function ddls(){
                 }
             }
         });
+        }
 		
+        if (typeof $("#src_subnetType").data('kendoMultiSelect') != "object"){
 		$("#src_subnetType").kendoMultiSelect({
             dataTextField: "subnet_type",
             dataValueField: "unit_network_subnet_type_id",
@@ -576,8 +605,10 @@ function ddls(){
                 this.trigger('change');
             }
         });
+        }
 
 		
+        if (typeof $("#src_circuitType").data('kendoMultiSelect') != "object"){
 		$("#src_circuitType").kendoMultiSelect({
             dataTextField: "circuit_type",
             dataValueField: "circuit_type_id",
@@ -596,6 +627,7 @@ function ddls(){
                 this.trigger('change');
             }
         });
+        }
 }
 
 function destroyDDL(){

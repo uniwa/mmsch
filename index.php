@@ -90,7 +90,7 @@
 	        </p>
 	        
 	        <p class="pull-right" style="font-size:12px; font-weight:bold;">
-	        Εγχειρίδιο χρήστη (PDF)  
+	        <a href="/hlp/user_guide_frontend_ver2.docx" target="_blank">Εγχειρίδιο χρήστη (PDF)</a>  
 	        </p>
         </div>
         

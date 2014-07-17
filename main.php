@@ -42,6 +42,10 @@ if(!isset($_GET['auth']) || $_GET['auth'] != '0') {
     $user['edupersonorgunitdn'] = array('ou=null');
     $user['backendAuthorizationHash'] = base64_encode('anonymous:anonymous');
 }
+if (isset($user['uid'])) 
+	$isAnonymous = 0;
+else
+	$isAnonymous = 1;
 ?>
 <!DOCTYPE html>
 <html>
@@ -70,6 +74,7 @@ if(!isset($_GET['auth']) || $_GET['auth'] != '0') {
     var tmp_regExp = /ou=([^,]+)/;
     var tmp_matches = (user.edupersonorgunitdn[0]).match(tmp_regExp);
     var g_impEntDomain = tmp_matches[1];
+    var g_isAnonymous = <?php echo $isAnonymous; ?>;
 	// end - Implement personalized default filters based on CAS attributes
     
 </script>
@@ -405,11 +410,11 @@ $(document).ready(function() {
 	});
 
 	if (mm_id == "") {
-		$('#bodyInner').load( "client/views/grids/my-units.php" , function(e){
+		$('#bodyInner').load( "client/views/grids/my-units.php?is_anonymous=" + g_isAnonymous  , function(e){
 			resizeGrid('.mmsch-grid');
 		});
 	} else {
-		$( "#bodyInner" ).load( "client/views/grids/unit-card.php?mm_id=" + mm_id, function(){
+		$( "#bodyInner" ).load( "client/views/grids/unit-card.php?mm_id=" + mm_id + "&is_anonymous=" + g_isAnonymous, function(){
 
 		});
 	}
@@ -579,8 +584,8 @@ function evalLexicalId(cacheData, model_id, value, return_value){
     			<i class="fa fa-user fa-1x"></i>&nbsp;&nbsp;<span id="vUsername"></span>&nbsp;&nbsp;<span class="caret"></span>
     		</button>
   			<ul class="dropdown-menu" role="menu">
-    			<li><a href="#"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
-    			<li><a href="http://mmsch.teiath.gr/docs/package-GET.html">Οδηγός API</a></li>
+    			<li><a href="/hlp/user_guide_frontend_ver2.docx" target="_blank"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
+    			<li><a href="http://mmsch.teiath.gr/docs/package-GET.html" target="_blank">Οδηγός API</a></li>
     			<li class="divider"></li>
     			<li><a href="#" id="lnkLogout"><i class="fa fa-sign-out fa-1x"></i>&nbsp;&nbsp;Αποσύνδεση</a></li>
   			</ul>
@@ -606,7 +611,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 				<div class="ddd" >
 				
 								<ul>
-									<li class="load-page Selected"><a href="client/views/grids/my-units.php">Μονάδες</a></li>
+									<li class="load-page Selected"><a href="client/views/grids/my-units.php?is_anonymous=<?php echo $isAnonymous; ?>">Μονάδες</a></li>
 									<li>
 										<a href="#">Νομοι/Δήμοι</a>
 										<ul><li style="height:100%; overflow-x:hidden; overflow-y:auto">
@@ -623,6 +628,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 										</span>
 										</li></ul>
 									</li>
+									<?php if (!$isAnonymous) { ?>
 									<li>
 										<a href="#">Διαχείριση</a>
 										<ul class="">
@@ -640,9 +646,12 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 											<li class="load-page"><a href="client/views/grids/states.php">Καταστάσεις</a></li>
 											<li class="load-page"><a href="client/views/grids/worker-specializations.php">Κατηγορίες Εργαζομένων</a></li>
 											<li class="load-page"><a href="client/views/grids/worker-positions.php">Θέσεις Εργαζομένων</a></li>
+											<!-- 
 											<li class="load-page"><a href="client/views/grids/workers.php">Εργαζόμενοι</a></li>
+											 -->
 										</ul>
 									</li>
+									<?php } ?>
 								</ul>
 							
 					
