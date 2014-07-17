@@ -51,68 +51,100 @@
 <div class="container">
 		
 		<div style="clear: both;" >&nbsp;</div>
-		<div style="clear: both;" >&nbsp;</div>
 		
       <div class="header">
-         <div class="pull-left"><img src="/img/logo_stirizo.png" /></div>     
+         <div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+				<p class="pull-left"><img src="/img/sch_logo.png" />&nbsp;&nbsp;&nbsp;</p>			
+				<p class="pull-left" style="padding-top:5px;"><strong><a href="http://www.sch.gr" style="color: #1d73a3;font: bold 20px Tahoma,sans-serif;">Πανελλήνιο Σχολικό Δίκτυο</a></strong><br>
+				<span class="sch_logo_text2">Το Δίκτυο στην Υπηρεσία της Εκπαίδευσης</span>
+				</p>
+				</div>
+			</div>
+		 </div>
         
-         <div class="pull-right sch_logo_text vcenter">
-         	<a href="http://www.sch.gr">Πανελλήνιο Σχολικό Δίκτυο</a>
-			<br>
-			<span class="sch_logo_text2">Το Δίκτυο στην Υπηρεσία της Εκπαίδευσης</span>
-         </div>  
-         <div class="pull-right"><img src="/img/sch_logo.png" /></div>  
+         
               
       </div>
-      <div style="clear: both;" >&nbsp;</div>
+      
 
-      <div class="jumbotron" style="background-color: #FF9900; -moz-box-shadow:    inset 0 0 10px #000000;
-   -webkit-box-shadow: inset 0 0 10px #000000;
-   box-shadow:         inset 0 0 10px #000000;">
+      <div class="jumbotron" style="background-color: #FF9900;">
    		
-   		<div>
-      	<center>
-        <h3 style="color:#0076B9">Κεντρικό Μητρώο Μονάδων <br/>Πανελλήνιου Σχολικού Δικτύου</h3>
-        </center>
-        <p class="lead"></p>
-        <center>
-        <p>
-	       	<a role="button" href="/main.php?auth=1" class="btn btn-success">Πιστοποιημένη πρόσβαση</a>&nbsp;
-        	<a role="button" href="/main.php?auth=0" class="btn btn-success">Δημόσια πρόσβαση</a>
-        </p>
-        </center>
-        </div>
-        
-        <div style="padding-top:120px;">
-	        <p class="pull-left;" style="font-size:12px; font-weight:bold;">
-	        Υποστηρίζεται από το ΤΕΙ Αθήνας <br/>
-			Επικοινωνία: teiath-net@sch.gr 
-	        </p>
-	        
-	        <p class="pull-right" style="font-size:12px; font-weight:bold;">
-	        <a href="/hlp/user_guide_frontend_ver2.docx" target="_blank">Εγχειρίδιο χρήστη (PDF)</a>  
-	        </p>
-        </div>
-        
+		<div class="container-fluid">
+			
+			<div class="row">
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-12"><h2>Κεντρικό Μητρώο Μονάδων <br/>Πανελλήνιου Σχολικού Δικτύου</h2></div>
+					</div>
+				</div>
+				
+				<div class="col-md-4">
+					
+					<div class="row">&nbsp;</div>
+					
+					
+					<div class="row">&nbsp;</div>
+					<div class="row">
+						<div class="col-md-12">						
+							<a role="button" href="/main.php?auth=1" class="btn btn-primary btn-lg btn-block">Πιστοποιημένη πρόσβαση</a>&nbsp;
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">						
+        					<a role="button" href="/main.php?auth=0" class="btn btn-success btn-lg btn-block">Δημόσια πρόσβαση</a>
+						</div>
+					</div>
+					
+					<div class="row">&nbsp;</div>
+					<div class="row">&nbsp;</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="pull-right">
+							<strong>Υποστηρίζεται από το ΤΕΙ Αθήνας<br/>
+							Επικοινωνία: teiath-net@sch.gr</strong>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			
+		
+			
+			
+			
+			
+			
+		</div>
+		
+		
         
         
       </div>
 
-      <div class="row marketing">
-        <div class="col-lg-6">
-                  </div>
-
-        <div class="col-lg-6">
-          
-        </div>
-      </div>
+     
 
       <div class="footer">
-       <div class="pull-left"><img src="/img/ypepth_logo.png" /></div>  
-       <div class="pull-right"><img src="/img/espa_logo.png" /></div>  
+		
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4"><p class="pull-left"><img src="/img/ypepth_logo.png" /></p></div>
+				<div class="col-md-4"><p><img src="/img/logo_stirizo.png" /></p></div>
+				<div class="col-md-4"><p class="pull-right"><img src="/img/espa_logo.png" /></p></div>
+			</div>
+		</div>
+       
       </div>
 
     </div>
+
+
+
+
+
 
 </body>
 
