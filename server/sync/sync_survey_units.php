@@ -271,7 +271,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 $legal_character_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->legal_character_id;
                 $orientation_type_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->orientation_type_id;
                 $special_type_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->special_type_id;
-                if($unit_type_id == null) {
+                if(!isset($unit_type_id)) {
                     return true;
                 }
             }
