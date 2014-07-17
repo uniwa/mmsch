@@ -525,14 +525,14 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
     private function distinguishSchoolType($schoolType, $unit) {
         if($schoolType == 'ΔΙΕΥΘΥΝΣΗ ΕΚΠΑΙΔΕΥΣΗΣ') {
-            if(stripos('ΔΗΜΟΤ', trim($unit["Name"])) !== false) {
+            if(stripos(trim($unit["Name"], 'ΔΗΜΟΤ')) !== false) {
                 return 'ΔΙΕΥΘΥΝΣΗ ΠΡΩΤΟΒΑΘΜΙΑΣ ΕΚΠΑΙΔΕΥΣΗΣ';
             } else {
                 return 'ΔΙΕΥΘΥΝΣΗ ΔΕΥΤΕΡΟΒΑΘΜΙΑΣ ΕΚΠΑΙΔΕΥΣΗΣ';
             }
         }
         if($schoolType == 'ΓΡΑΦΕΙΟ ΕΚΠΑΙΔΕΥΣΗΣ') {
-            if(stripos('ΔΗΜΟΤ', trim($unit["Name"])) !== false) {
+            if(stripos(trim($unit["Name"], 'ΔΗΜΟΤ')) !== false) {
                 return 'ΓΡΑΦΕΙΟ ΠΡΩΤΟΒΑΘΜΙΑΣ ΕΚΠΑΙΔΕΥΣΗΣ';
             } else {
                 return 'ΓΡΑΦΕΙΟ ΔΕΥΤΕΡΟΒΑΘΜΙΑΣ ΕΚΠΑΙΔΕΥΣΗΣ';
