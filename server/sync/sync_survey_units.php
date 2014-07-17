@@ -527,14 +527,14 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
         $schoolType = $this->convert_greek_accents(trim($schoolType));
         $unitName = $this->convert_greek_accents(trim($unit["Name"]));
         if($schoolType == 'ΔΙΕΥΘΥΝΣΗ ΕΚΠΑΙΔΕΥΣΗΣ') {
-            if(mb_strpos($unitName, 'ΔΗΜΟΤ', 0, 'UTF-8') !== false) {
+            if(mb_strpos($unitName, 'ΔΗΜΟΤ', 0, 'UTF-8') !== false || mb_strpos($unitName, 'Π.Ε.', 0, 'UTF-8') !== false || mb_strpos($unitName, 'ΠΡΩΤΟΒ', 0, 'UTF-8') !== false) {
                 return 'ΔΙΕΥΘΥΝΣΗ ΠΡΩΤΟΒΑΘΜΙΑΣ ΕΚΠΑΙΔΕΥΣΗΣ';
             } else {
                 return 'ΔΙΕΥΘΥΝΣΗ ΔΕΥΤΕΡΟΒΑΘΜΙΑΣ ΕΚΠΑΙΔΕΥΣΗΣ';
             }
         }
         if($schoolType == 'ΓΡΑΦΕΙΟ ΕΚΠΑΙΔΕΥΣΗΣ') {
-            if(mb_strpos($unitName, 'ΔΗΜΟΤ', 0, 'UTF-8') !== false) {
+            if(mb_strpos($unitName, 'ΔΗΜΟΤ', 0, 'UTF-8') !== false || mb_strpos($unitName, 'Π.Ε.', 0, 'UTF-8') !== false || mb_strpos($unitName, 'ΠΡΩΤΟΒ', 0, 'UTF-8') !== false) {
                 return 'ΓΡΑΦΕΙΟ ΠΡΩΤΟΒΑΘΜΙΑΣ ΕΚΠΑΙΔΕΥΣΗΣ';
             } else {
                 return 'ΓΡΑΦΕΙΟ ΔΕΥΤΕΡΟΒΑΘΜΙΑΣ ΕΚΠΑΙΔΕΥΣΗΣ';
