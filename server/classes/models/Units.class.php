@@ -10,9 +10,9 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 	private static $CLASS_NAME='Units';
 	const SQL_IDENTIFIER_QUOTE='`';
 	const SQL_TABLE_NAME='units';
-	const SQL_INSERT='INSERT INTO `units` (`mm_id`,`registry_no`,`gluc`,`source_id`,`category_id`,`state_id`,`name`,`special_name`,`active`,`suspended`,`area_team_number`,`street_address`,`postal_code`,`fax_number`,`phone_number`,`email`,`students_count`,`groups_count`,`levels_count`,`last_update`,`tax_number`,`comments`,`last_sync`,`region_edu_admin_id`,`edu_admin_id`,`transfer_area_id`,`prefecture_id`,`municipality_id`,`education_level_id`,`unit_type_id`,`orientation_type_id`,`operation_shift_id`,`legal_character_id`,`implementation_entity_id`,`tax_office_id`,`special_type_id`,`latitude`,`longitude`,`positioning`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-	const SQL_INSERT_AUTOINCREMENT='INSERT INTO `units` (`registry_no`,`gluc`,`source_id`,`category_id`,`state_id`,`name`,`special_name`,`active`,`suspended`,`area_team_number`,`street_address`,`postal_code`,`fax_number`,`phone_number`,`email`,`students_count`,`groups_count`,`levels_count`,`last_update`,`tax_number`,`comments`,`last_sync`,`region_edu_admin_id`,`edu_admin_id`,`transfer_area_id`,`prefecture_id`,`municipality_id`,`education_level_id`,`unit_type_id`,`orientation_type_id`,`operation_shift_id`,`legal_character_id`,`implementation_entity_id`,`tax_office_id`,`special_type_id`,`latitude`,`longitude`,`positioning`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-	const SQL_UPDATE='UPDATE `units` SET `mm_id`=?,`registry_no`=?,`gluc`=?,`source_id`=?,`category_id`=?,`state_id`=?,`name`=?,`special_name`=?,`active`=?,`suspended`=?,`area_team_number`=?,`street_address`=?,`postal_code`=?,`fax_number`=?,`phone_number`=?,`email`=?,`students_count`=?,`groups_count`=?,`levels_count`=?,`last_update`=?,`tax_number`=?,`comments`=?,`last_sync`=?,`region_edu_admin_id`=?,`edu_admin_id`=?,`transfer_area_id`=?,`prefecture_id`=?,`municipality_id`=?,`education_level_id`=?,`unit_type_id`=?,`orientation_type_id`=?,`operation_shift_id`=?,`legal_character_id`=?,`implementation_entity_id`=?,`tax_office_id`=?,`special_type_id`=?,`latitude`=?,`longitude`=?,`positioning`=? WHERE `mm_id`=?';
+	const SQL_INSERT='INSERT INTO `units` (`mm_id`,`registry_no`,`gluc`,`source_id`,`category_id`,`state_id`,`name`,`special_name`,`area_team_number`,`street_address`,`postal_code`,`fax_number`,`phone_number`,`email`,`students_count`,`groups_count`,`levels_count`,`last_update`,`tax_number`,`comments`,`last_sync`,`region_edu_admin_id`,`edu_admin_id`,`transfer_area_id`,`prefecture_id`,`municipality_id`,`education_level_id`,`unit_type_id`,`orientation_type_id`,`operation_shift_id`,`legal_character_id`,`implementation_entity_id`,`tax_office_id`,`special_type_id`,`latitude`,`longitude`,`positioning`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+	const SQL_INSERT_AUTOINCREMENT='INSERT INTO `units` (`registry_no`,`gluc`,`source_id`,`category_id`,`state_id`,`name`,`special_name`,`area_team_number`,`street_address`,`postal_code`,`fax_number`,`phone_number`,`email`,`students_count`,`groups_count`,`levels_count`,`last_update`,`tax_number`,`comments`,`last_sync`,`region_edu_admin_id`,`edu_admin_id`,`transfer_area_id`,`prefecture_id`,`municipality_id`,`education_level_id`,`unit_type_id`,`orientation_type_id`,`operation_shift_id`,`legal_character_id`,`implementation_entity_id`,`tax_office_id`,`special_type_id`,`latitude`,`longitude`,`positioning`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+	const SQL_UPDATE='UPDATE `units` SET `mm_id`=?,`registry_no`=?,`gluc`=?,`source_id`=?,`category_id`=?,`state_id`=?,`name`=?,`special_name`=?,`area_team_number`=?,`street_address`=?,`postal_code`=?,`fax_number`=?,`phone_number`=?,`email`=?,`students_count`=?,`groups_count`=?,`levels_count`=?,`last_update`=?,`tax_number`=?,`comments`=?,`last_sync`=?,`region_edu_admin_id`=?,`edu_admin_id`=?,`transfer_area_id`=?,`prefecture_id`=?,`municipality_id`=?,`education_level_id`=?,`unit_type_id`=?,`orientation_type_id`=?,`operation_shift_id`=?,`legal_character_id`=?,`implementation_entity_id`=?,`tax_office_id`=?,`special_type_id`=?,`latitude`=?,`longitude`=?,`positioning`=? WHERE `mm_id`=?';
 	const SQL_SELECT_PK='SELECT * FROM `units` WHERE `mm_id`=?';
 	const SQL_DELETE_PK='DELETE FROM `units` WHERE `mm_id`=?';
 	const FIELD_MM_ID=-28527397;
@@ -23,8 +23,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 	const FIELD_STATE_ID=100900648;
 	const FIELD_NAME=-1247827542;
 	const FIELD_SPECIAL_NAME=-1028383120;
-	const FIELD_ACTIVE=-1236508059;
-	const FIELD_SUSPENDED=-743114212;
 	const FIELD_AREA_TEAM_NUMBER=1538907992;
 	const FIELD_STREET_ADDRESS=1885926423;
 	const FIELD_POSTAL_CODE=171118818;
@@ -65,8 +63,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 		self::FIELD_STATE_ID=>'state_id',
 		self::FIELD_NAME=>'name',
 		self::FIELD_SPECIAL_NAME=>'special_name',
-		self::FIELD_ACTIVE=>'active',
-		self::FIELD_SUSPENDED=>'suspended',
 		self::FIELD_AREA_TEAM_NUMBER=>'area_team_number',
 		self::FIELD_STREET_ADDRESS=>'street_address',
 		self::FIELD_POSTAL_CODE=>'postal_code',
@@ -105,8 +101,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 		self::FIELD_STATE_ID=>'stateId',
 		self::FIELD_NAME=>'name',
 		self::FIELD_SPECIAL_NAME=>'specialName',
-		self::FIELD_ACTIVE=>'active',
-		self::FIELD_SUSPENDED=>'suspended',
 		self::FIELD_AREA_TEAM_NUMBER=>'areaTeamNumber',
 		self::FIELD_STREET_ADDRESS=>'streetAddress',
 		self::FIELD_POSTAL_CODE=>'postalCode',
@@ -145,8 +139,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 		self::FIELD_STATE_ID=>Db2PhpEntity::PHP_TYPE_INT,
 		self::FIELD_NAME=>Db2PhpEntity::PHP_TYPE_STRING,
 		self::FIELD_SPECIAL_NAME=>Db2PhpEntity::PHP_TYPE_STRING,
-		self::FIELD_ACTIVE=>Db2PhpEntity::PHP_TYPE_BOOL,
-		self::FIELD_SUSPENDED=>Db2PhpEntity::PHP_TYPE_BOOL,
 		self::FIELD_AREA_TEAM_NUMBER=>Db2PhpEntity::PHP_TYPE_INT,
 		self::FIELD_STREET_ADDRESS=>Db2PhpEntity::PHP_TYPE_STRING,
 		self::FIELD_POSTAL_CODE=>Db2PhpEntity::PHP_TYPE_STRING,
@@ -185,8 +177,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 		self::FIELD_STATE_ID=>array(Db2PhpEntity::JDBC_TYPE_INTEGER,10,0,true),
 		self::FIELD_NAME=>array(Db2PhpEntity::JDBC_TYPE_VARCHAR,255,0,true),
 		self::FIELD_SPECIAL_NAME=>array(Db2PhpEntity::JDBC_TYPE_VARCHAR,255,0,true),
-		self::FIELD_ACTIVE=>array(Db2PhpEntity::JDBC_TYPE_BIT,0,0,true),
-		self::FIELD_SUSPENDED=>array(Db2PhpEntity::JDBC_TYPE_BIT,0,0,true),
 		self::FIELD_AREA_TEAM_NUMBER=>array(Db2PhpEntity::JDBC_TYPE_INTEGER,10,0,true),
 		self::FIELD_STREET_ADDRESS=>array(Db2PhpEntity::JDBC_TYPE_VARCHAR,255,0,true),
 		self::FIELD_POSTAL_CODE=>array(Db2PhpEntity::JDBC_TYPE_VARCHAR,10,0,true),
@@ -225,8 +215,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 		self::FIELD_STATE_ID=>null,
 		self::FIELD_NAME=>null,
 		self::FIELD_SPECIAL_NAME=>null,
-		self::FIELD_ACTIVE=>null,
-		self::FIELD_SUSPENDED=>null,
 		self::FIELD_AREA_TEAM_NUMBER=>null,
 		self::FIELD_STREET_ADDRESS=>null,
 		self::FIELD_POSTAL_CODE=>null,
@@ -264,8 +252,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 	private $stateId;
 	private $name;
 	private $specialName;
-	private $active;
-	private $suspended;
 	private $areaTeamNumber;
 	private $streetAddress;
 	private $postalCode;
@@ -478,52 +464,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 	 */
 	public function getSpecialName() {
 		return $this->specialName;
-	}
-
-	/**
-	 * set value for active 
-	 *
-	 * type:BIT,size:0,default:null,index,nullable
-	 *
-	 * @param mixed $active
-	 */
-	public function setActive($active) {
-		$this->notifyChanged(self::FIELD_ACTIVE,$this->active,$active);
-		$this->active=$active;
-	}
-
-	/**
-	 * get value for active 
-	 *
-	 * type:BIT,size:0,default:null,index,nullable
-	 *
-	 * @return mixed
-	 */
-	public function getActive() {
-		return $this->active;
-	}
-
-	/**
-	 * set value for suspended 
-	 *
-	 * type:BIT,size:0,default:null,index,nullable
-	 *
-	 * @param mixed $suspended
-	 */
-	public function setSuspended($suspended) {
-		$this->notifyChanged(self::FIELD_SUSPENDED,$this->suspended,$suspended);
-		$this->suspended=$suspended;
-	}
-
-	/**
-	 * get value for suspended 
-	 *
-	 * type:BIT,size:0,default:null,index,nullable
-	 *
-	 * @return mixed
-	 */
-	public function getSuspended() {
-		return $this->suspended;
 	}
 
 	/**
@@ -1312,8 +1252,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 			self::FIELD_STATE_ID=>$this->getStateId(),
 			self::FIELD_NAME=>$this->getName(),
 			self::FIELD_SPECIAL_NAME=>$this->getSpecialName(),
-			self::FIELD_ACTIVE=>$this->getActive(),
-			self::FIELD_SUSPENDED=>$this->getSuspended(),
 			self::FIELD_AREA_TEAM_NUMBER=>$this->getAreaTeamNumber(),
 			self::FIELD_STREET_ADDRESS=>$this->getStreetAddress(),
 			self::FIELD_POSTAL_CODE=>$this->getPostalCode(),
@@ -1620,8 +1558,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 		$this->setStateId($result['state_id']);
 		$this->setName($result['name']);
 		$this->setSpecialName($result['special_name']);
-		$this->setActive($result['active']);
-		$this->setSuspended($result['suspended']);
 		$this->setAreaTeamNumber($result['area_team_number']);
 		$this->setStreetAddress($result['street_address']);
 		$this->setPostalCode($result['postal_code']);
@@ -1693,8 +1629,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 		$stmt->bindValue(6,$this->getStateId());
 		$stmt->bindValue(7,$this->getName());
 		$stmt->bindValue(8,$this->getSpecialName());
-		$stmt->bindValue(9,$this->getActive());
-		$stmt->bindValue(10,$this->getSuspended());
 		$stmt->bindValue(11,$this->getAreaTeamNumber());
 		$stmt->bindValue(12,$this->getStreetAddress());
 		$stmt->bindValue(13,$this->getPostalCode());
@@ -1743,8 +1677,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 			$stmt->bindValue(5,$this->getStateId());
 			$stmt->bindValue(6,$this->getName());
 			$stmt->bindValue(7,$this->getSpecialName());
-			$stmt->bindValue(8,$this->getActive());
-			$stmt->bindValue(9,$this->getSuspended());
 			$stmt->bindValue(10,$this->getAreaTeamNumber());
 			$stmt->bindValue(11,$this->getStreetAddress());
 			$stmt->bindValue(12,$this->getPostalCode());

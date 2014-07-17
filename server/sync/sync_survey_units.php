@@ -299,8 +299,6 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                     "name"                  => trim($unit["Name"]),
                     "special_name"          => trim($unit["SpecialName"]),
                     "category"              => $this->a_categories[ $category_id ],
-                    "active"                => trim($unit["Active"]),
-                    "suspended"             => trim($unit["Anastoli"]),
                     "state"                 => $this->a_states[ $state_id ],
                     "region_edu_admin"      => $this->a_region_edu_admins[ $region_edu_admin_id ],
                     "edu_admin"             => $this->a_edu_admins[ $edu_admin_id ],

@@ -2230,8 +2230,6 @@ function GetUnits(
                         units.gluc, 
                         units.name, 
                         units.special_name, 
-                        units.active, 
-                        units.suspended, 
                         sources.source_id, 
                         sources.name as source, 
                         categories.category_id, 

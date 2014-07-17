@@ -1198,16 +1198,6 @@ class ExceptionCodes
     const InvalidWorkerTaxNumberType = 500;
 
 
-    const MissingActiveValue = 500;
-    const InvalidActiveType = 500;
-    const MissingActiveParam = 500;
-
-    const MissingSuspendedValue = 500;
-    const InvalidSuspendedType = 500;
-    const MissingSuspendedParam = 500;
-
-
-
     
     const MissingConnectivityTypeValue = 500;
     const MissingConnectivityTypeParam = 500;

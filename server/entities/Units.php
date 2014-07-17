@@ -55,22 +55,6 @@ class Units
     private $specialName;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="active", type="boolean", nullable=true)
-     * @Gedmo\Versioned
-     */
-    private $active;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="suspended", type="boolean", nullable=true)
-     * @Gedmo\Versioned
-     */
-    private $suspended;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="area_team_number", type="integer", nullable=true)
@@ -411,22 +395,6 @@ class Units
 
     public function setSpecialName($specialName) {
         $this->specialName = $specialName;
-    }
-
-    public function getActive() {
-        return $this->active;
-    }
-
-    public function setActive($active) {
-        $this->active = $active;
-    }
-
-    public function getSuspended() {
-        return $this->suspended;
-    }
-
-    public function setSuspended($suspended) {
-        $this->suspended = $suspended;
     }
 
     public function getAreaTeamNumber() {
