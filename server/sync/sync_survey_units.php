@@ -226,6 +226,10 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
         global $db, $Options;
         $this->isError = false;
 
+        if($this->isIgnored($unit)) {
+            return true;
+        }
+
         if ( ($this->totalRowsCounter > 0 ) && (($this->totalRowsCounter % $this->progressbar_block) == 0) )
         {
             $msg = ':'.$this->totalRowsCounter;
@@ -257,6 +261,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             $municipality_id = $this->getDictionary($unit, $unit["Municipality"], $this->a_municipalities, $this->o_municipalities, 'InvalidMunicipalityValue', 'Municipalities', 'municipalityId', 'name', load_municipalities);
 ;
 
+            $unit["SchoolType"] = $this->distinguishSchoolType($unit["SchoolType"], $unit);
             $sync_unit_type_id = $this->getDictionary($unit, mb_strtoupper(str_replace($accented, $nonaccented, $unit["SchoolType"]), 'UTF-8'), $this->a_sync_unit_types, $this->o_sync_unit_types, 'InvalidEduAdminValue', 'SyncTypes', 'syncTypeId', 'name', load_sync_unit_types);
 
             if ($sync_unit_type_id)
@@ -506,6 +511,34 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
             $this->errorMessages[] = "[Workers] registry_no : ".$unit["RegistryNo"]." => ".$data->status." : ".$data->message;
         }
+    }
+
+    private function isIgnored($unit) {
+        $ignoredRegistryNos = array(
+            '3108010',
+        );
+        if(array_search(trim($unit["RegistryNo"]), $ignoredRegistryNos) !== false) {
+            return true;
+        }
+        return false;
+    }
+
+    private function distinguishSchoolType($schoolType, $unit) {
+        if($schoolType == 'ΔΙΕΥΘΥΝΣΗ ΕΚΠΑΙΔΕΥΣΗΣ') {
+            if(stripos('ΔΗΜΟΤ', trim($unit["Name"])) !== false) {
+                return 'ΔΙΕΥΘΥΝΣΗ ΠΡΩΤΟΒΑΘΜΙΑΣ ΕΚΠΑΙΔΕΥΣΗΣ';
+            } else {
+                return 'ΔΙΕΥΘΥΝΣΗ ΔΕΥΤΕΡΟΒΑΘΜΙΑΣ ΕΚΠΑΙΔΕΥΣΗΣ';
+            }
+        }
+        if($schoolType == 'ΓΡΑΦΕΙΟ ΕΚΠΑΙΔΕΥΣΗΣ') {
+            if(stripos('ΔΗΜΟΤ', trim($unit["Name"])) !== false) {
+                return 'ΓΡΑΦΕΙΟ ΠΡΩΤΟΒΑΘΜΙΑΣ ΕΚΠΑΙΔΕΥΣΗΣ';
+            } else {
+                return 'ΓΡΑΦΕΙΟ ΔΕΥΤΕΡΟΒΑΘΜΙΑΣ ΕΚΠΑΙΔΕΥΣΗΣ';
+            }
+        }
+        return $schoolType;
     }
 
     private function getDictionary($unit, $value, &$a_values, &$o_values, $exceptionString, $classname, $idAttr, $attr, callable $reloadFunc) {
