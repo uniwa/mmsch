@@ -17,7 +17,7 @@ class Units
     /**
      * @var integer
      *
-     * @ORM\Column(name="mm_id", type="integer", nullable=false)
+     * @ORM\Column(name="mm_id", type="string", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */

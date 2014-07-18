@@ -264,6 +264,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             $unit["SchoolType"] = $this->distinguishSchoolType($unit["SchoolType"], $unit);
             $sync_unit_type_id = $this->getDictionary($unit, mb_strtoupper(str_replace($accented, $nonaccented, $unit["SchoolType"]), 'UTF-8'), $this->a_sync_unit_types, $this->o_sync_unit_types, 'InvalidEduAdminValue', 'SyncTypes', 'syncTypeId', 'name', load_sync_unit_types);
 
+            $category = null;
             if ($sync_unit_type_id)
             {
                 $unit_type_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->unit_type_id;
@@ -271,7 +272,12 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 $legal_character_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->legal_character_id;
                 $orientation_type_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->orientation_type_id;
                 $special_type_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->special_type_id;
+                $category = isset($this->o_unit_types[ $unit_type_id ]->category) ? $this->o_unit_types[ $unit_type_id ]->category : null;
                 if(!isset($unit_type_id)) {
+                    //$sql = "DELETE FROM units "
+                    //     . "WHERE registry_no = '".mysql_escape_string(trim($unit["RegistryNo"]))."' and (source_id = 1 OR source_id = 5)";
+                    //$stmt = $db->query( $sql );
+                    //$row = $stmt->execute(PDO::FETCH_ASSOC);
                     return true;
                 }
             }
@@ -294,9 +300,6 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 $state_id = array_search("ΚΑΤΑΡΓΗΜΕΝΗ", $this->a_states);
 
 
-            $category_id = array_search("ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ", $this->a_categories);
-
-
             if (!$this->isError)
             {
                 $lastUpdate = \DateTime::createFromFormat('Y-m-d\TH:i:s.u', trim($unit["LastUpdated"]));
@@ -306,7 +309,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                     "source"                => "MySchool",
                     "name"                  => trim($unit["Name"]),
                     "special_name"          => trim($unit["SpecialName"]),
-                    "category"              => $this->a_categories[ $category_id ],
+                    "category"              => $category,
                     "state"                 => $this->a_states[ $state_id ],
                     "region_edu_admin"      => $this->a_region_edu_admins[ $region_edu_admin_id ],
                     "edu_admin"             => $this->a_edu_admins[ $edu_admin_id ],
