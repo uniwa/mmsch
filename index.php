@@ -1,60 +1,3 @@
-<?php
-require_once ('server/config.php');
-require_once ('server/libs/phpCAS/CAS.php');
-
-if (isset($_GET['auth'])){
-	
-	if ($_GET['auth']==1){
-		
-		if(!isset($casOptions["NoAuth"]) || $casOptions["NoAuth"] != true) {
-			// initialize phpCAS using SAML
-			phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'');
-			// no SSL validation for the CAS server, only for testing environments
-			phpCAS::setNoCasServerValidation();
-			// handle backend logout requests from CAS server
-			phpCAS::handleLogoutRequests(array($casOptions["Url"]));
-			if(isset($_GET['logout']) && $_GET['logout'] == 'true') {
-				phpCAS::logout();
-				exit();
-			} else {
-				// force CAS authentication
-				if (!phpCAS::checkAuthentication()){
-					phpCAS::forceAuthentication();
-				}
-				else {
-					header("Location: /main.php");
-					exit();
-				}
-			}
-			// at this step, the user has been authenticated by the CAS server and the user's login name can be read with //phpCAS::getUser(). for this test, simply print who is the authenticated user and his attributes.
-			$user = phpCAS::getAttributes();
-		} else {
-		    $user = array(
-		        'uid' => $frontendOptions['backendUsername'],
-		        'mail' => $frontendOptions['backendUsername'].'@sch.gr',
-		        'title' => 'ΠΡΟΣΩΠΙΚΟ ΠΣΔ',
-		        'ou' => 'ΤΕΙ ΑΘΗΝΑΣ',
-		        'cn' => 'ΝΙΚΟΥΔΗΣ ΔΗΜΟΣΘΕΝΗΣ',
-		        'gsnBranch' => 'ΠΕ20',
-		        'edupersonorgunitdn' => array(
-		            'ou=teiath,ou=partners,ou=units,dc=sch,dc=gr',
-		            'ou=partners,ou=units,dc=sch,dc=gr'
-		        ),
-		        'l' => 'ou=teiath,ou=partners,ou=units,dc=sch,dc=gr',
-		        'memberof' => '',
-		        'umdobject' => 'Personel',
-		    );
-		    
-		    header("Location: /main.php");
-		    exit();
-		}
-	}
-	else if ($_GET['auth']==0){
-		header("Location: /main.php");
-		exit();
-	}
-}
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,24 +51,25 @@ if (isset($_GET['auth'])){
 <div class="container">
 		
 		<div style="clear: both;" >&nbsp;</div>
-		<div style="clear: both;" >&nbsp;</div>
 		
       <div class="header">
-         <div class="pull-left"><img src="/img/logo_stirizo.png" /></div>     
+         <div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+				<p class="pull-left"><img src="/img/sch_logo.png" />&nbsp;&nbsp;&nbsp;</p>			
+				<p class="pull-left" style="padding-top:5px;"><strong><a href="http://www.sch.gr" style="color: #1d73a3;font: bold 20px Tahoma,sans-serif;">Πανελλήνιο Σχολικό Δίκτυο</a></strong><br>
+				<span class="sch_logo_text2">Το Δίκτυο στην Υπηρεσία της Εκπαίδευσης</span>
+				</p>
+				</div>
+			</div>
+		 </div>
         
-         <div class="pull-right sch_logo_text vcenter">
-         	<a href="http://www.sch.gr">Πανελλήνιο Σχολικό Δίκτυο</a>
-			<br>
-			<span class="sch_logo_text2">Το Δίκτυο στην Υπηρεσία της Εκπαίδευσης</span>
-         </div>  
-         <div class="pull-right"><img src="/img/sch_logo.png" /></div>  
+         
               
       </div>
-      <div style="clear: both;" >&nbsp;</div>
+      
 
-      <div class="jumbotron" style="background-color: #FF9900; -moz-box-shadow:    inset 0 0 10px #000000;
-   -webkit-box-shadow: inset 0 0 10px #000000;
-   box-shadow:         inset 0 0 10px #000000;">
+      <div class="jumbotron" style="background-color: #FF9900;">
    		
    		<div>
       	<center>
@@ -151,25 +95,86 @@ if (isset($_GET['auth'])){
 	        </p>
         </div>
         
+=======
+		<div class="container-fluid">
+			
+			<div class="row">
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-12"><h2 style="color: #fff;font-weight: bold; text-shadow: 1px 1px 2px #111111;">Κεντρικό Μητρώο Μονάδων <br/>Πανελλήνιου Σχολικού Δικτύου</h2></div>
+					</div>
+				</div>
+				
+				<div class="col-md-4">
+					
+					<div class="row">&nbsp;</div>
+					
+					<div class="row">
+						<div class="col-md-12">
+						<center><img src="/img/icon.jpg" class="" /></center>
+						</div>	
+					</div>
+					
+					<div class="row">&nbsp;</div>
+					<div class="row">
+						<div class="col-md-12">						
+							<a role="button" href="/main.php?auth=1" class="btn btn-primary btn-lg btn-block">Πιστοποιημένη πρόσβαση</a>&nbsp;
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">						
+        					<a role="button" href="/main.php?auth=0" class="btn btn-success btn-lg btn-block">Δημόσια πρόσβαση</a>
+						</div>
+					</div>
+					
+					<div class="row">&nbsp;</div>
+					<div class="row">&nbsp;</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="pull-right">
+							<strong>Υποστηρίζεται από το ΤΕΙ Αθήνας<br/>
+							Επικοινωνία: teiath-net@sch.gr</strong>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			
+		
+			
+			
+			
+			
+			
+		</div>
+		
+		
         
         
       </div>
 
-      <div class="row marketing">
-        <div class="col-lg-6">
-                  </div>
-
-        <div class="col-lg-6">
-          
-        </div>
-      </div>
+     
 
       <div class="footer">
-       <div class="pull-left"><img src="/img/ypepth_logo.png" /></div>  
-       <div class="pull-right"><img src="/img/espa_logo.png" /></div>  
+		
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4"><p class="pull-left"><img src="/img/ypepth_logo.png" /></p></div>
+				<div class="col-md-4"><p><img src="/img/logo_stirizo.png" /></p></div>
+				<div class="col-md-4"><p class="pull-right"><img src="/img/espa_logo.png" /></p></div>
+			</div>
+		</div>
+       
       </div>
 
     </div>
+
+
+
+
+
 
 </body>
 

@@ -1013,7 +1013,7 @@ function GetUnits(
     $special_type, $levels_count, $groups_count, $students_count, $latitude, $longitude, $positioning, $last_update, $last_sync, $comments,
     $pagesize, $page, $orderby, $ordertype, $searchtype )
 {
-    global $db, $entityManager;
+    global $db, $entityManager, $app;
     
     $filter = array();
     $result = array();
@@ -2230,8 +2230,6 @@ function GetUnits(
                         units.gluc, 
                         units.name, 
                         units.special_name, 
-                        units.active, 
-                        units.suspended, 
                         sources.source_id, 
                         sources.name as source, 
                         categories.category_id, 
@@ -2830,209 +2828,146 @@ function GetUnits(
                 "version"                  => count($logEntries),
             );
 
-
-            $data["transitions"] = array();
-            foreach ($transitions[ $row["mm_id"] ] as $transition)
-            {
-                $data["transitions"][] = array(
-                    "transition_id"   => $transition["transition_id"] ? (int)$transition["transition_id"] : null,
-                    "fek"             => $transition["fek"],
-                    "transition_date" => $transition["transition_date"],
-                    "from_state_id"   => $transition["from_state_id"] ? (int)$transition["from_state_id"] : null,
-                    "from_state"      => $transition["from_state"],
-                    "to_state_id"     => $transition["to_state_id"] ? (int)$transition["to_state_id"] : null,
-                    "to_state"        => $transition["to_state"]
-                );
-            }
-
-
-            $data["levels"] = array();
-            foreach ($levels[ $row["mm_id"] ] as $level)
-            {
-                $levels = array(
-                    "level_id"       => $level["level_id"] ? (int)$level["level_id"] : null,
-                    "name"           => $level["name"],
-                    "groups_count"   => $level["groups_count"] ? (int)$level["groups_count"] : null,
-                    "students_count" => $level["students_count"] ? (int)$level["students_count"] : null,
-                );
-                
-                $levels["groups"] = array();
-                foreach ($groups[ $row["mm_id"] ][ $level["level_id"] ] as $group)
+            if($app->request->userRoles != 'GUEST') {
+                $data["transitions"] = array();
+                foreach ($transitions[ $row["mm_id"] ] as $transition)
                 {
-                    $levels["groups"][] = array(
-                        "group_id"       => $group["group_id"] ? (int)$group["group_id"] : null,
-                        "name"           => $group["name"],
-                        "students_count" => $group["students_count"] ? (int)$group["students_count"] : null,
+                    $data["transitions"][] = array(
+                        "transition_id"   => $transition["transition_id"] ? (int)$transition["transition_id"] : null,
+                        "fek"             => $transition["fek"],
+                        "transition_date" => $transition["transition_date"],
+                        "from_state_id"   => $transition["from_state_id"] ? (int)$transition["from_state_id"] : null,
+                        "from_state"      => $transition["from_state"],
+                        "to_state_id"     => $transition["to_state_id"] ? (int)$transition["to_state_id"] : null,
+                        "to_state"        => $transition["to_state"]
                     );
                 }
-                
-                $data["levels"][] = $levels;
-            }
-
-            
-            $data["host_relations"] = array();
-            foreach ($host_relations[ $row["mm_id"] ] as $host_relation)
-            {
-                $data["host_relations"][] = array(
-                    "relation_id"        => $host_relation["relation_id"] ? (int)$host_relation["relation_id"] : null,
-                    "guest_mm_id"        => $host_relation["guest_mm_id"] ? (int)$host_relation["guest_mm_id"] : null,
-                    "guest_registry_no"  => $host_relation["guest_registry_no"],
-                    "guest_name"         => $host_relation["guest_name"],
-                    "guest_special_name" => $host_relation["guest_special_name"],
-                    "relation_state"     => $host_relation["relation_state"],
-                    "true_date"          => $host_relation["true_date"],
-                    "true_fek"           => $host_relation["true_fek"],
-                    "false_date"         => $host_relation["false_date"],
-                    "false_fek"          => $host_relation["false_fek"],
-                    "relation_type_id"   => $host_relation["relation_type_id"] ? (int)$host_relation["relation_type_id"] : null,
-                    "relation_type"      => $host_relation["relation_type"],
-                );
-            }           
 
 
-            $data["guest_relations"] = array();
-            foreach ($guest_relations[ $row["mm_id"] ] as $guest_relation)
-            {
-                $data["guest_relations"][] = array(
-                    "relation_id"       => $guest_relation["relation_id"] ? (int)$guest_relation["relation_id"] : null,
-                    "host_mm_id"        => $guest_relation["host_mm_id"] ? (int)$guest_relation["host_mm_id"] : null,
-                    "host_registry_no"  => $guest_relation["host_registry_no"],
-                    "host_name"         => $guest_relation["host_name"],
-                    "host_special_name" => $guest_relation["host_special_name"],
-                    "relation_state"    => $guest_relation["relation_state"],
-                    "true_date"         => $guest_relation["true_date"],
-                    "true_fek"          => $guest_relation["true_fek"],
-                    "false_date"        => $guest_relation["false_date"],
-                    "false_fek"         => $guest_relation["false_fek"],
-                    "relation_type_id"  => $guest_relation["relation_type_id"] ? (int)$guest_relation["relation_type_id"] : null,
-                    "relation_type"     => $guest_relation["relation_type"],
-                );
-            }           
-            
-
-            $data["workers"] = array();
-            foreach ($unit_workers[ $row["mm_id"] ] as $worker)
-            {
-                $data["workers"][] = array(
-                    "unit_worker_id"           => $worker["unit_worker_id"] ? (int)$worker["unit_worker_id"] : null,
-                    "worker_id"                => $worker["worker_id"] ? (int)$worker["worker_id"] : null,
-                    "registry_no"              => $worker["registry_no"],
-                    "tax_number"               => $worker["tax_number"],
-                    "lastname"                 => $worker["lastname"],
-                    "firstname"                => $worker["firstname"],
-                    "fathername"               => $worker["fathername"],
-                    "fullname"                 => $worker["fullname"],
-                    "sex"                      => $worker["sex"],
-                    "worker_specialization_id" => $worker["worker_specialization_id"] ? (int)$worker["worker_specialization_id"] : null,
-                    "worker_specialization"    => $worker["worker_specialization"],
-                    "worker_position_id"       => $worker["worker_position_id"] ? (int)$worker["worker_position_id"] : null,
-                    "worker_position"          => $worker["worker_position"],
-                    "worker_source_id"         => (int)$row["worker_source_id"],
-                    "worker_source"            => $row["worker_source"]
-                );
-            }
-
-
-            $data["unit_dns"] = array();
-            foreach ($unit_dnses[ $row["mm_id"] ] as $unit_dns)
-            {
-                $data["unit_dns"][] = array(
-                    "unit_dns_id" => $unit_dns["unit_dns_id"] ? (int)$unit_dns["unit_dns_id"] : null,
-                    "unit_dns"    => $unit_dns["unit_dns"],
-                    "ext_dns"     => $unit_dns["ext_dns"]
-                );
-            }
-
-
-            $data["cpes"] = array();
-            foreach ($cpes[ $row["mm_id"] ] as $cpe)
-            {
-                $data["cpes"][] = array(
-                    "cpe_id" => $cpe["cpe_id"] ? (int)$cpe["cpe_id"] : null,
-                    "name"   => $cpe["name"],
-                    "is_connected"     => isset($cpe["is_connected"]) ? (bool)$cpe["is_connected"] : null,
-                );
-            }
-
-
-            $data["ldaps"] = array();
-            foreach ($ldaps[ $row["mm_id"] ] as $ldap)
-            {
-                $data["ldaps"][] = array(
-                    "ldap_id"  => $ldap["ldap_id"] ? (int)$ldap["ldap_id"] : null,
-                    "ldap_uid" => $ldap["ldap_uid"],
-                    "is_connected"     => isset($ldap["is_connected"]) ? (bool)$ldap["is_connected"] : null,
-                );
-            }
-
-
-            $data["circuits"] = array();
-            foreach ($circuits[ $row["mm_id"] ] as $circuit)
-            {
-                $data["circuits"][] = array(
-                    "circuit_id"       => $circuit["circuit_id"] ? (int)$circuit["circuit_id"] : null,
-                    "phone_number"     => $circuit["phone_number"],
-                    "status"           => $circuit["status"] ? (bool)$circuit["status"] : null,
-                    "paid_by_psd"      => $circuit["paid_by_psd"] ? (bool)$circuit["paid_by_psd"] : null,
-                    "updated_date"     => $circuit["updated_date"],
-                    "deactivated_date" => $circuit["deactivated_date"],
-                    "bandwidth"        => $circuit["bandwidth"],
-                    "readspeed"        => $circuit["readspeed"],
-                    "circuit_type_id"  => $circuit["circuit_type_id"] ? $circuit["circuit_type_id"] : null,
-                    "circuit_type"     => $circuit["circuit_type"],
-                    "is_connected"     => isset($circuit["is_connected"]) ? (bool)$circuit["is_connected"] : null,
-                );
-            }
-            
-           $data["unit_network_subnets"] = array();
-            // foreach ($groups[ $row["mm_id"] ][ $level["level_id"] ] as $group)
-            foreach ($unit_network_subnets[ $row["mm_id"] ] as $unit_network_subnet)
-            {
-                //$circuit = $circuits[ $row["mm_id"] ][ $network_element["circuit_id"] ];
-
-                $data["unit_network_subnets"][] = array(
-                    "unit_network_subnet_id"        => Validator::toIntVal($unit_network_subnet["unit_network_subnet_id"]),
-                    "subnet_name"                   => $unit_network_subnet["subnet_name"],
-                    "subnet_ip"                     => $unit_network_subnet["subnet_ip"],
-                    "subnet_default_router"         => $unit_network_subnet["subnet_default_router"],
-                    "mask"                          => $unit_network_subnet["mask"],
-                    "mm_id"                         => Validator::toIntVal($row["mm_id"]),
-                    "registry_no"                   => $unit_network_subnet["registry_no"],
-                    "unit_name"                     => $unit_network_subnet["unit_name"],
-                    "special_unit_name"             => $unit_network_subnet["special_unit_name"],
-                    "unit_network_subnet_type_id"   => Validator::toIntVal($unit_network_subnet["unit_network_subnet_type_id"]),
-                    "unit_network_subnet_type"      => $unit_network_subnet["unit_network_subnet_type"],
-                    "connection_unit_network_subnet_id"   => Validator::toIntVal($unit_network_subnet["connection_unit_network_subnet_id"]),
-                    "is_connected"     => isset($unit_network_subnet["is_connected"]) ? (bool)$unit_network_subnet["is_connected"] : null,
-                );
-            }
-            
-            $data["connections"] = array();
-            foreach ($connections[ $row["mm_id"] ] as $connection)
-            {
-  
-                $has_unit_network_subnets = array();
-                foreach ($connection_unit_network_subnets[$connection["connection_id"]] as $connection_unit_network_subnet)
+                $data["levels"] = array();
+                foreach ($levels[ $row["mm_id"] ] as $level)
                 {
-                    $has_unit_network_subnets[] = array(
-                        "connection_unit_network_subnet_id"       => $connection_unit_network_subnet["connection_unit_network_subnet_id"] ? (int)$connection_unit_network_subnet["connection_unit_network_subnet_id"] : null,
-                        "connection_id"                           => $connection_unit_network_subnet["connection_id"]? (int)$connection_unit_network_subnet["connection_id"] : null,
-                        "unit_network_subnet_id"                  => $connection_unit_network_subnet["unit_network_subnet_id"] ? (int)$connection_unit_network_subnet["unit_network_subnet_id"] : null,
-                        "unit_network_subnet_id"        => Validator::toIntVal($connection_unit_network_subnet["unit_network_subnet_id"]),
-                        "subnet_name"                   => $connection_unit_network_subnet["subnet_name"],
-                        "subnet_ip"                     => $connection_unit_network_subnet["subnet_ip"],
-                        "subnet_default_router"         => $connection_unit_network_subnet["subnet_default_router"],
-                        "mask"                          => $connection_unit_network_subnet["mask"],
-                        "unit_network_subnet_type_id"   => Validator::toIntVal($connection_unit_network_subnet["unit_network_subnet_type_id"]),
-                        "unit_network_subnet_type"      => $connection_unit_network_subnet["unit_network_subnet_type"],
+                    $levels = array(
+                        "level_id"       => $level["level_id"] ? (int)$level["level_id"] : null,
+                        "name"           => $level["name"],
+                        "groups_count"   => $level["groups_count"] ? (int)$level["groups_count"] : null,
+                        "students_count" => $level["students_count"] ? (int)$level["students_count"] : null,
+                    );
+
+                    $levels["groups"] = array();
+                    foreach ($groups[ $row["mm_id"] ][ $level["level_id"] ] as $group)
+                    {
+                        $levels["groups"][] = array(
+                            "group_id"       => $group["group_id"] ? (int)$group["group_id"] : null,
+                            "name"           => $group["name"],
+                            "students_count" => $group["students_count"] ? (int)$group["students_count"] : null,
+                        );
+                    }
+
+                    $data["levels"][] = $levels;
+                }
+
+
+                $data["host_relations"] = array();
+                foreach ($host_relations[ $row["mm_id"] ] as $host_relation)
+                {
+                    $data["host_relations"][] = array(
+                        "relation_id"        => $host_relation["relation_id"] ? (int)$host_relation["relation_id"] : null,
+                        "guest_mm_id"        => $host_relation["guest_mm_id"] ? (int)$host_relation["guest_mm_id"] : null,
+                        "guest_registry_no"  => $host_relation["guest_registry_no"],
+                        "guest_name"         => $host_relation["guest_name"],
+                        "guest_special_name" => $host_relation["guest_special_name"],
+                        "relation_state"     => $host_relation["relation_state"],
+                        "true_date"          => $host_relation["true_date"],
+                        "true_fek"           => $host_relation["true_fek"],
+                        "false_date"         => $host_relation["false_date"],
+                        "false_fek"          => $host_relation["false_fek"],
+                        "relation_type_id"   => $host_relation["relation_type_id"] ? (int)$host_relation["relation_type_id"] : null,
+                        "relation_type"      => $host_relation["relation_type"],
                     );
                 }
-             
-                         
-                $circuit = $circuits[ $row["mm_id"] ][ $connection["circuit_id"] ];
-                //if ($circuit)
-                //{
-                    $connection_circuit = array(
+
+
+                $data["guest_relations"] = array();
+                foreach ($guest_relations[ $row["mm_id"] ] as $guest_relation)
+                {
+                    $data["guest_relations"][] = array(
+                        "relation_id"       => $guest_relation["relation_id"] ? (int)$guest_relation["relation_id"] : null,
+                        "host_mm_id"        => $guest_relation["host_mm_id"] ? (int)$guest_relation["host_mm_id"] : null,
+                        "host_registry_no"  => $guest_relation["host_registry_no"],
+                        "host_name"         => $guest_relation["host_name"],
+                        "host_special_name" => $guest_relation["host_special_name"],
+                        "relation_state"    => $guest_relation["relation_state"],
+                        "true_date"         => $guest_relation["true_date"],
+                        "true_fek"          => $guest_relation["true_fek"],
+                        "false_date"        => $guest_relation["false_date"],
+                        "false_fek"         => $guest_relation["false_fek"],
+                        "relation_type_id"  => $guest_relation["relation_type_id"] ? (int)$guest_relation["relation_type_id"] : null,
+                        "relation_type"     => $guest_relation["relation_type"],
+                    );
+                }
+
+
+                $data["workers"] = array();
+                foreach ($unit_workers[ $row["mm_id"] ] as $worker)
+                {
+                    $data["workers"][] = array(
+                        "unit_worker_id"           => $worker["unit_worker_id"] ? (int)$worker["unit_worker_id"] : null,
+                        "worker_id"                => $worker["worker_id"] ? (int)$worker["worker_id"] : null,
+                        "registry_no"              => $worker["registry_no"],
+                        "tax_number"               => $worker["tax_number"],
+                        "lastname"                 => $worker["lastname"],
+                        "firstname"                => $worker["firstname"],
+                        "fathername"               => $worker["fathername"],
+                        "fullname"                 => $worker["fullname"],
+                        "sex"                      => $worker["sex"],
+                        "worker_specialization_id" => $worker["worker_specialization_id"] ? (int)$worker["worker_specialization_id"] : null,
+                        "worker_specialization"    => $worker["worker_specialization"],
+                        "worker_position_id"       => $worker["worker_position_id"] ? (int)$worker["worker_position_id"] : null,
+                        "worker_position"          => $worker["worker_position"],
+                        "worker_source_id"         => (int)$row["worker_source_id"],
+                        "worker_source"            => $row["worker_source"]
+                    );
+                }
+
+
+                $data["unit_dns"] = array();
+                foreach ($unit_dnses[ $row["mm_id"] ] as $unit_dns)
+                {
+                    $data["unit_dns"][] = array(
+                        "unit_dns_id" => $unit_dns["unit_dns_id"] ? (int)$unit_dns["unit_dns_id"] : null,
+                        "unit_dns"    => $unit_dns["unit_dns"],
+                        "ext_dns"     => $unit_dns["ext_dns"]
+                    );
+                }
+
+
+                $data["cpes"] = array();
+                foreach ($cpes[ $row["mm_id"] ] as $cpe)
+                {
+                    $data["cpes"][] = array(
+                        "cpe_id" => $cpe["cpe_id"] ? (int)$cpe["cpe_id"] : null,
+                        "name"   => $cpe["name"],
+                        "is_connected"     => isset($cpe["is_connected"]) ? (bool)$cpe["is_connected"] : null,
+                    );
+                }
+
+
+                $data["ldaps"] = array();
+                foreach ($ldaps[ $row["mm_id"] ] as $ldap)
+                {
+                    $data["ldaps"][] = array(
+                        "ldap_id"  => $ldap["ldap_id"] ? (int)$ldap["ldap_id"] : null,
+                        "ldap_uid" => $ldap["ldap_uid"],
+                        "is_connected"     => isset($ldap["is_connected"]) ? (bool)$ldap["is_connected"] : null,
+                    );
+                }
+
+
+                $data["circuits"] = array();
+                foreach ($circuits[ $row["mm_id"] ] as $circuit)
+                {
+                    $data["circuits"][] = array(
                         "circuit_id"       => $circuit["circuit_id"] ? (int)$circuit["circuit_id"] : null,
                         "phone_number"     => $circuit["phone_number"],
                         "status"           => $circuit["status"] ? (bool)$circuit["status"] : null,
@@ -3043,44 +2978,108 @@ function GetUnits(
                         "readspeed"        => $circuit["readspeed"],
                         "circuit_type_id"  => $circuit["circuit_type_id"] ? $circuit["circuit_type_id"] : null,
                         "circuit_type"     => $circuit["circuit_type"],
+                        "is_connected"     => isset($circuit["is_connected"]) ? (bool)$circuit["is_connected"] : null,
                     );
-                //}
-                //else
-                //    $connection_circuit = array();
+                }
 
-  
-                $cpe = $cpes[ $row["mm_id"] ][ $connection["cpe_id"] ];
-                //if ($cpe)
-                //{
-                    $connection_cpe = array(
-                        "cpe_id" => $cpe["cpe_id"] ? (int)$cpe["cpe_id"] : null,
-                        "name"   => $cpe["name"],
+               $data["unit_network_subnets"] = array();
+                // foreach ($groups[ $row["mm_id"] ][ $level["level_id"] ] as $group)
+                foreach ($unit_network_subnets[ $row["mm_id"] ] as $unit_network_subnet)
+                {
+                    //$circuit = $circuits[ $row["mm_id"] ][ $network_element["circuit_id"] ];
+
+                    $data["unit_network_subnets"][] = array(
+                        "unit_network_subnet_id"        => Validator::toIntVal($unit_network_subnet["unit_network_subnet_id"]),
+                        "subnet_name"                   => $unit_network_subnet["subnet_name"],
+                        "subnet_ip"                     => $unit_network_subnet["subnet_ip"],
+                        "subnet_default_router"         => $unit_network_subnet["subnet_default_router"],
+                        "mask"                          => $unit_network_subnet["mask"],
+                        "mm_id"                         => Validator::toIntVal($row["mm_id"]),
+                        "registry_no"                   => $unit_network_subnet["registry_no"],
+                        "unit_name"                     => $unit_network_subnet["unit_name"],
+                        "special_unit_name"             => $unit_network_subnet["special_unit_name"],
+                        "unit_network_subnet_type_id"   => Validator::toIntVal($unit_network_subnet["unit_network_subnet_type_id"]),
+                        "unit_network_subnet_type"      => $unit_network_subnet["unit_network_subnet_type"],
+                        "connection_unit_network_subnet_id"   => Validator::toIntVal($unit_network_subnet["connection_unit_network_subnet_id"]),
+                        "is_connected"     => isset($unit_network_subnet["is_connected"]) ? (bool)$unit_network_subnet["is_connected"] : null,
                     );
-                //}
-                //else
-                //    $connection_cpe = array();
+                }
+
+                $data["connections"] = array();
+                foreach ($connections[ $row["mm_id"] ] as $connection)
+                {
+
+                    $has_unit_network_subnets = array();
+                    foreach ($connection_unit_network_subnets[$connection["connection_id"]] as $connection_unit_network_subnet)
+                    {
+                        $has_unit_network_subnets[] = array(
+                            "connection_unit_network_subnet_id"       => $connection_unit_network_subnet["connection_unit_network_subnet_id"] ? (int)$connection_unit_network_subnet["connection_unit_network_subnet_id"] : null,
+                            "connection_id"                           => $connection_unit_network_subnet["connection_id"]? (int)$connection_unit_network_subnet["connection_id"] : null,
+                            "unit_network_subnet_id"                  => $connection_unit_network_subnet["unit_network_subnet_id"] ? (int)$connection_unit_network_subnet["unit_network_subnet_id"] : null,
+                            "unit_network_subnet_id"        => Validator::toIntVal($connection_unit_network_subnet["unit_network_subnet_id"]),
+                            "subnet_name"                   => $connection_unit_network_subnet["subnet_name"],
+                            "subnet_ip"                     => $connection_unit_network_subnet["subnet_ip"],
+                            "subnet_default_router"         => $connection_unit_network_subnet["subnet_default_router"],
+                            "mask"                          => $connection_unit_network_subnet["mask"],
+                            "unit_network_subnet_type_id"   => Validator::toIntVal($connection_unit_network_subnet["unit_network_subnet_type_id"]),
+                            "unit_network_subnet_type"      => $connection_unit_network_subnet["unit_network_subnet_type"],
+                        );
+                    }
 
 
-                $ldap = $ldaps[ $row["mm_id"] ][ $connection["ldap_id"] ];
-                //if ($ldap)
-                //{
-                    $connection_ldap = array(
-                        "ldap_id"  => $ldap["ldap_id"] ? (int)$ldap["ldap_id"] : null,
-                        "ldap_uid" => $ldap["ldap_uid"],
+                    $circuit = $circuits[ $row["mm_id"] ][ $connection["circuit_id"] ];
+                    //if ($circuit)
+                    //{
+                        $connection_circuit = array(
+                            "circuit_id"       => $circuit["circuit_id"] ? (int)$circuit["circuit_id"] : null,
+                            "phone_number"     => $circuit["phone_number"],
+                            "status"           => $circuit["status"] ? (bool)$circuit["status"] : null,
+                            "paid_by_psd"      => $circuit["paid_by_psd"] ? (bool)$circuit["paid_by_psd"] : null,
+                            "updated_date"     => $circuit["updated_date"],
+                            "deactivated_date" => $circuit["deactivated_date"],
+                            "bandwidth"        => $circuit["bandwidth"],
+                            "readspeed"        => $circuit["readspeed"],
+                            "circuit_type_id"  => $circuit["circuit_type_id"] ? $circuit["circuit_type_id"] : null,
+                            "circuit_type"     => $circuit["circuit_type"],
+                        );
+                    //}
+                    //else
+                    //    $connection_circuit = array();
+
+
+                    $cpe = $cpes[ $row["mm_id"] ][ $connection["cpe_id"] ];
+                    //if ($cpe)
+                    //{
+                        $connection_cpe = array(
+                            "cpe_id" => $cpe["cpe_id"] ? (int)$cpe["cpe_id"] : null,
+                            "name"   => $cpe["name"],
+                        );
+                    //}
+                    //else
+                    //    $connection_cpe = array();
+
+
+                    $ldap = $ldaps[ $row["mm_id"] ][ $connection["ldap_id"] ];
+                    //if ($ldap)
+                    //{
+                        $connection_ldap = array(
+                            "ldap_id"  => $ldap["ldap_id"] ? (int)$ldap["ldap_id"] : null,
+                            "ldap_uid" => $ldap["ldap_uid"],
+                        );
+                    //}
+                    //else
+                    //    $connection_ldap = array();
+
+
+                    $data["connections"][] = array(
+                        "connection_id"         => $connection["connection_id"] ? (int)$connection["connection_id"] : null,
+                        "circuit"               => $connection_circuit,
+                        "cpe"                   => $connection_cpe,
+                        "ldap"                  => $connection_ldap,
+                        "unit_network_subnets" => $has_unit_network_subnets
+
                     );
-                //}
-                //else
-                //    $connection_ldap = array();
-
-               
-                $data["connections"][] = array(
-                    "connection_id"         => $connection["connection_id"] ? (int)$connection["connection_id"] : null,
-                    "circuit"               => $connection_circuit,
-                    "cpe"                   => $connection_cpe,
-                    "ldap"                  => $connection_ldap,
-                    "unit_network_subnets" => $has_unit_network_subnets
-
-                );
+                }
             }
 
             $result["data"][] = $data;

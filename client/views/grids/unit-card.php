@@ -21,7 +21,7 @@ $(document).ready(function() {
 	
 	//$( ".summary-pane" ).css("padding-left","0px !important");
 	
-	$( ".summary-pane" ).load( "client/views/grids/unit-details2.php?mm_id=" + mm_id, function(){
+	$( ".summary-pane" ).load( "client/views/grids/unit-details.php?mm_id=" + mm_id, function(){
 		
 	});
 

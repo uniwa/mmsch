@@ -91,6 +91,8 @@
     <li class="divider"></li>
     <li data-section="worker-specializations">Κατηγορίες Εργαζομένων</li>
     <li data-section="worker-positions">Θέσεις Εργαζομένων</li>
+    <!-- 
     <li data-section="workers">Εργαζόμενοι</li>
+     -->
 
 </ul>

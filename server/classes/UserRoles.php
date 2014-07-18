@@ -185,7 +185,7 @@ private static $Permissions = array(
                                         'DELETE' => array('ADMIN'),
                                         ) ,
     'units'         => array(
-                                        'GET' => array('USER', 'ADMIN'),
+                                        'GET' => array('USER', 'ADMIN', 'GUEST'),
                                         'POST' => array('ADMIN'),
                                         'PUT' => array('ADMIN'),
                                         'DELETE' => array('ADMIN'),
@@ -254,7 +254,9 @@ private static $Permissions = array(
 }
 
  public static function getRole($user) {
-    if(isset($user['memberof']) && str_replace(' ', '', $user['memberof'][0]) == 'cn=Admins,ou=teiath,ou=partners,ou=units,dc=sch,dc=gr') {
+    if(!isset($user)) {
+        return 'GUEST';
+    } else if(isset($user['memberof']) && str_replace(' ', '', $user['memberof'][0]) == 'cn=Admins,ou=teiath,ou=partners,ou=units,dc=sch,dc=gr') {
        return 'ADMIN';
     }
     return 'USER';

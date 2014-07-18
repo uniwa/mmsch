@@ -1,4 +1,7 @@
-					<div id="mod-units" class="main-pane" style="position: absolute; left:0; top:0; bottom:0; height: 100%; width:100%;">
+<?php 
+$isAnonymous = @ $_GET['is_anonymous'];
+?>
+<div id="mod-units" class="main-pane" style="position: absolute; left:0; top:0; bottom:0; height: 100%; width:100%;">
 					
 					<div id="ribbon">
 						<div class="ribbon-menu">
@@ -59,7 +62,9 @@
     								<li>Host Relations</li>
 									<li>Guest Relations</li>
 									-->
+									<?php if (isset($user['uid'])) { ?>
     								<li>Μεταβάσεiς</li>
+									<?php } ?>
    								</ul>
 							    <div class="unit-contact-info clearfix">
     								<dl class="dl-horizontal">
@@ -109,7 +114,9 @@
 
 								<div><div class="grid-details-guest-relations"></div></div>
 								-->
+								<?php if (isset($user['uid'])) { ?>	
 								<div class="clearfix"><div class="grid-details-transitions"></div></div>
+								<?php } ?>
 
 							</div>
 
@@ -1225,7 +1232,7 @@
 
 						// start - get units from server
 						gridUnits.dataSource.filter([
-							{field: "implementation_entity", value: g_impEnt[0].implementation_entity_id},
+							{field: "implementation_entity", value: typeof g_impEnt[0] != 'undefined' ? g_impEnt[0].implementation_entity_id : null},
 							{field: "state", value: 1}
 							
 						]);
@@ -1248,7 +1255,7 @@
 							gridUnits.selectedRow = dataItem;
 							kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), true);
 
-							$( ".summary-pane" ).load( "client/views/grids/unit-details2.php?mm_id=" + dataItem.mm_id, function(){
+							$( ".summary-pane" ).load( "client/views/grids/unit-details.php?mm_id=" + dataItem.mm_id + "&is_anonymous=" + <?php echo $isAnonymous; ?> , function(){
 							});
 						});
 

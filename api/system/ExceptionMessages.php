@@ -682,18 +682,6 @@ class ExceptionMessages
     const MissingMMIdValue = 'Ο Κωδικός ΜΜ πρέπει να έχει τιμή';
     const InvalidMMIdType  = 'Ο Κωδικός ΜΜ  πρέπει να είναι αριθμητικός';
     const InvalidMMIdValue = 'Η Μονάδα δεν βρέθηκε';
-
-
-
-
-
-    const MissingActiveValue = 'Η Κατάσταση ($active) πρέπει να έχει τιμή';
-    const InvalidActiveType = 'Η Κατάσταση ($active) πρέπει να είναι boolean';
-    const MissingActiveParam = 'Η Κατάσταση ($active) είναι υποχρεωτικό πεδίο';
-    
-    const MissingSuspendedValue = 'Η Αναστολή ($suspended) πρέπει να έχει τιμή';
-    const InvalidSuspendedType = 'Η Αναστολή ($suspended) πρέπει να είναι boolean';
-    const MissingSuspendedParam = 'Η Αναστολή ($suspended) είναι υποχρεωτικό πεδίο';
     
 
 

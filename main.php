@@ -1,41 +1,51 @@
 <?php
 require_once ('server/config.php');
 require_once ('server/libs/phpCAS/CAS.php');
-if(!isset($casOptions["NoAuth"]) || $casOptions["NoAuth"] != true) {
-    // initialize phpCAS using SAML
-    phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'');
-    // no SSL validation for the CAS server, only for testing environments
-    phpCAS::setNoCasServerValidation();
-    // handle backend logout requests from CAS server
-    phpCAS::handleLogoutRequests(array($casOptions["Url"]));
-    if(isset($_GET['logout']) && $_GET['logout'] == 'true') {
-        phpCAS::logout();
-        exit();
+if(!isset($_GET['auth']) || $_GET['auth'] != '0') {
+    if(!isset($casOptions["NoAuth"]) || $casOptions["NoAuth"] != true) {
+        // initialize phpCAS using SAML
+        phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'');
+        // no SSL validation for the CAS server, only for testing environments
+        phpCAS::setNoCasServerValidation();
+        // handle backend logout requests from CAS server
+        phpCAS::handleLogoutRequests(array($casOptions["Url"]));
+        if(isset($_GET['logout']) && $_GET['logout'] == 'true') {
+            phpCAS::logout();
+            exit();
+        } else {
+            // force CAS authentication
+            if (!phpCAS::checkAuthentication())
+              phpCAS::forceAuthentication();
+        }
+        // at this step, the user has been authenticated by the CAS server and the user's login name can be read with //phpCAS::getUser(). for this test, simply print who is the authenticated user and his attributes.
+        $user = phpCAS::getAttributes();
     } else {
-        // force CAS authentication
-        if (!phpCAS::checkAuthentication())
-          phpCAS::forceAuthentication();
+        $user = array(
+            'uid' => $frontendOptions['backendUsername'],
+            'mail' => $frontendOptions['backendUsername'].'@sch.gr',
+            'title' => 'ΠΡΟΣΩΠΙΚΟ ΠΣΔ',
+            'ou' => 'ΤΕΙ ΑΘΗΝΑΣ',
+            'cn' => 'ΝΙΚΟΥΔΗΣ ΔΗΜΟΣΘΕΝΗΣ',
+            'gsnBranch' => 'ΠΕ20',
+            'edupersonorgunitdn' => array(
+                'ou=teiath,ou=partners,ou=units,dc=sch,dc=gr',
+                'ou=partners,ou=units,dc=sch,dc=gr'
+            ),
+            'l' => 'ou=teiath,ou=partners,ou=units,dc=sch,dc=gr',
+            'memberof' => '',
+            'umdobject' => 'Personel',
+        );
     }
-    // at this step, the user has been authenticated by the CAS server and the user's login name can be read with //phpCAS::getUser(). for this test, simply print who is the authenticated user and his attributes.
-    $user = phpCAS::getAttributes();
+    $user['backendAuthorizationHash'] = base64_encode($frontendOptions['backendUsername'].':'.$frontendOptions['backendPassword']);
 } else {
-    $user = array(
-        'uid' => $frontendOptions['backendUsername'],
-        'mail' => $frontendOptions['backendUsername'].'@sch.gr',
-        'title' => 'ΠΡΟΣΩΠΙΚΟ ΠΣΔ',
-        'ou' => 'ΤΕΙ ΑΘΗΝΑΣ',
-        'cn' => 'ΝΙΚΟΥΔΗΣ ΔΗΜΟΣΘΕΝΗΣ',
-        'gsnBranch' => 'ΠΕ20',
-        'edupersonorgunitdn' => array(
-            'ou=teiath,ou=partners,ou=units,dc=sch,dc=gr',
-            'ou=partners,ou=units,dc=sch,dc=gr'
-        ),
-        'l' => 'ou=teiath,ou=partners,ou=units,dc=sch,dc=gr',
-        'memberof' => '',
-        'umdobject' => 'Personel',
-    );
+    $user = array();
+    $user['edupersonorgunitdn'] = array('ou=null');
+    $user['backendAuthorizationHash'] = base64_encode('anonymous:anonymous');
 }
-$user['backendAuthorizationHash'] = base64_encode($frontendOptions['backendUsername'].':'.$frontendOptions['backendPassword']);
+if (isset($user['uid'])) 
+	$isAnonymous = 0;
+else
+	$isAnonymous = 1;
 ?>
 <!DOCTYPE html>
 <html>
@@ -64,6 +74,7 @@ $user['backendAuthorizationHash'] = base64_encode($frontendOptions['backendUsern
     var tmp_regExp = /ou=([^,]+)/;
     var tmp_matches = (user.edupersonorgunitdn[0]).match(tmp_regExp);
     var g_impEntDomain = tmp_matches[1];
+    var g_isAnonymous = <?php echo $isAnonymous; ?>;
 	// end - Implement personalized default filters based on CAS attributes
     
 </script>
@@ -399,11 +410,11 @@ $(document).ready(function() {
 	});
 
 	if (mm_id == "") {
-		$('#bodyInner').load( "client/views/grids/my-units.php" , function(e){
+		$('#bodyInner').load( "client/views/grids/my-units.php?is_anonymous=" + g_isAnonymous  , function(e){
 			resizeGrid('.mmsch-grid');
 		});
 	} else {
-		$( "#bodyInner" ).load( "client/views/grids/unit-card.php?mm_id=" + mm_id, function(){
+		$( "#bodyInner" ).load( "client/views/grids/unit-card.php?mm_id=" + mm_id + "&is_anonymous=" + g_isAnonymous, function(){
 
 		});
 	}
@@ -573,8 +584,8 @@ function evalLexicalId(cacheData, model_id, value, return_value){
     			<i class="fa fa-user fa-1x"></i>&nbsp;&nbsp;<span id="vUsername"></span>&nbsp;&nbsp;<span class="caret"></span>
     		</button>
   			<ul class="dropdown-menu" role="menu">
-    			<li><a href="#"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
-    			<li><a href="http://mmsch.teiath.gr/docs/package-GET.html">Οδηγός API</a></li>
+    			<li><a href="/hlp/user_guide_frontend_ver2.docx" target="_blank"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
+    			<li><a href="http://mmsch.teiath.gr/docs/package-GET.html" target="_blank">Οδηγός API</a></li>
     			<li class="divider"></li>
     			<li><a href="#" id="lnkLogout"><i class="fa fa-sign-out fa-1x"></i>&nbsp;&nbsp;Αποσύνδεση</a></li>
   			</ul>
@@ -600,7 +611,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 				<div class="ddd" >
 				
 								<ul>
-									<li class="load-page Selected"><a href="client/views/grids/my-units.php">Μονάδες</a></li>
+									<li class="load-page Selected"><a href="client/views/grids/my-units.php?is_anonymous=<?php echo $isAnonymous; ?>">Μονάδες</a></li>
 									<li>
 										<a href="#">Νομοι/Δήμοι</a>
 										<ul><li style="height:100%; overflow-x:hidden; overflow-y:auto">
@@ -617,6 +628,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 										</span>
 										</li></ul>
 									</li>
+									<?php if (!$isAnonymous) { ?>
 									<li>
 										<a href="#">Διαχείριση</a>
 										<ul class="">
@@ -634,9 +646,12 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 											<li class="load-page"><a href="client/views/grids/states.php">Καταστάσεις</a></li>
 											<li class="load-page"><a href="client/views/grids/worker-specializations.php">Κατηγορίες Εργαζομένων</a></li>
 											<li class="load-page"><a href="client/views/grids/worker-positions.php">Θέσεις Εργαζομένων</a></li>
+											<!-- 
 											<li class="load-page"><a href="client/views/grids/workers.php">Εργαζόμενοι</a></li>
+											 -->
 										</ul>
 									</li>
+									<?php } ?>
 								</ul>
 							
 					
