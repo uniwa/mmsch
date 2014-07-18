@@ -141,7 +141,7 @@ if (isset($_GET['auth'])){
         </div>
         
         <div style="padding-top:120px;">
-	        <p class="pull-left;" style="font-size:12px; font-weight:bold;">
+	        <p class="pull-left" style="font-size:12px; font-weight:bold;">
 	        Υποστηρίζεται από το ΤΕΙ Αθήνας <br/>
 			Επικοινωνία: teiath-net@sch.gr 
 	        </p>
