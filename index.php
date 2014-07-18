@@ -70,62 +70,57 @@
       
 
       <div class="jumbotron" style="background-color: #FF9900;">
-   
-<div class="container-fluid">
-
-<div class="row">
-<div class="col-md-8">
-<div class="row">
-<div class="col-md-12"><h2 style="color: #fff;font-weight: bold; text-shadow: 1px 1px 2px #111111;">Κεντρικό Μητρώο Μονάδων <br/>Πανελλήνιου Σχολικού Δικτύου</h2></div>
-</div>
-</div>
-
-<div class="col-md-4">
-
-<div class="row">&nbsp;</div>
-
-<div class="row">
-<div class="col-md-12">
-<center><img src="/img/icon.jpg" class="" /></center>
-</div>	
-</div>
-
-<div class="row">&nbsp;</div>
-<div class="row">
-<div class="col-md-12">	
-<a role="button" href="/main.php?auth=1" class="btn btn-primary btn-lg btn-block">Πιστοποιημένη πρόσβαση</a>&nbsp;
-</div>
-</div>
-<div class="row">
-<div class="col-md-12">	
-         <a role="button" href="/main.php?auth=0" class="btn btn-success btn-lg btn-block">Δημόσια πρόσβαση</a>
-</div>
-</div>
-
-<div class="row">&nbsp;</div>
-<div class="row">&nbsp;</div>
-<div class="row">
-<div class="col-md-12">
-<div class="pull-right">
-<strong>Υποστηρίζεται από το ΤΕΙ Αθήνας<br/>
-Επικοινωνία: teiath-net@sch.gr</strong>
-</div>
-</div>
-</div>
-
-</div>
-
-</div>
-
-
-
-
-
-
-
-</div>
-
-
+   		
+		<div class="container-fluid">
+			
+			<div class="row">
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-12"><h2 style="color: #fff;font-weight: bold; text-shadow: 1px 1px 2px #111111;">Κεντρικό Μητρώο Μονάδων <br/>Πανελλήνιου Σχολικού Δικτύου</h2></div>
+					</div>
+				</div>
+				
+				<div class="col-md-4">
+					
+					<div class="row">&nbsp;</div>
+					
+					
+					<div class="row">&nbsp;</div>
+					<div class="row">
+						<div class="col-md-12">						
+							<a role="button" href="/main.php?auth=1" class="btn btn-primary btn-lg btn-block">Πιστοποιημένη πρόσβαση</a>&nbsp;
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">						
+        					<a role="button" href="/main.php?auth=0" class="btn btn-success btn-lg btn-block">Δημόσια πρόσβαση</a>
+						</div>
+					</div>
+					
+					<div class="row">&nbsp;</div>
+					<div class="row">&nbsp;</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="pull-right">
+							<strong>Υποστηρίζεται από το ΤΕΙ Αθήνας<br/>
+							Επικοινωνία: teiath-net@sch.gr</strong>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			
+		
+			
+			
+			
+			
+			
+		</div>
+		
+		
         
         
       </div>
