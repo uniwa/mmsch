@@ -33,9 +33,9 @@ $params = array(
     
 //postUnitDNS
    // "unit_dns_id" => "1",
-//    "unit_dns" => "test",
-//    "unit_ext_dns" => "test",
-//    "unit_uid" => "1gympall",
+    "unit_dns" => "test",
+    "unit_ext_dns" => "test",
+    "unit_uid" => "1gympall",
     
     //"prefecture" => 
     //"mm_id" => "1000423",
@@ -60,21 +60,17 @@ $params = array(
 //    "deactivated_date" => "null",
 //    "bandwidth" => "24576/1024Kbps",
 //    "readspeed" => "null",
-//    "worker_id" => "16593",
-//    "registry_no" => "888888",
-    "worker_id"=>"15017",
-    "firstname"=>"1000019",
-    "source"=>"2",
-    //"worker_specialization"=>"2",
+    "worker_id" => "16593",
+    "registry_no" => "888888",
     "debug" => true
 );
 
 
 $curl = curl_init($server);
 curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-curl_setopt($curl, CURLOPT_USERPWD, $backendOptions["backendUsername"] . ":" . $backendOptions["backendPassword"]);
+curl_setopt($curl, CURLOPT_USERPWD, $Options["ServerAdminUserName"] . ":" . $Options["ServerAdminPassWord"]);
 //curl_setopt($curl, CURLOPT_USERPWD, $Options["ServerUserName"] . ":" . $Options["ServerUserName"]);
-curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
 curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 

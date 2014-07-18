@@ -49,20 +49,20 @@
 <body>
 
 <div class="container">
-
-<div style="clear: both;" >&nbsp;</div>
-
+		
+		<div style="clear: both;" >&nbsp;</div>
+		
       <div class="header">
          <div class="container-fluid">
-<div class="row">
-<div class="col-md-12">
-<p class="pull-left"><img src="/img/sch_logo.png" />&nbsp;&nbsp;&nbsp;</p>	
-<p class="pull-left" style="padding-top:5px;"><strong><a href="http://www.sch.gr" style="color: #1d73a3;font: bold 20px Tahoma,sans-serif;">Πανελλήνιο Σχολικό Δίκτυο</a></strong><br>
-<span class="sch_logo_text2">Το Δίκτυο στην Υπηρεσία της Εκπαίδευσης</span>
-</p>
-</div>
-</div>
-</div>
+			<div class="row">
+				<div class="col-md-12">
+				<p class="pull-left"><img src="/img/sch_logo.png" />&nbsp;&nbsp;&nbsp;</p>			
+				<p class="pull-left" style="padding-top:5px;"><strong><a href="http://www.sch.gr" style="color: #1d73a3;font: bold 20px Tahoma,sans-serif;">Πανελλήνιο Σχολικό Δίκτυο</a></strong><br>
+				<span class="sch_logo_text2">Το Δίκτυο στην Υπηρεσία της Εκπαίδευσης</span>
+				</p>
+				</div>
+			</div>
+		 </div>
         
          
               
@@ -71,7 +71,6 @@
 
       <div class="jumbotron" style="background-color: #FF9900;">
    		
-<<<<<<< HEAD
 		<div class="container-fluid">
 			
 			<div class="row">
@@ -85,6 +84,11 @@
 					
 					<div class="row">&nbsp;</div>
 					
+					<div class="row">
+						<div class="col-md-12">
+						<center><img src="/img/icon.jpg" class="" /></center>
+						</div>	
+					</div>
 					
 					<div class="row">&nbsp;</div>
 					<div class="row">
@@ -122,32 +126,6 @@
 		</div>
 		
 		
-=======
-   		<div>
-      	<center>
-        <h3 style="color:#0076B9">Κεντρικό Μητρώο Μονάδων <br/>Πανελλήνιου Σχολικού Δικτύου</h3>
-        </center>
-        <p class="lead"></p>
-        <center>
-        <p>
-	       	<a role="button" href="/index.php?auth=1" class="btn btn-success">Πιστοποιημένη πρόσβαση</a>&nbsp;
-        	<a role="button" href="/index.php?auth=0" class="btn btn-success">Δημόσια πρόσβαση</a>
-        </p>
-        </center>
-        </div>
-        
-        <div style="padding-top:120px;">
-	        <p class="pull-left;" style="font-size:12px; font-weight:bold;">
-	        Υποστηρίζεται από το ΤΕΙ Αθήνας <br/>
-			Επικοινωνία: teiath-net@sch.gr 
-	        </p>
-	        
-	        <p class="pull-right" style="font-size:12px; font-weight:bold;">
-	        Εγχειρίδιο χρήστη (PDF)  
-	        </p>
-        </div>
-        
->>>>>>> parent of 4e6df5c... local files
         
         
       </div>
@@ -155,14 +133,14 @@
      
 
       <div class="footer">
-
-<div class="container-fluid">
-<div class="row">
-<div class="col-md-4"><p class="pull-left"><img src="/img/ypepth_logo.png" /></p></div>
-<div class="col-md-4"><p><img src="/img/logo_stirizo.png" /></p></div>
-<div class="col-md-4"><p class="pull-right"><img src="/img/espa_logo.png" /></p></div>
-</div>
-</div>
+		
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4"><p class="pull-left"><img src="/img/ypepth_logo.png" /></p></div>
+				<div class="col-md-4"><p><img src="/img/logo_stirizo.png" /></p></div>
+				<div class="col-md-4"><p class="pull-right"><img src="/img/espa_logo.png" /></p></div>
+			</div>
+		</div>
        
       </div>
 
