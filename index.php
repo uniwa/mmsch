@@ -71,6 +71,7 @@
 
       <div class="jumbotron" style="background-color: #FF9900;">
    		
+<<<<<<< HEAD
 		<div class="container-fluid">
 			
 			<div class="row">
@@ -121,6 +122,32 @@
 		</div>
 		
 		
+=======
+   		<div>
+      	<center>
+        <h3 style="color:#0076B9">Κεντρικό Μητρώο Μονάδων <br/>Πανελλήνιου Σχολικού Δικτύου</h3>
+        </center>
+        <p class="lead"></p>
+        <center>
+        <p>
+	       	<a role="button" href="/index.php?auth=1" class="btn btn-success">Πιστοποιημένη πρόσβαση</a>&nbsp;
+        	<a role="button" href="/index.php?auth=0" class="btn btn-success">Δημόσια πρόσβαση</a>
+        </p>
+        </center>
+        </div>
+        
+        <div style="padding-top:120px;">
+	        <p class="pull-left;" style="font-size:12px; font-weight:bold;">
+	        Υποστηρίζεται από το ΤΕΙ Αθήνας <br/>
+			Επικοινωνία: teiath-net@sch.gr 
+	        </p>
+	        
+	        <p class="pull-right" style="font-size:12px; font-weight:bold;">
+	        Εγχειρίδιο χρήστη (PDF)  
+	        </p>
+        </div>
+        
+>>>>>>> parent of 4e6df5c... local files
         
         
       </div>

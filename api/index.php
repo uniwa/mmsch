@@ -96,8 +96,8 @@ $app->get('/docs/*', function () use ($app) {
     $app->redirect("http://mmsch.teiath.gr/docs/");
 });
 
-$app->notFound(function () use ($app)
-{
+$app->notFound(function () use ($app) 
+{   
     $controller = $app->environment();
     $controller = substr($controller["PATH_INFO"], 1);
     
@@ -107,14 +107,14 @@ $app->notFound(function () use ($app)
             throw new Exception(ExceptionMessages::MethodNotFound, ExceptionCodes::MethodNotFound);
         else
             throw new Exception(ExceptionMessages::MethodNotFound, ExceptionCodes::MethodNotFound);
-    }
-    catch (Exception $e)
+    } 
+    catch (Exception $e) 
     {
         $result["status"] = $e->getCode();
         $result["message"] = "[".$app->request()->getMethod()."][".$controller."]:".$e->getMessage();
     }
 
-    echo toGreek( json_encode( $result ) );
+    echo toGreek( json_encode( $result ) );  
 });
 
 $app->run();
@@ -125,7 +125,7 @@ function enableCORS() {
     if (isset($_SERVER['HTTP_ORIGIN'])) {
         header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
         header('Access-Control-Allow-Credentials: true');
-        header('Access-Control-Max-Age: 86400'); // cache for 1 day
+        header('Access-Control-Max-Age: 86400');    // cache for 1 day
     }
     // Access-Control headers are received during OPTIONS requests
     if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
@@ -197,7 +197,7 @@ function Authentication()
 
     try
     {
-        if(isset($app->request->headers['Php-Auth-User']) && isset($app->request->headers['Php-Auth-Pw']) && $app->request->headers['Php-Auth-User'] != 'anonymous') {
+        if(isset($app->request->headers['Php-Auth-User']) && isset($app->request->headers['Php-Auth-Pw'])) {
             $apcKey = 'mm_auth_'.md5($app->request->headers['Php-Auth-User'].$app->request->headers['Php-Auth-Pw']);
             if(!($userObj = apc_fetch($apcKey))) {
                 $ldap = new \Zend\Ldap\Ldap($ldapOptions);
@@ -213,7 +213,7 @@ function Authentication()
             // userObj has all the user attributes now - We can check roles
             $app->request->user = $userObj;
         } else {
-            // Guest access
+            throw new Exception(ExceptionMessages::UserAccesDenied, ExceptionCodes::UserAccesDenied); // Empty username/pass - Maybe guest access?
         }
     }
     catch (Exception $e)
@@ -241,7 +241,6 @@ function UserRolesPermission(){
     try {
 
         $check = UserRoles::checkUserRolePermissions($controller,$method,$app->request->user);
-        $app->request->userRoles = UserRoles::getRole($app->request->user);
 
         if ($check!==true){
                     throw new Exception(ExceptionMessages::Unauthorized, ExceptionCodes::Unauthorized);
@@ -1122,31 +1121,31 @@ function RelationsController()
                 $params["searchtype"]
             );
             break;
-// case MethodTypes::POST :
-// $result = PostRelations(
-// $params["host_mm_id,
-// $params["guest_mm_id,
-// $params["relation_state,
-// $params["true_date,
-// $params["true_fek,
-// $params["false_date,
-// $params["false_fek,
-// $params["relation_type
-// );
-// break;
-// case MethodTypes::PUT :
-// $result = PutRelations(
-// $params["relation_id,
-// $params["host_mm_id,
-// $params["guest_mm_id,
-// $params["relation_state,
-// $params["true_date,
-// $params["true_fek,
-// $params["false_date,
-// $params["false_fek,
-// $params["relation_type
-// );
-// break;
+//        case MethodTypes::POST :
+//            $result = PostRelations(
+//                $params["host_mm_id,
+//                $params["guest_mm_id,
+//                $params["relation_state,
+//                $params["true_date,
+//                $params["true_fek,
+//                $params["false_date,
+//                $params["false_fek,
+//                $params["relation_type
+//              );
+//            break;
+//        case MethodTypes::PUT :
+//            $result = PutRelations(
+//                $params["relation_id,
+//                $params["host_mm_id,
+//                $params["guest_mm_id,
+//                $params["relation_state,
+//                $params["true_date,
+//                $params["true_fek,
+//                $params["false_date,
+//                $params["false_fek,
+//                $params["relation_type
+//              );
+//            break;
     }
 
     PrepareResponse();
@@ -1172,15 +1171,15 @@ function TransitionsController()
                 $params["ordertype"]
             );
             break;
-// case MethodTypes::POST :
-// $result = PostTransitions(
-// $params["mm_id"],
-// $params-
-// $params["transition_date,
-// $params["from_state"],
-// $params["to_state
-// );
-// break;
+//        case MethodTypes::POST :
+//            $result = PostTransitions(
+//                $params["mm_id"],
+//                $params-
+//                $params["transition_date,
+//                $params["from_state"],
+//                $params["to_state
+//            );
+//            break;
     }
 
     PrepareResponse();
@@ -1482,7 +1481,7 @@ function UnitDnsController()
                $result = DeleteUnitDns(
                 $params["unit_dns_id"]
             );
-        break;
+        break;    
     }
 
     PrepareResponse();
@@ -1661,14 +1660,14 @@ function ConnectionUnitNetworkSubnetsController()
         case MethodTypes::POST :
             $result = PostConnectionUnitNetworkSubnets(
                 $params["connection_id"],
-                $params["unit_network_subnet_id"]
+                $params["unit_network_subnet_id"]   
             );
         break;
         case MethodTypes::PUT :
             $result = PutConnectionUnitNetworkSubnets(
                 $params["connection_unit_network_subnet_id"],
                 $params["connection_id"],
-                $params["unit_network_subnet_id"]
+                $params["unit_network_subnet_id"] 
             );
         break;
         case MethodTypes::DELETE :
