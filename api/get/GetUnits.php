@@ -2319,7 +2319,7 @@ function GetUnits(
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $result["count"] = $stmt->rowCount();
 
-        $ids = "0";
+        count($rows) > 0 ? $ids = "" : $ids = "0";
         foreach ($rows as $row)
         {
             $ids .= ($ids ? ", " : "") . $row["mm_id"]; 
@@ -2718,7 +2718,7 @@ function GetUnits(
         $stmt = $db->query( $sql );
         $array_connections = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $connection_ids = "'0'";
+        count($array_connections) > 0 ? $connection_ids = "" : $connection_ids = "0";
         foreach ($array_connections as $connection)
         {
             $connection_ids .= ($connection_ids ? ", " : "") . "'".$connection["connection_id"]."'";
