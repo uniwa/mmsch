@@ -163,7 +163,7 @@ function PutUnitWorkers( $unit_worker_id, $mm_id, $worker, $worker_position )
     try
     {
 
-        if ( $$unit_worker_id === _MISSED_ )
+        if ( $unit_worker_id === _MISSED_ )
             throw new Exception(ExceptionMessages::MissingUnitWorkerIDParam, ExceptionCodes::MissingUnitWorkerIDParam);
         else if ( Validator::IsNull($unit_worker_id) )
             throw new Exception(ExceptionMessages::MissingUnitWorkerIDValue, ExceptionCodes::MissingUnitWorkerIDValue);
