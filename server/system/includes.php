@@ -90,6 +90,9 @@ require_once ('../api/post/PostConnectionUnitNetworkSubnets.php');
 require_once ('../api/put/PutConnectionUnitNetworkSubnets.php');
 require_once ('../api/delete/DeleteConnectionUnitNetworkSubnets.php');
 
+//StatisticUnits
+require_once ('../api/get/StatisticUnits.php');
+
 require_once ('../api/get/GetSchoolCommittees.php');
 require_once ('../api/get/GetSources.php');
 require_once ('../api/get/GetStates.php');
