@@ -46,10 +46,6 @@
                 {
                     field: "legal_character",
                     title: "Νομικός Χαρακτηρισμός"
-                },
-                {
-                    field: "category",
-                    title: "Κατηγορία"
                 }
             ],
             dataBound: function(e) {
