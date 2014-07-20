@@ -140,7 +140,7 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					</div>
 					
 
-<div class="popover bottom in mmsch-modal-wnd" id="dlgWndSearchBy" tabindex="-1" style="display:none; width:50%; position: absolute: left:auto; z-index: 33010;border-radius:0px;" >
+<div class="popover bottom in mmsch-modal-wnd" id="dlgWndSearchBy" tabindex="-1" style="display:none; width:50%; position: absolute: left:auto; z-index: 010;border-radius:0px;" >
   <div class="arrow" style=""></div>
   <div class="modal-dialog1">
     <div class="modal-content1">
