@@ -78,6 +78,31 @@
 					<div class="row">
 						<div class="col-md-12"><h2 style="color: #fff;font-weight: bold; text-shadow: 1px 1px 2px #111111;">Κεντρικό Μητρώο Μονάδων <br/>Πανελλήνιου Σχολικού Δικτύου</h2></div>
 					</div>
+					
+					<div class="row">
+						<div class="col-md-12">
+							<p>
+							<strong>H υπηρεσία «Κεντρικό Μητρώο ΠΣΔ» παρέχει τη δυνατότητα διαβαθμισμένης πρόσβασης στα βασικά αλλά και τα δικτυακά στοιχεία των μονάδων που εξυπηρετεί το Πανελλήνιο Σχολικό Δίκτυο.</strong>
+							</p>
+						</div>				
+					</div>
+					
+					<div class="row">
+						<div class="col-md-12">
+						<p>
+						<strong><span style="color: #fff;font-weight: bold; text-shadow: 1px 1px 2px #111111;">Νέες δυνατότητες:</span>
+						<ul class="list-group list-unstyled">
+						<li><span class="glyphicon glyphicon-ok"></span>&nbsp;Εμπλουτισμός περιεχομένου μόνο μέσω Web Services</li> 
+						<li><span class="glyphicon glyphicon-ok"></span>&nbsp;Συσχέτιση δομών συνδεσιμότητας (εξοπλισμός CPE – τηλεπικοινωνιακό κύκλωμα – λογαριασμός ευρυζωνικής υπηρεσίας – δικτυακά στοιχεία)</li> 
+						<li><span class="glyphicon glyphicon-ok"></span>&nbsp;Υποσυστήματα – δορυφόροι για καλύτερη διαχείριση των δεδομένων και έλεγχο των πηγών τους: MyLab, SCH Units Subsystem, Line management System</li>
+						<li><span class="glyphicon glyphicon-ok"></span>&nbsp;Φιλικό και προσωποποιημένο UI</li>
+						<li><span class="glyphicon glyphicon-ok"></span>&nbsp;Ολοκλήρωση με το περιβάλλον single sign-on και τον LDAP του ΠΣΔ</li>
+						<ul></strong>
+						</p>
+						</div>
+						
+					</div>
+					
 				</div>
 				
 				<div class="col-md-4">
@@ -108,7 +133,7 @@
 						<div class="col-md-12">
 							<div class="pull-right">
 							<strong>Υποστηρίζεται από το ΤΕΙ Αθήνας<br/>
-							Επικοινωνία: teiath-net@sch.gr</strong>
+							Επικοινωνία: mm@sch.gr</strong>
 							</div>
 						</div>
 					</div>
