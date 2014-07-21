@@ -1173,8 +1173,8 @@ class ExceptionCodes
     
     const InvalidGlucType = 500;
     const InvalidSpecialNameType = 500;
-    const InvalidPhoneNumberType = 500;
 
+    const InvalidPhoneNumberType = 500;
     const InvalidFaxNumberType = 500;
     const InvalidEmailType = 500;
     const InvalidStreetAddressType = 500;
@@ -1183,14 +1183,15 @@ class ExceptionCodes
     const InvalidAreaTeamNumberType = 500;
     const InvalidLevelsCountType = 500;
     const InvalidGroupsCountType = 500;
-    const InvalidStudentsSumType = 500;
+    const InvalidStudentsCountType = 500;
     const InvalidLatitudeType = 500;
     const InvalidLongitudeType = 500;
     const InvalidPositioningType = 500;
     const InvalidLastUpdateType = 500;
     const InvalidLastSyncType = 500;
     const InvalidFekType = 500;
-  
+    const InvalidCommentsType = 500;
+    
     const InvalidWorkerLastnameType = 500;
     const InvalidWorkerFirstnameType = 500;
     const InvalidWorkerFathernameType = 500;

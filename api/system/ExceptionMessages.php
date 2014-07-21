@@ -698,23 +698,25 @@ class ExceptionMessages
 
     const InvalidGlucType = 'Ο Κωδικός Gluc ($gluc) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const InvalidSpecialNameType = 'Το Προσωνύμιο της Μονάδας ($special_name) πρέπει να είναι αλφαριθμητικός';
-
-    const InvalidFaxNumberType = 'Το Φαξ Επικοινωνίας ($fax_number) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    
+    const InvalidPhoneNumberType = 'Το Τηλέφωνο Επικοινωνίας ($fax_number) πρέπει να είναι αριθμητικό';
+    const InvalidFaxNumberType = 'Το Φαξ Επικοινωνίας ($fax_number) πρέπει να είναι αριθμητικό';
     const InvalidEmailType = 'Η Ηλεκτρονική Αλληλογραφία ($email) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const InvalidStreetAddressType = 'Η Διεύθυνση (Οδός και Αριθμός) της Μονάδας ($street_address) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const InvalidPostalCodeType = 'Ο Ταχυδρομικός Κώδικας της Μονάδας ($postal_code) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const InvalidTaxNumberType = 'Ο Αριθμός Φορολογικού Μητρώου της Μονάδας ($tax_number) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    const InvalidPostalCodeType = 'Ο Ταχυδρομικός Κώδικας της Μονάδας ($postal_code) πρέπει να είναι αριθμητικό';
+    const InvalidTaxNumberType = 'Ο Αριθμός Φορολογικού Μητρώου της Μονάδας ($tax_number) πρέπει να είναι αριθμητικό';
     const InvalidAreaTeamNumberType = 'Η Ομάδα Σχολείων της Μονάδας ($area_team_number) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const InvalidLevelsCountType = 'Η Ομάδα Σχολείων της Μονάδας ($levels_count) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const InvalidGroupsCountType = 'Το Πλήθος των Τμημάτων της Μονάδας ($groups_count) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const InvalidStudentsSumType = 'Το Πλήθος των Μαθητών της Μονάδας ($students_sum) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    const InvalidStudentsCountType = 'Το Πλήθος των Μαθητών της Μονάδας ($students_sum) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const InvalidLatitudeType = 'Το Γεωγραφικό Πλάτος της Μονάδας ($latitude) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const InvalidLongitudeType = 'Το Γεωγραφικό Μήκος της Μονάδας ($longitude) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const InvalidPositioningType = 'Η Κτηριακή Θέση της Μονάδας ($positioning) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const InvalidLastUpdateType = 'Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας ($last_update) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const InvalidLastSyncType = 'Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας ($last_sync) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const InvalidFekType = 'Ο Αριθμός ΦΕΚ ($fek) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-  
+    const InvalidCommentsType = 'Τα σχόλια ($comments) πρέπει να είναι αλφαριθμητικός';
+      
     const InvalidWorkerLastnameType = 'Το Επώνυμο ($lastname) πρέπει να είναι αλφαριθμητικός';
     const InvalidWorkerFirstnameType = 'Το Όνομα ($firstname) πρέπει να είναι αλφαριθμητικός';
     const InvalidWorkerFathernameType = 'Το Πατρώνυμο ($fathername) πρέπει να είναι αλφαριθμητικός';
