@@ -1696,6 +1696,8 @@ function StatisticUnitsController()
     {
         case MethodTypes::GET :
             $result = StatisticUnits(
+                $params["x_axis"],
+                $params["y_axis"],
                 $params["mm_id"],
                 $params["registry_no"],
                 $params["source"],

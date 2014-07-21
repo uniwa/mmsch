@@ -66,8 +66,28 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidOrderBy} */
     const InvalidOrderBy = 500;
 
+    /** {@see ExceptionMessages::MissingXAxisParam} */
+    const MissingXAxisParam = 500;
+    /** {@see ExceptionMessages::MissingXAxisValue} */
+    const MissingXAxisValue = 500;
+    /** {@see ExceptionMessages::InvalidXAxisType} */
+    const InvalidXAxisType = 500;
+    /** {@see ExceptionMessages::InvalidXAxisArray} */
+    const InvalidXAxisArray = 500;
+    /** {@see ExceptionMessages::InvalidXAxis} */
+    const InvalidXAxis = 500;
 
-
+    /** {@see ExceptionMessages::MissingYAxisParam} */
+    const MissingYAxisParam = 500;
+    /** {@see ExceptionMessages::MissingYAxisValue} */
+    const MissingYAxisValue = 500;
+    /** {@see ExceptionMessages::InvalidYAxisType} */
+    const InvalidYAxisType = 500;
+    /** {@see ExceptionMessages::InvalidYAxisArray} */
+    const InvalidYAxisArray = 500;
+    /** {@see ExceptionMessages::InvalidYAxis} */
+    const InvalidYAxis = 500;
+    
     /** {@see ExceptionMessages::MissingNameParam} */
     const MissingNameParam = 500;
     /** {@see ExceptionMessages::MissingNameValue} */

@@ -354,6 +354,7 @@ header("Content-Type: text/html; charset=utf-8");
  */
 
 function StatisticUnits(
+    $x_axis, $y_axis,
     $mm_id, $registry_no, $source, $name, $special_name, $state, $region_edu_admin, $edu_admin, $implementation_entity,
     $transfer_area, $prefecture, $municipality, $education_level, $category, $unit_type, $operation_shift, $legal_character, 
     $orientation_type, $special_type, $searchtype )
@@ -362,10 +363,29 @@ function StatisticUnits(
     
     $filter = array();
     $result = array();
+    $join_filter = array();
 
     $result["method"] = __FUNCTION__;
 
     $params = loadParameters();
+    
+    $axis = array(
+                    "source" => "sources" ,
+                    "category" => "categories",
+                    "state"=> "states",         
+                    "region_edu_admin"=> "region_edu_admins",
+                    "edu_admin"=> "edu_admins",
+                    "transfer_area"=> "transfer_areas",
+                    "prefecture"=> "prefectures",
+                    "municipality"=> "municipalities",
+                    "education_level"=> "education_levels",      
+                    "unit_type"=> "unit_types",           
+                    "orientation_type"=> "orientation_types",          
+                    "operation_shift"=> "operation_shifts",       
+                    "legal_character"=> "legal_characters",           
+                    "implementation_entity"=> "implementation_entities",   
+                    "special_type"=> "special_types",
+);
 
     try
     {
@@ -380,6 +400,56 @@ function StatisticUnits(
         else
             throw new Exception(ExceptionMessages::InvalidSearchType." : ".$searchtype, ExceptionCodes::InvalidSearchType);
 
+//======================================================================================================================
+//= $x_axis
+//======================================================================================================================
+
+        if ( !Validator::Missing('x_axis', $params) ) {
+                
+            if (Validator::isArray($x_axis))
+                throw new Exception(ExceptionMessages::InvalidXAxisArray." : ".$x_axis, ExceptionCodes::InvalidXAxisArray);
+            else if (Validator::isNull($x_axis))
+                throw new Exception(ExceptionMessages::MissingXAxisValue." : ".$x_axis, ExceptionCodes::MissingYAxisValue);
+            else if (Validator::isValue($x_axis)){              
+                if (!array_key_exists(Validator::toValue($x_axis), $axis))
+                    throw new Exception(ExceptionMessages::InvalidXAxis." : ".$x_axis, ExceptionCodes::InvalidXAxis);
+                else
+                    $name_x_axis = $x_axis.'_name';
+                    $field_x_axis = $axis[Validator::toValue($x_axis)].'.name';
+                    $join_filter[] = ' JOIN ' . $axis[Validator::toValue($x_axis)] . ' ON units.' . $x_axis.'_id = ' . $axis[Validator::toValue($x_axis)] . '.' .$x_axis.'_id';
+            } 
+            else 
+                throw new Exception(ExceptionMessages::InvalidXAxisType." : ".$x_axis, ExceptionCodes::InvalidXAxisType); 
+            
+        } else { 
+           throw new Exception(ExceptionMessages::MissingXAxisParam." : ".$x_axis, ExceptionCodes::MissingXAxisParam);  
+        }
+        
+//======================================================================================================================
+//= $y_axis
+//======================================================================================================================
+
+        if ( !Validator::Missing('y_axis', $params) ) {
+                
+            if (Validator::isArray($y_axis))
+                throw new Exception(ExceptionMessages::InvalidYAxisArray." : ".$y_axis, ExceptionCodes::InvalidYAxisArray);
+            else if (Validator::isNull($y_axis))
+                throw new Exception(ExceptionMessages::MissingYAxisValue." : ".$y_axis, ExceptionCodes::MissingYAxisValue);
+            else if (Validator::isValue($y_axis)){              
+                if (!array_key_exists(Validator::toValue($y_axis), $axis))
+                    throw new Exception(ExceptionMessages::InvalidYAxis." : ".$y_axis, ExceptionCodes::InvalidYAxis);
+                else
+                    $name_y_axis = $y_axis.'_name';
+                    $field_y_axis = $axis[Validator::toValue($y_axis)].'.name';
+                    $join_filter[] = ' JOIN ' . $axis[Validator::toValue($y_axis)] . ' ON units.' . $y_axis.'_id = ' . $axis[Validator::toValue($y_axis)] . '.' .$y_axis.'_id';
+            } 
+            else 
+                throw new Exception(ExceptionMessages::InvalidYAxisType." : ".$y_axis, ExceptionCodes::InvalidYAxisType); 
+            
+        } else { 
+           throw new Exception(ExceptionMessages::MissingYAxisParam." : ".$y_axis, ExceptionCodes::MissingYAxisParam);  
+        }
+        
 //======================================================================================================================
 //= $mm_id
 //======================================================================================================================
@@ -556,6 +626,8 @@ function StatisticUnits(
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $join_filter[]  = " JOIN $table_name ON units.$table_column_id = $table_name.$table_column_id";
+
         }
 
 //======================================================================================================================
@@ -585,6 +657,8 @@ function StatisticUnits(
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $join_filter[]  = " JOIN $table_name ON units.$table_column_id = $table_name.$table_column_id";
+            
         }
 
 //======================================================================================================================
@@ -614,6 +688,8 @@ function StatisticUnits(
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $join_filter[]  = " JOIN $table_name ON units.$table_column_id = $table_name.$table_column_id";
+            
         }
 
 //======================================================================================================================
@@ -643,6 +719,8 @@ function StatisticUnits(
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $join_filter[]  = " JOIN $table_name ON units.$table_column_id = $table_name.$table_column_id";
+            
         }
 
 //======================================================================================================================
@@ -672,6 +750,8 @@ function StatisticUnits(
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $join_filter[]  = " JOIN $table_name ON units.$table_column_id = $table_name.$table_column_id";
+            
         }
 
 //======================================================================================================================
@@ -701,6 +781,8 @@ function StatisticUnits(
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $join_filter[]  = " JOIN $table_name ON units.$table_column_id = $table_name.$table_column_id";
+            
         }
 
 //======================================================================================================================
@@ -730,6 +812,8 @@ function StatisticUnits(
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $join_filter[]  = " JOIN $table_name ON units.$table_column_id = $table_name.$table_column_id";
+            
         }
 
 //======================================================================================================================
@@ -759,6 +843,8 @@ function StatisticUnits(
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $join_filter[]  = " JOIN $table_name ON units.$table_column_id = $table_name.$table_column_id";
+            
         }
 
 //======================================================================================================================
@@ -788,6 +874,8 @@ function StatisticUnits(
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $join_filter[]  = " JOIN $table_name ON units.$table_column_id = $table_name.$table_column_id";
+            
         }
 
 //======================================================================================================================
@@ -817,6 +905,8 @@ function StatisticUnits(
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $join_filter[]  = " JOIN $table_name ON units.$table_column_id = $table_name.$table_column_id";
+            
         }
 
 //======================================================================================================================
@@ -846,6 +936,8 @@ function StatisticUnits(
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $join_filter[]  = " JOIN $table_name ON units.$table_column_id = $table_name.$table_column_id";
+            
         }
 
 //======================================================================================================================
@@ -875,6 +967,8 @@ function StatisticUnits(
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $join_filter[]  = " JOIN $table_name ON units.$table_column_id = $table_name.$table_column_id";
+            
         }
 
 //======================================================================================================================
@@ -904,6 +998,8 @@ function StatisticUnits(
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $join_filter[]  = " JOIN $table_name ON units.$table_column_id = $table_name.$table_column_id";
+            
         }
 
 //======================================================================================================================
@@ -933,6 +1029,8 @@ function StatisticUnits(
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $join_filter[]  = " JOIN $table_name ON units.$table_column_id = $table_name.$table_column_id";
+            
         }
 
 //======================================================================================================================
@@ -962,44 +1060,34 @@ function StatisticUnits(
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $join_filter[]  = " JOIN $table_name ON units.$table_column_id = $table_name.$table_column_id";
+            
         }
 
 //======================================================================================================================
 //= E X E C U T E
 //======================================================================================================================
 
-
-        $sqlSelect = "SELECT count(*) as total_units 
-                     ";
-
-        $sqlFrom = "FROM units
-                        LEFT JOIN sources ON units.source_id = sources.source_id
-                        LEFT JOIN categories ON units.category_id = categories.category_id
-                        LEFT JOIN states ON units.state_id = states.state_id
-                        LEFT JOIN region_edu_admins ON units.region_edu_admin_id = region_edu_admins.region_edu_admin_id
-                        LEFT JOIN edu_admins ON units.edu_admin_id = edu_admins.edu_admin_id
-                        LEFT JOIN transfer_areas ON units.transfer_area_id = transfer_areas.transfer_area_id
-                        LEFT JOIN prefectures ON units.prefecture_id = prefectures.prefecture_id
-                        LEFT JOIN municipalities ON units.municipality_id = municipalities.municipality_id
-                        LEFT JOIN education_levels ON units.education_level_id = education_levels.education_level_id
-                        LEFT JOIN unit_types ON units.unit_type_id = unit_types.unit_type_id
-                        LEFT JOIN orientation_types ON units.orientation_type_id = orientation_types.orientation_type_id
-                        LEFT JOIN operation_shifts ON units.operation_shift_id = operation_shifts.operation_shift_id
-                        LEFT JOIN legal_characters ON units.legal_character_id = legal_characters.legal_character_id
-                        LEFT JOIN implementation_entities ON units.implementation_entity_id = implementation_entities.implementation_entity_id
-                        LEFT JOIN tax_offices ON units.tax_office_id = tax_offices.tax_office_id
-                        LEFT JOIN special_types ON units.special_type_id = special_types.special_type_id";
-
+        
+        $join_filter = array_unique($join_filter);
+        //var_dump($join_filter);die();
+        
+        $sqlSelect = "SELECT  $field_x_axis as $name_x_axis, $field_y_axis as $name_y_axis, count(mm_id) as total_units ";
+           
+        $sqlFrom = "FROM units";
+        $sqlFilter = (count($join_filter) > 0 ? implode("", $join_filter) : "" );
         $sqlWhere = (count($filter) > 0 ? " WHERE " . implode(" AND ", $filter) : "" );
-
+        $sqlGroupBy = " GROUP BY $field_x_axis , $field_y_axis";
+       
         $result["filters"] = $filter ? $filter : null;
 
-        $sql =  $sqlSelect . $sqlFrom . $sqlWhere ;
+        $sql =  $sqlSelect . $sqlFrom . $sqlFilter . $sqlWhere . $sqlGroupBy;
         //echo "<br><br>".$sql."<br><br>";
         
         $stmt = $db->query( $sql );
-        $rows = $stmt->fetch(PDO::FETCH_ASSOC);
-        $result["total"] = $rows["total_units"];
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $result["results"] = $rows;
         
         $result["status"] = ExceptionCodes::NoErrors;;
         $result["message"] = ExceptionMessages::NoErrors;
