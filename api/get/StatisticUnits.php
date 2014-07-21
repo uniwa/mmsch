@@ -13,12 +13,33 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * 
  *
- * Η συνάρτηση αυτή επιστρέφει όλες τoν Αριθμό των Συνολικών Μονάδων σύμφωνα με τις παραμέτρους που έγινε η κλήση
+ * Η συνάρτηση αυτή επιστρέφει Στατιστικά Μονάδων σύμφωνα με τις παραμέτρους που έγινε η κλήση
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
  * <br> http://mmsch.teiath.gr/api/statistic_units
  *
+ * <br><b>Πίνακας Axis</b>
+ * <br>Στον Πίνακα Axis περιέχονται τα ονόματα των παραμέτρων με βαη τα οποίο ο χρήστης μπορέι δημιουργήσει
+ * δισδιαστατο πίνακα αποτελεσματων με άξονες x,y γαι την προβολή στατιστικων αποτελεσμάτων.
+ * <br>Αποδεκτές τιμές 
+ * <ul>
+ * <li> "source" </li>
+ * <li> "category" </li>
+ * <li> "state" </li>        
+ * <li> "region_edu_admin" </li>
+ * <li> "edu_admin" </li>
+ * <li> "transfer_area" </li>
+ * <li> "prefecture" </li>
+ * <li> "municipality" </li>
+ * <li> "education_level" </li>    
+ * <li> "unit_type" </li>          
+ * <li> "orientation_type" </li>          
+ * <li> "operation_shift" </li>       
+ * <li> "legal_character" </li>           
+ * <li> "implementation_entity" </li>   
+ * <li> "special_type" </li>
+ * </ul>
  *
  * <br><b>Πίνακας Παραμέτρων</b>
  * <br>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters summary</a> εμφανίζονται όλοι οι παράμετροι με τους οποίους
@@ -54,7 +75,7 @@ header("Content-Type: text/html; charset=utf-8");
  *   -H "Content-Type: application/json" \
  *   -H "Accept: application/json" \
  *   -u username:password \
- *   -d '{"state": "1", "municipality": "5,7"}' 
+ *   -d '{"state": "1", "municipality": "1", "x_axis":"unit_type", "y_axis":"edu_admin"}' 
  * </code>
  * <br>
  * 
@@ -63,7 +84,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <a id="JavaScript"></a>Παράδειγμα κλήσης της συνάρτησης με <b>JavaScript</b> :
  * <code>
  * <script>
- *    var params = JSON.stringify({ "state": "1", "municipality": "5,7" });
+ *    var params = JSON.stringify({ "state": "1", "municipality": "1", "x_axis":"unit_type", "y_axis":"edu_admin" });
  *    
  *    var http = new XMLHttpRequest();
  *    http.open("GET", "http://mmsch.teiath.gr/api/statistic_units");
@@ -89,7 +110,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <?php
  * header("Content-Type: text/html; charset=utf-8");
  * 
- * $params = array("state" => "1", "municipality" => "5,7");
+ * $params = array("state" => "1", "municipality" => "1", "x_axis" => "unit_type","y_axis" => "edu_admin" );
  * 
  * $curl = curl_init("http://mmsch.teiath.gr/api/statistic_units");
  * 
@@ -116,7 +137,9 @@ header("Content-Type: text/html; charset=utf-8");
  *        dataType: "json",
  *        data: {
  *          "state": "1", 
- *          "municipality": "5,7"
+ *          "municipality": "1"
+ *          "x_axis":"unit_type",
+ *          "y_axis":"edu_admin"
  *        },
  *        beforeSend: function(req) {
  *            req.setRequestHeader('Authorization', btoa('username' + ":" + 'password'));
@@ -134,17 +157,66 @@ header("Content-Type: text/html; charset=utf-8");
  * <a id="data"></a>Παρακάτω εμφανίζεται το αποτέλεσμα σε μορφή JSON :
  * <code>
  *
- *{
+ * {
  * "method":"StatisticUnits",
- * "filters":["(states.state_id = '1')","(municipalities.municipality_id = '5' OR municipalities.municipality_id = '7')"],
- * "total":"464",
- * "status":200,
- * "message":"success"
+ * "filters":["(states.state_id = '1')","(municipalities.municipality_id = '1')"],
+ *       {
+ *           "unit_type_name": "ΓΕΝΙΚΟ ΛΥΚΕΙΟ",
+ *           "edu_admin_name": "ΔΙΕΥΘΥΝΣΗ Δ.Ε. ΑΙΤΩΛ/ΝΙΑΣ",
+ *           "total_units": "5"
+ *       },
+ *       {
+ *           "unit_type_name": "ΓΥΜΝΑΣΙΟ",
+ *           "edu_admin_name": "ΔΙΕΥΘΥΝΣΗ Δ.Ε. ΑΙΤΩΛ/ΝΙΑΣ",
+ *           "total_units": "8"
+ *       },
+ *       {
+ *           "unit_type_name": "ΔΗΜΟΤΙΚΟ",
+ *           "edu_admin_name": "ΔΙΕΥΘΥΝΣΗ Π.Ε. ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ",
+ *          "total_units": "27"
+ *       },
+ *       {
+ *           "unit_type_name": "ΕΠΑΓΓΕΛΜΑΤΙΚΗ ΣΧΟΛΗ",
+ *           "edu_admin_name": "ΔΙΕΥΘΥΝΣΗ Δ.Ε. ΑΙΤΩΛ/ΝΙΑΣ",
+ *           "total_units": "1"
+ *       },
+ *       {
+ *           "unit_type_name": "ΕΠΑΓΓΕΛΜΑΤΙΚΟ ΛΥΚΕΙΟ",
+ *           "edu_admin_name": "ΔΙΕΥΘΥΝΣΗ Δ.Ε. ΑΙΤΩΛ/ΝΙΑΣ",
+ *           "total_units": "2"
+ *       },
+ *       {
+ *           "unit_type_name": "ΕΡΓΑΣΤΗΡΙΑΚΟ ΚΕΝΤΡΟ",
+ *           "edu_admin_name": "ΔΙΕΥΘΥΝΣΗ Δ.Ε. ΑΙΤΩΛ/ΝΙΑΣ",
+ *           "total_units": "1"
+ *       },
+ *       {
+ *           "unit_type_name": "ΝΗΠΙΑΓΩΓΕΙΟ",
+ *           "edu_admin_name": "ΔΙΕΥΘΥΝΣΗ Π.Ε. ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ",
+ *           "total_units": "25"
+ *       }
+ *   ],
+ *   "status": 200,
+ *   "message": "success"
  * }
- *
  * </code>
  * <br>
  * 
+ * @param integer $x_axis Άξονας x του πίνακα
+ * <br>Η παράμετρος μπορέι να είναι οποιαδήποτε τιμή από τον πίνακα axis 
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer|array[integer]
+ *    <ul>
+ *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
+ *       <li>array[integer] : Σύνολο από Αριθμητικές τιμές διαχωρισμένες με κόμμα</li>
+ *    </ul>
+ * 
+ * @param integer $y_axis  Άξονας y του πίνακα
+ * <br>Η παράμετρος μπορέι να είναι οποιαδήποτε τιμή από τον πίνακα axis 
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer|array[integer]
+ *    <ul>
+ *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
+ *       <li>array[integer] : Σύνολο από Αριθμητικές τιμές διαχωρισμένες με κόμμα</li>
+ *    </ul>
  *  
  * @param integer $mm_id Κωδικός ΜΜ Μονάδας
  * <br>Ο Κωδικός ΜΜ της Μονάδας
@@ -320,15 +392,31 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * @return Array<JSON> Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία : 
  * <br>
- * <ul>
  *  <li>string : <b>method</b> : Η μέθοδος κλήσης της συνάρτησης</li>
  *  <li>integer : <b>status</b> : Ο Κωδικός {@see ExceptionCodes} του αποτελέσματος της κλήσης</li>
  *  <li>string : <b>message</b> : Το Μήνυμα {@see ExceptionMessages} του αποτελέσματος της κλήσης</li>
- *  <li>integer : <b>total</b> : Το πλήθος των εγγραφών</li>
  *  <li>integer : <b>filters</b> : Το φίλτρα που έχουν προστεθεί</li>
- * </ul>
+ *  <li>array : <b>result</b> : Το αποτελέσματα των στατιστικών.</li>
+ *  <ul>
+ *    <li>string : <b>'x_axis'_name</b> : Το Όνομα του x άξονα</li>
+ *    <li>string : <b>'y_axis'_name</b> : Το Όνομα του y άξονα</li>
+ *    <li>integer : <b>total_units</b> : Το πλήθος του συνδιασμού x,y</li>
+ *  </ul>
  * 
  * @throws InvalidSearchType {@see ExceptionMessages::InvalidSearchType}
+ * 
+ * @throws InvalidXAxisArray {@see ExceptionMessages::InvalidXAxisArray}
+ * @throws MissingXAxisValue {@see ExceptionMessages::MissingXAxisValue}
+ * @throws InvalidXAxis {@see ExceptionMessages::InvalidXAxis}
+ * @throws InvalidXAxisType {@see ExceptionMessages::InvalidXAxisType}
+ * @throws MissingXAxisParam {@see ExceptionMessages::MissingXAxisParam}
+ * 
+ * @throws InvalidYAxisArray {@see ExceptionMessages::InvalidYAxisArray}
+ * @throws MissingYAxisValue {@see ExceptionMessages::MissingYAxisValue}
+ * @throws InvalidYAxis {@see ExceptionMessages::InvalidYAxis}
+ * @throws InvalidYAxisType {@see ExceptionMessages::InvalidYAxisType}
+ * @throws MissingYAxisParam {@see ExceptionMessages::MissingYAxisParam}
+ * 
  * @throws InvalidUnitMMIDType {@see ExceptionMessages::InvalidUnitMMIDType}
  * @throws InvalidRegistryNoType {@see ExceptionMessages::InvalidRegistryNoType}
  * @throws InvalidNameType {@see ExceptionMessages::InvalidNameType}
@@ -384,7 +472,7 @@ function StatisticUnits(
                     "operation_shift"=> "operation_shifts",       
                     "legal_character"=> "legal_characters",           
                     "implementation_entity"=> "implementation_entities",   
-                    "special_type"=> "special_types",
+                    "special_type"=> "special_types"
 );
 
     try
