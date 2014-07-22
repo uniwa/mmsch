@@ -440,7 +440,7 @@ function PostUnits(
 
 //==============================================================================
 
-        CRUDUtils::entitySetParam($unit, $students_count, ExceptionCodes::InvalidStudentsSumType, 'students_count');
+        CRUDUtils::entitySetParam($unit, $students_count, ExceptionCodes::InvalidStudentsCountType, 'students_count');
 
 //==============================================================================
 
