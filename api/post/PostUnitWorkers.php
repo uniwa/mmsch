@@ -173,13 +173,29 @@ function PostUnitWorkers( $mm_id, $worker, $worker_position )
                                                                                         'workerPosition' => Validator::toID($worker_position),
                                                                                        ));
             
-       if (Validator::isNull($checkDuplicate)){
-           $entityManager->persist($unitWorker);
-           $entityManager->flush($unitWorker);
-       } else {
+       if (!Validator::isNull($checkDuplicate)){
            throw new Exception(ExceptionMessages::DuplicatedUnitWorkerValue ,ExceptionCodes::DuplicatedUnitWorkerValue);
        }
-       
+
+       $distinctSpecialties = array( // Only one worker of this specialty is allowed per unit
+           'ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ'
+       );
+
+       if(in_array($worker_position, $distinctSpecialties)) {
+            $checkDistinct = $entityManager->getRepository('UnitWorkers')->findBy(array( 'mm' => Validator::toID($mm_id),
+                                                                                        'workerPosition' => $unitWorker->getWorkerPosition(),
+                                                                                       ));
+            $toFlush = array();
+            foreach($checkDistinct as $curDistinctWorker) {
+                $entityManager->remove($curDistinctWorker);
+                $toFlush[] = $curDistinctWorker;
+            }
+            $entityManager->flush($toFlush);
+       }
+
+           $entityManager->persist($unitWorker);
+           $entityManager->flush($unitWorker);
+
             $result["status"] = ExceptionCodes::NoErrors;;
             $result["message"] = ExceptionMessages::NoErrors;
             $result["unit_worker_id"] = $unitWorker->getUnitWorkerId();
