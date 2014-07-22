@@ -421,7 +421,13 @@ $(document).ready(function() {
 
 	// Build logout link
 	$("#lnkLogout").attr("href", "http://" + g_casUrl + "/logout");
-	$("#vUsername").html("<strong>" + user.uid + "</strong>");
+
+	if (typeof user.uid === "undefined"){
+		$("#vUsername").html("<strong>Δημόσια Πρόσβαση</strong>");
+	}
+	else {
+		$("#vUsername").html("<strong>" + user.uid + "</strong>");
+	}
 
 }); // end of
 
@@ -586,8 +592,11 @@ function evalLexicalId(cacheData, model_id, value, return_value){
   			<ul class="dropdown-menu" role="menu">
     			<li><a href="/hlp/user_guide_frontend_ver2.docx" target="_blank"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
     			<li><a href="http://mmsch.teiath.gr/docs/package-GET.html" target="_blank">Οδηγός API</a></li>
+    			<li><a href="http://helpdesk.sch.gr/?category_id=9508" target="_blank">Αναφορά Σφαλμάτων</a></li>
+    			<?php if (!$isAnonymous) { ?>
     			<li class="divider"></li>
     			<li><a href="#" id="lnkLogout"><i class="fa fa-sign-out fa-1x"></i>&nbsp;&nbsp;Αποσύνδεση</a></li>
+    			<?php } ?>
   			</ul>
 		</div>	
 		</div> 

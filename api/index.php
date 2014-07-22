@@ -92,6 +92,9 @@ $app->map('/unit_network_objects', Authentication, UserRolesPermission, UnitNetw
 $app->map('/connection_unit_network_subnets', Authentication, UserRolesPermission, ConnectionUnitNetworkSubnetsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 
+$app->map('/statistic_units', Authentication, UserRolesPermission, StatisticUnitsController)
+    ->via(MethodTypes::GET);
+
 $app->get('/docs/*', function () use ($app) {
     $app->redirect("http://mmsch.teiath.gr/docs/");
 });
@@ -1683,4 +1686,44 @@ function ConnectionUnitNetworkSubnetsController()
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
 
+function StatisticUnitsController()
+{
+    global $app;
+
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = StatisticUnits(
+                $params["x_axis"],
+                $params["y_axis"],
+                $params["mm_id"],
+                $params["registry_no"],
+                $params["source"],
+                $params["name"],
+                $params["special_name"],
+                $params["state"],
+                $params["region_edu_admin"],
+                $params["edu_admin"],
+                $params["implementation_entity"],
+                $params["transfer_area"],
+                $params["prefecture"],
+                $params["municipality"],
+                $params["education_level"],
+                $params["category"],
+                $params["unit_type"],
+                $params["operation_shift"],
+                $params["legal_character"],
+                $params["orientation_type"],
+                $params["special_type"],
+                $params["searchtype"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
 ?>

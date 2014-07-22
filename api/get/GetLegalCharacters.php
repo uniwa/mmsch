@@ -543,7 +543,7 @@ function GetLegalCharacters(
                     ";
 
         $sqlFrom = "FROM legal_characters
-                    LEFT JOIN categories ON legal_characters.legal_character_id = categories.category_id";
+                    LEFT JOIN categories ON legal_characters.category_id = categories.category_id";
 
         $sqlWhere = (count($filter) > 0 ? " WHERE " . implode(" AND ", $filter) : "" );
         $sqlOrder = " ORDER BY ". $orderby ." ". $ordertype;

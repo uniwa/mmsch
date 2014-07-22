@@ -237,6 +237,10 @@ private static $Permissions = array(
                                         'PUT' => array('ADMIN'),
                                         'DELETE' => array('ADMIN'),
                                         ) ,
+    
+    'statistic_units' => array(
+                                        'GET' => array('USER', 'ADMIN')                                   
+                                        ) ,
     );
 
 

@@ -66,8 +66,28 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidOrderBy} */
     const InvalidOrderBy = 500;
 
+    /** {@see ExceptionMessages::MissingXAxisParam} */
+    const MissingXAxisParam = 500;
+    /** {@see ExceptionMessages::MissingXAxisValue} */
+    const MissingXAxisValue = 500;
+    /** {@see ExceptionMessages::InvalidXAxisType} */
+    const InvalidXAxisType = 500;
+    /** {@see ExceptionMessages::InvalidXAxisArray} */
+    const InvalidXAxisArray = 500;
+    /** {@see ExceptionMessages::InvalidXAxis} */
+    const InvalidXAxis = 500;
 
-
+    /** {@see ExceptionMessages::MissingYAxisParam} */
+    const MissingYAxisParam = 500;
+    /** {@see ExceptionMessages::MissingYAxisValue} */
+    const MissingYAxisValue = 500;
+    /** {@see ExceptionMessages::InvalidYAxisType} */
+    const InvalidYAxisType = 500;
+    /** {@see ExceptionMessages::InvalidYAxisArray} */
+    const InvalidYAxisArray = 500;
+    /** {@see ExceptionMessages::InvalidYAxis} */
+    const InvalidYAxis = 500;
+    
     /** {@see ExceptionMessages::MissingNameParam} */
     const MissingNameParam = 500;
     /** {@see ExceptionMessages::MissingNameValue} */
@@ -1173,8 +1193,8 @@ class ExceptionCodes
     
     const InvalidGlucType = 500;
     const InvalidSpecialNameType = 500;
-    const InvalidPhoneNumberType = 500;
 
+    const InvalidPhoneNumberType = 500;
     const InvalidFaxNumberType = 500;
     const InvalidEmailType = 500;
     const InvalidStreetAddressType = 500;
@@ -1183,14 +1203,15 @@ class ExceptionCodes
     const InvalidAreaTeamNumberType = 500;
     const InvalidLevelsCountType = 500;
     const InvalidGroupsCountType = 500;
-    const InvalidStudentsSumType = 500;
+    const InvalidStudentsCountType = 500;
     const InvalidLatitudeType = 500;
     const InvalidLongitudeType = 500;
     const InvalidPositioningType = 500;
     const InvalidLastUpdateType = 500;
     const InvalidLastSyncType = 500;
     const InvalidFekType = 500;
-  
+    const InvalidCommentsType = 500;
+    
     const InvalidWorkerLastnameType = 500;
     const InvalidWorkerFirstnameType = 500;
     const InvalidWorkerFathernameType = 500;
