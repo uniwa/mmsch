@@ -593,10 +593,8 @@ function evalLexicalId(cacheData, model_id, value, return_value){
     			<li><a href="/hlp/user_guide_frontend_ver3.pdf" target="_blank"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
     			<li><a href="/docs/package-GET.html" target="_blank">Οδηγός API</a></li>
     			<li><a href="http://helpdesk.sch.gr/?category_id=9508" target="_blank">Αναφορά Σφαλμάτων</a></li>
-    			<?php if (!$isAnonymous) { ?>
     			<li class="divider"></li>
     			<li><a href="#" id="lnkLogout"><i class="fa fa-sign-out fa-1x"></i>&nbsp;&nbsp;Αποσύνδεση</a></li>
-    			<?php } ?>
   			</ul>
 		</div>	
 		</div> 
@@ -622,7 +620,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 								<ul>
 									<li class="load-page Selected"><a href="client/views/grids/my-units.php?is_anonymous=<?php echo $isAnonymous; ?>">Μονάδες</a></li>
 									<li>
-										<a href="#">Νομοι/Δήμοι</a>
+										<a href="#">Περιφερειακές ενότητες/Δήμοι</a>
 										<ul><li style="height:100%; overflow-x:hidden; overflow-y:auto">
 										<span>
 											<div class="nav-tree-prefectures" style="overflow:hidden"></div>

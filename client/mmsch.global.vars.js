@@ -9,7 +9,7 @@ var dictionary = {
 		"edu_admin": "Διεύθυνση Εκπαίδευσης",
 		"implementation_entity": "Φορεάς Υλοποίησης",
 		"transfer_area": "Περιοχή Μετάθεσης",
-		"prefecture": "Νομός",
+		"prefecture": "Περιφερειακή ενότητα",
 		"municipality": "Δήμος ΟΤΑ",
 		"education_level": "Βαθμίδα",
 		"phone_number": "Τηλέφωνο Επικοινωνίας",
