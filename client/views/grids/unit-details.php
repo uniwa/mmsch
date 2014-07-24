@@ -291,12 +291,6 @@ position: fixed;
 									<td class="detail-term">Κωδικός ΥΠΕΠΘ</td>
 									<td class="term-value">#= registry_no #</td>
 								</tr>
-								# if (gluc != null) { #
-								<tr>
-									<td class="detail-term">Κωδικός GLUC</td>
-									<td class="term-value">#= gluc #</td>
-								</tr>
-								# } #
 								# if (edu_admin != null) { #
 								<tr>    
 									<td class="detail-term">Διεύθυνση εκπαίδευσης</td>

@@ -38,10 +38,6 @@
                             <label>Κωδικός ΥΠΕΠΘ</label>
                             <input type="text" class="span12" placeholder="" data-bind="value: registry_no">           
                         </div>
-                        <div class="span2 lightblue">
-                            <label>Κωδικός GLUC</label>
-                            <input type="text" class="span12" placeholder="" data-bind="value: gluc">    
-                        </div>
                         <div class="span5 lightblue">
                             <label>Όνομα Μονάδας</label>
                             <input type="text" class="span12" placeholder="" data-bind="value: name">
@@ -626,7 +622,6 @@
         var viewModel = new kendo.data.ObservableObject({
             mm_id: "",
             registry_no: "",
-            gluc: "",
             source: "",
             name: "",
             special_name: "",

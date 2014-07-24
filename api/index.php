@@ -1308,7 +1308,6 @@ function UnitsController()
             $result = GetUnits(
                 $params["mm_id"],
                 $params["registry_no"],
-                $params["gluc"],
                 $params["source"],
                 $params["name"],
                 $params["special_name"],
@@ -1354,7 +1353,6 @@ function UnitsController()
             $parameters = array_keys($params);
             $result = PostUnits(
                 in_array ("registry_no", $parameters) ? $params["registry_no"] : _MISSED_,
-                in_array ("gluc", $parameters) ? $params["gluc"] : _MISSED_,
                 in_array ("source", $parameters) ? $params["source"] : _MISSED_,
                 in_array ("name", $parameters) ? $params["name"] : _MISSED_,
                 in_array ("special_name", $parameters) ? $params["special_name"] : _MISSED_,
@@ -1397,7 +1395,6 @@ function UnitsController()
             $result = PutUnits(
                 in_array ("mm_id", $parameters) ? $params["mm_id"] : _MISSED_,
                 in_array ("registry_no", $parameters) ? $params["registry_no"] : _MISSED_,
-                in_array ("gluc", $parameters) ? $params["gluc"] : _MISSED_,
                 in_array ("source", $parameters) ? $params["source"] : _MISSED_,
                 in_array ("name", $parameters) ? $params["name"] : _MISSED_,
                 in_array ("special_name", $parameters) ? $params["special_name"] : _MISSED_,

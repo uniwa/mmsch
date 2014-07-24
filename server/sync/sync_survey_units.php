@@ -305,7 +305,6 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 $lastUpdate = \DateTime::createFromFormat('Y-m-d\TH:i:s.u', trim($unit["LastUpdated"]));
                 $params = array(
                     "registry_no"           => trim($unit["RegistryNo"]),
-                    //"gluc" => "",
                     "source"                => "MySchool",
                     "name"                  => trim($unit["Name"]),
                     "special_name"          => trim($unit["SpecialName"]),

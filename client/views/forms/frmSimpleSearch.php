@@ -164,11 +164,6 @@
                                     <input name="registry_no" type="text" class="k-textbox span12"  />           
                                 </li>
 
-
-                                <li>
-                                    <label>Κωδικός GLUC</label>
-                                    <input name="gluc" type="text" class="k-textbox span12" />
-                                </li>
                                 <li>
                                     <label>Διεύθυνση εκπαίδευσης</label>
                                     <input name="edu_admin" class="src_eduAdmin" />

@@ -25,7 +25,6 @@ header("Content-Type: text/html; charset=utf-8");
  *   -u username:password \
  *   -d '{"mm_id" : "value", \
  *        "registry_no" : "value", \
- *        "gluc" : "value", \
  *        "source" : "value", \
  *        "name" : "value", \
  *        "category" : "value", \
@@ -40,7 +39,6 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    var params = JSON.stringify({ "mm_id" : "value",
  *                                  "registry_no" : "value",
- *                                  "gluc" : "value",
  *                                  "source" : "value",
  *                                  "name" : "value", 
  *                                  "category" : "value",
@@ -73,7 +71,6 @@ header("Content-Type: text/html; charset=utf-8");
  * $params = array(
  *      "mm_id" => "value", 
  *      "registry_no" => "value", 
- *      "gluc" => "value", 
  *      "source" => "value", 
  *      "name" => "value", 
  *      "category" => "value", 
@@ -105,7 +102,6 @@ header("Content-Type: text/html; charset=utf-8");
  *        data: {
  *            "mm_id" : "value",
  *            "registry_no" : "value",
- *            "gluc" : "value",
  *            "source" : "value",
  *            "name" : "value",
  *            "category" : "value",
@@ -131,9 +127,6 @@ header("Content-Type: text/html; charset=utf-8");
  * @param string $registry_no Κωδικός ΥΠΕΠΘ
  * <br>Ο Κωδικός ΥΠΕΠΘ της Μονάδας
  * <br>Το πεδίο είναι υποχρεωτικό
- * 
- * @param string $gluc Κωδικός Gluc
- * <br>Ο Κωδικός Gluc της Μονάδας
  * 
  * @param mixed $source Πρωτογενής Πηγή
  * <br>Η Πρωτογενής Πηγή της Μονάδας (Λεξικό : {@see GetSources})
@@ -302,7 +295,7 @@ header("Content-Type: text/html; charset=utf-8");
  */
 
 function PostUnits( 
-    $registry_no, $gluc, $source, $name, $special_name, $state, $region_edu_admin, 
+    $registry_no, $source, $name, $special_name, $state, $region_edu_admin, 
     $edu_admin, $implementation_entity, $transfer_area, $prefecture, $municipality, 
     $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code, 
     $tax_number, $tax_office, $area_team_number, $category, $unit_type, $operation_shift, 
@@ -393,10 +386,6 @@ function PostUnits(
 //==============================================================================
 
         CRUDUtils::entitySetAssociation($unit, $special_type, 'SpecialTypes', 'specialType', 'SpecialType', false);
-
-//==============================================================================
-
-        CRUDUtils::entitySetParam($unit, $gluc, ExceptionCodes::InvalidGlucType, 'gluc');
 
 //==============================================================================
 

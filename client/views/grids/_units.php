@@ -298,14 +298,6 @@
                     }
                 },
                 {
-                    field: "gluc",
-                    title: "Κωδικός Gluc",
-                    hidden: true,
-                    attributes: {
-                        'class': 'highlighted'
-                    }
-                },
-                {
                     field: "name",
                     title: "Ονομασία",
                     attributes: {

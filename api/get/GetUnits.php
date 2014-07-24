@@ -143,7 +143,6 @@ header("Content-Type: text/html; charset=utf-8");
  *  {
  *    "mm_id": 1002553,
  *    "registry_no": "9050097",
- *    "gluc": null,
  *    "name": "100ο ΟΛΟΗΜΕΡΟ ΔΗΜΟΤΙΚΟ ΣΧΟΛΕΙΟ ΑΘΗΝΩΝ",
  *    "special_name": null,
  *    "source_id": 1,
@@ -487,14 +486,6 @@ header("Content-Type: text/html; charset=utf-8");
  *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
  *    </ul>
  * 
- * @param string $gluc Κωδικός Gluc
- * <br>Ο Κωδικός Gluc της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το κωδικό Gluc)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
  * @param mixed $source Πρωτογενής Πηγή
  * <br>Η Πρωτογενής Πηγή της Μονάδας (Λεξικό : {@see GetSources})
  * <br>Λεξικό : Πρωτογενείς Πηγές Μονάδων {@see GetSources})
@@ -834,7 +825,6 @@ header("Content-Type: text/html; charset=utf-8");
  *    <ul>
  *      <li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
  *      <li>string : <b>registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της Μονάδας</li>
- *      <li>string : <b>gluc</b> : Ο Κωδικός Gluc της Μονάδας</li>
  *      <li>integer : <b>source_id</b> : Ο Κωδικός της Πρωτογενής Πηγή της Μονάδας (Λεξικό : {@see GetSources})</li>
  *      <li>string : <b>source</b> : Η Πρωτογενής Πηγή της Μονάδας (Λεξικό : {@see GetSources})</li>
  *      <li>string : <b>name</b> : Το Όνομα της Μονάδας</li>
@@ -1008,7 +998,6 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws InvalidRegistryNoType {@see ExceptionMessages::InvalidRegistryNoType}
  * @throws InvalidNameType {@see ExceptionMessages::InvalidNameType}
  * @throws InvalidSpecialNameType {@see ExceptionMessages::InvalidSpecialNameType}
- * @throws InvalidGlucType {@see ExceptionMessages::InvalidGlucType}
  * @throws InvalidPhoneNumberType {@see ExceptionMessages::InvalidPhoneNumberType}
  * @throws InvalidEmailType {@see ExceptionMessages::InvalidEmailType}
  * @throws InvalidFaxNumberType {@see ExceptionMessages::InvalidFaxNumberType}
@@ -1050,7 +1039,7 @@ header("Content-Type: text/html; charset=utf-8");
 
 
 function GetUnits(
-    $mm_id, $registry_no, $gluc, $source, $name, $special_name, $state, $region_edu_admin, $edu_admin, $implementation_entity,
+    $mm_id, $registry_no, $source, $name, $special_name, $state, $region_edu_admin, $edu_admin, $implementation_entity,
     $transfer_area, $prefecture, $municipality, $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code,
     $tax_number, $tax_office, $area_team_number, $category, $unit_type, $operation_shift, $legal_character, $orientation_type,
     $special_type, $levels_count, $groups_count, $students_count, $latitude, $longitude, $positioning, $last_update, $last_sync, $comments,
@@ -1255,33 +1244,6 @@ function GetUnits(
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
                 else
                     throw new Exception(ExceptionMessages::InvalidSpecialNameType." : ".$values, ExceptionCodes::InvalidSpecialNameType);
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $gluc
-//======================================================================================================================
-
-        if ( Validator::Exists('gluc', $params) )
-        {
-            $table_name = "units";
-            $table_column_id = "gluc";
-            $table_column_name = "gluc";
-
-            $param = Validator::toArray($gluc);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                else
-                    throw new Exception(ExceptionMessages::InvalidGlucType." : ".$values, ExceptionCodes::InvalidGlucType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -2202,7 +2164,6 @@ function GetUnits(
             $columns = array(
                 "mm_id",
                 "registry_no",
-                "gluc",
                 "name",
                 "special_name",
                 "source_id",
@@ -2270,7 +2231,6 @@ function GetUnits(
         $sqlSelect = "SELECT 
                         units.mm_id, 
                         units.registry_no, 
-                        units.gluc, 
                         units.name, 
                         units.special_name, 
                         sources.source_id, 
@@ -2814,7 +2774,6 @@ function GetUnits(
             $data = array(
                 "mm_id"                    => $row["mm_id"] ? (int)$row["mm_id"] : null,
                 "registry_no"              => $row["registry_no"],
-                "gluc"                     => $row["gluc"],
                 "name"                     => $row["name"],
                 "special_name"             => $row["special_name"],
             //    "active"                   => $row["active"] ? (bool)$row["active"] : null,

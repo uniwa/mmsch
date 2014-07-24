@@ -1191,7 +1191,6 @@ class ExceptionCodes
 
     
     
-    const InvalidGlucType = 500;
     const InvalidSpecialNameType = 500;
 
     const InvalidPhoneNumberType = 500;
