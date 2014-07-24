@@ -7,7 +7,7 @@
 	<title>Function GetUnits | mmsch.teiath.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?2547949507"></script>
+	<script type="text/javascript" src="elementlist.js?1013038547"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -83,6 +83,7 @@
 				<li><a href="function-GetWorkerPositions.html">GetWorkerPositions</a></li>
 				<li><a href="function-GetWorkers.html">GetWorkers</a></li>
 				<li><a href="function-GetWorkerSpecializations.html">GetWorkerSpecializations</a></li>
+				<li><a href="function-StatisticUnits.html">StatisticUnits</a></li>
 			</ul>
 		</div>
 	</div>
@@ -363,9 +364,6 @@ class="php-num">1002553</span>,
 class="php-quote">&quot;registry_no&quot;</span>: <span
 class="php-quote">&quot;9050097&quot;</span>,
    <span
-class="php-quote">&quot;gluc&quot;</span>: <span
-class="php-keyword1">null</span>,
-   <span
 class="php-quote">&quot;name&quot;</span>: <span
 class="php-quote">&quot;100ο ΟΛΟΗΜΕΡΟ ΔΗΜΟΤΙΚΟ ΣΧΟΛΕΙΟ ΑΘΗΝΩΝ&quot;</span>,
    <span
@@ -466,12 +464,6 @@ class="php-quote">&quot;orientation_type_id&quot;</span>: <span
 class="php-keyword1">null</span>,
    <span
 class="php-quote">&quot;orientation_type&quot;</span>: <span
-class="php-keyword1">null</span>,
-   <span
-class="php-quote">&quot;addrspace_type_id&quot;</span>: <span
-class="php-keyword1">null</span>,
-   <span
-class="php-quote">&quot;addrspace_type&quot;</span>: <span
 class="php-keyword1">null</span>,
    <span
 class="php-quote">&quot;operation_shift_id&quot;</span>: <span
@@ -1203,25 +1195,6 @@ mixed{integer|string|array[integer|string]}
 	με το Κωδικό ΥΠΕΠΘ)</li>
 
 	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
-</ul>
-
-		</td>
-	</tr>
-	<tr id="$gluc">
-		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$gluc</var></code></td>
-		<td>
-			 Κωδικός Gluc<br />
-Ο Κωδικός Gluc της Μονάδας<br />
-Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{string|array[string]}
-<ul>
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το κωδικό Gluc)</li>
-
-	<li>array[string] : Σύνολο από Αριθμητικές και
 	Αλφαριθμητικές τιμές διαχωρισμένες με
 	κόμμα</li>
 </ul>
@@ -2055,8 +2028,6 @@ mixed{string|array[string]}
 			<li>string : <b>registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της
 			Μονάδας</li>
 
-			<li>string : <b>gluc</b> : Ο Κωδικός Gluc της Μονάδας</li>
-
 			<li>integer : <b>source_id</b> : Ο Κωδικός της Πρωτογενής
 			Πηγή της Μονάδας (Λεξικό : <code><a href="function-GetSources.html">GetSources()</a></code>)</li>
 
@@ -2414,6 +2385,30 @@ mixed{string|array[string]}
 	<caption>Thrown exceptions summary</caption>
 	<tr>
 		<td class="name"><code>
+			InvalidSearchType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSearchType">ExceptionMessages::<b>InvalidSearchType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingPageValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingPageValue">ExceptionMessages::<b>MissingPageValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageArray">ExceptionMessages::<b>InvalidPageArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
 			InvalidPageNumber
 		</code></td>
 		<td>
@@ -2430,6 +2425,22 @@ mixed{string|array[string]}
 	</tr>
 	<tr>
 		<td class="name"><code>
+			MissingPageSizeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingPageSizeValue">ExceptionMessages::<b>MissingPageSizeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageSizeArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageSizeArray">ExceptionMessages::<b>InvalidPageSizeArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
 			InvalidPageSizeNumber
 		</code></td>
 		<td>
@@ -2442,6 +2453,302 @@ mixed{string|array[string]}
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidPageSizeType">ExceptionMessages::<b>InvalidPageSizeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitMMIDType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitMMIDType">ExceptionMessages::<b>InvalidUnitMMIDType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRegistryNoType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRegistryNoType">ExceptionMessages::<b>InvalidRegistryNoType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidNameType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidNameType">ExceptionMessages::<b>InvalidNameType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSpecialNameType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSpecialNameType">ExceptionMessages::<b>InvalidSpecialNameType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPhoneNumberType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPhoneNumberType">ExceptionMessages::<b>InvalidPhoneNumberType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEmailType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEmailType">ExceptionMessages::<b>InvalidEmailType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidFaxNumberType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidFaxNumberType">ExceptionMessages::<b>InvalidFaxNumberType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPostalCodeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPostalCodeType">ExceptionMessages::<b>InvalidPostalCodeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidStreetAddressType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidStreetAddressType">ExceptionMessages::<b>InvalidStreetAddressType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidTaxNumberType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidTaxNumberType">ExceptionMessages::<b>InvalidTaxNumberType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidAreaTeamNumberType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidAreaTeamNumberType">ExceptionMessages::<b>InvalidAreaTeamNumberType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLevelsCountType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLevelsCountType">ExceptionMessages::<b>InvalidLevelsCountType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidStudentsCountType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidStudentsCountType">ExceptionMessages::<b>InvalidStudentsCountType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidGroupsCountType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidGroupsCountType">ExceptionMessages::<b>InvalidGroupsCountType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLatitudeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLatitudeType">ExceptionMessages::<b>InvalidLatitudeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLongitudeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLongitudeType">ExceptionMessages::<b>InvalidLongitudeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPositioningType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPositioningType">ExceptionMessages::<b>InvalidPositioningType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLastUpdateType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLastUpdateType">ExceptionMessages::<b>InvalidLastUpdateType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLastSyncType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLastSyncType">ExceptionMessages::<b>InvalidLastSyncType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidCommentsType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidCommentsType">ExceptionMessages::<b>InvalidCommentsType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSourceType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSourceType">ExceptionMessages::<b>InvalidSourceType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidStateType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidStateType">ExceptionMessages::<b>InvalidStateType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRegionEduAdminType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRegionEduAdminType">ExceptionMessages::<b>InvalidRegionEduAdminType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEduAdminType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEduAdminType">ExceptionMessages::<b>InvalidEduAdminType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidImplementationEntityType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityType">ExceptionMessages::<b>InvalidImplementationEntityType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidTransferAreaType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidTransferAreaType">ExceptionMessages::<b>InvalidTransferAreaType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPrefectureType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPrefectureType">ExceptionMessages::<b>InvalidPrefectureType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMunicipalityType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityType">ExceptionMessages::<b>InvalidMunicipalityType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEducationLevelType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEducationLevelType">ExceptionMessages::<b>InvalidEducationLevelType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidTaxOfficeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidTaxOfficeType">ExceptionMessages::<b>InvalidTaxOfficeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidCategoryType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidCategoryType">ExceptionMessages::<b>InvalidCategoryType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitTypeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitTypeType">ExceptionMessages::<b>InvalidUnitTypeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOperationShiftType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOperationShiftType">ExceptionMessages::<b>InvalidOperationShiftType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLegalCharacterType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLegalCharacterType">ExceptionMessages::<b>InvalidLegalCharacterType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOrientationTypeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOrientationTypeType">ExceptionMessages::<b>InvalidOrientationTypeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSpecialTypeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSpecialTypeType">ExceptionMessages::<b>InvalidSpecialTypeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOrderType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOrderType">ExceptionMessages::<b>InvalidOrderType</b></a></code>
 		</td>
 	</tr>
 	</table>
