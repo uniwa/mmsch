@@ -1784,7 +1784,7 @@ position: fixed;
 			kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
 
                         // Hide create/edit/delete connection buttons if the user is not FY or not responsible for the unit
-                        if(user.l.split(',').indexOf('ou=partners') == -1 || g_impEnt[0].implementation_entity_id != this.data()[0].implementation_entity_id) {
+                        if(typeof user.l == 'undefined' || user.l.split(',').indexOf('ou=partners') == -1 || g_impEnt[0].implementation_entity_id != this.data()[0].implementation_entity_id) {
                             console.log("user is not fy. hiding connection buttons");
                             $('#unit-'+mm_id+'-preview').find('#btnCreateConnection').parent().hide();
                             $('#unit-'+mm_id+'-preview').find('.detail-section-tab-content[data-template="tmpl-connection-list"] .detail-term.term-head > button').hide();
