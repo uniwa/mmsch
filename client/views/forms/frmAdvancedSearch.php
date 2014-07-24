@@ -586,12 +586,6 @@
                                         <input name="registry_no" type="text" class="k-textbox span12"  />           
                                     </li>
 
-
-                                    <li>
-                                        <label>Κωδικός GLUC</label>
-                                        <input name="gluc" type="text" class="k-textbox span12" />
-                                    </li>
-
                                     <li>
                                         <label>Όνομα Μονάδας</label>
                                         <input name="name" type="text" class="k-textbox span12" />

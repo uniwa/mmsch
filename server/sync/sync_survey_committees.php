@@ -308,7 +308,6 @@ function sync_survey_committees()
                     {
                         $params = array(
                             //"registry_no"           => trim($unit["RegistryNo"]),
-                            //"gluc" => "",
                             "source"                => "SURVEY",
                             "name"                  => $name,
                             //"special_name"          => trim($unit["SpecialName"]),

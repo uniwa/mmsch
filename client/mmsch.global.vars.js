@@ -1,7 +1,6 @@
 var dictionary = {
 		"mm_id": "Κωδικός ΜΜ",
 		"registry_no": "Κωδικός ΥΠΕΠΘ",
-		"gluc": "Κωδικός Gluc",
 		"source": "Πρωτογενής Πηγή",
 		"name": "Ονομασία",
 		"special_name": "Ειδική Ονομασία",

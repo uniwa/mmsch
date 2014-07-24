@@ -707,7 +707,6 @@ class ExceptionMessages
 
 
 
-    const InvalidGlucType = 'Ο Κωδικός Gluc ($gluc) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const InvalidSpecialNameType = 'Το Προσωνύμιο της Μονάδας ($special_name) πρέπει να είναι αλφαριθμητικός';
     
     const InvalidPhoneNumberType = 'Το Τηλέφωνο Επικοινωνίας ($fax_number) πρέπει να είναι αριθμητικό';

@@ -291,12 +291,6 @@ position: fixed;
 									<td class="detail-term">Κωδικός ΥΠΕΠΘ</td>
 									<td class="term-value">#= registry_no #</td>
 								</tr>
-								# if (gluc != null) { #
-								<tr>
-									<td class="detail-term">Κωδικός GLUC</td>
-									<td class="term-value">#= gluc #</td>
-								</tr>
-								# } #
 								# if (edu_admin != null) { #
 								<tr>    
 									<td class="detail-term">Διεύθυνση εκπαίδευσης</td>
@@ -1782,7 +1776,14 @@ position: fixed;
 			
 			kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
 			kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
-			
+
+                        // Hide create/edit/delete connection buttons if the user is not FY or not responsible for the unit
+                        if(typeof user.l == 'undefined' || user.l.split(',').indexOf('ou=partners') == -1 || g_impEnt[0].implementation_entity_id != this.data()[0].implementation_entity_id) {
+                            console.log("user is not fy. hiding connection buttons");
+                            $('#unit-'+mm_id+'-preview').find('#btnCreateConnection').parent().hide();
+                            $('#unit-'+mm_id+'-preview').find('.detail-section-tab-content[data-template="tmpl-connection-list"] .detail-term.term-head > button').hide();
+                        }
+
 			resizeTabContent();
 			
 		});

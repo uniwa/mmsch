@@ -95,9 +95,6 @@ $isAnonymous = @ $_GET['is_anonymous'];
 
 										<dt>Κωδικός ΥΠΕΠΘ</dt>
 										<dd ><div class="col-md-12">#= registry_no #</div></dd>
-
-										<dt>Κωδικός GLUC</dt>
-										<dd ><div class="col-md-12">#= gluc #</div></dd>
 										
 										<dt>Διεύθυνση εκπαίδευσης</dt>
 										<dd><div class="col-md-12">#= edu_admin #</div></dd>
@@ -186,13 +183,6 @@ $isAnonymous = @ $_GET['is_anonymous'];
 													<input type="text" name="registry_no" class="k-textbox col-md-12"  >
 										        </div>
 	    									</div>
-	    
-		    								<div class="col-md-2">
-		        								<div class="form-group">
-													<label for="" class="control-label">Κωδικός GLUC</label>
-													<input type="text" name="gluc" class="k-textbox col-md-12"  >
-										        </div>
-		    								</div>
 		    								
 		    								<div class="col-md-2">
 		    									<div class="form-group">
@@ -1066,12 +1056,6 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					            {
 					                field: "registry_no",
 					                title: "Κωδικός ΥΠΕΠΘ",
-									width: "80px"
-					            },
-					            {
-					                field: "gluc",
-					                title: "Κωδικός Gluc",
-					                hidden: true,
 									width: "80px"
 					            },
 					            {

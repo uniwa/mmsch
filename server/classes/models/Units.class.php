@@ -10,14 +10,13 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 	private static $CLASS_NAME='Units';
 	const SQL_IDENTIFIER_QUOTE='`';
 	const SQL_TABLE_NAME='units';
-	const SQL_INSERT='INSERT INTO `units` (`mm_id`,`registry_no`,`gluc`,`source_id`,`category_id`,`state_id`,`name`,`special_name`,`area_team_number`,`street_address`,`postal_code`,`fax_number`,`phone_number`,`email`,`students_count`,`groups_count`,`levels_count`,`last_update`,`tax_number`,`comments`,`last_sync`,`region_edu_admin_id`,`edu_admin_id`,`transfer_area_id`,`prefecture_id`,`municipality_id`,`education_level_id`,`unit_type_id`,`orientation_type_id`,`operation_shift_id`,`legal_character_id`,`implementation_entity_id`,`tax_office_id`,`special_type_id`,`latitude`,`longitude`,`positioning`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-	const SQL_INSERT_AUTOINCREMENT='INSERT INTO `units` (`registry_no`,`gluc`,`source_id`,`category_id`,`state_id`,`name`,`special_name`,`area_team_number`,`street_address`,`postal_code`,`fax_number`,`phone_number`,`email`,`students_count`,`groups_count`,`levels_count`,`last_update`,`tax_number`,`comments`,`last_sync`,`region_edu_admin_id`,`edu_admin_id`,`transfer_area_id`,`prefecture_id`,`municipality_id`,`education_level_id`,`unit_type_id`,`orientation_type_id`,`operation_shift_id`,`legal_character_id`,`implementation_entity_id`,`tax_office_id`,`special_type_id`,`latitude`,`longitude`,`positioning`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-	const SQL_UPDATE='UPDATE `units` SET `mm_id`=?,`registry_no`=?,`gluc`=?,`source_id`=?,`category_id`=?,`state_id`=?,`name`=?,`special_name`=?,`area_team_number`=?,`street_address`=?,`postal_code`=?,`fax_number`=?,`phone_number`=?,`email`=?,`students_count`=?,`groups_count`=?,`levels_count`=?,`last_update`=?,`tax_number`=?,`comments`=?,`last_sync`=?,`region_edu_admin_id`=?,`edu_admin_id`=?,`transfer_area_id`=?,`prefecture_id`=?,`municipality_id`=?,`education_level_id`=?,`unit_type_id`=?,`orientation_type_id`=?,`operation_shift_id`=?,`legal_character_id`=?,`implementation_entity_id`=?,`tax_office_id`=?,`special_type_id`=?,`latitude`=?,`longitude`=?,`positioning`=? WHERE `mm_id`=?';
+	const SQL_INSERT='INSERT INTO `units` (`mm_id`,`registry_no`,`source_id`,`category_id`,`state_id`,`name`,`special_name`,`area_team_number`,`street_address`,`postal_code`,`fax_number`,`phone_number`,`email`,`students_count`,`groups_count`,`levels_count`,`last_update`,`tax_number`,`comments`,`last_sync`,`region_edu_admin_id`,`edu_admin_id`,`transfer_area_id`,`prefecture_id`,`municipality_id`,`education_level_id`,`unit_type_id`,`orientation_type_id`,`operation_shift_id`,`legal_character_id`,`implementation_entity_id`,`tax_office_id`,`special_type_id`,`latitude`,`longitude`,`positioning`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+	const SQL_INSERT_AUTOINCREMENT='INSERT INTO `units` (`registry_no`,`source_id`,`category_id`,`state_id`,`name`,`special_name`,`area_team_number`,`street_address`,`postal_code`,`fax_number`,`phone_number`,`email`,`students_count`,`groups_count`,`levels_count`,`last_update`,`tax_number`,`comments`,`last_sync`,`region_edu_admin_id`,`edu_admin_id`,`transfer_area_id`,`prefecture_id`,`municipality_id`,`education_level_id`,`unit_type_id`,`orientation_type_id`,`operation_shift_id`,`legal_character_id`,`implementation_entity_id`,`tax_office_id`,`special_type_id`,`latitude`,`longitude`,`positioning`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+	const SQL_UPDATE='UPDATE `units` SET `mm_id`=?,`registry_no`=?,`source_id`=?,`category_id`=?,`state_id`=?,`name`=?,`special_name`=?,`area_team_number`=?,`street_address`=?,`postal_code`=?,`fax_number`=?,`phone_number`=?,`email`=?,`students_count`=?,`groups_count`=?,`levels_count`=?,`last_update`=?,`tax_number`=?,`comments`=?,`last_sync`=?,`region_edu_admin_id`=?,`edu_admin_id`=?,`transfer_area_id`=?,`prefecture_id`=?,`municipality_id`=?,`education_level_id`=?,`unit_type_id`=?,`orientation_type_id`=?,`operation_shift_id`=?,`legal_character_id`=?,`implementation_entity_id`=?,`tax_office_id`=?,`special_type_id`=?,`latitude`=?,`longitude`=?,`positioning`=? WHERE `mm_id`=?';
 	const SQL_SELECT_PK='SELECT * FROM `units` WHERE `mm_id`=?';
 	const SQL_DELETE_PK='DELETE FROM `units` WHERE `mm_id`=?';
 	const FIELD_MM_ID=-28527397;
 	const FIELD_REGISTRY_NO=103308548;
-	const FIELD_GLUC=-1248025262;
 	const FIELD_SOURCE_ID=-779895808;
 	const FIELD_CATEGORY_ID=-532804611;
 	const FIELD_STATE_ID=100900648;
@@ -57,7 +56,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 	private static $FIELD_NAMES=array(
 		self::FIELD_MM_ID=>'mm_id',
 		self::FIELD_REGISTRY_NO=>'registry_no',
-		self::FIELD_GLUC=>'gluc',
 		self::FIELD_SOURCE_ID=>'source_id',
 		self::FIELD_CATEGORY_ID=>'category_id',
 		self::FIELD_STATE_ID=>'state_id',
@@ -95,7 +93,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 	private static $PROPERTY_NAMES=array(
 		self::FIELD_MM_ID=>'mmId',
 		self::FIELD_REGISTRY_NO=>'registryNo',
-		self::FIELD_GLUC=>'gluc',
 		self::FIELD_SOURCE_ID=>'sourceId',
 		self::FIELD_CATEGORY_ID=>'categoryId',
 		self::FIELD_STATE_ID=>'stateId',
@@ -133,7 +130,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 	private static $PROPERTY_TYPES=array(
 		self::FIELD_MM_ID=>Db2PhpEntity::PHP_TYPE_INT,
 		self::FIELD_REGISTRY_NO=>Db2PhpEntity::PHP_TYPE_STRING,
-		self::FIELD_GLUC=>Db2PhpEntity::PHP_TYPE_STRING,
 		self::FIELD_SOURCE_ID=>Db2PhpEntity::PHP_TYPE_INT,
 		self::FIELD_CATEGORY_ID=>Db2PhpEntity::PHP_TYPE_INT,
 		self::FIELD_STATE_ID=>Db2PhpEntity::PHP_TYPE_INT,
@@ -171,7 +167,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 	private static $FIELD_TYPES=array(
 		self::FIELD_MM_ID=>array(Db2PhpEntity::JDBC_TYPE_INTEGER,10,0,false),
 		self::FIELD_REGISTRY_NO=>array(Db2PhpEntity::JDBC_TYPE_VARCHAR,11,0,true),
-		self::FIELD_GLUC=>array(Db2PhpEntity::JDBC_TYPE_VARCHAR,255,0,true),
 		self::FIELD_SOURCE_ID=>array(Db2PhpEntity::JDBC_TYPE_INTEGER,10,0,true),
 		self::FIELD_CATEGORY_ID=>array(Db2PhpEntity::JDBC_TYPE_INTEGER,10,0,true),
 		self::FIELD_STATE_ID=>array(Db2PhpEntity::JDBC_TYPE_INTEGER,10,0,true),
@@ -209,7 +204,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 	private static $DEFAULT_VALUES=array(
 		self::FIELD_MM_ID=>null,
 		self::FIELD_REGISTRY_NO=>null,
-		self::FIELD_GLUC=>null,
 		self::FIELD_SOURCE_ID=>null,
 		self::FIELD_CATEGORY_ID=>null,
 		self::FIELD_STATE_ID=>null,
@@ -246,7 +240,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 		self::FIELD_POSITIONING=>null);
 	private $mmId;
 	private $registryNo;
-	private $gluc;
 	private $sourceId;
 	private $categoryId;
 	private $stateId;
@@ -326,29 +319,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 	 */
 	public function getRegistryNo() {
 		return $this->registryNo;
-	}
-
-	/**
-	 * set value for gluc 
-	 *
-	 * type:VARCHAR,size:255,default:null,index,nullable
-	 *
-	 * @param mixed $gluc
-	 */
-	public function setGluc($gluc) {
-		$this->notifyChanged(self::FIELD_GLUC,$this->gluc,$gluc);
-		$this->gluc=$gluc;
-	}
-
-	/**
-	 * get value for gluc 
-	 *
-	 * type:VARCHAR,size:255,default:null,index,nullable
-	 *
-	 * @return mixed
-	 */
-	public function getGluc() {
-		return $this->gluc;
 	}
 
 	/**
@@ -1246,7 +1216,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 		return array(
 			self::FIELD_MM_ID=>$this->getMmId(),
 			self::FIELD_REGISTRY_NO=>$this->getRegistryNo(),
-			self::FIELD_GLUC=>$this->getGluc(),
 			self::FIELD_SOURCE_ID=>$this->getSourceId(),
 			self::FIELD_CATEGORY_ID=>$this->getCategoryId(),
 			self::FIELD_STATE_ID=>$this->getStateId(),
@@ -1552,7 +1521,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 	public function assignByHash($result) {
 		$this->setMmId($result['mm_id']);
 		$this->setRegistryNo($result['registry_no']);
-		$this->setGluc($result['gluc']);
 		$this->setSourceId($result['source_id']);
 		$this->setCategoryId($result['category_id']);
 		$this->setStateId($result['state_id']);
@@ -1623,7 +1591,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 	protected function bindValues(PDOStatement &$stmt) {
 		$stmt->bindValue(1,$this->getMmId());
 		$stmt->bindValue(2,$this->getRegistryNo());
-		$stmt->bindValue(3,$this->getGluc());
 		$stmt->bindValue(4,$this->getSourceId());
 		$stmt->bindValue(5,$this->getCategoryId());
 		$stmt->bindValue(6,$this->getStateId());
@@ -1671,7 +1638,6 @@ class Units extends Db2PhpEntityBase implements Db2PhpEntityModificationTracking
 		if (null===$this->getMmId()) {
 			$stmt=self::prepareStatement($db,self::SQL_INSERT_AUTOINCREMENT);
 			$stmt->bindValue(1,$this->getRegistryNo());
-			$stmt->bindValue(2,$this->getGluc());
 			$stmt->bindValue(3,$this->getSourceId());
 			$stmt->bindValue(4,$this->getCategoryId());
 			$stmt->bindValue(5,$this->getStateId());

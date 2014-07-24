@@ -305,7 +305,6 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 $lastUpdate = \DateTime::createFromFormat('Y-m-d\TH:i:s.u', trim($unit["LastUpdated"]));
                 $params = array(
                     "registry_no"           => trim($unit["RegistryNo"]),
-                    //"gluc" => "",
                     "source"                => "MySchool",
                     "name"                  => trim($unit["Name"]),
                     "special_name"          => trim($unit["SpecialName"]),
@@ -521,6 +520,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
     private function isIgnored($unit) {
         $ignoredRegistryNos = array(
+            '0521402', // ΕΙΔΙΚΟ ΔΗΜΟΤΙΚΟ ΣΧΟΛΕΙΟ ΚΕΡΚΥΡΑ - ΕΙΔΙΚΟ ΔΗΜΟΤΙΚΟ ΣΧΟΛΕΙΟ ΚΩΦΩΝ ΚΑΙ ΒΑΡΗΚΟΩΝ -ΑΙΜΙΛΙΟΣ
             '3108010',
             '00106000',
             '00106001',

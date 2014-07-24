@@ -22,15 +22,6 @@ class Monades
     /**
      * @var string
      *
-     * @ORM\Column(name="GLUC", type="string", length=20, nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $gluc;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="DSDE_ID", type="string", length=10, nullable=true)
      */
     private $dsdeId;
@@ -776,13 +767,6 @@ class Monades
      * @ORM\Column(name="KATARGHSH", type="boolean", nullable=true)
      */
     private $katarghsh;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="SYGXONEYSH_GLUC", type="string", length=20, nullable=true)
-     */
-    private $sygxoneyshGluc;
 
     /**
      * @var boolean

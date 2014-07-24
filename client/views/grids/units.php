@@ -65,9 +65,6 @@
 
                                 <dt>Κωδικός ΥΠΕΠΘ</dt>
                                 <dd ><div class="span12">#= registry_no #</div></dd>
-
-                                <dt>Κωδικός GLUC</dt>
-                                <dd ><div class="span12">#= gluc #</div></dd>
                                 
                                 <dt>Διεύθυνση εκπαίδευσης</dt>
                                 <dd><div class="span12">#= edu_admin #</div></dd>
@@ -381,14 +378,6 @@
                     field: "registry_no",
                     title: "Κωδικός ΥΠΕΠΘ",
                     width: "15%",
-                    attributes: {
-                        'class': 'highlighted'
-                    }
-                },
-                {
-                    field: "gluc",
-                    title: "Κωδικός Gluc",
-                    hidden: true,
                     attributes: {
                         'class': 'highlighted'
                     }
