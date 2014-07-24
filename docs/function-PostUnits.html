@@ -7,7 +7,7 @@
 	<title>Function PostUnits | mmsch.teiath.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?2547949507"></script>
+	<script type="text/javascript" src="elementlist.js?1013038547"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -125,7 +125,6 @@ class="php-quote">&quot;Accept: application/json&quot;</span> \
   -d <span
 class="php-quote">'{&quot;mm_id&quot; : &quot;value&quot;, \
        &quot;registry_no&quot; : &quot;value&quot;, \
-       &quot;gluc&quot; : &quot;value&quot;, \
        &quot;source&quot; : &quot;value&quot;, \
        &quot;name&quot; : &quot;value&quot;, \
        &quot;category&quot; : &quot;value&quot;, \
@@ -146,9 +145,6 @@ class="php-quote">&quot;mm_id&quot;</span> : <span
 class="php-quote">&quot;value&quot;</span>,
                                  <span
 class="php-quote">&quot;registry_no&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-                                 <span
-class="php-quote">&quot;gluc&quot;</span> : <span
 class="php-quote">&quot;value&quot;</span>,
                                  <span
 class="php-quote">&quot;source&quot;</span> : <span
@@ -211,9 +207,6 @@ class="php-quote">&quot;mm_id&quot;</span> =&gt; <span
 class="php-quote">&quot;value&quot;</span>,
      <span
 class="php-quote">&quot;registry_no&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-     <span
-class="php-quote">&quot;gluc&quot;</span> =&gt; <span
 class="php-quote">&quot;value&quot;</span>,
      <span
 class="php-quote">&quot;source&quot;</span> =&gt; <span
@@ -289,9 +282,6 @@ class="php-quote">&quot;value&quot;</span>,
 class="php-quote">&quot;registry_no&quot;</span> : <span
 class="php-quote">&quot;value&quot;</span>,
            <span
-class="php-quote">&quot;gluc&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
 class="php-quote">&quot;source&quot;</span> : <span
 class="php-quote">&quot;value&quot;</span>,
            <span
@@ -346,21 +336,13 @@ class="php-keyword2">log</span>(data);
 Το πεδίο είναι υποχρεωτικό
 		</td>
 	</tr>
-	<tr id="$gluc">
-		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$gluc</var></code></td>
-		<td>
-			$registry_no Κωδικός ΥΠΕΠΘ<br />
-Ο Κωδικός ΥΠΕΠΘ της Μονάδας<br />
-Το πεδίο είναι υποχρεωτικό
-		</td>
-	</tr>
 	<tr id="$source">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$source</var></code></td>
 		<td>
-			$gluc Κωδικός Gluc<br />
-Ο Κωδικός Gluc της Μονάδας
+			$registry_no Κωδικός ΥΠΕΠΘ<br />
+Ο Κωδικός ΥΠΕΠΘ της Μονάδας<br />
+Το πεδίο είναι υποχρεωτικό
 		</td>
 	</tr>
 	<tr id="$name">
@@ -431,29 +413,8 @@ class="php-keyword2">log</span>(data);
 		</td>
 	</tr>
 	<tr id="$transfer_area">
-		<td class="name"><code>boolean</code></td>
-		<td class="value"><code><var>$transfer_area</var></code></td>
-		<td>
-			$active Ενεργή/Ανενεργή<br />
-Καθορίζει αν η Μονάδα είναι Ενεργή ή
-Ανενεργή<br />
-Το πεδίο αυτό συνδυάζεται μαζί με το πεδίο
-<b>$suspended</b>
-		</td>
-	</tr>
-	<tr id="$prefecture">
-		<td class="name"><code>boolean</code></td>
-		<td class="value"><code><var>$prefecture</var></code></td>
-		<td>
-			$suspended Αναστολή<br />
-Καθορίζει αν η Μονάδα είναι σε Αναστολή<br />
-Το πεδίο αυτό συνδυάζεται μαζί με το πεδίο
-<b>$active</b>
-		</td>
-	</tr>
-	<tr id="$municipality">
 		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$municipality</var></code></td>
+		<td class="value"><code><var>$transfer_area</var></code></td>
 		<td>
 			$region_edu_admin Περιφέρεια<br />
 Η Περιφέρεια της Μονάδας (Λεξικό : <code><a href="function-GetRegionEduAdmins.html">GetRegionEduAdmins()</a></code>)<br />
@@ -462,9 +423,9 @@ class="php-keyword2">log</span>(data);
 την ονομασία
 		</td>
 	</tr>
-	<tr id="$education_level">
+	<tr id="$prefecture">
 		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$education_level</var></code></td>
+		<td class="value"><code><var>$prefecture</var></code></td>
 		<td>
 			$edu_admin Διεύθυνση Εκπαίδευσης<br />
 Η Διεύθυνση Εκπαίδευσης της Μονάδας (Λεξικό
@@ -474,12 +435,34 @@ class="php-keyword2">log</span>(data);
 την ονομασία
 		</td>
 	</tr>
+	<tr id="$municipality">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$municipality</var></code></td>
+		<td>
+			$implementation_entity Φοράς Υλοποίησης<br />
+Ο Φοράς Υλοποίησης της μονάδας (Λεξικό : <code><a href="function-GetImplementationEntities.html">GetImplementationEntities()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία
+		</td>
+	</tr>
+	<tr id="$education_level">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$education_level</var></code></td>
+		<td>
+			$transfer_area Περιοχή Μετάθεσης<br />
+Η Περιοχή Μετάθεσης της Μονάδας (Λεξικό : <code><a href="function-GetTransferAreas.html">GetTransferAreas()</a></code>)<br />
+Αν η τιμή της παραμέτρου είναι αριθμητική η
+αναζήτηση γίνεται με τον κωδικό αλλιώς με
+την ονομασία
+		</td>
+	</tr>
 	<tr id="$phone_number">
 		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$phone_number</var></code></td>
 		<td>
-			$implementation_entity Φοράς Υλοποίησης<br />
-Ο Φοράς Υλοποίησης της μονάδας (Λεξικό : <code><a href="function-GetImplementationEntities.html">GetImplementationEntities()</a></code>)<br />
+			$municipality Δήμος ΟΤΑ<br />
+Ο Δήμος ΟΤΑ της Μονάδας (Λεξικό : <code><a href="function-GetMunicipalities.html">GetMunicipalities()</a></code>)<br />
 Αν η τιμή της παραμέτρου είναι αριθμητική η
 αναζήτηση γίνεται με τον κωδικό αλλιώς με
 την ονομασία
@@ -489,8 +472,8 @@ class="php-keyword2">log</span>(data);
 		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$email</var></code></td>
 		<td>
-			$transfer_area Περιοχή Μετάθεσης<br />
-Η Περιοχή Μετάθεσης της Μονάδας (Λεξικό : <code><a href="function-GetTransferAreas.html">GetTransferAreas()</a></code>)<br />
+			$prefecture Νομός<br />
+Ο Νομός της Μονάδας (Λεξικό : <code><a href="function-GetPrefectures.html">GetPrefectures()</a></code>)<br />
 Αν η τιμή της παραμέτρου είναι αριθμητική η
 αναζήτηση γίνεται με τον κωδικό αλλιώς με
 την ονομασία
@@ -500,28 +483,6 @@ class="php-keyword2">log</span>(data);
 		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$fax_number</var></code></td>
 		<td>
-			$municipality Δήμος ΟΤΑ<br />
-Ο Δήμος ΟΤΑ της Μονάδας (Λεξικό : <code><a href="function-GetMunicipalities.html">GetMunicipalities()</a></code>)<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία
-		</td>
-	</tr>
-	<tr id="$street_address">
-		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$street_address</var></code></td>
-		<td>
-			$prefecture Νομός<br />
-Ο Νομός της Μονάδας (Λεξικό : <code><a href="function-GetPrefectures.html">GetPrefectures()</a></code>)<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία
-		</td>
-	</tr>
-	<tr id="$postal_code">
-		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$postal_code</var></code></td>
-		<td>
 			$unit_type Τύπος Μονάδας<br />
 Ο Τύπος της Μονάδας (Λεξικό : <code><a href="function-GetUnitTypes.html">GetUnitTypes()</a></code>)<br />
 Αν η τιμή της παραμέτρου είναι αριθμητική η
@@ -530,9 +491,9 @@ class="php-keyword2">log</span>(data);
 Το πεδίο είναι υποχρεωτικό
 		</td>
 	</tr>
-	<tr id="$tax_number">
+	<tr id="$street_address">
 		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$tax_number</var></code></td>
+		<td class="value"><code><var>$street_address</var></code></td>
 		<td>
 			$operation_shift Ωράριο Λειτουργίας<br />
 Το Ωράριο Λειτουργίας της Μονάδας (Λεξικό :
@@ -542,9 +503,9 @@ class="php-keyword2">log</span>(data);
 την ονομασία
 		</td>
 	</tr>
-	<tr id="$tax_office">
+	<tr id="$postal_code">
 		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$tax_office</var></code></td>
+		<td class="value"><code><var>$postal_code</var></code></td>
 		<td>
 			$legal_character Νομικός Χαρακτήρας<br />
 Ο Νομικός Χαρακτήρας της Μονάδας (Λεξικό :
@@ -554,9 +515,9 @@ class="php-keyword2">log</span>(data);
 την ονομασία
 		</td>
 	</tr>
-	<tr id="$area_team_number">
+	<tr id="$tax_number">
 		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$area_team_number</var></code></td>
+		<td class="value"><code><var>$tax_number</var></code></td>
 		<td>
 			$orientation_type Προσανατολισμός<br />
 Ο Σχολικός Προσανατολισμός της Μονάδας
@@ -566,9 +527,9 @@ class="php-keyword2">log</span>(data);
 την ονομασία
 		</td>
 	</tr>
-	<tr id="$category">
+	<tr id="$tax_office">
 		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$category</var></code></td>
+		<td class="value"><code><var>$tax_office</var></code></td>
 		<td>
 			$special_type Ειδικός Χαρακτηρισμός<br />
 Καθορίζει αν η Μονάδα έχει Ειδικό
@@ -578,81 +539,81 @@ class="php-keyword2">log</span>(data);
 την ονομασία
 		</td>
 	</tr>
-	<tr id="$unit_type">
+	<tr id="$area_team_number">
 		<td class="name"><code>integer</code></td>
-		<td class="value"><code><var>$unit_type</var></code></td>
+		<td class="value"><code><var>$area_team_number</var></code></td>
 		<td>
 			$postal_code Ταχυδρομικός Κώδικας<br />
 Ο Ταχυδρομικός Κώδικας της Μονάδας
 		</td>
 	</tr>
-	<tr id="$operation_shift">
+	<tr id="$category">
 		<td class="name"><code>integer</code></td>
-		<td class="value"><code><var>$operation_shift</var></code></td>
+		<td class="value"><code><var>$category</var></code></td>
 		<td>
 			$area_team_number Ομάδα Σχολείων<br />
 Η Ομάδα Σχολείων της Μονάδας (1η έως 40η)
 		</td>
 	</tr>
-	<tr id="$legal_character">
+	<tr id="$unit_type">
 		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$legal_character</var></code></td>
+		<td class="value"><code><var>$unit_type</var></code></td>
 		<td>
 			$email Ηλεκτρονική Αλληλογραφία<br />
 Η Ηλεκτρονική Αλληλογραφία της Μονάδας
+		</td>
+	</tr>
+	<tr id="$operation_shift">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$operation_shift</var></code></td>
+		<td>
+			$fax_number Αριθμός FAX<br />
+Ο Αριθμός Τηλεομοιοτυπίας (φαξ) της Μονάδας
+		</td>
+	</tr>
+	<tr id="$legal_character">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$legal_character</var></code></td>
+		<td>
+			$levels_count Πλήθος Τάξεων<br />
+Το Πλήθος των Τάξεων της Μονάδας
 		</td>
 	</tr>
 	<tr id="$orientation_type">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$orientation_type</var></code></td>
 		<td>
-			$fax_number Αριθμός FAX<br />
-Ο Αριθμός Τηλεομοιοτυπίας (φαξ) της Μονάδας
-		</td>
-	</tr>
-	<tr id="$special_type">
-		<td class="name"><code>integer</code></td>
-		<td class="value"><code><var>$special_type</var></code></td>
-		<td>
-			$levels_count Πλήθος Τάξεων<br />
-Το Πλήθος των Τάξεων της Μονάδας
-		</td>
-	</tr>
-	<tr id="$levels_count">
-		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$levels_count</var></code></td>
-		<td>
 			$street_address Οδός, Αριθμός<br />
 Η Διεύθυνση (Οδός και Αριθμός) της Μονάδας
 		</td>
 	</tr>
-	<tr id="$groups_count">
+	<tr id="$special_type">
 		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$groups_count</var></code></td>
+		<td class="value"><code><var>$special_type</var></code></td>
 		<td>
 			$phone_number Τηλέφωνο Επικοινωνίας<br />
 Το Τηλέφωνο Επικοινωνίας της Μονάδας
 		</td>
 	</tr>
-	<tr id="$students_count">
+	<tr id="$levels_count">
 		<td class="name"><code>integer</code></td>
-		<td class="value"><code><var>$students_count</var></code></td>
+		<td class="value"><code><var>$levels_count</var></code></td>
 		<td>
 			$students_sum Πλήθος Μαθητών<br />
 Το Πλήθος των Μαθητών της Μονάδας
 		</td>
 	</tr>
-	<tr id="$latitude">
+	<tr id="$groups_count">
 		<td class="name"><code>integer</code></td>
-		<td class="value"><code><var>$latitude</var></code></td>
+		<td class="value"><code><var>$groups_count</var></code></td>
 		<td>
-			$groups_count Πλήθος Τμημάτων<br />
+			 Πλήθος Τμημάτων<br />
 Το Πλήθος των Τμημάτων της Μονάδας
 		</td>
 	</tr>
-	<tr id="$longitude">
+	<tr id="$students_count">
 		<td class="name"><code>datetime</code></td>
-		<td class="value"><code><var>$longitude</var></code></td>
+		<td class="value"><code><var>$students_count</var></code></td>
 		<td>
 			$last_update Ημερομηνία Τελευταίας Ενημέρωσης<br
 />
@@ -660,17 +621,17 @@ class="php-keyword2">log</span>(data);
 Μονάδας
 		</td>
 	</tr>
-	<tr id="$positioning">
+	<tr id="$latitude">
 		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$positioning</var></code></td>
+		<td class="value"><code><var>$latitude</var></code></td>
 		<td>
 			$tax_number Αριθμός Φορολογικού Μητρώου<br />
 Ο Αριθμός Φορολογικού Μητρώου της Μονάδας
 		</td>
 	</tr>
-	<tr id="$last_update">
+	<tr id="$longitude">
 		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$last_update</var></code></td>
+		<td class="value"><code><var>$longitude</var></code></td>
 		<td>
 			$tax_office Δ.Ο.Υ.<br />
 Η Δ.Ο.Υ. της Μονάδας<br />
@@ -679,28 +640,44 @@ class="php-keyword2">log</span>(data);
 την ονομασία
 		</td>
 	</tr>
+	<tr id="$positioning">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$positioning</var></code></td>
+		<td>
+			$comments Παρατηρήσεις / Σχόλια<br />
+Παρατηρήσεις / Σχόλια σχετικά με τη Μονάδα
+		</td>
+	</tr>
+	<tr id="$last_update">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$last_update</var></code></td>
+		<td>
+			$latitude Γεωγραφικό Πλάτος<br />
+Το Γεωγραφικό Πλάτος της Μονάδας
+		</td>
+	</tr>
 	<tr id="$last_sync">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$last_sync</var></code></td>
 		<td>
-			$comments Παρατηρήσεις / Σχόλια<br />
-Παρατηρήσεις / Σχόλια σχετικά με τη Μονάδα
+			$longitude Γεωγραφικό Μήκος<br />
+Το Γεωγραφικό Μήκος της Μονάδας
 		</td>
 	</tr>
 	<tr id="$comments">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$comments</var></code></td>
 		<td>
-			$latitude Γεωγραφικό Πλάτος<br />
-Το Γεωγραφικό Πλάτος της Μονάδας
+			$positioning Κτηριακή Θέση<br />
+Η Κτηριακή Θέση της Μονάδας
 		</td>
 	</tr>
 	<tr id="$fek">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$fek</var></code></td>
 		<td>
-			$longitude Γεωγραφικό Μήκος<br />
-Το Γεωγραφικό Μήκος της Μονάδας
+			 Φ.Ε.Κ.<br />
+Το Φ.Ε.Κ. (Αλλαγής Κατάστασης) της Μονάδας
 		</td>
 	</tr>
 	</table>
