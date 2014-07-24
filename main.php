@@ -590,7 +590,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
     			<i class="fa fa-user fa-1x"></i>&nbsp;&nbsp;<span id="vUsername"></span>&nbsp;&nbsp;<span class="caret"></span>
     		</button>
   			<ul class="dropdown-menu" role="menu">
-    			<li><a href="/hlp/user_guide_frontend_ver2.docx" target="_blank"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
+    			<li><a href="/hlp/user_guide_frontend_ver3.pdf" target="_blank"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
     			<li><a href="/docs/package-GET.html" target="_blank">Οδηγός API</a></li>
     			<li><a href="http://helpdesk.sch.gr/?category_id=9508" target="_blank">Αναφορά Σφαλμάτων</a></li>
     			<?php if (!$isAnonymous) { ?>
