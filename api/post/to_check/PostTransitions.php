@@ -14,7 +14,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * 
  * Η κλήση της μεθόδου μπορεί να γίνει με POST της παραμέτρου {'method': 'PostTransitions'} στη διεύθυνση : 
- * <br> http://localhost/~khitas/mmsch/server/api.php 
+ * <br> http://mm.sch.gr/api/transitions.php 
  *
  * 
  * 
