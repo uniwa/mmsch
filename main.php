@@ -420,7 +420,7 @@ $(document).ready(function() {
 	}
 
 	// Build logout link
-	$("#lnkLogout").attr("href", "http://" + g_casUrl + "/logout");
+	$("#lnkLogout").attr("href", "main.php?logout=true");
 
 	if (typeof user.uid === "undefined"){
 		$("#vUsername").html("<strong>Δημόσια Πρόσβαση</strong>");
