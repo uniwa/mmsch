@@ -521,6 +521,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
     private function isIgnored($unit) {
         $ignoredRegistryNos = array(
+            '0521402', // ΕΙΔΙΚΟ ΔΗΜΟΤΙΚΟ ΣΧΟΛΕΙΟ ΚΕΡΚΥΡΑ - ΕΙΔΙΚΟ ΔΗΜΟΤΙΚΟ ΣΧΟΛΕΙΟ ΚΩΦΩΝ ΚΑΙ ΒΑΡΗΚΟΩΝ -ΑΙΜΙΛΙΟΣ
             '3108010',
             '00106000',
             '00106001',
