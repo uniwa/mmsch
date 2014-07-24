@@ -14,7 +14,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * Η μέθοδος αυτή χρησιμοποιείται για την Καταχώρηση του λεξικού των Κατηγοριών.
  * <br>Η κλήση της μπορεί να γίνει μέσω της μεθόδου POST στην ηλεκτρονική διεύθυνση:
- * <br> http://mmsch.teiath.gr/api/categories <br>
+ * <br> http://mm.sch.gr/api/categories <br>
  *
  * <br>
  *
@@ -46,7 +46,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * <a id="cURL"></a>Παράδειγμα κλήσης της μεθόδου με <b>cURL</b> (console) :
  * <code>
- *    curl -X POST http://mmsch.teiath.gr/api/categories \
+ *    curl -X POST http://mm.sch.gr/api/categories \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password \
@@ -62,7 +62,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    var params = JSON.stringify({"name" : "ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ"});
  *
  *    var http = new XMLHttpRequest();
- *    http.open("POST", "http://mmsch.teiath.gr/api/categories");
+ *    http.open("POST", "http://mm.sch.gr/api/categories");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -91,7 +91,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * $params = array("name" => "ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ");
  *
- * $curl = curl_init("http://mmsch.teiath.gr/api/categories");
+ * $curl = curl_init("http://mm.sch.gr/api/categories");
  *
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -113,7 +113,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'POST',
- *        url: 'http://mmsch.teiath.gr/api/categories',
+ *        url: 'http://mm.sch.gr/api/categories',
  *        dataType: "json",
  *        data: {
  *            "name" : "ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ"

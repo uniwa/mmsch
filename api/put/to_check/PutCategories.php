@@ -14,7 +14,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * Η μέθοδος αυτή χρησιμοποιείται για την Ενημέρωση του λεξικού των Κατηγοριών.
  * <br>Η κλήση της μπορεί να γίνει μέσω της μεθόδου PUT στην ηλεκτρονική διεύθυνση:
- * <br> http://mmsch.teiath.gr/api/categories <br>
+ * <br> http://mm.sch.gr/api/categories <br>
  *
  * <br>
  *
@@ -46,7 +46,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * <a id="cURL"></a>Παράδειγμα κλήσης της μεθόδου με <b>cURL</b> (console) :
  * <code>
- *    curl -X PUT http://mmsch.teiath.gr/api/categories \
+ *    curl -X PUT http://mm.sch.gr/api/categories \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password \
@@ -62,7 +62,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    var params = JSON.stringify({"category_id" : "1", "name" : "ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ"});
  *
  *    var http = new XMLHttpRequest();
- *    http.open("PUT", "http://mmsch.teiath.gr/api/categories");
+ *    http.open("PUT", "http://mm.sch.gr/api/categories");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -91,7 +91,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * $params = array("category_id" => "1", "name" => "ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ");
  *
- * $curl = curl_init("http://mmsch.teiath.gr/api/categories");
+ * $curl = curl_init("http://mm.sch.gr/api/categories");
  *
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -113,7 +113,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'PUT',
- *        url: 'http://mmsch.teiath.gr/api/categories',
+ *        url: 'http://mm.sch.gr/api/categories',
  *        dataType: "json",
  *        data: {
  *            "category_id" : "1",

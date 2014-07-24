@@ -17,7 +17,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
- * <br> http://mmsch.teiath.gr/api/unit_network_objects
+ * <br> http://mm.sch.gr/api/unit_network_objects
  *
  *
  * Τα αποτελέσματα είναι ταξινομημένα ως προς τον Κωδικό των Δικτυακών Αντικειμένων της Μονάδας
@@ -55,7 +55,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- *    curl -X GET http://mmsch.teiath.gr/api/unit_network_objects \
+ *    curl -X GET http://mm.sch.gr/api/unit_network_objects \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password \
@@ -71,7 +71,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    var params = JSON.stringify({ "unit_network_subnet": "" });
  * 
  *    var http = new XMLHttpRequest();
- *    http.open("GET", "http://mmsch.teiath.gr/api/unit_network_objects");
+ *    http.open("GET", "http://mm.sch.gr/api/unit_network_objects");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Authorization", "Basic " + btoa('username' + ':' + 'password') );
@@ -99,7 +99,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  *    $params = array("unit_network_subnet" => "");
  * 
- *    $curl = curl_init("http://mmsch.teiath.gr/api/unit_network_objects");
+ *    $curl = curl_init("http://mm.sch.gr/api/unit_network_objects");
  * 
  *    curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  *    curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -120,7 +120,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'GET',
- *        url: 'http://mmsch.teiath.gr/api/unit_network_objects',
+ *        url: 'http://mm.sch.gr/api/unit_network_objects',
  *        dataType: "json",
  *        data:{'unit_network_subnet': ''},
  *        beforeSend: function(req) {

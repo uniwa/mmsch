@@ -15,7 +15,7 @@ header("Content-Type: text/html; charset=utf-8");
  * Η συνάρτηση αυτή καταχωρεί Τύπους Τηλεπικοινωνιακών Κυκλωμάτων σύμφωνα με τις παραμέτρους που έγινε η κλήση
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο POST :
- * <br> http://mmsch.teiath.gr/api/circuit_types <br><br>
+ * <br> http://mm.sch.gr/api/circuit_types <br><br>
  * 
  *
  * <br><b>Πίνακας Παραμέτρων</b>
@@ -48,7 +48,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- *    curl -X POST http://mmsch.teiath.gr/api/circuit_types \
+ *    curl -X POST http://mm.sch.gr/api/circuit_types \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password \
@@ -64,7 +64,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    var params = JSON.stringify({"circuit_type" : "ADSL"});
  *    
  *    var http = new XMLHttpRequest();
- *    http.open("POST", "http://mmsch.teiath.gr/api/circuit_types");
+ *    http.open("POST", "http://mm.sch.gr/api/circuit_types");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -93,7 +93,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * $params = array("circuit_type" => "ADSL");
  * 
- * $curl = curl_init("http://mmsch.teiath.gr/api/circuit_types");
+ * $curl = curl_init("http://mm.sch.gr/api/circuit_types");
  * 
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -114,7 +114,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'POST',
- *        url: 'http://mmsch.teiath.gr/api/circuit_types',
+ *        url: 'http://mm.sch.gr/api/circuit_types',
  *        dataType: "json",
  *        data: {
  *           "circuit_type" : "ADSL"

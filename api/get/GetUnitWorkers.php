@@ -15,7 +15,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * Η συνάρτηση αυτή επιστρέφει όλές τις Συσχέτισεις των Μονάδων με του Εργαζόμενους σύμφωνα με τις παραμέτρους που έγινε η κλήση
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
- * <br> http://mmsch.teiath.gr/api/unit_workers
+ * <br> http://mm.sch.gr/api/unit_workers
  *
  *
  * Τα αποτελέσματα είναι ταξινομημένα ως προς το Ονοματεπώνυμο του Εργαζομένου
@@ -53,7 +53,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- *    curl -X GET http://mmsch.teiath.gr/api/unit_workers \
+ *    curl -X GET http://mm.sch.gr/api/unit_workers \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password \
@@ -69,7 +69,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    var params = JSON.stringify({ "unit": "1000002" });
  *    
  *    var http = new XMLHttpRequest();
- *    http.open("GET", "http://mmsch.teiath.gr/api/unit_workers");
+ *    http.open("GET", "http://mm.sch.gr/api/unit_workers");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -98,7 +98,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * $params = array("unit" => "1000002");
  * 
- * $curl = curl_init("http://mmsch.teiath.gr/api/unit_workers");
+ * $curl = curl_init("http://mm.sch.gr/api/unit_workers");
  * 
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -120,7 +120,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'GET',
- *        url: 'http://mmsch.teiath.gr/api/unit_workers',
+ *        url: 'http://mm.sch.gr/api/unit_workers',
  *        dataType: "json",
  *        data: {'unit': '1000002'},
  *        beforeSend: function(req) {
