@@ -1070,6 +1070,12 @@ $isAnonymous = @ $_GET['is_anonymous'];
 									width: "80px",
 					            },
 					            {
+					            	field: "source",
+					            	title: "Πηγή",
+					                hidden: true,
+									width: "80px"
+					            },
+					            {
 					                field: "category",
 					                title: "Κατηγορία",
 					                hidden: true,
