@@ -234,6 +234,14 @@ class ExceptionCodes
     const InvalidSourceValue = 500;
     /** {@see ExceptionMessages::InvalidSourceType} */
     const InvalidSourceType = 500;
+    /** {@see ExceptionMessages::MissingSourceVisibleParam} */
+    const MissingSourceVisibleParam = 500;
+    /** {@see ExceptionMessages::MissingSourceVisibleValue} */
+    const MissingSourceVisibleValue = 500;
+    /** {@see ExceptionMessages::InvalidSourceVisibleType} */
+    const InvalidSourceVisibleType = 500;
+    /** {@see ExceptionMessages::InvalidSourceVisibleArray} */
+    const InvalidSourceVisibleArray = 500;
     /** {@see ExceptionMessages::DuplicatedSourceValue} */
     const DuplicatedSourceValue = 500;
 

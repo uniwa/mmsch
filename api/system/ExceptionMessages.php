@@ -140,6 +140,10 @@ class ExceptionMessages
     const MissingSourceParam = 'Η Πρωτογενής Πηγή είναι υποχρεωτικό πεδίο';
     const InvalidSourceValue = 'Η Πρωτογενής Πηγή δεν υπάρχει στο λεξικό';
     const InvalidSourceType = 'Η Πρωτογενής Πηγή πρέπει να είναι αριθμητική ή αλφαριθμητική';
+    const MissingSourceVisibleParam = 'H δυνατότητα Εμφάνισης της Πρωτογενής Πηγής είναι υποχρεωτικό πεδίο';
+    const MissingSourceVisibleValue = 'Η δυνατότητα Εμφάνισης της Πρωτογενής Πηγής πρέπει να έχει τιμή';
+    const InvalidSourceVisibleType = 'Η δυνατότητα Εμφάνισης της Πρωτογενής Πηγής πρέπει να είναι αλφαριθμητική(true|false)';
+    const InvalidSourceVisibleArray = 'Η δυνατότητα Εμφάνισης της Πρωτογενής Πηγής δεν μπορεί να έχει πολλαπλές τιμές';
     const DuplicatedSourceValue = 'Η Πρωτογενής Πηγή υπάρχει ήδη';
 
 

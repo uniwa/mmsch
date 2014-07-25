@@ -145,14 +145,17 @@ header("Content-Type: text/html; charset=utf-8");
  *		{
  *			"source_id": 1,
  *			"source": "SURVEY"
+ *                      "visible": "false"
  *		},
  *		{
  *			"source_id": 2,
  *			"source": "MyLab"
+ *                      "visible": "true"
  *		},
  *		{
  *			"source_id": 3,
  *			"source": "ΚΤΗΜΑΤΟΛΟΓΙΟ"
+ *                      "visible": "false"
  *		}
  * ]}
  * </code>
@@ -182,7 +185,14 @@ header("Content-Type: text/html; charset=utf-8");
  *    </li>
  * </ul>
  *
- *
+ * @param string $visible Δυνατότητα Eμφάνισης  
+ * <br>Η Δυνατότητα Eμφάνισης της Πρωτογενής Πηγής
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
+ *    <ul>
+ *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με την Δυνατότητα Eμφάνισης η οποία έχει τιμές true|false)</li>
+ *       <li>array[string] : Σύνολο από Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
+ *    </ul>
+ * 
  * @param integer $pagesize Αριθμός Εγγραφών/Σελίδα
  * <br>Ο αριθμός των εγγραφών που θα επιστρέψουν ανα σελίδα
  * <br>Η παράμετρος δεν είναι υποχρεωτική
@@ -304,7 +314,11 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws InvalidSourceType {@see ExceptionMessages::InvalidSourceType}
  * <br>{@see ExceptionCodes::InvalidSourceType}
  * <br>Η Πρωτογενής Πηγή πρέπει να είναι αριθμητική ή αλφαριθμητική
- *
+ * 
+ * @throws InvalidSourceVisibleType {@see ExceptionMessages::InvalidSourceVisibleType}
+ * <br>{@see ExceptionCodes::InvalidSourceVisibleType}
+ * <br>Η δυνατότητα Εμφάνισης της Πρωτογενής Πηγής πρέπει να είναι αλφαριθμητική(true|false)
+ * 
  * @throws InvalidOrderType {@see ExceptionMessages::InvalidOrderType}
  * <br>{@see ExceptionCodes::InvalidOrderType}
  * <br>Ο Τύπος Ταξινόμησης πρέπει να είναι ASC ή DESC
@@ -317,7 +331,7 @@ header("Content-Type: text/html; charset=utf-8");
 
 
 function GetSources(
-    $source,
+    $source, $visible,
     $pagesize, $page, $orderby, $ordertype, $searchtype
 )
 {
@@ -443,7 +457,32 @@ function GetSources(
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
         }
+//======================================================================================================================
+//= $visible
+//======================================================================================================================
 
+        if ( Validator::Exists('visible', $params) )
+        {
+            $table_name = "sources";
+            $table_column_id = "visible";
+            $table_column_name = "visible";
+
+            $param = Validator::toArray($visible);
+
+            $paramFilters = array();
+
+            foreach ($param as $values)
+            {
+                if ( Validator::isNull($values) )
+                    $paramFilters[] = "$table_name.$table_column_name is null";
+                else if ( Validator::isValue($values) )
+                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
+                else
+                    throw new Exception(ExceptionMessages::InvalidSourceVisibleType." : ".$values, ExceptionCodes::InvalidSourceVisibleType);
+            }
+
+            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+        }
 //======================================================================================================================
 //= $ordertype
 //======================================================================================================================
@@ -476,7 +515,8 @@ function GetSources(
 
         $sqlSelect = "SELECT
                         sources.source_id,
-                        sources.name as source
+                        sources.name as source,
+                        sources.visible 
                      ";
 
         $sqlFrom   = "FROM sources";
@@ -505,7 +545,8 @@ function GetSources(
         {
             $result["data"][] = array(
                 "source_id" => (int)$row["source_id"],
-                "source"    => $row["source"]
+                "source"    => $row["source"],
+                "visible"    => $row["visible"]
             );
         }
 
