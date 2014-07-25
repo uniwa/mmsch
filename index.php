@@ -69,7 +69,7 @@
       </div>
       
 
-      <div class="jumbotron" style="background-color: #FF9900;">
+      <div class="jumbotron" style="background-color: #FFDC95;">
    		
 		<div class="container-fluid">
 			
@@ -111,7 +111,7 @@
 					
 					<div class="row">
 						<div class="col-md-12">
-						<center><img src="/img/icon.jpg" class="" /></center>
+						<center><img src="/img/icon_lighter_shading.jpg" class="" /></center>
 						</div>	
 					</div>
 					
