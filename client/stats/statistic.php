@@ -46,6 +46,8 @@ $convert_fy = array(
         <script>
              
             var user = JSON.parse(atob("<?php echo base64_encode(json_encode($user)); ?>"));
+            var apiUrl = "/api/";
+            
             function make_base_auth(hash) { return "Basic " + hash;}
 
             var parameters = {
@@ -56,7 +58,7 @@ $convert_fy = array(
 
              $.ajax({
                  type: "GET",
-                 url: "http://mm.sch.gr/api/statistic_units",
+                 url: apiUrl + "statistic_units",
                  dataType: "json",
                  data: JSON.stringify(parameters),
                  beforeSend: function(req) {
