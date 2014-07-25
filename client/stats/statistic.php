@@ -56,7 +56,7 @@ $convert_fy = array(
 
              $.ajax({
                  type: "GET",
-                 url: "http://mmsch.teiath.gr/teiath_git/mmsch/api/statistic_units",
+                 url: "http://mm.sch.gr/api/statistic_units",
                  dataType: "json",
                  data: JSON.stringify(parameters),
                  beforeSend: function(req) {
