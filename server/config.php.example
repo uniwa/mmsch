@@ -22,6 +22,7 @@ session_name('MMSCH');
       "Url" => "sso-test.sch.gr",
       "Port" => 443,
       "NoAuth" => true,
+      "LogoutURL"=>"http://mmsch.teiath.gr",
   );
   $ldapOptions = array(
       "host" => "test.ldap.com",

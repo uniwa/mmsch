@@ -10,7 +10,7 @@ if(!isset($_GET['auth']) || $_GET['auth'] != '0') {
         // handle backend logout requests from CAS server
         phpCAS::handleLogoutRequests(array($casOptions["Url"]));
         if(isset($_GET['logout']) && $_GET['logout'] == 'true') {
-            phpCAS::logoutWithRedirectService('http://mmsch.teiath.gr');
+            phpCAS::logoutWithRedirectService($casOptions["LogoutURL"]);
             exit();
         } else {
             // force CAS authentication
