@@ -17,7 +17,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
- * <br> http://mmsch.teiath.gr/api/worker_specializations
+ * <br> http://mm.sch.gr/api/worker_specializations
  *
  *
  * Τα αποτελέσματα είναι ταξινομημένα ως προς το Όνομα της Ειδικότητας Εργαζομένου
@@ -56,7 +56,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- *    curl -X GET http://mmsch.teiath.gr/api/worker_specializations \
+ *    curl -X GET http://mm.sch.gr/api/worker_specializations \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password
@@ -69,7 +69,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <code>
  * <script>
  *    var http = new XMLHttpRequest();
- *    http.open("POST", "http://mmsch.teiath.gr/api/worker_specializations");
+ *    http.open("POST", "http://mm.sch.gr/api/worker_specializations");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Authorization", "Basic " + btoa('username' + ':' + 'password') );
@@ -95,7 +95,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <?php
  * header("Content-Type: text/html; charset=utf-8");
  * 
- * $curl = curl_init("http://mmsch.teiath.gr/api/worker_specializations");
+ * $curl = curl_init("http://mm.sch.gr/api/worker_specializations");
  * 
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -116,7 +116,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'GET',
- *        url: 'http://mmsch.teiath.gr/api/worker_specializations',
+ *        url: 'http://mm.sch.gr/api/worker_specializations',
  *        dataType: "json",
  *        beforeSend: function(req) {
  *            req.setRequestHeader('Authorization', btoa('username' + ":" + 'password'));

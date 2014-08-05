@@ -17,7 +17,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
- * <br> http://mmsch.teiath.gr/api/statistic_units
+ * <br> http://mm.sch.gr/api/statistic_units
  *
  * <br><b>Πίνακας Axis</b>
  * <br>Στον Πίνακα Axis περιέχονται τα ονόματα των παραμέτρων με βαη τα οποίο ο χρήστης μπορέι δημιουργήσει
@@ -71,7 +71,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- * curl -X GET http://mmsch.teiath.gr/api/statistic_units \
+ * curl -X GET http://mm.sch.gr/api/statistic_units \
  *   -H "Content-Type: application/json" \
  *   -H "Accept: application/json" \
  *   -u username:password \
@@ -87,7 +87,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    var params = JSON.stringify({ "state": "1", "municipality": "1", "x_axis":"unit_type", "y_axis":"edu_admin" });
  *    
  *    var http = new XMLHttpRequest();
- *    http.open("GET", "http://mmsch.teiath.gr/api/statistic_units");
+ *    http.open("GET", "http://mm.sch.gr/api/statistic_units");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -112,7 +112,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * $params = array("state" => "1", "municipality" => "1", "x_axis" => "unit_type","y_axis" => "edu_admin" );
  * 
- * $curl = curl_init("http://mmsch.teiath.gr/api/statistic_units");
+ * $curl = curl_init("http://mm.sch.gr/api/statistic_units");
  * 
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -133,7 +133,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'GET',
- *        url: 'http://mmsch.teiath.gr/api/statistic_units',
+ *        url: 'http://mm.sch.gr/api/statistic_units',
  *        dataType: "json",
  *        data: {
  *          "state": "1", 

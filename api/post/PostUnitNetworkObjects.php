@@ -16,7 +16,7 @@ header("Content-Type: text/html; charset=utf-8");
  * Η συνάρτηση αυτή καταχωρεί Δικτυακά Αντικείμενα Μονάδας σύμφωνα με τις παραμέτρους που έγινε η κλήση
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο POST :
- * <br> http://mmsch.teiath.gr/api/unit_network_objects <br><br>
+ * <br> http://mm.sch.gr/api/unit_network_objects <br><br>
  *
  * <br><b>Πίνακας Παραμέτρων</b>
  * <br>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters summary</a> εμφανίζονται όλοι οι παράμετροι με τους οποίους
@@ -55,7 +55,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- * curl -X POST http://mmsch.teiath.gr/api/unit_network_objects \
+ * curl -X POST http://mm.sch.gr/api/unit_network_objects \
  *   -H "Content-Type: application/json" \
  *   -H "Accept: application/json" \
  *   -u username:password \
@@ -79,7 +79,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    });
  *    
  *    var http = new XMLHttpRequest();
- *    http.open("POST", "http://mmsch.teiath.gr/api/unit_network_objects");
+ *    http.open("POST", "http://mm.sch.gr/api/unit_network_objects");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -109,7 +109,7 @@ header("Content-Type: text/html; charset=utf-8");
  *  	"unit_network_subnet_id"=>
  * );
  * 
- * $curl = curl_init("http://mmsch.teiath.gr/api/unit_network_objects");
+ * $curl = curl_init("http://mm.sch.gr/api/unit_network_objects");
  * 
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -130,7 +130,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'POST',
- *        url: 'http://mmsch.teiath.gr/api/unit_network_objects',
+ *        url: 'http://mm.sch.gr/api/unit_network_objects',
  *        dataType: "json",
  *        data: {
  *  		"ip": "",

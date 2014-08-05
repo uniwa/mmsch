@@ -16,7 +16,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο PUT :
- * <br> http://mmsch.teiath.gr/api/unit_network_subnet_types <br><br>
+ * <br> http://mm.sch.gr/api/unit_network_subnet_types <br><br>
  *
  *
  * <br><b>Πίνακας Παραμέτρων</b>
@@ -56,7 +56,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- *    curl -X PUT http://mmsch.teiath.gr/api/unit_network_subnet_types \
+ *    curl -X PUT http://mm.sch.gr/api/unit_network_subnet_types \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password \
@@ -72,7 +72,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    var params = JSON.stringify({"unit_network_subnet_type_id" : , "subnet_type" : ""});
  *    
  *    var http = new XMLHttpRequest();
- *    http.open("PUT", "http://mmsch.teiath.gr/api/unit_network_subnet_types");
+ *    http.open("PUT", "http://mm.sch.gr/api/unit_network_subnet_types");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -100,7 +100,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * $params = array("unit_network_subnet_type_id" => , "subnet_type" => "");
  * 
- * $curl = curl_init("http://mmsch.teiath.gr/api/unit_network_subnet_types");
+ * $curl = curl_init("http://mm.sch.gr/api/unit_network_subnet_types");
  * 
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -121,7 +121,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'PUT',
- *        url: 'http://mmsch.teiath.gr/api/unit_network_subnet_types',
+ *        url: 'http://mm.sch.gr/api/unit_network_subnet_types',
  *        dataType: "json",
  *        data: {
  *           "unit_network_subnet_type_id" : ,

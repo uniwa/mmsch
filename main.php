@@ -46,6 +46,17 @@ if (isset($user['uid']))
 	$isAnonymous = 0;
 else
 	$isAnonymous = 1;
+
+$isFY = 0;
+$FY = '';
+if (isset($user["l"])){
+	$pattern = '/ou=([^,]+)/';
+	preg_match_all($pattern, $user["l"], $matches);
+	if ($matches[1][1]=="partners"){
+		$isFY=1;
+		$FY=$matches[1][0];
+	}
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -76,7 +87,11 @@ else
     var g_impEntDomain = tmp_matches[1];
     var g_isAnonymous = <?php echo $isAnonymous; ?>;
 	// end - Implement personalized default filters based on CAS attributes
-    
+	
+	var g_isFY = <?php echo $isFY; ?>;
+	if (g_isFY){
+		g_FY = "<?php echo $FY; ?>";
+	}  
 </script>
  
 <style type="text/css">
@@ -590,13 +605,14 @@ function evalLexicalId(cacheData, model_id, value, return_value){
     			<i class="fa fa-user fa-1x"></i>&nbsp;&nbsp;<span id="vUsername"></span>&nbsp;&nbsp;<span class="caret"></span>
     		</button>
   			<ul class="dropdown-menu" role="menu">
-    			<li><a href="/hlp/user_guide_frontend_ver2.docx" target="_blank"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
+    			<li><a href="/hlp/user_guide_frontend_ver3.pdf" target="_blank"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
+    			<?php if ($isFY) : ?>
+    			<li><a href="/client/stats/statistic.php?implementation_entity=<?php echo $FY; ?>" target="_blank">Στατιστικα</a></li>
+    			<?php endif; ?>
     			<li><a href="/docs/package-GET.html" target="_blank">Οδηγός API</a></li>
     			<li><a href="http://helpdesk.sch.gr/?category_id=9508" target="_blank">Αναφορά Σφαλμάτων</a></li>
-    			<?php if (!$isAnonymous) { ?>
     			<li class="divider"></li>
     			<li><a href="#" id="lnkLogout"><i class="fa fa-sign-out fa-1x"></i>&nbsp;&nbsp;Αποσύνδεση</a></li>
-    			<?php } ?>
   			</ul>
 		</div>	
 		</div> 
@@ -622,7 +638,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 								<ul>
 									<li class="load-page Selected"><a href="client/views/grids/my-units.php?is_anonymous=<?php echo $isAnonymous; ?>">Μονάδες</a></li>
 									<li>
-										<a href="#">Νομοι/Δήμοι</a>
+										<a href="#">Περιφερειακές ενότητες/Δήμοι</a>
 										<ul><li style="height:100%; overflow-x:hidden; overflow-y:auto">
 										<span>
 											<div class="nav-tree-prefectures" style="overflow:hidden"></div>
@@ -637,7 +653,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 										</span>
 										</li></ul>
 									</li>
-									<?php if (!$isAnonymous) { ?>
+									<?php if (!$isAnonymous) : ?>
 									<li>
 										<a href="#">Διαχείριση</a>
 										<ul class="">
@@ -660,7 +676,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 											 -->
 										</ul>
 									</li>
-									<?php } ?>
+									<?php endif; ?>
 								</ul>
 							
 					

@@ -17,7 +17,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
- * <br> http://mmsch.teiath.gr/api/ip_masks
+ * <br> http://mm.sch.gr/api/ip_masks
  *
  *
  * Τα αποτελέσματα είναι ταξινομημένα ως προς το Όνομα του Φορίς Υλοποίησης
@@ -57,7 +57,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <br>Τα αποτελέσματα είναι ταξινομημένα ως προς το όνομα
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
- * <br> http://mmsch.teiath.gr/api/implementation_entities
+ * <br> http://mm.sch.gr/api/implementation_entities
  *
  * Στον πίνακα <a href="#parameters">Parameters summary</a> εμφανίζονται όλοι οι παράμετροι με τους οποίους μπορεί να γίνει η κλήση
  * <br>Όλοι οι παράμετροι είναι προαιρετικοί εκτός από αυτές που έχουν χαρακτηριστεί ως υποχρεωτικοί
@@ -77,7 +77,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- *    curl -X GET http://mmsch.teiath.gr/api/implementation_entities \
+ *    curl -X GET http://mm.sch.gr/api/implementation_entities \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password
@@ -90,7 +90,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <code>
  * <script>
  *    var http = new XMLHttpRequest();
- *    http.open("GET", "http://mmsch.teiath.gr/api/implementation_entities");
+ *    http.open("GET", "http://mm.sch.gr/api/implementation_entities");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Authorization", "Basic " + btoa('username' + ':' + 'password') );
@@ -116,7 +116,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <?php
  * header("Content-Type: text/html; charset=utf-8");
  * 
- * $curl = curl_init("http://mmsch.teiath.gr/api/implementation_entities");
+ * $curl = curl_init("http://mm.sch.gr/api/implementation_entities");
  * 
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -137,7 +137,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'GET',
- *        url: 'http://mmsch.teiath.gr/api/implementation_entities',
+ *        url: 'http://mm.sch.gr/api/implementation_entities',
  *        dataType: "json",
  *        beforeSend: function(req) {
  *            req.setRequestHeader('Authorization', btoa('username' + ":" + 'password'));

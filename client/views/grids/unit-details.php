@@ -749,7 +749,7 @@ position: fixed;
 						<table class="table borderless">
 							<tbody>
 								<tr>
-									<td class="detail-term">Νομός</td>
+									<td class="detail-term">Περιφερειακή ενότητα</td>
 									<td class="term-value" data-bind="text: unitData.prefecture"></td>
 								</tr>
 								

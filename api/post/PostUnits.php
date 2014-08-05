@@ -14,12 +14,12 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * 
  * Η κλήση της συνάρτησης αυτής μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο PUT :
- * <br> http://mmsch.teiath.gr/api/units <br><br>
+ * <br> http://mm.sch.gr/api/units <br><br>
  *
  * 
  * Παράδειγμα κλήσης της μεθόδου με <b>cURL</b> (console) :
  * <code>
- * curl -X PUT http://mmsch.teiath.gr/api/units \
+ * curl -X PUT http://mm.sch.gr/api/units \
  *   -H "Content-Type: application/json" \
  *   -H "Accept: application/json" \
  *   -u username:password \
@@ -45,7 +45,7 @@ header("Content-Type: text/html; charset=utf-8");
  *                                  "state" : "value", ...... });
  *    
  *    var http = new XMLHttpRequest();
- *    http.open("PUT", "http://mmsch.teiath.gr/api/units");
+ *    http.open("PUT", "http://mm.sch.gr/api/units");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -76,7 +76,7 @@ header("Content-Type: text/html; charset=utf-8");
  *      "category" => "value", 
  *      "state" => "value", ...... );
  * 
- * $curl = curl_init("http://mmsch.teiath.gr/api/units");
+ * $curl = curl_init("http://mm.sch.gr/api/units");
  * 
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -97,7 +97,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'PUT',
- *        url: 'http://mmsch.teiath.gr/api/units',
+ *        url: 'http://mm.sch.gr/api/units',
  *        dataType: "json",
  *        data: {
  *            "mm_id" : "value",
@@ -470,7 +470,7 @@ function PostUnits(
 
 //==============================================================================
 
-            //SendMail('khitas@teiath.gr', 'Δημιουργία Μονάδας', 'Δημιουργία Μονάδας με κωδικό ΜΜ : '.$mm_id);
+            //SendMail('mm@sch.gr', 'Δημιουργία Μονάδας', 'Δημιουργία Μονάδας με κωδικό ΜΜ : '.$mm_id);
         }
       
         $result["status"] = ExceptionCodes::NoErrors;;

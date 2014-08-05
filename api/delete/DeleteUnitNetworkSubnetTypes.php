@@ -16,7 +16,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο DELETE :
- * <br> http://mmsch.teiath.gr/api/unit_network_subnet_types
+ * <br> http://mm.sch.gr/api/unit_network_subnet_types
  *
  *
  * <br><b>Πίνακας Παραμέτρων</b>
@@ -48,7 +48,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * <a id="cURL"></a>Παράδειγμα κλήσης της μεθόδου με <b>cURL</b> (console) :
  * <code>
- *    curl -X DELETE http://mmsch.teiath.gr/api/unit_network_subnet_types \
+ *    curl -X DELETE http://mm.sch.gr/api/unit_network_subnet_types \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password \
@@ -64,7 +64,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    var params = JSON.stringify({"unit_network_subnet_type_id" : ""});
  *
  *    var http = new XMLHttpRequest();
- *    http.open("DELETE", "http://mmsch.teiath.gr/api/unit_network_subnet_types");
+ *    http.open("DELETE", "http://mm.sch.gr/api/unit_network_subnet_types");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -93,7 +93,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * $params = array("unit_network_subnet_type_id" => "");
  *
- * $curl = curl_init("http://mmsch.teiath.gr/api/unit_network_subnet_types");
+ * $curl = curl_init("http://mm.sch.gr/api/unit_network_subnet_types");
  *
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -113,7 +113,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'PUT',
- *        url: 'http://mmsch.teiath.gr/api/unit_network_subnet_types',
+ *        url: 'http://mm.sch.gr/api/unit_network_subnet_types',
  *        dataType: "json",
  *        data: {
  *           "unit_network_subnet_type_id" : 

@@ -357,6 +357,7 @@ function SourcesController()
         case MethodTypes::GET :
             $result = GetSources(
                 $params["source"],
+                $params["visible"],
                 $params["pagesize"],
                 $params["page"],
                 $params["orderby"],

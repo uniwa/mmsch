@@ -237,7 +237,7 @@ $isAnonymous = @ $_GET['is_anonymous'];
 											<div class="row" >
 											    <div class="col-md-3">
 												    <div class="form-group ">
-	    	                                    		<label>Νομός</label>
+	    	                                    		<label>Περιφερειακή ενότητα</label>
 	        	                                		<input name="prefecture" id="src_prefecture" class="bt-col-full" />
 	            	                        		</div>
 	                                    		</div>
@@ -1070,6 +1070,12 @@ $isAnonymous = @ $_GET['is_anonymous'];
 									width: "80px",
 					            },
 					            {
+					            	field: "source",
+					            	title: "Πηγή",
+					                hidden: true,
+									width: "80px"
+					            },
+					            {
 					                field: "category",
 					                title: "Κατηγορία",
 					                hidden: true,
@@ -1083,7 +1089,7 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					            },
 								{
 									field: "prefecture",
-									title: "Νομός",
+									title: "Περιφερειακή ενότητα",
 					                hidden: true,
 									width: "80px",
 								},

@@ -14,12 +14,12 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * 
  * Η κλήση της συνάρτησης αυτής μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο POST :
- * <br> http://mmsch.teiath.gr/api/levels <br><br>
+ * <br> http://mm.sch.gr/api/levels <br><br>
  *
  * 
  * Παράδειγμα κλήσης της μεθόδου με <b>cURL</b> (console) :
  * <code>
- * curl -X POST http://mmsch.teiath.gr/api/levels \
+ * curl -X POST http://mm.sch.gr/api/levels \
  *   -H "Content-Type: application/json" \
  *   -H "Accept: application/json" \
  *   -u username:password \
@@ -43,7 +43,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    });
  *    
  *    var http = new XMLHttpRequest();
- *    http.open("POST", "http://mmsch.teiath.gr/api/levels");
+ *    http.open("POST", "http://mm.sch.gr/api/levels");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -73,7 +73,7 @@ header("Content-Type: text/html; charset=utf-8");
  *        "students_count" => "value"
  * );
  * 
- * $curl = curl_init("http://mmsch.teiath.gr/api/levels");
+ * $curl = curl_init("http://mm.sch.gr/api/levels");
  * 
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -94,7 +94,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'POST',
- *        url: 'http://mmsch.teiath.gr/api/levels',
+ *        url: 'http://mm.sch.gr/api/levels',
  *        dataType: "json",
  *        data: {
  *            "mm_id" : "value",

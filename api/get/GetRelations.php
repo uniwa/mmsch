@@ -17,7 +17,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
- * <br> http://mmsch.teiath.gr/api/relations
+ * <br> http://mm.sch.gr/api/relations
  *
  *
  * Τα αποτελέσματα είναι ταξινομημένα ως προς το Όνομα της Host Μονάδας
@@ -55,7 +55,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- *    curl -X GET http://mmsch.teiath.gr/api/relations \
+ *    curl -X GET http://mm.sch.gr/api/relations \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password \
@@ -71,7 +71,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    var params = JSON.stringify({ "relation_type": "ΕΞΥΠΗΡΕΤΕΙ" });
  *    
  *    var http = new XMLHttpRequest();
- *    http.open("GET", "http://mmsch.teiath.gr/api/relations");
+ *    http.open("GET", "http://mm.sch.gr/api/relations");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -100,7 +100,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * $params = array("relation_type" => "ΕΞΥΠΗΡΕΤΕΙ");
  * 
- * $curl = curl_init("http://mmsch.teiath.gr/api/relations");
+ * $curl = curl_init("http://mm.sch.gr/api/relations");
  * 
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -122,7 +122,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'GET',
- *        url: 'http://mmsch.teiath.gr/api/relations',
+ *        url: 'http://mm.sch.gr/api/relations',
  *        dataType: "json",
  *        data:{'relation_type': 'ΕΞΥΠΗΡΕΤΕΙ'},
  *        beforeSend: function(req) {

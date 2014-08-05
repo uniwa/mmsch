@@ -1,10 +1,40 @@
 <?php
 require_once ('../../server/config.php');
+require_once ('../../server/libs/phpCAS/CAS.php');
+
+phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'');
+phpCAS::setNoCasServerValidation();
+phpCAS::handleLogoutRequests(array($casOptions["Url"]));
+if(isset($_GET['logout']) && $_GET['logout'] == 'true') {
+    phpCAS::logout();
+    exit();
+} else {
+    if (!phpCAS::checkAuthentication())
+      phpCAS::forceAuthentication();
+}
               
 $user['backendAuthorizationHash'] = base64_encode($frontendOptions['backendUsername'].':'.$frontendOptions['backendPassword']);       
-//$results = $_POST['results'];  
-//var_dump($results);
 
+$fy = $_GET['implementation_entity'];  
+$convert_fy = array(
+                "auth" => "1" ,
+                "duth" => "2",
+                "uoa"=> "3",         
+                "ntua"=> "4",
+                "cti"=> "5",
+                "aegean"=> "6",
+                "uth"=> "7",
+                "uoi"=> "8",
+                "uoc"=> "9",      
+                "uom"=> "10",           
+                "teiath"=> "11",          
+                "teithe"=> "12",       
+                "teilar"=> "13"
+    );
+
+     if (!array_key_exists($fy, $convert_fy)){     
+        echo 'Error implementation code';die();
+     }
 ?>
 
 <!DOCTYPE html>
@@ -16,17 +46,19 @@ $user['backendAuthorizationHash'] = base64_encode($frontendOptions['backendUsern
         <script>
              
             var user = JSON.parse(atob("<?php echo base64_encode(json_encode($user)); ?>"));
+            var apiUrl = "/api/";
+            
             function make_base_auth(hash) { return "Basic " + hash;}
 
             var parameters = {
-                 implementation_entity: "11",
+                 implementation_entity: <?php echo $convert_fy[$fy] ?>,
                  x_axis: "edu_admin",
                  y_axis: "unit_type"
              };
 
              $.ajax({
                  type: "GET",
-                 url: "http://mmsch.teiath.gr/teiath_git/mmsch/api/statistic_units",
+                 url: apiUrl + "statistic_units",
                  dataType: "json",
                  data: JSON.stringify(parameters),
                  beforeSend: function(req) {

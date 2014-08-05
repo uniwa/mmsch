@@ -17,7 +17,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
- * <br> http://mmsch.teiath.gr/api/region_edu_admins
+ * <br> http://mm.sch.gr/api/region_edu_admins
  *
  *
  * Τα αποτελέσματα είναι ταξινομημένα ως προς το Όνομα της Περιφέρειας
@@ -55,7 +55,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- *    curl -X GET http://mmsch.teiath.gr/api/region_edu_admins \
+ *    curl -X GET http://mm.sch.gr/api/region_edu_admins \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password
@@ -68,7 +68,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <code>
  * <script>
  *    var http = new XMLHttpRequest();
- *    http.open("GET", "http://mmsch.teiath.gr/api/region_edu_admins");
+ *    http.open("GET", "http://mm.sch.gr/api/region_edu_admins");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Authorization", "Basic " + btoa('username' + ':' + 'password') );
@@ -94,7 +94,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <?php
  * header("Content-Type: text/html; charset=utf-8");
  * 
- * $curl = curl_init("http://mmsch.teiath.gr/api/region_edu_admins");
+ * $curl = curl_init("http://mm.sch.gr/api/region_edu_admins");
  * 
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -115,7 +115,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'GET',
- *        url: 'http://mmsch.teiath.gr/api/region_edu_admins',
+ *        url: 'http://mm.sch.gr/api/region_edu_admins',
  *        dataType: "json",
  *        beforeSend: function(req) {
  *            req.setRequestHeader('Authorization', btoa('username' + ":" + 'password'));

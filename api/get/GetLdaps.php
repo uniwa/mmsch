@@ -17,7 +17,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
- * <br> http://mmsch.teiath.gr/api/ldaps
+ * <br> http://mm.sch.gr/api/ldaps
  *
  *
  * Τα αποτελέσματα είναι ταξινομημένα ως προς το UID του LDap Λογαριασμού
@@ -56,7 +56,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- *    curl -X GET http://mmsch.teiath.gr/api/ldaps \
+ *    curl -X GET http://mm.sch.gr/api/ldaps \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password
@@ -69,7 +69,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <code>
  * <script>
  *    var http = new XMLHttpRequest();
- *    http.open("GET", "http://mmsch.teiath.gr/api/ldaps");
+ *    http.open("GET", "http://mm.sch.gr/api/ldaps");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Authorization", "Basic " + btoa('username' + ':' + 'password') );
@@ -95,7 +95,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <?php
  *    header("Content-Type: text/html; charset=utf-8");
  * 
- *    $curl = curl_init("http://mmsch.teiath.gr/api/ldaps");
+ *    $curl = curl_init("http://mm.sch.gr/api/ldaps");
  * 
  *    curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  *    curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -116,7 +116,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'GET',
- *        url: 'http://mmsch.teiath.gr/api/ldaps',
+ *        url: 'http://mm.sch.gr/api/ldaps',
  *        dataType: "json",
  *        beforeSend: function(req) {
  *            req.setRequestHeader('Authorization', btoa('username' + ":" + 'password'));

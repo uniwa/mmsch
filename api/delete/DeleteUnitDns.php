@@ -16,7 +16,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο DELETE :
- * <br> http://mmsch.teiath.gr/api/unit_dns
+ * <br> http://mm.sch.gr/api/unit_dns
  *
  *
  * <br><b>Πίνακας Παραμέτρων</b>
@@ -48,7 +48,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * <a id="cURL"></a>Παράδειγμα κλήσης της μεθόδου με <b>cURL</b> (console) :
  * <code>
- *    curl -X DELETE http://mmsch.teiath.gr/api/unit_dns \
+ *    curl -X DELETE http://mm.sch.gr/api/unit_dns \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password \
@@ -64,7 +64,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    var params = JSON.stringify({"unit_dns_id" : ""});
  *
  *    var http = new XMLHttpRequest();
- *    http.open("DELETE", "http://mmsch.teiath.gr/api/unit_dns");
+ *    http.open("DELETE", "http://mm.sch.gr/api/unit_dns");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -93,7 +93,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * $params = array("unit_dns_id" => "");
  *
- * $curl = curl_init("http://mmsch.teiath.gr/api/unit_dns");
+ * $curl = curl_init("http://mm.sch.gr/api/unit_dns");
  *
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -113,7 +113,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'PUT',
- *        url: 'http://mmsch.teiath.gr/api/unit_dns',
+ *        url: 'http://mm.sch.gr/api/unit_dns',
  *        dataType: "json",
  *        data: {
  *        "unit_dns_id" :

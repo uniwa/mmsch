@@ -18,7 +18,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
- * <br> http://mmsch.teiath.gr/api/categories
+ * <br> http://mm.sch.gr/api/categories
  *
  *
  * Τα αποτελέσματα είναι ταξινομημένα ως προς το Όνομα του Τύπου
@@ -56,7 +56,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- *    curl -X GET http://mmsch.teiath.gr/api/categories \
+ *    curl -X GET http://mm.sch.gr/api/categories \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password
@@ -69,7 +69,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <code>
  * <script>
  *    var http = new XMLHttpRequest();
- *    http.open("GET", "http://mmsch.teiath.gr/api/categories");
+ *    http.open("GET", "http://mm.sch.gr/api/categories");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Authorization", "Basic " + btoa('username' + ':' + 'password') );
@@ -95,7 +95,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <?php
  *    header("Content-Type: text/html; charset=utf-8");
  * 
- *    $curl = curl_init("http://mmsch.teiath.gr/api/categories");
+ *    $curl = curl_init("http://mm.sch.gr/api/categories");
  * 
  *    curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  *    curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -116,7 +116,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'GET',
- *        url: 'http://mmsch.teiath.gr/api/categories',
+ *        url: 'http://mm.sch.gr/api/categories',
  *        dataType: "json",
  *        beforeSend: function(req) {
  *            req.setRequestHeader('Authorization', btoa('username' + ":" + 'password'));

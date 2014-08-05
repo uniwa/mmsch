@@ -69,7 +69,7 @@
       </div>
       
 
-      <div class="jumbotron" style="background-color: #FF9900;">
+      <div class="jumbotron" style="background-color: #FFDC95;">
    		
 		<div class="container-fluid">
 			
@@ -111,7 +111,7 @@
 					
 					<div class="row">
 						<div class="col-md-12">
-						<center><img src="/img/icon.jpg" class="" /></center>
+						<center><img src="/img/icon_lighter_shading.jpg" class="" /></center>
 						</div>	
 					</div>
 					
@@ -161,9 +161,9 @@
 		
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-4"><p class="pull-left"><img src="/img/ypepth_logo.png" /></p></div>
+				<div class="col-md-4"><p class="pull-left"><img src="/img/mainlogo_p8.png" /></p></div>
 				<div class="col-md-4"><p><img src="/img/logo_stirizo.png" /></p></div>
-				<div class="col-md-4"><p class="pull-right"><img src="/img/espa_logo.png" /></p></div>
+				<div class="col-md-4"><p class="pull-right"><img src="/img/logo.png" height="85px" /></p></div>
 			</div>
 		</div>
        
