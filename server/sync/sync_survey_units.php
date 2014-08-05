@@ -520,6 +520,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
     private function isIgnored($unit) {
         $ignoredRegistryNos = array(
+            'palio1959020', // 3ο ΓΕΛ ΧΟΡΤΙΑΤΗ (ΛΥΚΕΙΑΚΕΣ ΤΑΞΕΙΣ ΦΙΛΥΡΟΥ)
             '0521402', // ΕΙΔΙΚΟ ΔΗΜΟΤΙΚΟ ΣΧΟΛΕΙΟ ΚΕΡΚΥΡΑ - ΕΙΔΙΚΟ ΔΗΜΟΤΙΚΟ ΣΧΟΛΕΙΟ ΚΩΦΩΝ ΚΑΙ ΒΑΡΗΚΟΩΝ -ΑΙΜΙΛΙΟΣ
             '3108010',
             '00106000',
@@ -2398,7 +2399,6 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             'palio195902',
             'r566656',
             'sge98',
-            'sgm99',
             'sivit97',
         );
         if(array_search(trim($unit["RegistryNo"]), $ignoredRegistryNos) !== false) {
