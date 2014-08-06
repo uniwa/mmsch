@@ -2945,7 +2945,7 @@ function GetUnits(
                     $data["unit_dns"][] = array(
                         "unit_dns_id" => $unit_dns["unit_dns_id"] ? (int)$unit_dns["unit_dns_id"] : null,
                         "unit_dns"    => $unit_dns["unit_dns"],
-                        "ext_dns"     => $unit_dns["ext_dns"]
+                        "unit_ext_dns"     => $unit_dns["unit_ext_dns"]
                     );
                 }
 
