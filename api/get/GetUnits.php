@@ -2675,6 +2675,8 @@ function GetUnits(
                              units.special_name as special_unit_name,
                              unit_network_subnet_types.unit_network_subnet_type_id,
                              unit_network_subnet_types.subnet_type as unit_network_subnet_type,
+                             unit_network_objects.ip as object_ip,
+                             unit_network_objects.object_dns_name as object_dns_name,
                              connection_unit_network_subnets.connection_unit_network_subnet_id,
                              connection_unit_network_subnets.unit_network_subnet_id is not null as is_connected
                         ";
@@ -2682,7 +2684,8 @@ function GetUnits(
         $sqlFrom   = "  FROM unit_network_subnets
                         LEFT JOIN units ON unit_network_subnets.mm_id = units.mm_id
                         LEFT JOIN unit_network_subnet_types ON unit_network_subnets.unit_network_subnet_type_id = unit_network_subnet_types.unit_network_subnet_type_id
-                        LEFT JOIN connection_unit_network_subnets ON unit_network_subnets.unit_network_subnet_id=connection_unit_network_subnets.unit_network_subnet_id";
+                        LEFT JOIN connection_unit_network_subnets ON unit_network_subnets.unit_network_subnet_id=connection_unit_network_subnets.unit_network_subnet_id
+                        LEFT JOIN unit_network_objects ON unit_network_subnets.unit_network_subnet_id = unit_network_objects.unit_network_subnet_id";
         $sqlWhere = " WHERE unit_network_subnets.mm_id in (".$ids.") ";
         $sqlOrder = " ORDER BY unit_network_subnets.mm_id ASC";
         
@@ -2740,13 +2743,16 @@ function GetUnits(
                              unit_network_subnets.subnet_default_router,
                              unit_network_subnets.mask,
                              unit_network_subnet_types.unit_network_subnet_type_id,
-                             unit_network_subnet_types.subnet_type as unit_network_subnet_type
+                             unit_network_subnet_types.subnet_type as unit_network_subnet_type,
+                             unit_network_objects.ip as object_ip,
+                             unit_network_objects.object_dns_name as object_dns_name
                              ";
 
         $sqlFrom   = "FROM connection_unit_network_subnets
                       LEFT JOIN unit_network_subnets ON connection_unit_network_subnets.unit_network_subnet_id = unit_network_subnets.unit_network_subnet_id
                       LEFT JOIN unit_network_subnet_types ON unit_network_subnets.unit_network_subnet_type_id = unit_network_subnet_types.unit_network_subnet_type_id
-                      LEFT JOIN connections ON connection_unit_network_subnets.connection_id = connections.connection_id                      
+                      LEFT JOIN connections ON connection_unit_network_subnets.connection_id = connections.connection_id
+                      LEFT JOIN unit_network_objects ON unit_network_subnets.unit_network_subnet_id = unit_network_objects.unit_network_subnet_id
                      ";
 
         $sqlWhere = " WHERE connection_unit_network_subnets.connection_id in (".$connection_ids.") AND connections.mm_id=unit_network_subnets.mm_id";
@@ -3002,8 +3008,10 @@ function GetUnits(
                         "special_unit_name"             => $unit_network_subnet["special_unit_name"],
                         "unit_network_subnet_type_id"   => Validator::toIntVal($unit_network_subnet["unit_network_subnet_type_id"]),
                         "unit_network_subnet_type"      => $unit_network_subnet["unit_network_subnet_type"],
+                        "unit_network_object_ip"        => $unit_network_subnet["object_ip"],                      
+                        "unit_network_object_name"      => $unit_network_subnet["object_dns_name"],
                         "connection_unit_network_subnet_id"   => Validator::toIntVal($unit_network_subnet["connection_unit_network_subnet_id"]),
-                        "is_connected"     => isset($unit_network_subnet["is_connected"]) ? (bool)$unit_network_subnet["is_connected"] : null,
+                        "is_connected"     => isset($unit_network_subnet["is_connected"]) ? (bool)$unit_network_subnet["is_connected"] : null
                     );
                 }
 
@@ -3025,6 +3033,8 @@ function GetUnits(
                             "mask"                          => $connection_unit_network_subnet["mask"],
                             "unit_network_subnet_type_id"   => Validator::toIntVal($connection_unit_network_subnet["unit_network_subnet_type_id"]),
                             "unit_network_subnet_type"      => $connection_unit_network_subnet["unit_network_subnet_type"],
+                            "unit_network_object_ip"        => $connection_unit_network_subnet["object_ip"],                      
+                            "unit_network_object_name"      => $connection_unit_network_subnet["object_dns_name"]
                         );
                     }
 
