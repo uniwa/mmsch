@@ -30,6 +30,7 @@ require_once ('../api/system/MethodTypes.php');
 require_once ('../api/system/ExceptionCodes.php');
 require_once ('../api/system/ExceptionMessages.php');
 require_once ('../api/system/Parameters.php');
+require_once ('classes/Pagination.php');
 
 require_once ('classes/sync/SyncEduAdmins.class.php');
 require_once ('classes/sync/SyncTransferAreas.class.php');

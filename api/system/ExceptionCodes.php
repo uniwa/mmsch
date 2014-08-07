@@ -56,6 +56,11 @@ class ExceptionCodes
     const InvalidPageSizeType = 500;
     /** {@see ExceptionMessages::InvalidPageSizeArray} */
     const InvalidPageSizeArray = 500;
+     /** {@see ExceptionMessages::MissingPageSizeNegativeValue} */   
+    const MissingPageSizeNegativeValue = 500;
+
+    /** {@see ExceptionMessages::InvalidMaxPageNumber} */
+    const InvalidMaxPageNumber = 500;
 
 
 
