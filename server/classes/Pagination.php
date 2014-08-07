@@ -25,10 +25,10 @@ class Pagination
             throw new Exception(ExceptionMessages::MissingPageValue, ExceptionCodes::MissingPageValue);
         else if ( Validator::isArray($page) )
             throw new Exception(ExceptionMessages::InvalidPageArray, ExceptionCodes::InvalidPageArray);
+        else if (!Validator::IsInteger($page) )
+            throw new Exception(ExceptionMessages::InvalidPageType, ExceptionCodes::InvalidPageType);
         else if (Validator::isLowerThan($page, 0, true) )
             throw new Exception(ExceptionMessages::InvalidPageNumber, ExceptionCodes::InvalidPageNumber);
-        else if (!Validator::IsID($page) )
-            throw new Exception(ExceptionMessages::InvalidPageType, ExceptionCodes::InvalidPageType);
         else
             return Validator::toInteger($page);
 
@@ -36,20 +36,21 @@ class Pagination
     }
     
     public static function getPageSize($pagesize, $params, $useAllPageSize = false) { 
+        
         if ( Validator::Missing('pagesize', $params) )
-            $pagesize = $useAllPageSize == true ? Parameters::AllPageSize : Parameters::DefaultPageSize;
+        $pagesize = $useAllPageSize == true ? Parameters::AllPageSize : Parameters::DefaultPageSize;
         else if ( Validator::isNull($pagesize) )
-            throw new Exception(ExceptionMessages::MissingPageSizeValue, ExceptionCodes::MissingPageSizeValue);
+        throw new Exception(ExceptionMessages::MissingPageSizeValue, ExceptionCodes::MissingPageSizeValue);
         else if ( Validator::isArray($pagesize) )
-            throw new Exception(ExceptionMessages::InvalidPageSizeArray, ExceptionCodes::InvalidPageSizeArray);
+        throw new Exception(ExceptionMessages::InvalidPageSizeArray, ExceptionCodes::InvalidPageSizeArray);
+        else if (!Validator::IsInteger($pagesize))
+        throw new Exception(ExceptionMessages::InvalidPageSizeType, ExceptionCodes::InvalidPageSizeType);
         else if ( Validator::isLowerThan($pagesize, 0, true) )
-            throw new Exception(ExceptionMessages::MissingPageSizeNegativeValue, ExceptionCodes::MissingPageSizeNegativeValue);
+        throw new Exception(ExceptionMessages::MissingPageSizeNegativeValue, ExceptionCodes::MissingPageSizeNegativeValue);
         else if ( Validator::isGreaterThan($pagesize, Parameters::MaxPageSize) )
-            throw new Exception(ExceptionMessages::InvalidPageSizeNumber, ExceptionCodes::InvalidPageSizeNumber);
-         else if (!Validator::IsID($pagesize))
-            throw new Exception(ExceptionMessages::InvalidPageSizeType, ExceptionCodes::InvalidPageSizeType);
+        throw new Exception(ExceptionMessages::InvalidPageSizeNumber, ExceptionCodes::InvalidPageSizeNumber);
         else
-            $pagesize = Validator::toID($pagesize);
+        $pagesize = Validator::toInteger($pagesize);
 
         return $pagesize;
     }
