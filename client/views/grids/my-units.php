@@ -796,11 +796,6 @@ $isAnonymous = @ $_GET['is_anonymous'];
 						});
 
 						
-						
-						
-							
-						
-						
 						var gridUnits = $("#grid-units").kendoGrid({
 							autoBind: false,	
 					        dataSource: new kendo.data.DataSource({
@@ -812,9 +807,21 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					            pageSize: 50,
 					            schema: {
 					                data: "data",
-					                total: "total"
+					                total: "total",
+					                errors: function(response){
+
+					                	if (response.status == 401)
+						            		return response.message;
+
+					            		if (typeof response.data == "undefined"){
+						            		return "Data is undefined in calling service.";
+					            		}
+					                }
+						                
 					            },
-					            //filters: {"field": "implementation_entity", "value": 11},
+					            error: function(e){
+						            alert(e.errors);
+					            },
 					 			requestStart: function(e) {
 									
 					                if ($('#grid-units').data('kendoGrid').options.inSearching) {
@@ -997,10 +1004,17 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					                
 					            },
 					            requestEnd: function(e) {
+					            	
+									var xhrResponse = e.response;
+						            
 					            	$('#btnSearch').button('reset');
-					            	
-					            	var data = e.response.data;
-					            	
+
+					            	if (typeof xhrResponse.data == "undefined" ){
+						            	return false;
+					            	}
+
+					            	var data = xhrResponse.data;
+
 					            	if(data.length > 0){
 
 					            		if (typeof data[0].unit_name == "undefined"){
@@ -1181,22 +1195,13 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					        },
 							detailCollapse: function(e) {
 
-								console.log('Grid-detailCollapse');
-								
 								var row = e.masterRow;
 								
-								//if (row.hasClass("k-state-selected")) {
-									row.removeClass("state-expanded");
-								//}
-								//else {
-								//	row.addClass("state-expanded");
-								//}
-								
+								row.removeClass("state-expanded");
+					
 								return false;
 					        },
 							change: function(eventArgs) {
-
-								console.log('Grid-Change');
 
 								return false;
 
@@ -1219,12 +1224,11 @@ $isAnonymous = @ $_GET['is_anonymous'];
 							}
 
 					    }).data('kendoGrid');
-
-						// start - get units from server
+						
+						// start - get units from server with specific filter
 						gridUnits.dataSource.filter([
 							{field: "implementation_entity", value: typeof g_impEnt[0] != 'undefined' ? g_impEnt[0].implementation_entity_id : null},
 							{field: "state", value: 1}
-							
 						]);
 						// end - get units from server
 
