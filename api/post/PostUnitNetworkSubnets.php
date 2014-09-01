@@ -392,10 +392,10 @@ function PostUnitNetworkSubnets(
                 throw new Exception(ExceptionMessages::InvalidUnitNetworkSubnetNameType." : ".$param, ExceptionCodes::InvalidUnitNetworkSubnetNameType);
             }
         }
-        else
-        {
-            throw new Exception(ExceptionMessages::MissingUnitNetworkSubnetNameParam, ExceptionCodes::MissingUnitNetworkSubnetNameParam);
-        }
+//        else
+//        {
+//            throw new Exception(ExceptionMessages::MissingUnitNetworkSubnetNameParam, ExceptionCodes::MissingUnitNetworkSubnetNameParam);
+//        }
 
 //======================================================================================================================
 //= Check for subnet_name uniques
@@ -531,10 +531,10 @@ function PostUnitNetworkSubnets(
                 throw new Exception(ExceptionMessages::InvalidUnitNetworkSubnetDefaultRouterType." : ".$param, ExceptionCodes::InvalidUnitNetworkSubnetDefaultRouterType);
             }
         }
-        else
-        {
-            throw new Exception(ExceptionMessages::MissingUnitNetworkSubnetDefaultRouterParam, ExceptionCodes::MissingUnitNetworkSubnetDefaultRouterParam);
-        }
+//        else
+//        {
+//            throw new Exception(ExceptionMessages::MissingUnitNetworkSubnetDefaultRouterParam, ExceptionCodes::MissingUnitNetworkSubnetDefaultRouterParam);
+//        }
      
 //======================================================================================================================
 //= Check if $mm_id record exists

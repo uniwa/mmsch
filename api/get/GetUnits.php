@@ -1069,36 +1069,8 @@ function GetUnits(
         else
             throw new Exception(ExceptionMessages::InvalidSearchType." : ".$searchtype, ExceptionCodes::InvalidSearchType);
 
-
-        if ( Validator::Missing('page', $params) )
-            $page = 1;
-        else if ( Validator::isNull($page) )
-            throw new Exception(ExceptionMessages::MissingPageValue, ExceptionCodes::MissingPageValue);
-        elseif ( Validator::isArray($page) )
-            throw new Exception(ExceptionMessages::InvalidPageArray, ExceptionCodes::InvalidPageArray);
-        elseif (Validator::isLowerThan($page, 0, true) )
-            throw new Exception(ExceptionMessages::InvalidPageNumber, ExceptionCodes::InvalidPageNumber);
-        elseif (!Validator::isGreaterThan($page, 0) )
-            throw new Exception(ExceptionMessages::InvalidPageType, ExceptionCodes::InvalidPageType);
-        else
-            $page = Validator::toInteger($page);
-
-
-
-        if ( Validator::Missing('pagesize', $params) )
-            $pagesize = Parameters::DefaultPageSize;
-        else if ( Validator::isEqualTo($pagesize, 0) )
-            $pagesize = Parameters::AllPageSize;
-        else if ( Validator::isNull($pagesize) )
-            throw new Exception(ExceptionMessages::MissingPageSizeValue, ExceptionCodes::MissingPageSizeValue);
-        elseif ( Validator::isArray($pagesize) )
-            throw new Exception(ExceptionMessages::InvalidPageSizeArray, ExceptionCodes::InvalidPageSizeArray);
-        elseif ( (Validator::isLowerThan($pagesize, 0) ) )
-            throw new Exception(ExceptionMessages::InvalidPageSizeNumber, ExceptionCodes::InvalidPageSizeNumber);
-        elseif (!Validator::isGreaterThan($pagesize, 0) )
-            throw new Exception(ExceptionMessages::InvalidPageSizeType, ExceptionCodes::InvalidPageSizeType);
-        else
-            $pagesize = Validator::toInteger($pagesize);
+       $page = Pagination::getPage($page, $params);
+       $pagesize = Pagination::getPagesize($pagesize, $params);
 
 //======================================================================================================================
 //= $mm_id
@@ -2675,6 +2647,8 @@ function GetUnits(
                              units.special_name as special_unit_name,
                              unit_network_subnet_types.unit_network_subnet_type_id,
                              unit_network_subnet_types.subnet_type as unit_network_subnet_type,
+                             unit_network_objects.ip as object_ip,
+                             unit_network_objects.object_dns_name as object_dns_name,
                              connection_unit_network_subnets.connection_unit_network_subnet_id,
                              connection_unit_network_subnets.unit_network_subnet_id is not null as is_connected
                         ";
@@ -2682,7 +2656,8 @@ function GetUnits(
         $sqlFrom   = "  FROM unit_network_subnets
                         LEFT JOIN units ON unit_network_subnets.mm_id = units.mm_id
                         LEFT JOIN unit_network_subnet_types ON unit_network_subnets.unit_network_subnet_type_id = unit_network_subnet_types.unit_network_subnet_type_id
-                        LEFT JOIN connection_unit_network_subnets ON unit_network_subnets.unit_network_subnet_id=connection_unit_network_subnets.unit_network_subnet_id";
+                        LEFT JOIN connection_unit_network_subnets ON unit_network_subnets.unit_network_subnet_id=connection_unit_network_subnets.unit_network_subnet_id
+                        LEFT JOIN unit_network_objects ON unit_network_subnets.unit_network_subnet_id = unit_network_objects.unit_network_subnet_id";
         $sqlWhere = " WHERE unit_network_subnets.mm_id in (".$ids.") ";
         $sqlOrder = " ORDER BY unit_network_subnets.mm_id ASC";
         
@@ -2740,13 +2715,16 @@ function GetUnits(
                              unit_network_subnets.subnet_default_router,
                              unit_network_subnets.mask,
                              unit_network_subnet_types.unit_network_subnet_type_id,
-                             unit_network_subnet_types.subnet_type as unit_network_subnet_type
+                             unit_network_subnet_types.subnet_type as unit_network_subnet_type,
+                             unit_network_objects.ip as object_ip,
+                             unit_network_objects.object_dns_name as object_dns_name
                              ";
 
         $sqlFrom   = "FROM connection_unit_network_subnets
                       LEFT JOIN unit_network_subnets ON connection_unit_network_subnets.unit_network_subnet_id = unit_network_subnets.unit_network_subnet_id
                       LEFT JOIN unit_network_subnet_types ON unit_network_subnets.unit_network_subnet_type_id = unit_network_subnet_types.unit_network_subnet_type_id
-                      LEFT JOIN connections ON connection_unit_network_subnets.connection_id = connections.connection_id                      
+                      LEFT JOIN connections ON connection_unit_network_subnets.connection_id = connections.connection_id
+                      LEFT JOIN unit_network_objects ON unit_network_subnets.unit_network_subnet_id = unit_network_objects.unit_network_subnet_id
                      ";
 
         $sqlWhere = " WHERE connection_unit_network_subnets.connection_id in (".$connection_ids.") AND connections.mm_id=unit_network_subnets.mm_id";
@@ -2939,7 +2917,7 @@ function GetUnits(
                     $data["unit_dns"][] = array(
                         "unit_dns_id" => $unit_dns["unit_dns_id"] ? (int)$unit_dns["unit_dns_id"] : null,
                         "unit_dns"    => $unit_dns["unit_dns"],
-                        "ext_dns"     => $unit_dns["ext_dns"]
+                        "unit_ext_dns"     => $unit_dns["unit_ext_dns"]
                     );
                 }
 
@@ -3002,8 +2980,10 @@ function GetUnits(
                         "special_unit_name"             => $unit_network_subnet["special_unit_name"],
                         "unit_network_subnet_type_id"   => Validator::toIntVal($unit_network_subnet["unit_network_subnet_type_id"]),
                         "unit_network_subnet_type"      => $unit_network_subnet["unit_network_subnet_type"],
+                        "unit_network_object_ip"        => $unit_network_subnet["object_ip"],                      
+                        "unit_network_object_name"      => $unit_network_subnet["object_dns_name"],
                         "connection_unit_network_subnet_id"   => Validator::toIntVal($unit_network_subnet["connection_unit_network_subnet_id"]),
-                        "is_connected"     => isset($unit_network_subnet["is_connected"]) ? (bool)$unit_network_subnet["is_connected"] : null,
+                        "is_connected"     => isset($unit_network_subnet["is_connected"]) ? (bool)$unit_network_subnet["is_connected"] : null
                     );
                 }
 
@@ -3025,6 +3005,8 @@ function GetUnits(
                             "mask"                          => $connection_unit_network_subnet["mask"],
                             "unit_network_subnet_type_id"   => Validator::toIntVal($connection_unit_network_subnet["unit_network_subnet_type_id"]),
                             "unit_network_subnet_type"      => $connection_unit_network_subnet["unit_network_subnet_type"],
+                            "unit_network_object_ip"        => $connection_unit_network_subnet["object_ip"],                      
+                            "unit_network_object_name"      => $connection_unit_network_subnet["object_dns_name"]
                         );
                     }
 
