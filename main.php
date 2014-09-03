@@ -249,7 +249,7 @@ var homePageModule = {
 		self._hoverSidemenuTimeout=window.setTimeout(function(){
 			
 			if ( self.$sideMenu.hasClass("unpinned") ){
-				self.$sideMenu.css({"right":"auto", "left":"0px", "z-index":"1000"});    
+				self.$sideMenu.css({"right":"auto", "left":"0px", "z-index":"1"});    
 			}
 
 			self._hoverSidemenuTimeout=null;
@@ -386,6 +386,7 @@ $(document).ready(function() {
 			$('#main-splitter-inner .k-splitbar:first').show();
 
 			$sideMenuNav.removeClass("unpinned").addClass("pinned");
+			$sideMenuNav.css({"z-index":"0"});
 			
 			$sideMenuNav.unbind("mouseenter");
 			$sideMenuNav.unbind("mouseleave");
@@ -783,7 +784,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 				style="height:100%;">
 	
 			
-			<nav id="sidemenu" class="unpinned k-widget" style="height:100%;">
+			<nav id="sidemenu" class="unpinned k-widget" style="height:100%; z-index:0;">
 				
 				<div style="position:absolute; top:0; bottom:33px;width:inherit;overflow:auto; ">
 			
@@ -853,7 +854,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 			
 			
 			
-			<section id="main" class="" style="left:40px; height:100%; overflow-y:hidden;">  
+			<section id="main" class="" style="left:40px; height:100%; overflow-y:hidden; z-index:0;">  
 			<div id="body">
 				<div id="bodyInner">
 				
