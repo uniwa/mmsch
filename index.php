@@ -161,9 +161,9 @@
 		
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-4"><p class="pull-left"><img src="/img/mainlogo_p8.png" /></p></div>
-				<div class="col-md-4"><p><img src="/img/logo_stirizo.png" /></p></div>
-				<div class="col-md-4"><p class="pull-right"><img src="/img/logo.png" height="85px" /></p></div>
+				<div class="col-md-4"><p><img class="img-responsive" src="/img/mainlogo_p8.png" /></p></div>
+				<div class="col-md-4"><p><img class="img-responsive" src="/img/logo_stirizo.png" /></p></div>
+				<div class="col-md-4"><p><img class="img-responsive" src="/img/logo.png" /></p></div>
 			</div>
 		</div>
        
