@@ -44,7 +44,7 @@ function loadData($api_url)
 {
     global $Options;
     
-    $params = array("pagesize" => 0);
+    $params = array();
 
     $curl = curl_init( $Options["ServerURL"].$api_url );
     curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
