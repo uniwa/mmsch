@@ -139,9 +139,9 @@ if (isset($user["l"])){
 
 <script type="text/javascript" src="client/jquery.scrollTo-min.js"></script>
 
-<link rel="stylesheet" type="text/css" media="screen" href="client/vendors/mmenu/jquery.mmenu.all.css" >
+<link rel="stylesheet" type="text/css" media="screen" href="client/vendors/mmenu/jquery.mmenu.css" >
 
-<script type="text/javascript" src="client/vendors/mmenu/jquery.mmenu.oncanvas.js"></script>
+<script type="text/javascript" src="client/vendors/mmenu/jquery.mmenu.js"></script>
 
 
 <!--[if IE ]>
