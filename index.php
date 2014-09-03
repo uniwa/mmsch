@@ -15,10 +15,10 @@
 
 <title>MMSCH</title>
 
-<link rel="stylesheet" type="text/css" media="screen" href="client/vendors/bootstrap3/css/bootstrap.css" >
+<link rel="stylesheet" type="text/css" media="screen" href="client/vendors/bootstrap32/css/bootstrap.css" >
 
 <script type="text/javascript" src="client/vendors/kendo/js/jquery.min.js"></script>
-<script type="text/javascript" src="client/vendors/bootstrap3/js/bootstrap.js"></script>
+<script type="text/javascript" src="client/vendors/bootstrap32/js/bootstrap.js"></script>
 
 <style>
 .sch_logo_text {
