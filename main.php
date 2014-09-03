@@ -121,7 +121,8 @@ if (isset($user["l"])){
 
 <link rel="stylesheet" type="text/css" media="screen" href="client/styles/override.bts.kendo.css.css" />
 
-<link rel="stylesheet" type="text/css" media="screen" href="client/vendors/font-awesome/css/font-awesome.min.css" />
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
 
 <script type="text/javascript" src="client/vendors/kendo/js/jquery.min.js"></script>
 
@@ -761,11 +762,11 @@ function evalLexicalId(cacheData, model_id, value, return_value){
   			<ul class="dropdown-menu" role="menu">
     			<li><a href="/hlp/user_guide_frontend_ver3.pdf" target="_blank"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
     			<?php if ($isFY) : ?>
-    			<li><a href="/client/stats/statistic.php?implementation_entity=<?php echo $FY; ?>" target="_blank">Στατιστικα</a></li>
+    			<li><a href="/client/stats/statistic.php?implementation_entity=<?php echo $FY; ?>" target="_blank"><i class="fa fa-bar-chart fa-1x"></i>&nbsp;&nbsp;Στατιστικα</a></li>
     			<?php endif; ?>
-    			<li><a href="#" id="btnSelectTheme">Εμφάνιση</a></li>
-    			<li><a href="/docs/package-GET.html" target="_blank">Οδηγός API</a></li>
-    			<li><a href="http://helpdesk.sch.gr/?category_id=9508" target="_blank">Αναφορά Σφαλμάτων</a></li>
+    			<li><a href="#" id="btnSelectTheme"><i class="fa fa-eye fa-1x"></i>&nbsp;&nbsp;Εμφάνιση</a></li>
+    			<li><a href="/docs/package-GET.html" target="_blank"><i class="fa fa-code fa-1x"></i>&nbsp;&nbsp;Οδηγός API</a></li>
+    			<li><a href="http://helpdesk.sch.gr/?category_id=9508" target="_blank"><i class="fa fa-support fa-1x"></i>&nbsp;&nbsp;Αναφορά Σφαλμάτων</a></li>
     			<li class="divider"></li>
     			<li><a href="#" id="lnkLogout"><i class="fa fa-sign-out fa-1x"></i>&nbsp;&nbsp;Αποσύνδεση</a></li>
   			</ul>
