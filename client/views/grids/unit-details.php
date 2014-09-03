@@ -502,6 +502,13 @@ position: fixed;
 												<td class="detail-term">Τύπος</td>
 												<td class="term-value">${subnets[j].unit_network_subnet_type}</td>
 											</tr>
+											
+											# if (subnets[j].unit_network_subnet_type_id == 3) { #
+											<tr>
+												<td class="detail-term">Router Hostname</td>
+												<td class="term-value">${subnets[j].unit_network_object_name}</td>
+											</tr>
+											# } #
 
 											</tbody></table></td></tr>
 											# } #
@@ -581,6 +588,12 @@ position: fixed;
 												<td class="detail-term">Τύπος</td>
 												<td class="term-value">${unit_network_subnet.unit_network_subnet_type}</td>
 											</tr>
+											# if (unit_network_subnet.unit_network_subnet_type_id == 3) { #
+											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
+												<td class="detail-term">Router Hostname</td>
+												<td class="term-value">${unit_network_subnet.unit_network_object_name}</td>
+											</tr>
+											# } #
 										</tbody>
 									</table>
 									</div>
