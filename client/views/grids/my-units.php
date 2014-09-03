@@ -3,21 +3,21 @@ $isAnonymous = @ $_GET['is_anonymous'];
 ?>
 <div id="mod-units" class="main-pane" style="position: absolute; left:0; top:0; bottom:0; height: 100%; width:100%;">
 					
-					<div id="ribbon">
+					<div id="ribbon" class="k-widget">
 						<div class="ribbon-menu">
 							<div class="pull-right">
 								<div class="btn-group">
-									<button id="btnShowColumnChooser" class="btn btn-sm btn-info dropdown-toggle btn-popover" data-toggle="dropdown"><i class="fa fa-th fa-1x">&nbsp</i>Επιλογή Στηλών</button>									
+									<button id="btnShowColumnChooser" class="k-button dropdown-toggle btn-popover" data-toggle="dropdown"><i class="fa fa-th fa-1x">&nbsp</i>Επιλογή Στηλών</button>									
 								</div>
 									
 								<div class="btn-group">
-		  							<button type="button" class="btn btn-sm btn-info btn-popover"  id="btnShowDlgSearch"><i class="fa fa-search fa-1x">&nbsp</i>Αναζήτηση...</button>		  								
+		  							<button type="button" class="k-button btn-popover"  id="btnShowDlgSearch"><i class="fa fa-search fa-1x">&nbsp</i>Αναζήτηση...</button>		  								
 								</div>
 							</div>
 						</div>
 					</div>
 					
-					<div class="filters-wrapper" >
+					<div class="k-widget filters-wrapper" >
 						<div class="grid-view-search pull-left" style="margin-right:10px">
 							<input id="txtQuickSearch" type="text" class="k-textbox" style="">
 							<i class="fa fa-search"></i>
@@ -120,9 +120,9 @@ $isAnonymous = @ $_GET['is_anonymous'];
 							</script>
                         </div>
 						
-                        <div id="right-pane" class="preview-pane pinned" style="z-index:999">
+                        <div id="right-pane" class="preview-pane pinned k-widget" >
 							<div class="summary-pane"></div>
-							<button class="preview-pane-toggle-button" type="button">
+							<button class="preview-pane-toggle-button k-header k-widget" type="button">
 								<i class="fa fa-chevron-right"></i>
 								<i class="fa fa-chevron-left"></i>
 								<span class="pin-text">Pin preview pane</span>
@@ -136,7 +136,7 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					
 					</div>
 					
-
+<!--  
 <div class="popover bottom in mmsch-modal-wnd" id="dlgWndSearchBy" tabindex="-1" style="display:none; width:50%; position: absolute: left:auto; z-index: 010;border-radius:0px;" >
   <div class="arrow" style=""></div>
   <div class="modal-dialog1">
@@ -146,20 +146,33 @@ $isAnonymous = @ $_GET['is_anonymous'];
         <h4 class="modal-title " id="myModalLabel">Αναζήτηση</h4>
       </div>
       <div class="modal-body">
-		
-        <div class="container" style="width:inherit; height:400px; overflow:auto;">
+		-->
         
-        <ul class="nav nav-tabs">
-			<li class="active"><a href="#mainSearch" data-toggle="tab">Κύρια</a></li>
-  			<li><a href="#subnetSearch" data-toggle="tab">Υποδίκτυα</a></li>
-  			<li><a href="#circuitSearch" data-toggle="tab">Κυκλώματα</a></li>
-		</ul>
+        <div id="dlgWndSelectColms" class="" style="">
+        
+        	<div id="cntGridColms" class="k-widget">
+        	</div>
+        	
+        	<div class="cs-window-footer pull-right" style="margin-top:10px;">
+        		<button id="btnApplyColms" type="button" class="k-button ">Εφαρμογή</button>
+      		</div>
+        </div>
+        
+        <div id="dlgWndSearchBy" class="" style="">
+        
+        <div class="tabstrip">
+        
+	        <ul>
+				<li class="k-state-active">Κύρια</li>
+	  			<li>Υποδίκτυα</li>
+	  			<li>Κυκλώματα</li>
+			</ul>
 
-		<div class="tab-content" style="padding-top:25px;">
-			<div class="tab-pane active" id="mainSearch">	
+		
+			<div class="" id="mainSearch">	
 			<form id="frmUnitMainSearch" class="mmsch-form">							
 										<blockquote>
-  												<i class="fa fa-chevron-down"></i><span>ΓΕΝΙΚΑ ΣΤΟΙΧΕΙΑ</span>
+  												<i class="fa fa-chevron-down"></i><a href="#" class="k-link">ΓΕΝΙΚΑ ΣΤΟΙΧΕΙΑ</a>
 										</blockquote>
 										<div id="search-options-geo-infos">
 										<div class="row">
@@ -227,7 +240,7 @@ $isAnonymous = @ $_GET['is_anonymous'];
 
 										</div>
 										<blockquote>
-  												<i class="fa fa-chevron-right"></i><span>ΓΕΩΓΡΑΦΙΚΑ ΣΤΟΙΧΕΙΑ</span>
+  												<i class="fa fa-chevron-right"></i><a href="#" class="k-link">ΓΕΩΓΡΑΦΙΚΑ ΣΤΟΙΧΕΙΑ</a>
 										</blockquote>
 											
 										<div id="search-options-geo-infos" style="display:none">
@@ -252,7 +265,7 @@ $isAnonymous = @ $_GET['is_anonymous'];
 										</div>
 										
 										<blockquote>
-  												<i class="fa fa-chevron-right"></i><span>ΣΤΟΙΧΕΙΑ ΕΠΙΚΟΙΝΩΝΙΑΣ</span>
+  												<i class="fa fa-chevron-right"></i><a href="#" class="k-link">ΣΤΟΙΧΕΙΑ ΕΠΙΚΟΙΝΩΝΙΑΣ</a>
 										</blockquote>
 										
 										<div id="search-options-contact-infos" style="display:none">
@@ -260,24 +273,24 @@ $isAnonymous = @ $_GET['is_anonymous'];
 											
 											
 											<div class="row" >
-											    <div class="col-md-4">
+											    <div class="col-md-3">
 												    <div class="form-group ">
 	    	                                    		<label>Τηλέφωνο Επικοινωνίας</label>
-	        	                                		<input name="phone_number" id="phone_number" class="k-textbox col-md-12" />
+	        	                                		<input name="phone_number" id="phone_number" class="k-textbox col-md-12 bt-col-full" />
 	            	                        		</div>
 	                                    		</div>
 	
-	                                    		<div class="col-md-4">
+	                                    		<div class="col-md-3">
 		                                    		<div class="form-group ">
 		                                        		<label>Αριθμός FAX</label>
-		                                        		<input name="fax_number" id="fax_number" class="k-textbox col-md-12" />
+		                                        		<input name="fax_number" id="fax_number" class="k-textbox col-md-12 bt-col-full" />
 		                                    		</div>
 		                                   		</div>
 	                                    		
-	                                    		<div class="col-md-4">
+	                                    		<div class="col-md-3">
 		                                    		<div class="form-group ">
 		                                        		<label>Ηλεκτρονική Αλληλογραφία</label>
-		                                        		<input name="email" id="email" class="k-textbox col-md-12"  />
+		                                        		<input name="email" id="email" class="k-textbox col-md-12 bt-col-full"  />
 		                                    		</div>
 		                                   		</div>
 											</div>
@@ -286,21 +299,21 @@ $isAnonymous = @ $_GET['is_anonymous'];
 											    <div class="col-md-4">
 												    <div class="form-group ">
 	    	                                    		<label>Οδός, Αριθμός</label>
-	        	                                		<input name="street_address" id="street_address" class="k-textbox col-md-12" />
+	        	                                		<input name="street_address" id="street_address" class="k-textbox col-md-12 bt-col-full" />
 	            	                        		</div>
 	                                    		</div>
 	
 	                                    		<div class="col-md-2">
 		                                    		<div class="form-group ">
 		                                        		<label>Ταχυδρομικός Κώδικας</label>
-		                                        		<input name="postal_code" id="postal_code" class="k-textbox col-md-12" />
+		                                        		<input name="postal_code" id="postal_code" class="k-textbox col-md-12 bt-col-full" />
 		                                    		</div>
 		                                   		</div>
 											</div>
 										</div>
 										
 										<blockquote>
-											<i class="fa fa-chevron-right"></i><span>ΑΛΛΑ ΣΤΟΙΧΕΙΑ</span>
+											<i class="fa fa-chevron-right"></i><a href="#" class="k-link">ΑΛΛΑ ΣΤΟΙΧΕΙΑ</a>
 										</blockquote>
 											
 										<div id="search-options-other" style="display:none">
@@ -308,21 +321,21 @@ $isAnonymous = @ $_GET['is_anonymous'];
 											
 											
 											<div class="row" >
-											    <div class="col-md-4">
+											    <div class="col-md-3">
 												    <div class="form-group ">
 	    	                                    		<label>Κατηγορία</label>
 	        	                                		<input name="category" id="src_category" class="bt-col-full" />
 	            	                        		</div>
 	                                    		</div>
 	
-	                                    		<div class="col-md-4">
+	                                    		<div class="col-md-3">
 		                                    		<div class="form-group ">
 		                                        		<label>Επίπεδο Εκπαίδευσης</label>
 		                                        		<input name="education_level" id="src_educationLevel" class="bt-col-full" />
 		                                    		</div>
 		                                   		</div>
 	                                    		
-	                                    		<div class="col-md-4">
+	                                    		<div class="col-md-3">
 		                                    		<div class="form-group ">
 		                                        		<label>Τύπος</label>
 		                                        		<input name="unit_type" id="src_unitType" class="bt-col-full"  />
@@ -331,21 +344,21 @@ $isAnonymous = @ $_GET['is_anonymous'];
 											</div>
 										
 											<div class="row">
-												<div class="col-md-4">
+												<div class="col-md-3">
 													<div class="form-group ">
 		                                        		<label>Προσανατολισμός</label>
 		                                        		<input name="orientation_type" id="src_orientationType" class="bt-col-full"   />
 		                                    		</div>
 	                                    		</div>
 	
-	                                    		<div class="col-md-4">
+	                                    		<div class="col-md-3">
 		                                    		<div class="form-group ">
 		                                        		<label>Ωράριο Λειτουργίας</label>
 		                                        		<input name="operation_shift" id="src_operationShift" class="bt-col-full"  />    
 		                                    		</div>
 	                                    		</div>
 	
-	                                    		<div class="col-md-4">
+	                                    		<div class="col-md-3">
 		                                    		<div class="form-group ">
 		                                        		<label>Ειδικός Τύπος</label>
 		                                        		<input name="special_type" id="src_specialType" class="bt-col-full" />
@@ -355,19 +368,19 @@ $isAnonymous = @ $_GET['is_anonymous'];
 											
 											<div class="row">
 											
-												<div class="col-md-4">
+												<div class="col-md-3">
 													<div class="form-group">
 														<label for="" class="control-label">Προσωνύμιο</label>
 														<input type="text" name="special_name" class="k-textbox col-md-12" />
 													</div>
 												</div>
-												<div class="col-md-4">
+												<div class="col-md-3">
 													<div class="form-group ">
 		                                        		<label>Νομικός Χαρακτήρας </label>
 		                                        		<input name="legal_character" id="src_legalCharacter" class="bt-col-full" />
 		                                    		</div>    
 	                                    		</div>     
-												<div class="col-md-4">
+												<div class="col-md-3">
 													<div class="form-group ">
 		                                        		<label>Πηγή </label>
 		                                        		<input name="source" id="src_source" class="bt-col-full" />
@@ -380,7 +393,7 @@ $isAnonymous = @ $_GET['is_anonymous'];
 										</form>
     								</div>
     								
-    								<div class="tab-pane" id="circuitSearch">
+    								<div class="" id="circuitSearch">
     									<form id="frmUnitCircuitSearch" class="mmsch-form">
 
     									<div class="row">
@@ -415,7 +428,7 @@ $isAnonymous = @ $_GET['is_anonymous'];
     									</form>
     								</div>
     								
-    								<div class="tab-pane" id="subnetSearch">
+    								<div class="" id="subnetSearch">
     									<form id="frmUnitSubnetSearch" class="mmsch-form">
        									<div>
        									
@@ -474,16 +487,26 @@ $isAnonymous = @ $_GET['is_anonymous'];
     								</div>
     								
 									</div>
+									
+									<div class="cs-window-footer pull-right" style="margin-top:10px;">
+										<button id="btnClearFrmSearch" type="button" class="k-button ">Καθαρισμός</button>
+        								<button id="btnSearch" type="button" class="k-button ">Αναζήτηση</button>
+      								</div>
+				
 				</div>
 			
-	  </div>
+	  
+	  
+	  <!-- 
       <div class="modal-footer">
 		<button id="btnClearFrmSearch" type="button" class="k-button default">Καθαρισμός</button>
         <button id="btnSearch" type="button" class="k-button primary">Αναζήτηση</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div>
+
+ -->
 
 
 					
@@ -574,6 +597,9 @@ $isAnonymous = @ $_GET['is_anonymous'];
 						},
 						
 						toggleSearchBoxModal: function(action){
+
+							$('#dlgWndSearchBy').data("kendoWindow").open();
+							return;
 							
 							var action = (typeof action != 'undefined') ? action : "";
 							
@@ -648,6 +674,8 @@ $isAnonymous = @ $_GET['is_anonymous'];
 							var self = this;
 							
 							$(window).off('keyup', $.proxy(self.evtKeyupCallback, self));
+
+							
 						}
 					}
 
@@ -655,6 +683,11 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					
 					$(document).ready(function() {
 
+						$("#mod-units").on("destroyed", function () {
+							$("#dlgWndSearchBy").data("kendoWindow").destroy();
+							$("#dlgWndSelectColms").data("kendoWindow").destroy();
+						});
+						
 						$(".searchtype").kendoDropDownList({});
 		                    
 						if (typeof mmschApp.modules['units'] == 'undefined'){
@@ -663,12 +696,144 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					
 						$("#mod-units.main-pane").on("remove", function () {
 							mmschApp.modules['units']._destroy();
+							console.log("remove");
 						});
 						
 						mmschApp.modules['units']._onWindowKeyUp();
 						
 						$("#dlgWndSearchBy").appendTo("body");
+
+						$("#dlgWndSearchBy").kendoWindow({
+							title: "Αναζήτηση",
+							visible: false,
+							animation: false,
+							modal: true
+						});
+
+						$("#dlgWndSearchBy.k-window-content").css({overflow:"hidden"});
 						
+						var dlgWndSearchBy = $("#dlgWndSearchBy").data("kendoWindow");
+
+						dlgWndSearchBy.bind("activate", function(){
+
+							// fix the width
+							var $dlgWndSearchByContainer = $('#dlgWndSearchBy').parent();
+							$dlgWndSearchByContainer.css({"width":"50%"});
+
+							// fix the height 
+							dlgWndSearchBy.trigger("resize");
+
+							// fix position
+							$dlgWndSearchByContainer.position({
+								my: "right top+10",
+								at: "right bottom",
+								of:$('#btnShowDlgSearch'),
+								collision: "fit"
+							});
+						});
+
+						dlgWndSearchBy.bind("resize", function(){
+							$("#dlgWndSearchBy .tabstrip .k-content").css({
+								height:$("#dlgWndSearchBy.k-window-content").height()-80 + "px",
+								"overflow-y":"auto",
+								"overflow-x":"hidden"
+							});
+						});
+
+						$("#dlgWndSearchBy >.tabstrip").kendoTabStrip({
+							animation: false
+						});
+
+						
+						/* CODE FOR SELECT GRID COLUMNS DIALOG WINDOW  */
+						
+						$("#dlgWndSelectColms").kendoWindow({
+							title: "Επιλογή στηλών",
+							visible: false,
+							animation: false,
+							modal: true,
+							height:"30%"
+						});
+
+						$("#dlgWndSelectColms.k-window-content").css({overflow:"hidden"});
+						
+						var dlgWndSelectColms = $("#dlgWndSelectColms").data("kendoWindow");
+
+						dlgWndSelectColms.bind("activate", function(){
+
+							// build the content
+							$("#dlgWndSelectColms #cntGridColms").empty();
+							
+							var ul = $("<ul>", {'id': 'list-grid-units-columns','class': 'k-reset'});
+
+							$.each(gridUnits.columns, function(i, item) {
+																
+								var checked = (!item.hidden)? "checked":"";
+								
+					            ul.append(
+							    	"<li class=\"k-item k-state-default\" role=\"menuitem\">" +
+					            	"<span class=\"k-link\">" +
+					            	"<input "+ checked  +" type=\"checkbox\" id=\"chb-"+ item.field +"\" class=\"\" data-index=\""+i+"\" data-field=\""+item.field+"\">" +
+					            	"<label class=\"k-link\" for=\"chb-"+ item.field +"\">" + item.title + "</label>" +
+					            	"</span>" +
+					            	"</li>"
+					            );
+					        });
+
+							$("#dlgWndSelectColms #cntGridColms").append(ul);
+							ul.makeCol(3);
+							
+							// fix the width
+							var $dlgWndSelectColmsContainer = $('#dlgWndSelectColms').parent();
+							$dlgWndSelectColmsContainer.css({"width":"50%"});
+
+							// fix the height 
+							dlgWndSelectColms.trigger("resize");
+
+							// fix position
+							$dlgWndSelectColmsContainer.position({
+								my: "right top+10",
+								at: "right bottom",
+								of:$('#btnShowColumnChooser'),
+								collision: "fit"
+							});
+						});
+
+						dlgWndSelectColms.bind("resize", function(){
+							$("#dlgWndSelectColms #cntGridColms").css({
+								height:$("#dlgWndSelectColms.k-window-content").height()-80 + "px",
+								"overflow-y":"auto",
+								"overflow-x":"hidden"
+							});
+						});
+
+						$('body').on('click', '#btnShowColumnChooser', function(e) {
+							$('#dlgWndSelectColms').data("kendoWindow").open();
+						});
+
+						$('body').on('click', '#btnApplyColms', function(e) {
+
+							var cols = $("#list-grid-units-columns input[type='checkbox']");
+
+							$.each(cols, function(i, item) {
+								var col = $(item);
+								var field = col.data('field');
+								var checked = $(item).is(':checked');
+
+								if (checked){
+									gridUnits.showColumn(field);
+								}
+								else {
+									gridUnits.hideColumn(field);
+								}
+							});
+							
+							resizeGrid('grid-units');
+						});
+						
+						/**/
+							
+													
 
 						//var objMmsch = new mmsch();
 						mmschApp.modules['units'].init();
@@ -681,12 +846,11 @@ $isAnonymous = @ $_GET['is_anonymous'];
 						var $sideMenuNav = $('#main-splitter-inner nav:first');
 
 						
-						
+						/*
 						
 						$("#btnShowColumnChooser").popover({ html: true, 
 								placement: 'bottom',
 								'animation': false,
-								//title: 'Popover', 
 								container: '#bodyInner',
 								content: "&nbsp;" 
 						});
@@ -761,7 +925,6 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					        });
 
 							pc.append(ul);
-							//pc.append($("<div>", {class:'clearfix'}));
 							ul.makeCol(3);
 
 							
@@ -770,9 +933,6 @@ $isAnonymous = @ $_GET['is_anonymous'];
 							var s = ele.outerWidth();
 							
 							
-							//ele.css({"left": (f.left - s) + ($('#btnShowColumnChooser').outerWidth())  + "px"});
-							
-							//ele.css({"z-index": 103310,"right":"auto","left": (f.left - s) + ($('#btnShowColumnChooser').outerWidth())  + "px" });
 							ele.css({"z-index": 103310});
 							ele.position({
 								
@@ -787,14 +947,18 @@ $isAnonymous = @ $_GET['is_anonymous'];
 								my: "center",
 								at: "center bottom+8",
 								of:$('#btnShowColumnChooser')
-								//collision: "fit"
 							});
 							
 
-							//ele.find('.arrow').css({"right": "auto", "left": (f.left-s)+ ($('#btnShowColumnChooser').outerWidth()/2 + 21)  + "px"});
+
 							
 						});
 
+						*/
+						
+						
+							
+						
 						
 						var gridUnits = $("#grid-units").kendoGrid({
 							autoBind: false,	
