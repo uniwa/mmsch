@@ -252,7 +252,7 @@ html.mm-blocking #mm-blocker {
 .mm-menu {
   width: 100%;
   min-width: 140px;
-  max-width: 440px; }
+  }
 
 html.mm-opening .mm-page,
 html.mm-opening #mm-blocker {
