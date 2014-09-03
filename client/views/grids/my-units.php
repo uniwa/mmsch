@@ -659,6 +659,9 @@ $isAnonymous = @ $_GET['is_anonymous'];
 									}
 									*/
 									self.toggleSearchBoxModal('hide');
+
+									$("#dlgWndSearchBy").data("kendoWindow").close();
+									$("#dlgWndSelectColms").data("kendoWindow").close();
 								}
 						},
 						
