@@ -105,7 +105,7 @@ min-width: 600px;
 
 #sidemenu .navigation-control {
     position: absolute;
-  bottom: 1px;
+  bottom: 0px;
   z-index: 1;
   /*color: #777777;*/
   /*border: none;*/
@@ -815,6 +815,11 @@ table.table.borderless td
 
 .soft-hide{
 	display:none;
+}
+
+nav#sidemenu{
+	border-bottom :none !important;
+	border-top :none !important;  
 }
 
 .detail-section .detail-section-header
