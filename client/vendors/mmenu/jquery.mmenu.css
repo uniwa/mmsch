@@ -5,6 +5,7 @@
 	jQuery.mmenu panels CSS
 */
 .mm-menu.mm-horizontal > .mm-panel {
+	overflow-y:hidden;
   -webkit-transition: -webkit-transform 0.4s ease;
   transition: transform 0.4s ease; }
 

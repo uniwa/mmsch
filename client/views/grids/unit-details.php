@@ -243,7 +243,7 @@ position: fixed;
        	
        	<div class="item-header">
        		
-       		<h5 style=""><strong data-bind="text: unitData.name"></strong>&nbsp;<a href="/main.php?mm_id=<?php echo $_GET['mm_id']; ?>" target="_blank" class="btn btn-default btn-xs" id="loadUnitCard"><i class="glyphicon glyphicon-new-window"></i></a></h5>
+       		<h5 style=""><strong data-bind="text: unitData.name"></strong>&nbsp;<a href="/main.php?mm_id=<?php echo $_GET['mm_id']; ?>" target="_blank" class="k-button" id="loadUnitCard"><i class="glyphicon glyphicon-new-window"></i></a></h5>
        		
        	</div>
        	
@@ -281,7 +281,7 @@ position: fixed;
         <div id="mycontent" class="tab-content " style="overflow:scroll; width:auto; position:relative;">
 			
 			<div id="holder-general-infos" class="detail-section">
-				<div class="detail-section-header"><h3>Γενικά Στοιχεία</h3></div>
+				<div class="detail-section-header"><h3 class="k-widget">Γενικά Στοιχεία</h3></div>
 				<div class="detail-section-tab">
 					<div class="detail-section-tab-content" data-bind="source: unitData" data-template="tpl-general-info"></div>
 						<script type="text/x-kendo-tmpl" id="tpl-general-info">
@@ -319,7 +319,7 @@ position: fixed;
             </div>
 
                 <div id="holder-contact-infos" class="detail-section">
-					<div class="detail-section-header"><h3>Στοιχεία Επικοινωνίας</h3></div>
+					<div class="detail-section-header"><h3 class="k-widget">Στοιχεία Επικοινωνίας</h3></div>
                     <div class="detail-section-tab">
 						<div class="detail-section-tab-content" data-bind="source: unitData" data-template="tpl-contact-info"></div>
 						
@@ -368,7 +368,7 @@ position: fixed;
 
                 <?php if (!$isAnonymous) { ?>
 				    <div id="holder-workers-infos" class="detail-section">
-					<div class="detail-section-header"><h3>Εργαζόμενοι</h3></div>
+					<div class="detail-section-header"><h3 class="k-widget">Εργαζόμενοι</h3></div>
 					<div class="detail-section-tab">
 						<div class="detail-section-tab-content">
 							<div class="data-table" id="unit-<?php echo $_GET['mm_id']; ?>-workers" data-bind="source: unitData.workers" data-template="tpl-workers-list"></div>
@@ -420,7 +420,7 @@ position: fixed;
 				<?php if (!$isAnonymous) { ?>
 					<div id="holder-net-infos" class="detail-section">
 					
-						<div class="detail-section-header"><h3>Δικτυακά Στοιχεία</h3></div>
+						<div class="detail-section-header"><h3 class="k-widget">Δικτυακά Στοιχεία</h3></div>
 					
 						<div class="detail-section-tab">
 							<div class="detail-section-tab-content">
@@ -759,7 +759,7 @@ position: fixed;
 				<?php if (!$isAnonymous) { ?>
                 <div id="holder-geo-infos" class="detail-section">
 					
-					<div class="detail-section-header"><h3>Τοπολογικά Στοιχεία</h3></div>
+					<div class="detail-section-header"><h3 class="k-widget">Τοπολογικά Στοιχεία</h3></div>
 					<div class="detail-section-tab">
 						<div class="detail-section-tab-content">
 						
@@ -812,7 +812,7 @@ position: fixed;
 
 				<?php if (!$isAnonymous) { ?>
                 <div id="holder-manage-infos" class="detail-section">
-					<div class="detail-section-header"><h3>Διοικητικά Στοιχεία</h3></div>
+					<div class="detail-section-header"><h3 class="k-widget">Διοικητικά Στοιχεία</h3></div>
 					<div class="detail-section-tab">
 						<div class="detail-section-tab">
 							<table class="table borderless">
@@ -842,7 +842,7 @@ position: fixed;
 
 				<?php if (!$isAnonymous) { ?>
                 <div id="holder-transitions-infos" class="detail-section">
-					<div class="detail-section-header"><h3>Μεταβάσεις</h3></div>
+					<div class="detail-section-header"><h3 class="k-widget">Μεταβάσεις</h3></div>
                     <div class="detail-section-tab">
 						<div class="detail-section-tab-content list-item" data-bind="source: unitData" data-template="tmpl-transaction-list"></div>
 							

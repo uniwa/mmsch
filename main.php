@@ -286,12 +286,7 @@ $(document).ready(function() {
 	mmschApp.modules['main'].initMain();
 			
 	$('#sidemenu .ddd').mmenu({
-		classes: "mm-white",
-		header: {
-			add		: true,
-			update	: true,
-			title	: 'Πλοήγηση'
-		}
+		classes: "mm-white"
 	});
 
 	
@@ -785,7 +780,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 				style="height:100%;">
 	
 			
-			<nav id="sidemenu" class="unpinned k-widget" style="height:100%; z-index:0;">
+			<nav id="sidemenu" class="unpinned k-widget" style="height:100% !important; z-index:0;">
 				
 				<div style="position:absolute; top:0; bottom:33px;width:inherit;overflow:auto; ">
 			
