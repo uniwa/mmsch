@@ -810,6 +810,9 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 									<li>
 										<a href="#">Διαχείριση</a>
 										<ul class="">
+											<?php if ($isFY && $FY == "teiath") : ?>
+											<li class="load-page"><a href="client/views/whatsnew.php">What's new!</a></li>
+											<?php endif; ?>
 											<li class="load-page"><a href="client/views/grids/categories.php">Κατηγορίες</a></li>
 											<li class="load-page"><a href="client/views/grids/unit-types.php">Τύποι Μονάδων</a></li>
 											<li class="load-page"><a href="client/views/grids/education-levels.php">Επίπεδα Εκπαίδευσης</a></li>

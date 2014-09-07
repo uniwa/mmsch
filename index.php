@@ -1,3 +1,15 @@
+<?php 
+function file_get_contents_utf8($fn) {
+	$content = file_get_contents($fn);
+	return mb_convert_encoding($content, 'UTF-8',
+			mb_detect_encoding($content, 'UTF-8, ISO-8859-7', true));
+}
+
+$whatsnew = trim(file_get_contents_utf8('whatsnew.txt'));
+
+$whatsnewItems = explode("@",$whatsnew);
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +31,7 @@
 
 <script type="text/javascript" src="client/vendors/kendo/js/jquery.min.js"></script>
 <script type="text/javascript" src="client/vendors/bootstrap32/js/bootstrap.js"></script>
+
 
 <style>
 .sch_logo_text {
@@ -42,25 +55,62 @@
     vertical-align: middle;
     float: none;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<div class="modal" id="whatsNewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">What's new</h4>
+      </div>
+      <div class="modal-body">
+        <?php 
+        foreach($whatsnewItems as $newItem) {
+    		
+			$newText = trim($newItem);
+
+			if (!empty($newText)){
+		?>
+			<div><?php echo $newText; ?></div>
+		<?php 
+			}
+		
+        } 
+        ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Κλείσιμο</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
 		
-		<div style="clear: both;" >&nbsp;</div>
+	<div style="clear: both;" >&nbsp;</div>
 		
-      <div class="header">
-         <div class="container-fluid">
+	<div class="header">
+		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-12">
-				<p class="pull-left"><img src="/img/sch_logo.png" />&nbsp;&nbsp;&nbsp;</p>			
-				<p class="pull-left" style="padding-top:5px;"><strong><a href="http://www.sch.gr" style="color: #1d73a3;font: bold 20px Tahoma,sans-serif;">Πανελλήνιο Σχολικό Δίκτυο</a></strong><br>
-				<span class="sch_logo_text2">Το Δίκτυο στην Υπηρεσία της Εκπαίδευσης</span>
-				</p>
+				<div class="col-md-8 col-xs-6">
+					<p class="pull-left"><img class="img-responsive" src="/img/sch_logo.png" />&nbsp;&nbsp;&nbsp;</p>			
+					<p class="pull-left" style="padding-top:5px;"><strong><a href="http://www.sch.gr" style="color: #1d73a3;font: bold 20px Tahoma,sans-serif;">Πανελλήνιο Σχολικό Δίκτυο</a></strong><br>
+						<span class="sch_logo_text2">Το Δίκτυο στην Υπηρεσία της Εκπαίδευσης</span>
+					</p>
 				</div>
+				
+				<div class="col-md-4 col-xs-6">
+					<p class="pull-right"><button class="btn btn-xs btn-link" data-toggle="modal" data-target="#whatsNewModal"><img class="pull-right" src="/img/whats_new_icon.jpg" style="width:30%" />
+					</button>
+					</p>
+				</div>
+				
 			</div>
 		 </div>
         
