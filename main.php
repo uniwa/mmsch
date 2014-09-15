@@ -117,14 +117,12 @@ if (isset($user["l"])){
 
 <link rel="stylesheet" type="text/css" media="screen" href="client/vendors/kendo/styles/kendo.default.min.css" />
 
-
-
-<link rel="stylesheet" type="text/css" media="screen" href="client/vendors/bootstrap3/css/bootstrap.css" >
-
+<link rel="stylesheet" type="text/css" media="screen" href="client/vendors/bootstrap32/css/bootstrap.css" >
 
 <link rel="stylesheet" type="text/css" media="screen" href="client/styles/override.bts.kendo.css.css" />
 
-<link rel="stylesheet" type="text/css" media="screen" href="client/vendors/font-awesome/css/font-awesome.min.css" />
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
 
 <script type="text/javascript" src="client/vendors/kendo/js/jquery.min.js"></script>
 
@@ -133,7 +131,7 @@ if (isset($user["l"])){
 <script type="text/javascript" src="client/vendors/kendo/js/kendo.web.min.js"></script>
 <script type="text/javascript" src="client/vendors/kendo/js/cultures/kendo.culture.el-GR.min.js"></script>
   
-<script type="text/javascript" src="client/vendors/bootstrap3/js/bootstrap.js"></script>
+<script type="text/javascript" src="client/vendors/bootstrap32/js/bootstrap.js"></script>
 
 <script type="text/javascript" src="client/js/webtoolkit.base64.js"></script>
 <script type="text/javascript" src="client/dataSources.js"></script>
@@ -142,13 +140,9 @@ if (isset($user["l"])){
 
 <script type="text/javascript" src="client/jquery.scrollTo-min.js"></script>
 
-
-
-
-
 <link rel="stylesheet" type="text/css" media="screen" href="client/vendors/mmenu/jquery.mmenu.css" >
-<script type="text/javascript" src="client/vendors/mmenu/jquery.mmenu.js"></script>
 
+<script type="text/javascript" src="client/vendors/mmenu/jquery.mmenu.js"></script>
 
 
 <!--[if IE ]>
@@ -166,6 +160,44 @@ if (isset($user["l"])){
 <link type="text/css" href="my.css" rel="stylesheet" media="all" />
 
 <script>
+
+function changeTheme(skinName) {
+    var doc = document,
+        kendoLinks = $("link[href*='kendo.']", doc.getElementsByTagName("head")[0]),
+        commonLink = kendoLinks.filter("[href*='kendo.common']"),
+        skinLink = kendoLinks.filter(":not([href*='kendo.common'])"),
+        href = location.href,
+        skinRegex = /kendo\.\w+(\.min)?\.css/i,
+        extension = skinLink.attr("rel") === "stylesheet" ? ".css" : ".less",
+        url = commonLink.attr("href").replace(skinRegex, "kendo." + skinName + "$1" + extension),
+        exampleElement = $("#example");
+    
+    function preloadStylesheet(file, callback) {
+        var element = $("<link rel='stylesheet' media='print' href='" + file + "'").appendTo("head");
+        
+        setTimeout(function () {
+            callback();
+            element.remove();
+        }, 100);
+    }
+
+    function replaceTheme() {
+        var oldSkinName = $(doc).data("kendoSkin"),
+            newLink;
+
+            newLink = skinLink.eq(0).clone().attr("href", url);
+
+        newLink.insertBefore(skinLink[0]);
+        skinLink.remove();
+
+        $(doc.documentElement).removeClass("k-" + oldSkinName).addClass("k-" + skinName);
+    }
+
+        replaceTheme();
+};
+
+//changeTheme("default");
+
 
 // start - Implement personalized default filters based on CAS attributes
 function g_findImpEnt(domain){
@@ -218,7 +250,7 @@ var homePageModule = {
 		self._hoverSidemenuTimeout=window.setTimeout(function(){
 			
 			if ( self.$sideMenu.hasClass("unpinned") ){
-				self.$sideMenu.css({"right":"auto", "left":"0px", "z-index":"1000"});    
+				self.$sideMenu.css({"right":"auto", "left":"0px", "z-index":"1"});    
 			}
 
 			self._hoverSidemenuTimeout=null;
@@ -252,8 +284,10 @@ $(document).ready(function() {
 	}
 	
 	mmschApp.modules['main'].initMain();
-						
-	$('#sidemenu .ddd').mmenu();
+			
+	$('#sidemenu .ddd').mmenu({
+		classes: "mm-white"
+	});
 
 	
 	
@@ -344,10 +378,11 @@ $(document).ready(function() {
 			});
 		}
 		else if ( $sideMenuNav.hasClass("unpinned") ){
-
+						
 			$('#main-splitter-inner .k-splitbar:first').show();
 
 			$sideMenuNav.removeClass("unpinned").addClass("pinned");
+			$sideMenuNav.css({"z-index":"0"});
 			
 			$sideMenuNav.unbind("mouseenter");
 			$sideMenuNav.unbind("mouseleave");
@@ -444,6 +479,106 @@ $(document).ready(function() {
 		$("#vUsername").html("<strong>" + user.uid + "</strong>");
 	}
 
+	$("#themelistView").kendoListView({
+		selectable: true,
+        dataSource: [
+        	{
+            	themeName: "Default",
+            	skin: "default",
+            	color1:"#ef6f1c",
+            	color2:"#e24b17",
+            	color3:"#5a4b43"
+            },
+            {
+            	themeName: "Silver",
+            	skin: "silver",
+            	color1:"#298bc8",
+            	color2:"#515967",
+            	color3:"#eaeaec"
+            },
+            {
+            	themeName: "Metro",
+            	skin: "metro",
+            	color1:"#8ebc00",
+            	color2:"#787878",
+            	color3:"#fff"
+            },
+            {
+            	themeName: "Uniform",
+            	skin: "uniform",
+            	color1:"#666",
+            	color2:"#ccc",
+            	color3:"#fff"
+            },
+            {
+            	themeName: "Blue Opal",
+            	skin: "blueopal",
+            	color1:"#076186",
+            	color2:"#7ed3f6",
+            	color3:"#94c0d2"
+            },
+            {
+            	themeName: "Bootstrap",
+            	skin: "bootstrap",
+            	color1:"#3276b1",
+            	color2:"#67afe9",
+            	color3:"#fff"
+            },
+            {
+            	themeName: "Black",
+            	skin: "black",
+            	color1:"#0167cc",
+            	color2:"#4698e9",
+            	color3:"#272727"
+            },
+            {
+            	themeName: "Metro Black",
+            	skin: "metroblack",
+            	color1:"#00aba9",
+            	color2:"#0e0e0e",
+            	color3:"#565656"
+            },
+            {
+            	themeName: "High Contrast",
+            	skin: "highcontrast",
+            	color1:"#b11e9c",
+            	color2:"#880275",
+            	color3:"#1b141a"
+            },
+            {
+            	themeName: "Moonlight",
+            	skin: "moonlight",
+            	color1:"#ee9f05",
+            	color2:"#40444f",
+            	color3:"#212a33"
+            }
+        ],
+        template: kendo.template($("#themeItemTmpl").html()),
+        change: function(){
+
+        	var data = this.dataSource.view();
+        	
+            var selectedSkin = $.map(this.select(), function(item) {
+                return data[$(item).index()].skin;
+            });
+
+            changeTheme(selectedSkin);
+        }
+    });
+
+	
+	$("#dlgWndSelectTheme").kendoWindow({
+		title: "Επιλογή Theme",
+		visible: false,
+		animation: false,
+		modal: true,
+		width: "30%"
+	});
+
+	$("body").on("click","#btnSelectTheme", function(){
+		$("#dlgWndSelectTheme").data("kendoWindow").center().open();
+	});
+
 }); // end of
 
 
@@ -460,9 +595,9 @@ function resizeGrid(gridId){
 				
 	h=f.offset().top;
 				
-	i = $("#body").outerHeight() + $("#body").offset().top - h - (g.outerHeight());
+	i = $("#body").outerHeight() + $("#body").offset().top - h - (g.outerHeight()) - 1;
 				
-	$(".k-grid-content:first").height(i)
+	$(".k-grid-content:first").height(i);
 }
 
 function dataBoundDetailsGridHandler(o, evt) {
@@ -568,9 +703,24 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 
 <body>
 
+<div id="dlgWndSelectTheme" class="" style="">
+	<center>
+		<div id="themelistView"></div>
+	</center>
+</div>
+
+<script type="text/x-kendo-template" id="themeItemTmpl">
+   <div class="theme">
+	<span style="display:block; margin-right:2px; float:left; border:1px grey solid; width:16px; height:16px; background-color:#:color1#">&nbsp;</span>
+	<span style="display:block; margin-right:2px; float:left; border:1px grey solid; width:16px; height:16px; background-color:#:color2#">&nbsp;</span>
+	<span style="display:block; margin-right:2px; float:left; border:1px grey solid; width:16px; height:16px; background-color:#:color3#">&nbsp;</span>
+    <span style="display:block; white-space:nowrap">#:themeName#</span>
+   </div>
+</script>
+
 <div id="page" class="">
 		
-	<div id="header" style="color:#333333; font-size:14px; padding:0px 14px 0 14px; font-family:'Open Sans', 'Segoe UI', verdana, Arial, Helvetica, Sans-Serif;">
+	<div id="header" class="k-state-selected" style="color:#333333; font-size:14px; padding:0px 14px 0 14px; font-family:'Open Sans', 'Segoe UI', verdana, Arial, Helvetica, Sans-Serif;">
 		
 		<div class="pull-left">
 			<span style="font-size:16px;font-weight:bold"><img src="client/img/schgr.jpg" style="width:70px;" class="img-rounded" alt="Πανελλήνιο Σχολικό Δίκτυο" /></span> 
@@ -601,16 +751,17 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 		 
 		<div class="pull-right">
 		<div class="btn-group">
-  			<button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown">
+  			<button type="button" class="k-button dropdown-toggle" data-toggle="dropdown">
     			<i class="fa fa-user fa-1x"></i>&nbsp;&nbsp;<span id="vUsername"></span>&nbsp;&nbsp;<span class="caret"></span>
     		</button>
   			<ul class="dropdown-menu" role="menu">
     			<li><a href="/hlp/user_guide_frontend_ver3.pdf" target="_blank"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
     			<?php if ($isFY) : ?>
-    			<li><a href="/client/stats/statistic.php?implementation_entity=<?php echo $FY; ?>" target="_blank">Στατιστικα</a></li>
+    			<li><a href="/client/stats/statistic.php?implementation_entity=<?php echo $FY; ?>" target="_blank"><i class="fa fa-bar-chart fa-1x"></i>&nbsp;&nbsp;Στατιστικα</a></li>
     			<?php endif; ?>
-    			<li><a href="/docs/package-GET.html" target="_blank">Οδηγός API</a></li>
-    			<li><a href="http://helpdesk.sch.gr/?category_id=9508" target="_blank">Αναφορά Σφαλμάτων</a></li>
+    			<li><a href="#" id="btnSelectTheme"><i class="fa fa-eye fa-1x"></i>&nbsp;&nbsp;Εμφάνιση</a></li>
+    			<li><a href="/docs/package-GET.html" target="_blank"><i class="fa fa-code fa-1x"></i>&nbsp;&nbsp;Οδηγός API</a></li>
+    			<li><a href="http://helpdesk.sch.gr/?category_id=9508" target="_blank"><i class="fa fa-support fa-1x"></i>&nbsp;&nbsp;Αναφορά Σφαλμάτων</a></li>
     			<li class="divider"></li>
     			<li><a href="#" id="lnkLogout"><i class="fa fa-sign-out fa-1x"></i>&nbsp;&nbsp;Αποσύνδεση</a></li>
   			</ul>
@@ -629,14 +780,16 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 				style="height:100%;">
 	
 			
-			<nav id="sidemenu" class="unpinned" style="height:100%">
+			<nav id="sidemenu" class="unpinned k-widget" style="height:100% !important; z-index:0;">
 				
 				<div style="position:absolute; top:0; bottom:33px;width:inherit;overflow:auto; ">
 			
 				<div class="ddd" >
 				
 								<ul>
-									<li class="load-page Selected"><a href="client/views/grids/my-units.php?is_anonymous=<?php echo $isAnonymous; ?>">Μονάδες</a></li>
+									<li class="load-page k-state-selected">
+										<a class="k-link" href="client/views/grids/my-units.php?is_anonymous=<?php echo $isAnonymous; ?>">Μονάδες</a>
+									</li>
 									<li>
 										<a href="#">Περιφερειακές ενότητες/Δήμοι</a>
 										<ul><li style="height:100%; overflow-x:hidden; overflow-y:auto">
@@ -657,6 +810,9 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 									<li>
 										<a href="#">Διαχείριση</a>
 										<ul class="">
+											<?php if ($isFY && $FY == "teiath") : ?>
+											<li class="load-page"><a href="client/views/whatsnew.php">What's new!</a></li>
+											<?php endif; ?>
 											<li class="load-page"><a href="client/views/grids/categories.php">Κατηγορίες</a></li>
 											<li class="load-page"><a href="client/views/grids/unit-types.php">Τύποι Μονάδων</a></li>
 											<li class="load-page"><a href="client/views/grids/education-levels.php">Επίπεδα Εκπαίδευσης</a></li>
@@ -684,7 +840,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 				
 				</div>
 				
-				<button class="navigation-control" type="button">
+				<button class="navigation-control k-header k-widget" type="button">
 					<span class="pin-text">Pin pane</span>
 					<span class="unpin-text">Unpin pane</span>
 					<i class="fa fa-chevron-right"></i>
@@ -697,7 +853,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 			
 			
 			
-			<section id="main" class="" style="left:40px; height:100%; overflow-y:hidden;">  
+			<section id="main" class="" style="left:40px; height:100%; overflow-y:hidden; z-index:0;">  
 			<div id="body">
 				<div id="bodyInner">
 				

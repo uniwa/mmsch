@@ -5,6 +5,10 @@ $isAnonymous = @ $_GET['is_anonymous'];
 .tooltip{
 position: fixed;
 }
+
+.wnd_create_connection .k-block{
+	margin-bottom:10px;
+}
 </style>
 
 <div id="unit-<?php echo $_GET['mm_id']; ?>-preview"  
@@ -104,9 +108,9 @@ position: fixed;
 					<div class="alert alert-success success-create" style="display:none;">Η διασύνδεση δημιουργήθηκε επιτυχώς</div>
 					<div class="alert alert-success success-update" style="display:none;">Η διασύνδεση ενημερώθηκε επιτυχώς</div>
 					
-					<div class="panel panel-primary">
-						<div class="panel-heading">» IPs</div>
-						<div class="panel-body">
+					<div class="k-block">
+						<div class="k-header">» IPs</div>
+						<div class="k-content">
 							
 							<div id="grd-network-elements" 
 								class="mmsch-grid"
@@ -134,9 +138,9 @@ position: fixed;
 					</div>
 					
 					<!-- Κυκλώματα -->
-					<div class="panel panel-primary">
-						<div class="panel-heading">» Κυκλώματα</div>
-						<div class="panel-body">
+					<div class="k-block">
+						<div class="k-header">» Κυκλώματα</div>
+						<div class="k-content">
 							<div id="grd-circuits" 
 								class="mmsch-grid"
 								data-modelid="circuit_id"
@@ -161,9 +165,9 @@ position: fixed;
 					
 
 					<!-- CPEs -->
-					<div class="panel panel-primary">
-						<div class="panel-heading">» CPEs</div>
-						<div class="panel-body">
+					<div class="k-block">
+						<div class="k-header">» CPEs</div>
+						<div class="k-content">
 							
 							<div id="grd-cpes" 
 								class="mmsch-grid"
@@ -185,9 +189,9 @@ position: fixed;
 					
 					
 					<!-- UIDs -->
-					<div class="panel panel-primary">
-						<div class="panel-heading">» UIDs</div>
-						<div class="panel-body">
+					<div class="k-block">
+						<div class="k-header">» UIDs</div>
+						<div class="k-content">
 						
 							<div id="grd-ldaps" 
 								class="mmsch-grid"
@@ -219,7 +223,7 @@ position: fixed;
 				data-template="tpl-button-label" 
 				data-bind="source:this ,events:{click: saveConnection}" 
 				data-loading-text="Loading..."
-				class="k-button primary pull-right" type="button">Δημιουργία Διασύνδεσης</button>
+				class="k-button pull-right" type="button">Δημιουργία Διασύνδεσης</button>
 				
 				<script id="tpl-button-label" type="text/x-kendo-template" >
 				# if (editedConnection == null) { #
@@ -239,11 +243,11 @@ position: fixed;
        	
        	<div class="item-header">
        		
-       		<h5 style=""><strong data-bind="text: unitData.name"></strong>&nbsp;<a href="/main.php?mm_id=<?php echo $_GET['mm_id']; ?>" target="_blank" class="btn btn-default btn-xs" id="loadUnitCard"><i class="glyphicon glyphicon-new-window"></i></a></h5>
+       		<h5 style=""><strong data-bind="text: unitData.name"></strong>&nbsp;<a href="/main.php?mm_id=<?php echo $_GET['mm_id']; ?>" target="_blank" class="k-button" id="loadUnitCard"><i class="glyphicon glyphicon-new-window"></i></a></h5>
        		
        	</div>
        	
-		<div id="sidebar">
+		<div id="sidebar" class="k-widget">
 			<nav class="navbar navbar-default" role="navigation">
 				
 				<ul id="info-panelbar-<?php echo $_GET['mm_id']; ?>" class="nav navbar-nav">
@@ -277,7 +281,7 @@ position: fixed;
         <div id="mycontent" class="tab-content " style="overflow:scroll; width:auto; position:relative;">
 			
 			<div id="holder-general-infos" class="detail-section">
-				<div class="detail-section-header"><h3>Γενικά Στοιχεία</h3></div>
+				<div class="detail-section-header"><h3 class="k-widget">Γενικά Στοιχεία</h3></div>
 				<div class="detail-section-tab">
 					<div class="detail-section-tab-content" data-bind="source: unitData" data-template="tpl-general-info"></div>
 						<script type="text/x-kendo-tmpl" id="tpl-general-info">
@@ -300,7 +304,7 @@ position: fixed;
 								# if (implementation_entity_id != null) { #
 								<tr>
 									<td class="detail-term">Φορέας Υλοποίησης</td>
-									<td class="term-value"><a href="##" class="btn btn-xs btn-default btnShowImplementationEntityInfo" data-implementation_entity_id="#= implementation_entity_id #">#= implementation_entity_initials #</a></td>
+									<td class="term-value"><a href="##" class="k-button btnShowImplementationEntityInfo" data-implementation_entity_id="#= implementation_entity_id #">#= implementation_entity_initials #</a></td>
 								</tr>
 								# } #
 								<tr>
@@ -315,7 +319,7 @@ position: fixed;
             </div>
 
                 <div id="holder-contact-infos" class="detail-section">
-					<div class="detail-section-header"><h3>Στοιχεία Επικοινωνίας</h3></div>
+					<div class="detail-section-header"><h3 class="k-widget">Στοιχεία Επικοινωνίας</h3></div>
                     <div class="detail-section-tab">
 						<div class="detail-section-tab-content" data-bind="source: unitData" data-template="tpl-contact-info"></div>
 						
@@ -364,7 +368,7 @@ position: fixed;
 
                 <?php if (!$isAnonymous) { ?>
 				    <div id="holder-workers-infos" class="detail-section">
-					<div class="detail-section-header"><h3>Εργαζόμενοι</h3></div>
+					<div class="detail-section-header"><h3 class="k-widget">Εργαζόμενοι</h3></div>
 					<div class="detail-section-tab">
 						<div class="detail-section-tab-content">
 							<div class="data-table" id="unit-<?php echo $_GET['mm_id']; ?>-workers" data-bind="source: unitData.workers" data-template="tpl-workers-list"></div>
@@ -416,7 +420,7 @@ position: fixed;
 				<?php if (!$isAnonymous) { ?>
 					<div id="holder-net-infos" class="detail-section">
 					
-						<div class="detail-section-header"><h3>Δικτυακά Στοιχεία</h3></div>
+						<div class="detail-section-header"><h3 class="k-widget">Δικτυακά Στοιχεία</h3></div>
 					
 						<div class="detail-section-tab">
 							<div class="detail-section-tab-content">
@@ -440,7 +444,7 @@ position: fixed;
 						<div class="detail-section-tab">
 							<h4>Διασυνδέσεις</h4>
 							<div class="clearfix" style="padding-right:10px;">
-								<button id="btnCreateConnection" data-bind="click: createConnection" class="btn btn-default btn-sm pull-right" type="button"><i class="glyphicon glyphicon-plus"></i> Δημιουργία Διασύνδεσης</button>
+								<button id="btnCreateConnection" data-bind="click: createConnection" class="k-button pull-right" type="button"><i class="glyphicon glyphicon-plus"></i> Δημιουργία Διασύνδεσης</button>
 							</div>
 							<div class="detail-section-tab-content">
 								
@@ -460,7 +464,7 @@ position: fixed;
 										<tbody>
 											<tr>
 												<td class="detail-term term-head" colspan="2">Διασύνδεση ${i+1}
-												<button class="btn btn-default btn-xs editConnection" 
+												<button class="k-button editConnection" 
 															
 															data-connection_id="${connections[i]['connection_id']}"
 															data-subnets=${safeSubnets}
@@ -469,7 +473,7 @@ position: fixed;
 															data-ldap_id="${connections[i]['ldap']['ldap_id']}"
 															><span class="glyphicon glyphicon-pencil"></span></button>
 												
-												<button class="btn btn-default btn-xs deleteConnection" 
+												<button class="k-button deleteConnection" 
 														data-connection_id="${connections[i]['connection_id']}"
 														data-loading-text="Loading..."
 														><span class="glyphicon glyphicon-remove"></span></button>
@@ -498,6 +502,13 @@ position: fixed;
 												<td class="detail-term">Τύπος</td>
 												<td class="term-value">${subnets[j].unit_network_subnet_type}</td>
 											</tr>
+											
+											# if (subnets[j].unit_network_subnet_type_id == 3) { #
+											<tr>
+												<td class="detail-term">Router Hostname</td>
+												<td class="term-value">${subnets[j].unit_network_object_name}</td>
+											</tr>
+											# } #
 
 											</tbody></table></td></tr>
 											# } #
@@ -553,7 +564,7 @@ position: fixed;
 											<tr><td class="detail-term term-head" colspan="2">Στοιχεία IP ${i+1}
 											# if (unit_network_subnet.is_connected == true) { #
 											<span class="label label-warning">Mapped</span>
-											<button class="btn btn-default btn-xs toggleNetworkElementInfo"><span class="fa fa-expand"></span></button>
+											<button type="button" class="k-button toggleNetworkElementInfo"><span class="fa fa-expand"></span></button>
 											# } else { #
 											<span class="label label-success">Διαθέσιμο</span>
 											<button class="btn btn-default btn-xs toggleNetworkElementInfo"><span class="fa fa-compress"></span></button>
@@ -577,6 +588,12 @@ position: fixed;
 												<td class="detail-term">Τύπος</td>
 												<td class="term-value">${unit_network_subnet.unit_network_subnet_type}</td>
 											</tr>
+											# if (unit_network_subnet.unit_network_subnet_type_id == 3) { #
+											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
+												<td class="detail-term">Router Hostname</td>
+												<td class="term-value">${unit_network_subnet.unit_network_object_name}</td>
+											</tr>
+											# } #
 										</tbody>
 									</table>
 									</div>
@@ -611,10 +628,10 @@ position: fixed;
 											<td colspan="2" class="detail-term term-head">Κύκλωμα ${i+1}
 												# if (circuit.is_connected == true) { #
 												<span class="label label-warning">Mapped</span>
-												<button class="btn btn-default btn-xs toggleCircuitInfo"><span class="fa fa-expand"></span></button>
+												<button class="k-button toggleCircuitInfo"><span class="fa fa-expand"></span></button>
 												# } else { #
 												<span class="label label-success">Διαθέσιμο</span>
-												<button class="btn btn-default btn-xs toggleCircuitInfo"><span class="fa fa-compress"></span></button>
+												<button class="k-button toggleCircuitInfo"><span class="fa fa-compress"></span></button>
 												# } #
 												
 												
@@ -742,7 +759,7 @@ position: fixed;
 				<?php if (!$isAnonymous) { ?>
                 <div id="holder-geo-infos" class="detail-section">
 					
-					<div class="detail-section-header"><h3>Τοπολογικά Στοιχεία</h3></div>
+					<div class="detail-section-header"><h3 class="k-widget">Τοπολογικά Στοιχεία</h3></div>
 					<div class="detail-section-tab">
 						<div class="detail-section-tab-content">
 						
@@ -795,7 +812,7 @@ position: fixed;
 
 				<?php if (!$isAnonymous) { ?>
                 <div id="holder-manage-infos" class="detail-section">
-					<div class="detail-section-header"><h3>Διοικητικά Στοιχεία</h3></div>
+					<div class="detail-section-header"><h3 class="k-widget">Διοικητικά Στοιχεία</h3></div>
 					<div class="detail-section-tab">
 						<div class="detail-section-tab">
 							<table class="table borderless">
@@ -825,7 +842,7 @@ position: fixed;
 
 				<?php if (!$isAnonymous) { ?>
                 <div id="holder-transitions-infos" class="detail-section">
-					<div class="detail-section-header"><h3>Μεταβάσεις</h3></div>
+					<div class="detail-section-header"><h3 class="k-widget">Μεταβάσεις</h3></div>
                     <div class="detail-section-tab">
 						<div class="detail-section-tab-content list-item" data-bind="source: unitData" data-template="tmpl-transaction-list"></div>
 							
@@ -1843,10 +1860,12 @@ position: fixed;
 		else {
 			$(window).on('resize', resizeTabContent );
 		}
-
+/*
 		$('[data-toggle="tooltip"]').tooltip({
 			'placement': 'top'
 		});
+*/
+		$("body").kendoTooltip({ filter: "*[title]" });
 		
 
     });
