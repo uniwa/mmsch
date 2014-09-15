@@ -164,8 +164,8 @@ $isAnonymous = @ $_GET['is_anonymous'];
         
 	        <ul>
 				<li class="k-state-active">Κύρια</li>
-	  			<li>Υποδίκτυα</li>
 	  			<li>Κυκλώματα</li>
+	  			<li>Υποδίκτυα</li>
 			</ul>
 
 		
