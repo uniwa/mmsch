@@ -151,8 +151,8 @@ $isAnonymous = @ $_GET['is_anonymous'];
         
         <ul class="nav nav-tabs">
 			<li class="active"><a href="#mainSearch" data-toggle="tab">Κύρια</a></li>
-  			<li><a href="#subnetSearch" data-toggle="tab">Υποδίκτυα</a></li>
-  			<li><a href="#circuitSearch" data-toggle="tab">Κυκλώματα</a></li>
+  			<li><a href="#subnetSearch" data-toggle="tab">Κυκλώματα</a></li>
+  			<li><a href="#circuitSearch" data-toggle="tab">Υποδίκτυα</a></li>
 		</ul>
 
 		<div class="tab-content" style="padding-top:25px;">
