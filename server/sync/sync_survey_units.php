@@ -331,7 +331,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                     "levels_count"          => trim($unit["LevelsCount"]),
                     "groups_count"          => trim($unit["GroupsCount"]),
                     "students_count"        => trim($unit["StudentsSum"]),
-                    "last_sync"             => $this->lastSync,
+                    "last_sync"             => $this->lastSync, // This is today's date
                     "last_update"           => $lastUpdate instanceof \DateTime ? $lastUpdate->format('Y-m-d H:i:s') : null,
                     "tax_number"            => trim($unit["SchoolAFM"]),
                     "tax_office"            => $this->a_tax_offices[ $tax_office_id ],
@@ -344,7 +344,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
                 //echo "<pre>"; var_dump( $unit ); echo "</pre>";
 
-                $sql = "SELECT mm_id FROM units "
+                $sql = "SELECT mm_id, last_sync FROM units "
                      . "WHERE registry_no = '".mysql_escape_string(trim($unit["RegistryNo"]))."' and (source_id = 1 OR source_id = 5)";
                 //echo "<br><br>".$sql."<br><br>";
 
@@ -354,6 +354,13 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 if ( $row["mm_id"] )
                 {
                     $params["mm_id"] = $row["mm_id"];
+                    $lastSync = new \DateTime($row["last_sync"]);
+                    if(!($lastUpdate instanceof \DateTime) || $lastSync >= $lastUpdate) {
+                        // We already have the latest version, skip the unit
+                        $this->blockRowsSkiped++;
+                        $this->totalRowsSkipped++;
+                        return true;
+                    }
                 }
 
                 $curl = curl_init($Options["ServerURL"]."/units");
