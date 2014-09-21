@@ -994,7 +994,7 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					                if ($('#grid-units').data('kendoGrid').options.inSearching) {
 
 					                    if (typeof this['rqc'] == 'undefined')
-					                        this['rqc'] = 0
+					                        this['rqc'] = 0;
 
 					                    this['rqc']++;
 
