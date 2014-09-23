@@ -139,11 +139,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <br><b>Πίνακας Δεδομένων</b>
  * <br><a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα του λεξικού σε μορφή JSON :
  * <code>
- *
- *
- *   {
- *      "data":
- *      [
+ * {"data":[
  *          {
  *              "id": 91305,
  *              "action": "update",
@@ -151,7 +147,10 @@ header("Content-Type: text/html; charset=utf-8");
  *              "object_id": "1000002",
  *              "object_class": "Units",
  *              "version": 1,
- *              "data": "a:6:{s:4:"name";s:74:"eschool-Νηπιαγωγείο - 2ο ΝΗΠΙΑΓΩΓΕΙΟ ΚΑΤΟΧΗΣ";s:13:"studentsCount";s:1:"0";s:11:"groupsCount";s:1:"0";s:11:"levelsCount";s:1:"0";s:10:"lastUpdate";O:8:"DateTime":3:{s:4:"date";s:19:"2013-11-25 14:50:29";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Athens";}s:6:"source";a:1:{s:8:"sourceId";i:5;}}",
+ *              "data": "a:6:{s:4:"name";s:74:"eschool-Νηπιαγωγείο - 2ο ΝΗΠΙΑΓΩΓΕΙΟ ΚΑΤΟΧΗΣ";s:13:"studentsCount";s:1:"0";
+ *                       s:11:"groupsCount";s:1:"0";s:11:"levelsCount";s:1:"0";s:10:"lastUpdate";
+ *                       O:8:"DateTime":3:{s:4:"date";s:19:"2013-11-25 14:50:29";s:13:"timezone_type";
+ *                       i:3;s:8:"timezone";s:13:"Europe/Athens";}s:6:"source";a:1:{s:8:"sourceId";i:5;}}",
  *              "username": "admin",
  *              "ip": null
  *           },
@@ -162,7 +161,9 @@ header("Content-Type: text/html; charset=utf-8");
  *               "object_id": "1000002",
  *               "object_class": "Units",
  *               "version": 2,
- *               "data": "a:4:{s:13:"studentsCount";s:1:"0";s:11:"groupsCount";s:1:"0";s:11:"levelsCount";s:1:"0";s:10:"lastUpdate";O:8:"DateTime":3:{s:4:"date";s:19:"2013-11-25 14:50:29";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Athens";}}",
+ *               "data": "a:4:{s:13:"studentsCount";s:1:"0";s:11:"groupsCount";s:1:"0";s:11:"levelsCount";
+ *                        s:1:"0";s:10:"lastUpdate";O:8:"DateTime":3:{s:4:"date";s:19:"2013-11-25 14:50:29";
+ *                        s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Athens";}}",
  *               "username": "admin",
  *               "ip": null
  *         },
@@ -173,7 +174,9 @@ header("Content-Type: text/html; charset=utf-8");
  *               "object_id": "1000002",
  *               "object_class": "Units",
  *               "version": 3,
- *               "data": "a:4:{s:13:"studentsCount";s:1:"0";s:11:"groupsCount";s:1:"0";s:11:"levelsCount";s:1:"0";s:10:"lastUpdate";O:8:"DateTime":3:{s:4:"date";s:19:"2013-11-25 14:50:29";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Athens";}}",
+ *               "data": "a:4:{s:13:"studentsCount";s:1:"0";s:11:"groupsCount";s:1:"0";s:11:"levelsCount";
+ *                             s:1:"0";s:10:"lastUpdate";O:8:"DateTime":3:{s:4:"date";s:19:"2013-11-25 14:50:29";
+ *                             s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Athens";}}",
  *               "username": "admin",
  *               "ip": null
  *            },
@@ -184,14 +187,13 @@ header("Content-Type: text/html; charset=utf-8");
  *               "object_id": "1000002",
  *               "object_class": "Units",
  *               "version": 4,
- *               "data": "a:4:{s:13:"studentsCount";s:1:"0";s:11:"groupsCount";s:1:"0";s:11:"levelsCount";s:1:"0";s:10:"lastUpdate";O:8:"DateTime":3:{s:4:"date";s:19:"2013-11-25 14:50:29";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Athens";}}",
+ *               "data": "a:4:{s:13:"studentsCount";s:1:"0";s:11:"groupsCount";s:1:"0";s:11:"levelsCount";
+ *                             s:1:"0";s:10:"lastUpdate";O:8:"DateTime":3:{s:4:"date";s:19:"2013-11-25 14:50:29";
+ *                             s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Athens";}}",
  *               "username": "admin",
  *               "ip": null
  *         }
- *       
- *  }
- *
- *
+ * ]}
  * </code>
  * <br>
  * 
@@ -243,7 +245,7 @@ header("Content-Type: text/html; charset=utf-8");
  *       <li>array[integer] : Σύνολο από Αριθμητικές τιμές διαχωρισμένες με κόμμα</li>
  *    </ul>
  * 
- *  * @param string $username Όνομα Χρήστη
+ * @param string $username Όνομα Χρήστη
  * <br>Το Όνομα του Χρήστη του Log Συγχρονισμού
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
  *    <ul>
@@ -251,7 +253,7 @@ header("Content-Type: text/html; charset=utf-8");
  *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
  *    </ul>
  * 
- *  * @param string $ip IP Xρήστη
+ * @param string $ip IP Xρήστη
  * <br>Η IP του Xρήστη του Log Συγχρονισμού
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
  *    <ul>

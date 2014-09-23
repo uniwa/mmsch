@@ -7,7 +7,7 @@
 	<title>Function DeleteUnitDns | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?1013038547"></script>
+	<script type="text/javascript" src="elementlist.js?678548589"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -100,7 +100,7 @@
 
 <p>Η κλήση μπορεί να γίνει μέσω της παρακάτω
 διεύθυνσης με τη μέθοδο DELETE :<br />
-<a href="http://mm.sch.gr/api/unit_dns">http://mm.sch.gr/api/unit_dns</a></p>
+<a href="https://mm.sch.gr/api/unit_dns">https://mm.sch.gr/api/unit_dns</a></p>
 
 <p><br />
 <b>Πίνακας Παραμέτρων</b><br />
@@ -154,7 +154,7 @@ href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a></p>
 <b>cURL</b> (console) :</p>
 
 <pre>
-curl -X <span class="php-keyword2">DELETE</span> http:<span
+curl -X <span class="php-keyword2">DELETE</span> https:<span
 class="php-comment">//mm.sch.gr/api/unit_dns \</span>
    -H <span
 class="php-quote">&quot;Content-Type: application/json&quot;</span> \
@@ -184,7 +184,7 @@ class="php-keyword1">var</span> http = <span
 class="php-keyword1">new</span> XMLHttpRequest();
    http.open(<span
 class="php-quote">&quot;DELETE&quot;</span>, <span
-class="php-quote">&quot;http://mm.sch.gr/api/unit_dns&quot;</span>);
+class="php-quote">&quot;https://mm.sch.gr/api/unit_dns&quot;</span>);
    http.setRequestHeader(<span
 class="php-quote">&quot;Accept&quot;</span>, <span
 class="php-quote">&quot;application/json&quot;</span>);
@@ -237,7 +237,7 @@ class="php-quote">&quot;&quot;</span>);
 
 <span
 class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
-class="php-quote">&quot;http://mm.sch.gr/api/unit_dns&quot;</span>);
+class="php-quote">&quot;https://mm.sch.gr/api/unit_dns&quot;</span>);
 
 <span
 class="php-keyword2">curl_setopt</span>(<span
@@ -287,7 +287,7 @@ class="xlang">?&gt;</span>
        type: <span
 class="php-quote">'PUT'</span>,
        url: <span
-class="php-quote">'http://mm.sch.gr/api/unit_dns'</span>,
+class="php-quote">'https://mm.sch.gr/api/unit_dns'</span>,
        dataType: <span
 class="php-quote">&quot;json&quot;</span>,
        data: {

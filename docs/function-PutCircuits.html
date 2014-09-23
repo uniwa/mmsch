@@ -7,7 +7,7 @@
 	<title>Function PutCircuits | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?1013038547"></script>
+	<script type="text/javascript" src="elementlist.js?678548589"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -109,7 +109,8 @@
 
 <p>Η κλήση μπορεί να γίνει μέσω της παρακάτω
 διεύθυνσης με τη μέθοδο PUT :<br />
-<a href="http://mm.sch.gr/api/circuits">http://mm.sch.gr/api/circuits</a><br />
+<a href="https://mm.sch.gr/api/circuits">https://mm.sch.gr/api/circuits</a><br
+/>
 <br />
 </p>
 
@@ -165,7 +166,7 @@ href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a></p>
 συνάρτησης με <b>cURL</b> (console) :</p>
 
 <pre>
-curl -X PUT http:<span
+curl -X PUT https:<span
 class="php-comment">//mm.sch.gr/api/circuits \</span>
   -H <span
 class="php-quote">&quot;Content-Type: application/json&quot;</span> \
@@ -236,7 +237,7 @@ class="php-keyword1">var</span> http = <span
 class="php-keyword1">new</span> XMLHttpRequest();
    http.open(<span
 class="php-quote">&quot;PUT&quot;</span>, <span
-class="php-quote">&quot;http://mm.sch.gr/api/circuits&quot;</span>);
+class="php-quote">&quot;https://mm.sch.gr/api/circuits&quot;</span>);
    http.setRequestHeader(<span
 class="php-quote">&quot;Accept&quot;</span>, <span
 class="php-quote">&quot;application/json&quot;</span>);
@@ -311,7 +312,7 @@ class="php-quote">&quot;null&quot;</span> }<span
 class="php-quote">'
 );
 
-$curl = curl_init(&quot;http://mm.sch.gr/api/circuits&quot;);
+$curl = curl_init(&quot;https://mm.sch.gr/api/circuits&quot;);
 
 curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 curl_setopt($curl, CURLOPT_USERPWD, &quot;username:password&quot;);
@@ -336,7 +337,7 @@ echo &quot;&lt;pre&gt;&quot;; var_dump( $data ); echo &quot;&lt;/pre&gt;&quot;;
        type: <span
 class="php-quote">'PUT'</span>,
        url: <span
-class="php-quote">'http://mm.sch.gr/api/circuits'</span>,
+class="php-quote">'https://mm.sch.gr/api/circuits'</span>,
        dataType: <span
 class="php-quote">&quot;json&quot;</span>,
        data: {

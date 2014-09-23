@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Function GetTransferAreas | mm.sch.gr</title>
+	<title>Function GetExtLogEntries | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
 	<script type="text/javascript" src="elementlist.js?678548589"></script>
@@ -53,7 +53,7 @@
 				<li><a href="function-GetCpes.html">GetCpes</a></li>
 				<li><a href="function-GetEduAdmins.html">GetEduAdmins</a></li>
 				<li><a href="function-GetEducationLevels.html">GetEducationLevels</a></li>
-				<li><a href="function-GetExtLogEntries.html">GetExtLogEntries</a></li>
+				<li class="active"><a href="function-GetExtLogEntries.html">GetExtLogEntries</a></li>
 				<li><a href="function-GetGroups.html">GetGroups</a></li>
 				<li><a href="function-GetImplementationEntities.html">GetImplementationEntities</a></li>
 				<li><a href="function-GetLdaps.html">GetLdaps</a></li>
@@ -72,7 +72,7 @@
 				<li><a href="function-GetStates.html">GetStates</a></li>
 				<li><a href="function-GetTaxOffices.html">GetTaxOffices</a></li>
 				<li><a href="function-GetTransferAreaMunicipalities.html">GetTransferAreaMunicipalities</a></li>
-				<li class="active"><a href="function-GetTransferAreas.html">GetTransferAreas</a></li>
+				<li><a href="function-GetTransferAreas.html">GetTransferAreas</a></li>
 				<li><a href="function-GetTransitions.html">GetTransitions</a></li>
 				<li><a href="function-GetUnitDns.html">GetUnitDns</a></li>
 				<li><a href="function-GetUnitNetworkObjects.html">GetUnitNetworkObjects</a></li>
@@ -119,24 +119,24 @@
 	</div>
 
 <div id="content" class="function">
-	<h1>Function GetTransferAreas</h1>
+	<h1>Function GetExtLogEntries</h1>
 
 
 	<div class="description">
 	
-<p><b>Λεξικό : Περιοχές Μετάθεσης</b></p>
+<p><b>Log Συγχρονισμού</b></p>
 
-<p>Η συνάρτηση αυτή επιστρέφει όλα τις
-Περιοχές Μετάθεσης σύμφωνα με τις
-παραμέτρους που έγινε η κλήση</p>
+<p>Η συνάρτηση αυτή επιστρέφει όλα τα Log
+Συγχρονισμού σύμφωνα με τις παραμέτρους
+που έγινε η κλήση</p>
 
 <p>Η κλήση μπορεί να γίνει μέσω της παρακάτω
 διεύθυνσης με τη μέθοδο GET :<br />
 <a
-href="https://mm.sch.gr/api/transfer_areas">https://mm.sch.gr/api/transfer_areas</a></p>
+href="https://mm.sch.gr/api/ext_log_entries">https://mm.sch.gr/api/ext_log_entries</a></p>
 
 <p>Τα αποτελέσματα είναι ταξινομημένα ως
-προς το Όνομα της Περιοχής Μετάθεσης<br />
+προς τον Κωδικό του Log Συγχρονισμού<br />
 Μέσω των παραμέτρων Πεδίο Ταξινόμησης (<a
 href="#$orderby">$orderby</a>) και Τύπος Ταξινόμησης (<a
 href="#$ordertype">$ordertype</a>) μπορεί να καθοριστεί το
@@ -198,14 +198,14 @@ href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a></p>
 
 <pre>
 curl -X GET https:<span
-class="php-comment">//mm.sch.gr/api/transfer_areas \</span>
+class="php-comment">//mm.sch.gr/api/ext_log_entries \</span>
    -H <span
 class="php-quote">&quot;Content-Type: application/json&quot;</span> \
    -H <span
 class="php-quote">&quot;Accept: application/json&quot;</span> \
    -u username:password \
    -d <span
-class="php-quote">'{&quot;region_edu_admin&quot;: &quot;ΑΤΤΙΚΗΣ&quot;}'</span>
+class="php-quote">'{&quot;object_id&quot;: &quot;1000002&quot;}'</span>
 </pre>
 
 <div><br />
@@ -218,23 +218,21 @@ class="php-quote">'{&quot;region_edu_admin&quot;: &quot;ΑΤΤΙΚΗΣ&quot;}'</
 &lt;script&gt;
    <span
 class="php-keyword1">var</span> params = JSON.stringify({ <span
-class="php-quote">&quot;region_edu_admin&quot;</span>: <span
-class="php-quote">&quot;ΑΤΤΙΚΗΣ&quot;</span> });
+class="php-quote">&quot;object_id&quot;</span>: <span
+class="php-quote">&quot;1000002&quot;</span> });
 
    <span
 class="php-keyword1">var</span> http = <span
 class="php-keyword1">new</span> XMLHttpRequest();
    http.open(<span
 class="php-quote">&quot;GET&quot;</span>, <span
-class="php-quote">&quot;https://mm.sch.gr/api/transfer_areas&quot;</span>);
+class="php-quote">&quot;https://mm.sch.gr/api/ext_log_entries&quot;</span>);
    http.setRequestHeader(<span
 class="php-quote">&quot;Accept&quot;</span>, <span
 class="php-quote">&quot;application/json&quot;</span>);
    http.setRequestHeader(<span
 class="php-quote">&quot;Content-type&quot;</span>, <span
 class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-length&quot;</span>, params.length);
    http.setRequestHeader(<span
 class="php-quote">&quot;Authorization&quot;</span>, <span
 class="php-quote">&quot;Basic &quot;</span> + btoa(<span
@@ -269,47 +267,42 @@ class="php-quote">&quot; : &quot;</span> + result.data);
 
 <pre>
 <span class="xlang">&lt;?php</span>
-<span
+   <span
 class="php-keyword2">header</span>(<span
 class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
 
-<span
+   <span
 class="php-var">$params</span> = <span class="php-keyword1">array</span>(<span
-class="php-quote">&quot;region_edu_admin&quot;</span> =&gt; <span
-class="php-quote">&quot;ΑΤΤΙΚΗΣ&quot;</span>);
+class="php-quote">&quot;object_id&quot;</span> =&gt; <span
+class="php-quote">&quot;1000002&quot;</span>);
 
-<span
+   <span
 class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
-class="php-quote">&quot;https://mm.sch.gr/api/transfer_areas&quot;</span>);
+class="php-quote">&quot;https://mm.sch.gr/api/ext_log_entries&quot;</span>);
 
-<span
+   <span
 class="php-keyword2">curl_setopt</span>(<span
 class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-<span
+   <span
 class="php-keyword2">curl_setopt</span>(<span
 class="php-var">$curl</span>, CURLOPT_USERPWD, <span
 class="php-quote">&quot;username:password&quot;</span>);
-<span
+   <span
 class="php-keyword2">curl_setopt</span>(<span
 class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
 class="php-quote">&quot;GET&quot;</span>);
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_POSTFIELDS, <span
-class="php-keyword2">json_encode</span>( <span
-class="php-var">$params</span> ));
-<span
+   <span
 class="php-keyword2">curl_setopt</span>(<span
 class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
 class="php-keyword1">true</span>);
 
-<span class="php-var">$data</span> = <span
-class="php-keyword2">curl_exec</span>(<span class="php-var">$curl</span>);
-<span
-class="php-var">$data</span> = <span
+   <span
+class="php-var">$data</span> = <span class="php-keyword2">curl_exec</span>(<span
+class="php-var">$curl</span>);
+   <span class="php-var">$data</span> = <span
 class="php-keyword2">json_decode</span>(<span
 class="php-var">$data</span>);
-<span class="php-keyword1">echo</span> <span
+   <span class="php-keyword1">echo</span> <span
 class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
 class="php-keyword2">var_dump</span>( <span
 class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
@@ -330,9 +323,12 @@ class="xlang">?&gt;</span>
        type: <span
 class="php-quote">'GET'</span>,
        url: <span
-class="php-quote">'https://mm.sch.gr/api/transfer_areas'</span>,
+class="php-quote">'https://mm.sch.gr/api/ext_log_entries'</span>,
        dataType: <span
 class="php-quote">&quot;json&quot;</span>,
+       data:{<span
+class="php-quote">'object_id'</span>: <span
+class="php-quote">'1000002'</span>},
        beforeSend: <span
 class="php-keyword1">function</span>(req) {
            req.setRequestHeader(<span
@@ -355,99 +351,215 @@ class="php-keyword2">log</span>(data);
 
 <p><br />
 <b>Πίνακας Δεδομένων</b><br />
-<a id="data"></a>Παρακάτω εμφανίζεται το λεξικό σε
-μορφή JSON :</p>
+<a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα
+του λεξικού σε μορφή JSON :</p>
 
 <pre>
-{data<span
-class="php-quote">&quot;:[
-        {
-                &quot;</span>transfer_area_id<span
-class="php-quote">&quot;: 6,
-                &quot;</span>transfer_area<span
-class="php-quote">&quot;: &quot;</span>Α ΑΘΗΝΑΣ<span
-class="php-quote">&quot;,
-                &quot;</span>edu_admin_id<span
-class="php-quote">&quot;: 8,
-                &quot;</span>edu_admin<span
-class="php-quote">&quot;: &quot;</span>ΔΙΕΥΘΥΝΣΗ Α ΑΘΗΝΑΣ<span
-class="php-quote">&quot;,
-                &quot;</span>region_edu_admin_id<span
-class="php-quote">&quot;: 3,
-                &quot;</span>region_edu_admin<span
-class="php-quote">&quot;: &quot;</span>ΑΤΤΙΚΗΣ<span
-class="php-quote">&quot;
+{<span
+class="php-quote">&quot;data&quot;</span>:[
+         {
+             <span
+class="php-quote">&quot;id&quot;</span>: <span
+class="php-num">91305</span>,
+             <span
+class="php-quote">&quot;action&quot;</span>: <span
+class="php-quote">&quot;update&quot;</span>,
+             <span
+class="php-quote">&quot;logged_at&quot;</span>: <span
+class="php-quote">&quot;2014-07-01 12:06:30&quot;</span>,
+             <span
+class="php-quote">&quot;object_id&quot;</span>: <span
+class="php-quote">&quot;1000002&quot;</span>,
+             <span
+class="php-quote">&quot;object_class&quot;</span>: <span
+class="php-quote">&quot;Units&quot;</span>,
+             <span
+class="php-quote">&quot;version&quot;</span>: <span
+class="php-num">1</span>,
+             <span
+class="php-quote">&quot;data&quot;</span>: <span
+class="php-quote">&quot;a:6:{s:4:&quot;</span>name<span
+class="php-quote">&quot;;s:74:&quot;</span>eschool-Νηπιαγωγείο - <span
+class="php-num">2</span>ο ΝΗΠΙΑΓΩΓΕΙΟ ΚΑΤΟΧΗΣ<span
+class="php-quote">&quot;;s:13:&quot;</span>studentsCount<span
+class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
+class="php-quote">&quot;;
+                      s:11:&quot;</span>groupsCount<span
+class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
+class="php-quote">&quot;;s:11:&quot;</span>levelsCount<span
+class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
+class="php-quote">&quot;;s:10:&quot;</span>lastUpdate<span
+class="php-quote">&quot;;
+                      O:8:&quot;</span>DateTime<span
+class="php-quote">&quot;:3:{s:4:&quot;</span><span
+class="php-keyword2">date</span><span
+class="php-quote">&quot;;s:19:&quot;</span><span
+class="php-num">2013</span>-<span class="php-num">11</span>-<span
+class="php-num">25</span> <span class="php-num">14</span>:<span
+class="php-num">50</span>:<span class="php-num">29</span><span
+class="php-quote">&quot;;s:13:&quot;</span>timezone_type<span
+class="php-quote">&quot;;
+                      i:3;s:8:&quot;</span>timezone<span
+class="php-quote">&quot;;s:13:&quot;</span>Europe/Athens<span
+class="php-quote">&quot;;}s:6:&quot;</span>source<span
+class="php-quote">&quot;;a:1:{s:8:&quot;</span>sourceId<span
+class="php-quote">&quot;;i:5;}}&quot;</span>,
+             <span
+class="php-quote">&quot;username&quot;</span>: <span
+class="php-quote">&quot;admin&quot;</span>,
+             <span
+class="php-quote">&quot;ip&quot;</span>: <span
+class="php-keyword1">null</span>
+          },
+          {
+              <span
+class="php-quote">&quot;id&quot;</span>: <span
+class="php-num">111032</span>,
+              <span
+class="php-quote">&quot;action&quot;</span>: <span
+class="php-quote">&quot;update&quot;</span>,
+              <span
+class="php-quote">&quot;logged_at&quot;</span>: <span
+class="php-quote">&quot;2014-07-01 15:20:34&quot;</span>,
+              <span
+class="php-quote">&quot;object_id&quot;</span>: <span
+class="php-quote">&quot;1000002&quot;</span>,
+              <span
+class="php-quote">&quot;object_class&quot;</span>: <span
+class="php-quote">&quot;Units&quot;</span>,
+              <span
+class="php-quote">&quot;version&quot;</span>: <span
+class="php-num">2</span>,
+              <span
+class="php-quote">&quot;data&quot;</span>: <span
+class="php-quote">&quot;a:4:{s:13:&quot;</span>studentsCount<span
+class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
+class="php-quote">&quot;;s:11:&quot;</span>groupsCount<span
+class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
+class="php-quote">&quot;;s:11:&quot;</span>levelsCount<span
+class="php-quote">&quot;;
+                       s:1:&quot;</span><span
+class="php-num">0</span><span
+class="php-quote">&quot;;s:10:&quot;</span>lastUpdate<span
+class="php-quote">&quot;;O:8:&quot;</span>DateTime<span
+class="php-quote">&quot;:3:{s:4:&quot;</span><span
+class="php-keyword2">date</span><span
+class="php-quote">&quot;;s:19:&quot;</span><span
+class="php-num">2013</span>-<span class="php-num">11</span>-<span
+class="php-num">25</span> <span class="php-num">14</span>:<span
+class="php-num">50</span>:<span class="php-num">29</span><span
+class="php-quote">&quot;;
+                       s:13:&quot;</span>timezone_type<span
+class="php-quote">&quot;;i:3;s:8:&quot;</span>timezone<span
+class="php-quote">&quot;;s:13:&quot;</span>Europe/Athens<span
+class="php-quote">&quot;;}}&quot;</span>,
+              <span
+class="php-quote">&quot;username&quot;</span>: <span
+class="php-quote">&quot;admin&quot;</span>,
+              <span
+class="php-quote">&quot;ip&quot;</span>: <span
+class="php-keyword1">null</span>
         },
-        {
-                &quot;</span>transfer_area_id<span
-class="php-quote">&quot;: 8,
-                &quot;</span>transfer_area<span
-class="php-quote">&quot;: &quot;</span>Α ΑΝΑΤ. ΑΤΤΙΚΗΣ<span
-class="php-quote">&quot;,
-                &quot;</span>edu_admin_id<span
-class="php-quote">&quot;: 9,
-                &quot;</span>edu_admin<span
-class="php-quote">&quot;: &quot;</span>ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΑΤΤΙΚΗΣ<span
-class="php-quote">&quot;,
-                &quot;</span>region_edu_admin_id<span
-class="php-quote">&quot;: 3,
-                &quot;</span>region_edu_admin<span
-class="php-quote">&quot;: &quot;</span>ΑΤΤΙΚΗΣ<span
-class="php-quote">&quot;
-        },
-        {
-                &quot;</span>transfer_area_id<span
-class="php-quote">&quot;: 9,
-                &quot;</span>transfer_area<span
-class="php-quote">&quot;: &quot;</span>Α ΔΩΔΕΚΑΝΗΣΟΥ<span
-class="php-quote">&quot;,
-                &quot;</span>edu_admin_id<span
-class="php-quote">&quot;: 12,
-                &quot;</span>edu_admin<span
-class="php-quote">&quot;: &quot;</span>ΔΙΕΥΘΥΝΣΗ ΔΩΔΕΚΑΝΗΣΟΥ<span
-class="php-quote">&quot;,
-                &quot;</span>region_edu_admin_id<span
-class="php-quote">&quot;: 4,
-                &quot;</span>region_edu_admin<span
-class="php-quote">&quot;: &quot;</span>ΝΟΤΙΟΥ ΑΙΓΑΙΟΥ<span
-class="php-quote">&quot;
-        },
-        {
-                &quot;</span>transfer_area_id<span
-class="php-quote">&quot;: 14,
-                &quot;</span>transfer_area<span
-class="php-quote">&quot;: &quot;</span>Α ΕΥΒΟΙΑΣ<span
-class="php-quote">&quot;,
-                &quot;</span>edu_admin_id<span
-class="php-quote">&quot;: 14,
-                &quot;</span>edu_admin<span
-class="php-quote">&quot;: &quot;</span>ΔΙΕΥΘΥΝΣΗ ΕΥΒΟΙΑΣ<span
-class="php-quote">&quot;,
-                &quot;</span>region_edu_admin_id<span
-class="php-quote">&quot;: 5,
-                &quot;</span>region_edu_admin<span
-class="php-quote">&quot;: &quot;</span>ΣΤΕΡΕΑΣ ΕΛΛΑΔΑΣ<span
-class="php-quote">&quot;
-        },
-        {
-                &quot;</span>transfer_area_id<span
-class="php-quote">&quot;: 17,
-                &quot;</span>transfer_area<span
-class="php-quote">&quot;: &quot;</span>Α ΘΕΣΣΑΛΟΝΙΚΗΣ<span
-class="php-quote">&quot;,
-                &quot;</span>edu_admin_id<span
-class="php-quote">&quot;: 18,
-                &quot;</span>edu_admin<span
-class="php-quote">&quot;: &quot;</span>ΔΙΕΥΘΥΝΣΗ Α ΘΕΣΣΑΛΟΝΙΚΗΣ<span
-class="php-quote">&quot;,
-                &quot;</span>region_edu_admin_id<span
-class="php-quote">&quot;: 6,
-                &quot;</span>region_edu_admin<span
-class="php-quote">&quot;: &quot;</span>ΚΕΝΤΡΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ<span
-class="php-quote">&quot;
+          {
+              <span
+class="php-quote">&quot;id&quot;</span>: <span
+class="php-num">117200</span>,
+              <span
+class="php-quote">&quot;action&quot;</span>: <span
+class="php-quote">&quot;update&quot;</span>,
+              <span
+class="php-quote">&quot;logged_at&quot;</span>: <span
+class="php-quote">&quot;2014-07-01 16:09:45&quot;</span>,
+              <span
+class="php-quote">&quot;object_id&quot;</span>: <span
+class="php-quote">&quot;1000002&quot;</span>,
+              <span
+class="php-quote">&quot;object_class&quot;</span>: <span
+class="php-quote">&quot;Units&quot;</span>,
+              <span
+class="php-quote">&quot;version&quot;</span>: <span
+class="php-num">3</span>,
+              <span
+class="php-quote">&quot;data&quot;</span>: <span
+class="php-quote">&quot;a:4:{s:13:&quot;</span>studentsCount<span
+class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
+class="php-quote">&quot;;s:11:&quot;</span>groupsCount<span
+class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
+class="php-quote">&quot;;s:11:&quot;</span>levelsCount<span
+class="php-quote">&quot;;
+                            s:1:&quot;</span><span
+class="php-num">0</span><span
+class="php-quote">&quot;;s:10:&quot;</span>lastUpdate<span
+class="php-quote">&quot;;O:8:&quot;</span>DateTime<span
+class="php-quote">&quot;:3:{s:4:&quot;</span><span
+class="php-keyword2">date</span><span
+class="php-quote">&quot;;s:19:&quot;</span><span
+class="php-num">2013</span>-<span class="php-num">11</span>-<span
+class="php-num">25</span> <span class="php-num">14</span>:<span
+class="php-num">50</span>:<span class="php-num">29</span><span
+class="php-quote">&quot;;
+                            s:13:&quot;</span>timezone_type<span
+class="php-quote">&quot;;i:3;s:8:&quot;</span>timezone<span
+class="php-quote">&quot;;s:13:&quot;</span>Europe/Athens<span
+class="php-quote">&quot;;}}&quot;</span>,
+              <span
+class="php-quote">&quot;username&quot;</span>: <span
+class="php-quote">&quot;admin&quot;</span>,
+              <span
+class="php-quote">&quot;ip&quot;</span>: <span
+class="php-keyword1">null</span>
+           },
+          {
+              <span
+class="php-quote">&quot;id&quot;</span>: <span
+class="php-num">138565</span>,
+              <span
+class="php-quote">&quot;action&quot;</span>: <span
+class="php-quote">&quot;update&quot;</span>,
+              <span
+class="php-quote">&quot;logged_at&quot;</span>: <span
+class="php-quote">&quot;2014-07-01 19:17:18&quot;</span>,
+              <span
+class="php-quote">&quot;object_id&quot;</span>: <span
+class="php-quote">&quot;1000002&quot;</span>,
+              <span
+class="php-quote">&quot;object_class&quot;</span>: <span
+class="php-quote">&quot;Units&quot;</span>,
+              <span
+class="php-quote">&quot;version&quot;</span>: <span
+class="php-num">4</span>,
+              <span
+class="php-quote">&quot;data&quot;</span>: <span
+class="php-quote">&quot;a:4:{s:13:&quot;</span>studentsCount<span
+class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
+class="php-quote">&quot;;s:11:&quot;</span>groupsCount<span
+class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
+class="php-quote">&quot;;s:11:&quot;</span>levelsCount<span
+class="php-quote">&quot;;
+                            s:1:&quot;</span><span
+class="php-num">0</span><span
+class="php-quote">&quot;;s:10:&quot;</span>lastUpdate<span
+class="php-quote">&quot;;O:8:&quot;</span>DateTime<span
+class="php-quote">&quot;:3:{s:4:&quot;</span><span
+class="php-keyword2">date</span><span
+class="php-quote">&quot;;s:19:&quot;</span><span
+class="php-num">2013</span>-<span class="php-num">11</span>-<span
+class="php-num">25</span> <span class="php-num">14</span>:<span
+class="php-num">50</span>:<span class="php-num">29</span><span
+class="php-quote">&quot;;
+                            s:13:&quot;</span>timezone_type<span
+class="php-quote">&quot;;i:3;s:8:&quot;</span>timezone<span
+class="php-quote">&quot;;s:13:&quot;</span>Europe/Athens<span
+class="php-quote">&quot;;}}&quot;</span>,
+              <span
+class="php-quote">&quot;username&quot;</span>: <span
+class="php-quote">&quot;admin&quot;</span>,
+              <span
+class="php-quote">&quot;ip&quot;</span>: <span
+class="php-keyword1">null</span>
         }
 ]}
-</span></pre>
+</pre>
 
 <div><br />
 </div>
@@ -459,114 +571,158 @@ class="php-quote">&quot;
 		<b>Package:</b> <a href="package-GET.html">GET</a><br />
 				<b>Author:</b>
 				ΤΕΙ Αθήνας<br />
-		<b>Located at</b> api/get/GetTransferAreas.php<br />
+		<b>Located at</b> api/get/GetExtLogEntries.php<br />
 	</div>
 
 
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
-	<tr id="$transfer_area">
-		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$transfer_area</var></code></td>
+	<tr id="$id">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$id</var></code></td>
 		<td>
-			 Περιοχή Μετάθεσης<br />
-Το Όνομα ή ο Κωδικός της Περιοχής
-Μετάθεσης<br />
-Η παράμετρος δεν είναι υποχρεωτική<br />
-Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
+			 Κωδικός Log Συγχρονισμού<br />
+Ο Κωδικός του Log Συγχρονισμού<br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+integer|array[integer]
 <ul>
-	<li>integer<br />
-	Αριθμητική : Η αναζήτηση γίνεται με τον
-	Κωδικό της Περιοχής Μετάθεσης<br />
-	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
-	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
 
-	<li>string<br />
-	Αλφαριθμητική : Η αναζήτηση γίνεται με το
-	Όνομα της Περιοχής Μετάθεσης<br />
-	Με την χρήση της παραμέτρου Τύπος
-	Αναζήτησης (<a href="#$searchtype">$searchtype</a>) μπορεί να
-	καθοριστεί ο τρόπος με τον οποίο θα
-	αναζητηθεί η τιμή της παραμέτρου στο Όνομα
-	της Περιοχής Μετάθεσης<br />
-	Αν η παράμετρος δεν έχει τιμή τότε η
-	αναζήτηση στο Όνομα της Περιοχής Μετάθεσης
-	γίνεται με τον Tύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code></li>
-
-	<li>array[integer|string]<br />
-	Σύνολο από Αριθμητικές και Αλφαριθμητικές
-	τιμές διαχωρισμένες με κόμμα<br />
-	Η αναζήτηση γίνεται με οποιαδήποτε από
-	αυτές τις τιμές</li>
+	<li>array[integer] : Σύνολο από Αριθμητικές τιμές
+	διαχωρισμένες με κόμμα</li>
 </ul>
 
 		</td>
 	</tr>
-	<tr id="$edu_admin">
-		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$edu_admin</var></code></td>
+	<tr id="$action">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$action</var></code></td>
 		<td>
-			 Διεύθυνση Επκαίδευσης<br />
-Το Όνομα ή ο Κωδικός της Διευθύνσης
-Επκαίδευσης<br />
-Η παράμετρος δεν είναι υποχρεωτική<br />
-Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
-Λεξικό : <code><a href="function-GetEduAdmins.html">GetEduAdmins()</a></code><br />
+			 Ενέργεια Συγχρονισμού<br />
+Η Ενέργεια του Log Συγχρονισμού<br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{string|array[string]}
 <ul>
-	<li>integer<br />
-	Αριθμητική : Η αναζήτηση γίνεται με τον
-	Κωδικό της Διευθύνσης Επκαίδευσης<br />
-	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
-	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το λεκτικό ενέργειας(update|create|delete))</li>
 
-	<li>string<br />
-	Αλφαριθμητική : Η αναζήτηση γίνεται με το
-	Όνομα της Διευθύνσης Επκαίδευσης<br />
-	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
-	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
-
-	<li>array[integer|string]<br />
-	Σύνολο από Αριθμητικές και Αλφαριθμητικές
-	τιμές διαχωρισμένες με κόμμα<br />
-	Η αναζήτηση γίνεται με οποιαδήποτε από
-	αυτές τις τιμές</li>
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
 </ul>
 
 		</td>
 	</tr>
-	<tr id="$region_edu_admin">
-		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$region_edu_admin</var></code></td>
+	<tr id="$logged_at">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$logged_at</var></code></td>
 		<td>
-			 Περιφέρεια<br />
-Το Όνομα ή ο Κωδικός της Περιφέρειας<br />
-Η παράμετρος δεν είναι υποχρεωτική<br />
-Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
-Λεξικό : <code><a href="function-GetRegionEduAdmins.html">GetRegionEduAdmins()</a></code><br />
+			 Ημερομηνία Log Συγχρονισμου<br />
+Η Ημερομηνία του Log Συγχρονισμου<br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{string|array[string]}
 <ul>
-	<li>integer<br />
-	Αριθμητική : Η αναζήτηση γίνεται με τον
-	Κωδικό της Περιφέρειας<br />
-	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
-	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με την ημερομηνία)</li>
 
-	<li>string<br />
-	Αλφαριθμητική : Η αναζήτηση γίνεται με το
-	Όνομα της Περιφέρειας<br />
-	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
-	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
 
-	<li>array[integer|string]<br />
-	Σύνολο από Αριθμητικές και Αλφαριθμητικές
-	τιμές διαχωρισμένες με κόμμα<br />
-	Η αναζήτηση γίνεται με οποιαδήποτε από
-	αυτές τις τιμές</li>
+		</td>
+	</tr>
+	<tr id="$object_id">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$object_id</var></code></td>
+		<td>
+			 Κωδικός Μονάδας<br />
+Ο Κωδικός Μονάδας του Log Συγχρονισμου<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|array[integer]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό μονάδας)</li>
+
+	<li>array[integer] : Σύνολο από Αριθμητικές τιμές
+	διαχωρισμένες με κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$object_class">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$object_class</var></code></td>
+		<td>
+			 Όνομα Πίνακα<br />
+Το Όνομα Πίνακα του Log Συγχρονισμου<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα πίνακα που συγχρονίζεται)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$version">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$version</var></code></td>
+		<td>
+			 Έκδοση<br />
+Η Έκδοση του Log Συγχρονισμού<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|array[integer]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον αριθμό έκδοσης συγχρονισμού)</li>
+
+	<li>array[integer] : Σύνολο από Αριθμητικές τιμές
+	διαχωρισμένες με κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$username">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$username</var></code></td>
+		<td>
+			 Όνομα Χρήστη<br />
+Το Όνομα του Χρήστη του Log Συγχρονισμού<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα χρήστη)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$ip">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$ip</var></code></td>
+		<td>
+			 IP Xρήστη<br />
+Η IP του Xρήστη του Log Συγχρονισμού<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με την IP του χρήστη που έκανε ενέργεια
+	συγχρονισμού)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
 </ul>
 
 		</td>
@@ -620,8 +776,8 @@ href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 ταξινόμηση των εγγραφών<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε η
-ταξινόμηση γίνεται με το Όνομα της Περιοχής
-Μετάθεσης<br />
+ταξινόμηση γίνεται με τον Κωδικό ΜΜ της
+Μονάδας<br />
 Η τιμή της παραμέτρου μπορεί να είναι : string
 <ul>
 	<li>string<br />
@@ -658,21 +814,41 @@ href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 		<td>
 			 Τύπος Αναζήτησης<br />
 Ο Τύπος Αναζήτησης με τον οποίο γίνεται η
-αναζήτηση στο Όνομα (<a
-href="#$transfer_area">$transfer_area</a>) της Περιοχής
-Μετάθεσης<br />
+αναζήτηση στον Αριθμό (<a
+href="#$phone_number">$phone_number</a>) του
+Τηλεπικοινωνιακού Κυκλώματος<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε η
-αναζήτηση στο Όνομα γίνεται με τον Τύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code><br />
-Αν το Όνομα έχει Αριθμητική Τιμή τότε η
-αναζήτηση γίνεται με τον Κωδικό της
-Περιοχής Μετάθεσης με Τύπο <code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code><br />
+αναζήτηση στα πεδία αυτά γίνεται με τον
+Τύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code><br />
 Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι : string
 <ul>
 	<li>string<br />
 	Αλφαριθμητική : Η τιμή της παραμέτρου
 	μπορεί να είναι ένας από τους Tύπους <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code></li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$datesearchtype">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$datesearchtype</var></code></td>
+		<td>
+			 Τύπος Αναζήτησης Ημερομηνίας<br />
+Ο Τύπος Αναζήτησης με τον οποίο γίνεται η
+αναζήτηση στην Ημερομηνία (<a
+href="#$logged_at">$logged_at</a>) του Log Συγχρονισμού<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε η
+αναζήτηση στα πεδία αυτά γίνεται με τον
+Τύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+<ul>
+	<li>string<br />
+	Αλφαριθμητική : Η τιμή της παραμέτρου
+	μπορεί να είναι ένας από τους Tύπους update |
+	create | delete</li>
 </ul>
 
 		</td>
@@ -702,23 +878,32 @@ integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς
 τις παραμέτρους σελιδοποίησης<br />
 array : <b>data</b> : Ο Πίνακας με το λεξικό
 <ul>
-	<li>integer : <b>transfer_area_id</b> : Ο Κωδικός της
-	Περιοχής Μετάθεσης</li>
+	<li>integer : <b>id</b> : Ο Κωδικός του Log
+	Συγχρονισμού</li>
 
-	<li>string : <b>transfer_area</b> : Το Όνομα της Περιοχής
-	Μετάθεσης</li>
+	<li>string : <b>action</b> : Η Ενέργεια του Log
+	Συγχρονισμού</li>
 
-	<li>integer : <b>edu_admin_id</b> : Ο Κωδικός της
-	Διευθύνσης Επκαίδευσης</li>
+	<li>boolean : <b>logged_at</b> : Η Ημερομηνία του Log
+	Συγχρονισμού</li>
 
-	<li>string : <b>edu_admin</b> : Το Όνομα της Διευθύνσης
-	Επκαίδευσης (Λεξικό : <code><a href="function-GetEduAdmins.html">GetEduAdmins()</a></code>)</li>
+	<li>string : <b>object_id</b> : Ο Κωδικός Μονάδας του Log
+	Συγχρονισμού</li>
 
-	<li>string : <b>region_edu_admin</b> : Ο Κωδικός της
-	Περιφέρειας</li>
+	<li>string : <b>object_class</b> : Το Όνομα Πίνακα του Log
+	Συγχρονισμού</li>
 
-	<li>string : <b>region_edu_admin</b> : Το Όνομα της
-	Περιφέρειας (Λεξικό : <code><a href="function-GetRegionEduAdmins.html">GetRegionEduAdmins()</a></code>)</li>
+	<li>integer : <b>version</b> : Η Έκδοση του Log
+	Συγχρονισμού</li>
+
+	<li>string : <b>data</b> : Τα Δεδομένα του Log
+	Συγχρονισμού</li>
+
+	<li>string : <b>username</b> : Το Όνομα του Χρήστη του Log
+	Συγχρονισμού</li>
+
+	<li>string : <b>ip</b> : Η IP του Xρήστη του Log
+	Συγχρονισμού</li>
 </ul>
 
 		</td>
@@ -732,7 +917,7 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 			InvalidSearchType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidSearchType">ExceptionMessages::<b>InvalidSearchType</b></a></code>s<br />
+			<code><a href="class-ExceptionMessages.html#InvalidSearchType">ExceptionMessages::<b>InvalidSearchType</b></a></code><br />
 <code><a href="class-ExceptionCodes.html#InvalidSearchType">ExceptionCodes::<b>InvalidSearchType</b></a></code><br />
 Ο Τύπος Αναζήτησης είναι λάθος
 		</td>
@@ -826,35 +1011,90 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidTransferAreaType
+			InvalidExtLogEntryIDType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidTransferAreaType">ExceptionMessages::<b>InvalidTransferAreaType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidTransferAreaType">ExceptionCodes::<b>InvalidTransferAreaType</b></a></code><br />
-Η Περιοχή Μετάθεσης πρέπει να είναι
-αριθμητική ή αλφαριθμητική
+			<code><a href="class-ExceptionMessages.html#InvalidExtLogEntryIDType">ExceptionMessages::<b>InvalidExtLogEntryIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryIDType">ExceptionCodes::<b>InvalidExtLogEntryIDType</b></a></code><br />
+Ο Κωδικός του Log Συγχρονισμού πρέπει να
+είναι αριθμητικός
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidEduAdminType
+			InvalidExtLogEntryActionType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidEduAdminType">ExceptionMessages::<b>InvalidEduAdminType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidEduAdminType">ExceptionCodes::<b>InvalidEduAdminType</b></a></code><br />
-Η Διεύθυνση Εκπαίδευσης πρέπει να είναι
-αριθμητική ή αλφαριθμητική
+			<code><a href="class-ExceptionMessages.html#InvalidExtLogEntryActionType">ExceptionMessages::<b>InvalidExtLogEntryActionType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryActionType">ExceptionCodes::<b>InvalidExtLogEntryActionType</b></a></code><br />
+Η Ενέργεια του Log Συγχρονισμού πρέπει να
+είναι update,insert,create,delete
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidRegionEduAdminType
+			InvalidExtLogEntryLoggedAtType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidRegionEduAdminType">ExceptionMessages::<b>InvalidRegionEduAdminType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidRegionEduAdminType">ExceptionCodes::<b>InvalidRegionEduAdminType</b></a></code><br />
-Η Περιφέρεια πρέπει να είναι αριθμητική ή
-αλφαριθμητική
+			<code><a href="class-ExceptionMessages.html#InvalidExtLogEntryLoggedAtType">ExceptionMessages::<b>InvalidExtLogEntryLoggedAtType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryLoggedAtType">ExceptionCodes::<b>InvalidExtLogEntryLoggedAtType</b></a></code><br />
+Η Ημερομηνία του Log Συγχρονισμού πρέπει να
+είναι Ημερομηνία (dd/mm/yyyy)
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidExtLogEntryObjectIdType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidExtLogEntryObjectIdType">ExceptionMessages::<b>InvalidExtLogEntryObjectIdType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryObjectIdType">ExceptionCodes::<b>InvalidExtLogEntryObjectIdType</b></a></code><br />
+Ο Κωδικός Μονάδας του Log Συγχρονισμού
+πρέπει να είναι αριθμητικός
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidExtLogEntryObjectClassType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidExtLogEntryObjectClassType">ExceptionMessages::<b>InvalidExtLogEntryObjectClassType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryObjectClassType">ExceptionCodes::<b>InvalidExtLogEntryObjectClassType</b></a></code><br />
+Το Όνομα Πίνακα του Log Συγχρονισμού πρέπει
+να είναι αλφαριθμητικός
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidExtLogEntryVersionType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidExtLogEntryVersionType">ExceptionMessages::<b>InvalidExtLogEntryVersionType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryVersionType">ExceptionCodes::<b>InvalidExtLogEntryVersionType</b></a></code><br />
+Η Έκδοση του Log Συγχρονισμού πρέπει να
+αριθμητική
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidExtLogEntryUsernameType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidExtLogEntryUsernameType">ExceptionMessages::<b>InvalidExtLogEntryUsernameType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryUsernameType">ExceptionCodes::<b>InvalidExtLogEntryUsernameType</b></a></code><br />
+Το Όνομα του Χρήστη του Log Συγχρονισμού
+πρέπει να είναι αλφαριθμητικά
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidExtLogEntryIpType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidExtLogEntryIpType">ExceptionMessages::<b>InvalidExtLogEntryIpType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryIpType">ExceptionCodes::<b>InvalidExtLogEntryIpType</b></a></code><br />
+Η IP του Xρήστη του Log Συγχρονισμού πρέπει να
+είναι αλφαριθμητικά
 		</td>
 	</tr>
 	<tr>

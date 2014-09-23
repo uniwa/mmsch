@@ -7,7 +7,7 @@
 	<title>Function GetLevels | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?1013038547"></script>
+	<script type="text/javascript" src="elementlist.js?678548589"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -53,6 +53,7 @@
 				<li><a href="function-GetCpes.html">GetCpes</a></li>
 				<li><a href="function-GetEduAdmins.html">GetEduAdmins</a></li>
 				<li><a href="function-GetEducationLevels.html">GetEducationLevels</a></li>
+				<li><a href="function-GetExtLogEntries.html">GetExtLogEntries</a></li>
 				<li><a href="function-GetGroups.html">GetGroups</a></li>
 				<li><a href="function-GetImplementationEntities.html">GetImplementationEntities</a></li>
 				<li><a href="function-GetLdaps.html">GetLdaps</a></li>
@@ -131,7 +132,7 @@
 
 <p>Η κλήση μπορεί να γίνει μέσω της παρακάτω
 διεύθυνσης με τη μέθοδο GET :<br />
-<a href="http://mm.sch.gr/api/levels">http://mm.sch.gr/api/levels</a></p>
+<a href="https://mm.sch.gr/api/levels">https://mm.sch.gr/api/levels</a></p>
 
 <p>Τα αποτελέσματα είναι ταξινομημένα ως
 προς το Όνομα της Τάξης<br />
@@ -195,7 +196,7 @@ href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a></p>
 συνάρτησης με <b>cURL</b> (console) :</p>
 
 <pre>
-curl -X GET http:<span
+curl -X GET https:<span
 class="php-comment">//mm.sch.gr/api/levels \</span>
    -H <span
 class="php-quote">&quot;Content-Type: application/json&quot;</span> \
@@ -224,7 +225,7 @@ class="php-keyword1">var</span> http = <span
 class="php-keyword1">new</span> XMLHttpRequest();
    http.open(<span
 class="php-quote">&quot;GET&quot;</span>, <span
-class="php-quote">&quot;http://mm.sch.gr/api/levels&quot;</span>);
+class="php-quote">&quot;https://mm.sch.gr/api/levels&quot;</span>);
    http.setRequestHeader(<span
 class="php-quote">&quot;Accept&quot;</span>, <span
 class="php-quote">&quot;application/json&quot;</span>);
@@ -276,7 +277,7 @@ class="php-quote">&quot;1002553&quot;</span>);
 
    <span
 class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
-class="php-quote">&quot;http://mm.sch.gr/api/levels&quot;</span>);
+class="php-quote">&quot;https://mm.sch.gr/api/levels&quot;</span>);
 
    <span
 class="php-keyword2">curl_setopt</span>(<span
@@ -321,7 +322,7 @@ class="xlang">?&gt;</span>
        type: <span
 class="php-quote">'GET'</span>,
        url: <span
-class="php-quote">'http://mm.sch.gr/api/levels'</span>,
+class="php-quote">'https://mm.sch.gr/api/levels'</span>,
        dataType: <span
 class="php-quote">&quot;json&quot;</span>,
        data:{<span

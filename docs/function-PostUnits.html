@@ -7,7 +7,7 @@
 	<title>Function PostUnits | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?1013038547"></script>
+	<script type="text/javascript" src="elementlist.js?678548589"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -105,7 +105,7 @@
 <p>Η κλήση της συνάρτησης αυτής μπορεί να
 γίνει μέσω της παρακάτω διεύθυνσης με τη
 μέθοδο PUT :<br />
-<a href="http://mm.sch.gr/api/units">http://mm.sch.gr/api/units</a><br />
+<a href="https://mm.sch.gr/api/units">https://mm.sch.gr/api/units</a><br />
 <br />
 </p>
 
@@ -113,7 +113,7 @@
 (console) :</p>
 
 <pre>
-curl -X PUT http:<span
+curl -X PUT https:<span
 class="php-comment">//mm.sch.gr/api/units \</span>
   -H <span
 class="php-quote">&quot;Content-Type: application/json&quot;</span> \
@@ -162,7 +162,7 @@ class="php-keyword1">var</span> http = <span
 class="php-keyword1">new</span> XMLHttpRequest();
    http.open(<span
 class="php-quote">&quot;PUT&quot;</span>, <span
-class="php-quote">&quot;http://mm.sch.gr/api/units&quot;</span>);
+class="php-quote">&quot;https://mm.sch.gr/api/units&quot;</span>);
    http.setRequestHeader(<span
 class="php-quote">&quot;Accept&quot;</span>, <span
 class="php-quote">&quot;application/json&quot;</span>);
@@ -221,7 +221,7 @@ class="php-quote">&quot;value&quot;</span>, ...... );
 
 <span
 class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
-class="php-quote">&quot;http://mm.sch.gr/api/units&quot;</span>);
+class="php-quote">&quot;https://mm.sch.gr/api/units&quot;</span>);
 
 <span
 class="php-keyword2">curl_setopt</span>(<span
@@ -269,7 +269,7 @@ class="xlang">?&gt;</span>
        type: <span
 class="php-quote">'PUT'</span>,
        url: <span
-class="php-quote">'http://mm.sch.gr/api/units'</span>,
+class="php-quote">'https://mm.sch.gr/api/units'</span>,
        dataType: <span
 class="php-quote">&quot;json&quot;</span>,
        data: {
