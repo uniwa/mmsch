@@ -1787,10 +1787,48 @@ position: fixed;
 		
 		viewModel.unitSource.fetch(function(){
 			console.log("read unit");
-			kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
+			//kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
 			
 			//viewModel.set("unitData", this.data()[0]);
 			
+			var self = viewModel.unitSource;
+			
+			$.ajax({
+					type: "GET",
+					url: apiUrl + "ext_log_entries", 
+					data: {'object_id': mm_id},
+                    dataType: "json", 
+
+                    success: function(resp){
+                        
+                    	kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
+        				kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
+
+        	           	// Hide create/edit/delete connection buttons if the user is not FY or not responsible for the unit
+        	            if(typeof user.l == 'undefined' || 
+                	       user.l.split(',').indexOf('ou=partners') == -1 || 
+                	       g_impEnt[0].implementation_entity_id != self.data()[0].implementation_entity_id) {
+        	               console.log("user is not fy. hiding connection buttons");
+        	               $('#unit-'+mm_id+'-preview').find('#btnCreateConnection').parent().hide();
+        	               $('#unit-'+mm_id+'-preview').find('.detail-section-tab-content[data-template="tmpl-connection-list"] .detail-term.term-head > button').hide();
+        	             }
+
+        	            resizeTabContent();
+
+        	            kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
+        	            
+					},
+					beforeSend: function(xhr){
+						xhr.setRequestHeader(
+							'Authorization',
+							make_base_auth (user.backendAuthorizationHash)
+						);
+					}
+					
+				});
+			
+			
+			/*
 			kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
 			kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
 
@@ -1802,7 +1840,7 @@ position: fixed;
                         }
 
 			resizeTabContent();
-			
+			*/
 		});
 		
 		
