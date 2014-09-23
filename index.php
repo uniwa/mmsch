@@ -6,9 +6,6 @@ function file_get_contents_utf8($fn) {
 }
 
 $whatsnew = trim(file_get_contents_utf8('whatsnew.txt'));
-
-$whatsnewItems = explode("@",$whatsnew);
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -69,21 +66,7 @@ $whatsnewItems = explode("@",$whatsnew);
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">What's new</h4>
       </div>
-      <div class="modal-body">
-        <?php 
-        foreach($whatsnewItems as $newItem) {
-    		
-			$newText = trim($newItem);
-
-			if (!empty($newText)){
-		?>
-			<div><?php echo $newText; ?></div>
-		<?php 
-			}
-		
-        } 
-        ?>
-      </div>
+      <div class="modal-body"><?php echo $whatsnew; ?></div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Κλείσιμο</button>
       </div>

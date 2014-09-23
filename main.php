@@ -161,6 +161,23 @@ if (isset($user["l"])){
 
 <script>
 
+function lookup(array, searchFor, property) {
+
+	var retVal = -1;
+
+    for(var index=0; index < array.length; index++){
+        var item = array[index];
+        if (item.hasOwnProperty(property)) {
+            if (item[property].toLowerCase() === searchFor.toLowerCase()) {
+                retVal = index;
+                return retVal;
+            }
+        }
+    };
+    
+    return retVal;
+}
+
 function changeTheme(skinName) {
     var doc = document,
         kendoLinks = $("link[href*='kendo.']", doc.getElementsByTagName("head")[0]),

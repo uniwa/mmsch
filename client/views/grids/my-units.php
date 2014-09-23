@@ -164,8 +164,8 @@ $isAnonymous = @ $_GET['is_anonymous'];
         
 	        <ul>
 				<li class="k-state-active">Κύρια</li>
-	  			<li>Υποδίκτυα</li>
 	  			<li>Κυκλώματα</li>
+	  			<li>Υποδίκτυα</li>
 			</ul>
 
 		
@@ -994,7 +994,7 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					                if ($('#grid-units').data('kendoGrid').options.inSearching) {
 
 					                    if (typeof this['rqc'] == 'undefined')
-					                        this['rqc'] = 0
+					                        this['rqc'] = 0;
 
 					                    this['rqc']++;
 
@@ -1082,9 +1082,9 @@ $isAnonymous = @ $_GET['is_anonymous'];
 
 
 										$.each(tags, function(i,v){
-					                    	console.log(i + " " + v);
+					                    	//console.log(i + " " + v);
 											
-											if (v != null && v != ""){
+											if (i != "searchtype" && v != null && v != ""){
 												
 												var $div = $("<div/>", {id: "btn-filter-cnt-" + i, class: "btn-filter-cnt pull-left"})
 														.css({"margin-right":"10px"})
@@ -1104,13 +1104,23 @@ $isAnonymous = @ $_GET['is_anonymous'];
 																.click(function(e){
 																	
 																	$(this).remove();
-													
+
+																	/* OBSELETE - 
 																	$("#grid-units").data('kendoGrid').dataSource.filter().filters.push({'field': i, 'value': ""});
 
 																	$.grep($("#grid-units").data('kendoGrid').dataSource.filter().filters, function(item){
 																		if (item.field==i)
 																			item.value = "";
 																	});
+																	*/
+																	
+																	var filters = $("#grid-units").data('kendoGrid').dataSource.filter().filters;
+
+																	var idxFilterNode = lookup(filters, i, "field");
+
+																	if (idxFilterNode > -1){
+																		filters.splice(idxFilterNode,1);
+																	}
 													
 																	$("#grid-units").data("kendoGrid").dataSource.filter($("#grid-units").data('kendoGrid').dataSource.filter().filters);
 																})
@@ -1424,10 +1434,35 @@ $isAnonymous = @ $_GET['is_anonymous'];
 						$("#txtQuickSearch").keydown(function(e) {
 							if (e.keyCode == 13) {
 								//gridUnits.options.inSearching = true;
+								
+								var filters = gridUnits.dataSource.filter().filters;
+
+								var idxFilterName = lookup(filters, "name", "field");
+
+								if (idxFilterName > -1){
+									filters[idxFilterName].value = $("#txtQuickSearch").val();
+								}	
+								else {
+									filters.push({'field': 'name', 'value': $("#txtQuickSearch").val()});
+								}
+
+								var idxFilterSearchType = lookup(filters, "searchtype", "field");
+
+								if (idxFilterSearchType > -1){}
+								else
+								filters.push({'field': 'searchtype', 'value': "CONTAINALL"});
+
+								$( "#dlgWndSearchBy input[name='name']" ).val($("#txtQuickSearch").val())
+								//
+
+								gridUnits.dataSource.filter(filters);
+
+								/*
 								gridUnits.dataSource.filter([
 									{field: 'name', value: $("#txtQuickSearch").val()},
 									{field: 'searchtype', value: "CONTAINALL"}
 								]);
+								*/
 							}
 						});
 						
@@ -1483,6 +1518,7 @@ $isAnonymous = @ $_GET['is_anonymous'];
 							
 							if (frmID == "frmUnitMainSearch"){
 								endPoint = "units";
+								$("#txtQuickSearch").val($("#dlgWndSearchBy input[name='name']").val());
 							}
 							else if (frmID == "frmUnitSubnetSearch"){
 								endPoint = "unit_network_subnets";
@@ -1492,6 +1528,7 @@ $isAnonymous = @ $_GET['is_anonymous'];
 							}
 							else {
 								endPoint = "units";
+								$("#txtQuickSearch").val($("#dlgWndSearchBy input[name='name']").val());
 							}
 
 							grid.dataSource.transport.options.read.url = apiUrl + endPoint;
@@ -1506,6 +1543,8 @@ $isAnonymous = @ $_GET['is_anonymous'];
 
 					        grid.options.inSearching = true;
 					        grid.dataSource.filter(dsSrcParams);
+
+					        
 					    });
 
 						$("body").on('click', "#btnClearFrmSearch", function(e){

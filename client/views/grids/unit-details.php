@@ -482,7 +482,7 @@ position: fixed;
 											</tr>
 											
 											# for (var j = 0, slen = subnets.length;  j < slen; j++ ){ #
-											<tr><td colspan="2" class="connectionSubnet" ><table class="table borderless"><tbody>
+											<tr><td colspan="2" class="connectionSubnet" ><table class="borderless"><tbody>
 
 											<tr>
 												<td class="detail-term">IP</td>

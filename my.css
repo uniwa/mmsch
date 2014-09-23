@@ -18,6 +18,10 @@ body {
   min-width: 480px;
 }
 
+a, a:hover, a:active, a:focus {
+   outline: 0;
+}
+
 .theme
  {
     float: left;
