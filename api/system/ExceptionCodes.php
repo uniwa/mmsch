@@ -777,6 +777,27 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidCircuitPaidByPsdType} */
     const InvalidCircuitPaidByPsdType = 500;
    
+    //= ExtLogEntries
+    
+    /** {@see ExceptionMessages::InvalidExtLogEntryIDType} */
+    const InvalidExtLogEntryIDType = 500;
+    /** {@see ExceptionMessages::InvalidExtLogEntryActionType} */
+    const InvalidExtLogEntryActionType = 500;
+    /** {@see ExceptionMessages::InvalidExtLogEntryLoggedAtType} */
+    const InvalidExtLogEntryLoggedAtType = 500;
+    /** {@see ExceptionMessages::InvalidExtLogEntryObjectIdType} */
+    const InvalidExtLogEntryObjectIdType = 500;
+    /** {@see ExceptionMessages::InvalidExtLogEntryObjectClassType} */
+    const InvalidExtLogEntryObjectClassType = 500;
+    /** {@see ExceptionMessages::InvalidExtLogEntryVersionType} */
+    const InvalidExtLogEntryVersionType = 500;
+    /** {@see ExceptionMessages::InvalidExtLogEntryDataType} */
+    const InvalidExtLogEntryDataType = 500;
+    /** {@see ExceptionMessages::InvalidExtLogEntryUsernameType} */
+    const InvalidExtLogEntryUsernameType = 500;
+    /** {@see ExceptionMessages::InvalidExtLogEntryIpType} */
+    const InvalidExtLogEntryIpType = 500;
+    
 //##########################################################################################################################
 // IP/DNS
 //##########################################################################################################################

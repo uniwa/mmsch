@@ -241,6 +241,10 @@ private static $Permissions = array(
     'statistic_units' => array(
                                         'GET' => array('USER', 'ADMIN')                                   
                                         ) ,
+    
+    'ext_log_entries' => array(
+                                        'GET' => array('USER', 'ADMIN')                                   
+                                        ) ,
     );
 
 

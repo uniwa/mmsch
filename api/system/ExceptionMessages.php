@@ -459,6 +459,16 @@ class ExceptionMessages
     const InvalidCircuitReadspeedhType = 'Η Ταχύτητα του Τηλεπικοινωνιακού Κυκλώματος πρέπει να είναιαλφαριθμητική';
     const InvalidCircuitPaidByPsdType = 'Η Χρηματοδήτηση του Τηλεπικοινωνιακού Κυκλώματος από το ΠΣΔ πρέπει να είναι Ενεργή ή Ανενεργή';
 
+    //= ExtLogEntries
+    const InvalidExtLogEntryIDType = 'Ο Κωδικός του Log Συγχρονισμου πρέπει να είναι αριθμητικός';
+    const InvalidExtLogEntryActionType = 'Η Ενέργεια του Log Συγχρονισμου πρέπει να είναι update,insert,create,delete';
+    const InvalidExtLogEntryLoggedAtType = 'Η Ημερομηνία του Log Συγχρονισμου πρέπει να είναι Ημερομηνία (dd/mm/yyyy)';
+    const InvalidExtLogEntryObjectIdType = 'Ο Κωδικός Μονάδας του Log Συγχρονισμου πρέπει να είναι αριθμητικός';
+    const InvalidExtLogEntryObjectClassType = 'Το Όνομα Πίνακα του Log Συγχρονισμου πρέπει να είναι αλφαριθμητικός';
+    const InvalidExtLogEntryVersionType = 'Η Έκδοση του Log Συγχρονισμού πρέπει να αριθμητική';
+    const InvalidExtLogEntryDataType = 'Τα Δεδομένα του Log Συγχρονισμού πρέπει να είναι αλφαριθμητικά';
+    const InvalidExtLogEntryUsernameType = 'Το Όνομα του Χρήστη του Log Συγχρονισμού πρέπει να είναι αλφαριθμητικά';
+    const InvalidExtLogEntryIpType = 'Η IP του Xρήστη του Log Συγχρονισμού πρέπει να είναι αλφαριθμητικά';   
     
 //##########################################################################################################################
 // IP/DNS

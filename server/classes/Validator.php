@@ -295,6 +295,45 @@ class Validator
         }
             
     }
+    
+        /**
+     * 
+     * Validates that the value is a date type representation of various format
+     * 
+     * 
+     * Use system date.php functions that returns true if date type found,
+     *  or false if an error occurred
+     * 
+     * Function found by http://php.net/checkdate post by glavic
+     * Examples :
+     * var_dump(IsDate('2012-02-28 12:12:12')); # true
+     * var_dump(IsDate('2012-02-30 12:12:12')); # false
+     * var_dump(IsDate('28/02/2012', 'd/m/Y')); # true
+     * var_dump(IsDate(14, 'H')); # true
+     * var_dump(IsDate('2012-02-28T12:12:12+02:00', DateTime::ATOM)); # true
+     * var_dump(IsDate('Tue, 28 Feb 2012 12:12:12 +0200', 'D, d M Y H:i:s O')); # true
+     * 
+     * @return bool True if valid, false if not. 
+     */ 
+   public static function IsDate($date, $format = 'Y-m-d H:i:s')
+    {
+        $date=date($format, trim(strtotime($date)));
+        $d = DateTime::createFromFormat($format, $date);
+        return $d && $d->format($format) == $date;
+    }
+    
+    /**
+     * 
+     * Forces the value to year format with trim property.
+     * 
+     * @return string Value as trimmed year type if true, null if false.
+     * 
+     */ 
+    public static function ToDate($date, $format = 'Y-m-d H:i:s')
+    {   
+
+        return date($format, trim(strtotime($date)));
+    }
 
 }
 ?>

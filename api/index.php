@@ -94,6 +94,8 @@ $app->map('/connection_unit_network_subnets', Authentication, UserRolesPermissio
 
 $app->map('/statistic_units', Authentication, UserRolesPermission, StatisticUnitsController)
     ->via(MethodTypes::GET);
+$app->map('/ext_log_entries', Authentication, UserRolesPermission, ExtLogEntriesController)
+    ->via(MethodTypes::GET);
 
 $app->get('/docs/*', function () use ($app) {
     $app->redirect("http://mmsch.teiath.gr/docs/");
@@ -1724,4 +1726,37 @@ function StatisticUnitsController()
 
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
+
+function ExtLogEntriesController() {
+    global $app;
+    
+    $params = loadParameters();
+    
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetExtLogEntries(
+                $params["id"],
+                $params["action"],
+                $params["logged_at"],
+                $params["object_id"],
+                $params["object_class"],
+                $params["version"], 
+                $params["username"], 
+                $params["ip"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"],
+                $params["datesearchtype"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
 ?>
