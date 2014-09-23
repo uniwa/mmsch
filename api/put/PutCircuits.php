@@ -17,7 +17,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο PUT :
- * <br> http://mm.sch.gr/api/circuits <br><br>
+ * <br> https://mm.sch.gr/api/circuits <br><br>
  *
  *
  * <br><b>Πίνακας Παραμέτρων</b>
@@ -50,7 +50,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- * curl -X PUT http://mm.sch.gr/api/circuits \
+ * curl -X PUT https://mm.sch.gr/api/circuits \
  *   -H "Content-Type: application/json" \
  *   -H "Accept: application/json" \
  *   -u username:password \
@@ -88,7 +88,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    });
  *    
  *    var http = new XMLHttpRequest();
- *    http.open("PUT", "http://mm.sch.gr/api/circuits");
+ *    http.open("PUT", "https://mm.sch.gr/api/circuits");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -125,7 +125,7 @@ header("Content-Type: text/html; charset=utf-8");
  *        "readspeed" => "null" }'
  * );
  * 
- * $curl = curl_init("http://mm.sch.gr/api/circuits");
+ * $curl = curl_init("https://mm.sch.gr/api/circuits");
  * 
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -146,7 +146,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'PUT',
- *        url: 'http://mm.sch.gr/api/circuits',
+ *        url: 'https://mm.sch.gr/api/circuits',
  *        dataType: "json",
  *        data: {
  *          "circuit_id" : "value", 

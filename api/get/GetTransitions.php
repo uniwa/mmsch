@@ -17,7 +17,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
- * <br> http://mm.sch.gr/api/transitions
+ * <br> https://mm.sch.gr/api/transitions
  *
  *
  * Τα αποτελέσματα είναι ταξινομημένα ως προς την Ημερομηνία Μετάβασης της Μονάδας
@@ -55,7 +55,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- *    curl -X GET http://mm.sch.gr/api/transitions \
+ *    curl -X GET https://mm.sch.gr/api/transitions \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password \
@@ -71,7 +71,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    var params = JSON.stringify({ "unit": "100001" });
  *    
  *    var http = new XMLHttpRequest();
- *    http.open("GET", "http://mm.sch.gr/api/transitions");
+ *    http.open("GET", "https://mm.sch.gr/api/transitions");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -100,7 +100,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * $params = array("unit" => "100001");
  * 
- * $curl = curl_init("http://mm.sch.gr/api/transitions");
+ * $curl = curl_init("https://mm.sch.gr/api/transitions");
  * 
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -122,7 +122,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'GET',
- *        url: 'http://mm.sch.gr/api/transitions',
+ *        url: 'https://mm.sch.gr/api/transitions',
  *        dataType: "json",
  *        data:{'unit': '100001'},
  *        beforeSend: function(req) {

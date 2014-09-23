@@ -16,7 +16,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο DELETE :
- * <br> http://mm.sch.gr/api/connection_unit_network_subnets
+ * <br> https://mm.sch.gr/api/connection_unit_network_subnets
  *
  *
  * <br><b>Πίνακας Παραμέτρων</b>
@@ -48,7 +48,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * <a id="cURL"></a>Παράδειγμα κλήσης της μεθόδου με <b>cURL</b> (console) :
  * <code>
- *    curl -X DELETE http://mm.sch.gr/api/connection_unit_network_subnets \
+ *    curl -X DELETE https://mm.sch.gr/api/connection_unit_network_subnets \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password \
@@ -64,7 +64,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    var params = JSON.stringify({"connection_unit_network_subnet_id" : "1"});
  *
  *    var http = new XMLHttpRequest();
- *    http.open("DELETE", "http://mm.sch.gr/api/connection_unit_network_subnets");
+ *    http.open("DELETE", "https://mm.sch.gr/api/connection_unit_network_subnets");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -93,7 +93,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * $params = array("connection_unit_network_subnet_id" => "1");
  *
- * $curl = curl_init("http://mm.sch.gr/api/connection_unit_network_subnets");
+ * $curl = curl_init("https://mm.sch.gr/api/connection_unit_network_subnets");
  *
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -113,7 +113,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'DELETE',
- *        url: 'http://mm.sch.gr/api/connection_unit_network_subnets',
+ *        url: 'https://mm.sch.gr/api/connection_unit_network_subnets',
  *        dataType: "json",
  *        data: {
  *           "connection_unit_network_subnet_id" : "1"

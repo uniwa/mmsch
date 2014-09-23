@@ -14,12 +14,12 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * 
  * Η κλήση της συνάρτησης αυτής μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο PUT :
- * <br> http://mm.sch.gr/api/relations <br><br>
+ * <br> https://mm.sch.gr/api/relations <br><br>
  *
  * 
  * Παράδειγμα κλήσης της μεθόδου με <b>cURL</b> (console) :
  * <code>
- * curl -X PUT http://mm.sch.gr/api/relations \
+ * curl -X PUT https://mm.sch.gr/api/relations \
  *   -H "Content-Type: application/json" \
  *   -H "Accept: application/json" \
  *   -u username:password \
@@ -52,7 +52,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    });
  *    
  *    var http = new XMLHttpRequest();
- *    http.open("PUT", "http://mm.sch.gr/api/relations");
+ *    http.open("PUT", "https://mm.sch.gr/api/relations");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -87,7 +87,7 @@ header("Content-Type: text/html; charset=utf-8");
  *        "relation_type" : "value"
  * );
  * 
- * $curl = curl_init("http://mm.sch.gr/api/relations");
+ * $curl = curl_init("https://mm.sch.gr/api/relations");
  * 
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -108,7 +108,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'PUT',
- *        url: 'http://mm.sch.gr/api/relations',
+ *        url: 'https://mm.sch.gr/api/relations',
  *        dataType: "json",
  *        data: {
  *            "relation_id" => "value", 

@@ -17,7 +17,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
- * <br> http://mm.sch.gr/api/operation_shifts
+ * <br> https://mm.sch.gr/api/operation_shifts
  *
  *
  * Τα αποτελέσματα είναι ταξινομημένα ως προς το Όνομα του Ωραρίου Λειτουργίας
@@ -55,7 +55,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- *    curl -X GET http://mm.sch.gr/api/operation_shifts \
+ *    curl -X GET https://mm.sch.gr/api/operation_shifts \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password \
@@ -71,7 +71,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    var params = JSON.stringify({ "category": "ΣΧΟΛΙΚΕΣ ΚΑΙ ΔΙΟΙΚΗΤΙΚΕΣ ΜΟΝΑΔΕΣ" });
  *    
  *    var http = new XMLHttpRequest();
- *    http.open("GET", "http://mm.sch.gr/api/operation_shifts");
+ *    http.open("GET", "https://mm.sch.gr/api/operation_shifts");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -100,7 +100,7 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * $params = array("category" => "ΣΧΟΛΙΚΕΣ ΚΑΙ ΔΙΟΙΚΗΤΙΚΕΣ ΜΟΝΑΔΕΣ");
  * 
- * $curl = curl_init("http://mm.sch.gr/api/operation_shifts");
+ * $curl = curl_init("https://mm.sch.gr/api/operation_shifts");
  * 
  * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -122,7 +122,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'GET',
- *        url: 'http://mm.sch.gr/api/operation_shifts',
+ *        url: 'https://mm.sch.gr/api/operation_shifts',
  *        dataType: "json",
  *        data: {'category': 'ΣΧΟΛΙΚΕΣ ΚΑΙ ΔΙΟΙΚΗΤΙΚΕΣ ΜΟΝΑΔΕΣ'},
  *        beforeSend: function(req) {

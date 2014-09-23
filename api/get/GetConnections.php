@@ -17,7 +17,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
- * <br> http://mm.sch.gr/api/connections
+ * <br> https://mm.sch.gr/api/connections
  *
  *
  * Τα αποτελέσματα είναι ταξινομημένα ως προς το Όνομα της Μονάδας
@@ -55,7 +55,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- *    curl -X GET http://mm.sch.gr/api/connections \
+ *    curl -X GET https://mm.sch.gr/api/connections \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password \
@@ -73,7 +73,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    });
  *
  *    var http = new XMLHttpRequest();
- *    http.open("GET", "http://mm.sch.gr/api/connections");
+ *    http.open("GET", "https://mm.sch.gr/api/connections");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -104,7 +104,7 @@ header("Content-Type: text/html; charset=utf-8");
  *       "unit" => "1002553"
  *    );
  *
- *    $curl = curl_init("http://mm.sch.gr/api/connections");
+ *    $curl = curl_init("https://mm.sch.gr/api/connections");
  *
  *    curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  *    curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -126,7 +126,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'GET',
- *        url: 'http://mm.sch.gr/api/connections',
+ *        url: 'https://mm.sch.gr/api/connections',
  *        dataType: "json",
  *        data: {
  *          "unit" : "1002553"

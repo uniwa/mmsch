@@ -16,7 +16,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
- * <br> http://mm.sch.gr/api/school_committees
+ * <br> https://mm.sch.gr/api/school_committees
  *
  *
  * Τα αποτελέσματα είναι ταξινομημένα ως προς το Όνομα της Σχολικές Επιτροπής
@@ -54,7 +54,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
  * <code>
- *    curl -X GET http://mm.sch.gr/api/school_committees \
+ *    curl -X GET https://mm.sch.gr/api/school_committees \
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password \
@@ -72,7 +72,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    });
  *    
  *    var http = new XMLHttpRequest();
- *    http.open("GET", "http://mm.sch.gr/api/school_committees");
+ *    http.open("GET", "https://mm.sch.gr/api/school_committees");
  *    http.setRequestHeader("Accept", "application/json");
  *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
  *    http.setRequestHeader("Content-length", params.length);
@@ -103,7 +103,7 @@ header("Content-Type: text/html; charset=utf-8");
  *       "education_level" => "ΔΕΥΤΕΡΟΒΑΘΜΙΑ"
  *    );
  * 
- *    $curl = curl_init("http://mm.sch.gr/api/school_committees");
+ *    $curl = curl_init("https://mm.sch.gr/api/school_committees");
  * 
  *    curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  *    curl_setopt($curl, CURLOPT_USERPWD, "username:password");
@@ -125,7 +125,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <script>
  *    $.ajax({
  *        type: 'GET',
- *        url: 'http://mm.sch.gr/api/school_committees',
+ *        url: 'https://mm.sch.gr/api/school_committees',
  *        dataType: "json",
  *        data: {
  *          "education_level" : "ΔΕΥΤΕΡΟΒΑΘΜΙΑ"
