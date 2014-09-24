@@ -688,7 +688,7 @@ function GetExtLogEntries(
                 "object_id"     => $extlog->getObjectId(),
                 "object_class"  => $extlog->getObjectClass(),
                 "version"       => $extlog->getVersion(),
-                "data"          => $extlog->getData(),
+                "data"          => unserialize($extlog->getData()),
                 "username"      => $extlog->getUsername(),
                 "ip"            => $extlog->getIp()
             );
