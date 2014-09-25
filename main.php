@@ -182,6 +182,27 @@ function lookup(array, searchFor, property) {
     return retVal;
 }
 
+function removeFromCollection(array, property, propValue){
+	var retVal = 0;
+
+	if (typeof array == "undefined" || array.length == 0){
+		return retVal;
+	}
+	
+    for(var index=0; index < array.length; index++){
+        var item = array[index];
+        if (item.hasOwnProperty(property)) {
+            if (item[property].toLowerCase() === propValue.toLowerCase()) {
+                //retVal = index;
+                retVal++;
+            	array.splice(index,1);
+            }
+        }
+    };
+    
+    return retVal;
+}
+
 function changeTheme(skinName) {
     var doc = document,
         kendoLinks = $("link[href*='kendo.']", doc.getElementsByTagName("head")[0]),
@@ -328,20 +349,59 @@ $(document).ready(function() {
             select : function(e){
 				
                 var node = $(".nav-tree-prefectures").data("kendoTreeView").dataItem(e.node);
+
+                var cfgFilter = $("#grid-units").data('kendoGrid').dataSource.filter();
+				var filters = null;
+
+				if (typeof cfgFilter == "undefined"){
+					filters = [];
+				}
+				else {
+					filters = cfgFilter.filters;
+				}
+
+				removeFromCollection(filters, "field", "region_edu_admin");
+				removeFromCollection(filters, "field", "edu_admin");
 				
+
+				/*SET UP prefecture*/
+				var idxFilterPrefecture = lookup(filters, "prefecture", "field");
+
+				if (idxFilterPrefecture > -1){
+					filters[idxFilterPrefecture].value = node.prefecture_id || "";
+				}	
+				else {
+					filters.push({'field': 'prefecture', 'value': node.prefecture_id || ""});
+				}
+				/**/
+
+				/*SET UP municipality*/
+				var idxFilterMunicipality = lookup(filters, "municipality", "field");
+
+				if (idxFilterMunicipality > -1){
+					filters[idxFilterMunicipality].value = node.municipality_id || "";
+				}	
+				else {
+					filters.push({'field': 'municipality', 'value': node.municipality_id || ""});
+				}
+				/**/
+
+				filters.push({'field': 'state', 'value': 1});
+                
+                $('#grid-units').data('kendoGrid').options.inSearching = true;
+                $("#grid-units").data("kendoGrid").dataSource.filter(filters);
+                
+				/*
                 var dsSrcParams = [];
 
                 dsSrcParams.push({'field': 'prefecture', 'value': node.prefecture_id || ""});
                 dsSrcParams.push({'field': 'municipality', 'value': node.municipality_id || ""});
                 
-                //dsSrcParams.push({'field': 'region_edu_admin', 'value': node.region_edu_admin_id || ""});
-                //dsSrcParams.push({'field': 'edu_admin', 'value': node.edu_admin_id || ""});
-                
                 dsSrcParams.push({'field': 'state', 'value': 1});
                 
                 $('#grid-units').data('kendoGrid').options.inSearching = true;
                 $("#grid-units").data("kendoGrid").dataSource.filter(dsSrcParams);
-				
+				*/
             }
 		});
 		
@@ -353,10 +413,48 @@ $(document).ready(function() {
 				
                 var node = $(".nav-tree-regions").data("kendoTreeView").dataItem(e.node);
 
-                var dsSrcParams = [];
+                var cfgFilter = $("#grid-units").data('kendoGrid').dataSource.filter();
+				var filters = null;
 
-                //dsSrcParams.push({'field': 'prefecture', 'value': node.prefecture_id || ""});
-                //dsSrcParams.push({'field': 'municipality', 'value': node.manicipality_id || ""});
+				if (typeof cfgFilter == "undefined"){
+					filters = [];
+				}
+				else {
+					filters = cfgFilter.filters;
+				} 
+
+				removeFromCollection(filters, "field", "prefecture");
+				removeFromCollection(filters, "field", "municipality");
+				
+				/*SET UP region_edu_admin*/
+				var idxFilterRegionEduAdmin = lookup(filters, "region_edu_admin", "field");
+
+				if (idxFilterRegionEduAdmin > -1){
+					filters[idxFilterRegionEduAdmin].value = node.region_edu_admin_id || "";
+				}	
+				else {
+					filters.push({'field': 'region_edu_admin', 'value': node.region_edu_admin_id || ""});
+				}
+				/**/
+				
+				/*SET UP edu_admin*/
+				var idxFilterEduAdmin = lookup(filters, "edu_admin", "field");
+
+				if (idxFilterEduAdmin > -1){
+					filters[idxFilterEduAdmin].value = node.edu_admin_id || "";
+				}	
+				else {
+					filters.push({'field': 'edu_admin', 'value': node.edu_admin_id || ""});
+				}
+				/**/
+
+				filters.push({'field': 'state', 'value': 1});
+                
+                $('#grid-units').data('kendoGrid').options.inSearching = true;
+                $("#grid-units").data("kendoGrid").dataSource.filter(filters);
+                
+                /*
+                var dsSrcParams = [];
                 
                 dsSrcParams.push({'field': 'region_edu_admin', 'value': node.region_edu_admin_id || ""});
                 dsSrcParams.push({'field': 'edu_admin', 'value': node.edu_admin_id || ""});
@@ -365,7 +463,7 @@ $(document).ready(function() {
                 
                 $('#grid-units').data('kendoGrid').options.inSearching = true;
                 $("#grid-units").data("kendoGrid").dataSource.filter(dsSrcParams);
-				
+				*/
             }
 		});
 	});

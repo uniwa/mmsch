@@ -1337,6 +1337,12 @@ $isAnonymous = @ $_GET['is_anonymous'];
 									width: "80px"
 					            },
 					            {
+						            field: "implementation_entity_initials",
+						            title: "Φορέας Υλοποίησης",
+						            hidden: true,
+									width: "80px"
+						        },
+					            {
 					                field: "state",
 					                title: "Κατάσταση",
 									width: "80px"
