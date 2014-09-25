@@ -999,9 +999,19 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					                    this['rqc']++;
 
 					                    var tags = new Object();
-					                    var flts = $("#grid-units").data('kendoGrid').dataSource.filter().filters;
+					                    
+					                    var cfgFilter = $("#grid-units").data('kendoGrid').dataSource.filter();
+										var filters = null;
+
+										if (typeof cfgFilter == "undefined"){
+											filters = [];
+										}
+										else {
+											filters = cfgFilter.filters;
+										} 
+										
 					                    var val;
-					                    $.each(flts, function(fltIndex, flt) {
+					                    $.each(filters, function(fltIndex, flt) {
 
 					                        if (flt.value != "") {
 
@@ -1114,15 +1124,26 @@ $isAnonymous = @ $_GET['is_anonymous'];
 																	});
 																	*/
 																	
-																	var filters = $("#grid-units").data('kendoGrid').dataSource.filter().filters;
-
-																	var idxFilterNode = lookup(filters, i, "field");
-
-																	if (idxFilterNode > -1){
-																		filters.splice(idxFilterNode,1);
+																	var cfgFilter = $("#grid-units").data('kendoGrid').dataSource.filter();
+																	var filters = null;
+																	
+																	if (typeof cfgFilter == "undefined"){
+																		filters = [];
 																	}
-													
-																	$("#grid-units").data("kendoGrid").dataSource.filter($("#grid-units").data('kendoGrid').dataSource.filter().filters);
+																	else {
+
+																		filters = cfgFilter.filters;
+
+																		var idxFilterNode = lookup(filters, i, "field");
+
+																		if (idxFilterNode > -1){
+																			filters.splice(idxFilterNode,1);
+																		}
+																	}
+
+																	console.log(filters);
+																	
+																	$("#grid-units").data("kendoGrid").dataSource.filter(filters);
 																})
 															);	
 														
@@ -1435,8 +1456,17 @@ $isAnonymous = @ $_GET['is_anonymous'];
 							if (e.keyCode == 13) {
 								//gridUnits.options.inSearching = true;
 								
-								var filters = gridUnits.dataSource.filter().filters;
+								var cfgFilters = gridUnits.dataSource.filter();
 
+								var filters = null;
+
+								if (typeof cfgFilters == "undefined"){
+									filters = [];
+								}
+								else {
+									filters = cfgFilters.filters;
+								}
+								
 								var idxFilterName = lookup(filters, "name", "field");
 
 								if (idxFilterName > -1){
@@ -1449,8 +1479,10 @@ $isAnonymous = @ $_GET['is_anonymous'];
 								var idxFilterSearchType = lookup(filters, "searchtype", "field");
 
 								if (idxFilterSearchType > -1){}
-								else
-								filters.push({'field': 'searchtype', 'value': "CONTAINALL"});
+								else {
+									
+									filters.push({'field': 'searchtype', 'value': "CONTAINALL"});
+								}
 
 								$( "#dlgWndSearchBy input[name='name']" ).val($("#txtQuickSearch").val())
 								//

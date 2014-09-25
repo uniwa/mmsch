@@ -165,6 +165,10 @@ function lookup(array, searchFor, property) {
 
 	var retVal = -1;
 
+	if (typeof array == "undefined" || array.length == 0){
+		return retVal;
+	}
+	
     for(var index=0; index < array.length; index++){
         var item = array[index];
         if (item.hasOwnProperty(property)) {
