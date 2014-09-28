@@ -144,6 +144,8 @@ if (isset($user["l"])){
 
 <script type="text/javascript" src="client/vendors/mmenu/jquery.mmenu.js"></script>
 
+<script type="text/javascript" src="client/vendors/mmsch/equal.js"></script>
+
 
 <!--[if IE ]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -172,7 +174,7 @@ function lookup(array, searchFor, property) {
     for(var index=0; index < array.length; index++){
         var item = array[index];
         if (item.hasOwnProperty(property)) {
-            if (item[property].toLowerCase() === searchFor.toLowerCase()) {
+            if (item[property] === searchFor) {
                 retVal = index;
                 return retVal;
             }

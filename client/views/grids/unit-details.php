@@ -667,8 +667,9 @@ position: fixed;
 											</td>
 										</tr>		
 									</tr>
-									</table>
 									</tbody>
+									</table>
+									
 									</div>
 									# } #
 									
@@ -709,8 +710,9 @@ position: fixed;
 									
 									# } #
 									
-									</table>
 									</tbody>
+									</table>
+									
 									
 								# } else { #
 								<p class="text-muted"><em>Δεν υπάρχουν διαθέσιμοι τερματικοί εξοπλισμοί</em></p>
@@ -727,6 +729,7 @@ position: fixed;
 								<script type="text/x-kendo-template" id="tmpl-ldap-list">
 								# if (ldaps != null && ldaps.length > 0) { #
 									
+									
 									<table class="table borderless">
 									<tbody>
 
@@ -741,8 +744,9 @@ position: fixed;
 
 									# } #
 
-									</table>
 									</tbody>
+									</table>
+									
 
 								# } else { #
 								<p class="text-muted"><em>Δεν υπάρχουν διαθέσιμοι λογαριασμοί υπηρεσίας</em></p>
@@ -848,20 +852,82 @@ position: fixed;
 							
 							<script id="tmpl-transaction-list" type="text/x-kendo-template">
 							
-							# if (transitions != null) { #
+							# if (logs != null) { #
 								
-   								# for (var i = 0, len = transitions.length;  i < len; i++ ){ #
+   								# for (var i = logs.length-1, len = 0;  i >= len; i-- ){ #
 									
+									# var log = logs[i].data; #
+
+									# var logHeader = logs[i].action + " | " + logs[i].logged_at #
+										
+									<div class="mmsch-list-item">							
 									<table class="table borderless" >
-										<thead><tr><th colspan="2">Μετάβαση: ${i+1}</th></tr></thead>
+										
 										<tbody>
+
+											<tr><td class="detail-term term-head" colspan="2">Log: ${logHeader}</td></tr>
+
+											# if (typeof log["lastUpdate"]["date"] != "undefined") { #
+											<tr> 
+												<td class="detail-term">Τελευταία ενημέρωση</td> 
+												<td class="term-value"> ${log["lastUpdate"]["date"]} </td>
+											</tr>
+											# } #
+
+											# if (typeof log["name"] != "undefined") { #
+											<tr> 
+												<td class="detail-term">Ονομασία</td> 
+												<td class="term-value"> ${log["name"]} </td>
+											</tr>
+											# } #
+
+											# if (typeof log["state"] != "undefined") { #
+											# var idxState = lookup(staticData.States.data, log["state"]["stateId"], "state_id"); #
+											# if (idxState > -1) { var strState = staticData.States.data[idxState]["state"]; } else { var strState = ""; } #
 											<tr> 
 												<td class="detail-term">Κατάσταση</td> 
-												<td class="term-value">${transitions[i]["to_state"]}</td>
+												<td class="term-value"> ${strState} </td>
 											</tr>
+											# } #
+
+											# if (typeof log["eduAdmin"] != "undefined") { #
+											# var idxEduAdmin = lookup(staticData.EduAdmins.data, log["eduAdmin"]["eduAdminId"], "edu_admin_id"); #
+											# if (idxEduAdmin > -1) { var strEduAdmin = staticData.EduAdmins.data[idxEduAdmin]["edu_admin"]; } else { var strEduAdmin = ""; } #
+											<tr> 
+												<td class="detail-term">Διεύθυνση εκπαίδευσης</td> 
+												<td class="term-value"> ${strEduAdmin} </td>
+											</tr>
+											# } #
+
+											# if (typeof log["prefecture"] != "undefined") { #
+											# var idxPrefecture = lookup(staticData.Prefectures.data, log["prefecture"]["prefectureId"], "prefecture_id"); #
+											# if (idxPrefecture > -1) { var strPrefecture = staticData.Prefectures.data[idxPrefecture]["prefecture"]; } else { var strPrefecture = ""; } #
+											<tr> 
+												<td class="detail-term">Περιφερειακή ενότητα</td> 
+												<td class="term-value"> ${strPrefecture} </td>
+											</tr>
+											# } #
+
+											# if (typeof log["regionEduAdmin"] != "undefined") { #
+											# var idxRegionEduAdmin = lookup(staticData.RegionEduAdmins.data, log["regionEduAdmin"]["regionEduAdminId"], "region_edu_admin_id"); #
+											# if (idxRegionEduAdmin > -1) { var strRegionEduAdmin = staticData.RegionEduAdmins.data[idxRegionEduAdmin]["region_edu_admin"]; } else { var strRegionEduAdmin = ""; } #
+											<tr> 
+												<td class="detail-term">Περιφέρεια</td> 
+												<td class="term-value"> ${strRegionEduAdmin} </td>
+											</tr>
+											# } #
+
+											# if (typeof log["transferArea"] != "undefined") { #
+											# var idxTransferArea = lookup(staticData.TransferAreas.data, log["transferArea"]["transferAreaId"], "transfer_area_id"); #
+											# if (idxTransferArea > -1) { var strTransferArea = staticData.TransferAreas.data[idxTransferArea]["transfer_area"]; } else { var strTransferArea = ""; } #
+											<tr> 
+												<td class="detail-term">Περιοχή Μετάθεσης</td> 
+												<td class="term-value"> ${strTransferArea} </td>
+											</tr>
+											# } #
 										</tbody>
 									</table>
-
+									</div>
 									
 
  								# } #
@@ -1800,6 +1866,25 @@ position: fixed;
                     dataType: "json", 
 
                     success: function(resp){
+
+
+                    	/**/
+                    	var logs = new Array();
+						var curr_dataItem = {"lastUpdate": {"date": ""}};                    	
+
+                    	$.each(resp.data, function(i, item){
+                        	//console.log(equal(curr_dataItem, item.data));
+                        	
+                        	if (!equal(curr_dataItem.lastUpdate.date, item.data.lastUpdate.date) ){
+                            	logs.push(item);
+                            	curr_dataItem = item.data;
+                        	}
+                    	});
+                    	/**/
+                    	
+                    	self.data()[0]['logs'] = logs;
+                    	//console.log(viewModel);
+                    	//self.data()[0]['logs'] = resp.data;
                         
                     	kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
         				kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
