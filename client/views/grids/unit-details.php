@@ -855,17 +855,22 @@ position: fixed;
 							# if (logs != null) { #
 								
    								# for (var i = logs.length-1, len = 0;  i >= len; i-- ){ #
-									
+
+									# if (i == 0) {continue;} #									
+
 									# var log = logs[i].data; #
 
 									# var logHeader = logs[i].action + " | " + logs[i].logged_at #
-										
+									
+									# var hasNameBefore = false; #
+									# var hasStateBefore = false; #
+
 									<div class="mmsch-list-item">							
 									<table class="table borderless" >
 										
 										<tbody>
 
-											<tr><td class="detail-term term-head" colspan="2">Log: ${logHeader}</td></tr>
+											<tr><td class="detail-term term-head" colspan="2">Αλλαγή: ${i}</td></tr>
 
 											# if (typeof log["lastUpdate"]["date"] != "undefined") { #
 											<tr> 
@@ -874,19 +879,60 @@ position: fixed;
 											</tr>
 											# } #
 
-											# if (typeof log["name"] != "undefined") { #
+											# if (typeof log["name"] != "undefined" ) { #
+
+												# if (typeof logs[i-1] != "undefined" && typeof logs[i-1].data["name"] != "undefined" ) { #
+													# var beforeName = logs[i-1].data["name"]; #
+													# var currentName = log["name"];  #
+													# hasNameBefore = true; #
+												# } else { #
+													# var currentName = log["name"];  #
+												# } #
+
 											<tr> 
 												<td class="detail-term">Ονομασία</td> 
-												<td class="term-value"> ${log["name"]} </td>
+												<td class="term-value">
+												# if (hasNameBefore) { # 
+												<b>ΑΠΟ:</b> ${beforeName} <br/><br/>
+												<b>ΣΕ:</b>  ${currentName}
+												# } else { #
+												${currentName}
+												# } #	  
+												</td>
 											</tr>
 											# } #
 
 											# if (typeof log["state"] != "undefined") { #
-											# var idxState = lookup(staticData.States.data, log["state"]["stateId"], "state_id"); #
-											# if (idxState > -1) { var strState = staticData.States.data[idxState]["state"]; } else { var strState = ""; } #
+												
+												# if (typeof logs[i-1] != "undefined" && typeof logs[i-1].data["state"] != "undefined" ) { #
+
+													# var beforeStateId = logs[i-1].data["state"]["stateId"]; #
+													# var currentStateId = log["state"]["stateId"];  #
+
+													# var idxBeforeState = lookup(staticData.States.data, beforeStateId, "state_id"); #
+													# var idxCurrentState = lookup(staticData.States.data, currentStateId, "state_id"); #
+
+													# if (idxBeforeState > -1) { var strBeforeState = staticData.States.data[idxBeforeState]["state"]; } else { var strBeforeState = ""; } #
+													# if (idxCurrentState > -1) { var strCurrentState = staticData.States.data[idxCurrentState]["state"]; } else { var strCurrentState = ""; } #
+
+													# hasStateBefore = true; #
+
+												# } else { #
+													# var currentStateId = log["state"]["stateId"];  #
+													# var idxCurrentState = lookup(staticData.States.data, currentStateId, "state_id"); #
+													# if (idxCurrentState > -1) { var strCurrentState = staticData.States.data[idxCurrentState]["state"]; } else { var strCurrentState = ""; } #
+												# } #
+
 											<tr> 
 												<td class="detail-term">Κατάσταση</td> 
-												<td class="term-value"> ${strState} </td>
+												<td class="term-value"> 
+												# if (hasStateBefore) { # 
+												<b>ΑΠΟ:</b> ${strBeforeState} <br/>
+												<b>ΣΕ:</b>  ${strCurrentState}
+												# } else { #
+												${strCurrentState}
+												# } #	  
+												</td>
 											</tr>
 											# } #
 
@@ -1838,6 +1884,16 @@ position: fixed;
 
                     	$.each(resp.data, function(i, item){
 
+                    		if (typeof item.data["lastUpdate"] == "undefined") {
+                    			return;
+                    			//item.data["lastUpdate"] = {"date":""};
+                    		}
+
+                    		if (item.data.lastUpdate === null){
+                    			//item.data.lastUpdate = {"date":""};
+                    			return; 
+                    		}
+							
                         	if (!equal(curr_dataItem.lastUpdate.date, item.data.lastUpdate.date) ){
 
                             	if (item.data.hasOwnProperty("state") || item.data.hasOwnProperty("name")) {
