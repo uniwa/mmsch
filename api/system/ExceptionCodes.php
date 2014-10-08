@@ -594,6 +594,7 @@ class ExceptionCodes
     const InvalidEduAdminIDType = 500;
     /** {@see ExceptionMessages::InvalidEduAdminIDArray} */
     const InvalidEduAdminIDArray = 500;
+    
     /** {@see ExceptionMessages::MissingEduAdminValue} */
     const MissingEduAdminValue = 500;
     /** {@see ExceptionMessages::MissingEduAdminParam} */
@@ -602,10 +603,36 @@ class ExceptionCodes
     const InvalidEduAdminValue = 500;
     /** {@see ExceptionMessages::InvalidEduAdminType} */
     const InvalidEduAdminType = 500;
+ 
+    /** {@see ExceptionMessages::MissingEduAdminNameParam} */   
+    const MissingEduAdminNameParam = 500;
+    /** {@see ExceptionMessages::MissingEduAdminNameValue} */
+    const MissingEduAdminNameValue =500;
+    /** {@see ExceptionMessages::InvalidEduAdminNameType} */
+    const InvalidEduAdminNameType = 500;
+    /** {@see ExceptionMessages::InvalidEduAdminNameArray} */
+    const InvalidEduAdminNameArray = 500;
+    
+    /** {@see ExceptionMessages::MissingEduAdminParentRdnParam} */
+    const MissingEduAdminParentRdnParam = 500;
+    /** {@see ExceptionMessages::MissingEduAdminParentRdnValue} */
+    const MissingEduAdminParentRdnValue = 500;
+    /** {@see ExceptionMessages::InvalidEduAdminParentRdnType} */
+    const InvalidEduAdminParentRdnType = 500;
+    /** {@see ExceptionMessages::InvalidEduAdminParentRdnArray} */
+    const InvalidEduAdminParentRdnArray = 500;
+    
+    /** {@see ExceptionMessages::MissingEduAdminThirdLevelDnsParam} */
+    const MissingEduAdminThirdLevelDnsParam = 500;
+    /** {@see ExceptionMessages::MissingEduAdminThirdLevelDnsValue} */
+    const MissingEduAdminThirdLevelDnsValue = 500;
+    /** {@see ExceptionMessages::InvalidEduAdminThirdLevelDnsType} */
+    const InvalidEduAdminThirdLevelDnsType = 500;
+    /** {@see ExceptionMessages::InvalidEduAdminThirdLevelDnsArray} */
+    const InvalidEduAdminThirdLevelDnsArray = 500;
+    
     /** {@see ExceptionMessages::DuplicatedEduAdminValue} */
     const DuplicatedEduAdminValue = 500;
-
-
 
     //= GetWorkerSpecializations
     /** {@see ExceptionMessages::MissingSpecializationIDParam} */

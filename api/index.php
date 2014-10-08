@@ -793,11 +793,13 @@ function EduAdminsController()
                 $params["edu_admin"],
                 $params["region_edu_admin"],
                 $params["implementation_entity"],
+                $params["parent_rdn"],
+                $params["third_level_dns"],
                 $params["pagesize"],
                 $params["page"],
-                $params["orderby"],
+                $params["searchtype"],
                 $params["ordertype"],
-                $params["searchtype"]
+                $params["orderby"]              
             );
             break;
     }

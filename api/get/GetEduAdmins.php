@@ -60,7 +60,7 @@ header("Content-Type: text/html; charset=utf-8");
  *       -H "Content-Type: application/json" \
  *       -H "Accept: application/json" \
  *       -u username:password \
- *       -d '{"region_edu_admin": "ΑΤΤΙΚΗΣ"}' 
+ *       -d '{"region_edu_admin": "ΠΕΡΙΦΕΡΕΙΑΚΗ ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ ΚΑΙ ΘΡΑΚΗΣ"}' 
  * </code>
  * <br>
  * 
@@ -69,7 +69,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <a id="JavaScript"></a>Παράδειγμα κλήσης της συνάρτησης με <b>JavaScript</b> :
  * <code>
  * <script>
- *    var params = JSON.stringify({ "region_edu_admin": "ΑΤΤΙΚΗΣ" });
+ *    var params = JSON.stringify({ "region_edu_admin": "ΠΕΡΙΦΕΡΕΙΑΚΗ ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ ΚΑΙ ΘΡΑΚΗΣ" });
  *    
  *    var http = new XMLHttpRequest();
  *    http.open("GET", "https://mm.sch.gr/api/edu_admins");
@@ -99,7 +99,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <?php
  * header("Content-Type: text/html; charset=utf-8");
  * 
- * $params = array("region_edu_admin" => "ΑΤΤΙΚΗΣ");
+ * $params = array("region_edu_admin" => "ΠΕΡΙΦΕΡΕΙΑΚΗ ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ ΚΑΙ ΘΡΑΚΗΣ");
  * 
  * $curl = curl_init("https://mm.sch.gr/api/edu_admins");
  * 
@@ -124,7 +124,7 @@ header("Content-Type: text/html; charset=utf-8");
  *        type: 'GET',
  *        url: 'https://mm.sch.gr/api/edu_admins',
  *        dataType: "json",
- *        data:{'region_edu_admin': 'ΑΤΤΙΚΗΣ'},
+ *        data:{'region_edu_admin': 'ΠΕΡΙΦΕΡΕΙΑΚΗ ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ ΚΑΙ ΘΡΑΚΗΣ'},
  *        beforeSend: function(req) {
  *            req.setRequestHeader('Authorization', btoa('username' + ":" + 'password'));
  *        },
@@ -142,72 +142,48 @@ header("Content-Type: text/html; charset=utf-8");
  * <br><a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα του λεξικού σε μορφή JSON :
  * <code>
  * {"data":[
- *  	{
- *  		"edu_admin_id": 18,
- *  		"edu_admin": "ΔΙΕΥΘΥΝΣΗ Α' ΘΕΣΣΑΛΟΝΙΚΗΣ",
- *  		"region_edu_admin_id": 6,
- *  		"region_edu_admin": "ΚΕΝΤΡΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ",
- *  		"implementation_entity_id": 1,
- *  		"implementation_entity": "ΑΡΙΣΤΟΤΕΛΕΙΟ ΠΑΝ/ΜΙΟ ΘΕΣΣΑΛΟΝΙΚΗΣ",
- *  		"implementation_entity_initials": "Α.Π.Θ."
- *  	},
- *  	{
- *  		"edu_admin_id": 1,
- *  		"edu_admin": "ΔΙΕΥΘΥΝΣΗ ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ",
- *  		"region_edu_admin_id": 1,
- *  		"region_edu_admin": "ΔΥΤΙΚΗΣ ΕΛΛΑΔΑΣ",
- *  		"implementation_entity_id": 5,
- *  		"implementation_entity": "ΙΝΣΤΙΤΟΥΤΟ ΤΕΧΝΟΛΟΓΙΑΣ ΥΠΟΛΟΓΙΣΤΩΝ",
- *  		"implementation_entity_initials": "Ι.Τ.Υ."
- *  	},
- *  	{
- *  		"edu_admin_id": 9,
- *  		"edu_admin": "ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΑΤΤΙΚΗΣ",
- *  		"region_edu_admin_id": 3,
- *  		"region_edu_admin": "ΑΤΤΙΚΗΣ",
- *  		"implementation_entity_id": 3,
- *  		"implementation_entity": "ΕΘΝΙΚΟ & ΚΑΠΟΔΙΣΤΡΙΑΚΟ ΠΑΝ/ΜΙΟ ΑΘΗΝΩΝ",
- *  		"implementation_entity_initials": "Ε.Κ.Π.Α."
- *  	},
- *  	{
- *  		"edu_admin_id": 91,
- *  		"edu_admin": "ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΘΕΣΣΑΛΟΝΙΚΗΣ",
- *  		"region_edu_admin_id": 6,
- *  		"region_edu_admin": "ΚΕΝΤΡΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ",
- *  		"implementation_entity_id": 1,
- *  		"implementation_entity": "ΑΡΙΣΤΟΤΕΛΕΙΟ ΠΑΝ/ΜΙΟ ΘΕΣΣΑΛΟΝΙΚΗΣ",
- *  		"implementation_entity_initials": "Α.Π.Θ."
- *  	},
- *  	{
- *  		"edu_admin_id": 3,
- *  		"edu_admin": "ΔΙΕΥΘΥΝΣΗ ΑΡΓΟΛΙΔΑΣ",
- *  		"region_edu_admin_id": 2,
- *  		"region_edu_admin": "ΠΕΛΟΠΟΝΝΗΣΟΥ",
- *  		"implementation_entity_id": 11,
- *  		"implementation_entity": "ΤΕΙ ΑΘΗΝΑΣ",
- *  		"implementation_entity_initials": "ΤΕΙΑΘ"
- *  	}
+ *          {
+ *           "edu_admin_id": 38,
+ *           "name": "ΔΙΕΥΘΥΝΣΗ Π.Ε. ΔΡΑΜΑΣ",
+ *           "parent_rdn": "dra",
+ *           "third_level_dns": "dra",
+ *           "region_edu_admin_id": 12,
+ *           "region_edu_admin_name": "ΠΕΡΙΦΕΡΕΙΑΚΗ ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ ΚΑΙ ΘΡΑΚΗΣ",
+ *           "implementation_entity_id": 2,
+ *           "implementation_entity": "ΔΗΜΟΚΡΙΤΕΙΟ ΠΑΝΕΠΙΣΤΗΜΙΟ ΘΡΑΚΗΣ",
+ *           "implementation_entity_initials": "Δ.Π.Θ."
+ *          },
+ *          {
+ *           "edu_admin_id": 44,
+ *           "name": "ΔΙΕΥΘΥΝΣΗ Π.Ε. ΚΑΒΑΛΑΣ",
+ *           "parent_rdn": "kav",
+ *           "third_level_dns": "kav",
+ *           "region_edu_admin_id": 12,
+ *           "region_edu_admin_name": "ΠΕΡΙΦΕΡΕΙΑΚΗ ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ ΚΑΙ ΘΡΑΚΗΣ",
+ *           "implementation_entity_id": 2,
+ *           "implementation_entity": "ΔΗΜΟΚΡΙΤΕΙΟ ΠΑΝΕΠΙΣΤΗΜΙΟ ΘΡΑΚΗΣ",
+ *           "implementation_entity_initials": "Δ.Π.Θ."
+ *         },
+ * ....
  * ]}
  * </code>
  * <br>
  * 
  * 
  * 
- * @param mixed $edu_admin Διεύθυνση Επκαίδευσης
- * <br>Το Όνομα ή ο Κωδικός της Διευθύνσης Επκαίδευσης
+ * @param mixed $edu_admin Διεύθυνση Εκπαίδευσης
+ * <br>Το Όνομα ή ο Κωδικός της Διευθύνσης Εκπαίδευσης
  * <br>Η παράμετρος δεν είναι υποχρεωτική
  * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
  *    <ul>
  *       <li>integer
- *          <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό της Διευθύνσης Επκαίδευσης
+ *          <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό της Διευθύνσης Εκπαίδευσης
  *          <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
  *       </li>
  *       <li>string
- *          <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Διευθύνσης Επκαίδευσης
- *          <br>Με την χρήση της παραμέτρου Τύπος Αναζήτησης (<a href="#$searchtype">$searchtype</a>) μπορεί να καθοριστεί ο τρόπος με τον οποίο
- *          θα αναζητηθεί η τιμή της παραμέτρου στο Όνομα της Διευθύνσης Επκαίδευσης
- *          <br>Αν η παράμετρος δεν έχει τιμή τότε η αναζήτηση στο Όνομα της Διευθύνσης Επκαίδευσης γίνεται με τον Tύπο {@see SearchEnumTypes::ContainAll}
+ *          <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Διευθύνσης Εκπαίδευσης
+ *          <br>Η αναζήτηση στο Όνομα της Διευθύνσης Εκπαίδευσης γίνεται με τον Tύπο {@see SearchEnumTypes::ContainAll}
  *       </li>
  *       <li>array[integer|string]
  *          <br>Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
@@ -215,7 +191,22 @@ header("Content-Type: text/html; charset=utf-8");
  *       </li>
  *    </ul>
  *
- *
+ * @param string $parent_rdn Parent RDN
+ * <br>Το Parent RDN της Διευθύνσης Εκπαίδευσης
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
+ *    <ul>
+ *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το parent rdn)</li>
+ *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
+ *    </ul>
+ * 
+ * @param string $third_level_dns Third Level Dns
+ * <br>Το Third Level Dns της Διευθύνσης Εκπαίδευσης
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
+ *    <ul>
+ *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το third level dns</li>
+ *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
+ *    </ul>
+ * 
  * @param mixed $region_edu_admin Περιφέρεια
  * <br>Το Όνομα ή ο Κωδικός της Περιφέρειας
  * <br>Η παράμετρος δεν είναι υποχρεωτική
@@ -288,7 +279,7 @@ header("Content-Type: text/html; charset=utf-8");
  * @param string $orderby Πεδίο Ταξινόμησης
  * <br>Το όνομα του πεδίου με το οποίο γίνεται η ταξινόμηση των εγγραφών
  * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Αν η παράμετρος δεν έχει τιμή τότε η ταξινόμηση γίνεται με το Όνομα της Διευθύνσης Επκαίδευσης
+ * <br>Αν η παράμετρος δεν έχει τιμή τότε η ταξινόμηση γίνεται με το Όνομα Διευθύνσης Εκπαίδευσης
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
  *    <ul>
  *       <li>string
@@ -311,10 +302,10 @@ header("Content-Type: text/html; charset=utf-8");
  *
  *
  * @param string $searchtype Τύπος Αναζήτησης
- * <br>Ο Τύπος Αναζήτησης με τον οποίο γίνεται η αναζήτηση στο Όνομα (<a href="#$edu_admin">$edu_admin</a>) της Διευθύνσης Επκαίδευσης
+ * <br>Ο Τύπος Αναζήτησης με τον οποίο γίνεται η αναζήτηση στο Όνομα (<a href="#$edu_admin">$edu_admin</a>) της Διευθύνσης Εκπαίδευσης
  * <br>Η παράμετρος δεν είναι υποχρεωτική
  * <br>Αν η παράμετρος δεν έχει τιμή τότε η αναζήτηση στο Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::ContainAll}
- * <br>Αν το Όνομα έχει Αριθμητική Τιμή τότε η αναζήτηση γίνεται με τον Κωδικό της Διευθύνσης Επκαίδευσης με Τύπο {@see SearchEnumTypes::Exact}
+ * <br>Αν το Όνομα έχει Αριθμητική Τιμή τότε η αναζήτηση γίνεται με τον Κωδικό της Διευθύνσης Εκπαίδευσης με Τύπο {@see SearchEnumTypes::Exact}
  * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
  * <ul>
@@ -335,12 +326,14 @@ header("Content-Type: text/html; charset=utf-8");
  * <br>integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς τις παραμέτρους σελιδοποίησης
  * <br>array : <b>data</b> : Ο Πίνακας με το λεξικό
  * <ul>
- *      <li>integer : <b>edu_admin_id</b> : Ο Κωδικός της Διευθύνσης Επκαίδευσης</li>
- *      <li>string : <b>edu_admin</b> : Το Όνομα της Διευθύνσης Επκαίδευσης</li>
+ *      <li>integer : <b>edu_admin_id</b> : Ο Κωδικός της Διευθύνσης Εκπαίδευσης</li>
+ *      <li>string : <b>edu_admin</b> : Το Όνομα της Διευθύνσης Εκπαίδευσης</li>
+ *      <li>string : <b>parent_rdn</b> : Το Parent Rdn της Διευθύνσης Εκπαίδευσης</li>
+ *      <li>string : <b>third_level_dns</b> : Το Third Level Dns της Διευθύνσης Εκπαίδευσης</li>
  *      <li>string : <b>region_edu_admin</b> : Ο Κωδικός της Περιφέρειας της Διεύθυνση Εκπαίδευσης</li>
  *      <li>string : <b>region_edu_admin</b> : Η Περιφέρεια της Διεύθυνση Εκπαίδευσης (Λεξικό : {@see GetRegionEduAdmins})</li>
- *      <li>string : <b>implementation_entity_id</b> : Ο Κωδικός του Φορέα Υλοποίησης που είναι υπεύθυνος για την Διευθύνση Επκαίδευσης</li>
- *      <li>string : <b>implementation_entity</b> : Ο Φορέας Υλοποίησης που είναι υπεύθυνος για την Διευθύνση Επκαίδευσης (Λεξικό : {@see GetImplementationEntities})</li>
+ *      <li>string : <b>implementation_entity_id</b> : Ο Κωδικός του Φορέα Υλοποίησης που είναι υπεύθυνος για την Διευθύνση Εκπαίδευσης</li>
+ *      <li>string : <b>implementation_entity</b> : Ο Φορέας Υλοποίησης που είναι υπεύθυνος για την Διευθύνση Εκπαίδευσης (Λεξικό : {@see GetImplementationEntities})</li>
  *      <li>string : <b>implementation_entity_initials</b> : Τα Αρχικά του Ονόματος του Φορέα Υλοποίησης</li>
  *  </ul>
  * 
@@ -386,6 +379,14 @@ header("Content-Type: text/html; charset=utf-8");
  * <br>{@see ExceptionCodes::InvalidEduAdminType}
  * <br>Η Διεύθυνση Εκπαίδευσης πρέπει να είναι αριθμητική ή αλφαριθμητική
  *
+ * @throws InvalidEduAdminParentRdnType {@see ExceptionMessages::InvalidEduAdminParentRdnType}
+ * <br>{@see ExceptionCodes::InvalidEduAdminParentRdnType}
+ * <br>Το ParentRdn της Διεύθυνσης Εκπαίδευσης πρέπει να είναι αλφαριθμητικό
+ * 
+ * @throws InvalidEduAdminThirdLevelDnsType {@see ExceptionMessages::InvalidEduAdminThirdLevelDnsType}
+ * <br>{@see ExceptionCodes::InvalidEduAdminThirdLevelDnsType}
+ * <br>'Το ThirdLevelDns της Διεύθυνσης Εκπαίδευσης πρέπει να είναι αλφαριθμητικό
+ * 
  * @throws InvalidRegionEduAdminType {@see ExceptionMessages::InvalidRegionEduAdminType}
  * <br>{@see ExceptionCodes::InvalidRegionEduAdminType}
  * <br>Η Περιφέρεια πρέπει να είναι αριθμητική ή αλφαριθμητική
@@ -405,259 +406,132 @@ header("Content-Type: text/html; charset=utf-8");
  *
  */
 
-function GetEduAdmins(
-    $edu_admin, $region_edu_admin, $implementation_entity,
-    $pagesize, $page, $orderby, $ordertype, $searchtype
-)
-{
-    global $db;
+function GetEduAdmins( $edu_admin, $region_edu_admin, $implementation_entity, $parent_rdn, $third_level_dns,
+                       $pagesize, $page, $searchtype, $ordertype, $orderby ) {
+ 
+    global $entityManager, $app;
 
-    $filter = array();
-    $result = array();
+    $qb = $entityManager->createQueryBuilder();
+    $result = array();  
 
     $result["data"] = array();
-
-    $result["method"] = __FUNCTION__;
-
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
     $params = loadParameters();
-
-    try
-    {
-//======================================================================================================================
-//= Paging
-//======================================================================================================================
-
-        if ( Validator::Missing('searchtype', $params) )
-            $searchtype = SearchEnumTypes::ContainAll ;
-        else if ( SearchEnumTypes::isValidValue( $searchtype ) || SearchEnumTypes::isValidName( $searchtype ) )
-            $searchtype = SearchEnumTypes::getValue($searchtype);
-        else
-            throw new Exception(ExceptionMessages::InvalidSearchType." : ".$searchtype, ExceptionCodes::InvalidSearchType);
-
+    
+    try {
+        
+//$page - $pagesize - $searchtype - $ordertype =================================
        $page = Pagination::getPage($page, $params);
-       $pagesize = Pagination::getPagesize($pagesize, $params, true);   
-
-//======================================================================================================================
-//= $edu_admin
-//======================================================================================================================
-
-        if ( Validator::Exists('edu_admin', $params) )
-        {
-            $table_name = "edu_admins";
-            $table_column_id = "edu_admin_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($edu_admin);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                $paramWordsFilters = array();
-
-                if ( Validator::isNull($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                {
-                    if ( $searchtype == SearchEnumTypes::Exact )
-                        $paramWordsFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                    else if ( $searchtype == SearchEnumTypes::Contain )
-                        $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
-                    else
-                    {
-                        $words = Validator::toArray($values, " ");
-
-                        foreach ($words as $word)
-                        {
-                            switch ($searchtype)
-                            {
-                                case SearchEnumTypes::ContainAll :
-                                case SearchEnumTypes::ContainAny :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::StartWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::EndWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word) );
-                                    break;
-                            }
-                        }
-                    }
-                }
-                else
-                    throw new Exception(ExceptionMessages::InvalidEduAdminType." : ".$values, ExceptionCodes::InvalidEduAdminType);
-
-                switch ($searchtype)
-                {
-                    case SearchEnumTypes::ContainAny :
-                        $paramFilters[] = "(" . implode(" OR ", $paramWordsFilters) . ")";
-                        break;
-                    default :
-                        $paramFilters[] = "(" . implode(" AND ", $paramWordsFilters) . ")";
-                        break;
-                }
-
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $region_edu_admin
-//======================================================================================================================
-
-        if ( Validator::Exists('region_edu_admin', $params) )
-        {
-            $table_name = "region_edu_admins";
-            $table_column_id = "region_edu_admin_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($region_edu_admin);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                else
-                    throw new Exception(ExceptionMessages::InvalidRegionEduAdminType." : ".$values, ExceptionCodes::InvalidRegionEduAdminType);
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $implementation_entity
-//======================================================================================================================
-
-        if ( Validator::Exists('implementation_entity', $params) )
-        {
-            $table_name = "implementation_entities";
-            $table_column_id = "implementation_entity_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($implementation_entity);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                else
-                    throw new Exception(ExceptionMessages::InvalidImplementationEntityType." : ".$values, ExceptionCodes::InvalidImplementationEntityType);
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $ordertype
-//======================================================================================================================
-
-        if ( Validator::Missing('ordertype', $params) )
-            $ordertype = OrderEnumTypes::ASC ;
-        else if ( OrderEnumTypes::isValidValue( $ordertype ) || OrderEnumTypes::isValidName( $ordertype ) )
-            $ordertype = OrderEnumTypes::getValue($ordertype);
+       $pagesize = Pagination::getPagesize($pagesize, $params, true);     
+       $searchtype = Filters::getSearchType($searchtype, $params);
+       $ordertype =  Filters::getOrderType($ordertype, $params);
+    
+ //$orderby=====================================================================
+       $columns = array(
+                            "ea.eduAdminId"         => "edu_admin_id",
+                            "ea.name"               => "name",
+                            "ea.parentRdn"          => "parent_rdn",
+                            "ea.thirdLevelDns"      => "third_level_dns",
+                            "rea.regionEduAdminId"  => "region_edu_admin_id" ,
+                            "rea.name"              => "region_edu_admin_name",
+                            "ie.implementationEntityId"  => "implementation_entity_id" ,
+                            "ie.name"                    => "implementation_entity_name"
+                        );
+       
+       if ( Validator::Missing('orderby', $params) )
+            $orderby = "edu_admin_id";
         else
-            throw new Exception(ExceptionMessages::InvalidOrderType." : ".$ordertype, ExceptionCodes::InvalidOrderType);
-
-//======================================================================================================================
-//= $orderby
-//======================================================================================================================
-
-        if ( Validator::Exists('orderby', $params) )
-        {
-            $columns = array(
-                "edu_admin_id",
-                "edu_admin",
-                "region_edu_admin_id",
-                "region_edu_admin",
-                "implementation_entity_id",
-                "implementation_entity",
-                "implementation_entity_initials"
-            );
-
+        {   
+            $orderby = Validator::ToLower($orderby);
             if (!in_array($orderby, $columns))
                 throw new Exception(ExceptionMessages::InvalidOrderBy." : ".$orderby, ExceptionCodes::InvalidOrderBy);
-        }
-        else
-            $orderby = "edu_admin";
+        } 
+        
+//$edu_admin=================================================================
+        if (Validator::Exists('edu_admin', $params)){
+             CRUDUtils::setFilter($qb, $edu_admin, "ea", "eduAdminId", "name", "id,value", ExceptionMessages::InvalidEduAdminType, ExceptionCodes::InvalidEduAdminType);
+        } 
 
-//======================================================================================================================
-//= E X E C U T E
-//======================================================================================================================
+//$parent_rdn===============================================================
+        if (Validator::Exists('parent_rdn', $params)){
+            CRUDUtils::setFilter($qb, $parent_rdn, "ea", "parentRdn", "parentRdn", "null,value", ExceptionMessages::InvalidEduAdminParentRdnType, ExceptionCodes::InvalidEduAdminParentRdnType);
+        } 
+        
+ //$third_level_dns===============================================================
+        if (Validator::Exists('third_level_dns', $params)){
+            CRUDUtils::setFilter($qb, $third_level_dns, "ea", "thirdLevelDns", "thirdLevelDns", "null,value", ExceptionMessages::InvalidEduAdminThirdLevelDnsType, ExceptionCodes::InvalidEduAdminThirdLevelDnsType);
+        }  
+        
+//$region_edu_admin=============================================================
+        if (Validator::Exists('region_edu_admin', $params)){
+            CRUDUtils::setFilter($qb, $region_edu_admin, "rea", "regionEduAdminId", "name", "id,value", ExceptionMessages::InvalidRegionEduAdminType, ExceptionCodes::InvalidRegionEduAdminType);
+        }    
+        
+//$implementation_entity=============================================================
+        if (Validator::Exists('implementation_entity', $params)){
+            CRUDUtils::setFilter($qb, $implementation_entity, "ie", "implementationEntityId", "name", "null,id,value", ExceptionMessages::InvalidImplementationEntityType, ExceptionCodes::InvalidImplementationEntityType);
+        }   
+        
+//execution=====================================================================
+        $qb->select('ea');
+        $qb->from('EduAdmins', 'ea');
+        $qb->leftjoin('ea.regionEduAdmin', 'rea');
+        $qb->leftjoin('ea.implementationEntity', 'ie');
+        $qb->orderBy(array_search($orderby, $columns), $ordertype);
 
-        $sqlSelect = "SELECT
-                        edu_admins.edu_admin_id,
-                        edu_admins.name as edu_admin,
-                        region_edu_admins.region_edu_admin_id,
-                        region_edu_admins.`name` as region_edu_admin,
-                        implementation_entities.implementation_entity_id,
-                        implementation_entities.`name` as implementation_entity,
-                        implementation_entities.initials as implementation_entity_initials
-                     ";
+//pagination and results========================================================      
+        $results = new Doctrine\ORM\Tools\Pagination\Paginator($qb->getQuery());
+        $result["total"] = count($results);
+        $results->getQuery()->setFirstResult($pagesize * ($page-1));
+        $pagesize!==Parameters::AllPageSize ? $results->getQuery()->setMaxResults($pagesize) : null;
 
-        $sqlFrom   = "FROM edu_admins
-                      LEFT JOIN region_edu_admins ON edu_admins.region_edu_admin_id = region_edu_admins.region_edu_admin_id
-                      LEFT JOIN implementation_entities ON edu_admins.implementation_entity_id = implementation_entities.implementation_entity_id";
-
-
-        $sqlWhere = (count($filter) > 0 ? " WHERE " . implode(" AND ", $filter) : "" );
-        $sqlOrder = " ORDER BY ". $orderby ." ". $ordertype;
-        $sqlLimit = ($page && $pagesize) ? " LIMIT ".(($page - 1) * $pagesize).", ".$pagesize : "";
-
-
-        $sql = "SELECT count(*) as total " . $sqlFrom . $sqlWhere;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetch(PDO::FETCH_ASSOC);
-        $result["total"] = $rows["total"];
-
-
-        $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder . $sqlLimit;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $result["count"] = $stmt->rowCount();
-
-        foreach ($rows as $row)
+//data results==================================================================       
+        $count = 0;
+        foreach ($results as $eduadmin)
         {
+
             $result["data"][] = array(
-                "edu_admin_id"                   => (int)$row["edu_admin_id"],
-                "edu_admin"                      => $row["edu_admin"],
-                "region_edu_admin_id"            => (int)$row["region_edu_admin_id"],
-                "region_edu_admin"               => $row["region_edu_admin"],
-                "implementation_entity_id"       => (int)$row["implementation_entity_id"],
-                "implementation_entity"          => $row["implementation_entity"],
-                "implementation_entity_initials" => $row["implementation_entity_initials"],
-            );
+                                            "edu_admin_id"           => $eduadmin->getEduAdminId(),
+                                            "name"                   => $eduadmin->getName(),
+                                            "parent_rdn"             => $eduadmin->getParentRdn(),
+                                            "third_level_dns"        => $eduadmin->getThirdLevelDns(), 
+                                            "region_edu_admin_id"    => Validator::IsNull($eduadmin->getRegionEduAdmin()) ? Validator::ToNull() : $eduadmin->getRegionEduAdmin()->getRegionEduAdminId(),
+                                            "region_edu_admin_name"  => Validator::IsNull($eduadmin->getRegionEduAdmin()) ? Validator::ToNull() : $eduadmin->getRegionEduAdmin()->getName(),
+                                            "implementation_entity_id"       => Validator::IsNull($eduadmin->getImplementationEntity()) ? Validator::ToNull() : $eduadmin->getImplementationEntity()->getImplementationEntityId(),
+                                            "implementation_entity"          => Validator::IsNull($eduadmin->getImplementationEntity()) ? Validator::ToNull() : $eduadmin->getImplementationEntity()->getName(),
+                                            "implementation_entity_initials" => Validator::IsNull($eduadmin->getImplementationEntity()) ? Validator::ToNull() : $eduadmin->getImplementationEntity()->getInitials()
+                                     );
+            $count++;
         }
-
+        $result["count"] = $count;
+   
+//pagination results============================================================     
+        $maxPage = Pagination::getMaxPage($result["total"],$page,$pagesize);
+        $pagination = array( "page" => $page,   
+                             "maxPage" => $maxPage, 
+                             "pagesize" => $pagesize 
+                            );    
+        $result["pagination"]=$pagination;
+        
+//result_messages===============================================================      
         $result["status"] = ExceptionCodes::NoErrors;
-        $result["message"] = ExceptionMessages::NoErrors;
-    }
-    catch (Exception $e)
-    {
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".__FUNCTION__."]:".$e->getMessage();
-    }
-
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    } 
+    
+//debug=========================================================================
+   if ( Validator::IsTrue( $params["debug"]  ) )
+   {
+        $result["DQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
+        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
+   }
+    
     return $result;
+    
 }
 
 ?>

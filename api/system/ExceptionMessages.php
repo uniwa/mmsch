@@ -350,10 +350,27 @@ class ExceptionMessages
     const MissingEduAdminIDValue = 'Ο Κωδικός της Διεύθυνσης Εκπαίδευσης πρέπει να έχει τιμή';
     const InvalidEduAdminIDType = 'Ο Κωδικός της Διεύθυνσης Εκπαίδευσης πρέπει να είναι αριθμητικός';
     const InvalidEduAdminIDArray = 'Ο Κωδικός της Διεύθυνσης Εκπαίδευσης δεν μπορεί να έχει πολλαπλές τιμές';
+    
     const MissingEduAdminValue = 'Η Διεύθυνση Εκπαίδευσης πρέπει να έχει τιμή';
     const MissingEduAdminParam = 'Η Διεύθυνση Εκπαίδευσης είναι υποχρεωτικό πεδίο';
     const InvalidEduAdminValue = 'Η Διεύθυνση Εκπαίδευσης δεν υπάρχει στο λεξικό';
     const InvalidEduAdminType = 'Η Διεύθυνση Εκπαίδευσης πρέπει να είναι αριθμητική ή αλφαριθμητική';
+    
+    const MissingEduAdminNameParam = 'Το Όνομα της Διεύθυνσης Εκπαίδευσης είναι υποχρεωτικό πεδίο';
+    const MissingEduAdminNameValue = 'Το Όνομα της Διεύθυνσης Εκπαίδευσης πρέπει να έχει τιμή';
+    const InvalidEduAdminNameType = 'Το Όνομα της Διεύθυνσης Εκπαίδευσης πρέπει να είναι αλφαριθμητικό';
+    const InvalidEduAdminNameArray = 'Το Όνομα της Διεύθυνσης Εκπαίδευσης δεν μπορεί να έχει πολλαπλές τιμές';
+     
+    const MissingEduAdminParentRdnParam = 'Το ParentRdn της Διεύθυνσης Εκπαίδευσης είναι υποχρεωτικό πεδίο';
+    const MissingEduAdminParentRdnValue = 'Το ParentRdn της Διεύθυνσης Εκπαίδευσης πρέπει να έχει τιμή';
+    const InvalidEduAdminParentRdnType = 'Το ParentRdn της Διεύθυνσης Εκπαίδευσης πρέπει να είναι αλφαριθμητικό';
+    const InvalidEduAdminParentRdnArray = 'Το ParentRdn της Διεύθυνσης Εκπαίδευσης δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingEduAdminThirdLevelDnsParam = 'Το ThirdLevelDns της Διεύθυνσης Εκπαίδευσης είναι υποχρεωτικό πεδίο';
+    const MissingEduAdminThirdLevelDnsValue = 'Το ThirdLevelDns της Διεύθυνσης Εκπαίδευσης πρέπει να έχει τιμή';
+    const InvalidEduAdminThirdLevelDnsType = 'Το ThirdLevelDns της Διεύθυνσης Εκπαίδευσης πρέπει να είναι αλφαριθμητικό';
+    const InvalidEduAdminThirdLevelDnsArray = 'Το ThirdLevelDns της Διεύθυνσης Εκπαίδευσης δεν μπορεί να έχει πολλαπλές τιμές';
+    
     const DuplicatedEduAdminValue = 'Η Διεύθυνση Εκπαίδευσης υπάρχει ήδη';
 
 

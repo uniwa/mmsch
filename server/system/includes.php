@@ -37,6 +37,7 @@ require_once ('classes/sync/SyncTransferAreas.class.php');
 
 require_once ('classes/Validator.php');
 require_once ('classes/CRUDUtils.php');
+require_once ('classes/Filters.php');
 
 require_once ('classes/extends/SyncLogsExt.class.php');
 

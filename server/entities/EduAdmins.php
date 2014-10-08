@@ -48,6 +48,20 @@ class EduAdmins
      */
     private $regionEduAdmin;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parent_rdn", type="string", length=50, nullable=true)
+     */
+    private $parentRdn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="third_level_dns", type="string", length=50, nullable=true)
+     */
+    private $thirdLevelDns;
+    
     public function getEduAdminId() {
         return $this->eduAdminId;
     }
@@ -78,5 +92,21 @@ class EduAdmins
 
     public function setRegionEduAdmin(\RegionEduAdmins $regionEduAdmin) {
         $this->regionEduAdmin = $regionEduAdmin;
+    }
+    
+    public function getParentRdn() {
+        return $this->parentRdn;
+    }
+
+    public function setParentRdn($parentRdn) {
+        $this->parentRdn = $parentRdn;
+    }
+    
+    public function getThirdLevelDns() {
+        return $this->thirdLevelDns;
+    }
+
+    public function setThirdLevelDns($thirdLevelDns) {
+        $this->thirdLevelDns = $thirdLevelDns;
     }
 }
