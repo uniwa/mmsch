@@ -206,7 +206,7 @@ class="php-quote">&quot;Content-Type: application/json&quot;</span> \
 class="php-quote">&quot;Accept: application/json&quot;</span> \
    -u username:password \
    -d <span
-class="php-quote">'{&quot;region_edu_admin&quot;: &quot;ΑΤΤΙΚΗΣ&quot;}'</span>
+class="php-quote">'{&quot;region_edu_admin&quot;: &quot;ΠΕΡΙΦΕΡΕΙΑΚΗ ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ ΚΑΙ ΘΡΑΚΗΣ&quot;}'</span>
 </pre>
 
 <div><br />
@@ -220,7 +220,7 @@ class="php-quote">'{&quot;region_edu_admin&quot;: &quot;ΑΤΤΙΚΗΣ&quot;}'</
    <span
 class="php-keyword1">var</span> params = JSON.stringify({ <span
 class="php-quote">&quot;region_edu_admin&quot;</span>: <span
-class="php-quote">&quot;ΑΤΤΙΚΗΣ&quot;</span> });
+class="php-quote">&quot;ΠΕΡΙΦΕΡΕΙΑΚΗ ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ ΚΑΙ ΘΡΑΚΗΣ&quot;</span> });
 
    <span
 class="php-keyword1">var</span> http = <span
@@ -277,7 +277,7 @@ class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
 <span
 class="php-var">$params</span> = <span class="php-keyword1">array</span>(<span
 class="php-quote">&quot;region_edu_admin&quot;</span> =&gt; <span
-class="php-quote">&quot;ΑΤΤΙΚΗΣ&quot;</span>);
+class="php-quote">&quot;ΠΕΡΙΦΕΡΕΙΑΚΗ ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ ΚΑΙ ΘΡΑΚΗΣ&quot;</span>);
 
 <span
 class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
@@ -336,7 +336,7 @@ class="php-quote">'https://mm.sch.gr/api/edu_admins'</span>,
 class="php-quote">&quot;json&quot;</span>,
        data:{<span
 class="php-quote">'region_edu_admin'</span>: <span
-class="php-quote">'ΑΤΤΙΚΗΣ'</span>},
+class="php-quote">'ΠΕΡΙΦΕΡΕΙΑΚΗ ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ ΚΑΙ ΘΡΑΚΗΣ'</span>},
        beforeSend: <span
 class="php-keyword1">function</span>(req) {
            req.setRequestHeader(<span
@@ -365,120 +365,63 @@ class="php-keyword2">log</span>(data);
 <pre>
 {<span
 class="php-quote">&quot;data&quot;</span>:[
-        {
-                <span
+         {
+          <span
 class="php-quote">&quot;edu_admin_id&quot;</span>: <span
-class="php-num">18</span>,
-                <span
-class="php-quote">&quot;edu_admin&quot;</span>: <span
-class="php-quote">&quot;ΔΙΕΥΘΥΝΣΗ Α' ΘΕΣΣΑΛΟΝΙΚΗΣ&quot;</span>,
-                <span
+class="php-num">38</span>,
+          <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;ΔΙΕΥΘΥΝΣΗ Π.Ε. ΔΡΑΜΑΣ&quot;</span>,
+          <span
+class="php-quote">&quot;parent_rdn&quot;</span>: <span
+class="php-quote">&quot;dra&quot;</span>,
+          <span
+class="php-quote">&quot;third_level_dns&quot;</span>: <span
+class="php-quote">&quot;dra&quot;</span>,
+          <span
 class="php-quote">&quot;region_edu_admin_id&quot;</span>: <span
-class="php-num">6</span>,
-                <span
-class="php-quote">&quot;region_edu_admin&quot;</span>: <span
-class="php-quote">&quot;ΚΕΝΤΡΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ&quot;</span>,
-                <span
+class="php-num">12</span>,
+          <span
+class="php-quote">&quot;region_edu_admin_name&quot;</span>: <span
+class="php-quote">&quot;ΠΕΡΙΦΕΡΕΙΑΚΗ ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ ΚΑΙ ΘΡΑΚΗΣ&quot;</span>,
+          <span
 class="php-quote">&quot;implementation_entity_id&quot;</span>: <span
-class="php-num">1</span>,
-                <span
-class="php-quote">&quot;implementation_entity&quot;</span>: <span
-class="php-quote">&quot;ΑΡΙΣΤΟΤΕΛΕΙΟ ΠΑΝ/ΜΙΟ ΘΕΣΣΑΛΟΝΙΚΗΣ&quot;</span>,
-                <span
-class="php-quote">&quot;implementation_entity_initials&quot;</span>: <span
-class="php-quote">&quot;Α.Π.Θ.&quot;</span>
-        },
-        {
-                <span
-class="php-quote">&quot;edu_admin_id&quot;</span>: <span
-class="php-num">1</span>,
-                <span
-class="php-quote">&quot;edu_admin&quot;</span>: <span
-class="php-quote">&quot;ΔΙΕΥΘΥΝΣΗ ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ&quot;</span>,
-                <span
-class="php-quote">&quot;region_edu_admin_id&quot;</span>: <span
-class="php-num">1</span>,
-                <span
-class="php-quote">&quot;region_edu_admin&quot;</span>: <span
-class="php-quote">&quot;ΔΥΤΙΚΗΣ ΕΛΛΑΔΑΣ&quot;</span>,
-                <span
-class="php-quote">&quot;implementation_entity_id&quot;</span>: <span
-class="php-num">5</span>,
-                <span
-class="php-quote">&quot;implementation_entity&quot;</span>: <span
-class="php-quote">&quot;ΙΝΣΤΙΤΟΥΤΟ ΤΕΧΝΟΛΟΓΙΑΣ ΥΠΟΛΟΓΙΣΤΩΝ&quot;</span>,
-                <span
-class="php-quote">&quot;implementation_entity_initials&quot;</span>: <span
-class="php-quote">&quot;Ι.Τ.Υ.&quot;</span>
-        },
-        {
-                <span
-class="php-quote">&quot;edu_admin_id&quot;</span>: <span
-class="php-num">9</span>,
-                <span
-class="php-quote">&quot;edu_admin&quot;</span>: <span
-class="php-quote">&quot;ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΑΤΤΙΚΗΣ&quot;</span>,
-                <span
-class="php-quote">&quot;region_edu_admin_id&quot;</span>: <span
-class="php-num">3</span>,
-                <span
-class="php-quote">&quot;region_edu_admin&quot;</span>: <span
-class="php-quote">&quot;ΑΤΤΙΚΗΣ&quot;</span>,
-                <span
-class="php-quote">&quot;implementation_entity_id&quot;</span>: <span
-class="php-num">3</span>,
-                <span
-class="php-quote">&quot;implementation_entity&quot;</span>: <span
-class="php-quote">&quot;ΕΘΝΙΚΟ &amp; ΚΑΠΟΔΙΣΤΡΙΑΚΟ ΠΑΝ/ΜΙΟ ΑΘΗΝΩΝ&quot;</span>,
-                <span
-class="php-quote">&quot;implementation_entity_initials&quot;</span>: <span
-class="php-quote">&quot;Ε.Κ.Π.Α.&quot;</span>
-        },
-        {
-                <span
-class="php-quote">&quot;edu_admin_id&quot;</span>: <span
-class="php-num">91</span>,
-                <span
-class="php-quote">&quot;edu_admin&quot;</span>: <span
-class="php-quote">&quot;ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΘΕΣΣΑΛΟΝΙΚΗΣ&quot;</span>,
-                <span
-class="php-quote">&quot;region_edu_admin_id&quot;</span>: <span
-class="php-num">6</span>,
-                <span
-class="php-quote">&quot;region_edu_admin&quot;</span>: <span
-class="php-quote">&quot;ΚΕΝΤΡΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ&quot;</span>,
-                <span
-class="php-quote">&quot;implementation_entity_id&quot;</span>: <span
-class="php-num">1</span>,
-                <span
-class="php-quote">&quot;implementation_entity&quot;</span>: <span
-class="php-quote">&quot;ΑΡΙΣΤΟΤΕΛΕΙΟ ΠΑΝ/ΜΙΟ ΘΕΣΣΑΛΟΝΙΚΗΣ&quot;</span>,
-                <span
-class="php-quote">&quot;implementation_entity_initials&quot;</span>: <span
-class="php-quote">&quot;Α.Π.Θ.&quot;</span>
-        },
-        {
-                <span
-class="php-quote">&quot;edu_admin_id&quot;</span>: <span
-class="php-num">3</span>,
-                <span
-class="php-quote">&quot;edu_admin&quot;</span>: <span
-class="php-quote">&quot;ΔΙΕΥΘΥΝΣΗ ΑΡΓΟΛΙΔΑΣ&quot;</span>,
-                <span
-class="php-quote">&quot;region_edu_admin_id&quot;</span>: <span
 class="php-num">2</span>,
-                <span
-class="php-quote">&quot;region_edu_admin&quot;</span>: <span
-class="php-quote">&quot;ΠΕΛΟΠΟΝΝΗΣΟΥ&quot;</span>,
-                <span
-class="php-quote">&quot;implementation_entity_id&quot;</span>: <span
-class="php-num">11</span>,
-                <span
+          <span
 class="php-quote">&quot;implementation_entity&quot;</span>: <span
-class="php-quote">&quot;ΤΕΙ ΑΘΗΝΑΣ&quot;</span>,
-                <span
+class="php-quote">&quot;ΔΗΜΟΚΡΙΤΕΙΟ ΠΑΝΕΠΙΣΤΗΜΙΟ ΘΡΑΚΗΣ&quot;</span>,
+          <span
 class="php-quote">&quot;implementation_entity_initials&quot;</span>: <span
-class="php-quote">&quot;ΤΕΙΑΘ&quot;</span>
+class="php-quote">&quot;Δ.Π.Θ.&quot;</span>
+         },
+         {
+          <span
+class="php-quote">&quot;edu_admin_id&quot;</span>: <span
+class="php-num">44</span>,
+          <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;ΔΙΕΥΘΥΝΣΗ Π.Ε. ΚΑΒΑΛΑΣ&quot;</span>,
+          <span
+class="php-quote">&quot;parent_rdn&quot;</span>: <span
+class="php-quote">&quot;kav&quot;</span>,
+          <span
+class="php-quote">&quot;third_level_dns&quot;</span>: <span
+class="php-quote">&quot;kav&quot;</span>,
+          <span
+class="php-quote">&quot;region_edu_admin_id&quot;</span>: <span
+class="php-num">12</span>,
+          <span
+class="php-quote">&quot;region_edu_admin_name&quot;</span>: <span
+class="php-quote">&quot;ΠΕΡΙΦΕΡΕΙΑΚΗ ΔΙΕΥΘΥΝΣΗ ΑΝΑΤΟΛΙΚΗΣ ΜΑΚΕΔΟΝΙΑΣ ΚΑΙ ΘΡΑΚΗΣ&quot;</span>,
+          <span
+class="php-quote">&quot;implementation_entity_id&quot;</span>: <span
+class="php-num">2</span>,
+          <span
+class="php-quote">&quot;implementation_entity&quot;</span>: <span
+class="php-quote">&quot;ΔΗΜΟΚΡΙΤΕΙΟ ΠΑΝΕΠΙΣΤΗΜΙΟ ΘΡΑΚΗΣ&quot;</span>,
+          <span
+class="php-quote">&quot;implementation_entity_initials&quot;</span>: <span
+class="php-quote">&quot;Δ.Π.Θ.&quot;</span>
         }
 ]}
 </pre>
@@ -503,9 +446,9 @@ class="php-quote">&quot;ΤΕΙΑΘ&quot;</span>
 		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$edu_admin</var></code></td>
 		<td>
-			 Διεύθυνση Επκαίδευσης<br />
+			 Διεύθυνση Εκπαίδευσης<br />
 Το Όνομα ή ο Κωδικός της Διευθύνσης
-Επκαίδευσης<br />
+Εκπαίδευσης<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
@@ -513,21 +456,15 @@ mixed{integer|string|array[integer|string]}
 <ul>
 	<li>integer<br />
 	Αριθμητική : Η αναζήτηση γίνεται με τον
-	Κωδικό της Διευθύνσης Επκαίδευσης<br />
+	Κωδικό της Διευθύνσης Εκπαίδευσης<br />
 	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
 	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
 	<li>string<br />
 	Αλφαριθμητική : Η αναζήτηση γίνεται με το
-	Όνομα της Διευθύνσης Επκαίδευσης<br />
-	Με την χρήση της παραμέτρου Τύπος
-	Αναζήτησης (<a href="#$searchtype">$searchtype</a>) μπορεί να
-	καθοριστεί ο τρόπος με τον οποίο θα
-	αναζητηθεί η τιμή της παραμέτρου στο Όνομα
-	της Διευθύνσης Επκαίδευσης<br />
-	Αν η παράμετρος δεν έχει τιμή τότε η
-	αναζήτηση στο Όνομα της Διευθύνσης
-	Επκαίδευσης γίνεται με τον Tύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code></li>
+	Όνομα της Διευθύνσης Εκπαίδευσης<br />
+	Η αναζήτηση στο Όνομα της Διευθύνσης
+	Εκπαίδευσης γίνεται με τον Tύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code></li>
 
 	<li>array[integer|string]<br />
 	Σύνολο από Αριθμητικές και Αλφαριθμητικές
@@ -605,6 +542,44 @@ mixed{integer|string|array[integer|string]}
 
 		</td>
 	</tr>
+	<tr id="$parent_rdn">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$parent_rdn</var></code></td>
+		<td>
+			 Parent RDN<br />
+Το Parent RDN της Διευθύνσης Εκπαίδευσης<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το parent rdn)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$third_level_dns">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$third_level_dns</var></code></td>
+		<td>
+			 Third Level Dns<br />
+Το Third Level Dns της Διευθύνσης Εκπαίδευσης<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το third level dns</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
 	<tr id="$pagesize">
 		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$pagesize</var></code></td>
@@ -645,23 +620,26 @@ href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 
 		</td>
 	</tr>
-	<tr id="$orderby">
+	<tr id="$searchtype">
 		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$orderby</var></code></td>
+		<td class="value"><code><var>$searchtype</var></code></td>
 		<td>
-			 Πεδίο Ταξινόμησης<br />
-Το όνομα του πεδίου με το οποίο γίνεται η
-ταξινόμηση των εγγραφών<br />
+			 Τύπος Αναζήτησης<br />
+Ο Τύπος Αναζήτησης με τον οποίο γίνεται η
+αναζήτηση στο Όνομα (<a href="#$edu_admin">$edu_admin</a>)
+της Διευθύνσης Εκπαίδευσης<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε η
-ταξινόμηση γίνεται με το Όνομα της
-Διευθύνσης Επκαίδευσης<br />
+αναζήτηση στο Όνομα γίνεται με τον Τύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code><br />
+Αν το Όνομα έχει Αριθμητική Τιμή τότε η
+αναζήτηση γίνεται με τον Κωδικό της
+Διευθύνσης Εκπαίδευσης με Τύπο <code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code><br />
+Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι : string
 <ul>
 	<li>string<br />
 	Αλφαριθμητική : Η τιμή της παραμέτρου
-	μπορεί να είναι οποιοδήποτε πεδίο
-	επιστρέφει η συνάρτηση στον πίνακα data</li>
+	μπορεί να είναι ένας από τους Tύπους <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code></li>
 </ul>
 
 		</td>
@@ -686,26 +664,23 @@ href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 
 		</td>
 	</tr>
-	<tr id="$searchtype">
+	<tr id="$orderby">
 		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$searchtype</var></code></td>
+		<td class="value"><code><var>$orderby</var></code></td>
 		<td>
-			 Τύπος Αναζήτησης<br />
-Ο Τύπος Αναζήτησης με τον οποίο γίνεται η
-αναζήτηση στο Όνομα (<a href="#$edu_admin">$edu_admin</a>)
-της Διευθύνσης Επκαίδευσης<br />
+			 Πεδίο Ταξινόμησης<br />
+Το όνομα του πεδίου με το οποίο γίνεται η
+ταξινόμηση των εγγραφών<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε η
-αναζήτηση στο Όνομα γίνεται με τον Τύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code><br />
-Αν το Όνομα έχει Αριθμητική Τιμή τότε η
-αναζήτηση γίνεται με τον Κωδικό της
-Διευθύνσης Επκαίδευσης με Τύπο <code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code><br />
-Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
+ταξινόμηση γίνεται με το Όνομα Διευθύνσης
+Εκπαίδευσης<br />
 Η τιμή της παραμέτρου μπορεί να είναι : string
 <ul>
 	<li>string<br />
 	Αλφαριθμητική : Η τιμή της παραμέτρου
-	μπορεί να είναι ένας από τους Tύπους <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code></li>
+	μπορεί να είναι οποιοδήποτε πεδίο
+	επιστρέφει η συνάρτηση στον πίνακα data</li>
 </ul>
 
 		</td>
@@ -736,10 +711,16 @@ integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς
 array : <b>data</b> : Ο Πίνακας με το λεξικό
 <ul>
 	<li>integer : <b>edu_admin_id</b> : Ο Κωδικός της
-	Διευθύνσης Επκαίδευσης</li>
+	Διευθύνσης Εκπαίδευσης</li>
 
 	<li>string : <b>edu_admin</b> : Το Όνομα της Διευθύνσης
-	Επκαίδευσης</li>
+	Εκπαίδευσης</li>
+
+	<li>string : <b>parent_rdn</b> : Το Parent Rdn της Διευθύνσης
+	Εκπαίδευσης</li>
+
+	<li>string : <b>third_level_dns</b> : Το Third Level Dns της
+	Διευθύνσης Εκπαίδευσης</li>
 
 	<li>string : <b>region_edu_admin</b> : Ο Κωδικός της
 	Περιφέρειας της Διεύθυνση Εκπαίδευσης</li>
@@ -749,11 +730,11 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 
 	<li>string : <b>implementation_entity_id</b> : Ο Κωδικός του
 	Φορέα Υλοποίησης που είναι υπεύθυνος για
-	την Διευθύνση Επκαίδευσης</li>
+	την Διευθύνση Εκπαίδευσης</li>
 
 	<li>string : <b>implementation_entity</b> : Ο Φορέας Υλοποίησης
 	που είναι υπεύθυνος για την Διευθύνση
-	Επκαίδευσης (Λεξικό : <code><a href="function-GetImplementationEntities.html">GetImplementationEntities()</a></code>)</li>
+	Εκπαίδευσης (Λεξικό : <code><a href="function-GetImplementationEntities.html">GetImplementationEntities()</a></code>)</li>
 
 	<li>string : <b>implementation_entity_initials</b> : Τα Αρχικά του
 	Ονόματος του Φορέα Υλοποίησης</li>
@@ -871,6 +852,28 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 <code><a href="class-ExceptionCodes.html#InvalidEduAdminType">ExceptionCodes::<b>InvalidEduAdminType</b></a></code><br />
 Η Διεύθυνση Εκπαίδευσης πρέπει να είναι
 αριθμητική ή αλφαριθμητική
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEduAdminParentRdnType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEduAdminParentRdnType">ExceptionMessages::<b>InvalidEduAdminParentRdnType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEduAdminParentRdnType">ExceptionCodes::<b>InvalidEduAdminParentRdnType</b></a></code><br />
+Το ParentRdn της Διεύθυνσης Εκπαίδευσης πρέπει
+να είναι αλφαριθμητικό
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEduAdminThirdLevelDnsType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEduAdminThirdLevelDnsType">ExceptionMessages::<b>InvalidEduAdminThirdLevelDnsType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEduAdminThirdLevelDnsType">ExceptionCodes::<b>InvalidEduAdminThirdLevelDnsType</b></a></code><br />
+'Το ThirdLevelDns της Διεύθυνσης Εκπαίδευσης
+πρέπει να είναι αλφαριθμητικό
 		</td>
 	</tr>
 	<tr>
