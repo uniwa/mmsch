@@ -1898,28 +1898,24 @@ position: fixed;
 
                     	/**/
                     	var logs = new Array();
-						var curr_dataItem = {"lastUpdate": {"date": ""}};                    	
+						var curr_dataItem = {"data": {"lastUpdate": {"date": ""}}};                    	
 
                     	$.each(resp.data, function(i, item){
 
                     		if (typeof item.data["lastUpdate"] == "undefined") {
                     			return;
-                    			//item.data["lastUpdate"] = {"date":""};
                     		}
 
                     		if (item.data.lastUpdate === null){
-                    			//item.data.lastUpdate = {"date":""};
                     			return; 
                     		}
 							
-                        	if (!equal(curr_dataItem.lastUpdate.date, item.data.lastUpdate.date) ){
+                        	if (!equal(curr_dataItem.data.lastUpdate.date, item.data.lastUpdate.date) ){
 
-                            	if (item.data.hasOwnProperty("state") || item.data.hasOwnProperty("name")) {
+                        		if (item.data.hasOwnProperty("state") || item.data.hasOwnProperty("name")) {
                             		logs.push(item);
+                            		curr_dataItem = item;
                             	}
-
-                            	curr_dataItem = item.data;
-
                         	}
                     	});
                     	/**/
