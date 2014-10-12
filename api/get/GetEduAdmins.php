@@ -492,7 +492,7 @@ function GetEduAdmins( $edu_admin, $region_edu_admin, $implementation_entity, $p
 
             $result["data"][] = array(
                                             "edu_admin_id"           => $eduadmin->getEduAdminId(),
-                                            "name"                   => $eduadmin->getName(),
+                                            "edu_admin"              => $eduadmin->getName(),
                                             "parent_rdn"             => $eduadmin->getParentRdn(),
                                             "third_level_dns"        => $eduadmin->getThirdLevelDns(), 
                                             "region_edu_admin_id"    => Validator::IsNull($eduadmin->getRegionEduAdmin()) ? Validator::ToNull() : $eduadmin->getRegionEduAdmin()->getRegionEduAdminId(),
