@@ -1861,7 +1861,6 @@ position: fixed;
 		var footer = $("#wnd_create_connection_" + mm_id + " .wnd-footer");
 		footer.insertAfter(content);
 
-		
 		viewModel.unitSource.fetch(function(){
 			console.log("read unit");
 			//kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
@@ -1869,7 +1868,26 @@ position: fixed;
 			//viewModel.set("unitData", this.data()[0]);
 			
 			var self = viewModel.unitSource;
-			
+
+                        var populateUnitDetails = function() {
+                            kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
+                            kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
+
+                                // Hide create/edit/delete connection buttons if the user is not FY or not responsible for the unit
+                            if(typeof user.l == 'undefined' ||
+                               user.l.split(',').indexOf('ou=partners') == -1 ||
+                               g_impEnt[0].implementation_entity_id != self.data()[0].implementation_entity_id) {
+                               console.log("user is not fy. hiding connection buttons");
+                               $('#unit-'+mm_id+'-preview').find('#btnCreateConnection').parent().hide();
+                               $('#unit-'+mm_id+'-preview').find('.detail-section-tab-content[data-template="tmpl-connection-list"] .detail-term.term-head > button').hide();
+                             }
+
+                            resizeTabContent();
+
+                            kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
+                        };
+
+                        <?php if (!$isAnonymous) { ?>
 			$.ajax({
 					type: "GET",
 					url: apiUrl + "ext_log_entries", 
@@ -1880,28 +1898,24 @@ position: fixed;
 
                     	/**/
                     	var logs = new Array();
-						var curr_dataItem = {"lastUpdate": {"date": ""}};                    	
+						var curr_dataItem = {"data": {"lastUpdate": {"date": ""}}};                    	
 
                     	$.each(resp.data, function(i, item){
 
                     		if (typeof item.data["lastUpdate"] == "undefined") {
                     			return;
-                    			//item.data["lastUpdate"] = {"date":""};
                     		}
 
                     		if (item.data.lastUpdate === null){
-                    			//item.data.lastUpdate = {"date":""};
                     			return; 
                     		}
 							
-                        	if (!equal(curr_dataItem.lastUpdate.date, item.data.lastUpdate.date) ){
+                        	if (!equal(curr_dataItem.data.lastUpdate.date, item.data.lastUpdate.date) ){
 
-                            	if (item.data.hasOwnProperty("state") || item.data.hasOwnProperty("name")) {
+                        		if (item.data.hasOwnProperty("state") || item.data.hasOwnProperty("name")) {
                             		logs.push(item);
+                            		curr_dataItem = item;
                             	}
-
-                            	curr_dataItem = item.data;
-
                         	}
                     	});
                     	/**/
@@ -1909,23 +1923,9 @@ position: fixed;
                     	self.data()[0]['logs'] = logs;
                     	//console.log(viewModel);
                     	//self.data()[0]['logs'] = resp.data;
-                        
-                    	kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
-        				kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
 
-        	           	// Hide create/edit/delete connection buttons if the user is not FY or not responsible for the unit
-        	            if(typeof user.l == 'undefined' || 
-                	       user.l.split(',').indexOf('ou=partners') == -1 || 
-                	       g_impEnt[0].implementation_entity_id != self.data()[0].implementation_entity_id) {
-        	               console.log("user is not fy. hiding connection buttons");
-        	               $('#unit-'+mm_id+'-preview').find('#btnCreateConnection').parent().hide();
-        	               $('#unit-'+mm_id+'-preview').find('.detail-section-tab-content[data-template="tmpl-connection-list"] .detail-term.term-head > button').hide();
-        	             }
+                            populateUnitDetails();
 
-        	            resizeTabContent();
-
-        	            kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
-        	            
 					},
 					beforeSend: function(xhr){
 						xhr.setRequestHeader(
@@ -1935,7 +1935,9 @@ position: fixed;
 					}
 					
 				});
-			
+                        <?php } else { ?>
+                            populateUnitDetails();
+                        <?php } ?>
 			
 			/*
 			kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
