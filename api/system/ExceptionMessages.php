@@ -101,6 +101,9 @@ class ExceptionMessages
     const DuplicatedEducationLevelValue = 'Το Επίπεδο Εκπαίδευσης υπάρχει ήδη';
 
 
+    //= GetLdaps
+    const MissingUnitID = 'Ο Κωδικός του Μονάδας είναι υποχρεωτικό πεδίο';
+
     //= GetUnitDns
 //    const InvalidUnitDNSType = 'Το DNS πρέπει να είναι αριθμητικό ή αλφαριθμητικό';
 //    const InvalidExtUnitDnsType = 'Το ExtDNS πρέπει να είναι αλφαριθμητικό';
