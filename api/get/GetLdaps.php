@@ -363,26 +363,40 @@ function GetLdaps(
 //======================================================================================================================
         $ldap = new \Zend\Ldap\Ldap($ldapOptions);
         $ldap->bind('uid=mmeye,dc=sch,dc=gr', 'mmeye');
-        $result = $ldap->search('(gsnRegistryCode=1003325)', 'dc=sch,dc=gr', \Zend\Ldap\Ldap::SEARCH_SCOPE_SUB);
-        var_dump($result); die();
-        if($result->count() == 1) {
-            $userObj = $result->getFirst();
-        } else {
-            throw new Exception('LDAP error'); // Multiple users with this username?? Fail
-        }
+        $lresult = $ldap->search('(gsnRegistryCode=1003325)', 'dc=sch,dc=gr', \Zend\Ldap\Ldap::SEARCH_SCOPE_SUB);
+        $rows = iterator_to_array($lresult);
+        $rows = array_map(function($prow) {
+            $row = array();
+            $row['accountstatus'] = $prow['accountstatus'][0];
+            $row['businesscategory'] = $prow['businesscategory'][0];
+            $row['cn'] = $prow['cn'][0];
+            $row['description'] = $prow['description'][0];
+            $row['dn'] = $prow['dn'][0];
+            $row['gsnunitcode'] = $prow['gsnunitcode'][0];
+            $row['l'] = $prow['l'][0];
+            $row['labeleduri'] = $prow['labeleduri'][0];
+            $row['memberurl'] = $prow['memberurl'][0];
+            $row['ou'] = $prow['ou'][0];
+            $row['postaladdress'] = $prow['postaladdress'][0];
+            $row['postalcode'] = $prow['postalcode'][0];
+            $row['telephonenumber'] = $prow['telephonenumber'][0];
+            $row['title'] = $prow['title'][0];
+            $row['umdobject'] = $prow['umdobject'][0];
+            return $row;
+        }, $rows);
 
-        $result["total"] = $rows["total"]; // This should be all the results
-        $result["count"] = $result->count();
+        $result["total"] = $lresult->count(); // This should be all the results
+        $result["count"] = count($rows);
 
         foreach ($rows as $row)
         {
             $result["data"][] = array(
-                "ldap_id"           => (int)$row["ldap_id"],
-                "ldap_uid"          => $row["ldap_uid"],
-                "mm_id"             => (int)$row["mm_id"],
-                "unit_name"         => $row["unit_name"],
-                "special_unit_name" => $row["special_unit_name"],
-                "registry_no"       => $row["registry_no"]
+                "ldap_id"           => (int)$row["gsnunitcode"],
+                "ldap_uid"          => $row["cn"],
+                "mm_id"             => (int)$unit,
+                "unit_name"         => $row["description"],
+                "special_unit_name" => $row["l"],
+                "registry_no"       => $row["gsnunitcode"]
             );
         }
 
