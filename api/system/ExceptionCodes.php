@@ -124,7 +124,8 @@ class ExceptionCodes
     /** {@see ExceptionMessages::DuplicatedCategoryValue} */
     const DuplicatedCategoryValue = 500;
 
-
+    //= GetLdaps
+    const MissingUnitID = 500;
 
     //= GetSchoolCommittees
     /** {@see ExceptionMessages::MissingSchoolCommitteeIDParam} */

@@ -330,7 +330,7 @@ function GetLdaps(
     $pagesize, $page, $orderby, $ordertype, $searchtype
 )
 {
-    global $db;
+    global $db, $ldapOptions;
 
     $filter = array();
     $result = array();
@@ -344,87 +344,6 @@ function GetLdaps(
     try
     {
 //======================================================================================================================
-//= Paging
-//======================================================================================================================
-
-        if ( Validator::Missing('searchtype', $params) )
-            $searchtype = SearchEnumTypes::ContainAll ;
-        else if ( SearchEnumTypes::isValidValue( $searchtype ) || SearchEnumTypes::isValidName( $searchtype ) )
-            $searchtype = SearchEnumTypes::getValue($searchtype);
-        else
-            throw new Exception(ExceptionMessages::InvalidSearchType." : ".$searchtype, ExceptionCodes::InvalidSearchType);
-
-       $page = Pagination::getPage($page, $params);
-       $pagesize = Pagination::getPagesize($pagesize, $params);
-       
-//======================================================================================================================
-//= $cpe
-//======================================================================================================================
-
-        if ( Validator::Exists('ldap', $params) )
-        {
-            $table_name = "ldaps";
-            $table_column_id = "ldap_id";
-            $table_column_name = "uid";
-
-            $param = Validator::toArray($ldap);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                $paramWordsFilters = array();
-
-                if ( Validator::isNull($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                {
-                    if ( $searchtype == SearchEnumTypes::Exact )
-                        $paramWordsFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                    else if ( $searchtype == SearchEnumTypes::Contain )
-                        $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
-                    else
-                    {
-                        $words = Validator::toArray($values, " ");
-
-                        foreach ($words as $word)
-                        {
-                            switch ($searchtype)
-                            {
-                                case SearchEnumTypes::ContainAll :
-                                case SearchEnumTypes::ContainAny :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::StartWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::EndWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word) );
-                                    break;
-                            }
-                        }
-                    }
-                }
-                else
-                    throw new Exception(ExceptionMessages::InvalidLdapType." : ".$values, ExceptionCodes::InvalidLdapType);
-
-                switch ($searchtype)
-                {
-                    case SearchEnumTypes::ContainAny :
-                        $paramFilters[] = "(" . implode(" OR ", $paramWordsFilters) . ")";
-                        break;
-                    default :
-                        $paramFilters[] = "(" . implode(" AND ", $paramWordsFilters) . ")";
-                        break;
-                }
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
 //= $unit
 //======================================================================================================================
 
@@ -434,102 +353,50 @@ function GetLdaps(
             $table_column_id = "mm_id";
             $table_column_name = "name";
 
-            $param = Validator::toArray($unit);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                else
-                    throw new Exception(ExceptionMessages::InvalidUnitType." : ".$values, ExceptionCodes::InvalidUnitType);
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $unit = Validator::toArray($unit);
+        } else {
+            throw new Exception(ExceptionMessages::MissingUnitID." : ".$ordertype, ExceptionCodes::MissingUnitID);
         }
-
-//======================================================================================================================
-//= $ordertype
-//======================================================================================================================
-
-        if ( Validator::Missing('ordertype', $params) )
-            $ordertype = OrderEnumTypes::ASC ;
-        else if ( OrderEnumTypes::isValidValue( $ordertype ) || OrderEnumTypes::isValidName( $ordertype ) )
-            $ordertype = OrderEnumTypes::getValue($ordertype);
-        else
-            throw new Exception(ExceptionMessages::InvalidOrderType." : ".$ordertype, ExceptionCodes::InvalidOrderType);
-
-//======================================================================================================================
-//= $orderby
-//======================================================================================================================
-
-        if ( Validator::Exists('orderby', $params) )
-        {
-            $columns = array(
-                "ldap_id",
-                "ldap_uid",
-                "mm_id",
-                "unit_name",
-                "special_unit_name",
-                "registry_no"
-            );
-
-            if (!in_array($orderby, $columns))
-                throw new Exception(ExceptionMessages::InvalidOrderBy." : ".$orderby, ExceptionCodes::InvalidOrderBy);
-        }
-        else
-            $orderby = "uid";
 
 //======================================================================================================================
 //= E X E C U T E
 //======================================================================================================================
+        $ldap = new \Zend\Ldap\Ldap($ldapOptions);
+        $ldap->bind('uid=mmeye,dc=sch,dc=gr', 'mmeye');
+        $lresult = $ldap->search('(gsnRegistryCode=1003325)', 'dc=sch,dc=gr', \Zend\Ldap\Ldap::SEARCH_SCOPE_SUB);
+        $rows = iterator_to_array($lresult);
+        $rows = array_map(function($prow) {
+            $row = array();
+            $row['accountstatus'] = $prow['accountstatus'][0];
+            $row['businesscategory'] = $prow['businesscategory'][0];
+            $row['cn'] = $prow['cn'][0];
+            $row['description'] = $prow['description'][0];
+            $row['dn'] = $prow['dn'][0];
+            $row['gsnunitcode'] = $prow['gsnunitcode'][0];
+            $row['l'] = $prow['l'][0];
+            $row['labeleduri'] = $prow['labeleduri'][0];
+            $row['memberurl'] = $prow['memberurl'][0];
+            $row['ou'] = $prow['ou'][0];
+            $row['postaladdress'] = $prow['postaladdress'][0];
+            $row['postalcode'] = $prow['postalcode'][0];
+            $row['telephonenumber'] = $prow['telephonenumber'][0];
+            $row['title'] = $prow['title'][0];
+            $row['umdobject'] = $prow['umdobject'][0];
+            return $row;
+        }, $rows);
 
-        $sqlSelect = "SELECT
-                        ldaps.ldap_id,
-                        ldaps.uid as ldap_uid,
-                        units.mm_id,
-                        units.registry_no,
-                        units.name as unit_name,
-                        units.special_name as special_unit_name
-                    ";
-
-        $sqlFrom = "FROM ldaps
-                    LEFT JOIN units ON ldaps.mm_id = units.mm_id";
-
-        $sqlWhere = (count($filter) > 0 ? " WHERE " . implode(" AND ", $filter) : "" );
-        $sqlOrder = " ORDER BY ". $orderby ." ". $ordertype;
-        $sqlLimit = ($page && $pagesize) ? " LIMIT ".(($page - 1) * $pagesize).", ".$pagesize : "";
-
-
-        $sql = "SELECT count(*) as total " . $sqlFrom . $sqlWhere;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetch(PDO::FETCH_ASSOC);
-        $result["total"] = $rows["total"];
-
-
-        $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder . $sqlLimit;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $result["count"] = $stmt->rowCount();
+        $result["total"] = $lresult->count(); // This should be all the results
+        $result["count"] = count($rows);
 
         foreach ($rows as $row)
         {
             $result["data"][] = array(
-                "ldap_id"           => (int)$row["ldap_id"],
-                "ldap_uid"          => $row["ldap_uid"],
-                "mm_id"             => (int)$row["mm_id"],
-                "unit_name"         => $row["unit_name"],
-                "special_unit_name" => $row["special_unit_name"],
-                "registry_no"       => $row["registry_no"]
+                "ldap_id"           => (int)$row["gsnunitcode"],
+                "ldap_uid"          => $row["cn"],
+                "mm_id"             => (int)$unit,
+                "unit_name"         => $row["description"],
+                "special_unit_name" => $row["l"],
+                "registry_no"       => $row["gsnunitcode"]
             );
         }
 
