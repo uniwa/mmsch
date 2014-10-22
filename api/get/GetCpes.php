@@ -329,9 +329,6 @@ function GetCpes(
     $pagesize, $page, $orderby, $ordertype, $searchtype
 )
 {
-    global $db;
-
-    $filter = array();
     $result = array();
 
     $result["data"] = array();
@@ -344,193 +341,40 @@ function GetCpes(
     {
 
 //======================================================================================================================
-//= Paging
-//======================================================================================================================
-
-        if ( Validator::Missing('searchtype', $params) )
-            $searchtype = SearchEnumTypes::ContainAll ;
-        else if ( SearchEnumTypes::isValidValue( $searchtype ) || SearchEnumTypes::isValidName( $searchtype ) )
-            $searchtype = SearchEnumTypes::getValue($searchtype);
-        else
-            throw new Exception(ExceptionMessages::InvalidSearchType." : ".$searchtype, ExceptionCodes::InvalidSearchType);
-
-       $page = Pagination::getPage($page, $params);
-       $pagesize = Pagination::getPagesize($pagesize, $params);
-
-//======================================================================================================================
-//= $cpe
-//======================================================================================================================
-
-        if ( Validator::Exists('cpe', $params) )
-        {
-            $table_name = "cpes";
-            $table_column_id = "cpe_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($cpe);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                $paramWordsFilters = array();
-
-                if ( Validator::isNull($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                {
-                    if ( $searchtype == SearchEnumTypes::Exact )
-                        $paramWordsFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                    else if ( $searchtype == SearchEnumTypes::Contain )
-                        $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
-                    else
-                    {
-                        $words = Validator::toArray($values, " ");
-
-                        foreach ($words as $word)
-                        {
-                            switch ($searchtype)
-                            {
-                                case SearchEnumTypes::ContainAll :
-                                case SearchEnumTypes::ContainAny :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::StartWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::EndWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word) );
-                                    break;
-                            }
-                        }
-                    }
-                }
-                else
-                    throw new Exception(ExceptionMessages::InvalidCpeType." : ".$values, ExceptionCodes::InvalidCpeType);
-
-                switch ($searchtype)
-                {
-                    case SearchEnumTypes::ContainAny :
-                        $paramFilters[] = "(" . implode(" OR ", $paramWordsFilters) . ")";
-                        break;
-                    default :
-                        $paramFilters[] = "(" . implode(" AND ", $paramWordsFilters) . ")";
-                        break;
-                }
-
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
 //= $unit
 //======================================================================================================================
 
         if ( Validator::Exists('unit', $params) )
         {
-            $table_name = "units";
-            $table_column_id = "mm_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($unit);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                else
-                    throw new Exception(ExceptionMessages::InvalidUnitType." : ".$values, ExceptionCodes::InvalidUnitType);
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+            $unit = Validator::toArray($unit);
+        } else {
+            throw new Exception(ExceptionMessages::MissingUnitID." : ".$ordertype, ExceptionCodes::MissingUnitID);
         }
-
-//======================================================================================================================
-//= $ordertype
-//======================================================================================================================
-
-        if ( Validator::Missing('ordertype', $params) )
-            $ordertype = OrderEnumTypes::ASC ;
-        else if ( OrderEnumTypes::isValidValue( $ordertype ) || OrderEnumTypes::isValidName( $ordertype ) )
-            $ordertype = OrderEnumTypes::getValue($ordertype);
-        else
-            throw new Exception(ExceptionMessages::InvalidOrderType." : ".$ordertype, ExceptionCodes::InvalidOrderType);
-
-//======================================================================================================================
-//= $orderby
-//======================================================================================================================
-
-        if ( Validator::Exists('orderby', $params) )
-        {
-            $columns = array(
-                "cpe_id",
-                "cpe",
-                "mm_id",
-                "unit_name",
-                "special_unit_name",
-                "registry_no"
-            );
-
-            if (!in_array($orderby, $columns))
-                throw new Exception(ExceptionMessages::InvalidOrderBy." : ".$orderby, ExceptionCodes::InvalidOrderBy);
-        }
-        else
-            $orderby = "cpe";
 
 //======================================================================================================================
 //= E X E C U T E
 //======================================================================================================================
 
-        $sqlSelect = "SELECT
-                        cpes.cpe_id,
-                        cpes.name as cpe,
-                        units.mm_id,
-                        units.registry_no,
-                        units.name as unit_name,
-                        units.special_name as special_unit_name
-                    ";
-
-        $sqlFrom = "FROM cpes
-                    LEFT JOIN units ON cpes.mm_id = units.mm_id";
-
-        $sqlWhere = (count($filter) > 0 ? " WHERE " . implode(" AND ", $filter) : "" );
-        $sqlOrder = " ORDER BY ". $orderby ." ". $ordertype;
-        $sqlLimit = ($page && $pagesize) ? " LIMIT ".(($page - 1) * $pagesize).", ".$pagesize : "";
-
-
-        $sql = "SELECT count(*) as total " . $sqlFrom . $sqlWhere;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetch(PDO::FETCH_ASSOC);
-        $result["total"] = $rows["total"];
-
-
-        $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder . $sqlLimit;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $result["count"] = $stmt->rowCount();
+        $curl = curl_init('http://inventory-devel.sch.gr/creports/pub/results.json?id=14&gsn_registry_code='.$unit[0].'&');
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $data = curl_exec($curl);
+        $data = json_decode( $data, true );
+        $rows = $data["flat_results"];
+        $result["total"] = count($rows);
+        $result["count"] = count($rows);
 
         foreach ($rows as $row)
         {
             $result["data"][] = array(
-                "cpe_id"            => (int)$row["cpe_id"],
-                "cpe"               => $row["cpe"],
-                "mm_id"             => (int)$row["mm_id"],
-                "unit_name"         => $row["unit_name"],
-                "special_unit_name" => $row["special_unit_name"],
-                "registry_no"       => $row["registry_no"]
+                "cpe_id"            => (int)$row["id"],
+                "cpe"               => $row["item_template.description"],
+                "mm_id"             => (int)$row["location.department.code_mm"],
+                "unit_name"         => $row["location.department.name"],
+                "registry_no"       => $row["location.department.code"],
+                "item_name"         => $row["item_template.description"],
+                "manufacturer"      => $row["item_template.manufacturer.name"],
+                "location"          => $row["location.name"],
+                "serial_number"     => $row["serial_number"],
             );
         }
 
