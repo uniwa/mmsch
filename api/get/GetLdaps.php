@@ -349,10 +349,6 @@ function GetLdaps(
 
         if ( Validator::Exists('unit', $params) )
         {
-            $table_name = "units";
-            $table_column_id = "mm_id";
-            $table_column_name = "name";
-
             $unit = Validator::toArray($unit);
         } else {
             throw new Exception(ExceptionMessages::MissingUnitID." : ".$ordertype, ExceptionCodes::MissingUnitID);
@@ -363,7 +359,7 @@ function GetLdaps(
 //======================================================================================================================
         $ldap = new \Zend\Ldap\Ldap($ldapOptions);
         $ldap->bind('uid=mmeye,dc=sch,dc=gr', 'mmeye');
-        $lresult = $ldap->search('(gsnRegistryCode=1003325)', 'dc=sch,dc=gr', \Zend\Ldap\Ldap::SEARCH_SCOPE_SUB);
+        $lresult = $ldap->search('(gsnRegistryCode='.$unit[0].')', 'dc=sch,dc=gr', \Zend\Ldap\Ldap::SEARCH_SCOPE_SUB);
         $rows = iterator_to_array($lresult);
         $rows = array_map(function($prow) {
             $row = array();
