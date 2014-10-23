@@ -24,9 +24,16 @@ class EduAdmins
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="registry_no", type="string", length=11, nullable=false, unique=true)
+     */
+    private $registryNo;
 
     /**
      * @var \ImplementationEntities
@@ -76,6 +83,14 @@ class EduAdmins
 
     public function setName($name) {
         $this->name = $name;
+    }
+
+    public function getRegistryNo() {
+        return $this->registryNo;
+    }
+
+    public function setRegistryNo($registryNo) {
+        $this->registryNo = $registryNo;
     }
 
     public function getImplementationEntity() {

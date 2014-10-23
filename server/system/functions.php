@@ -77,7 +77,7 @@ function load_edu_admins(&$a_edu_admins, &$o_edu_admins)
     $data = loadData("/edu_admins");
     foreach ($data->data as $item)
     {
-        $a_edu_admins[$item->edu_admin_id] = $item->edu_admin;
+        $a_edu_admins[$item->edu_admin_id] = $item->registry_no;
         $o_edu_admins[$item->edu_admin_id] = $item;
     }
 }

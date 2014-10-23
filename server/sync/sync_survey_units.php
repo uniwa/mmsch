@@ -223,7 +223,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
     }
 
     public function addUnit($unit) {
-        global $db, $Options;
+        global $db, $Options, $entityManager;
         $this->isError = false;
 
         if($this->isIgnored($unit)) {
@@ -250,7 +250,17 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
             $region_edu_admin_id = $this->getDictionary($unit, $unit["Perifereia"], $this->a_region_edu_admins, $this->o_region_edu_admins, 'InvalidRegionEduAdminValue', 'RegionEduAdmins', 'regionEduAdminId', 'name', load_region_edu_admins);
 
-            $edu_admin_id = $this->getDictionary($unit, $unit["Diefthinsi"], $this->a_edu_admins, $this->o_edu_admins, 'InvalidEduAdminValue', 'EduAdmins', 'eduAdminId', 'name', load_edu_admins);
+            $edu_admin_id = $this->getDictionary($unit, $unit["DiefthinsiRegistryNo"], $this->a_edu_admins, $this->o_edu_admins, 'InvalidEduAdminValue', 'EduAdmins', 'eduAdminId', 'registryNo', load_edu_admins);
+            if($unit["Diefthinsi"] == $this->o_edu_admins[$edu_admin_id]->name) {
+                // Update Diefthinsi name
+                $eduAdminObj = $entityManager->getRepository('EduAdmins')->findOneBy(array(
+                    'registryNo' => $unit["DiefthinsiRegistryNo"],
+                ));
+                $eduAdminObj->setName($unit["Diefthinsi"]);
+                $entityManager->persist($eduAdminObj);
+                $entityManager->flush($eduAdminObj);
+                load_edu_admins($this->a_edu_admins, $this->o_edu_admins); // Refresh
+            }
 
             $implementation_entity_id = $this->o_edu_admins[$edu_admin_id]->implementation_entity_id;
 
