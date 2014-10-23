@@ -1876,8 +1876,8 @@ position: fixed;
                                 // Hide create/edit/delete connection buttons if the user is not FY or not responsible for the unit
                             if(typeof user.l == 'undefined' ||
                                user.l.split(',').indexOf('ou=partners') == -1 ||
-                               typeof g_impEnt[0].implementation_entity_id == 'undefined' ||
-                               typeof self.data()[0].implementation_entity_id == 'undefined' ||
+                               typeof g_impEnt[0] == 'undefined' ||
+                               typeof self.data()[0] == 'undefined' ||
                                g_impEnt[0].implementation_entity_id != self.data()[0].implementation_entity_id) {
                                console.log("user is not fy. hiding connection buttons");
                                $('#unit-'+mm_id+'-preview').find('#btnCreateConnection').parent().hide();
