@@ -464,8 +464,7 @@ header("Content-Type: text/html; charset=utf-8");
  *
  */
 
-function GetCircuits(
-    $circuit, $circuit_type, $phone_number, $unit,
+function GetCircuits( $circuit, $circuit_type, $phone_number, $unit,
     $pagesize, $page, $orderby, $ordertype, $searchtype
 )
 {
@@ -526,14 +525,14 @@ function GetCircuits(
             $orx = $qb->expr()->orX();
             foreach ($param as $values)
             {
-                if ( Validator::isNull($circuit_type) )
+                if ( Validator::isNull($values) )
                     $orx->add($qb->expr()->isNull("c.circuitTypeId"));
-                else if ( Validator::isID($circuit_type) )
-                    $orx->add($qb->expr()->eq("ct.circuitTypeId", $db->quote(Validator::toID($circuit_type))));
-                else if ( Validator::isValue($circuit_type) )
-                    $orx->add($qb->expr()->eq("ct.name", $db->quote(Validator::toValue($circuit_type))));
+                else if ( Validator::isID($values) )
+                    $orx->add($qb->expr()->eq("ct.circuitTypeId", $db->quote(Validator::toID($values))));
+                else if ( Validator::isValue($values) )
+                    $orx->add($qb->expr()->eq("ct.name", $db->quote(Validator::toValue($values))));
                 else
-                    throw new Exception(ExceptionMessages::InvalidCircuitTypeType." : ".$circuit_type, ExceptionCodes::InvalidCircuitTypeType);
+                    throw new Exception(ExceptionMessages::InvalidCircuitTypeType." : ".$values, ExceptionCodes::InvalidCircuitTypeType);
             }
             $qb->andWhere($orx);
         }
