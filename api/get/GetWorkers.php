@@ -738,9 +738,9 @@ function GetWorkers(
                 "fathername"               => $row["fathername"],
                 "sex"                      => $row["sex"],
                 "tax_number"               => $row["tax_number"],
-                "worker_specialization_id" => (int)$row["worker_specialization_id"],
+                "worker_specialization_id" => $row["worker_specialization_id"] ? (int)$row["worker_specialization_id"] : null,
                 "worker_specialization"    => $row["worker_specialization"],
-                "source_id" => (int)$row["source_id"],
+                "source_id" => (int)$row["source_id"] ? (int)$row["source_id"] : null,
                 "source"    => $row["source"]
             );
         }
