@@ -55,6 +55,7 @@ if (isset($user["l"])){
 	if ($matches[1][1]=="partners"){
 		$isFY=1;
 		$FY=$matches[1][0];
+		if ($FY == "episey") $FY = "ntua";
 	}
 }
 ?>

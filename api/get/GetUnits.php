@@ -2905,8 +2905,8 @@ function GetUnits(
                         "worker_specialization"    => $worker["worker_specialization"],
                         "worker_position_id"       => $worker["worker_position_id"] ? (int)$worker["worker_position_id"] : null,
                         "worker_position"          => $worker["worker_position"],
-                        "worker_source_id"         => (int)$row["worker_source_id"],
-                        "worker_source"            => $row["worker_source"]
+                        "worker_source_id"         => $worker["worker_source_id"]? (int)$worker["worker_source_id"] : null,
+                        "worker_source"            => $worker["worker_source"]
                     );
                 }
 
