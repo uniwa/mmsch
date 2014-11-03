@@ -967,6 +967,7 @@ position: fixed;
     	var wnd_implementation_entity_info;
         
         var mm_id = "<?php echo $_GET['mm_id']; ?>";
+        var registry_no = "";
 		var wnd_create_connection;
 		
 		$("#unit-" + mm_id + "-preview").on("destroyed", function () {
@@ -1866,12 +1867,16 @@ position: fixed;
 			//kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
 			
 			//viewModel.set("unitData", this.data()[0]);
+			//
+			
 			
 			var self = viewModel.unitSource;
 
-                        var populateUnitDetails = function() {
-                            kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
-                            kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
+			registry_no = self.data()[0].registry_no;
+
+            var populateUnitDetails = function() {
+            	kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
+                kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
 
                                 // Hide create/edit/delete connection buttons if the user is not FY or not responsible for the unit
                             if(typeof user.l == 'undefined' ||
@@ -1937,6 +1942,21 @@ position: fixed;
 					}
 					
 				});
+
+			$.ajax({
+				type: "GET",
+				url: apiUrl + "cpes", 
+				data: {'unit': mm_id},
+                dataType: "json", 
+
+                success: function(resp){
+                    var cpes = resp.data;
+                    self.data()[0]['cpes'] = cpes;
+                }
+			});
+				
+
+			
                         <?php } else { ?>
                             populateUnitDetails();
                         <?php } ?>
