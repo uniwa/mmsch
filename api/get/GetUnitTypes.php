@@ -644,6 +644,7 @@ function GetUnitTypes(
         $sqlSelect = "SELECT
                         unit_types.unit_type_id,
                         unit_types.`name` as unit_type,
+                        unit_types.initials,
                         categories.category_id,
                         categories.`name` as category,
                         education_levels.education_level_id,
@@ -679,6 +680,7 @@ function GetUnitTypes(
             $result["data"][] = array(
                 "unit_type_id"       => (int)$row["unit_type_id"],
                 "unit_type"          => $row["unit_type"],
+                "initials"           => $row["initials"],
                 "category_id"        => (int)$row["category_id"],
                 "category"           => $row["category"],
                 "education_level_id" => (int)$row["education_level_id"],
