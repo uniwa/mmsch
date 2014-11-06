@@ -1164,7 +1164,7 @@ position: fixed;
 			},
 
 			saveConnection: function(e){
-				
+				console.log("saveConnection btn clicked.");
 				var self = this;
 			
 				var $form = $("#frm_create_connection_" + mm_id);
@@ -1289,10 +1289,18 @@ position: fixed;
 
                     success: function(resp){
 
+                    	if (typeof resp['status'] != "undefined"){
+                        	if (resp.status==401){
+                            	alert(resp.message);
+                            	btn.button("reset");
+                            	return 0;
+                        	}
+                    	}
+                    	
                     	if (method == "POST"){
 							connection_id = resp.connection_id;
                     	}
-						console.log(addConnectionRequests);
+						//console.log(addConnectionRequests);
                     	var addConnectionRequests = [];
                     	if (subnets2add.length > 0){
                         	for (var i = 0; i < subnets2add.length; i++){
@@ -1844,6 +1852,8 @@ position: fixed;
 						});
 						
 						this.element.find(".alert").hide();
+
+						//$("#wnd_create_connection_" + mm_id).data("kendoWindow").destroy();
 					}
 					
                     
