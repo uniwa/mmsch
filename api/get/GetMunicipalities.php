@@ -560,7 +560,7 @@ function GetMunicipalities(
             $result["data"][] = array(
                 "municipality_id"     => (int)$row["municipality_id"],
                 "municipality"        => $row["municipality"],
-                "prefecture_id"       => (int)$row["prefecture_id"],
+                "prefecture_id"       => $row["prefecture_id"]? (int)$row["prefecture_id"] : null,
                 "prefecture"          => $row["prefecture"]
             );
         }

@@ -681,9 +681,9 @@ function GetUnitTypes(
                 "unit_type_id"       => (int)$row["unit_type_id"],
                 "unit_type"          => $row["unit_type"],
                 "initials"           => $row["initials"],
-                "category_id"        => (int)$row["category_id"],
+                "category_id"        => $row["category_id"]? (int)$row["category_id"] : null,
                 "category"           => $row["category"],
-                "education_level_id" => (int)$row["education_level_id"],
+                "education_level_id" => $row["education_level_id"]? (int)$row["education_level_id"] : null,
                 "education_level"    => $row["education_level"],
             );
         }
