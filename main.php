@@ -252,6 +252,10 @@ function g_findImpEnt(domain){
 };
 
 var g_impEnt = g_findImpEnt(g_impEntDomain);
+
+if (g_impEnt[0].domain == "episey")
+	g_impEnt = g_findImpEnt("ntua")
+
 // end - Implement personalized default filters based on CAS attributes
 
 (function($){
