@@ -86,6 +86,10 @@ if (isset($user["l"])){
     var tmp_regExp = /ou=([^,]+)/;
     var tmp_matches = (user.edupersonorgunitdn[0]).match(tmp_regExp);
     var g_impEntDomain = tmp_matches[1];
+
+    if (g_impEntDomain == "episey")
+    	g_impEntDomain = "ntua";
+    
     var g_isAnonymous = <?php echo $isAnonymous; ?>;
 	// end - Implement personalized default filters based on CAS attributes
 	
@@ -252,10 +256,6 @@ function g_findImpEnt(domain){
 };
 
 var g_impEnt = g_findImpEnt(g_impEntDomain);
-
-if (g_impEnt[0].domain == "episey")
-	g_impEnt = g_findImpEnt("ntua")
-
 // end - Implement personalized default filters based on CAS attributes
 
 (function($){
