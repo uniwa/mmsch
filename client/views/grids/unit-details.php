@@ -698,14 +698,8 @@ position: fixed;
 									# var cpe = cpes[i]; #
 
 									<tr>
-										<td class="term-value term-head">CPE ${i+1}
-										# if (cpe.is_connected == true) { #
-											<span class="label label-success">Mapped</span>
-										# } else { #
-											<span class="label label-warning">Not Mapped</span>
-										# } #
-										</td>
-										<td class="term-value">${cpe.name}</td>
+										<td class="term-value term-head">CPE ${i+1}</td>
+										<td class="term-value">${cpe.item_name}</td>
 									</tr>
 									
 									# } #
@@ -1888,23 +1882,19 @@ position: fixed;
             	kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
                 kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
 
-                                // Hide create/edit/delete connection buttons if the user is not FY or not responsible for the unit
-                            if(typeof user.l == 'undefined' ||
-                               user.l.split(',').indexOf('ou=partners') == -1 ||
-                               typeof g_impEnt[0] == 'undefined' ||
-                               typeof self.data()[0] == 'undefined' ||
-                               g_impEnt[0].implementation_entity_id != self.data()[0].implementation_entity_id) {
-                               console.log("user is not fy. hiding connection buttons");
-                               $('#unit-'+mm_id+'-preview').find('#btnCreateConnection').parent().hide();
-                               $('#unit-'+mm_id+'-preview').find('.detail-section-tab-content[data-template="tmpl-connection-list"] .detail-term.term-head > button').hide();
-                             }
+                // Hide create/edit/delete connection buttons if the user is not FY or not responsible for the unit
+                if(typeof user.l == 'undefined' || user.l.split(',').indexOf('ou=partners') == -1 || typeof g_impEnt[0] == 'undefined' || typeof self.data()[0] == 'undefined' || g_impEnt[0].implementation_entity_id != self.data()[0].implementation_entity_id) {
+                    console.log("user is not fy. hiding connection buttons");
+                    $('#unit-'+mm_id+'-preview').find('#btnCreateConnection').parent().hide();
+                    $('#unit-'+mm_id+'-preview').find('.detail-section-tab-content[data-template="tmpl-connection-list"] .detail-term.term-head > button').hide();
+				}
 
-                            resizeTabContent();
+				resizeTabContent();
 
-                            kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
-                        };
+				kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
+			};
 
-                        <?php if (!$isAnonymous) { ?>
+			<?php if (!$isAnonymous) { ?>
 			$.ajax({
 					type: "GET",
 					url: apiUrl + "ext_log_entries", 
@@ -1941,8 +1931,31 @@ position: fixed;
                     	//console.log(viewModel);
                     	//self.data()[0]['logs'] = resp.data;
 
-                            populateUnitDetails();
+                    	$.ajax({
+							type: "GET",
+							url: apiUrl + "cpes",
+							data: {'unit': mm_id},
+                			dataType: "json",
+			                success: function(resp){
 
+				                try {
+            			        	var cpes = resp.data;
+                    				self.data()[0]['cpes'] = cpes;
+				                }
+				                catch(ex){
+					                console.log(ex);
+				                }
+				                finally {
+				                	populateUnitDetails();
+					            }
+                			},
+                			beforeSend: function(xhr){
+        						xhr.setRequestHeader(
+        							'Authorization',
+        							make_base_auth (user.backendAuthorizationHash)
+        						);
+        					}
+						});
 					},
 					beforeSend: function(xhr){
 						xhr.setRequestHeader(
@@ -1950,26 +1963,11 @@ position: fixed;
 							make_base_auth (user.backendAuthorizationHash)
 						);
 					}
-					
 				});
 
-			$.ajax({
-				type: "GET",
-				url: apiUrl + "cpes", 
-				data: {'unit': mm_id},
-                dataType: "json", 
-
-                success: function(resp){
-                    var cpes = resp.data;
-                    self.data()[0]['cpes'] = cpes;
-                }
-			});
-				
-
-			
-                        <?php } else { ?>
-                            populateUnitDetails();
-                        <?php } ?>
+				<?php } else { ?>
+					populateUnitDetails();
+				<?php } ?>
 			
 			/*
 			kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
@@ -2025,12 +2023,6 @@ position: fixed;
 
         }).data('kendoGrid');
 
-		/*
-       
-		*/
-		/*
-        
-		*/
 		//resizeTabContent();
 		if ($('.splitter-holder-inner').length){
 			var s = $('.splitter-holder-inner').data('kendoSplitter');
@@ -2041,14 +2033,8 @@ position: fixed;
 		else {
 			$(window).on('resize', resizeTabContent );
 		}
-/*
-		$('[data-toggle="tooltip"]').tooltip({
-			'placement': 'top'
-		});
-*/
-		$("body").kendoTooltip({ filter: "*[title]" });
-		
 
+		$("body").kendoTooltip({ filter: "*[title]" });
     });
 	
 function resizeTabContent(){
