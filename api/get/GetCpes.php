@@ -329,6 +329,10 @@ function GetCpes(
     $pagesize, $page, $orderby, $ordertype, $searchtype
 )
 {
+    
+    //temporary close connection with inventory-devel.sch.gr
+    return;
+    
     $result = array();
 
     $result["data"] = array();
