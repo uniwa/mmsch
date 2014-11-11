@@ -250,7 +250,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
             $region_edu_admin_id = $this->getDictionary($unit, $unit["Perifereia"], $this->a_region_edu_admins, $this->o_region_edu_admins, 'InvalidRegionEduAdminValue', 'RegionEduAdmins', 'regionEduAdminId', 'name', load_region_edu_admins);
 
-            //if($unit["Diefthinsi"] == $unit["Name"]) { $unit["DiefthinsiRegistryNo"] = $unit["RegistryNo"]; } // DiefthinsiRegistryNo fix because they return the region_edu_admin instead
+            if($unit["Diefthinsi"] == $unit["Name"]) { $unit["DiefthinsiRegistryNo"] = $unit["RegistryNo"]; } // DiefthinsiRegistryNo fix because they return the region_edu_admin instead
             $edu_admin_id = $this->getDictionary($unit, $unit["DiefthinsiRegistryNo"], $this->a_edu_admins, $this->o_edu_admins, 'InvalidEduAdminValue', 'EduAdmins', 'eduAdminId', 'registryNo', load_edu_admins);
             if($this->convert_greek_accents($unit["Diefthinsi"]) != $this->convert_greek_accents($this->o_edu_admins[$edu_admin_id]->edu_admin) && $unit["Diefthinsi"] != null && $unit["DiefthinsiRegistryNo"] != null && $unit["Diefthinsi"] != "null" && $unit["DiefthinsiRegistryNo"] != "null") {
                 // Update Diefthinsi name
