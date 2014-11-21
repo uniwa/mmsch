@@ -698,14 +698,8 @@ position: fixed;
 									# var cpe = cpes[i]; #
 
 									<tr>
-										<td class="term-value term-head">CPE ${i+1}
-										# if (cpe.is_connected == true) { #
-											<span class="label label-success">Mapped</span>
-										# } else { #
-											<span class="label label-warning">Not Mapped</span>
-										# } #
-										</td>
-										<td class="term-value">${cpe.name}</td>
+										<td class="term-value term-head">CPE ${i+1}</td>
+										<td class="term-value">${cpe.item_name}</td>
 									</tr>
 									
 									# } #
@@ -967,6 +961,7 @@ position: fixed;
     	var wnd_implementation_entity_info;
         
         var mm_id = "<?php echo $_GET['mm_id']; ?>";
+        var registry_no = "";
 		var wnd_create_connection;
 		
 		$("#unit-" + mm_id + "-preview").on("destroyed", function () {
@@ -1163,7 +1158,7 @@ position: fixed;
 			},
 
 			saveConnection: function(e){
-				
+				console.log("saveConnection btn clicked.");
 				var self = this;
 			
 				var $form = $("#frm_create_connection_" + mm_id);
@@ -1288,10 +1283,18 @@ position: fixed;
 
                     success: function(resp){
 
+                    	if (typeof resp['status'] != "undefined"){
+                        	if (resp.status==401){
+                            	alert(resp.message);
+                            	btn.button("reset");
+                            	return 0;
+                        	}
+                    	}
+                    	
                     	if (method == "POST"){
 							connection_id = resp.connection_id;
                     	}
-						console.log(addConnectionRequests);
+						//console.log(addConnectionRequests);
                     	var addConnectionRequests = [];
                     	if (subnets2add.length > 0){
                         	for (var i = 0; i < subnets2add.length; i++){
@@ -1843,6 +1846,8 @@ position: fixed;
 						});
 						
 						this.element.find(".alert").hide();
+
+						//$("#wnd_create_connection_" + mm_id).data("kendoWindow").destroy();
 					}
 					
                     
@@ -1866,30 +1871,30 @@ position: fixed;
 			//kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
 			
 			//viewModel.set("unitData", this.data()[0]);
+			//
+			
 			
 			var self = viewModel.unitSource;
 
-                        var populateUnitDetails = function() {
-                            kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
-                            kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
+			registry_no = self.data()[0].registry_no;
 
-                                // Hide create/edit/delete connection buttons if the user is not FY or not responsible for the unit
-                            if(typeof user.l == 'undefined' ||
-                               user.l.split(',').indexOf('ou=partners') == -1 ||
-                               typeof g_impEnt[0] == 'undefined' ||
-                               typeof self.data()[0] == 'undefined' ||
-                               g_impEnt[0].implementation_entity_id != self.data()[0].implementation_entity_id) {
-                               console.log("user is not fy. hiding connection buttons");
-                               $('#unit-'+mm_id+'-preview').find('#btnCreateConnection').parent().hide();
-                               $('#unit-'+mm_id+'-preview').find('.detail-section-tab-content[data-template="tmpl-connection-list"] .detail-term.term-head > button').hide();
-                             }
+            var populateUnitDetails = function() {
+            	kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
+                kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
 
-                            resizeTabContent();
+                // Hide create/edit/delete connection buttons if the user is not FY or not responsible for the unit
+                if(typeof user.l == 'undefined' || user.l.split(',').indexOf('ou=partners') == -1 || typeof g_impEnt[0] == 'undefined' || typeof self.data()[0] == 'undefined' || g_impEnt[0].implementation_entity_id != self.data()[0].implementation_entity_id) {
+                    console.log("user is not fy. hiding connection buttons");
+                    $('#unit-'+mm_id+'-preview').find('#btnCreateConnection').parent().hide();
+                    $('#unit-'+mm_id+'-preview').find('.detail-section-tab-content[data-template="tmpl-connection-list"] .detail-term.term-head > button').hide();
+				}
 
-                            kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
-                        };
+				resizeTabContent();
 
-                        <?php if (!$isAnonymous) { ?>
+				kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
+			};
+
+			<?php if (!$isAnonymous) { ?>
 			$.ajax({
 					type: "GET",
 					url: apiUrl + "ext_log_entries", 
@@ -1926,8 +1931,31 @@ position: fixed;
                     	//console.log(viewModel);
                     	//self.data()[0]['logs'] = resp.data;
 
-                            populateUnitDetails();
+                    	$.ajax({
+							type: "GET",
+							url: apiUrl + "cpes",
+							data: {'unit': mm_id},
+                			dataType: "json",
+			                success: function(resp){
 
+				                try {
+            			        	var cpes = resp.data;
+                    				self.data()[0]['cpes'] = cpes;
+				                }
+				                catch(ex){
+					                console.log(ex);
+				                }
+				                finally {
+				                	populateUnitDetails();
+					            }
+                			},
+                			beforeSend: function(xhr){
+        						xhr.setRequestHeader(
+        							'Authorization',
+        							make_base_auth (user.backendAuthorizationHash)
+        						);
+        					}
+						});
 					},
 					beforeSend: function(xhr){
 						xhr.setRequestHeader(
@@ -1935,11 +1963,11 @@ position: fixed;
 							make_base_auth (user.backendAuthorizationHash)
 						);
 					}
-					
 				});
-                        <?php } else { ?>
-                            populateUnitDetails();
-                        <?php } ?>
+
+				<?php } else { ?>
+					populateUnitDetails();
+				<?php } ?>
 			
 			/*
 			kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
@@ -1995,12 +2023,6 @@ position: fixed;
 
         }).data('kendoGrid');
 
-		/*
-       
-		*/
-		/*
-        
-		*/
 		//resizeTabContent();
 		if ($('.splitter-holder-inner').length){
 			var s = $('.splitter-holder-inner').data('kendoSplitter');
@@ -2011,14 +2033,8 @@ position: fixed;
 		else {
 			$(window).on('resize', resizeTabContent );
 		}
-/*
-		$('[data-toggle="tooltip"]').tooltip({
-			'placement': 'top'
-		});
-*/
-		$("body").kendoTooltip({ filter: "*[title]" });
-		
 
+		$("body").kendoTooltip({ filter: "*[title]" });
     });
 	
 function resizeTabContent(){

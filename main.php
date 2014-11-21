@@ -86,6 +86,10 @@ if (isset($user["l"])){
     var tmp_regExp = /ou=([^,]+)/;
     var tmp_matches = (user.edupersonorgunitdn[0]).match(tmp_regExp);
     var g_impEntDomain = tmp_matches[1];
+
+    if (g_impEntDomain == "episey")
+    	g_impEntDomain = "ntua";
+    
     var g_isAnonymous = <?php echo $isAnonymous; ?>;
 	// end - Implement personalized default filters based on CAS attributes
 	
@@ -935,20 +939,33 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 											<?php if ($isFY && $FY == "teiath") : ?>
 											<li class="load-page"><a href="client/views/whatsnew.php">What's new!</a></li>
 											<?php endif; ?>
-											<li class="load-page"><a href="client/views/grids/categories.php">Κατηγορίες</a></li>
-											<li class="load-page"><a href="client/views/grids/unit-types.php">Τύποι Μονάδων</a></li>
-											<li class="load-page"><a href="client/views/grids/education-levels.php">Επίπεδα Εκπαίδευσης</a></li>
-											<li class="load-page"><a href="client/views/grids/region-edu-admins.php">Περιφέρειες</a></li>
-											<li class="load-page"><a href="client/views/grids/edu-admins.php">Διευθύνσεις Εκπαίδευσης</a></li>
-											<li class="load-page"><a href="client/views/grids/transfer-areas.php">Περιοχές Μετάθεσης</a></li>
-											<li class="load-page"><a href="client/views/grids/implementation-entities.php">Φορείς Υλοποίησης</a></li>
-											<li class="load-page"><a href="client/views/grids/legal-characters.php">Νομικοί Χαρακτήρες</a></li>
-											<li class="load-page"><a href="client/views/grids/tax-offices.php">Εφορίες</a></li>
-											<li class="load-page"><a href="client/views/grids/municipalities.php">Δήμοι ΟΤΑ</a></li>
-											<li class="load-page"><a href="client/views/grids/special-types.php">Ειδικοί Τύποι</a></li>
-											<li class="load-page"><a href="client/views/grids/states.php">Καταστάσεις</a></li>
-											<li class="load-page"><a href="client/views/grids/worker-specializations.php">Κατηγορίες Εργαζομένων</a></li>
-											<li class="load-page"><a href="client/views/grids/worker-positions.php">Θέσεις Εργαζομένων</a></li>
+											
+											
+											<li>
+												<a href="#">Λεξικά</a>
+												<ul>
+													<li class="load-page"><a href="client/views/grids/categories.php">Κατηγορίες</a></li>
+													<li class="load-page"><a href="client/views/grids/unit-types.php">Τύποι Μονάδων</a></li>
+													<li class="load-page"><a href="client/views/grids/education-levels.php">Επίπεδα Εκπαίδευσης</a></li>
+													<li class="load-page"><a href="client/views/grids/region-edu-admins.php">Περιφέρειες</a></li>
+													<li class="load-page"><a href="client/views/grids/edu-admins.php">Διευθύνσεις Εκπαίδευσης</a></li>
+													<li class="load-page"><a href="client/views/grids/transfer-areas.php">Περιοχές Μετάθεσης</a></li>
+													<li class="load-page"><a href="client/views/grids/implementation-entities.php">Φορείς Υλοποίησης</a></li>
+													<li class="load-page"><a href="client/views/grids/legal-characters.php">Νομικοί Χαρακτήρες</a></li>
+													<li class="load-page"><a href="client/views/grids/tax-offices.php">Εφορίες</a></li>
+													<li class="load-page"><a href="client/views/grids/municipalities.php">Δήμοι ΟΤΑ</a></li>
+													<li class="load-page"><a href="client/views/grids/special-types.php">Ειδικοί Τύποι</a></li>
+													<li class="load-page"><a href="client/views/grids/states.php">Καταστάσεις</a></li>
+													<li class="load-page"><a href="client/views/grids/worker-specializations.php">Κατηγορίες Εργαζομένων</a></li>
+													<li class="load-page"><a href="client/views/grids/worker-positions.php">Θέσεις Εργαζομένων</a></li>
+												</ul>
+											</li>
+											
+											<li class="load-page">
+												<a href="client/views/grids/cpes.php">Εξοπλισμός</a>
+											</li>
+											
+											
 											<!-- 
 											<li class="load-page"><a href="client/views/grids/workers.php">Εργαζόμενοι</a></li>
 											 -->

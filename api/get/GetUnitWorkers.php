@@ -931,7 +931,7 @@ function GetUnitWorkers(
                 "worker_position"          => $row["worker_position"],
                 "worker_specialization_id" => $row["worker_specialization_id"] ? (bool)$row["worker_specialization_id"] : $row["worker_specialization_id"],
                 "worker_specialization"    => $row["worker_specialization"],
-                "source_id"                => (int)$row["source_id"],
+                "source_id"                => $row["source_id"] ? (int)$row["source_id"] : null,
                 "source"                   => $row["source"]
             );
         }

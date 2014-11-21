@@ -946,3 +946,68 @@ var tsCircuitTypes = {
 	        return data;
 	    }
 };
+
+var tsCpes = {
+	    read: {
+	        url: apiUrl + "cpes",
+	        type: "GET",
+	        data: {},
+	        dataType: "json"
+	    },
+	    parameterMap: function(data, type) {
+	      
+	        if (type == 'read') {
+	           
+
+	            if (typeof data.filter != 'undefined') {
+
+	                var normalizedFilter = {};
+
+	                $.each(data.filter.filters, function(index, value) {
+	                	
+	                    var filter = data.filter.filters[index];
+	                    
+	                    if (filter.value == null || filter.value == 'undefined' || filter.value == '');
+	                    else {
+	                    	normalizedFilter[filter.field] = filter.value;
+	                    	try	{
+	                        	$('#grid-cpes').data('kendoGrid').showColumn(filter.field);
+	                        }
+	                        catch(ex){
+	                        	
+	                        }
+	                    }
+	                    
+	                    var arr = ["region_edu_admin", "edu_admin", "implementation_entity", "transfer_area", "prefecture", "municipality", "source" ];
+	                    if ( jQuery.inArray(filter.field, arr) >=0 && filter.value == -1 &&  filter.value != ''){
+	                    	normalizedFilter[filter.field] = "null";
+	                    }
+	                    
+	                    if ( jQuery.inArray(filter.field, arr) >=0 && typeof filter.value === 'string' && filter.value != '' && filter.value.indexOf("-1") >= 0 ){
+	                    	normalizedFilter[filter.field] = (filter.value).replace("-1", "null");
+	                    }
+	                    
+	                });
+	               
+	                $.extend(data, normalizedFilter);
+	                
+	                delete data.filter;                
+	            }
+	            
+	            if (typeof data.sort != 'undefined') {
+	                var normalizedSort = {};
+	                var sort = data.sort[0];
+	                normalizedSort['orderby'] = sort.field;
+	                normalizedSort['ordertype'] = sort.dir;
+	                
+	                $.extend(data, normalizedSort);
+	                delete data.sort;                
+	            }
+	        }
+
+	        data['pagesize'] = data.pageSize;
+	        delete data.pageSize;
+
+	        return data;
+	    }
+	};

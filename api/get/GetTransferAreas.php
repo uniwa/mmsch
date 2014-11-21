@@ -635,9 +635,9 @@ function GetTransferAreas(
             $result["data"][] = array(
                 "transfer_area_id"    => (int)$row["transfer_area_id"],
                 "transfer_area"       => $row["transfer_area"],
-                "edu_admin_id"        => (int)$row["edu_admin_id"],
+                "edu_admin_id"        => $row["edu_admin_id"]? (int)$row["edu_admin_id"] : null,
                 "edu_admin"           => $row["edu_admin"],
-                "region_edu_admin_id" => (int)$row["region_edu_admin_id"],
+                "region_edu_admin_id" => $row["region_edu_admin_id"]? (int)$row["region_edu_admin_id"] : null,
                 "region_edu_admin"    => $row["region_edu_admin"]
             );
         }
