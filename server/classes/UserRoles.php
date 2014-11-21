@@ -180,9 +180,9 @@ private static $Permissions = array(
                                         ) ,
     'connections'    => array(
                                         'GET' => array('USER', 'ADMIN'),
-                                        'POST' => array('ADMIN'),
-                                        'PUT' => array('ADMIN'),
-                                        'DELETE' => array('ADMIN'),
+                                        'POST' => array('USER', 'ADMIN'),
+                                        'PUT' => array('USER', 'ADMIN'),
+                                        'DELETE' => array('USER', 'ADMIN'),
                                         ) ,
     'units'         => array(
                                         'GET' => array('USER', 'ADMIN', 'GUEST'),
