@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/html; charset=utf-8");
 require_once ('server/config.php');
 require_once ('server/libs/phpCAS/CAS.php');
 if(!isset($_GET['auth']) || $_GET['auth'] != '0') {

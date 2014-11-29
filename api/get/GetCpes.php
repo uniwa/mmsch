@@ -331,7 +331,7 @@ function GetCpes(
 {
     
     //temporary close connection with inventory-devel.sch.gr
-    return;
+    //return;
     
     $result = array();
 
