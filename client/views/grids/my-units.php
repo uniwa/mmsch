@@ -688,6 +688,16 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					$(document).ready(function() {
 
 						$("#mod-units").on("destroyed", function () {
+
+							console.log("destroyed");
+
+							$("body").off('click', "#btnShowColumnChooser" );
+							$("body").off('click', "#btnApplyColms" );
+							$("body").off('click', "#grid-units .k-grid-content tr[role='row'].k-master-row" );
+							$("body").off('click', "#btnClearFrmSearch" );
+							$("body").off('click', "#btnSearch" );
+							$("body").off('click', "#btnShowDlgSearch" );
+							
 							$("#dlgWndSearchBy").data("kendoWindow").destroy();
 							$("#dlgWndSelectColms").data("kendoWindow").destroy();
 						});
