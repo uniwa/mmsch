@@ -1,10 +1,15 @@
 <div id="mod-sync-static-data" class="main-pane" style="position: absolute; left:0; top:0; bottom:0; height: 100%; width:100%;">
 	<center>
-		<button id="btnSyncStaticData" class="k-button btn-lg">Sync Static Data</button>
-
-		<p id="txtNoteStaticData" class="hidden">Τα static data ενημερώθηκαν.</p>
-		<textarea id="txtStaticData" rows="10" cols="30" style="width:80%;height:height:80%" disabled></textarea>
-		
+		<button id="btnSyncStaticData" class="k-button btn-lg">Get Static Data</button>
+		<textarea id="txtStaticData" rows="10" cols="30" style="" disabled></textarea>
+		<div id="txtNoteStaticData" class="hidden well" >
+			<center>
+			<p style="font-size:16px;">		
+			Η ανάκτηση των static data ολοκληρώθηκε.<br>
+			Αντιγράψτε το περιεχόμενο του πλαισίου χωρίς καμία τροποποίηση στο αρχείο static.data.js
+			</p>
+			</center>
+		</div>		
 
 	</center>
 </div>
@@ -103,6 +108,11 @@ $(document).ready(function() {
         		var strData = JSON.stringify(staticData);
         		$("#txtNoteStaticData").removeClass("hidden");
 
+        		strFinalData = "var staticData =" + strData + ";";
+
+        		kui_txtStaticData.value(strFinalData);
+        		
+				/*
         		$.ajax({
         			type: "POST",
         			url: "saveStaticData.php?auth=1",
@@ -113,6 +123,7 @@ $(document).ready(function() {
 
         			kui_txtStaticData.value(strData);
         		});
+        		*/
 
 		}) // DONE-->
 		.progress(function(d){
