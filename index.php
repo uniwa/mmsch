@@ -6,6 +6,9 @@ function file_get_contents_utf8($fn) {
 }
 
 $whatsnew = trim(file_get_contents_utf8('whatsnew.txt'));
+
+$whatsnewItems = explode("@",$whatsnew);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -66,7 +69,21 @@ $whatsnew = trim(file_get_contents_utf8('whatsnew.txt'));
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">What's new</h4>
       </div>
-      <div class="modal-body"><?php echo $whatsnew; ?></div>
+      <div class="modal-body">
+        <?php 
+        foreach($whatsnewItems as $newItem) {
+    		
+			$newText = trim($newItem);
+
+			if (!empty($newText)){
+		?>
+			<div><?php echo $newText; ?></div>
+		<?php 
+			}
+		
+        } 
+        ?>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Κλείσιμο</button>
       </div>
@@ -82,14 +99,14 @@ $whatsnew = trim(file_get_contents_utf8('whatsnew.txt'));
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-8 col-xs-6">
-					<p class="pull-left"><img class="img-responsive" src="/img/sch_logo.png" />&nbsp;&nbsp;&nbsp;</p>			
+					<p class="pull-left"><img class="img-responsive" src="http://mmsch.teiath.gr/teiath_git/mmsch/img/sch_logo.png" />&nbsp;&nbsp;&nbsp;</p>			
 					<p class="pull-left" style="padding-top:5px;"><strong><a href="http://www.sch.gr" style="color: #1d73a3;font: bold 20px Tahoma,sans-serif;">Πανελλήνιο Σχολικό Δίκτυο</a></strong><br>
 						<span class="sch_logo_text2">Το Δίκτυο στην Υπηρεσία της Εκπαίδευσης</span>
 					</p>
 				</div>
 				
 				<div class="col-md-4 col-xs-6">
-					<p class="pull-right"><button class="btn btn-xs btn-link" data-toggle="modal" data-target="#whatsNewModal"><img class="pull-right" src="/img/whats_new_icon.jpg" style="width:30%" />
+					<p class="pull-right"><button class="btn btn-xs btn-link" data-toggle="modal" data-target="#whatsNewModal"><img class="pull-right" src="http://mmsch.teiath.gr/teiath_git/mmsch/img/whats_new_icon.jpg" style="width:30%" />
 					</button>
 					</p>
 				</div>
@@ -144,19 +161,19 @@ $whatsnew = trim(file_get_contents_utf8('whatsnew.txt'));
 					
 					<div class="row">
 						<div class="col-md-12">
-						<center><img src="/img/icon_lighter_shading.jpg" class="" /></center>
+						<center><img src="http://mmsch.teiath.gr/teiath_git/mmsch/img/icon_lighter_shading.jpg" class="" /></center>
 						</div>	
 					</div>
 					
 					<div class="row">&nbsp;</div>
 					<div class="row">
 						<div class="col-md-12">						
-							<a role="button" href="/main.php?auth=1" class="btn btn-primary btn-lg btn-block">Πιστοποιημένη πρόσβαση</a>&nbsp;
+							<a role="button" href="http://mmsch.teiath.gr/teiath_git/mmsch/main.php?auth=1" class="btn btn-primary btn-lg btn-block">Πιστοποιημένη πρόσβαση</a>&nbsp;
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">						
-        					<a role="button" href="/main.php?auth=0" class="btn btn-success btn-lg btn-block">Δημόσια πρόσβαση</a>
+        					<a role="button" href="http://mmsch.teiath.gr/teiath_git/mmsch/main.php?auth=0" class="btn btn-success btn-lg btn-block">Δημόσια πρόσβαση</a>
 						</div>
 					</div>
 					
@@ -166,7 +183,7 @@ $whatsnew = trim(file_get_contents_utf8('whatsnew.txt'));
 						<div class="col-md-12">
 							<div class="pull-right">
 							<strong>Υποστηρίζεται από το ΤΕΙ Αθήνας<br/>
-							Επικοινωνία: mm@sch.gr</strong>
+							Επικοινωνία: teiath-net@sch.gr</strong>
 							</div>
 						</div>
 					</div>
@@ -194,9 +211,9 @@ $whatsnew = trim(file_get_contents_utf8('whatsnew.txt'));
 		
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-4"><p><img class="img-responsive" src="/img/mainlogo_p8.png" /></p></div>
-				<div class="col-md-4"><p><img class="img-responsive" src="/img/logo_stirizo.png" /></p></div>
-				<div class="col-md-4"><p><img class="img-responsive" src="/img/logo.png" /></p></div>
+				<div class="col-md-4"><p><img class="img-responsive" src="http://mmsch.teiath.gr/teiath_git/mmsch/img/mainlogo_p8.png" /></p></div>
+				<div class="col-md-4"><p><img class="img-responsive" src="http://mmsch.teiath.gr/teiath_git/mmsch/img/logo_stirizo.png" /></p></div>
+				<div class="col-md-4"><p><img class="img-responsive" src="http://mmsch.teiath.gr/teiath_git/mmsch/img/logo.png" /></p></div>
 			</div>
 		</div>
        
