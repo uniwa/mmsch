@@ -166,7 +166,7 @@ $whatsnew = trim(file_get_contents_utf8('whatsnew.txt'));
 						<div class="col-md-12">
 							<div class="pull-right">
 							<strong>Υποστηρίζεται από το ΤΕΙ Αθήνας<br/>
-							Επικοινωνία: teiath-net@sch.gr</strong>
+							Επικοινωνία: mm@sch.gr</strong>
 							</div>
 						</div>
 					</div>
