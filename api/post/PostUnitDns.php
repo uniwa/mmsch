@@ -399,6 +399,29 @@ function PostUnitDns(
         }
 
 //======================================================================================================================
+//= Check for mm_id uniques
+//======================================================================================================================
+
+        if ( $filters["mm_id"] )
+        {
+            $sql = "SELECT
+                    unit_dns_id,
+                    mm_id
+                    FROM unit_dns WHERE ".$filters["mm_id"];
+
+            //echo "<br><br>".$sql."<br><br>";
+            $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
+
+            $stmt = $db->query( $sql );
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ( $stmt->rowCount() > 0 )
+            {
+                throw new Exception(ExceptionMessages::DuplicatedUnitDnsValue ." : ".$rows[0]["mm_id"], ExceptionCodes::DuplicatedUnitDnsValue);
+            }
+        } 
+        
+//======================================================================================================================
 //= INSERT
 //======================================================================================================================
 
