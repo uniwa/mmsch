@@ -191,6 +191,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    "latitude": null,
  *    "longitude": null,
  *    "positioning": null,
+ *    "creation_fek": null,
  *    "last_sync": "2013-11-11 22:37:52",
  *    "last_update": "2013-10-02 09:51:58",
  *    "comments": null,
@@ -752,6 +753,14 @@ header("Content-Type: text/html; charset=utf-8");
  *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
  *    </ul>
  * 
+ * @param string $creation_fek Φ.Ε.Κ. (Δημιουργίας) 
+ * <br>Το Φ.Ε.Κ. (Δημιουργίας) της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
+ *    <ul>
+ *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα Φ.Ε.Κ. Δημιουργίας )</li>
+ *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
+ *    </ul>
+ * 
  * @param midex $last_update Ημερομηνία Τελευταίας Ενημέρωσης
  * <br>Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{datetime|string|array[datetime|string]}
@@ -873,6 +882,7 @@ header("Content-Type: text/html; charset=utf-8");
  *      <li>string : <b>latitude</b> : Το Γεωγραφικό Πλάτος της Μονάδας</li>
  *      <li>string : <b>longitude</b> : Το Γεωγραφικό Μήκος της Μονάδας</li>
  *      <li>string : <b>positioning</b> : Η Κτηριακή Θέση της Μονάδας</li>
+ *      <li>string : <b>creation_fek</b> : Το Φ.Ε.Κ. (Δημιουργίας) της Μονάδας</li>
  *      <li>datetime : <b>last_update</b> : Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας</li>
  *      <li>datetime : <b>last_sync</b> : Η Ημερομηνία Τελευταίου Συγχρονισμού της Μονάδας</li>
  *      <li>string : <b>comments</b> : Παρατηρήσεις - Σχόλια της Μονάδας<br><br></li>
@@ -882,7 +892,7 @@ header("Content-Type: text/html; charset=utf-8");
  *          <ul>
  *              <li>integer : <b>transition_id</b> : Ο Κωδικός της Μετάβασης</li>
  *              <li>integeσr : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
- *              <li>string : <b>fek</b> : Ο Αριθμός ΦΕΚ της Ματαβάσης</li>
+ *              <li>string : <b>fek</b> : Ο Αριθμός ΦΕΚ της Μεταβάσης</li>
  *              <li>date : <b>transition_date</b> : Η Ημερομηνία της Μετάβασης</li>
  *              <li>string : <b>from_state</b> : Η Αρχική Κατάσταση της Μονάδας κατά την Μετάβαση (Λεξικό : {@see GetStates})</li>
  *              <li>string : <b>to_state</b> : Η Τελική Κατάσταση της Μονάδας κατά την Μετάβαση (Λεξικό : {@see GetStates})</li>
@@ -1011,6 +1021,7 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws InvalidLatitudeType {@see ExceptionMessages::InvalidLatitudeType}
  * @throws InvalidLongitudeType {@see ExceptionMessages::InvalidLongitudeType}
  * @throws InvalidPositioningType {@see ExceptionMessages::InvalidPositioningType}
+ * @throws InvalidFekType {@see ExceptionMessages::InvalidFekType}
  * @throws InvalidLastUpdateType {@see ExceptionMessages::InvalidLastUpdateType}
  * @throws InvalidLastSyncType {@see ExceptionMessages::InvalidLastSyncType}
  * @throws InvalidCommentsType {@see ExceptionMessages::InvalidCommentsType}
@@ -1042,7 +1053,7 @@ function GetUnits(
     $mm_id, $registry_no, $source, $name, $special_name, $state, $region_edu_admin, $edu_admin, $implementation_entity,
     $transfer_area, $prefecture, $municipality, $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code,
     $tax_number, $tax_office, $area_team_number, $category, $unit_type, $operation_shift, $legal_character, $orientation_type,
-    $special_type, $levels_count, $groups_count, $students_count, $latitude, $longitude, $positioning, $last_update, $last_sync, $comments,
+    $special_type, $levels_count, $groups_count, $students_count, $latitude, $longitude, $positioning, $creation_fek, $last_update, $last_sync, $comments,
     $pagesize, $page, $orderby, $ordertype, $searchtype )
 {
     global $db, $entityManager, $app;
@@ -1571,6 +1582,33 @@ function GetUnits(
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
         }
 
+//======================================================================================================================
+//= $creation_fek
+//======================================================================================================================
+
+        if ( Validator::Exists('creation_fek', $params) )
+        {
+            $table_name = "units";
+            $table_column_id = "creation_fek";
+            $table_column_name = "creation_fek";
+
+            $param = Validator::toArray($creation_fek);
+
+            $paramFilters = array();
+
+            foreach ($param as $values)
+            {
+                if ( Validator::isNull($values) )
+                    $paramFilters[] = "$table_name.$table_column_name is null";
+                else if ( Validator::isValue($values) )
+                    $paramFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
+                else
+                    throw new Exception(ExceptionMessages::InvalidFekType." : ".$values, ExceptionCodes::InvalidFekType);
+            }
+
+            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+        }
+        
 //======================================================================================================================
 //= $last_update
 //======================================================================================================================
@@ -2186,7 +2224,8 @@ function GetUnits(
                 "special_type",
                 "latitude",
                 "longitude",
-                "positioning"
+                "positioning",
+                "creation_fek"
             );
 
             if (!in_array($orderby, $columns))
@@ -2253,7 +2292,8 @@ function GetUnits(
                         special_types.name as special_type, 
                         units.latitude, 
                         units.longitude, 
-                        units.positioning
+                        units.positioning,
+                        units.creation_fek
                      ";
 
         $sqlFrom = "FROM units
@@ -2802,6 +2842,7 @@ function GetUnits(
                 "latitude"                 => $row["latitude"],
                 "longitude"                => $row["longitude"],
                 "positioning"              => $row["positioning"],
+                "creation_fek"             => $row["creation_fek"],
                 "last_sync"                => $row["last_sync"],
                 "last_update"              => $row["last_update"],
                 "comments"                 => $row["comments"],

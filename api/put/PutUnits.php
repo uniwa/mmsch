@@ -249,8 +249,8 @@ header("Content-Type: text/html; charset=utf-8");
  * @param string $positioning Κτηριακή Θέση 
  * <br>Η Κτηριακή Θέση της Μονάδας
  * 
- * @param string $fek Φ.Ε.Κ.
- * <br>Το Φ.Ε.Κ. (Αλλαγής Κατάστασης) της Μονάδας
+ * @param string $creation_fek Φ.Ε.Κ.
+ * <br>Το Φ.Ε.Κ. (Δημιουργίας) της Μονάδας
  * 
  * 
  * 
@@ -291,6 +291,7 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws InvalidOrientationTypeValue {@see ExceptionMessages::InvalidOrientationTypeValue}
  * @throws InvalidSpecialTypeValue {@see ExceptionMessages::InvalidSpecialTypeValue}
  * @throws InvalidTaxOfficeValue {@see ExceptionMessages::InvalidTaxOfficeValue}
+ * @throws InvalidFekType {@see ExceptionMessages::InvalidFekType}
  * 
  */
 
@@ -300,7 +301,7 @@ function PutUnits(
     $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code, 
     $tax_number, $tax_office, $area_team_number, $category, $unit_type, $operation_shift, 
     $legal_character, $orientation_type, $special_type, $levels_count, $groups_count, 
-    $students_count, $latitude, $longitude, $positioning, $last_update, $last_sync, 
+    $students_count, $latitude, $longitude, $positioning, $creation_fek, $last_update, $last_sync, 
     $comments, $fek 
 )
 {
@@ -460,6 +461,10 @@ function PutUnits(
 
         CRUDUtils::entitySetParam($unit, $positioning, ExceptionCodes::InvalidPositioningType, 'positioning');
 
+//==============================================================================
+        
+        CRUDUtils::entitySetParam($unit, $creation_fek, ExceptionCodes::InvalidFekType, 'creation_fek');
+        
 //==============================================================================
 
         CRUDUtils::entitySetParam($unit, $last_update, ExceptionCodes::InvalidLastUpdateType, 'last_update');

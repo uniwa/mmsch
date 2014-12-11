@@ -175,6 +175,14 @@ class Units
     private $positioning;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="creation_fek", type="string", length=255, nullable=true)
+     * @Gedmo\Versioned
+     */
+    private $creationFek;
+    
+    /**
      * @var \Categories
      *
      * @ORM\ManyToOne(targetEntity="Categories")
@@ -518,6 +526,14 @@ class Units
         $this->positioning = $positioning;
     }
 
+    public function getCreationFek() {
+        return $this->creationFek;
+    }
+
+    public function setCreationFek($creationFek) {
+        $this->creationFek = $creationFek;
+    }
+    
     public function getCategory() {
         return $this->category;
     }
