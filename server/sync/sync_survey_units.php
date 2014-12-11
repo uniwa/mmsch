@@ -350,7 +350,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                     //"latitude" => NULL,
                     //"longitude" => NULL,
                     //"positioning" => NULL,
-                    "fek"          => trim($unit["SchoolCreationFEK"]),
+                    "creation_fek"          => trim($unit["SchoolCreationFEK"]),
                 );
 
                 //echo "<pre>"; var_dump( $unit ); echo "</pre>";
