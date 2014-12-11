@@ -329,9 +329,6 @@ function PutUnits(
         if(!isset($unit))
             throw new Exception(ExceptionMessages::InvalidMMIdValue." : ".$mm_id, ExceptionCodes::InvalidMMIdValue);
 
-        $transition = new Transitions();
-        $transition->setFromState($unit->getState());
-
 //==============================================================================
 
         CRUDUtils::entitySetAssociation($unit, $category, 'Categories', 'category', 'Category');
@@ -355,7 +352,6 @@ function PutUnits(
 //==============================================================================
             
         CRUDUtils::entitySetAssociation($unit, $state, 'States', 'state', 'State');
-        CRUDUtils::entitySetAssociation($transition, $state, 'States', 'toState', 'State');
             
 //==============================================================================
             
@@ -479,16 +475,9 @@ function PutUnits(
 
 //==============================================================================
 
-        CRUDUtils::entitySetParam($transition, $fek, ExceptionCodes::InvalidFekType, 'fek');
-
-//==============================================================================
-
         $entityManager->persist($unit);
         if ( $entityManager->flush($unit) )
         {
-            $transition->setMm($unit);
-            $entityManager->persist($transition);
-            $entityManager->flush($transition);
 
             $mailSubject = "Ενημέρωση Μονάδας";
 

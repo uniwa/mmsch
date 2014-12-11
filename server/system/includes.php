@@ -122,7 +122,6 @@ require_once ('../api/get/GetTransferAreaMunicipalities.php');
 require_once ('../api/get/GetUnitWorkers.php');
 require_once ('../api/get/GetUnits.php');
 require_once ('../api/get/GetRelations.php');
-require_once ('../api/get/GetTransitions.php');
 require_once ('../api/get/GetLevels.php');
 require_once ('../api/get/GetGroups.php');
 require_once ('../api/get/GetExtLogEntries.php');
@@ -150,7 +149,6 @@ require_once ('../api/get/GetExtLogEntries.php');
 //require_once ('classes/extends/StatesExt.class.php');
 //require_once ('classes/extends/TaxOfficesExt.class.php');
 //require_once ('classes/extends/TransferAreasExt.class.php');
-//require_once ('classes/extends/TransitionsExt.class.php');
 //require_once ('classes/extends/UnitsExt.class.php');
 //require_once ('classes/extends/UnitTypesExt.class.php');
 //require_once ('classes/extends/WorkerPositionsExt.class.php');
@@ -187,7 +185,6 @@ require_once ('../api/put/PutWorkers.php');
 
 
 //require_once ('../api/post/PostCategories.php');
-//require_once ('../api/post/PostTransitions.php');
 
 //DOCTRINE READY FUNCTIONS
 require_once ('../api/post/PostUnitWorkers.php');

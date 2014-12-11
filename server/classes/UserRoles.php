@@ -172,12 +172,6 @@ private static $Permissions = array(
                                         'PUT' => array('ADMIN'),
                                         'DELETE' => array('ADMIN'),
                                         ) ,
-    'transitions'           => array(
-                                        'GET' => array('USER', 'ADMIN'),
-                                        'POST' => array('ADMIN'),
-                                        'PUT' => array('ADMIN'),
-                                        'DELETE' => array('ADMIN'),
-                                        ) ,
     'connections'    => array(
                                         'GET' => array('USER', 'ADMIN'),
                                         'POST' => array('USER', 'ADMIN'),

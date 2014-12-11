@@ -71,8 +71,6 @@ $app->map('/unit_workers', Authentication, UserRolesPermission, UnitWorkersContr
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/relations', Authentication, UserRolesPermission, RelationsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/transitions', Authentication, UserRolesPermission, TransitionsController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/connections', Authentication, UserRolesPermission, ConnectionsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/units', Authentication, UserRolesPermission, UnitsController)
@@ -1161,42 +1159,6 @@ function RelationsController()
 
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
-
-
-function TransitionsController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetTransitions(
-                $params["unit"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"]
-            );
-            break;
-//        case MethodTypes::POST :
-//            $result = PostTransitions(
-//                $params["mm_id"],
-//                $params-
-//                $params["transition_date,
-//                $params["from_state"],
-//                $params["to_state
-//            );
-//            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
 
 function ConnectionsController()
 {

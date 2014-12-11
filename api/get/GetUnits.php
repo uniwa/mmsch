@@ -195,17 +195,6 @@ header("Content-Type: text/html; charset=utf-8");
  *    "last_sync": "2013-11-11 22:37:52",
  *    "last_update": "2013-10-02 09:51:58",
  *    "comments": null,
- *    "transitions": [
- *      {
- *        "transition_id": 10044,
- *        "fek": "Προς αναζήτηση",
- *        "transition_date": null,
- *        "from_state_id": null,
- *        "from_state": null,
- *        "to_state_id": 1,
- *        "to_state": "ΕΝΕΡΓΗ"
- *      }
- *    ],
  *    "levels": [
  *      {
  *        "level_id": 3061,
@@ -886,19 +875,6 @@ header("Content-Type: text/html; charset=utf-8");
  *      <li>datetime : <b>last_update</b> : Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας</li>
  *      <li>datetime : <b>last_sync</b> : Η Ημερομηνία Τελευταίου Συγχρονισμού της Μονάδας</li>
  *      <li>string : <b>comments</b> : Παρατηρήσεις - Σχόλια της Μονάδας<br><br></li>
- * 
- * 
- *      <li>array : <b>transitions</b> : Πίνακας Μεταβάσεων (Λεξικό : {@see GetTransitions})
- *          <ul>
- *              <li>integer : <b>transition_id</b> : Ο Κωδικός της Μετάβασης</li>
- *              <li>integeσr : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
- *              <li>string : <b>fek</b> : Ο Αριθμός ΦΕΚ της Μεταβάσης</li>
- *              <li>date : <b>transition_date</b> : Η Ημερομηνία της Μετάβασης</li>
- *              <li>string : <b>from_state</b> : Η Αρχική Κατάσταση της Μονάδας κατά την Μετάβαση (Λεξικό : {@see GetStates})</li>
- *              <li>string : <b>to_state</b> : Η Τελική Κατάσταση της Μονάδας κατά την Μετάβαση (Λεξικό : {@see GetStates})</li>
- *          </ul>
- *          <br>
- *      </li>
  * 
  *      
  *      <li>array : <b>unit_ip_dns</b> : Πίνακας Δικτυακών Στοιχείων (Λεξικό : {@see GetUnitIpDns})
@@ -2341,39 +2317,6 @@ function GetUnits(
         }                       
 
 //======================================================================================================================
-//= $array_transitions
-//======================================================================================================================
-
-        $sqlSelect = "SELECT
-                        transitions.transition_id,
-                        transitions.fek,
-                        transitions.transition_date,
-                        transitions.mm_id,
-                        from_states.state_id as from_state_id,
-                        from_states.name as from_state,
-                        to_states.state_id as to_state_id,
-                        to_states.name as to_state
-                     ";
-
-        $sqlFrom   = "FROM transitions INNER JOIN units ON transitions.mm_id = units.mm_id
-                      LEFT JOIN states from_states ON transitions.from_state_id = from_states.state_id
-                      LEFT JOIN states to_states ON transitions.to_state_id = to_states.state_id";
-
-        $sqlWhere = " WHERE transitions.mm_id in (".$ids.")";
-        $sqlOrder = " ORDER BY transitions.mm_id ASC";
-
-        $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $array_transitions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        foreach ($array_transitions as $transition)
-        {
-            $transitions[ $transition["mm_id"] ][] = $transition;
-        }
-
-//======================================================================================================================
 //= $array_unit_dns
 //======================================================================================================================
 
@@ -2850,20 +2793,6 @@ function GetUnits(
             );
 
             if($app->request->userRoles != 'GUEST') {
-                $data["transitions"] = array();
-                foreach ($transitions[ $row["mm_id"] ] as $transition)
-                {
-                    $data["transitions"][] = array(
-                        "transition_id"   => $transition["transition_id"] ? (int)$transition["transition_id"] : null,
-                        "fek"             => $transition["fek"],
-                        "transition_date" => $transition["transition_date"],
-                        "from_state_id"   => $transition["from_state_id"] ? (int)$transition["from_state_id"] : null,
-                        "from_state"      => $transition["from_state"],
-                        "to_state_id"     => $transition["to_state_id"] ? (int)$transition["to_state_id"] : null,
-                        "to_state"        => $transition["to_state"]
-                    );
-                }
-
 
                 $data["levels"] = array();
                 foreach ($levels[ $row["mm_id"] ] as $level)

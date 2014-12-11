@@ -307,7 +307,6 @@ function PostUnits(
     global $db, $entityManager;
 
     $unit = new Units();
-    $transition = new Transitions();
     $result = array();
 
     $result["method"] = __FUNCTION__;
@@ -338,7 +337,6 @@ function PostUnits(
 //==============================================================================
 
         CRUDUtils::entitySetAssociation($unit, $state, 'States', 'state', 'State');
-        CRUDUtils::entitySetAssociation($transition, $state, 'States', 'toState', 'State');
 
 //==============================================================================
 
@@ -462,22 +460,13 @@ function PostUnits(
 
 //==============================================================================
 
-        CRUDUtils::entitySetParam($transition, $fek, ExceptionCodes::InvalidFekType, 'fek');
-
-//==============================================================================
-
         $entityManager->persist($unit);
-        if ( $entityManager->flush($unit) )
-        {
-            $transition->setMm($unit);
-            $entityManager->persist($transition);
-            $entityManager->flush($transition);
+        $entityManager->flush($unit);
 
 //==============================================================================
 
             //SendMail('mm@sch.gr', 'Δημιουργία Μονάδας', 'Δημιουργία Μονάδας με κωδικό ΜΜ : '.$mm_id);
-        }
-      
+          
         $result["status"] = ExceptionCodes::NoErrors;;
         $result["message"] = ExceptionMessages::NoErrors;
         $result["mm_id"] = $unit->getMmId();

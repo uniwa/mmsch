@@ -647,16 +647,6 @@ class ExceptionMessages
     const InvalidGuestUnitValue = 'Η Guest Μονάδα δεν υπάρχει στο λεξικό';
     const InvalidGuestUnitType = 'Η Guest Μονάδα πρέπει να είναι αριθμητική ή αλφαριθμητική';
 
-
-
-    //= GetTransitions
-    const InvalidFromStateType = 'Η Αρχική Κατάσταση της Μονάδας πρέπει να είναι αριθμητική ή αλφαριθμητική';
-    const InvalidToStateType = 'Η Τελική Κατάσταση της Μονάδας πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-
-
-
-
-
     //= GetLevels
     const MissingLevelIDParam = 'Ο Κωδικός της Τάξης είναι υποχρεωτικό πεδίο';
     const MissingLevelIDValue = 'Ο Κωδικός της Τάξης πρέπει να έχει τιμή';

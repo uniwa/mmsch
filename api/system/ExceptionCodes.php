@@ -1088,21 +1088,6 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidGuestUnitType} */
     const InvalidGuestUnitType = 500;
 
-
-
-
-
-
-    //= GetTransitions
-    /** {@see ExceptionMessages::InvalidGuestUnitType} */
-    const InvalidFromStateType = 500;
-    /** {@see ExceptionMessages::InvalidGuestUnitType} */
-    const InvalidToStateType = 500;
-
-
-
-
-
     //= GetLevels
     /** {@see ExceptionMessages::MissingLevelIDParam} */
     const MissingLevelIDParam = 500;
