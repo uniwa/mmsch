@@ -938,6 +938,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 										<ul class="">
 											<?php if ($isFY && $FY == "teiath") : ?>
 											<li class="load-page"><a href="client/views/whatsnew.php">What's new!</a></li>
+											<li class="load-page"><a href="client/views/sync_static_data.php">Get Static Data</a></li>
 											<?php endif; ?>
 											
 											

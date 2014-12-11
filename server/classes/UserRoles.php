@@ -233,9 +233,9 @@ private static $Permissions = array(
 
     'connection_unit_network_subnets' => array(
                                         'GET' => array('USER', 'ADMIN'),
-                                        'POST' => array('ADMIN'),
-                                        'PUT' => array('ADMIN'),
-                                        'DELETE' => array('ADMIN'),
+                                        'POST' => array('USER', 'ADMIN'),
+                                        'PUT' => array('USER', 'ADMIN'),
+                                        'DELETE' => array('USER', 'ADMIN'),
                                         ) ,
     
     'statistic_units' => array(

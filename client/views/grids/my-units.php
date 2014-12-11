@@ -208,7 +208,7 @@ $isAnonymous = @ $_GET['is_anonymous'];
 
 
 										<div class="row">
-										    <div class="col-md-3">
+										    <div class="col-md-4">
 										        <div class="form-group ">
 										            <label for="" class="control-label ">Περιφέρεια</label>
 													<input name="region_edu_admin" id="src_regionEduAdmin" class="" />
@@ -228,14 +228,15 @@ $isAnonymous = @ $_GET['is_anonymous'];
 													<input name="transfer_area" id="src_transferArea" class=""  />
 										        </div>
 										    </div>
-										    
+										</div>
+										
+										<div class="row">
 										    <div class=col-md-3>
 										        <div class="form-group">
 										            <label for="" class="control-label ">Φορέας Υλοποίησης</label>
 													<input name="implementation_entity" id="src_implementationEntity" class="bt-col-full" />
 										        </div>
 										    </div>
-										    
 										</div>
 
 										</div>
@@ -687,6 +688,16 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					$(document).ready(function() {
 
 						$("#mod-units").on("destroyed", function () {
+
+							console.log("destroyed");
+
+							$("body").off('click', "#btnShowColumnChooser" );
+							$("body").off('click', "#btnApplyColms" );
+							$("body").off('click', "#grid-units .k-grid-content tr[role='row'].k-master-row" );
+							$("body").off('click', "#btnClearFrmSearch" );
+							$("body").off('click', "#btnSearch" );
+							$("body").off('click', "#btnShowDlgSearch" );
+							
 							$("#dlgWndSearchBy").data("kendoWindow").destroy();
 							$("#dlgWndSelectColms").data("kendoWindow").destroy();
 						});

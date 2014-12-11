@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/html; charset=utf-8");
 require_once ('server/config.php');
 require_once ('server/libs/phpCAS/CAS.php');
 if(!isset($_GET['auth']) || $_GET['auth'] != '0') {
@@ -58,78 +59,27 @@ if (isset($user["l"])){
 		if ($FY == "episey") $FY = "ntua";
 	}
 }
-?>
-<!DOCTYPE html>
-<html >
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="">
-<meta name="description" content="">
+//*************************************************************************************************************
+define('OK', 0);
+define('URL_EMPTY', 1);
+define('WRITING_PROBLEMS',2);
+define('OTHER_PROBLEM', 3);
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
+if (isset($_POST) && isset($_POST['staticData']) ){
 
-<link rel="shortcut icon" href="" />
+	$fileName = "client/static.data.js";
+	$fileContent = 'var staticData = ' . $_POST['staticData'] . ';';
 
-<title>MMSCH</title>
+	if (is_writable($fileName)) {
 
-<script type="text/javascript">
-    var user = JSON.parse(atob("<?php echo base64_encode(json_encode($user)); ?>"));
-    var g_casUrl = "<?php echo $casOptions['Url'] ?>";
+		$r = file_put_contents($fileName, $fileContent);
 
-	// start - Implement personalized default filters based on CAS a
-    var tmp_regExp = /ou=([^,]+)/;
-    var tmp_matches = (user.edupersonorgunitdn[0]).match(tmp_regExp);
-    var g_impEntDomain = tmp_matches[1];
-    var g_isAnonymous = <?php echo $isAnonymous; ?>;
-	// end - Implement personalized default filters based on CAS attributes
-	
-	var g_isFY = <?php echo $isFY; ?>;
-	if (g_isFY){
-		g_FY = "<?php echo $FY; ?>";
-	}  
-</script>
-
-<script type="text/javascript" src="client/vendors/kendo/js/jquery.min.js"></script>
-<script type="text/javascript" src="client/js/jquery-ui.custom.min.js"></script>
-<script type="text/javascript" src="client/vendors/kendo/js/kendo.web.min.js"></script>
-<script type="text/javascript" src="client/vendors/kendo/js/cultures/kendo.culture.el-GR.min.js"></script>
-  
-
-<script type="text/javascript" src="client/js/webtoolkit.base64.js"></script>
-<script type="text/javascript" src="client/dataSources.js"></script>
-<script type="text/javascript" src="client/generate.static.data.js"></script>
-
-
-
-
-
-<!--[if lt IE 7]>
-   <style type="text/css">
-        #wrapper { height:100%; }
-    </style>
-<![endif]-->
-
-<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-
-<script>
-$(document).ready(function() {
-	
-	loadStaticData();
-	
-});
-
-</script>
-
-</head>
-
-<body>
-
-
-</body>
-</html>
+		if ($r)
+			echo "OK";
+		else
+			echo "OTHER_PROBLEM";
+	}
+	else {
+		echo "WRITING_PROBLEMS - File is not writable";
+	}
+}
