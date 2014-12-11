@@ -7,7 +7,7 @@
 	<title>Function PostUnits | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?678548589"></script>
+	<script type="text/javascript" src="elementlist.js?3744121490"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -646,36 +646,43 @@ class="php-keyword2">log</span>(data);
 Παρατηρήσεις / Σχόλια σχετικά με τη Μονάδα
 		</td>
 	</tr>
+	<tr id="$creation_fek">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$creation_fek</var></code></td>
+		<td>
+			$latitude Γεωγραφικό Πλάτος<br />
+Το Γεωγραφικό Πλάτος της Μονάδας
+		</td>
+	</tr>
 	<tr id="$last_update">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$last_update</var></code></td>
 		<td>
-			$latitude Γεωγραφικό Πλάτος<br />
-Το Γεωγραφικό Πλάτος της Μονάδας
+			$longitude Γεωγραφικό Μήκος<br />
+Το Γεωγραφικό Μήκος της Μονάδας
 		</td>
 	</tr>
 	<tr id="$last_sync">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$last_sync</var></code></td>
 		<td>
-			$longitude Γεωγραφικό Μήκος<br />
-Το Γεωγραφικό Μήκος της Μονάδας
+			$positioning Κτηριακή Θέση<br />
+Η Κτηριακή Θέση της Μονάδας
 		</td>
 	</tr>
 	<tr id="$comments">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$comments</var></code></td>
 		<td>
-			$positioning Κτηριακή Θέση<br />
-Η Κτηριακή Θέση της Μονάδας
+			$creation_fek Φ.Ε.Κ.<br />
+Το Φ.Ε.Κ. (Δημιουργίας) της Μονάδας
 		</td>
 	</tr>
 	<tr id="$fek">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$fek</var></code></td>
 		<td>
-			 Φ.Ε.Κ.<br />
-Το Φ.Ε.Κ. (Αλλαγής Κατάστασης) της Μονάδας
+			
 		</td>
 	</tr>
 	</table>
@@ -913,6 +920,14 @@ class="php-keyword2">log</span>(data);
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidTaxOfficeValue">ExceptionMessages::<b>InvalidTaxOfficeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidFekType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidFekType">ExceptionMessages::<b>InvalidFekType</b></a></code>
 		</td>
 	</tr>
 	</table>

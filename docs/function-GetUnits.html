@@ -7,7 +7,7 @@
 	<title>Function GetUnits | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?678548589"></script>
+	<script type="text/javascript" src="elementlist.js?3744121490"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -73,7 +73,6 @@
 				<li><a href="function-GetTaxOffices.html">GetTaxOffices</a></li>
 				<li><a href="function-GetTransferAreaMunicipalities.html">GetTransferAreaMunicipalities</a></li>
 				<li><a href="function-GetTransferAreas.html">GetTransferAreas</a></li>
-				<li><a href="function-GetTransitions.html">GetTransitions</a></li>
 				<li><a href="function-GetUnitDns.html">GetUnitDns</a></li>
 				<li><a href="function-GetUnitNetworkObjects.html">GetUnitNetworkObjects</a></li>
 				<li><a href="function-GetUnitNetworkSubnets.html">GetUnitNetworkSubnets</a></li>
@@ -508,6 +507,9 @@ class="php-keyword1">null</span>,
 class="php-quote">&quot;positioning&quot;</span>: <span
 class="php-keyword1">null</span>,
    <span
+class="php-quote">&quot;creation_fek&quot;</span>: <span
+class="php-keyword1">null</span>,
+   <span
 class="php-quote">&quot;last_sync&quot;</span>: <span
 class="php-quote">&quot;2013-11-11 22:37:52&quot;</span>,
    <span
@@ -516,32 +518,6 @@ class="php-quote">&quot;2013-10-02 09:51:58&quot;</span>,
    <span
 class="php-quote">&quot;comments&quot;</span>: <span
 class="php-keyword1">null</span>,
-   <span
-class="php-quote">&quot;transitions&quot;</span>: [
-     {
-       <span
-class="php-quote">&quot;transition_id&quot;</span>: <span
-class="php-num">10044</span>,
-       <span
-class="php-quote">&quot;fek&quot;</span>: <span
-class="php-quote">&quot;Προς αναζήτηση&quot;</span>,
-       <span
-class="php-quote">&quot;transition_date&quot;</span>: <span
-class="php-keyword1">null</span>,
-       <span
-class="php-quote">&quot;from_state_id&quot;</span>: <span
-class="php-keyword1">null</span>,
-       <span
-class="php-quote">&quot;from_state&quot;</span>: <span
-class="php-keyword1">null</span>,
-       <span
-class="php-quote">&quot;to_state_id&quot;</span>: <span
-class="php-num">1</span>,
-       <span
-class="php-quote">&quot;to_state&quot;</span>: <span
-class="php-quote">&quot;ΕΝΕΡΓΗ&quot;</span>
-     }
-   ],
    <span
 class="php-quote">&quot;levels&quot;</span>: [
      {
@@ -1851,6 +1827,25 @@ mixed{string|array[string]}
 
 		</td>
 	</tr>
+	<tr id="$creation_fek">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$creation_fek</var></code></td>
+		<td>
+			 Φ.Ε.Κ. (Δημιουργίας)<br />
+Το Φ.Ε.Κ. (Δημιουργίας) της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα Φ.Ε.Κ. Δημιουργίας )</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
 	<tr id="$last_update">
 		<td class="name"><code>midex</code></td>
 		<td class="value"><code><var>$last_update</var></code></td>
@@ -2174,6 +2169,9 @@ mixed{string|array[string]}
 			<li>string : <b>positioning</b> : Η Κτηριακή Θέση της
 			Μονάδας</li>
 
+			<li>string : <b>creation_fek</b> : Το Φ.Ε.Κ. (Δημιουργίας)
+			της Μονάδας</li>
+
 			<li>datetime : <b>last_update</b> : Η Ημερομηνία Τελευταίας
 			Ενημέρωσης της Μονάδας</li>
 
@@ -2183,29 +2181,6 @@ mixed{string|array[string]}
 			<li>string : <b>comments</b> : Παρατηρήσεις - Σχόλια της
 			Μονάδας<br />
 			<br />
-		</li>
-
-			<li>array : <b>transitions</b> : Πίνακας Μεταβάσεων
-			(Λεξικό : <code><a href="function-GetTransitions.html">GetTransitions()</a></code>)
-				<ul>
-					<li>integer : <b>transition_id</b> : Ο Κωδικός της
-					Μετάβασης</li>
-
-					<li>integeσr : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
-
-					<li>string : <b>fek</b> : Ο Αριθμός ΦΕΚ της
-					Ματαβάσης</li>
-
-					<li>date : <b>transition_date</b> : Η Ημερομηνία της
-					Μετάβασης</li>
-
-					<li>string : <b>from_state</b> : Η Αρχική Κατάσταση της
-					Μονάδας κατά την Μετάβαση (Λεξικό : <code><a href="function-GetStates.html">GetStates()</a></code>)</li>
-
-					<li>string : <b>to_state</b> : Η Τελική Κατάσταση της
-					Μονάδας κατά την Μετάβαση (Λεξικό : <code><a href="function-GetStates.html">GetStates()</a></code>)</li>
-				</ul>
-				<br />
 		</li>
 
 			<li>array : <b>unit_ip_dns</b> : Πίνακας Δικτυακών
@@ -2589,6 +2564,14 @@ mixed{string|array[string]}
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidPositioningType">ExceptionMessages::<b>InvalidPositioningType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidFekType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidFekType">ExceptionMessages::<b>InvalidFekType</b></a></code>
 		</td>
 	</tr>
 	<tr>
