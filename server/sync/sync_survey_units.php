@@ -28,7 +28,7 @@ function sync_survey_units()
     $last_sync_time = date('H:i:s');  
     $last_sync = $last_sync_date." ".$last_sync_time;  
 
-    $script_title = "Συγχρονισμός Σχολικών Μονάδες Mysch με ". gethostname();
+    $script_title = "Συγχρονισμός Σχολικών Μονάδες με Mysch";
     echo "==================== ".$script_title." ====================".$br.$br; //$logMessage[] = $script_title."\n\n";
     ob_get_flush(); ob_flush(); flush();
 
@@ -42,7 +42,7 @@ function sync_survey_units()
     }
     else 
     {
-        $msg = "Έναρξη Συγχρονισμού : ".$last_sync;
+        $msg = "Έναρξη Συγχρονισμού για τον server ".gethostname()." : ".$last_sync;
         echo $msg.$br.$br; $logMessage[] = $msg."\n\n";
         ob_get_flush(); ob_flush(); flush();
 
