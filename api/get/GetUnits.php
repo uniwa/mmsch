@@ -1053,7 +1053,7 @@ function GetUnits(
             $export = ExportDataEnumTypes::getValue($export);
         } else
             throw new Exception(ExceptionMessages::InvalidExportType." : ".$export, ExceptionCodes::InvalidExportType);
-        
+      
 //======================================================================================================================
 //= Paging
 //======================================================================================================================
@@ -1065,9 +1065,13 @@ function GetUnits(
         else
             throw new Exception(ExceptionMessages::InvalidSearchType." : ".$searchtype, ExceptionCodes::InvalidSearchType);
 
-       $page = Pagination::getPage($page, $params);
-       $pagesize = Pagination::getPagesize($pagesize, $params);
-
+        $page = Pagination::getPage($page, $params);
+        
+        if ($export == 'XLSX')
+            $pagesize = 2000;
+        else
+            $pagesize = Pagination::getPagesize($pagesize, $params);
+       
 //======================================================================================================================
 //= $mm_id
 //======================================================================================================================
