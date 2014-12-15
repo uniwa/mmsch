@@ -1316,7 +1316,8 @@ function UnitsController()
                 $params["page"],
                 $params["orderby"],
                 $params["ordertype"],
-                $params["searchtype"]
+                $params["searchtype"],
+                $params["export"]
             );
             break;
         case MethodTypes::POST :

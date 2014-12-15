@@ -18,6 +18,7 @@ spl_autoload_register(function($class) {
 });
 
 require_once ('libs/phpCAS/CAS.php');
+require_once ('libs/PHPExcel/Classes/PHPExcel.php');
 require_once('classes/UserRoles.php');
 
 require_once ('classes/OrderTypes.php');
@@ -44,6 +45,7 @@ require_once ('classes/Filters.php');
 
 require_once ('classes/extends/SyncLogsExt.class.php');
 
+require_once ('classes/UnitsExt.php');
 
 //= Connections
 require_once ('../api/get/GetConnections.php');

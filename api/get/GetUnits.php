@@ -1030,9 +1030,9 @@ function GetUnits(
     $transfer_area, $prefecture, $municipality, $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code,
     $tax_number, $tax_office, $area_team_number, $category, $unit_type, $operation_shift, $legal_character, $orientation_type,
     $special_type, $levels_count, $groups_count, $students_count, $latitude, $longitude, $positioning, $creation_fek, $last_update, $last_sync, $comments,
-    $pagesize, $page, $orderby, $ordertype, $searchtype )
+    $pagesize, $page, $orderby, $ordertype, $searchtype, $export )
 {
-    global $db, $entityManager, $app;
+    global $db, $entityManager, $app, $Options;
     
     $filter = array();
     $result = array();
@@ -1045,6 +1045,15 @@ function GetUnits(
 
     try
     {
+        
+//$export=======================================================================       
+        if ( Validator::Missing('export', $params) )
+            $export = ExportDataEnumTypes::JSON;
+        else if ( ExportDataEnumTypes::isValidValue( $export ) || ExportDataEnumTypes::isValidName( $export ) ) {
+            $export = ExportDataEnumTypes::getValue($export);
+        } else
+            throw new Exception(ExceptionMessages::InvalidExportType." : ".$export, ExceptionCodes::InvalidExportType);
+        
 //======================================================================================================================
 //= Paging
 //======================================================================================================================
@@ -3048,13 +3057,29 @@ function GetUnits(
         $result["message"] = "[".__FUNCTION__."]:".$e->getMessage();
     }
 
+//set debug=====================================================================    
     if ( Validator::isTrue( $params["debug"] ) )
     {
         $result["sql"] =  trim(preg_replace('/\s\s+/', ' ', $sql));
     }
 
+//set export format=============================================================    
+    if ($export == 'JSON'){
+        return $result;
+    } else if ($export == 'XLSX') {
+       $xlsx_filename = UnitsExt::ExcelCsvCreate($result, $export);
+       unset($result['data']);
+       return array("result"=>$result,"tmp_xlsx_filepath" => $Options["WebTmpFolder"].$xlsx_filename);
+    } else if ($export == 'CSV'){
+       $csv_filename = UnitsExt::ExcelCsvCreate($result, $export);
+       unset($result['data']);
+       return array("result"=>$result,"tmp_csv_filepath" => $Options["WebTmpFolder"].$csv_filename);
+    } else if ($export == 'PHP_ARRAY'){
+       return print_r($result);
+    } else {     
+       return $result;
+    }
 
-    return $result;
 }
 
 ?>
