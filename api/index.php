@@ -94,6 +94,8 @@ $app->map('/statistic_units', Authentication, UserRolesPermission, StatisticUnit
     ->via(MethodTypes::GET);
 $app->map('/ext_log_entries', Authentication, UserRolesPermission, ExtLogEntriesController)
     ->via(MethodTypes::GET);
+$app->map('/check_required_values', Authentication, UserRolesPermission, CheckRequiredValuesController)
+    ->via(MethodTypes::GET);
 
 $app->get('/docs/*', function () use ($app) {
     $app->redirect("http://mmsch.teiath.gr/docs/");
@@ -1717,6 +1719,31 @@ function ExtLogEntriesController() {
                 $params["ordertype"],
                 $params["searchtype"],
                 $params["datesearchtype"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function CheckRequiredValuesController() {
+    global $app;
+    
+    $params = loadParameters();
+    
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = CheckRequiredValues(
+                $params["selection"],
+                $params["all_data"],
+                $params["category"],
+                $params["unit_type"],
+                $params["state"],
+                $params["source"],
+                $params["export"]
             );
             break;
     }

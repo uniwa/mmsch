@@ -46,7 +46,15 @@ class ExceptionMessages
     const InvalidSearchType = 'Ο Τύπος Αναζήτησης είναι λάθος';
     const InvalidOrderType = 'Ο Τύπος Ταξινόμησης πρέπει να είναι ASC ή DESC';
     const InvalidOrderBy = 'Το Πεδίο Ταξινόμησης πρέπει να είναι κάποιο από τα πεδία που επιστρέφει η συνάρτηση';
-
+    const InvalidExportType = 'Ο Τύπος Επιστροφής Δεδομένων σε συγκεκριμένο format είναι λάθος';
+        
+    const MissingSelectionCheckRequiredParam = 'Το πεδίο Επιλογή Διαδικασίας Null Τιμών είναι υποχρεωτικό πεδίο';
+    const MissingSelectionCheckRequiredValue = 'Το πεδίο Επιλογή Διαδικασίας Null Τιμών πρέπει να έχει τιμή';
+    const InvalidSelectionCheckRequiredType = 'Το πεδίο Επιλογή Διαδικασίας Null Τιμών πρέπει να είναι αριθμητικό';
+    const InvalidSelectionCheckRequiredArray = 'Το πεδίο Επιλογή Διαδικασίας Null Τιμών δεν μπορεί να έχει πολλαπλές τιμές';
+    const InvalidSelectionCheckRequiredValue = 'Το πεδίο Επιλογή Διαδικασίας Null Τιμών πρέπει να έχει τιμή μεταξύ 1-10';
+    const InvalidAllDataSelectionCheckRequiredValue = 'Το πεδίο all_data πρέπει να έχει τιμή true για την επιστροφή περισσότερων αποτελεσμάτων';
+ 
     const MissingXAxisParam = 'Ο Άξονας x είναι υποχρεωτικό πεδίο';
     const MissingXAxisValue = 'Ο Άξονας x πρέπει να έχει τιμή';
     const InvalidXAxisType = 'Ο Άξονας x πρέπει να είναι αλφαριθμητικός';

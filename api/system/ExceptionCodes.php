@@ -70,7 +70,22 @@ class ExceptionCodes
     const InvalidOrderType = 500;
     /** {@see ExceptionMessages::InvalidOrderBy} */
     const InvalidOrderBy = 500;
+    /** {@see ExceptionMessages::InvalidExportType} */   
+    const InvalidExportType = 500;
 
+    /** {@see ExceptionMessages::MissingSelectionCheckRequiredParam} */ 
+    const MissingSelectionCheckRequiredParam = 500;
+    /** {@see ExceptionMessages::MissingSelectionCheckRequiredValue} */    
+    const MissingSelectionCheckRequiredValue = 500;
+    /** {@see ExceptionMessages::InvalidSelectionCheckRequiredType} */     
+    const InvalidSelectionCheckRequiredType = 500;
+    /** {@see ExceptionMessages::InvalidSelectionCheckRequiredArray} */     
+    const InvalidSelectionCheckRequiredArray = 500;
+    /** {@see ExceptionMessages::InvalidSelectionCheckRequiredValue} */     
+    const InvalidSelectionCheckRequiredValue = 500;
+    /** {@see ExceptionMessages::InvalidAllDataSelectionCheckRequiredValue} */  
+    const InvalidAllDataSelectionCheckRequiredValue = 500;
+    
     /** {@see ExceptionMessages::MissingXAxisParam} */
     const MissingXAxisParam = 500;
     /** {@see ExceptionMessages::MissingXAxisValue} */

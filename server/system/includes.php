@@ -26,6 +26,9 @@ require_once ('../api/system/OrderEnumTypes.php');
 require_once ('classes/SearchTypes.php');
 require_once ('../api/system/SearchEnumTypes.php');
 
+require_once ('classes/ExportDataTypes.php');
+require_once ('../api/system/ExportDataEnumTypes.php');
+
 require_once ('../api/system/MethodTypes.php');
 require_once ('../api/system/ExceptionCodes.php');
 require_once ('../api/system/ExceptionMessages.php');
@@ -94,6 +97,7 @@ require_once ('../api/delete/DeleteConnectionUnitNetworkSubnets.php');
 
 //StatisticUnits
 require_once ('../api/get/StatisticUnits.php');
+require_once ('../api/get/CheckRequiredValues.php');
 
 require_once ('../api/get/GetSchoolCommittees.php');
 require_once ('../api/get/GetSources.php');

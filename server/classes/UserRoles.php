@@ -239,6 +239,9 @@ private static $Permissions = array(
     'ext_log_entries' => array(
                                         'GET' => array('USER', 'ADMIN')                                   
                                         ) ,
+    'check_required_values' => array(
+                                    'GET' => array('USER', 'ADMIN')                                   
+                                        ) ,
     );
 
 
