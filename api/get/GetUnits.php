@@ -1067,8 +1067,8 @@ function GetUnits(
 
         $page = Pagination::getPage($page, $params);
         
-        if ($export == 'XLSX')
-            $pagesize = 2000;
+        if ($export == ('XLSX' || 'CSV'))
+            $pagesize = Parameters::ExportPageSize;
         else
             $pagesize = Pagination::getPagesize($pagesize, $params);
        
