@@ -68,7 +68,7 @@ class UnitsExt {
 
         // Set values from get api function to excell cells
         $objPHPExcel->getActiveSheet()->setCellValue("A$i", $lab_data["mm_id"])
-                                        ->setCellValue("B$i", $lab_data["registry_no"])
+                                        ->setCellValue("B$i", $lab_data["registry_no"],PHPExcel_Cell_DataType::TYPE_STRING)
                                         ->setCellValue("C$i", $lab_data["name"])
                                         ->setCellValue("D$i", $lab_data["special_name"])
                                         ->setCellValue("E$i", $lab_data["phone_number"])
