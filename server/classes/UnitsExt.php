@@ -22,23 +22,23 @@ class UnitsExt {
     
     // Create a first sheet
     $objPHPExcel->getActiveSheet()->setCellValue('A1', "Κωδικός ΜΜ");
-    $objPHPExcel->getActiveSheet()->setCellValue('B1', "Κωδικός ΥΠΑΙΠΘ");
+    $objPHPExcel->getActiveSheet()->setCellValue('B1', "Κωδικός ΥΠΑΙΠΘ", PHPExcel_Cell_DataType::TYPE_STRING);
     $objPHPExcel->getActiveSheet()->setCellValue('C1', "Ονομασία");
     $objPHPExcel->getActiveSheet()->setCellValue('D1', "Ειδική Ονομασία");
-    $objPHPExcel->getActiveSheet()->setCellValue('E1', "Τηλέφωνο Επικοινωνίας");
+    $objPHPExcel->getActiveSheet()->setCellValue('E1', "Τηλέφωνο Επικοινωνίας",PHPExcel_Cell_DataType::TYPE_STRING);
     $objPHPExcel->getActiveSheet()->setCellValue('F1', "Ηλεκτρονική Αλληλογραφία");
-    $objPHPExcel->getActiveSheet()->setCellValue('G1', "Αριθμός Τηλεομοιοτυπίας");
+    $objPHPExcel->getActiveSheet()->setCellValue('G1', "Αριθμός Τηλεομοιοτυπίας",PHPExcel_Cell_DataType::TYPE_STRING);
     $objPHPExcel->getActiveSheet()->setCellValue('H1', "Διεύθυνση");
-    $objPHPExcel->getActiveSheet()->setCellValue('I1', "Ταχυδρομικός Κώδικας");
-    $objPHPExcel->getActiveSheet()->setCellValue('J1', "Αριθμός Φορολογικού Μητρώου");
+    $objPHPExcel->getActiveSheet()->setCellValue('I1', "Ταχυδρομικός Κώδικας",PHPExcel_Cell_DataType::TYPE_STRING);
+    $objPHPExcel->getActiveSheet()->setCellValue('J1', "Αριθμός Φορολογικού Μητρώου",PHPExcel_Cell_DataType::TYPE_STRING);
     $objPHPExcel->getActiveSheet()->setCellValue('K1', "Ομάδα Σχολείων");
     $objPHPExcel->getActiveSheet()->setCellValue('L1', "Πλήθος των Τάξεων");
     $objPHPExcel->getActiveSheet()->setCellValue('M1', "Πλήθος των Τμημάτων");
     $objPHPExcel->getActiveSheet()->setCellValue('N1', "Πλήθος των Μαθητών");
-    $objPHPExcel->getActiveSheet()->setCellValue('O1', "Γεωγραφικό Πλάτος");
-    $objPHPExcel->getActiveSheet()->setCellValue('P1', "Γεωγραφικό Μήκο");
+    $objPHPExcel->getActiveSheet()->setCellValue('O1', "Γεωγραφικό Πλάτος",PHPExcel_Cell_DataType::TYPE_STRING);
+    $objPHPExcel->getActiveSheet()->setCellValue('P1', "Γεωγραφικό Μήκος",PHPExcel_Cell_DataType::TYPE_STRING);
     $objPHPExcel->getActiveSheet()->setCellValue('Q1', "Κτηριακή Θέση");
-    $objPHPExcel->getActiveSheet()->setCellValue('R1', "Φ.Ε.Κ. (Δημιουργίας)");
+    $objPHPExcel->getActiveSheet()->setCellValue('R1', "Φ.Ε.Κ. (Δημιουργίας)",PHPExcel_Cell_DataType::TYPE_STRING);
     $objPHPExcel->getActiveSheet()->setCellValue('S1', "Ημερομηνία Τελευταίας Ενημέρωσης");
     $objPHPExcel->getActiveSheet()->setCellValue('T1', "Ημερομηνία Τελευταίου Συγχρονισμού");
     $objPHPExcel->getActiveSheet()->setCellValue('U1', "Παρατηρήσεις - Σχόλια");
@@ -67,46 +67,46 @@ class UnitsExt {
     {    
 
         // Set values from get api function to excell cells
-        $objPHPExcel->getActiveSheet()->setCellValue("A$i", $lab_data["mm_id"])
-                                        ->setCellValue("B$i", $lab_data["registry_no"],PHPExcel_Cell_DataType::TYPE_STRING)
-                                        ->setCellValue("C$i", $lab_data["name"])
-                                        ->setCellValue("D$i", $lab_data["special_name"])
-                                        ->setCellValue("E$i", $lab_data["phone_number"])
-                                        ->setCellValue("F$i", $lab_data["email"])
-                                        ->setCellValue("G$i", $lab_data["fax_number"])
-                                        ->setCellValue("H$i", $lab_data["street_address"])
-                                        ->setCellValue("I$i", $lab_data["postal_code"])
-                                        ->setCellValue("J$i", $lab_data["tax_number"])
-                                        ->setCellValue("K$i", $lab_data["area_team_number"])
-                                        ->setCellValue("L$i", $lab_data["levels_count"])
-                                        ->setCellValue("M$i", $lab_data["groups_count"])
-                                        ->setCellValue("N$i", $lab_data["students_count"])
-                                        ->setCellValue("O$i", $lab_data["latitude"])
-                                        ->setCellValue("P$i", $lab_data["longitude"])
-                                        ->setCellValue("Q$i", $lab_data["positioning"])
-                                        ->setCellValue("R$i", $lab_data["creation_fek"])
-                                        ->setCellValue("S$i", $lab_data["last_update"])
-                                        ->setCellValue("T$i", $lab_data["last_sync"])           
-                                        ->setCellValue("U$i", $lab_data["comments"])
-                                        ->setCellValue("V$i", $lab_data["source"])
-                                        ->setCellValue("W$i", $lab_data["state"])
-                                        ->setCellValue("X$i", $lab_data["region_edu_admin"])
-                                        ->setCellValue("Y$i", $lab_data["edu_admin"])
-                                        ->setCellValue("Z$i", $lab_data["implementation_entity"])
-                                        ->setCellValue("AA$i", $lab_data["transfer_area"])
-                                        ->setCellValue("AB$i", $lab_data["prefecture"])
-                                        ->setCellValue("AC$i", $lab_data["municipality"])
-                                        ->setCellValue("AD$i", $lab_data["education_level"])
-                                        ->setCellValue("AE$i", $lab_data["tax_office"])
-                                        ->setCellValue("AF$i", $lab_data["category"])
-                                        ->setCellValue("AG$i", $lab_data["unit_type"])
-                                        ->setCellValue("AH$i", $lab_data["operation_shift"])
-                                        ->setCellValue("AI$i", $lab_data["legal_character"])
-                                        ->setCellValue("AJ$i", $lab_data["orientation_type"])
-                                        ->setCellValue("AK$i", $lab_data["special_type"])
-                                        ->setCellValue("AL$i", $lab_data["unit_dns"][0]["unit_dns"])
-                                        ->setCellValue("AM$i", $lab_data["unit_dns"][0]["unit_ext_dns"])
-                                    ;
+        $objPHPExcel->getActiveSheet()->setCellValue("A$i", $lab_data["mm_id"]);
+        $objPHPExcel->getActiveSheet()->setCellValueExplicit("B$i", $lab_data["registry_no"],PHPExcel_Cell_DataType::TYPE_STRING);
+        $objPHPExcel->getActiveSheet()->setCellValue("C$i", $lab_data["name"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("D$i", $lab_data["special_name"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("E$i", $lab_data["phone_number"],PHPExcel_Cell_DataType::TYPE_STRING);
+        $objPHPExcel->getActiveSheet()->setCellValue("F$i", $lab_data["email"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("G$i", $lab_data["fax_number"],PHPExcel_Cell_DataType::TYPE_STRING);
+        $objPHPExcel->getActiveSheet()->setCellValue("H$i", $lab_data["street_address"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("I$i", $lab_data["postal_code"],PHPExcel_Cell_DataType::TYPE_STRING);
+        $objPHPExcel->getActiveSheet()->setCellValue("J$i", $lab_data["tax_number"],PHPExcel_Cell_DataType::TYPE_STRING);
+        $objPHPExcel->getActiveSheet()->setCellValue("K$i", $lab_data["area_team_number"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("L$i", $lab_data["levels_count"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("M$i", $lab_data["groups_count"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("N$i", $lab_data["students_count"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("O$i", $lab_data["latitude"],PHPExcel_Cell_DataType::TYPE_STRING);
+        $objPHPExcel->getActiveSheet()->setCellValue("P$i", $lab_data["longitude"],PHPExcel_Cell_DataType::TYPE_STRING);
+        $objPHPExcel->getActiveSheet()->setCellValue("Q$i", $lab_data["positioning"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("R$i", $lab_data["creation_fek"],PHPExcel_Cell_DataType::TYPE_STRING);
+        $objPHPExcel->getActiveSheet()->setCellValue("S$i", $lab_data["last_update"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("T$i", $lab_data["last_sync"]);      
+        $objPHPExcel->getActiveSheet()->setCellValue("U$i", $lab_data["comments"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("V$i", $lab_data["source"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("W$i", $lab_data["state"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("X$i", $lab_data["region_edu_admin"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("Y$i", $lab_data["edu_admin"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("Z$i", $lab_data["implementation_entity"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("AA$i", $lab_data["transfer_area"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("AB$i", $lab_data["prefecture"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("AC$i", $lab_data["municipality"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("AD$i", $lab_data["education_level"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("AE$i", $lab_data["tax_office"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("AF$i", $lab_data["category"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("AG$i", $lab_data["unit_type"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("AH$i", $lab_data["operation_shift"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("AI$i", $lab_data["legal_character"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("AJ$i", $lab_data["orientation_type"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("AK$i", $lab_data["special_type"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("AL$i", $lab_data["unit_dns"][0]["unit_dns"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("AM$i", $lab_data["unit_dns"][0]["unit_ext_dns"]);
+          
         $i++;
 
     }
