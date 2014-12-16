@@ -7,7 +7,7 @@
 	<title>Function GetUnits | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?3744121490"></script>
+	<script type="text/javascript" src="elementlist.js?1769877233"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -45,6 +45,7 @@
 
 			<h3>Functions</h3>
 			<ul>
+				<li><a href="function-CheckRequiredValues.html">CheckRequiredValues</a></li>
 				<li><a href="function-GetCategories.html">GetCategories</a></li>
 				<li><a href="function-GetCircuits.html">GetCircuits</a></li>
 				<li><a href="function-GetCircuitTypes.html">GetCircuitTypes</a></li>
@@ -139,6 +140,24 @@
 href="#$orderby">$orderby</a>) και Τύπος Ταξινόμησης (<a
 href="#$ordertype">$ordertype</a>) μπορεί να καθοριστεί το
 πεδίο και η σειρά ταξινόμησης</p>
+
+<p>Τα αποτελέσματα μπορούν να έχουν
+επιστραφούν σε διαφορετικού Τύπους
+Εξαγωγής Δεδομένων.<br />
+Μέσω των παραμέτρων Τύπος Εξαγωγής
+Δεδομένων (<a href="#$export">$export</a>) μπορεί να
+καθοριστεί ο τύπος εξαγωγής δεδομένων.<br />
+Ο προκαθορισμένος Τύπος Εξαγωγής Δεδομένων
+είναι JSON<br />
+Όταν ο Τύπος Επιστροφής Εξαγωγής έχει τιμή
+XLSX ή CSV τότε η τιμή του pagesize αυτόματα από το
+σύστημα είναι 1000 και δεν μπορεί να
+αλλάξει.<br />
+Σε κάθε περιπτωση που η τιμή του count είναι
+μικρότερη του total για την επιστροφή των όλων
+δεδομένων, πρέπει να υλοποιηθεί κληση του
+ιδίου api request με αυξημένη κατα 1 την τιμή του
+page καθε φορά.</p>
 
 <p><br />
 <b>Πίνακας Παραμέτρων</b><br />
@@ -519,6 +538,9 @@ class="php-quote">&quot;2013-10-02 09:51:58&quot;</span>,
 class="php-quote">&quot;comments&quot;</span>: <span
 class="php-keyword1">null</span>,
    <span
+class="php-quote">&quot;version&quot;</span>: <span
+class="php-num">20</span>,
+   <span
 class="php-quote">&quot;levels&quot;</span>: [
      {
        <span
@@ -888,6 +910,15 @@ class="php-num">1</span>,
 class="php-quote">&quot;unit_network_subnet_type&quot;</span>: <span
 class="php-quote">&quot;LAN&quot;</span>,
       <span
+class="php-quote">&quot;unit_network_object_ip&quot;</span>: <span
+class="php-keyword1">null</span>,
+      <span
+class="php-quote">&quot;unit_network_object_name&quot;</span>: <span
+class="php-keyword1">null</span>,
+      <span
+class="php-quote">&quot;connection_unit_network_subnet_id&quot;</span>: <span
+class="php-num">550</span>,
+      <span
 class="php-quote">&quot;is_connected&quot;</span>: <span
 class="php-keyword1">true</span>
   },
@@ -926,6 +957,15 @@ class="php-num">2</span>,
 class="php-quote">&quot;unit_network_subnet_type&quot;</span>: <span
 class="php-quote">&quot;NAT&quot;</span>,
       <span
+class="php-quote">&quot;unit_network_object_ip&quot;</span>: <span
+class="php-keyword1">null</span>,
+      <span
+class="php-quote">&quot;unit_network_object_name&quot;</span>: <span
+class="php-keyword1">null</span>,
+      <span
+class="php-quote">&quot;connection_unit_network_subnet_id&quot;</span>: <span
+class="php-num">551</span>,
+      <span
 class="php-quote">&quot;is_connected&quot;</span>: <span
 class="php-keyword1">true</span>
   },
@@ -963,6 +1003,15 @@ class="php-num">3</span>,
       <span
 class="php-quote">&quot;unit_network_subnet_type&quot;</span>: <span
 class="php-quote">&quot;ROUTER_IP&quot;</span>,
+      <span
+class="php-quote">&quot;unit_network_object_ip&quot;</span>: <span
+class="php-quote">&quot;81.186.194.195&quot;</span>,
+      <span
+class="php-quote">&quot;unit_network_object_name&quot;</span>: <span
+class="php-quote">&quot;r-100dim-athin&quot;</span>,
+      <span
+class="php-quote">&quot;connection_unit_network_subnet_id&quot;</span>: <span
+class="php-num">552</span>,
       <span
 class="php-quote">&quot;is_connected&quot;</span>: <span
 class="php-keyword1">true</span>
@@ -1054,9 +1103,15 @@ class="php-quote">&quot;unit_network_subnet_type_id&quot;</span>: <span
 class="php-num">1</span>,
       <span
 class="php-quote">&quot;unit_network_subnet_type&quot;</span>: <span
-class="php-quote">&quot;LAN&quot;</span>
+class="php-quote">&quot;LAN&quot;</span>,
+      <span
+class="php-quote">&quot;unit_network_object_ip&quot;</span>: <span
+class="php-keyword1">null</span>,
+      <span
+class="php-quote">&quot;unit_network_object_name&quot;</span>: <span
+class="php-keyword1">null</span>
   },
- {
+  {
       <span
 class="php-quote">&quot;connection_unit_network_subnet_id&quot;</span>: <span
 class="php-num">551</span>,
@@ -1083,9 +1138,15 @@ class="php-quote">&quot;unit_network_subnet_type_id&quot;</span>: <span
 class="php-num">2</span>,
       <span
 class="php-quote">&quot;unit_network_subnet_type&quot;</span>: <span
-class="php-quote">&quot;NAT&quot;</span>
-  },
-  {
+class="php-quote">&quot;NAT&quot;</span>,
+      <span
+class="php-quote">&quot;unit_network_object_ip&quot;</span>: <span
+class="php-keyword1">null</span>,
+      <span
+class="php-quote">&quot;unit_network_object_name&quot;</span>: <span
+class="php-keyword1">null</span>
+   },
+   {
       <span
 class="php-quote">&quot;connection_unit_network_subnet_id&quot;</span>: <span
 class="php-num">552</span>,
@@ -1112,12 +1173,18 @@ class="php-quote">&quot;unit_network_subnet_type_id&quot;</span>: <span
 class="php-num">3</span>,
       <span
 class="php-quote">&quot;unit_network_subnet_type&quot;</span>: <span
-class="php-quote">&quot;ROUTER_IP&quot;</span>
-         }
-         ]
-     }
-   ]
+class="php-quote">&quot;ROUTER_IP&quot;</span>,
+      <span
+class="php-quote">&quot;unit_network_object_ip&quot;</span>: <span
+class="php-quote">&quot;81.186.194.195&quot;</span>,
+      <span
+class="php-quote">&quot;unit_network_object_name&quot;</span>: <span
+class="php-quote">&quot;r-100dim-athin&quot;</span>
+   }
+  ]
  }
+ ]
+}
 ]}
 </pre>
 
@@ -1918,31 +1985,36 @@ mixed{string|array[string]}
 		<td>
 			 Αριθμός Εγγραφών/Σελίδα<br />
 Ο αριθμός των εγγραφών που θα επιστρέψουν
-ανα σελίδα (κλήση)<br />
-Τιμές Παραμέτρων Σελιδοποίησης : <code><a href="class-Parameters.html">Parameters</a></code><br />
+ανα σελίδα<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε θα
-επιστραφούν οι προκαθορισμενες εγγραφές<br
-/>
+επιστραφούν όλες οι εγγραφές (<code><a href="class-Parameters.html#AllPageSize">Parameters::<b>AllPageSize</b></a></code>)<br />
+Λίστα Παραμέτρων Σελιδοποίησης : <code><a href="class-Parameters.html">Parameters</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι : integer
 <ul>
-	<li>integer : Αριθμητική (Από μηδές έως την
-	μέγιστη τιμή)</li>
+	<li>integer<br />
+	Αριθμητική : Η τιμή της παραμέτρου πρέπει να
+	είναι μεγαλύτερη από 0</li>
 </ul>
 
 		</td>
 	</tr>
 	<tr id="$page">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$page</var></code></td>
 		<td>
 			 Αριθμός Σελίδας<br />
-Ο αριθμός της σελίδας με τις $pagesize εγγραφές
-που βρέθηκαν σύμφωμα με τις παραμέτρους<br />
+Ο αριθμός της σελίδας με τις <a
+href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
+σύμφωμα με τις παραμέτρους<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε θα
 επιστραφεί η πρώτη σελίδα<br />
 Η τιμή της παραμέτρου μπορεί να είναι : integer
 <ul>
-	<li>integer : Αριθμητική (Μεγαλύτερη από μηδέν)</li>
+	<li>integer<br />
+	Αριθμητική : Η τιμή της παραμέτρου πρέπει να
+	είναι μεγαλύτερη από 0</li>
 </ul>
 
 		</td>
@@ -1952,14 +2024,18 @@ mixed{string|array[string]}
 		<td class="value"><code><var>$orderby</var></code></td>
 		<td>
 			 Πεδίο Ταξινόμησης<br />
-Το όνομα του πεδίου με το οποίο θα γίνει η
+Το όνομα του πεδίου με το οποίο γίνεται η
 ταξινόμηση των εγγραφών<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε η
-ταξινόμηση θα γίνει με το όνομα<br />
+ταξινόμηση γίνεται με το Όνομα της
+Μονάδας<br />
 Η τιμή της παραμέτρου μπορεί να είναι : string
 <ul>
-	<li>string : Αλφαριθμητική (Οποιοδήποτε πεδίο
-	επιστρέφει ο πίνακας data)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η τιμή της παραμέτρου
+	μπορεί να είναι οποιοδήποτε πεδίο
+	επιστρέφει η συνάρτηση στον πίνακα data</li>
 </ul>
 
 		</td>
@@ -1968,23 +2044,63 @@ mixed{string|array[string]}
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$ordertype</var></code></td>
 		<td>
-			 Τύπος Ταξινόμηση<br />
-Ο τρόπος με τον οποίο θα γίνει η ταξινόμηση
-των εγγραφών η ταξινόμηση των εγγραφών<br />
+			 Τύπος Ταξινόμησης<br />
+Ο Τύπος Ταξινόμησης με τον οποίο γίνεται η
+ταξινόμηση των εγγραφών<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε η
-ταξινόμηση θα γίνει Αύξουσα σειρα (ASC)<br />
+ταξινόμηση γίνεται με Αύξουσα Σειρά (<code><a href="class-OrderEnumTypes.html#ASC">OrderEnumTypes::<b>ASC</b></a></code>)<br />
+Λίστα Τύπων Ταξινόμησης : <code><a href="class-OrderEnumTypes.html">OrderEnumTypes</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι : string
 <ul>
-	<li>string : Αλφαριθμητική (ASC ή DESC)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η τιμή της παραμέτρου
+	μπορεί να είναι ένας από τους Tύπους <code><a href="class-OrderEnumTypes.html">OrderEnumTypes</a></code></li>
 </ul>
 
 		</td>
 	</tr>
 	<tr id="$searchtype">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$searchtype</var></code></td>
 		<td>
-			
+			 Τύπος Αναζήτησης<br />
+Ο Τύπος Αναζήτησης με τον οποίο γίνεται η
+αναζήτηση στον όνομα (<a href="#$name">$name</a>) της
+Μονάδας<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε η
+αναζήτηση στα πεδία αυτά γίνεται με τον
+Τύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code><br />
+Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+<ul>
+	<li>string<br />
+	Αλφαριθμητική : Η τιμή της παραμέτρου
+	μπορεί να είναι ένας από τους Tύπους <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code></li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$export">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$export</var></code></td>
+		<td>
+			 Τύπος Εξαγωγής Δεδομένων<br />
+Ο Τύπος Εξαγωγής Δεδομένων με τον οποίο θα
+γίνει η εξαγωγή σε συγκεκριμένη μορφή τών
+δεδομένων<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε η εξαγωγή
+δεδομένων γίνεται με τον Τύπο <code><a href="class-ExportDataEnumTypes.html#JSON">ExportDataEnumTypes::<b>JSON</b></a></code><br />
+Λίστα Τύπων Εξαγωγής Δεδομένων : <code><a href="class-ExportDataEnumTypes.html">ExportDataEnumTypes</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+<ul>
+	<li>string<br />
+	Αλφαριθμητική : Η τιμή της παραμέτρου
+	μπορεί να είναι ένας από τους Tύπους <code><a href="class-ExportDataEnumTypes.html">ExportDataEnumTypes</a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	</table>
@@ -2183,39 +2299,6 @@ mixed{string|array[string]}
 			<br />
 		</li>
 
-			<li>array : <b>unit_ip_dns</b> : Πίνακας Δικτυακών
-			Στοιχείων (Λεξικό : GetUnitIpDns)
-				<ul>
-					<li>integer : <b>ip_dns_id</b> : Ο Κωδικός των Δικτυακών
-					Στοιχείων</li>
-
-					<li>string : <b>unit_dns</b> : Το DNS της Μονάδας</li>
-
-					<li>string : <b>router_dns</b> : Το DNS του Δρομολογητή</li>
-
-					<li>string : <b>ext_dns</b> : Το DNS του Δρομολογητή</li>
-
-					<li>string : <b>ip_lan</b> : H IP του Τοπικού Δικτύου</li>
-
-					<li>string : <b>ip_lan_mask</b> : Η Μάσκα του Τοπικού
-					Δικτύου(Λεξικό : GetIpMasks)</li>
-
-					<li>string : <b>ip_router</b> : Η IP του Δρομολογητή</li>
-
-					<li>string : <b>ip_nat</b> : Η IP Nat</li>
-
-					<li>string : <b>ip_nat_mask</b> : Η Μάσκα του Δρομολογητή
-					(Λεξικό : GetIpMasks)</li>
-
-					<li>string : <b>username</b> : To username</li>
-
-					<li>string : <b>password</b> : To password</li>
-
-					<li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
-				</ul>
-				<br />
-		</li>
-
 			<li>array : <b>levels</b> : Πίνακας Τάξεων (Λεξικό : <code><a href="function-GetLevels.html">GetLevels()</a></code>)
 				<ul>
 					<li>integer : <b>level_id</b> : Ο Κωδικός της Τάξης</li>
@@ -2312,11 +2395,18 @@ mixed{string|array[string]}
 			<li>array : <b>workers</b> : Πίνακας Εργαζομένων (Λεξικό
 			: <code><a href="function-GetUnitWorkers.html">GetUnitWorkers()</a></code>)
 				<ul>
+					<li>integer : <b>unit_worker_id</b> : Το πρωτεύον κλειδί του
+					πίνακα αντιστοίχησης Εργαζομένων-Θέση
+					Ευθύνης</li>
+
 					<li>integer : <b>worker_id</b> : Ο Κωδικός του
 					Εργαζόμενου</li>
 
 					<li>string : <b>registry_no</b> : Ο Αριθμός Μητρώου του
 					Εργαζόμενου</li>
+
+					<li>string : <b>tax_number</b> : Ο Αριθμός Φορολογικού
+					Μητρώου του Εργαζόμενου</li>
 
 					<li>string : <b>lastname</b> : Το Επώνυμο του
 					Εργαζόμενου</li>
@@ -2324,16 +2414,22 @@ mixed{string|array[string]}
 					<li>string : <b>firstname</b> : Το Όνομα του
 					Εργαζόμενου</li>
 
-					<li>string : <b>tax_number</b> : Ο Αριθμός Φορολογικού
-					Μητρώου του Εργαζόμενου</li>
-
 					<li>string : <b>fathername</b> : Το Πατρώνυμο του
+					Εργαζόμενου</li>
+
+					<li>string : <b>fullname</b> : Το Ονοματεπώνυμο του
 					Εργαζόμενου</li>
 
 					<li>string : <b>sex</b> : Το Φύλο του Εργαζόμενου</li>
 
+					<li>string : <b>worker_specialization_id</b> : Ο Κωδικός της
+					Ειδικότητα του Εργαζομένου</li>
+
 					<li>string : <b>worker_specialization</b> : Η Ειδικότητα του
 					Εργαζομένου (Λεξικό : <code><a href="function-GetWorkerSpecializations.html">GetWorkerSpecializations()</a></code>)</li>
+
+					<li>string : <b>worker_position_id</b> : Ο Κωδικός της Θέση
+					Εργασίας του Εργαζομένου</li>
 
 					<li>string : <b>worker_position</b> : Η Θέση Εργασίας του
 					Εργαζομένου (Λεξικό : <code><a href="function-GetWorkerPositions.html">GetWorkerPositions()</a></code>)</li>
@@ -2343,8 +2439,144 @@ mixed{string|array[string]}
 
 					<li>string : <b>worker_source</b> : Η Πρωτογενής Πηγή του
 					Εργαζομένου (Λεξικό : <code><a href="function-GetSources.html">GetSources()</a></code>)</li>
+				</ul>
+				<br />
+		</li>
 
-					<li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
+			<li>array : <b>unit_dns</b> : Πίνακας DNS Στοιχείων
+			Μονάδας (Λεξικό : <code><a href="function-GetUnitDns.html">GetUnitDns()</a></code>)
+				<ul>
+					<li>integer : <b>unit_dns_id</b> : Ο Κωδικός του DNS
+					Μονάδας</li>
+
+					<li>string : <b>unit_dns</b> : Το Όνομα του DNS Μονάδας</li>
+
+					<li>string : <b>unit_ext_dns</b> : Το Όνομα του ExtDNS
+					Μονάδας</li>
+				</ul>
+				<br />
+		</li>
+
+			<li>array : <b>cpes</b> : Πίνακας Cpes Στοιχείων Μονάδας
+			(Λεξικό : <code><a href="function-GetCpes.html">GetCpes()</a></code>)</li>
+
+			<li>array : <b>ldaps</b> : Πίνακας Ldaps Στοιχείων
+			Μονάδας (Λεξικό : <code><a href="function-GetLdaps.html">GetLdaps()</a></code>)</li>
+
+			<li>array : <b>circuits</b> : Πίνακας με τα
+			Τηλεπικοινωνιακά Κυκλωματα Μονάδας (Λεξικό
+			: <code><a href="function-GetCircuits.html">GetCircuits()</a></code>)
+				<ul>
+					<li>integer : <b>circuit_id</b> : Ο Κωδικός του
+					Τηλεπικοινωνιακού Κυκλώματος</li>
+
+					<li>string : <b>phone_number</b> : Ο Τηλεφωνικός Αριθμός
+					του Τηλεπικοινωνιακού Κυκλώματος</li>
+
+					<li>boolean : <b>status</b> : Ενεργό/Ανενεργό
+					Τηλεπικοινωνιακό Κύκλωμα</li>
+
+					<li>boolean : <b>paid_by_psd</b> : Χρηματοδοτείται από το
+					Π.Σ.Δ.</li>
+
+					<li>date : <b>activated_date</b> : Η Ημερομηνία
+					Εγκατάστασης του Τηλεπικοινωνιακού
+					Κυκλώματος</li>
+
+					<li>date : <b>updated_date</b> : Η Ημερομηνία Ενημέωσης
+					του Τηλεπικοινωνιακού Κυκλώματος</li>
+
+					<li>date : <b>deactivated_date</b> : Η Ημερομηνία
+					Απενεργοποίησης του Τηλεπικοινωνιακού
+					Κυκλώματος</li>
+
+					<li>string : <b>bandwidth</b> : Το Εύρως Ζώνης του
+					Τηλεπικοινωνιακού Κυκλώματος</li>
+
+					<li>string : <b>readspeed</b> : Η Ταχύτητα του
+					Τηλεπικοινωνιακού Κυκλώματος</li>
+
+					<li>integer : <b>circuit_type_id</b> : Ο Κωδικός του Τύπου
+					του Τηλεπικοινωνιακού Κυκλώματος</li>
+
+					<li>string : <b>circuit_type</b> : Ο Τύπος του
+					Τηλεπικοινωνιακού Κυκλώματος (Λεξικό : <code><a href="function-GetCircuitTypes.html">GetCircuitTypes()</a></code>)</li>
+
+					<li>boolean : <b>is_connected</b> : Το Τηλεπικοινωνιακό
+					κύκλωμα ανήκει/δεν ανήκει σε Διασύνδεση</li>
+				</ul>
+				<br />
+		</li>
+
+			<li>array : <b>unit_network_subnets</b> : Πίνακας με στοιχεία
+			για τα Υποδίκτυα Μονάδας (Λεξικό : <code><a href="function-GetUnitNetworkSubnets.html">GetUnitNetworkSubnets()</a></code>)
+				<ul>
+					<li>integer : <b>unit_network_subnet_id</b> : Ο Κωδικός του
+					Υποδικτύου Μονάδας</li>
+
+					<li>string : <b>subnet_name</b> : Το Όνομα του Υποδικτύου
+					Μονάδας</li>
+
+					<li>string : <b>subnet_ip</b> : Η IP Διευθυνση του
+					Υποδικτύου Μονάδας</li>
+
+					<li>string : <b>subnet_default_router</b> : Η Default Gateway του
+					Υποδικτύου Μονάδας</li>
+
+					<li>string : <b>mask</b> : Η Μάσκα του Υποδικτύου
+					Μονάδας.</li>
+
+					<li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας
+					(Μονάδες : <code><a href="function-GetUnits.html">GetUnits()</a></code>)</li>
+
+					<li>string : <b>registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της
+					Μονάδας</li>
+
+					<li>string : <b>unit_name</b> : Το Όνομα της Μονάδας</li>
+
+					<li>string : <b>special_unit_name</b> : Το Προσωνύμιο της
+					Μονάδας</li>
+
+					<li>integer : <b>unit_network_subnet_type_id</b> : Ο Κωδικός του
+					Τύπου Υποδικτύου</li>
+
+					<li>string : <b>unit_network_subnet_type</b> : Ο Τύπος του Τύπου
+					Υποδικτύου (Λεξικό : <code><a href="function-GetUnitNetworkSubnetTypes.html">GetUnitNetworkSubnetTypes()</a></code>)</li>
+
+					<li>string : <b>unit_network_object_ip</b> : Η Διεύθυνση IP του
+					Δικτυακού Αντικειμένου</li>
+
+					<li>string : <b>unit_network_object_name</b> : Το DNS Όνομα του
+					Δικτυακού Αντικειμένου</li>
+
+					<li>integer : <b>connection_unit_network_subnet_id</b> : Το πρωτεύον
+					κλειδί του πίνακα αντιστοίχησης
+					Διασύνδεσης-Υποδίκτυο Μονάδας</li>
+
+					<li>boolean : <b>is_connected</b> : Το Υποδίκτυο Μονάδας
+					ανήκει/δεν ανήκει σε Διασύνδεση</li>
+				</ul>
+				<br />
+		</li>
+
+			<li>array : <b>connection</b> : Πίνακας Διασυνδέσεων
+			Μονάδας (Λεξικό : <code><a href="function-GetConnections.html">GetConnections()</a></code>)
+				<ul>
+					<li>integer : <b>connection_id</b> : Ο Κωδικός της
+					Διασύνδεσης</li>
+
+					<li>array : <b>circuit</b> : Πίνακας με τα
+					Τηλεπικοινωνιακά Κυκλωματα Μονάδας (Λεξικό
+					: <code><a href="function-GetCircuits.html">GetCircuits()</a></code>)</li>
+
+					<li>array : <b>cpe</b> : Πίνακας Cpes Στοιχείων Μονάδας
+					(Λεξικό : <code><a href="function-GetCpes.html">GetCpes()</a></code>)</li>
+
+					<li>array : <b>ldap</b> : Πίνακας Ldaps Στοιχείων Μονάδας
+					(Λεξικό : <code><a href="function-GetLdaps.html">GetLdaps()</a></code>)</li>
+
+					<li>array : <b>unit_network_subnets</b> : Πίνακας με στοιχεία
+					για τα Υποδίκτυα Μονάδας (Λεξικό : <code><a href="function-GetUnitNetworkSubnets.html">GetUnitNetworkSubnets()</a></code>)</li>
 				</ul>
 				<br />
 		</li>
@@ -2358,78 +2590,6 @@ mixed{string|array[string]}
 
 	<table class="summary" id="throws">
 	<caption>Thrown exceptions summary</caption>
-	<tr>
-		<td class="name"><code>
-			InvalidSearchType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidSearchType">ExceptionMessages::<b>InvalidSearchType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			MissingPageValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#MissingPageValue">ExceptionMessages::<b>MissingPageValue</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageArray
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageArray">ExceptionMessages::<b>InvalidPageArray</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageNumber
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageNumber">ExceptionMessages::<b>InvalidPageNumber</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageType">ExceptionMessages::<b>InvalidPageType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			MissingPageSizeValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#MissingPageSizeValue">ExceptionMessages::<b>MissingPageSizeValue</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageSizeArray
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageSizeArray">ExceptionMessages::<b>InvalidPageSizeArray</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageSizeNumber
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageSizeNumber">ExceptionMessages::<b>InvalidPageSizeNumber</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageSizeType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageSizeType">ExceptionMessages::<b>InvalidPageSizeType</b></a></code>
-		</td>
-	</tr>
 	<tr>
 		<td class="name"><code>
 			InvalidUnitMMIDType
@@ -2448,6 +2608,14 @@ mixed{string|array[string]}
 	</tr>
 	<tr>
 		<td class="name"><code>
+			InvalidSourceType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSourceType">ExceptionMessages::<b>InvalidSourceType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
 			InvalidNameType
 		</code></td>
 		<td>
@@ -2460,150 +2628,6 @@ mixed{string|array[string]}
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidSpecialNameType">ExceptionMessages::<b>InvalidSpecialNameType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPhoneNumberType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPhoneNumberType">ExceptionMessages::<b>InvalidPhoneNumberType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidEmailType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidEmailType">ExceptionMessages::<b>InvalidEmailType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidFaxNumberType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidFaxNumberType">ExceptionMessages::<b>InvalidFaxNumberType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPostalCodeType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPostalCodeType">ExceptionMessages::<b>InvalidPostalCodeType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidStreetAddressType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidStreetAddressType">ExceptionMessages::<b>InvalidStreetAddressType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidTaxNumberType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidTaxNumberType">ExceptionMessages::<b>InvalidTaxNumberType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidAreaTeamNumberType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidAreaTeamNumberType">ExceptionMessages::<b>InvalidAreaTeamNumberType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidLevelsCountType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidLevelsCountType">ExceptionMessages::<b>InvalidLevelsCountType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidStudentsCountType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidStudentsCountType">ExceptionMessages::<b>InvalidStudentsCountType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidGroupsCountType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidGroupsCountType">ExceptionMessages::<b>InvalidGroupsCountType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidLatitudeType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidLatitudeType">ExceptionMessages::<b>InvalidLatitudeType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidLongitudeType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidLongitudeType">ExceptionMessages::<b>InvalidLongitudeType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPositioningType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPositioningType">ExceptionMessages::<b>InvalidPositioningType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidFekType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidFekType">ExceptionMessages::<b>InvalidFekType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidLastUpdateType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidLastUpdateType">ExceptionMessages::<b>InvalidLastUpdateType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidLastSyncType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidLastSyncType">ExceptionMessages::<b>InvalidLastSyncType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidCommentsType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidCommentsType">ExceptionMessages::<b>InvalidCommentsType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidSourceType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidSourceType">ExceptionMessages::<b>InvalidSourceType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -2672,10 +2696,66 @@ mixed{string|array[string]}
 	</tr>
 	<tr>
 		<td class="name"><code>
+			InvalidPhoneNumberType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPhoneNumberType">ExceptionMessages::<b>InvalidPhoneNumberType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEmailType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEmailType">ExceptionMessages::<b>InvalidEmailType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidFaxNumberType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidFaxNumberType">ExceptionMessages::<b>InvalidFaxNumberType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidStreetAddressType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidStreetAddressType">ExceptionMessages::<b>InvalidStreetAddressType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPostalCodeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPostalCodeType">ExceptionMessages::<b>InvalidPostalCodeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidTaxNumberType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidTaxNumberType">ExceptionMessages::<b>InvalidTaxNumberType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
 			InvalidTaxOfficeType
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidTaxOfficeType">ExceptionMessages::<b>InvalidTaxOfficeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidAreaTeamNumberType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidAreaTeamNumberType">ExceptionMessages::<b>InvalidAreaTeamNumberType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -2728,10 +2808,178 @@ mixed{string|array[string]}
 	</tr>
 	<tr>
 		<td class="name"><code>
+			InvalidLevelsCountType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLevelsCountType">ExceptionMessages::<b>InvalidLevelsCountType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidGroupsCountType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidGroupsCountType">ExceptionMessages::<b>InvalidGroupsCountType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidStudentsCountType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidStudentsCountType">ExceptionMessages::<b>InvalidStudentsCountType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLatitudeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLatitudeType">ExceptionMessages::<b>InvalidLatitudeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLongitudeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLongitudeType">ExceptionMessages::<b>InvalidLongitudeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPositioningType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPositioningType">ExceptionMessages::<b>InvalidPositioningType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidFekType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidFekType">ExceptionMessages::<b>InvalidFekType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLastUpdateType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLastUpdateType">ExceptionMessages::<b>InvalidLastUpdateType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLastSyncType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLastSyncType">ExceptionMessages::<b>InvalidLastSyncType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidCommentsType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidCommentsType">ExceptionMessages::<b>InvalidCommentsType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingPageValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingPageValue">ExceptionMessages::<b>MissingPageValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageArray">ExceptionMessages::<b>InvalidPageArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageNumber
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageNumber">ExceptionMessages::<b>InvalidPageNumber</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageType">ExceptionMessages::<b>InvalidPageType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingPageSizeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingPageSizeValue">ExceptionMessages::<b>MissingPageSizeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageSizeArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageSizeArray">ExceptionMessages::<b>InvalidPageSizeArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageSizeNumber
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageSizeNumber">ExceptionMessages::<b>InvalidPageSizeNumber</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageSizeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageSizeType">ExceptionMessages::<b>InvalidPageSizeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOrderBy
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOrderBy">ExceptionMessages::<b>InvalidOrderBy</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
 			InvalidOrderType
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidOrderType">ExceptionMessages::<b>InvalidOrderType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSearchType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSearchType">ExceptionMessages::<b>InvalidSearchType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidExportType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidExportType">ExceptionMessages::<b>InvalidExportType</b></a></code>
 		</td>
 	</tr>
 	</table>
