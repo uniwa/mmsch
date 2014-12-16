@@ -35,7 +35,7 @@ class Parameters
     const MaxPageSize = 500;
   
     /**
-    * Ο μέγιστος αριθμός εγγραφών που μπορούν να επιστραφούν ανά κλήση για format excell/csv
+    * Ο μέγιστος αριθμός εγγραφών που μπορούν να επιστραφούν ανά κλήση για export format excell/csv
     */
     const ExportPageSize = 1000;
     
