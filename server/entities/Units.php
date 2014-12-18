@@ -51,7 +51,6 @@ class Units
      * @var integer
      *
      * @ORM\Column(name="area_team_number", type="integer", nullable=true)
-     * @Gedmo\Versioned
      */
     private $areaTeamNumber;
 
