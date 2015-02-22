@@ -27,7 +27,9 @@ class ExceptionCodes
 
     /** {@see ExceptionMessages::Unauthorized} */
     const Unauthorized = 401;
+    /** {@see ExceptionMessages::UserAccesDenied} */
     const UserAccesDenied = 401;
+    /** {@see ExceptionMessages::UserNoPermissions} */
     const UserNoPermissions = 401;
 
 
@@ -70,7 +72,22 @@ class ExceptionCodes
     const InvalidOrderType = 500;
     /** {@see ExceptionMessages::InvalidOrderBy} */
     const InvalidOrderBy = 500;
+    /** {@see ExceptionMessages::InvalidExportType} */   
+    const InvalidExportType = 500;
 
+    /** {@see ExceptionMessages::MissingSelectionCheckRequiredParam} */ 
+    const MissingSelectionCheckRequiredParam = 500;
+    /** {@see ExceptionMessages::MissingSelectionCheckRequiredValue} */    
+    const MissingSelectionCheckRequiredValue = 500;
+    /** {@see ExceptionMessages::InvalidSelectionCheckRequiredType} */     
+    const InvalidSelectionCheckRequiredType = 500;
+    /** {@see ExceptionMessages::InvalidSelectionCheckRequiredArray} */     
+    const InvalidSelectionCheckRequiredArray = 500;
+    /** {@see ExceptionMessages::InvalidSelectionCheckRequiredValue} */     
+    const InvalidSelectionCheckRequiredValue = 500;
+    /** {@see ExceptionMessages::InvalidAllDataSelectionCheckRequiredValue} */  
+    const InvalidAllDataSelectionCheckRequiredValue = 500;
+    
     /** {@see ExceptionMessages::MissingXAxisParam} */
     const MissingXAxisParam = 500;
     /** {@see ExceptionMessages::MissingXAxisValue} */
@@ -125,6 +142,7 @@ class ExceptionCodes
     const DuplicatedCategoryValue = 500;
 
     //= GetLdaps
+    /** {@see ExceptionMessages::MissingUnitID} */
     const MissingUnitID = 500;
 
     //= GetSchoolCommittees
@@ -170,11 +188,11 @@ class ExceptionCodes
 
 
     //= GetUnitDns
-    /** {@see ExceptionMessages::InvalidUnitDNSType} */
+   /** {@see ExceptionMessages::InvalidUnitDNSType} */
     const InvalidUnitDNSType = 500;
-    /** {@see ExceptionMessages::InvalidExtUnitDnsType} */
+   /** {@see ExceptionMessages::InvalidExtUnitDnsType} */
     const InvalidExtUnitDnsType = 500;
-    /** {@see ExceptionMessages::InvalidUnitUIDType} */
+   /** {@see ExceptionMessages::InvalidUnitUIDType} */
     const InvalidUnitUIDType = 500;
 
 
@@ -636,13 +654,13 @@ class ExceptionCodes
     const DuplicatedEduAdminValue = 500;
 
     //= GetWorkerSpecializations
-    /** {@see ExceptionMessages::MissingSpecializationIDParam} */
+    /** {@see ExceptionMessages::MissingWorkerSpecializationIDParam} */
     const MissingWorkerSpecializationIDParam = 500;
-    /** {@see ExceptionMessages::MissingSpecializationIDValue} */
+    /** {@see ExceptionMessages::MissingWorkerSpecializationIDValue} */
     const MissingWorkerSpecializationIDValue = 500;
-    /** {@see ExceptionMessages::InvalidSpecializationIDType} */
+    /** {@see ExceptionMessages::InvalidWorkerSpecializationIDType} */
     const InvalidWorkerSpecializationIDType = 500;
-    /** {@see ExceptionMessages::InvalidSpecializationIDArray} */
+    /** {@see ExceptionMessages::InvalidWorkerSpecializationIDArray} */
     const InvalidWorkerSpecializationIDArray = 500;
     /** {@see ExceptionMessages::MissingWorkerSpecializationValue} */
     const MissingWorkerSpecializationValue = 500;
@@ -783,7 +801,7 @@ class ExceptionCodes
 
         /** {@see ExceptionMessages::MissingCircuitPhoneNumberParam} */
     const MissingCircuitPhoneNumberParam = 500;
-    /** {@see ExceptionMessages::MissingCircuitPhoneNumberDValue} */
+    /** {@see ExceptionMessages::MissingCircuitPhoneNumberValue} */
     const MissingCircuitPhoneNumberValue = 500;
     /** {@see ExceptionMessages::InvalidCircuitPhoneNumberType} */
     const InvalidCircuitPhoneNumberType = 500;
@@ -1088,21 +1106,6 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidGuestUnitType} */
     const InvalidGuestUnitType = 500;
 
-
-
-
-
-
-    //= GetTransitions
-    /** {@see ExceptionMessages::InvalidGuestUnitType} */
-    const InvalidFromStateType = 500;
-    /** {@see ExceptionMessages::InvalidGuestUnitType} */
-    const InvalidToStateType = 500;
-
-
-
-
-
     //= GetLevels
     /** {@see ExceptionMessages::MissingLevelIDParam} */
     const MissingLevelIDParam = 500;
@@ -1173,8 +1176,8 @@ class ExceptionCodes
     const DuplicatedConnectionCircuitValue = 500;
     /** {@see ExceptionMessages::DuplicatedConnectionLdapValue} */
     const DuplicatedConnectionLdapValue = 500;
-    /** {@see ExceptionMessages::DifferenceConnectioCircuitMMIdValue} */
-    const DifferenceConnectionCircuitMMIdValue = 500;
+    /** {@see ExceptionMessages::DifferenceConnectionCircuitMMIdValue} */
+    const DifferenceConnectionCircuitMMIdValue = 500;/**
     /** {@see ExceptionMessages::DifferenceConnectionLdapMMIdValue} */
     const DifferenceConnectionLdapMMIdValue = 500;
     /** {@see ExceptionMessages::DifferenceConnectionCpeMMIdValue} */
@@ -1220,95 +1223,98 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidMMIdValue} */
     const InvalidMMIdValue = 500;
 
-
-      
-
-
-
-
-
-
-
-
-
-
+    /** {@see ExceptionMessages::InvalidIpNatMaskType} */
     const InvalidIpNatMaskType = 500;
+    /** {@see ExceptionMessages::InvalidIpLanMaskType} */
     const InvalidIpLanMaskType = 500;
 
-
-          
-
-
-
-    
-    
-    
-    
-    
-    
-
-
-
-    
-
-    
-    
+    /** {@see ExceptionMessages::InvalidSpecialNameType} */
     const InvalidSpecialNameType = 500;
-
+    /** {@see ExceptionMessages::InvalidPhoneNumberType} */
     const InvalidPhoneNumberType = 500;
+    /** {@see ExceptionMessages::InvalidFaxNumberType} */
     const InvalidFaxNumberType = 500;
+    /** {@see ExceptionMessages::InvalidEmailType} */
     const InvalidEmailType = 500;
+    /** {@see ExceptionMessages::InvalidStreetAddressType} */
     const InvalidStreetAddressType = 500;
+    /** {@see ExceptionMessages::InvalidPostalCodeType} */
     const InvalidPostalCodeType = 500;
+    /** {@see ExceptionMessages::InvalidTaxNumberType} */
     const InvalidTaxNumberType = 500;
+    /** {@see ExceptionMessages::InvalidAreaTeamNumberType} */
     const InvalidAreaTeamNumberType = 500;
+    /** {@see ExceptionMessages::InvalidLevelsCountType} */
     const InvalidLevelsCountType = 500;
+    /** {@see ExceptionMessages::InvalidGroupsCountType} */
     const InvalidGroupsCountType = 500;
+    /** {@see ExceptionMessages::InvalidStudentsCountType} */
     const InvalidStudentsCountType = 500;
+    /** {@see ExceptionMessages::InvalidLatitudeType} */
     const InvalidLatitudeType = 500;
+    /** {@see ExceptionMessages::InvalidLongitudeType} */
     const InvalidLongitudeType = 500;
+    /** {@see ExceptionMessages::InvalidPositioningType} */
     const InvalidPositioningType = 500;
+    /** {@see ExceptionMessages::InvalidLastUpdateType} */
     const InvalidLastUpdateType = 500;
+    /** {@see ExceptionMessages::InvalidLastSyncType} */
     const InvalidLastSyncType = 500;
+    /** {@see ExceptionMessages::InvalidFekType} */
     const InvalidFekType = 500;
+    /** {@see ExceptionMessages::InvalidCommentsType} */
     const InvalidCommentsType = 500;
-    
+   
+    /** {@see ExceptionMessages::InvalidWorkerLastnameType} */
     const InvalidWorkerLastnameType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerFirstnameType} */
     const InvalidWorkerFirstnameType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerFathernameType} */
     const InvalidWorkerFathernameType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerSexType} */
     const InvalidWorkerSexType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerTaxNumberType} */
     const InvalidWorkerTaxNumberType = 500;
 
-
-    
+    /** {@see ExceptionMessages::MissingConnectivityTypeValue} */
     const MissingConnectivityTypeValue = 500;
+    /** {@see ExceptionMessages::MissingConnectivityTypeParam} */
     const MissingConnectivityTypeParam = 500;
+    /** {@see ExceptionMessages::InvalidConnectivityTypeValue} */
     const InvalidConnectivityTypeValue = 500;
+    /** {@see ExceptionMessages::InvalidConnectivityTypeType} */
     const InvalidConnectivityTypeType = 500;
+    /** {@see ExceptionMessages::DuplicatedConnectivityTypeValue} */
     const DuplicatedConnectivityTypeValue = 500;
+    /** {@see ExceptionMessages::MissingConnectivityTypeIDParam} */
     const MissingConnectivityTypeIDParam = 500;
+    /** {@see ExceptionMessages::MissingConnectivityTypeIDValue} */
     const MissingConnectivityTypeIDValue = 500;
+    /** {@see ExceptionMessages::InvalidConnectivityTypeIDType} */
     const InvalidConnectivityTypeIDType = 500;
-    
 
-
-       
-
-    
+     /** {@see ExceptionMessages::MissingHostMMIdValue} */
     const MissingHostMMIdValue = 500;
+    /** {@see ExceptionMessages::InvalidHostMMIdType} */
     const InvalidHostMMIdType  = 500;
+    /** {@see ExceptionMessages::InvalidHostMMIdValue} */
     const InvalidHostMMIdValue = 500;
+    /** {@see ExceptionMessages::MissingGuestMMIdValue} */
     const MissingGuestMMIdValue = 500;
+    /** {@see ExceptionMessages::InvalidGuestMMIdType} */
     const InvalidGuestMMIdType  = 500;
+    /** {@see ExceptionMessages::InvalidGuestMMIdValue} */
     const InvalidGuestMMIdValue = 500;
 
+    /** {@see ExceptionMessages::MissingRelationIDValue} */
     const MissingRelationIDValue = 500;
+    /** {@see ExceptionMessages::InvalidRelationIDType} */
     const InvalidRelationIDType  = 500;
-    const InvalidRelationValue  = 500;
+    /** {@see ExceptionMessages::InvalidRelationValue} */
+    const InvalidRelationValue  = 500;    
+    /** {@see ExceptionMessages::DuplicatedRelationValue} */
     const DuplicatedRelationValue  = 500;
-
-
-    
+  
 }
 
 ?>

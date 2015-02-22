@@ -71,8 +71,6 @@ $app->map('/unit_workers', Authentication, UserRolesPermission, UnitWorkersContr
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/relations', Authentication, UserRolesPermission, RelationsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/transitions', Authentication, UserRolesPermission, TransitionsController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/connections', Authentication, UserRolesPermission, ConnectionsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/units', Authentication, UserRolesPermission, UnitsController)
@@ -95,6 +93,8 @@ $app->map('/connection_unit_network_subnets', Authentication, UserRolesPermissio
 $app->map('/statistic_units', Authentication, UserRolesPermission, StatisticUnitsController)
     ->via(MethodTypes::GET);
 $app->map('/ext_log_entries', Authentication, UserRolesPermission, ExtLogEntriesController)
+    ->via(MethodTypes::GET);
+$app->map('/check_required_values', Authentication, UserRolesPermission, CheckRequiredValuesController)
     ->via(MethodTypes::GET);
 
 $app->get('/docs/*', function () use ($app) {
@@ -1162,42 +1162,6 @@ function RelationsController()
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
 
-
-function TransitionsController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetTransitions(
-                $params["unit"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"]
-            );
-            break;
-//        case MethodTypes::POST :
-//            $result = PostTransitions(
-//                $params["mm_id"],
-//                $params-
-//                $params["transition_date,
-//                $params["from_state"],
-//                $params["to_state
-//            );
-//            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-
 function ConnectionsController()
 {
     global $app;
@@ -1344,6 +1308,7 @@ function UnitsController()
                 $params["latitude"],
                 $params["longitude"],
                 $params["positioning"],
+                $params["creation_fek"],
                 $params["last_update"],
                 $params["last_sync"],
                 $params["comments"],
@@ -1351,7 +1316,8 @@ function UnitsController()
                 $params["page"],
                 $params["orderby"],
                 $params["ordertype"],
-                $params["searchtype"]
+                $params["searchtype"],
+                $params["export"]
             );
             break;
         case MethodTypes::POST :
@@ -1389,6 +1355,7 @@ function UnitsController()
                 in_array ("latitude", $parameters) ? $params["latitude"] : _MISSED_,
                 in_array ("longitude", $parameters) ? $params["longitude"] : _MISSED_,
                 in_array ("positioning", $parameters) ? $params["positioning"] : _MISSED_,
+                in_array ("creation_fek", $parameters) ? $params["creation_fek"] : _MISSED_,
                 in_array ("last_update", $parameters) ? $params["last_update"] : _MISSED_,
                 in_array ("last_sync", $parameters) ? $params["last_sync"] : _MISSED_,
                 in_array ("comments", $parameters) ? $params["comments"] : _MISSED_,
@@ -1431,6 +1398,7 @@ function UnitsController()
                 in_array ("latitude", $parameters) ? $params["latitude"] : _MISSED_,
                 in_array ("longitude", $parameters) ? $params["longitude"] : _MISSED_,
                 in_array ("positioning", $parameters) ? $params["positioning"] : _MISSED_,
+                in_array ("creation_fek", $parameters) ? $params["creation_fek"] : _MISSED_,
                 in_array ("last_update", $parameters) ? $params["last_update"] : _MISSED_,
                 in_array ("last_sync", $parameters) ? $params["last_sync"] : _MISSED_,
                 in_array ("comments", $parameters) ? $params["comments"] : _MISSED_,
@@ -1752,6 +1720,31 @@ function ExtLogEntriesController() {
                 $params["ordertype"],
                 $params["searchtype"],
                 $params["datesearchtype"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function CheckRequiredValuesController() {
+    global $app;
+    
+    $params = loadParameters();
+    
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = CheckRequiredValues(
+                $params["selection"],
+                $params["all_data"],
+                $params["category"],
+                $params["unit_type"],
+                $params["state"],
+                $params["source"],
+                $params["export"]
             );
             break;
     }

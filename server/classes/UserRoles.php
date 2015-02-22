@@ -172,12 +172,6 @@ private static $Permissions = array(
                                         'PUT' => array('ADMIN'),
                                         'DELETE' => array('ADMIN'),
                                         ) ,
-    'transitions'           => array(
-                                        'GET' => array('USER', 'ADMIN'),
-                                        'POST' => array('ADMIN'),
-                                        'PUT' => array('ADMIN'),
-                                        'DELETE' => array('ADMIN'),
-                                        ) ,
     'connections'    => array(
                                         'GET' => array('USER', 'ADMIN'),
                                         'POST' => array('USER', 'ADMIN'),
@@ -244,6 +238,9 @@ private static $Permissions = array(
     
     'ext_log_entries' => array(
                                         'GET' => array('USER', 'ADMIN')                                   
+                                        ) ,
+    'check_required_values' => array(
+                                    'GET' => array('USER', 'ADMIN')                                   
                                         ) ,
     );
 

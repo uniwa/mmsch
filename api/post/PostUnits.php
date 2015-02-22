@@ -249,8 +249,8 @@ header("Content-Type: text/html; charset=utf-8");
  * @param string $positioning Κτηριακή Θέση 
  * <br>Η Κτηριακή Θέση της Μονάδας
  * 
- * @param string $fek Φ.Ε.Κ.
- * <br>Το Φ.Ε.Κ. (Αλλαγής Κατάστασης) της Μονάδας
+ * @param string $creation_fek Φ.Ε.Κ.
+ * <br>Το Φ.Ε.Κ. (Δημιουργίας) της Μονάδας
  * 
  * 
  * 
@@ -291,6 +291,7 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws InvalidOrientationTypeValue {@see ExceptionMessages::InvalidOrientationTypeValue}
  * @throws InvalidSpecialTypeValue {@see ExceptionMessages::InvalidSpecialTypeValue}
  * @throws InvalidTaxOfficeValue {@see ExceptionMessages::InvalidTaxOfficeValue}
+ * @throws InvalidFekType {@see ExceptionMessages::InvalidFekType}
  * 
  */
 
@@ -300,13 +301,12 @@ function PostUnits(
     $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code, 
     $tax_number, $tax_office, $area_team_number, $category, $unit_type, $operation_shift, 
     $legal_character, $orientation_type, $special_type, $levels_count, $groups_count, 
-    $students_count, $latitude, $longitude, $positioning, $last_update, $last_sync, 
+    $students_count, $latitude, $longitude, $positioning, $creation_fek, $last_update, $last_sync, 
     $comments, $fek )
 {
     global $db, $entityManager;
 
     $unit = new Units();
-    $transition = new Transitions();
     $result = array();
 
     $result["method"] = __FUNCTION__;
@@ -337,7 +337,6 @@ function PostUnits(
 //==============================================================================
 
         CRUDUtils::entitySetAssociation($unit, $state, 'States', 'state', 'State');
-        CRUDUtils::entitySetAssociation($transition, $state, 'States', 'toState', 'State');
 
 //==============================================================================
 
@@ -444,6 +443,10 @@ function PostUnits(
         CRUDUtils::entitySetParam($unit, $positioning, ExceptionCodes::InvalidPositioningType, 'positioning');
 
 //==============================================================================
+        
+        CRUDUtils::entitySetParam($unit, $creation_fek, ExceptionCodes::InvalidFekType, 'creation_fek');
+        
+//==============================================================================
 
         CRUDUtils::entitySetParam($unit, $last_update, ExceptionCodes::InvalidLastUpdateType, 'last_update');
 
@@ -457,22 +460,13 @@ function PostUnits(
 
 //==============================================================================
 
-        CRUDUtils::entitySetParam($transition, $fek, ExceptionCodes::InvalidFekType, 'fek');
-
-//==============================================================================
-
         $entityManager->persist($unit);
-        if ( $entityManager->flush($unit) )
-        {
-            $transition->setMm($unit);
-            $entityManager->persist($transition);
-            $entityManager->flush($transition);
+        $entityManager->flush($unit);
 
 //==============================================================================
 
             //SendMail('mm@sch.gr', 'Δημιουργία Μονάδας', 'Δημιουργία Μονάδας με κωδικό ΜΜ : '.$mm_id);
-        }
-      
+          
         $result["status"] = ExceptionCodes::NoErrors;;
         $result["message"] = ExceptionMessages::NoErrors;
         $result["mm_id"] = $unit->getMmId();

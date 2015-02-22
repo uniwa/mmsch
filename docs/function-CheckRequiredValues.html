@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Function CheckRequiredValues | mm.sch.gr</title>
+
+	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
+	<script type="text/javascript" src="elementlist.js?1769877233"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li class="active"><a href="package-GET.html">GET</a>
+						</li>
+				<li><a href="package-POST.html">POST</a>
+						</li>
+				<li><a href="package-PUT.html">PUT</a>
+						</li>
+				<li><a href="package-System.html">System</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+
+
+
+
+
+			<h3>Functions</h3>
+			<ul>
+				<li class="active"><a href="function-CheckRequiredValues.html">CheckRequiredValues</a></li>
+				<li><a href="function-GetCategories.html">GetCategories</a></li>
+				<li><a href="function-GetCircuits.html">GetCircuits</a></li>
+				<li><a href="function-GetCircuitTypes.html">GetCircuitTypes</a></li>
+				<li><a href="function-GetConnections.html">GetConnections</a></li>
+				<li><a href="function-GetConnectionUnitNetworkSubnets.html">GetConnectionUnitNetworkSubnets</a></li>
+				<li><a href="function-GetCpes.html">GetCpes</a></li>
+				<li><a href="function-GetEduAdmins.html">GetEduAdmins</a></li>
+				<li><a href="function-GetEducationLevels.html">GetEducationLevels</a></li>
+				<li><a href="function-GetExtLogEntries.html">GetExtLogEntries</a></li>
+				<li><a href="function-GetGroups.html">GetGroups</a></li>
+				<li><a href="function-GetImplementationEntities.html">GetImplementationEntities</a></li>
+				<li><a href="function-GetLdaps.html">GetLdaps</a></li>
+				<li><a href="function-GetLegalCharacters.html">GetLegalCharacters</a></li>
+				<li><a href="function-GetLevels.html">GetLevels</a></li>
+				<li><a href="function-GetMunicipalities.html">GetMunicipalities</a></li>
+				<li><a href="function-GetOperationShifts.html">GetOperationShifts</a></li>
+				<li><a href="function-GetOrientationTypes.html">GetOrientationTypes</a></li>
+				<li><a href="function-GetPrefectures.html">GetPrefectures</a></li>
+				<li><a href="function-GetRegionEduAdmins.html">GetRegionEduAdmins</a></li>
+				<li><a href="function-GetRelations.html">GetRelations</a></li>
+				<li><a href="function-GetRelationTypes.html">GetRelationTypes</a></li>
+				<li><a href="function-GetSchoolCommittees.html">GetSchoolCommittees</a></li>
+				<li><a href="function-GetSources.html">GetSources</a></li>
+				<li><a href="function-GetSpecialTypes.html">GetSpecialTypes</a></li>
+				<li><a href="function-GetStates.html">GetStates</a></li>
+				<li><a href="function-GetTaxOffices.html">GetTaxOffices</a></li>
+				<li><a href="function-GetTransferAreaMunicipalities.html">GetTransferAreaMunicipalities</a></li>
+				<li><a href="function-GetTransferAreas.html">GetTransferAreas</a></li>
+				<li><a href="function-GetUnitDns.html">GetUnitDns</a></li>
+				<li><a href="function-GetUnitNetworkObjects.html">GetUnitNetworkObjects</a></li>
+				<li><a href="function-GetUnitNetworkSubnets.html">GetUnitNetworkSubnets</a></li>
+				<li><a href="function-GetUnitNetworkSubnetTypes.html">GetUnitNetworkSubnetTypes</a></li>
+				<li><a href="function-GetUnits.html">GetUnits</a></li>
+				<li><a href="function-GetUnitTypes.html">GetUnitTypes</a></li>
+				<li><a href="function-GetUnitWorkers.html">GetUnitWorkers</a></li>
+				<li><a href="function-GetWorkerPositions.html">GetWorkerPositions</a></li>
+				<li><a href="function-GetWorkers.html">GetWorkers</a></li>
+				<li><a href="function-GetWorkerSpecializations.html">GetWorkerSpecializations</a></li>
+				<li><a href="function-StatisticUnits.html">StatisticUnits</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-GET.html" title="Summary of GET"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Function</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="function">
+	<h1>Function CheckRequiredValues</h1>
+
+
+	<div class="description">
+	
+<p>Συνάρτηση εύρεσης κενών τιμών σε
+"υποχρεωτικά" πεδία μονάδων.</p>
+
+<p>Η συνάρτηση καλείται με την GET
+/api/check_required_values Δέχεται τις παρακάτω
+παραμέτρους:<br />
+1) Επιλογή διαδικασίας (Η οποία μπορεί να
+δεχτεί αριθμητικές τιμές από το 1-10 και κάθε
+μία αντιστοιχεί σε συγκεκριμένο ερώτημα
+στην β.δ.) "selection" -&gt;<br />
+1 : null region_edu_admin (χωρίς περιφέρεια)<br />
+2 : null edu_admin (χωρίς διεύθυνση εκπαίδευσης)<br />
+3 : null transfer_area (χωρίς περιοχή μετάθεσης)<br />
+4 : null prefecture (χωρίς νομό)<br />
+5 : null municipality (χωρίς δήμο)<br />
+6 : null operation_shift (χωρίς ωράριο λειτουργίας)<br />
+7 : null legal_character (χωρίς νομικό χαρακτήρα)<br />
+8 : null implementation_entity (χωρίς φορέα υλοποίησης)<br
+/>
+9 : null unit_type (χωρίς τύπο μονάδας)<br />
+10 : null category (χωρίς κατηγορία)</p>
+
+<p>2) Φίλτρα αναζήτησης (μπορούν προστεθούν
+επιπλέον φίλτρα αναζήτησης σε κάθε επιλογή
+διαδικασίας για πιο αναλυτικά
+αποτελέσματα)<br />
+"category" -&gt; Κατηγορία Μονάδων<br />
+"unit_type" -&gt; Τύποι Μονάδων<br />
+"state" -&gt; Λειτουργική Κατάσταση Μονάδων<br />
+"source" -&gt; Πρωτογενής Πηγή Μονάδων</p>
+
+<p>3) Τύπος εξαγωγής δεδομένων "export" -&gt;
+Υποστηρίζεται η εξαγωγή δεδομένων σε format JSON
+και PHP_ARRAY, με χρήση της αντίστοιχης τιμής.</p>
+
+<p>4) Επιστροφή περισσότερων αποτελεσμάτων
+"all_data" -&gt; Επιστρέφει εκτός από τον συνολικό
+αριθμό μονάδων και όνομα μονάδας, κωδικο
+ΥΠΑΙΠΘ, κωδικό MM</p>
+
+<p>Επιστροφή αποτελεσμάτων<br />
+[total] : το σύνολο το αποτελεσμάτων<br />
+[data] : επιστρέφεται στην περίπτωση της
+επιλογής παραμέτρου $all_data και περιέχει arrays
+με name,mm_id,registry_no<br />
+[count] : επιστρέφεται στην περίπτωση της
+επιλογής παραμέτρου $all_data και αποτελεί το
+σύνολο το αποτελεσμάτων (πρέπει να έιναι
+ίδιο με την τιμή του [total])</p>
+
+	</div>
+
+	<div class="info">
+		
+		<b>Package:</b> <a href="package-GET.html">GET</a><br />
+				<b>Author:</b>
+				ΤΕΙ Αθήνας<br />
+		<b>Located at</b> api/get/CheckRequiredValues.php<br />
+	</div>
+
+
+	<table class="summary" id="parameters">
+	<caption>Parameters summary</caption>
+	<tr id="$selection">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$selection</var></code></td>
+		<td>
+			
+		</td>
+	</tr>
+	<tr id="$all_data">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$all_data</var></code></td>
+		<td>
+			
+		</td>
+	</tr>
+	<tr id="$category">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$category</var></code></td>
+		<td>
+			
+		</td>
+	</tr>
+	<tr id="$unit_type">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$unit_type</var></code></td>
+		<td>
+			
+		</td>
+	</tr>
+	<tr id="$state">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$state</var></code></td>
+		<td>
+			
+		</td>
+	</tr>
+	<tr id="$source">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$source</var></code></td>
+		<td>
+			
+		</td>
+	</tr>
+	<tr id="$export">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$export</var></code></td>
+		<td>
+			
+		</td>
+	</tr>
+	</table>
+
+
+
+</div>
+
+	<div id="footer">
+		mm.sch.gr API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

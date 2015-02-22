@@ -24,7 +24,13 @@ header("Content-Type: text/html; charset=utf-8");
  * <br>Μέσω των παραμέτρων Πεδίο Ταξινόμησης (<a href="#$orderby">$orderby</a>) και Τύπος Ταξινόμησης (<a href="#$ordertype">$ordertype</a>)
  * μπορεί να καθοριστεί το πεδίο και η σειρά ταξινόμησης
  *
- *
+ * Τα αποτελέσματα μπορούν να έχουν επιστραφούν σε διαφορετικού Τύπους Εξαγωγής Δεδομένων.
+ * <br>Μέσω των παραμέτρων Τύπος Εξαγωγής Δεδομένων (<a href="#$export">$export</a>) μπορεί να καθοριστεί ο τύπος εξαγωγής δεδομένων.
+ * <br>Ο προκαθορισμένος Τύπος Εξαγωγής Δεδομένων είναι JSON
+ * <br>Όταν ο Τύπος Επιστροφής Εξαγωγής έχει τιμή XLSX ή CSV τότε η τιμή του pagesize αυτόματα από το σύστημα είναι 1000 και δεν μπορεί να αλλάξει.
+ * <br>Σε κάθε περιπτωση που η τιμή του count είναι μικρότερη του total για την επιστροφή των όλων δεδομένων, πρέπει να υλοποιηθεί κληση του ιδίου api request με 
+ * αυξημένη κατα 1 την τιμή του page καθε φορά.
+ * 
  * <br><b>Πίνακας Παραμέτρων</b>
  * <br>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters summary</a> εμφανίζονται όλοι οι παράμετροι με τους οποίους
  * μπορεί να γίνει η κλήση της συνάρτησης
@@ -191,20 +197,11 @@ header("Content-Type: text/html; charset=utf-8");
  *    "latitude": null,
  *    "longitude": null,
  *    "positioning": null,
+ *    "creation_fek": null,
  *    "last_sync": "2013-11-11 22:37:52",
  *    "last_update": "2013-10-02 09:51:58",
  *    "comments": null,
- *    "transitions": [
- *      {
- *        "transition_id": 10044,
- *        "fek": "Προς αναζήτηση",
- *        "transition_date": null,
- *        "from_state_id": null,
- *        "from_state": null,
- *        "to_state_id": 1,
- *        "to_state": "ΕΝΕΡΓΗ"
- *      }
- *    ],
+ *    "version": 20,
  *    "levels": [
  *      {
  *        "level_id": 3061,
@@ -371,6 +368,9 @@ header("Content-Type: text/html; charset=utf-8");
  *       "special_unit_name": null,
  *       "unit_network_subnet_type_id": 1,
  *       "unit_network_subnet_type": "LAN",
+ *       "unit_network_object_ip": null,
+ *       "unit_network_object_name": null,
+ *       "connection_unit_network_subnet_id": 550,
  *       "is_connected": true
  *   },
  *   {
@@ -385,6 +385,9 @@ header("Content-Type: text/html; charset=utf-8");
  *       "special_unit_name": null,
  *       "unit_network_subnet_type_id": 2,
  *       "unit_network_subnet_type": "NAT",
+ *       "unit_network_object_ip": null,
+ *       "unit_network_object_name": null,
+ *       "connection_unit_network_subnet_id": 551,
  *       "is_connected": true
  *   },
  *   {
@@ -399,6 +402,9 @@ header("Content-Type: text/html; charset=utf-8");
  *       "special_unit_name": null,
  *       "unit_network_subnet_type_id": 3,
  *       "unit_network_subnet_type": "ROUTER_IP",
+ *       "unit_network_object_ip": "81.186.194.195",
+ *       "unit_network_object_name": "r-100dim-athin",
+ *       "connection_unit_network_subnet_id": 552,
  *       "is_connected": true
  *   }
  * ],
@@ -435,9 +441,11 @@ header("Content-Type: text/html; charset=utf-8");
  *       "subnet_default_router": null,
  *       "mask": "/24",
  *       "unit_network_subnet_type_id": 1,
- *       "unit_network_subnet_type": "LAN"
+ *       "unit_network_subnet_type": "LAN",
+ *       "unit_network_object_ip": null,
+ *       "unit_network_object_name": null
  *   },
- *  {
+ *   {
  *       "connection_unit_network_subnet_id": 551,
  *       "connection_id": 184,
  *       "unit_network_subnet_id": 5799,
@@ -446,9 +454,11 @@ header("Content-Type: text/html; charset=utf-8");
  *       "subnet_default_router": null,
  *       "mask": "/30",
  *       "unit_network_subnet_type_id": 2,
- *       "unit_network_subnet_type": "NAT"
- *   },
- *   {
+ *       "unit_network_subnet_type": "NAT",
+ *       "unit_network_object_ip": null,
+ *       "unit_network_object_name": null
+ *    },
+ *    {
  *       "connection_unit_network_subnet_id": 552,
  *       "connection_id": 184,
  *       "unit_network_subnet_id": 11411,
@@ -457,12 +467,14 @@ header("Content-Type: text/html; charset=utf-8");
  *       "subnet_default_router": null,
  *       "mask": "/32",
  *       "unit_network_subnet_type_id": 3,
- *       "unit_network_subnet_type": "ROUTER_IP"
- *          }
- *          ]
- *      }
- *    ]
+ *       "unit_network_subnet_type": "ROUTER_IP",
+ *       "unit_network_object_ip": "81.186.194.195",
+ *       "unit_network_object_name": "r-100dim-athin"
+ *    }
+ *   ]
  *  }
+ *  ]
+ * }
  * ]}
  * </code>
  * <br>
@@ -752,6 +764,14 @@ header("Content-Type: text/html; charset=utf-8");
  *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
  *    </ul>
  * 
+ * @param string $creation_fek Φ.Ε.Κ. (Δημιουργίας) 
+ * <br>Το Φ.Ε.Κ. (Δημιουργίας) της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
+ *    <ul>
+ *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα Φ.Ε.Κ. Δημιουργίας )</li>
+ *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
+ *    </ul>
+ * 
  * @param midex $last_update Ημερομηνία Τελευταίας Ενημέρωσης
  * <br>Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{datetime|string|array[datetime|string]}
@@ -779,37 +799,74 @@ header("Content-Type: text/html; charset=utf-8");
  *    </ul>
  * 
  * @param integer $pagesize Αριθμός Εγγραφών/Σελίδα
- * <br>Ο αριθμός των εγγραφών που θα επιστρέψουν ανα σελίδα (κλήση)
- * <br>Τιμές Παραμέτρων Σελιδοποίησης : {@see Parameters}
- * <br>Αν η παράμετρος δεν έχει τιμή τότε θα επιστραφούν οι προκαθορισμενες εγγραφές
+ * <br>Ο αριθμός των εγγραφών που θα επιστρέψουν ανα σελίδα
+ * <br>Η παράμετρος δεν είναι υποχρεωτική
+ * <br>Αν η παράμετρος δεν έχει τιμή τότε θα επιστραφούν όλες οι εγγραφές ({@see Parameters::AllPageSize})
+ * <br>Λίστα Παραμέτρων Σελιδοποίησης : {@see Parameters}
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer
- *    <ul>
- *       <li>integer : Αριθμητική (Από μηδές έως την μέγιστη τιμή)</li>
- *    </ul>
- * 
- * @param string $page Αριθμός Σελίδας
- * <br>Ο αριθμός της σελίδας με τις $pagesize εγγραφές που βρέθηκαν σύμφωμα με τις παραμέτρους
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η τιμή της παραμέτρου πρέπει να είναι μεγαλύτερη από 0
+ *    </li>
+ * </ul>
+ *
+ * @param integer $page Αριθμός Σελίδας
+ * <br>Ο αριθμός της σελίδας με τις <a href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν σύμφωμα με τις παραμέτρους
+ * <br>Η παράμετρος δεν είναι υποχρεωτική
  * <br>Αν η παράμετρος δεν έχει τιμή τότε θα επιστραφεί η πρώτη σελίδα
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer
- *    <ul>
- *       <li>integer : Αριθμητική (Μεγαλύτερη από μηδέν)</li>
- *    </ul>
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η τιμή της παραμέτρου πρέπει να είναι μεγαλύτερη από 0
+ *    </li>
+ * </ul>
  * 
  * @param string $orderby Πεδίο Ταξινόμησης
- * <br>Το όνομα του πεδίου με το οποίο θα γίνει η ταξινόμηση των εγγραφών 
- * <br>Αν η παράμετρος δεν έχει τιμή τότε η ταξινόμηση θα γίνει με το όνομα
+ * <br>Το όνομα του πεδίου με το οποίο γίνεται η ταξινόμηση των εγγραφών
+ * <br>Η παράμετρος δεν είναι υποχρεωτική
+ * <br>Αν η παράμετρος δεν έχει τιμή τότε η ταξινόμηση γίνεται με το Όνομα της Μονάδας
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- *    <ul>
- *       <li>string : Αλφαριθμητική (Οποιοδήποτε πεδίο επιστρέφει ο πίνακας data)</li>
- *    </ul>
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι οποιοδήποτε πεδίο επιστρέφει η συνάρτηση στον πίνακα data
+ *    </li>
+ * </ul>
  * 
- * @param string $ordertype Τύπος Ταξινόμηση
- * <br>Ο τρόπος με τον οποίο θα γίνει η ταξινόμηση των εγγραφών  η ταξινόμηση των εγγραφών 
- * <br>Αν η παράμετρος δεν έχει τιμή τότε η ταξινόμηση θα γίνει Αύξουσα σειρα (ASC)
+ * @param string $ordertype Τύπος Ταξινόμησης
+ * <br>Ο Τύπος Ταξινόμησης με τον οποίο γίνεται η ταξινόμηση των εγγραφών
+ * <br>Η παράμετρος δεν είναι υποχρεωτική
+ * <br>Αν η παράμετρος δεν έχει τιμή τότε η ταξινόμηση γίνεται με Αύξουσα Σειρά ({@see OrderEnumTypes::ASC})
+ * <br>Λίστα Τύπων Ταξινόμησης : {@see OrderEnumTypes}
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- *    <ul>
- *       <li>string : Αλφαριθμητική (ASC ή DESC)</li>
- *    </ul>
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see OrderEnumTypes}
+ *    </li>
+ * </ul>
+ * 
+ * @param string $searchtype Τύπος Αναζήτησης
+ * <br>Ο Τύπος Αναζήτησης με τον οποίο γίνεται η αναζήτηση στον όνομα (<a href="#$name">$name</a>) της Μονάδας
+ * <br>Η παράμετρος δεν είναι υποχρεωτική
+ * <br>Αν η παράμετρος δεν έχει τιμή τότε η αναζήτηση στα πεδία αυτά γίνεται με τον Τύπο {@see SearchEnumTypes::ContainAll}
+ * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see SearchEnumTypes}
+ *    </li>
+ * </ul>
+ * 
+ * @param string $export Τύπος Εξαγωγής Δεδομένων
+ * <br>Ο Τύπος Εξαγωγής Δεδομένων με τον οποίο θα γίνει η εξαγωγή σε συγκεκριμένη μορφή τών δεδομένων
+ * <br>Η παράμετρος δεν είναι υποχρεωτική
+ * <br>Αν η παράμετρος δεν έχει τιμή τότε η εξαγωγή δεδομένων γίνεται με τον Τύπο {@see ExportDataEnumTypes::JSON}
+ * <br>Λίστα Τύπων Εξαγωγής Δεδομένων : {@see ExportDataEnumTypes}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see ExportDataEnumTypes}
+ *    </li>
+ * </ul>
  * 
  * 
  * 
@@ -873,41 +930,10 @@ header("Content-Type: text/html; charset=utf-8");
  *      <li>string : <b>latitude</b> : Το Γεωγραφικό Πλάτος της Μονάδας</li>
  *      <li>string : <b>longitude</b> : Το Γεωγραφικό Μήκος της Μονάδας</li>
  *      <li>string : <b>positioning</b> : Η Κτηριακή Θέση της Μονάδας</li>
+ *      <li>string : <b>creation_fek</b> : Το Φ.Ε.Κ. (Δημιουργίας) της Μονάδας</li>
  *      <li>datetime : <b>last_update</b> : Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας</li>
  *      <li>datetime : <b>last_sync</b> : Η Ημερομηνία Τελευταίου Συγχρονισμού της Μονάδας</li>
  *      <li>string : <b>comments</b> : Παρατηρήσεις - Σχόλια της Μονάδας<br><br></li>
- * 
- * 
- *      <li>array : <b>transitions</b> : Πίνακας Μεταβάσεων (Λεξικό : {@see GetTransitions})
- *          <ul>
- *              <li>integer : <b>transition_id</b> : Ο Κωδικός της Μετάβασης</li>
- *              <li>integeσr : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
- *              <li>string : <b>fek</b> : Ο Αριθμός ΦΕΚ της Ματαβάσης</li>
- *              <li>date : <b>transition_date</b> : Η Ημερομηνία της Μετάβασης</li>
- *              <li>string : <b>from_state</b> : Η Αρχική Κατάσταση της Μονάδας κατά την Μετάβαση (Λεξικό : {@see GetStates})</li>
- *              <li>string : <b>to_state</b> : Η Τελική Κατάσταση της Μονάδας κατά την Μετάβαση (Λεξικό : {@see GetStates})</li>
- *          </ul>
- *          <br>
- *      </li>
- * 
- *      
- *      <li>array : <b>unit_ip_dns</b> : Πίνακας Δικτυακών Στοιχείων (Λεξικό : {@see GetUnitIpDns})
- *          <ul>
- *              <li>integer : <b>ip_dns_id</b> : Ο Κωδικός των Δικτυακών Στοιχείων</li>
- *              <li>string : <b>unit_dns</b> : Το DNS της Μονάδας</li>
- *              <li>string : <b>router_dns</b> : Το DNS του Δρομολογητή</li>
- *              <li>string : <b>ext_dns</b> : Το DNS του Δρομολογητή</li>
- *              <li>string : <b>ip_lan</b> : H IP του Τοπικού Δικτύου</li>
- *              <li>string : <b>ip_lan_mask</b> : Η Μάσκα του Τοπικού Δικτύου(Λεξικό : {@see GetIpMasks})</li>
- *              <li>string : <b>ip_router</b> : Η IP του Δρομολογητή</li>
- *              <li>string : <b>ip_nat</b> : Η IP Nat</li>
- *              <li>string : <b>ip_nat_mask</b> : Η Μάσκα του Δρομολογητή (Λεξικό : {@see GetIpMasks})</li>
- *              <li>string : <b>username</b> : To username</li>
- *              <li>string : <b>password</b> : To password</li>
- *              <li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
- *          </ul>
- *          <br>
- *      </li>
  * 
  * 
  *      <li>array : <b>levels</b> : Πίνακας Τάξεων (Λεξικό : {@see GetLevels})
@@ -963,58 +989,105 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  *      <li>array : <b>workers</b> : Πίνακας Εργαζομένων (Λεξικό : {@see GetUnitWorkers})
  *          <ul>
+ *              <li>integer : <b>unit_worker_id</b> : Το πρωτεύον κλειδί του πίνακα αντιστοίχησης Εργαζομένων-Θέση Ευθύνης</li>
  *              <li>integer : <b>worker_id</b> : Ο Κωδικός του Εργαζόμενου</li>
  *              <li>string : <b>registry_no</b> : Ο Αριθμός Μητρώου του Εργαζόμενου</li>
+ *              <li>string : <b>tax_number</b> : Ο Αριθμός Φορολογικού Μητρώου του Εργαζόμενου</li>
  *              <li>string : <b>lastname</b> : Το Επώνυμο του Εργαζόμενου</li>
  *              <li>string : <b>firstname</b> : Το Όνομα του Εργαζόμενου</li>
- *              <li>string : <b>tax_number</b> : Ο Αριθμός Φορολογικού Μητρώου του Εργαζόμενου</li>
  *              <li>string : <b>fathername</b> : Το Πατρώνυμο του Εργαζόμενου</li>
+ *              <li>string : <b>fullname</b> : Το Ονοματεπώνυμο του Εργαζόμενου</li>
  *              <li>string : <b>sex</b> : Το Φύλο του Εργαζόμενου</li>
+ *              <li>string : <b>worker_specialization_id</b> : Ο Κωδικός της Ειδικότητα του Εργαζομένου</li> 
  *              <li>string : <b>worker_specialization</b> : Η Ειδικότητα του Εργαζομένου (Λεξικό : {@see GetWorkerSpecializations})</li>
+ *              <li>string : <b>worker_position_id</b> : Ο Κωδικός της Θέση Εργασίας του Εργαζομένου</li>
  *              <li>string : <b>worker_position</b> : Η Θέση Εργασίας του Εργαζομένου (Λεξικό : {@see GetWorkerPositions})</li>
  *              <li>integer : <b>worker_source_id</b> : Ο Κωδικός της Πρωτογενής Πηγής του Εργαζομένου</li>
- *               <li>string : <b>worker_source</b> : Η Πρωτογενής Πηγή του Εργαζομένου (Λεξικό : {@see GetSources})</li>
- *              <li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
+ *              <li>string : <b>worker_source</b> : Η Πρωτογενής Πηγή του Εργαζομένου (Λεξικό : {@see GetSources})</li>
  *          </ul>
  *          <br>
  *      </li>
  * 
+ * 
+ *      <li>array : <b>unit_dns</b> : Πίνακας DNS Στοιχείων Μονάδας (Λεξικό : {@see GetUnitDns})
+ *          <ul>GetUnitDns
+ *              <li>integer : <b>unit_dns_id</b> : Ο Κωδικός του DNS Μονάδας</li>
+ *              <li>string : <b>unit_dns</b> : Το Όνομα του DNS Μονάδας</li>
+ *              <li>string : <b>unit_ext_dns</b> : Το Όνομα του ExtDNS Μονάδας</li>
+ *          </ul>
+ *          <br>
+ *      </li>
+ * 
+ *      <li>array : <b>cpes</b> : Πίνακας Cpes Στοιχείων Μονάδας (Λεξικό : {@see GetCpes})
+ *      </li>
+ * 
+ * 
+ *     <li>array : <b>ldaps</b> : Πίνακας Ldaps Στοιχείων Μονάδας (Λεξικό : {@see GetLdaps})
+ *     </li>
+ * 
+ * 
+ *      <li>array : <b>circuits</b> : Πίνακας με τα Τηλεπικοινωνιακά Κυκλωματα Μονάδας (Λεξικό : {@see GetCircuits})
+ *          <ul>GetCircuits
+ *              <li>integer : <b>circuit_id</b> : Ο Κωδικός του Τηλεπικοινωνιακού Κυκλώματος</li>
+ *              <li>string : <b>phone_number</b> : Ο Τηλεφωνικός Αριθμός του Τηλεπικοινωνιακού Κυκλώματος</li>
+ *              <li>boolean : <b>status</b> : Ενεργό/Ανενεργό Τηλεπικοινωνιακό Κύκλωμα</li>
+ *              <li>boolean : <b>paid_by_psd</b> : Χρηματοδοτείται από το Π.Σ.Δ.</li>
+ *              <li>date : <b>activated_date</b> : Η Ημερομηνία Εγκατάστασης του Τηλεπικοινωνιακού Κυκλώματος</li>
+ *              <li>date : <b>updated_date</b> : Η Ημερομηνία Ενημέωσης του Τηλεπικοινωνιακού Κυκλώματος</li>
+ *              <li>date : <b>deactivated_date</b> : Η Ημερομηνία Απενεργοποίησης του Τηλεπικοινωνιακού Κυκλώματος</li>
+ *              <li>string : <b>bandwidth</b> : Το Εύρως Ζώνης του Τηλεπικοινωνιακού Κυκλώματος</li>
+ *              <li>string : <b>readspeed</b> : Η Ταχύτητα του Τηλεπικοινωνιακού Κυκλώματος</li>
+ *              <li>integer : <b>circuit_type_id</b> : Ο Κωδικός του Τύπου του Τηλεπικοινωνιακού Κυκλώματος</li>
+ *              <li>string : <b>circuit_type</b> : Ο Τύπος του Τηλεπικοινωνιακού Κυκλώματος (Λεξικό : {@see GetCircuitTypes})</li>
+ *              <li>boolean : <b>is_connected</b> : Το Τηλεπικοινωνιακό κύκλωμα ανήκει/δεν ανήκει σε Διασύνδεση</li>
+ *          </ul>
+ *          <br>
+ *      </li>
+ * 
+ * 
+ *      <li>array : <b>unit_network_subnets</b> : Πίνακας με στοιχεία για τα Υποδίκτυα Μονάδας (Λεξικό : {@see GetUnitNetworkSubnets})
+ *          <ul>GetUnitNetworkSubnets
+ *              <li>integer : <b>unit_network_subnet_id</b> : Ο Κωδικός του Υποδικτύου Μονάδας</li>
+ *              <li>string : <b>subnet_name</b> : Το Όνομα του Υποδικτύου Μονάδας</li>
+ *              <li>string : <b>subnet_ip</b> : Η IP Διευθυνση του Υποδικτύου Μονάδας</li>
+ *              <li>string : <b>subnet_default_router</b> : Η Default Gateway του Υποδικτύου Μονάδας</li>
+ *              <li>string : <b>mask</b> : Η Μάσκα του Υποδικτύου Μονάδας.</li>
+ *              <li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας (Μονάδες : {@see GetUnits})</li>
+ *              <li>string : <b>registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της Μονάδας</li>
+ *              <li>string : <b>unit_name</b> : Το Όνομα της Μονάδας</li>
+ *              <li>string : <b>special_unit_name</b> : Το Προσωνύμιο της Μονάδας</li>
+ *              <li>integer : <b>unit_network_subnet_type_id</b> : Ο Κωδικός του Τύπου Υποδικτύου</li>
+ *              <li>string : <b>unit_network_subnet_type</b> : Ο Τύπος του Τύπου Υποδικτύου (Λεξικό : {@see GetUnitNetworkSubnetTypes})</li>
+ *              <li>string : <b>unit_network_object_ip</b> : Η Διεύθυνση IP του Δικτυακού Αντικειμένου</li>
+ *              <li>string : <b>unit_network_object_name</b> : Το DNS Όνομα του Δικτυακού Αντικειμένου</li>
+ *              <li>integer : <b>connection_unit_network_subnet_id</b> : Το πρωτεύον κλειδί του πίνακα αντιστοίχησης Διασύνδεσης-Υποδίκτυο Μονάδας</li>
+ *              <li>boolean : <b>is_connected</b> : Το Υποδίκτυο Μονάδας ανήκει/δεν ανήκει σε Διασύνδεση</li>
+ *          </ul>
+ *          <br>
+ *      </li>
+ * 
+ * 
+ *      <li>array : <b>connection</b> : Πίνακας Διασυνδέσεων Μονάδας (Λεξικό : {@see GetConnections})
+ *          <ul>GetConnections
+ *              <li>integer : <b>connection_id</b> : Ο Κωδικός της Διασύνδεσης</li>
+ *              <li>array : <b>circuit</b> : Πίνακας με τα Τηλεπικοινωνιακά Κυκλωματα Μονάδας (Λεξικό : {@see GetCircuits})</li>
+ *              <li>array : <b>cpe</b> : Πίνακας Cpes Στοιχείων Μονάδας (Λεξικό : {@see GetCpes})</li>
+ *              <li>array : <b>ldap</b> : Πίνακας Ldaps Στοιχείων Μονάδας (Λεξικό : {@see GetLdaps})</li>
+ *              <li>array : <b>unit_network_subnets</b> : Πίνακας με στοιχεία για τα Υποδίκτυα Μονάδας (Λεξικό : {@see GetUnitNetworkSubnets})</li>
+ *          </ul>
+ *          <br>
+ *      </li>
  * 
  *    </ul>
  *   </li>
  * </ul>
  *
  * 
- * @throws InvalidSearchType {@see ExceptionMessages::InvalidSearchType}
- * @throws MissingPageValue {@see ExceptionMessages::MissingPageValue}
- * @throws InvalidPageArray {@see ExceptionMessages::InvalidPageArray}
- * @throws InvalidPageNumber {@see ExceptionMessages::InvalidPageNumber}
- * @throws InvalidPageType {@see ExceptionMessages::InvalidPageType}
- * @throws MissingPageSizeValue {@see ExceptionMessages::MissingPageSizeValue}
- * @throws InvalidPageSizeArray {@see ExceptionMessages::InvalidPageSizeArray}
- * @throws InvalidPageSizeNumber {@see ExceptionMessages::InvalidPageSizeNumber}
- * @throws InvalidPageSizeType {@see ExceptionMessages::InvalidPageSizeType}
  * @throws InvalidUnitMMIDType {@see ExceptionMessages::InvalidUnitMMIDType}
  * @throws InvalidRegistryNoType {@see ExceptionMessages::InvalidRegistryNoType}
+ * @throws InvalidSourceType {@see ExceptionMessages::InvalidSourceType}
  * @throws InvalidNameType {@see ExceptionMessages::InvalidNameType}
  * @throws InvalidSpecialNameType {@see ExceptionMessages::InvalidSpecialNameType}
- * @throws InvalidPhoneNumberType {@see ExceptionMessages::InvalidPhoneNumberType}
- * @throws InvalidEmailType {@see ExceptionMessages::InvalidEmailType}
- * @throws InvalidFaxNumberType {@see ExceptionMessages::InvalidFaxNumberType}
- * @throws InvalidPostalCodeType {@see ExceptionMessages::InvalidPostalCodeType}
- * @throws InvalidStreetAddressType {@see ExceptionMessages::InvalidStreetAddressType}
- * @throws InvalidTaxNumberType {@see ExceptionMessages::InvalidTaxNumberType}
- * @throws InvalidAreaTeamNumberType {@see ExceptionMessages::InvalidAreaTeamNumberType}
- * @throws InvalidLevelsCountType {@see ExceptionMessages::InvalidLevelsCountType}
- * @throws InvalidStudentsCountType {@see ExceptionMessages::InvalidStudentsCountType}
- * @throws InvalidGroupsCountType {@see ExceptionMessages::InvalidGroupsCountType}
- * @throws InvalidLatitudeType {@see ExceptionMessages::InvalidLatitudeType}
- * @throws InvalidLongitudeType {@see ExceptionMessages::InvalidLongitudeType}
- * @throws InvalidPositioningType {@see ExceptionMessages::InvalidPositioningType}
- * @throws InvalidLastUpdateType {@see ExceptionMessages::InvalidLastUpdateType}
- * @throws InvalidLastSyncType {@see ExceptionMessages::InvalidLastSyncType}
- * @throws InvalidCommentsType {@see ExceptionMessages::InvalidCommentsType}
- * @throws InvalidSourceType {@see ExceptionMessages::InvalidSourceType}
  * @throws InvalidStateType {@see ExceptionMessages::InvalidStateType}
  * @throws InvalidRegionEduAdminType {@see ExceptionMessages::InvalidRegionEduAdminType}
  * @throws InvalidEduAdminType {@see ExceptionMessages::InvalidEduAdminType}
@@ -1023,16 +1096,42 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws InvalidPrefectureType {@see ExceptionMessages::InvalidPrefectureType}
  * @throws InvalidMunicipalityType {@see ExceptionMessages::InvalidMunicipalityType}
  * @throws InvalidEducationLevelType {@see ExceptionMessages::InvalidEducationLevelType}
+ * @throws InvalidPhoneNumberType {@see ExceptionMessages::InvalidPhoneNumberType}
+ * @throws InvalidEmailType {@see ExceptionMessages::InvalidEmailType}
+ * @throws InvalidFaxNumberType {@see ExceptionMessages::InvalidFaxNumberType}
+ * @throws InvalidStreetAddressType {@see ExceptionMessages::InvalidStreetAddressType}
+ * @throws InvalidPostalCodeType {@see ExceptionMessages::InvalidPostalCodeType}
+ * @throws InvalidTaxNumberType {@see ExceptionMessages::InvalidTaxNumberType}
  * @throws InvalidTaxOfficeType {@see ExceptionMessages::InvalidTaxOfficeType}
+ * @throws InvalidAreaTeamNumberType {@see ExceptionMessages::InvalidAreaTeamNumberType}
  * @throws InvalidCategoryType {@see ExceptionMessages::InvalidCategoryType}
  * @throws InvalidUnitTypeType {@see ExceptionMessages::InvalidUnitTypeType}
  * @throws InvalidOperationShiftType {@see ExceptionMessages::InvalidOperationShiftType}
  * @throws InvalidLegalCharacterType {@see ExceptionMessages::InvalidLegalCharacterType}
  * @throws InvalidOrientationTypeType {@see ExceptionMessages::InvalidOrientationTypeType}
  * @throws InvalidSpecialTypeType {@see ExceptionMessages::InvalidSpecialTypeType}
+ * @throws InvalidLevelsCountType {@see ExceptionMessages::InvalidLevelsCountType}
+ * @throws InvalidGroupsCountType {@see ExceptionMessages::InvalidGroupsCountType}
+ * @throws InvalidStudentsCountType {@see ExceptionMessages::InvalidStudentsCountType}
+ * @throws InvalidLatitudeType {@see ExceptionMessages::InvalidLatitudeType}
+ * @throws InvalidLongitudeType {@see ExceptionMessages::InvalidLongitudeType}
+ * @throws InvalidPositioningType {@see ExceptionMessages::InvalidPositioningType}
+ * @throws InvalidFekType {@see ExceptionMessages::InvalidFekType}
+ * @throws InvalidLastUpdateType {@see ExceptionMessages::InvalidLastUpdateType}
+ * @throws InvalidLastSyncType {@see ExceptionMessages::InvalidLastSyncType}
+ * @throws InvalidCommentsType {@see ExceptionMessages::InvalidCommentsType}
+ * @throws MissingPageValue {@see ExceptionMessages::MissingPageValue}
+ * @throws InvalidPageArray {@see ExceptionMessages::InvalidPageArray}
+ * @throws InvalidPageNumber {@see ExceptionMessages::InvalidPageNumber}
+ * @throws InvalidPageType {@see ExceptionMessages::InvalidPageType}
+ * @throws MissingPageSizeValue {@see ExceptionMessages::MissingPageSizeValue}
+ * @throws InvalidPageSizeArray {@see ExceptionMessages::InvalidPageSizeArray}
+ * @throws InvalidPageSizeNumber {@see ExceptionMessages::InvalidPageSizeNumber}
+ * @throws InvalidPageSizeType {@see ExceptionMessages::InvalidPageSizeType}
+ * @throws InvalidOrderBy {@see ExceptionMessages::InvalidOrderBy}
  * @throws InvalidOrderType {@see ExceptionMessages::InvalidOrderType}
- * 
- * 
+ * @throws InvalidSearchType {@see ExceptionMessages::InvalidSearchType}
+ * @throws InvalidExportType {@see ExceptionMessages::InvalidExportType}
  * 
  * 
  */
@@ -1042,10 +1141,10 @@ function GetUnits(
     $mm_id, $registry_no, $source, $name, $special_name, $state, $region_edu_admin, $edu_admin, $implementation_entity,
     $transfer_area, $prefecture, $municipality, $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code,
     $tax_number, $tax_office, $area_team_number, $category, $unit_type, $operation_shift, $legal_character, $orientation_type,
-    $special_type, $levels_count, $groups_count, $students_count, $latitude, $longitude, $positioning, $last_update, $last_sync, $comments,
-    $pagesize, $page, $orderby, $ordertype, $searchtype )
+    $special_type, $levels_count, $groups_count, $students_count, $latitude, $longitude, $positioning, $creation_fek, $last_update, $last_sync, $comments,
+    $pagesize, $page, $orderby, $ordertype, $searchtype, $export )
 {
-    global $db, $entityManager, $app;
+    global $db, $entityManager, $app, $Options;
     
     $filter = array();
     $result = array();
@@ -1058,6 +1157,15 @@ function GetUnits(
 
     try
     {
+        
+//$export=======================================================================       
+        if ( Validator::Missing('export', $params) )
+            $export = ExportDataEnumTypes::JSON;
+        else if ( ExportDataEnumTypes::isValidValue( $export ) || ExportDataEnumTypes::isValidName( $export ) ) {
+            $export = ExportDataEnumTypes::getValue($export);
+        } else
+            throw new Exception(ExceptionMessages::InvalidExportType." : ".$export, ExceptionCodes::InvalidExportType);
+      
 //======================================================================================================================
 //= Paging
 //======================================================================================================================
@@ -1069,9 +1177,13 @@ function GetUnits(
         else
             throw new Exception(ExceptionMessages::InvalidSearchType." : ".$searchtype, ExceptionCodes::InvalidSearchType);
 
-       $page = Pagination::getPage($page, $params);
-       $pagesize = Pagination::getPagesize($pagesize, $params);
-
+        $page = Pagination::getPage($page, $params);
+        
+        if (($export == 'XLSX') || ($export == 'CSV') )
+            $pagesize = Parameters::ExportPageSize;
+        else
+            $pagesize = Pagination::getPagesize($pagesize, $params);
+       
 //======================================================================================================================
 //= $mm_id
 //======================================================================================================================
@@ -1571,6 +1683,33 @@ function GetUnits(
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
         }
 
+//======================================================================================================================
+//= $creation_fek
+//======================================================================================================================
+
+        if ( Validator::Exists('creation_fek', $params) )
+        {
+            $table_name = "units";
+            $table_column_id = "creation_fek";
+            $table_column_name = "creation_fek";
+
+            $param = Validator::toArray($creation_fek);
+
+            $paramFilters = array();
+
+            foreach ($param as $values)
+            {
+                if ( Validator::isNull($values) )
+                    $paramFilters[] = "$table_name.$table_column_name is null";
+                else if ( Validator::isValue($values) )
+                    $paramFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
+                else
+                    throw new Exception(ExceptionMessages::InvalidFekType." : ".$values, ExceptionCodes::InvalidFekType);
+            }
+
+            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+        }
+        
 //======================================================================================================================
 //= $last_update
 //======================================================================================================================
@@ -2186,7 +2325,8 @@ function GetUnits(
                 "special_type",
                 "latitude",
                 "longitude",
-                "positioning"
+                "positioning",
+                "creation_fek"
             );
 
             if (!in_array($orderby, $columns))
@@ -2253,7 +2393,8 @@ function GetUnits(
                         special_types.name as special_type, 
                         units.latitude, 
                         units.longitude, 
-                        units.positioning
+                        units.positioning,
+                        units.creation_fek
                      ";
 
         $sqlFrom = "FROM units
@@ -2299,39 +2440,6 @@ function GetUnits(
         {
             $ids .= ($ids ? ", " : "") . $row["mm_id"]; 
         }                       
-
-//======================================================================================================================
-//= $array_transitions
-//======================================================================================================================
-
-        $sqlSelect = "SELECT
-                        transitions.transition_id,
-                        transitions.fek,
-                        transitions.transition_date,
-                        transitions.mm_id,
-                        from_states.state_id as from_state_id,
-                        from_states.name as from_state,
-                        to_states.state_id as to_state_id,
-                        to_states.name as to_state
-                     ";
-
-        $sqlFrom   = "FROM transitions INNER JOIN units ON transitions.mm_id = units.mm_id
-                      LEFT JOIN states from_states ON transitions.from_state_id = from_states.state_id
-                      LEFT JOIN states to_states ON transitions.to_state_id = to_states.state_id";
-
-        $sqlWhere = " WHERE transitions.mm_id in (".$ids.")";
-        $sqlOrder = " ORDER BY transitions.mm_id ASC";
-
-        $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $array_transitions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        foreach ($array_transitions as $transition)
-        {
-            $transitions[ $transition["mm_id"] ][] = $transition;
-        }
 
 //======================================================================================================================
 //= $array_unit_dns
@@ -2802,6 +2910,7 @@ function GetUnits(
                 "latitude"                 => $row["latitude"],
                 "longitude"                => $row["longitude"],
                 "positioning"              => $row["positioning"],
+                "creation_fek"             => $row["creation_fek"],
                 "last_sync"                => $row["last_sync"],
                 "last_update"              => $row["last_update"],
                 "comments"                 => $row["comments"],
@@ -2809,20 +2918,6 @@ function GetUnits(
             );
 
             if($app->request->userRoles != 'GUEST') {
-                $data["transitions"] = array();
-                foreach ($transitions[ $row["mm_id"] ] as $transition)
-                {
-                    $data["transitions"][] = array(
-                        "transition_id"   => $transition["transition_id"] ? (int)$transition["transition_id"] : null,
-                        "fek"             => $transition["fek"],
-                        "transition_date" => $transition["transition_date"],
-                        "from_state_id"   => $transition["from_state_id"] ? (int)$transition["from_state_id"] : null,
-                        "from_state"      => $transition["from_state"],
-                        "to_state_id"     => $transition["to_state_id"] ? (int)$transition["to_state_id"] : null,
-                        "to_state"        => $transition["to_state"]
-                    );
-                }
-
 
                 $data["levels"] = array();
                 foreach ($levels[ $row["mm_id"] ] as $level)
@@ -3078,13 +3173,29 @@ function GetUnits(
         $result["message"] = "[".__FUNCTION__."]:".$e->getMessage();
     }
 
+//set debug=====================================================================    
     if ( Validator::isTrue( $params["debug"] ) )
     {
         $result["sql"] =  trim(preg_replace('/\s\s+/', ' ', $sql));
     }
 
+//set export format=============================================================    
+    if ($export == 'JSON'){
+        return $result;
+    } else if ($export == 'XLSX') {
+       $xlsx_filename = UnitsExt::ExcelCsvCreate($result, $export);
+       unset($result['data']);
+       return array("result"=>$result,"tmp_xlsx_filepath" => $Options["WebTmpFolder"].$xlsx_filename);
+    } else if ($export == 'CSV'){
+       $csv_filename = UnitsExt::ExcelCsvCreate($result, $export);
+       unset($result['data']);
+       return array("result"=>$result,"tmp_csv_filepath" => $Options["WebTmpFolder"].$csv_filename);
+    } else if ($export == 'PHP_ARRAY'){
+       return print_r($result);
+    } else {     
+       return $result;
+    }
 
-    return $result;
 }
 
 ?>

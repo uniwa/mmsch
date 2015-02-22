@@ -51,7 +51,6 @@ class Units
      * @var integer
      *
      * @ORM\Column(name="area_team_number", type="integer", nullable=true)
-     * @Gedmo\Versioned
      */
     private $areaTeamNumber;
 
@@ -99,7 +98,6 @@ class Units
      * @var integer
      *
      * @ORM\Column(name="students_count", type="integer", nullable=true)
-     * @Gedmo\Versioned
      */
     private $studentsCount;
 
@@ -107,7 +105,6 @@ class Units
      * @var integer
      *
      * @ORM\Column(name="groups_count", type="integer", nullable=true)
-     * @Gedmo\Versioned
      */
     private $groupsCount;
 
@@ -115,7 +112,6 @@ class Units
      * @var integer
      *
      * @ORM\Column(name="levels_count", type="integer", nullable=true)
-     * @Gedmo\Versioned
      */
     private $levelsCount;
 
@@ -174,6 +170,14 @@ class Units
      */
     private $positioning;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="creation_fek", type="string", length=255, nullable=true)
+     * @Gedmo\Versioned
+     */
+    private $creationFek;
+    
     /**
      * @var \Categories
      *
@@ -518,6 +522,14 @@ class Units
         $this->positioning = $positioning;
     }
 
+    public function getCreationFek() {
+        return $this->creationFek;
+    }
+
+    public function setCreationFek($creationFek) {
+        $this->creationFek = $creationFek;
+    }
+    
     public function getCategory() {
         return $this->category;
     }

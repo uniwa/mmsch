@@ -46,7 +46,15 @@ class ExceptionMessages
     const InvalidSearchType = 'Ο Τύπος Αναζήτησης είναι λάθος';
     const InvalidOrderType = 'Ο Τύπος Ταξινόμησης πρέπει να είναι ASC ή DESC';
     const InvalidOrderBy = 'Το Πεδίο Ταξινόμησης πρέπει να είναι κάποιο από τα πεδία που επιστρέφει η συνάρτηση';
-
+    const InvalidExportType = 'Ο Τύπος Επιστροφής Δεδομένων σε συγκεκριμένο format είναι λάθος';
+        
+    const MissingSelectionCheckRequiredParam = 'Το πεδίο Επιλογή Διαδικασίας Null Τιμών είναι υποχρεωτικό πεδίο';
+    const MissingSelectionCheckRequiredValue = 'Το πεδίο Επιλογή Διαδικασίας Null Τιμών πρέπει να έχει τιμή';
+    const InvalidSelectionCheckRequiredType = 'Το πεδίο Επιλογή Διαδικασίας Null Τιμών πρέπει να είναι αριθμητικό';
+    const InvalidSelectionCheckRequiredArray = 'Το πεδίο Επιλογή Διαδικασίας Null Τιμών δεν μπορεί να έχει πολλαπλές τιμές';
+    const InvalidSelectionCheckRequiredValue = 'Το πεδίο Επιλογή Διαδικασίας Null Τιμών πρέπει να έχει τιμή μεταξύ 1-10';
+    const InvalidAllDataSelectionCheckRequiredValue = 'Το πεδίο all_data πρέπει να έχει τιμή true για την επιστροφή περισσότερων αποτελεσμάτων';
+ 
     const MissingXAxisParam = 'Ο Άξονας x είναι υποχρεωτικό πεδίο';
     const MissingXAxisValue = 'Ο Άξονας x πρέπει να έχει τιμή';
     const InvalidXAxisType = 'Ο Άξονας x πρέπει να είναι αλφαριθμητικός';
@@ -646,16 +654,6 @@ class ExceptionMessages
     const MissingGuestUnitParam = 'Η Guest Μονάδα είναι υποχρεωτικό πεδίο';
     const InvalidGuestUnitValue = 'Η Guest Μονάδα δεν υπάρχει στο λεξικό';
     const InvalidGuestUnitType = 'Η Guest Μονάδα πρέπει να είναι αριθμητική ή αλφαριθμητική';
-
-
-
-    //= GetTransitions
-    const InvalidFromStateType = 'Η Αρχική Κατάσταση της Μονάδας πρέπει να είναι αριθμητική ή αλφαριθμητική';
-    const InvalidToStateType = 'Η Τελική Κατάσταση της Μονάδας πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-
-
-
-
 
     //= GetLevels
     const MissingLevelIDParam = 'Ο Κωδικός της Τάξης είναι υποχρεωτικό πεδίο';
