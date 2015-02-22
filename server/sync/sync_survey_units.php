@@ -393,6 +393,9 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 {
                     //$mm_id = $data->mm_id;
                     $params['mm_id'] = $data->mm_id;
+
+                    $this->errorMessages[] = "[Script] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
+                                     . $data->status." : ".$data->message;
                 }
                 else
                 {
