@@ -72,18 +72,24 @@ class ExceptionMessages
     const InvalidNameType = 'Το Όνομα πρέπει να είναι αλφαριθμητικό';
     const InvalidNameArray = 'Το Όνομα δεν μπορεί να έχει πολλαπλές τιμές';
 
-
-    //= GetCategories
+    //= GetCategories===========================================================
     const MissingCategoryIDParam = 'Ο Κωδικός της Κατηγορίας είναι υποχρεωτικό πεδίο';
     const MissingCategoryIDValue = 'Ο Κωδικός της Κατηγορίας πρέπει να έχει τιμή';
     const InvalidCategoryIDType = 'Ο Κωδικός της Κατηγορίας πρέπει να είναι αριθμητικός';
     const InvalidCategoryIDArray = 'Ο Κωδικός της Κατηγορίας δεν μπορεί να έχει πολλαπλές τιμές';
+    
     const MissingCategoryParam = 'Η Κατηγορία είναι υποχρεωτικό πεδίο';
     const MissingCategoryValue = 'Η Κατηγορία πρέπει να έχει τιμή';
     const InvalidCategoryValue = 'Η Κατηγορία δεν βρέθηκε στο λεξικό';
     const InvalidCategoryType = 'Η Κατηγορία πρέπει να είναι αριθμητική ή αλφαριθμητική';
+    const InvalidCategoryArray = 'Η Κατηγορία δεν μπορεί να έχει πολλαπλές τιμές'; 
+    
+    const MissingCategoryNameParam = 'Το Όνομα της Κατηγορίας είναι υποχρεωτικό πεδίο';
+    const MissingCategoryNameValue = 'Το Όνομα της Κατηγορίας πρέπει να έχει τιμή';
+    const InvalidCategoryNameType = 'Το Όνομα της Κατηγορίας πρέπει να είναι αλφαριθμητικό';
+    const InvalidCategoryNameArray = 'Το Όνομα της Κατηγορίας δεν μπορεί να έχει πολλαπλές τιμές';
+    
     const DuplicatedCategoryValue = 'Η Κατηγορία υπάρχει ήδη';
-
 
     //= GetSchoolCommittees
     const MissingSchoolCommitteeIDParam = 'Ο Κωδικός της Σχολική Επιτροπής είναι υποχρεωτικό πεδίο';

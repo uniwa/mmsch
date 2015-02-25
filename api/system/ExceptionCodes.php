@@ -119,9 +119,7 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidNameArray} */
     const InvalidNameArray = 500;
 
-
-
-    //= GetCategories
+    //= GetCategories===========================================================
     /** {@see ExceptionMessages::MissingCategoryIDParam} */
     const MissingCategoryIDParam = 500;
     /** {@see ExceptionMessages::MissingCategoryIDValue} */
@@ -131,6 +129,7 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidCategoryIDArray} */
     const InvalidCategoryIDArray = 500;
     /** {@see ExceptionMessages::MissingCategoryParam} */
+    
     const MissingCategoryParam = 500;
     /** {@see ExceptionMessages::MissingCategoryValue} */
     const MissingCategoryValue = 500;
@@ -138,9 +137,21 @@ class ExceptionCodes
     const InvalidCategoryValue = 500;
     /** {@see ExceptionMessages::InvalidCategoryType} */
     const InvalidCategoryType = 500;
+    /** {@see ExceptionMessages::InvalidCategoryArray} */  
+    const InvalidCategoryArray = 500;
+
+    /** {@see ExceptionMessages::MissingCategoryNameParam} */  
+    const MissingCategoryNameParam = 500;
+    /** {@see ExceptionMessages::MissingCategoryNameValue} */  
+    const MissingCategoryNameValue = 500;
+    /** {@see ExceptionMessages::InvalidCategoryNameType} */  
+    const InvalidCategoryNameType = 500;
+    /** {@see ExceptionMessages::InvalidCategoryNameArray} */  
+    const InvalidCategoryNameArray = 500;
+    
     /** {@see ExceptionMessages::DuplicatedCategoryValue} */
     const DuplicatedCategoryValue = 500;
-
+    
     //= GetLdaps
     /** {@see ExceptionMessages::MissingUnitID} */
     const MissingUnitID = 500;

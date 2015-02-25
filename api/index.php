@@ -1,4 +1,6 @@
 <?php
+
+
 header("Content-Type: text/html; charset=utf-8");
 header('Content-Type: application/json');
 
@@ -445,6 +447,11 @@ function CategoriesController()
                 $params["orderby"],
                 $params["ordertype"],
                 $params["searchtype"]
+            );
+            break;
+         case MethodTypes::POST :
+            $result = PostCategories(
+                $params["name"]
             );
             break;
     }
