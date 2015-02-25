@@ -151,7 +151,7 @@ class CRUDUtils {
     /**
      * Set doctrine entity association parameter
      * Remember if user set Value and not Id
-     * then table field must be `name`
+     * then table db field must be `name`
      * 
      * @param DoctrineEntity $entity The doctrine entity.
      * @param mixed[string|integer] $param Value of input parameter by user.
@@ -162,6 +162,7 @@ class CRUDUtils {
      * @param string $userField Name of input parameter by user.
      * @param boolean $required Set true if parameter must required or false if not. Default value is true.
      * @param boolean $is_nullable Set true if parameter can be null or false if not. Default value is false.
+     * @param boolean $only_id Set true if want to check parameter only for id value. Default value is false.
      * 
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Param' , ExceptionCodes::'Missing'.$exceptionType.'Param'
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Value' , ExceptionCodes::'Missing'.$exceptionType.'Value'
@@ -172,7 +173,7 @@ class CRUDUtils {
      * @return mixed The doctrine entity with set.'$field' or throwException
      * 
      */
-    public static function entitySetAssociation(&$entity, $param, $repo, $doctrineField, $exceptionType, $params, $userField, $required = true, $is_nullable = false ) {
+    public static function entitySetAssociation(&$entity, $param, $repo, $doctrineField, $exceptionType, $params, $userField, $required = true, $is_nullable = false, $only_id = false ) {
         global $entityManager;
         $missingParam = 'Missing'.$exceptionType.'Param';
         $missingValue = 'Missing'.$exceptionType.'Value';
@@ -188,10 +189,11 @@ class CRUDUtils {
             throw new Exception(constant('ExceptionMessages::'.$missingValue)." : ".$param, constant('ExceptionCodes::'.$missingValue));
         } else if ( Validator::IsID($param) )
             $retrievedObject = $entityManager->getRepository($repo)->find(Validator::ToID($param));
-        else if ( Validator::IsValue($param) )
+        else if ( Validator::IsValue($param) && ($only_id == false) )
             $retrievedObject = $entityManager->getRepository($repo)->findOneBy(array('name' => Validator::ToValue($param)));
         else
             throw new Exception(constant('ExceptionMessages::'.$invalidType)." : ".$param, constant('ExceptionCodes::'.$invalidType));
+        
         
         if ( !isset($retrievedObject) )
             throw new Exception(constant('ExceptionMessages::'.$invalidValue)." : ".$param, constant('ExceptionCodes::'.$invalidValue));
@@ -214,7 +216,7 @@ class CRUDUtils {
      * @param array $params Contain all input parameter by user. Created by loadParameters() function and use $field param.
      * @param boolean $required Set true if parameter must required or false if not. Default value is true.
      * @param boolean $is_nullable Set true if parameter can be null or false if not. Default value is false.
-     * 
+     *
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Param' , ExceptionCodes::'Missing'.$exceptionType.'Param'
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Value' , ExceptionCodes::'Missing'.$exceptionType.'Value'
      * @throws ExceptionMessages::'Invalid'.$exceptionType.'Type' , ExceptionCodes::'Invalid'.$exceptionType.'Type'
