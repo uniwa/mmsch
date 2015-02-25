@@ -1,6 +1,6 @@
 <?php
 class CRUDUtils {
-    public static function entitySetAssociation(&$entity, $param, $repo, $field, $exceptionType, $required = true) {
+    public static function entitySetAssociationOld(&$entity, $param, $repo, $field, $exceptionType, $required = true) {
         global $entityManager;
         $missingParam = 'Missing'.$exceptionType.'Param';
         $missingValue = 'Missing'.$exceptionType.'Value';
@@ -29,7 +29,7 @@ class CRUDUtils {
         }
     }
 
-    public static function entitySetParam(&$entity, $param, $exceptionType, $field) {
+    public static function entitySetParamOld(&$entity, $param, $exceptionType, $field) {
         if ( $param === _MISSED_ )
         { } //throw new Exception(ExceptionMessages::MissingNameParam, ExceptionCodes::MissingNameParam);
         else if ( Validator::IsNull($param) )
@@ -146,7 +146,108 @@ class CRUDUtils {
             }
                             
         }
+    }
+    
+    /**
+     * Set doctrine entity association parameter
+     * Remember if user set Value and not Id
+     * then table field must be `name`
+     * 
+     * @param DoctrineEntity $entity The doctrine entity.
+     * @param mixed[string|integer] $param Value of input parameter by user.
+     * @param string $repo Dotrine Entity class.
+     * @param string $doctrineField Name of parameter used by doctrine Entity.It converted string like “uppercase” into Upper Case: “Uppercase”.
+     * @param string $exceptionType Short name of input parameter used by ExceptionMessages and ExceptionCodes.
+     * @param array $params Contain all input parameter by user. Created by loadParameters() function and use $userField param
+     * @param string $userField Name of input parameter by user.
+     * @param boolean $required Set true if parameter must required or false if not. Default value is true.
+     * @param boolean $is_nullable Set true if parameter can be null or false if not. Default value is false.
+     * 
+     * @throws ExceptionMessages::'Missing'.$exceptionType.'Param' , ExceptionCodes::'Missing'.$exceptionType.'Param'
+     * @throws ExceptionMessages::'Missing'.$exceptionType.'Value' , ExceptionCodes::'Missing'.$exceptionType.'Value'
+     * @throws ExceptionMessages::'Invalid'.$exceptionType.'Type' , ExceptionCodes::'Invalid'.$exceptionType.'Type'
+     * @throws ExceptionMessages::'Invalid'.$exceptionType.'Value' , ExceptionCodes::'Invalid'.$exceptionType.'Value'
+     * @throws ExceptionMessages::'Duplicate'.$exceptionType.'UniqueValue' , ExceptionCodes::'Duplicate'.$exceptionType.'UniqueValue'
+     * 
+     * @return mixed The doctrine entity with set.'$field' or throwException
+     * 
+     */
+    public static function entitySetAssociation(&$entity, $param, $repo, $doctrineField, $exceptionType, $params, $userField, $required = true, $is_nullable = false ) {
+        global $entityManager;
+        $missingParam = 'Missing'.$exceptionType.'Param';
+        $missingValue = 'Missing'.$exceptionType.'Value';
+        $invalidType = 'Invalid'.$exceptionType.'Type';
+        $invalidValue = 'Invalid'.$exceptionType.'Value';
+        $duplicateValue = 'Duplicate'.$exceptionType.'UniqueValue';
+
+        if (Validator::Missing($userField, $params) ){
+            if (!$required) { return; }
+            throw new Exception(constant('ExceptionMessages::'.$missingParam)." : ".$param, constant('ExceptionCodes::'.$missingParam));
+        } else if ( Validator::IsNull($param) ) {
+            if ($is_nullable) { return; }
+            throw new Exception(constant('ExceptionMessages::'.$missingValue)." : ".$param, constant('ExceptionCodes::'.$missingValue));
+        } else if ( Validator::IsID($param) )
+            $retrievedObject = $entityManager->getRepository($repo)->find(Validator::ToID($param));
+        else if ( Validator::IsValue($param) )
+            $retrievedObject = $entityManager->getRepository($repo)->findOneBy(array('name' => Validator::ToValue($param)));
+        else
+            throw new Exception(constant('ExceptionMessages::'.$invalidType)." : ".$param, constant('ExceptionCodes::'.$invalidType));
+        
+        if ( !isset($retrievedObject) )
+            throw new Exception(constant('ExceptionMessages::'.$invalidValue)." : ".$param, constant('ExceptionCodes::'.$invalidValue));
+        else if (count($retrievedObject)>1)
+            throw new Exception(constant('ExceptionMessages::'.$duplicateValue)." : ".$param, constant('ExceptionCodes::'.$duplicateValue));
+        else
+        {
+            $method = 'set'.ucfirst($doctrineField);
+            $entity->$method($retrievedObject);
+        }
     } 
+    
+    /**
+     * Set doctrine entity parameter
+     * 
+     * @param DoctrineEntity $entity The doctrine entity.
+     * @param mixed[string|integer] $param Value of input parameter by user.   
+     * @param string $exceptionType Short name of input parameter used by ExceptionMessages and ExceptionCodes.
+     * @param string $field Name of parameter used by doctrine Entity.It converted string like “to_camel_case” into Camel Case: “ToCamelCase”.
+     * @param array $params Contain all input parameter by user. Created by loadParameters() function and use $field param.
+     * @param boolean $required Set true if parameter must required or false if not. Default value is true.
+     * @param boolean $is_nullable Set true if parameter can be null or false if not. Default value is false.
+     * 
+     * @throws ExceptionMessages::'Missing'.$exceptionType.'Param' , ExceptionCodes::'Missing'.$exceptionType.'Param'
+     * @throws ExceptionMessages::'Missing'.$exceptionType.'Value' , ExceptionCodes::'Missing'.$exceptionType.'Value'
+     * @throws ExceptionMessages::'Invalid'.$exceptionType.'Type' , ExceptionCodes::'Invalid'.$exceptionType.'Type'
+     * 
+     * @return mixed The doctrine entity with set.'$field' or throwException
+     * 
+     */ 
+    public static function entitySetParam(&$entity, $param, $exceptionType, $field, $params, $required = true, $is_nullable = false ) {
+        
+        $missingParam = 'Missing'.$exceptionType.'Param';
+        $missingValue = 'Missing'.$exceptionType.'Value';
+        $invalidType = 'Invalid'.$exceptionType.'Type'; 
+      
+        if (Validator::Missing($field, $params) ){
+            if (!$required) { return; }
+            throw new Exception(constant('ExceptionMessages::'.$missingParam)." : ".$param, constant('ExceptionCodes::'.$missingParam));
+        } 
+        else if ( Validator::IsNull($param) )
+            if (!$is_nullable) { 
+                throw new Exception(constant('ExceptionMessages::'.$missingValue)." : ".$param, constant('ExceptionCodes::'.$missingValue));
+            }else{
+                $method = 'set'.self::to_camel_case($field, true);
+                $entity->$method(Validator::ToNull($param));
+            }
+        else if ( Validator::IsValue($param) )
+        {
+            
+            $method = 'set'.self::to_camel_case($field, true);
+            $entity->$method(Validator::ToValue($param));
+        }
+        else
+            throw new Exception(constant('ExceptionMessages::'.$invalidType)." : ".$param, constant('ExceptionCodes::'.$invalidType));
+    }
     
 }
 ?>
