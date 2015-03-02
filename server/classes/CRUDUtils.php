@@ -216,6 +216,7 @@ class CRUDUtils {
      * @param array $params Contain all input parameter by user. Created by loadParameters() function and use $field param.
      * @param boolean $required Set true if parameter must required or false if not. Default value is true.
      * @param boolean $is_nullable Set true if parameter can be null or false if not. Default value is false.
+     * @param boolean $only_numeric Set true if want to check parameter only for numeric value. Default value is false.
      *
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Param' , ExceptionCodes::'Missing'.$exceptionType.'Param'
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Value' , ExceptionCodes::'Missing'.$exceptionType.'Value'
@@ -224,7 +225,7 @@ class CRUDUtils {
      * @return mixed The doctrine entity with set.'$field' or throwException
      * 
      */ 
-    public static function entitySetParam(&$entity, $param, $exceptionType, $field, $params, $required = true, $is_nullable = false ) {
+    public static function entitySetParam(&$entity, $param, $exceptionType, $field, $params, $required = true, $is_nullable = false, $only_numeric = false ) {
         
         $missingParam = 'Missing'.$exceptionType.'Param';
         $missingValue = 'Missing'.$exceptionType.'Value';
@@ -243,6 +244,10 @@ class CRUDUtils {
             }
         else if ( Validator::IsValue($param) )
         {
+ 
+            if ($only_numeric == true){
+                if (!Validator::isNumeric($param)) throw new Exception(constant('ExceptionMessages::'.$invalidType)." : ".$param, constant('ExceptionCodes::'.$invalidType));
+            }
             
             $method = 'set'.self::to_camel_case($field, true);
             $entity->$method(Validator::ToValue($param));
