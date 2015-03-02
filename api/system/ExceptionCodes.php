@@ -119,7 +119,8 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidNameArray} */
     const InvalidNameArray = 500;
 
-    //= GetCategories===========================================================
+    //= Categories==============================================================
+    
     /** {@see ExceptionMessages::MissingCategoryIDParam} */
     const MissingCategoryIDParam = 500;
     /** {@see ExceptionMessages::MissingCategoryIDValue} */
@@ -151,6 +152,8 @@ class ExceptionCodes
     
     /** {@see ExceptionMessages::DuplicatedCategoryValue} */
     const DuplicatedCategoryValue = 500;
+    /** {@see ExceptionMessages::DuplicatedCategoryUniqueValue} */
+    const DuplicatedCategoryUniqueValue = 500;
     
     //= GetLdaps
     /** {@see ExceptionMessages::MissingUnitID} */
@@ -1080,6 +1083,9 @@ class ExceptionCodes
     const InvalidUnitMMIDType = 500;
     /** {@see ExceptionMessages::InvalidUnitMMIDArray} */
     const InvalidUnitMMIDArray = 500;
+    /** {@see ExceptionMessages::InvalidUnitMMIDValue} */
+    const InvalidUnitMMIDValue = 500;   //EXTRA only for ID REFERENCE
+    
     /** {@see ExceptionMessages::MissingUnitValue} */
     const MissingUnitValue = 500;
     /** {@see ExceptionMessages::MissingUnitParam} */
@@ -1088,9 +1094,15 @@ class ExceptionCodes
     const InvalidUnitValue = 500;
     /** {@see ExceptionMessages::InvalidUnitType} */
     const InvalidUnitType = 500;
+     /** {@see ExceptionMessages::InvalidUnitArray} */   
+    const InvalidUnitArray = 500;
+    
     /** {@see ExceptionMessages::DuplicatedUnitValue} */
     const DuplicatedUnitValue = 500;
-
+    /** {@see ExceptionMessages::DuplicatedUnitUniqueValue} */
+    const DuplicatedUnitUniqueValue = 500;
+    /** {@see ExceptionMessages::DuplicatedUnitMMIDUniqueValue} */
+    const DuplicatedUnitMMIDUniqueValue = 500;  //EXTRA only for ID REFERENCE
 
     /** {@see ExceptionMessages::DuplicatedUnitValue} */
     const MissingRegistryNoValue = 500;
@@ -1117,7 +1129,8 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidGuestUnitType} */
     const InvalidGuestUnitType = 500;
 
-    //= GetLevels
+    //= Levels==================================================================
+    
     /** {@see ExceptionMessages::MissingLevelIDParam} */
     const MissingLevelIDParam = 500;
     /** {@see ExceptionMessages::MissingLevelIDValue} */
@@ -1126,6 +1139,9 @@ class ExceptionCodes
     const InvalidLevelIDType = 500;
     /** {@see ExceptionMessages::InvalidLevelIDArray} */
     const InvalidLevelIDArray = 500;
+    /** {@see ExceptionMessages::InvalidLevelIDValue} */
+    const InvalidLevelIDValue = 500;   //EXTRA only for ID REFERENCE
+    
     /** {@see ExceptionMessages::MissingLevelValue} */
     const MissingLevelValue = 500;
     /** {@see ExceptionMessages::MissingLevelParam} */
@@ -1134,13 +1150,45 @@ class ExceptionCodes
     const InvalidLevelValue = 500;
     /** {@see ExceptionMessages::InvalidLevelType} */
     const InvalidLevelType = 500;
+    /** {@see ExceptionMessages::InvalidLevelArray} */   
+    const InvalidLevelArray = 500;
+    
+    /** {@see ExceptionMessages::MissingLevelNameParam} */
+    const MissingLevelNameParam = 500;
+    /** {@see ExceptionMessages::MissingLevelNameValue} */
+    const MissingLevelNameValue = 500;
+    /** {@see ExceptionMessages::InvalidLevelNameType} */
+    const InvalidLevelNameType = 500;
+    /** {@see ExceptionMessages::InvalidLevelNameArray} */
+    const InvalidLevelNameArray = 500;
+    
+    /** {@see ExceptionMessages::MissingLevelGroupsCountParam} */
+    const MissingLevelGroupsCountParam = 500;   
+    /** {@see ExceptionMessages::MissingLevelGroupsCountValue} */
+    const MissingLevelGroupsCountValue = 500;  
+    /** {@see ExceptionMessages::InvalidLevelGroupsCountType} */
+    const InvalidLevelGroupsCountType = 500;
+    /** {@see ExceptionMessages::InvalidLevelGroupsCountArray} */
+    const InvalidLevelGroupsCountArray = 500;
+    
+    /** {@see ExceptionMessages::MissingLevelStudentsCountParam} */
+    const MissingLevelStudentsCountParam = 500;
+    /** {@see ExceptionMessages::MissingLevelStudentsCountValue} */
+    const MissingLevelStudentsCountValue = 500;
+    /** {@see ExceptionMessages::InvalidLevelStudentsCountType} */
+    const InvalidLevelStudentsCountType = 500;
+    /** {@see ExceptionMessages::InvalidLevelStudentsCountArray} */
+    const InvalidLevelStudentsCountArray = 500;
+    
     /** {@see ExceptionMessages::DuplicatedLevelValue} */
     const DuplicatedLevelValue = 500;
+     /** {@see ExceptionMessages::DuplicatedLevelUniqueValue} */ 
+    const DuplicatedLevelUniqueValue = 500;
+    /** {@see ExceptionMessages::DuplicatedLevelIDUniqueValue} */
+    const DuplicatedLevelIDUniqueValue = 500;  //EXTRA only for ID REFERENCE
 
-
-
-
-    //= GetGroups
+    //= Groups==================================================================
+    
     /** {@see ExceptionMessages::MissingGroupIDParam} */
     const MissingGroupIDParam = 500;
     /** {@see ExceptionMessages::MissingGroupIDValue} */
@@ -1149,6 +1197,7 @@ class ExceptionCodes
     const InvalidGroupIDType = 500;
     /** {@see ExceptionMessages::InvalidGroupIDArray} */
     const InvalidGroupIDArray = 500;
+    
     /** {@see ExceptionMessages::MissingGroupValue} */
     const MissingGroupValue = 500;
     /** {@see ExceptionMessages::MissingGroupParam} */
@@ -1157,8 +1206,31 @@ class ExceptionCodes
     const InvalidGroupValue = 500;
     /** {@see ExceptionMessages::InvalidGroupType} */
     const InvalidGroupType = 500;
+    /** {@see ExceptionMessages::InvalidGroupArray} */  
+    const InvalidGroupArray = 500;
+    
+    /** {@see ExceptionMessages::MissingGroupNameParam} */ 
+    const MissingGroupNameParam = 500;
+    /** {@see ExceptionMessages::MissingGroupNameValue} */ 
+    const MissingGroupNameValue = 500;
+    /** {@see ExceptionMessages::InvalidGroupNameType} */
+    const InvalidGroupNameType = 500;
+    /** {@see ExceptionMessages::InvalidGroupNameArray} */
+    const InvalidGroupNameArray = 500;
+    
+    /** {@see ExceptionMessages::MissingGroupStudentsCountParam} */
+    const MissingGroupStudentsCountParam = 500;
+    /** {@see ExceptionMessages::MissingGroupStudentsCountValue} */
+    const MissingGroupStudentsCountValue = 500;
+    /** {@see ExceptionMessages::InvalidGroupStudentsCountType} */
+    const InvalidGroupStudentsCountType = 500;
+    /** {@see ExceptionMessages::InvalidGroupStudentsCountArray} */
+    const InvalidGroupStudentsCountArray = 500;
+    
     /** {@see ExceptionMessages::DuplicatedGroupValue} */
     const DuplicatedGroupValue = 500;
+     /** {@see ExceptionMessages::DuplicatedGroupUniqueValue} */ 
+    const DuplicatedGroupUniqueValue = 500;
 
 
 

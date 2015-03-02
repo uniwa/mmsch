@@ -152,89 +152,57 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  */
 
-
-function PostLevels( $mm_id, $name, $groups_count, $students_count )
-{
-    global $db;
-    global $Options;
-
-    $filter = array();
-    $result = array();  
-
-    $result["method"] = __FUNCTION__;
-
-    try
-    {
-//==============================================================================
-
-        $oUnits = new UnitsExt($db);
-
-        if (! trim($mm_id))
-        {
-            throw new Exception(ExceptionMessages::MissingMMIdValue, ExceptionCodes::MissingMMIdValue);
-        }
-        else if (!is_numeric($mm_id))
-        {
-            throw new Exception(ExceptionMessages::InvalidMMIdType, ExceptionCodes::InvalidMMIdType);
-        }
-        else if ($mm_id)
-        {
-            $filter = new DFC(UnitsExt::FIELD_MM_ID, $mm_id, DFC::EXACT);
-            $oUnits = $oUnits->findByFilter($db, $filter, true);
-        }
-
-        if ( $mm_id && (count($oUnits) < 1))
-            throw new Exception(ExceptionMessages::InvalidMMIdValue." : ".$mm_id, ExceptionCodes::InvalidMMIdValue);
-        else if ($mm_id)
-            $fMMId = $oUnits[0]->getMmId ();
-        else
-            $fMMId = NULL;    
-        
-//==============================================================================
-
-        if (trim($name) == "")
-	        throw new Exception(ExceptionMessages::MissingNameValue." : '".$name."'", ExceptionCodes::MissingNameValue);
-        else
-            $fName = $name;
-
-//==============================================================================
-        
-        $oLevel = new LevelsExt($db);
-        
-        $filter = array(
-            new DFC(LevelsExt::FIELD_MM_ID, $fMMId, DFC::EXACT),
-            new DFC(LevelsExt::FIELD_NAME, $fName, DFC::EXACT),
-        );
-        
-        $arrayLevels = $oLevel->findByFilter($db, $filter, true);
-        
-        if (count($arrayLevels) > 0)
-        {
-            throw new Exception(ExceptionMessages::DuplicatedLevelValue." : ".$fMMId.":".$fName, ExceptionCodes::DuplicatedLevelValue);
-        }
-        else
-        {        
-//==============================================================================
-
-            $oLevel->setMmId( $fMMId );
-            $oLevel->setName( $fName );
-            $oLevel->setGroupsCount( $groups_count );
-            $oLevel->setStudentsCount( $students_count );
-
-            $oLevel->insertIntoDatabase ($db);
-
-            $result["level_id"] = $oLevel->getLevelId();
-
-            $result["status"] = ExceptionCodes::NoErrors;
-            $result["message"] = ExceptionMessages::NoErrors;
-        }
-    } 
-    catch (Exception $e) 
-    {
-        $result["status"] = $e->getCode();
-        $result["message"] = "[".$result["method"]."] ".$e->getMessage();
-    } 
+function PostLevels( $mm_id, $name, $groups_count, $students_count ) {
     
+    global $app,$entityManager;
+
+    $Level = new Levels();
+    $result = array();
+
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
+    $params = loadParameters();
+    $result["parameters"]  = $params;
+
+    try {
+        
+    //$mm_id====================================================================      
+    CRUDUtils::entitySetAssociation($Level, $mm_id, 'Units', 'mm', 'UnitMMID', $params, 'mm_id', true, false, true);
+    
+    //$name=====================================================================
+    CRUDUtils::entitySetParam($Level, $name, 'LevelName', 'name' , $params);
+
+    //$groups_count=============================================================
+    CRUDUtils::entitySetParam($Level, $groups_count, 'LevelGroupsCount', 'groups_count' , $params , true, false, true);
+    
+    //$students_count===========================================================
+    CRUDUtils::entitySetParam($Level, $students_count, 'LevelStudentsCount', 'students_count' , $params, true, false, true);
+        
+//controls======================================================================   
+
+        //check for duplicate ==================================================   
+        $checkDuplicate = $entityManager->getRepository('Levels')->findOneBy(array( 'mm'     => $Level->getMm()->getMmId(),
+                                                                                    'name'   => $Level->getName(),
+                                                                                   ));
+
+        if (count($checkDuplicate) != 0)
+            throw new Exception(ExceptionMessages::DuplicatedLevelValue,ExceptionCodes::DuplicatedLevelValue);  
+        
+//insert to db================================================================== 
+        $entityManager->persist($Level);
+        $entityManager->flush($Level);
+
+        $result["level_id"] = $Level->getLevelId();
+           
+//result_messages===============================================================      
+        $result["status"] = ExceptionCodes::NoErrors;
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
+        $result["status"] = $e->getCode();
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    }                
+        
     return $result;
 }
 

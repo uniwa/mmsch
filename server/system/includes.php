@@ -198,5 +198,6 @@ require_once ('../api/put/PutUnitWorkers.php');
 
 //DOCTRINE READY FUNCTIONS
 require_once ('../api/post/PostCategories.php');
-
+require_once ('../api/post/PostGroups.php');
+require_once ('../api/post/PostLevels.php');
 ?>

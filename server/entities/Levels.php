@@ -52,5 +52,44 @@ class Levels
      */
     private $mm;
 
+    public function getLevelId() {
+        return $this->levelId;
+    }
+
+    public function setLevelId($levelId) {
+        $this->levelId = $levelId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function getGroupsCount() {
+        return $this->groupsCount;
+    }
+
+    public function setGroupsCount($groupsCount) {
+        $this->groupsCount = $groupsCount;
+    }
+
+    public function getStudentsCount() {
+        return $this->studentsCount;
+    }
+
+    public function setStudentsCount($studentsCount) {
+        $this->studentsCount = $studentsCount;
+    }
+
+    public function getMm() {
+        return $this->mm;
+    }
+
+    public function setMm(\Units $mm) {
+        $this->mm = $mm;
+    }
 
 }

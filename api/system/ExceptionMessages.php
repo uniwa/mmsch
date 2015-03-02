@@ -72,7 +72,8 @@ class ExceptionMessages
     const InvalidNameType = 'Το Όνομα πρέπει να είναι αλφαριθμητικό';
     const InvalidNameArray = 'Το Όνομα δεν μπορεί να έχει πολλαπλές τιμές';
 
-    //= GetCategories===========================================================
+    //= Categories==============================================================
+    
     const MissingCategoryIDParam = 'Ο Κωδικός της Κατηγορίας είναι υποχρεωτικό πεδίο';
     const MissingCategoryIDValue = 'Ο Κωδικός της Κατηγορίας πρέπει να έχει τιμή';
     const InvalidCategoryIDType = 'Ο Κωδικός της Κατηγορίας πρέπει να είναι αριθμητικός';
@@ -90,6 +91,7 @@ class ExceptionMessages
     const InvalidCategoryNameArray = 'Το Όνομα της Κατηγορίας δεν μπορεί να έχει πολλαπλές τιμές';
     
     const DuplicatedCategoryValue = 'Η Κατηγορία υπάρχει ήδη';
+    const DuplicatedCategoryUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Category';
 
     //= GetSchoolCommittees
     const MissingSchoolCommitteeIDParam = 'Ο Κωδικός της Σχολική Επιτροπής είναι υποχρεωτικό πεδίο';
@@ -640,12 +642,17 @@ class ExceptionMessages
     const MissingUnitMMIDValue = 'Ο Κωδικός ΜΜ πρέπει να έχει τιμή';
     const InvalidUnitMMIDType = 'Ο Κωδικός ΜΜ πρέπει να είναι αριθμητικός';
     const InvalidUnitMMIDArray = 'Ο Κωδικός ΜΜ δεν μπορεί να έχει πολλαπλές τιμές';
+    const InvalidUnitMMIDValue = 'Ο Κωδικός ΜΜ δεν βρέθηκε'; //EXTRA only for ID REFERENCE
     
     const MissingUnitValue = 'Η Μονάδα πρέπει να έχει τιμή';
     const MissingUnitParam = 'Η Μονάδα είναι υποχρεωτικό πεδίο';
     const InvalidUnitValue = 'Η Μονάδα δεν βρέθηκε';
     const InvalidUnitType = 'Η Μονάδα πρέπει να είναι αριθμητική ή αλφαριθμητική';
+    const InvalidUnitArray = 'Η Μονάδα δεν μπορεί να έχει πολλαπλές τιμές';
+    
     const DuplicatedUnitValue = 'Η Μονάδα υπάρχει ήδη';
+    const DuplicatedUnitUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Unit';
+    const DuplicatedUnitMMIDUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key UnitMMID'; //EXTRA only for ID REFERENCE
 
     const MissingRegistryNoValue = 'Ο Κωδικός ΥΠΕΠΘ πρέπει να έχει τιμή';
     const MissingRegistryNoParam = 'Ο Κωδικός ΥΠΕΠΘ είναι υποχρεωτικό πεδίο';
@@ -661,30 +668,64 @@ class ExceptionMessages
     const InvalidGuestUnitValue = 'Η Guest Μονάδα δεν υπάρχει στο λεξικό';
     const InvalidGuestUnitType = 'Η Guest Μονάδα πρέπει να είναι αριθμητική ή αλφαριθμητική';
 
-    //= GetLevels
+    //= Levels==================================================================
+    
     const MissingLevelIDParam = 'Ο Κωδικός της Τάξης είναι υποχρεωτικό πεδίο';
     const MissingLevelIDValue = 'Ο Κωδικός της Τάξης πρέπει να έχει τιμή';
     const InvalidLevelIDType = 'Ο Κωδικός της Τάξης πρέπει να είναι αριθμητικός';
     const InvalidLevelIDArray = 'Ο Κωδικός της Τάξης δεν μπορεί να έχει πολλαπλές τιμές';
+    const InvalidLevelIDValue = 'Ο Κωδικός της Τάξης δεν βρέθηκε'; //EXTRA only for ID REFERENCE
+    
     const MissingLevelValue = 'Η Τάξη πρέπει να έχει τιμή';
     const MissingLevelParam = 'Η Τάξη είναι υποχρεωτικό πεδίο';
     const InvalidLevelValue = 'Η Τάξη δεν υπάρχει στο λεξικό';
     const InvalidLevelType = 'Η Τάξη πρέπει να είναι αριθμητική ή αλφαριθμητική';
+    const InvalidLevelArray = 'Η Τάξη δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingLevelNameParam = 'Το Όνομα της Τάξης είναι υποχρεωτικό πεδίο';
+    const MissingLevelNameValue = 'Το Όνομα της Τάξης πρέπει να έχει τιμή';
+    const InvalidLevelNameType = 'Το Όνομα της Τάξης πρέπει να είναι αλφαριθμητικό';
+    const InvalidLevelNameArray = 'Το Όνομα της Τάξης δεν μπορεί να έχει πολλαπλές τιμές';
+
+    const MissingLevelGroupsCountParam = 'Το Πλήθος των Τμημάτων της Τάξης είναι υποχρεωτικό πεδίο';
+    const MissingLevelGroupsCountValue = 'Το Πλήθος των Τμημάτων της Τάξης πρέπει να έχει τιμή';
+    const InvalidLevelGroupsCountType = 'Το Πλήθος των Τμημάτων της Τάξης πρέπει να είναι αριθμητικό';
+    const InvalidLevelGroupsCountArray = 'Το Πλήθος των Τμημάτων της Τάξης δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingLevelStudentsCountParam = 'Το Πλήθος των Μαθητών της Τάξης είναι υποχρεωτικό πεδίο';
+    const MissingLevelStudentsCountValue = 'Το Πλήθος των Μαθητών της Τάξης πρέπει να έχει τιμή';
+    const InvalidLevelStudentsCountType = 'Το Πλήθος των Μαθητών της Τάξης πρέπει να είναι αριθμητικό';
+    const InvalidLevelStudentsCountArray = 'Το Πλήθος των Μαθητών της Τάξης δεν μπορεί να έχει πολλαπλές τιμές';
+    
     const DuplicatedLevelValue = 'Η Τάξη υπάρχει ήδη';
+    const DuplicatedLevelUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Level';
+    const DuplicatedLevelIDUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key LevelID'; //EXTRA only for ID REFERENCE
 
-
-
-
-    //= GetGroups
+    //= Groups==================================================================
+    
     const MissingGroupIDParam = 'Ο Κωδικός του Τμήματος είναι υποχρεωτικό πεδίο';
     const MissingGroupIDValue = 'Ο Κωδικός του Τμήματος πρέπει να έχει τιμή';
     const InvalidGroupIDType = 'Ο Κωδικός του Τμήματος πρέπει να είναι αριθμητικός';
     const InvalidGroupIDArray = 'Ο Κωδικός του Τμήματος δεν μπορεί να έχει πολλαπλές τιμές';
+    
     const MissingGroupValue = 'Το Τμήμα πρέπει να έχει τιμή';
     const MissingGroupParam = 'Το Τμήμα είναι υποχρεωτικό πεδίο';
     const InvalidGroupValue = 'Το Τμήμα δεν υπάρχει στο λεξικό';
     const InvalidGroupType = 'Το Τμήμα πρέπει να είναι αριθμητική ή αλφαριθμητική';
+    const InvalidGroupArray = 'Το Τμήμα δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingGroupNameParam = 'Το Όνομα του Τμήματος είναι υποχρεωτικό πεδίο';
+    const MissingGroupNameValue = 'Το Όνομα του Τμήματος πρέπει να έχει τιμή';
+    const InvalidGroupNameType = 'Το Όνομα του Τμήματος πρέπει να είναι αλφαριθμητικό';
+    const InvalidGroupNameArray = 'Το Όνομα του Τμήματος δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingGroupStudentsCountParam = 'Το Πλήθος των Μαθητών του Τμήματος είναι υποχρεωτικό πεδίο';
+    const MissingGroupStudentsCountValue = 'Το Πλήθος των Μαθητών του Τμήματος πρέπει να έχει τιμή';
+    const InvalidGroupStudentsCountType = 'Το Πλήθος των Μαθητών του Τμήματος πρέπει να είναι αριθμητικό';
+    const InvalidGroupStudentsCountArray = 'Το Πλήθος των Μαθητών του Τμήματος δεν μπορεί να έχει πολλαπλές τιμές';
+    
     const DuplicatedGroupValue = 'Το Τμήμα υπάρχει ήδη';
+    const DuplicatedGroupUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Group';
 
 
 

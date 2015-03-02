@@ -1236,6 +1236,14 @@ function LevelsController()
                 $params["searchtype"]
             );
             break;
+         case MethodTypes::POST :
+            $result = PostLevels(
+                $params["mm_id"],
+                $params["name"],
+                $params["groups_count"],
+                $params["students_count"]
+            );
+            break;
     }
 
     PrepareResponse();
@@ -1262,6 +1270,14 @@ function GroupsController()
                 $params["orderby"],
                 $params["ordertype"],
                 $params["searchtype"]
+            );
+            break;
+         case MethodTypes::POST :
+            $result = PostGroups(
+                $params["mm_id"],
+                $params["level_id"],
+                $params["name"],
+                $params["students_count"]
             );
             break;
     }
