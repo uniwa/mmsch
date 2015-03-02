@@ -28,7 +28,7 @@ function sync_survey_units()
     $last_sync_time = date('H:i:s');  
     $last_sync = $last_sync_date." ".$last_sync_time;  
 
-    $script_title = "Συγχρονισμός Σχολικών Μονάδες με Mysch";
+    $script_title = "Συγχρονισμός Σχολικών Μονάδων με Myschool";
     echo "==================== ".$script_title." ====================".$br.$br; //$logMessage[] = $script_title."\n\n";
     ob_get_flush(); ob_flush(); flush();
 
