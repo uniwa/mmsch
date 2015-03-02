@@ -227,6 +227,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
         $this->isError = false;
 
 
+
       if($this->isIgnored($unit)) {
             return true;
         }
@@ -2429,7 +2430,8 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             'sge98',
             'sivit97',
         );
-        if(array_search(trim($unit["RegistryNo"]), $ignoredRegistryNos) !== false) {
+
+        if(array_search(trim($unit["RegistryNo"]), $ignoredRegistryNos, true) !== false) {
             return true;
         }
         return false;
