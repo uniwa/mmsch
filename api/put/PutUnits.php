@@ -500,7 +500,7 @@ function PutUnits(
 //==============================================================================
             
             $result["status"] = ExceptionCodes::NoErrors;;
-            $result["message"] = ExceptionMessages::NoErrors;
+            $result["message"] = ExceptionMessages::NoErrorsUpdateUnit;
             $result["mm_id"] = $unit->getMmId();
         }
     catch (Exception $e) 

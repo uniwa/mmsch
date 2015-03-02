@@ -79,7 +79,7 @@ function sync_survey_units()
 
     if (count($errorMessages) > 0) 
     {
-        $msg = (count($errorMessages) > 1 ? 'Παρουσιάστηκαν' : 'Παρουσιάστηκε')." ".count($errorMessages).' '.(count($errorMessages) == 1 ? 'σφάλμα' : 'σφάλματα');
+        $msg = (count($errorMessages) > 1 ? 'Παρουσιάστηκαν' : 'Παρουσιάστηκε')." ".count($errorMessages).' '.(count($errorMessages) == 1 ? 'μήνυμα' : 'μηνύματα');
         echo $br.$msg.$br.$br; $logMessage[] = "\n".$msg."\n\n";
     }
     else 
@@ -88,7 +88,7 @@ function sync_survey_units()
         echo $msg.$br.$br; $logMessage[] = $msg."\n\n";
     }
 
-    $msg = "Συνολικά βρέθηκαν ".$totalRowsCounter . ($totalRowsCounter == 1 ? " Μονάδες" : " Μονάδα").' :: '.$totalRowsInstalled." Καταχωρήθηκαν, ".$totalRowsUpdated." Ενημερώθηκαν, ".$totalRowsSkipped." Αγνοήθηκαν, ".$totalRowsErrors." Σφάλματα";;
+    $msg = "Συνολικά βρέθηκαν ".$totalRowsCounter . ($totalRowsCounter == 1 ? " Μονάδες" : " Μονάδα").' :: '.$totalRowsInstalled." Καταχωρήθηκαν, ".$totalRowsUpdated." Ενημερώθηκαν, ".$totalRowsSkipped." Δεν μεταβλήθηκαν, ".$totalRowsErrors." Σφάλματα";
     echo $msg.$br; $logMessage[] = $msg."\n";
 
     $totalSyncTimeValue = humanTiming($totalSyncTime);
@@ -288,8 +288,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 $special_type_id = $this->o_sync_unit_types[ $sync_unit_type_id ]->special_type_id;
                 $category = isset($this->o_unit_types[ $unit_type_id ]->category) ? $this->o_unit_types[ $unit_type_id ]->category : null;
                 
-                $unit["SchoolLevel"] = trim($unit["SchoolLevel"]);
-                $education_level_id = $unit["SchoolLevel"];
+                $education_level_id = trim($unit["SchoolLevel"]);
                 
                 if ($education_level_id == 0 ){
                     $education_level = isset($this->o_unit_types[ $unit_type_id ]->education_level) ? $this->o_unit_types[ $unit_type_id ]->education_level : null;
@@ -307,9 +306,6 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             }
 
             $tax_office_id = $this->getDictionary($unit, $unit["SchoolDOY"], $this->a_tax_offices, $this->o_tax_offices, 'InvalidTaxOfficeValue', 'TaxOffices', 'taxOfficeId', 'name', load_tax_offices);
-
-            //$unit["SchoolLevel"] = trim($unit["SchoolLevel"]);
-            //$education_level_id = $unit["SchoolLevel"];
 
             $unit["Active"] = trim($unit["Active"]);
             $unit["Anastoli"] = trim($unit["Anastoli"]);
@@ -348,7 +344,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                     "legal_character"       => $this->a_legal_characters[ $legal_character_id ],
                     "orientation_type"      => $this->a_orientation_types[ $orientation_type_id ],
                     "special_type"          => $this->a_special_types[ $special_type_id ],
-                    "education_level"       => $education_level,//$this->a_education_levels[ $education_level_id ],
+                    "education_level"       => $education_level,
                     "postal_code"           => trim($unit["PostalCode"]),
                     "area_team_number"      => trim($unit["AreaTeam"]),
                     "email"                 => trim($unit["Email"]),
@@ -412,7 +408,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                     //$mm_id = $data->mm_id;
                     $params['mm_id'] = $data->mm_id;
 
-                    $this->errorMessages[] = "[Script] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
+                    $this->errorMessages[] = "[Insert or Update at Sync Data] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
                                      . $data->status." : ".$data->message;
                 }
                 else
@@ -422,7 +418,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                     $this->blockRowsErrors++;
                     $this->totalRowsErrors++;
 
-                    $this->errorMessages[] = "[Script] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
+                    $this->errorMessages[] = "[Error at Sync Data] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
                                      . $data->status." : ".$data->message;
                 }
             }
@@ -507,7 +503,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             $this->blockRowsErrors++;
             $this->totalRowsErrors++;
 
-            $this->errorMessages[] = "[Workers] registry_no : ".$unit["RegistryNo"]." => ".$data->status." : ".$data->message;
+            $this->errorMessages[] = "[Error at Workers Function] registry_no : ".$unit["RegistryNo"]." => ".$data->status." : ".$data->message;
         }
 
         // Unit workers
@@ -553,7 +549,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             $this->blockRowsErrors++;
             $this->totalRowsErrors++;
 
-            $this->errorMessages[] = "[Workers] registry_no : ".$unit["RegistryNo"]." => ".$data->status." : ".$data->message;
+            $this->errorMessages[] = "[Error at UnitWorkers Function] registry_no : ".$unit["RegistryNo"]." => ".$data->status." : ".$data->message;
         }
     }
 
@@ -2487,7 +2483,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             if (!in_array($value, $converted_values)) {
                 $this->isError = true;
                 $this->totalRowsErrors++;
-                $this->errorMessages[] = "[Script] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
+                $this->errorMessages[] = "[Error at Dictionary Function] ".$unit["RegistryNo"]." : ".trim($unit["Name"])." => "
                                  . constant('ExceptionCodes::'.$exceptionString) ." : ".constant('ExceptionMessages::'.$exceptionString)
                                  . " '".$value."'";
             }

@@ -468,7 +468,7 @@ function PostUnits(
             //SendMail('mm@sch.gr', 'Δημιουργία Μονάδας', 'Δημιουργία Μονάδας με κωδικό ΜΜ : '.$mm_id);
           
         $result["status"] = ExceptionCodes::NoErrors;;
-        $result["message"] = ExceptionMessages::NoErrors;
+        $result["message"] = ExceptionMessages::NoErrorsImportUnit;
         $result["mm_id"] = $unit->getMmId();
         
     }

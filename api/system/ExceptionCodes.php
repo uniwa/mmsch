@@ -22,6 +22,10 @@ class ExceptionCodes
 {
     /** {@see ExceptionMessages::NoErrors} */
     const NoErrors = 200;
+    /** {@see ExceptionMessages::NoErrorsImportUnit} */
+    const NoErrorsImportUnit = 200;
+    /** {@see ExceptionMessages::NoErrorsUpdateUnit} */
+    const NoErrorsUpdateUnit = 200;
 
 
 
