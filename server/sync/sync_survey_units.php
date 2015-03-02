@@ -88,7 +88,8 @@ function sync_survey_units()
         echo $msg.$br.$br; $logMessage[] = $msg."\n\n";
     }
 
-    $msg = "Συνολικά βρέθηκαν ".$totalRowsCounter . ($totalRowsCounter == 1 ? " Μονάδες" : " Μονάδα").' :: '.$totalRowsInstalled." Καταχωρήθηκαν, ".$totalRowsUpdated." Ενημερώθηκαν, ".$totalRowsSkipped." Δεν μεταβλήθηκαν, ".$totalRowsErrors." Σφάλματα";
+    $allSyncUnitsFromMyschool = $totalRowsInstalled + $totalRowsUpdated + $totalRowsSkipped +$totalRowsErrors;    
+    $msg = "Συνολικά έγινε συγχρονισμός σε ".$allSyncUnitsFromMyschool . ($allSyncUnitsFromMyschool == 1 ? " Μονάδες" : " Μονάδα").' :: '.$totalRowsInstalled." Καταχωρήθηκαν, ".$totalRowsUpdated." Ενημερώθηκαν, ".$totalRowsSkipped." Δεν μεταβλήθηκαν, ".$totalRowsErrors." Σφάλματα";
     echo $msg.$br; $logMessage[] = $msg."\n";
 
     $totalSyncTimeValue = humanTiming($totalSyncTime);
