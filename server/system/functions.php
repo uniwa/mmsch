@@ -15,7 +15,7 @@ function SendMail($To, $Cc, $From, $Subject, $Message)
 
     $Subject = '=?UTF-8?B?'.base64_encode($Subject).'?=';
     
-    return mail( $To, $Subject, $Message, $Headers );
+    return mail( $To, $Subject, $Message, $Headers, "-f ".$From." -r mm@sch.gr" );
 }
 
 function getRunningPid($processName) {
