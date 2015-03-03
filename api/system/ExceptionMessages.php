@@ -21,6 +21,8 @@ header("Content-Type: text/html; charset=utf-8");
 class ExceptionMessages
 {
     const NoErrors = 'success';
+    const NoErrorsImportUnit = 'success.Imported new unit.';
+    const NoErrorsUpdateUnit = 'success.Updated unit.';
     
     const Unauthorized = 'HTTP Error 401 Unauthorized';
     const UserAccesDenied = 'Ο χρήστης δεν έχει πρόσβαση';
