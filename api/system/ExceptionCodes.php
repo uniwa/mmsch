@@ -307,7 +307,7 @@ class ExceptionCodes
 
 
 
-    //= GetRelationTypes
+    //= GetRelationTypes========================================================
     /** {@see ExceptionMessages::MissingRelationTypeIDParam} */
     const MissingRelationTypeIDParam = 500;
     /** {@see ExceptionMessages::MissingRelationTypeIDValue} */
@@ -316,6 +316,7 @@ class ExceptionCodes
     const InvalidRelationTypeIDType = 500;
     /** {@see ExceptionMessages::InvalidRelationTypeIDArray} */
     const InvalidRelationTypeIDArray = 500;
+    
     /** {@see ExceptionMessages::MissingRelationTypeValue} */
     const MissingRelationTypeValue = 500;
     /** {@see ExceptionMessages::MissingRelationTypeParam} */
@@ -324,11 +325,22 @@ class ExceptionCodes
     const InvalidRelationTypeValue = 500;
     /** {@see ExceptionMessages::InvalidRelationTypeType} */
     const InvalidRelationTypeType = 500;
+    /** {@see ExceptionMessages::InvalidRelationTypeArray} */  
+    const InvalidRelationTypeArray = 500;
+    
+    /** {@see ExceptionMessages::MissingRelationTypeNameParam} */  
+    const MissingRelationTypeNameParam = 500;
+    /** {@see ExceptionMessages::MissingRelationTypeNameValue} */  
+    const MissingRelationTypeNameValue = 500;
+    /** {@see ExceptionMessages::InvalidRelationTypeNameType} */  
+    const InvalidRelationTypeNameType = 500;
+    /** {@see ExceptionMessages::InvalidRelationTypeNameArray} */  
+    const InvalidRelationTypeNameArray = 500;
+    
     /** {@see ExceptionMessages::DuplicatedRelationTypeValue} */
-    const DuplicatedRelationTypeValue = 500;
-
-
-
+    const DuplicatedRelationTypeValue = 500;   
+    /** {@see ExceptionMessages::DuplicatedRelationTypeUniqueValue} */
+    const DuplicatedRelationTypeUniqueValue = 500;
 
     //= GetIpMasks
     /** {@see ExceptionMessages::MissingIpMaskIDParam} */
@@ -1388,15 +1400,104 @@ class ExceptionCodes
     const InvalidGuestMMIdType  = 500;
     /** {@see ExceptionMessages::InvalidGuestMMIdValue} */
     const InvalidGuestMMIdValue = 500;
-
+    
+    // =Relations===============================================================
+    /** {@see ExceptionMessages::MissingRelationIDParam} */
+    const MissingRelationIDParam = 500;
     /** {@see ExceptionMessages::MissingRelationIDValue} */
     const MissingRelationIDValue = 500;
     /** {@see ExceptionMessages::InvalidRelationIDType} */
-    const InvalidRelationIDType  = 500;
+    const InvalidRelationIDType = 500;
+    /** {@see ExceptionMessages::InvalidRelationIDArray} */
+    const InvalidRelationIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingRelationValue} */
+    const MissingRelationValue = 500;
+    /** {@see ExceptionMessages::MissingRelationParam} */
+    const MissingRelationParam = 500;
     /** {@see ExceptionMessages::InvalidRelationValue} */
-    const InvalidRelationValue  = 500;    
+    const InvalidRelationValue = 500;
+    /** {@see ExceptionMessages::InvalidRelationType} */
+    const InvalidRelationType = 500;
+    /** {@see ExceptionMessages::InvalidRelationArray} */
+    const InvalidRelationArray = 500;
+    
+    /** {@see ExceptionMessages::MissingRelationHostUnitMMIDParam} */  
+    const MissingRelationHostUnitMMIDParam = 500;
+    /** {@see ExceptionMessages::MissingRelationHostUnitMMIDValue} */
+    const MissingRelationHostUnitMMIDValue = 500;
+    /** {@see ExceptionMessages::InvalidRelationHostUnitMMIDType} */
+    const InvalidRelationHostUnitMMIDType = 500;
+    /** {@see ExceptionMessages::InvalidRelationHostUnitMMIDArray} */
+    const InvalidRelationHostUnitMMIDArray = 500;
+    /** {@see ExceptionMessages::InvalidRelationHostUnitMMIDValue} */
+    const InvalidRelationHostUnitMMIDValue = 500; //EXTRA only for ID REFERENCE
+    
+    /** {@see ExceptionMessages::MissingRelationGuestUnitMMIDParam} */
+    const MissingRelationGuestUnitMMIDParam = 500;
+    /** {@see ExceptionMessages::MissingRelationGuestUnitMMIDValue} */
+    const MissingRelationGuestUnitMMIDValue = 500;
+    /** {@see ExceptionMessages::InvalidRelationGuestUnitMMIDType} */
+    const InvalidRelationGuestUnitMMIDType = 500;
+    /** {@see ExceptionMessages::InvalidRelationGuestUnitMMIDArray} */
+    const InvalidRelationGuestUnitMMIDArray = 500;
+    /** {@see ExceptionMessages::InvalidRelationGuestUnitMMIDValue} */
+    const InvalidRelationGuestUnitMMIDValue = 500; //EXTRA only for ID REFERENCE
+    
+    
+    /** {@see ExceptionMessages::MissingRelationStateParam} */
+    const MissingRelationStateParam = 500;
+    /** {@see ExceptionMessages::MissingRelationStateValue} */
+    const MissingRelationStateValue = 500;
+    /** {@see ExceptionMessages::InvalidRelationStateType} */
+    const InvalidRelationStateType = 500;
+    /** {@see ExceptionMessages::InvalidRelationStateArray} */
+    const InvalidRelationStateArray = 500;
+
+    /** {@see ExceptionMessages::MissingRelationTrueDateParam} */
+    const MissingRelationTrueDateParam = 500;
+    /** {@see ExceptionMessages::MissingRelationTrueDateValue} */
+    const MissingRelationTrueDateValue = 500;
+    /** {@see ExceptionMessages::InvalidRelationTrueDateType} */
+    const InvalidRelationTrueDateType = 500;
+    /** {@see ExceptionMessages::InvalidRelationTrueDateArray} */
+    const InvalidRelationTrueDateArray = 500;
+    /** {@see ExceptionMessages::InvalidRelationTrueDateValidType} */
+    const InvalidRelationTrueDateValidType = 500;
+    
+    /** {@see ExceptionMessages::MissingRelationTrueFekParam} */
+    const MissingRelationTrueFekParam = 500;
+    /** {@see ExceptionMessages::MissingRelationTrueFekValue} */
+    const MissingRelationTrueFekValue = 500;
+    /** {@see ExceptionMessages::InvalidRelationTrueFekType} */
+    const InvalidRelationTrueFekType = 500;
+    /** {@see ExceptionMessages::InvalidRelationTrueFekArray} */
+    const InvalidRelationTrueFekArray = 500;
+    
+    /** {@see ExceptionMessages::MissingRelationFalseDateParam} */
+    const MissingRelationFalseDateParam = 500;
+    /** {@see ExceptionMessages::MissingRelationFalseDateValue} */
+    const MissingRelationFalseDateValue = 500;
+    /** {@see ExceptionMessages::InvalidRelationFalseDateType} */
+    const InvalidRelationFalseDateType = 500;  
+    /** {@see ExceptionMessages::InvalidRelationFalseDateArray} */
+    const InvalidRelationFalseDateArray = 500;
+    /** {@see ExceptionMessages::InvalidRelationFalseDateValidType} */
+    const InvalidRelationFalseDateValidType = 500;
+    
+    /** {@see ExceptionMessages::MissingRelationFalseFekParam} */
+    const MissingRelationFalseFekParam = 500;
+    /** {@see ExceptionMessages::MissingRelationFalseFekValue} */
+    const MissingRelationFalseFekValue = 500;
+    /** {@see ExceptionMessages::InvalidRelationFalseFekType} */
+    const InvalidRelationFalseFekType = 500;
+    /** {@see ExceptionMessages::InvalidRelationFalseFekArray} */
+    const InvalidRelationFalseFekArray = 500;
+    
     /** {@see ExceptionMessages::DuplicatedRelationValue} */
-    const DuplicatedRelationValue  = 500;
+    const DuplicatedRelationValue = 500;
+    /** {@see ExceptionMessages::DuplicatedRelationUniqueValue} */
+    const DuplicatedRelationUniqueValue = 500;
   
 }
 

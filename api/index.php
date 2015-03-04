@@ -1137,18 +1137,18 @@ function RelationsController()
                 $params["searchtype"]
             );
             break;
-//        case MethodTypes::POST :
-//            $result = PostRelations(
-//                $params["host_mm_id,
-//                $params["guest_mm_id,
-//                $params["relation_state,
-//                $params["true_date,
-//                $params["true_fek,
-//                $params["false_date,
-//                $params["false_fek,
-//                $params["relation_type
-//              );
-//            break;
+        case MethodTypes::POST :
+            $result = PostRelations(
+                $params["host_mm_id"],
+                $params["guest_mm_id"],
+                $params["relation_state"],
+                $params["true_date"],
+                $params["true_fek"],
+                $params["false_date"],
+                $params["false_fek"],
+                $params["relation_type"]
+              );
+            break;
 //        case MethodTypes::PUT :
 //            $result = PutRelations(
 //                $params["relation_id,

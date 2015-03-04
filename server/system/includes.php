@@ -176,9 +176,6 @@ require_once ('../api/post/PostUnits.php');
 require_once ('../api/post/PostWorkers.php');
 
 //require_once ('../api/post/PostUnitWorkers.php');
-//require_once ('../api/post/PostRelations.php');
-//require_once ('../api/post/PostLevels.php');
-//require_once ('../api/post/PostGroups.php');
 //require_once ('../api/post/PostConnectivityTypes.php');
 //
 require_once ('../api/put/PutUnits.php');
@@ -200,4 +197,6 @@ require_once ('../api/put/PutUnitWorkers.php');
 require_once ('../api/post/PostCategories.php');
 require_once ('../api/post/PostGroups.php');
 require_once ('../api/post/PostLevels.php');
+require_once ('../api/post/PostRelations.php');
+
 ?>

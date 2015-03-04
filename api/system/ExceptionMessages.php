@@ -181,18 +181,25 @@ class ExceptionMessages
     const DuplicatedStateValue = 'Η Κατάσταση υπάρχει ήδη';
 
 
-    //= GetRelationTypes
+    //= GetRelationTypes========================================================
     const MissingRelationTypeIDParam = 'Ο Κωδικός του Τύπου Συσχέτισης είναι υποχρεωτικό πεδίο';
     const MissingRelationTypeIDValue = 'Ο Κωδικός του Τύπου Συσχέτισης πρέπει να έχει τιμή';
     const InvalidRelationTypeIDType = 'Ο Κωδικός του Τύπου Συσχέτισης πρέπει να είναι αριθμητικός';
     const InvalidRelationTypeIDArray = 'Ο Κωδικός του Τύπου Συσχέτισης δεν μπορεί να έχει πολλαπλές τιμές';
+    
     const MissingRelationTypeValue = 'Ο Τύπος Συσχέτισης πρέπει να έχει τιμή';
     const MissingRelationTypeParam = 'Ο Τύπος Συσχέτισης είναι υποχρεωτικό πεδίο';
     const InvalidRelationTypeValue = 'Ο Τύπος Συσχέτισης δεν υπάρχει στο λεξικό';
     const InvalidRelationTypeType = 'Ο Τύπος Συσχέτισης πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    const InvalidRelationTypeArray = 'Ο Τύπος Συσχέτισης δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingRelationTypeNameParam = 'Το Όνομα του Τύπου Συσχέτισης είναι υποχρεωτικό πεδίο';
+    const MissingRelationTypeNameValue = 'Το Όνομα του Τύπου Συσχέτισης πρέπει να έχει τιμή';
+    const InvalidRelationTypeNameType = 'Το Όνομα του Τύπου Συσχέτισης πρέπει να είναι αλφαριθμητικό';
+    const InvalidRelationTypeNameArray = 'Το Όνομα του Τύπου Συσχέτισης δεν μπορεί να έχει πολλαπλές τιμές';
+    
     const DuplicatedRelationTypeValue = 'Ο Τύπος Συσχέτισης υπάρχει ήδη';
-
-
+    const DuplicatedRelationTypeUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Relation_type';
 
     //= GetIpMasks
     const MissingIpMaskIDParam = 'Ο Κωδικός της Μάσκας Δικτύου είναι υποχρεωτικό πεδίο';
@@ -816,42 +823,61 @@ class ExceptionMessages
     const InvalidWorkerTaxNumberType = 'Ο Αριθμός Φορολογικού Μητρώου ($tax_number)  πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     
     
-    
-    
-    
-    
-    
-       
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    const DuplicatedRelationValue  = 'Η Συσχέτιση Μονάδων υπάρχει ήδη';
+    // =Relations===============================================================
 
-
-
-
- 
-
-    const MissingRelationIDValue = 'Ο Κωδικός Συσχέτισης ($relation_id) πρέπει να έχει τιμή';
-    const InvalidRelationIDType  = 'Ο Κωδικός Συσχέτισης ($relation_id) πρέπει να είναι αριθμητικός';
-    const InvalidRelationValue  = 'Η Συσχέτιση δεν βρέθηκε';
-
+    const MissingRelationIDParam = 'Ο Κωδικός της Συσχέτισης Μονάδων είναι υποχρεωτικό πεδίο';
+    const MissingRelationIDValue = 'Ο Κωδικός της Συσχέτισης Μονάδων πρέπει να έχει τιμή';
+    const InvalidRelationIDType = 'Ο Κωδικός της Συσχέτισης Μονάδων πρέπει να είναι αριθμητικός';
+    const InvalidRelationIDArray = 'Ο Κωδικός της Συσχέτισης Μονάδων δεν μπορεί να έχει πολλαπλές τιμές';
     
-
-
+    const MissingRelationValue = 'Η Συσχέτιση Μονάδων πρέπει να έχει τιμή';
+    const MissingRelationParam = 'Η Συσχέτιση Μονάδων είναι υποχρεωτικό πεδίο';
+    const InvalidRelationValue = 'Η Συσχέτιση Μονάδων δεν υπάρχει στο λεξικό';
+    const InvalidRelationType = 'Η Συσχέτιση Μονάδων πρέπει να είναι αριθμητική ή αλφαριθμητική';
+    const InvalidRelationArray = 'Η Συσχέτιση Μονάδων δεν μπορεί να έχει πολλαπλές τιμές';
     
-      
-        
-        
+    const MissingRelationHostUnitMMIDParam = 'Ο Κωδικός ΜΜ της Host Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingRelationHostUnitMMIDValue = 'Ο Κωδικός ΜΜ της Host Μονάδας πρέπει να έχει τιμή';
+    const InvalidRelationHostUnitMMIDType = 'Ο Κωδικός ΜΜ της Host Μονάδας πρέπει να είναι αριθμητικός';
+    const InvalidRelationHostUnitMMIDArray = 'Ο Κωδικός ΜΜ της Host Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    const InvalidRelationHostUnitMMIDValue = 'Ο Κωδικός ΜΜ της Host Μονάδας δεν βρέθηκε'; //EXTRA only for ID REFERENCE
+    
+    const MissingRelationGuestUnitMMIDParam = 'Ο Κωδικός ΜΜ της Guest Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingRelationGuestUnitMMIDValue = 'Ο Κωδικός ΜΜ της Guest Μονάδας πρέπει να έχει τιμή';
+    const InvalidRelationGuestUnitMMIDType = 'Ο Κωδικός ΜΜ της Guest Μονάδας πρέπει να είναι αριθμητικός';
+    const InvalidRelationGuestUnitMMIDArray = 'Ο Κωδικός ΜΜ της Guest Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    const InvalidRelationGuestUnitMMIDValue = 'Ο Κωδικός ΜΜ της Guest Μονάδας δεν βρέθηκε'; //EXTRA only for ID REFERENCE
+    
+    const MissingRelationStateParam = 'H Κατάσταση της Συσχέτισης Μονάδων είναι υποχρεωτικό πεδίο';
+    const MissingRelationStateValue = 'H Κατάσταση της Συσχέτισης Μονάδων πρέπει να έχει τιμή';
+    const InvalidRelationStateType = 'H Κατάσταση της Συσχέτισης Μονάδων πρέπει να είναι αριθμητικό (0=ΑΝΕΝΕΡΓΗ ή 1=ΕΝΕΡΓΗ)';
+    const InvalidRelationStateArray = 'H Κατάσταση της Συσχέτισης Μονάδων δεν μπορεί να έχει πολλαπλές τιμές';
+
+    const MissingRelationTrueDateParam = 'Η Ημερομηνία Ενεργοποίησης της Συσχέτισης Μονάδων είναι υποχρεωτικό πεδίο';
+    const MissingRelationTrueDateValue = 'Η Ημερομηνία Ενεργοποίησης της Συσχέτισης Μονάδων πρέπει να έχει τιμή';
+    const InvalidRelationTrueDateType = 'Η Ημερομηνία Ενεργοποίησης της Συσχέτισης Μονάδων πρέπει να είναι Ημερομηνία (dd-mm-yyyy hh::mm:ss)';
+    const InvalidRelationTrueDateArray = 'Η Ημερομηνία Ενεργοποίησης της Συσχέτισης Μονάδων δεν μπορεί να έχει πολλαπλές τιμές';
+    const InvalidRelationTrueDateValidType = 'Η Ημερομηνία Ενεργοποίησης της Συσχέτισης Μονάδων πρέπει να έιναι μεταξύ των τιμών "1975 - current_date"'; //extra date
+    
+    const MissingRelationTrueFekParam = 'Το ΦΕΚ Ενεργοποίησης της Συσχέτισης Μονάδων είναι υποχρεωτικό πεδίο';
+    const MissingRelationTrueFekValue = 'Το ΦΕΚ Ενεργοποίησης της Συσχέτισης Μονάδων πρέπει να έχει τιμή';
+    const InvalidRelationTrueFekType = 'Το ΦΕΚ Ενεργοποίησης της Συσχέτισης Μονάδων πρέπει να είναι αριθμητική ή αλφαριθμητική';
+    const InvalidRelationTrueFekArray = 'Το ΦΕΚ Ενεργοποίησης της Συσχέτισης Μονάδων δεν μπορεί να έχει πολλαπλές τιμές'; 
+    
+    const MissingRelationFalseDateParam = 'Η Ημερομηνία Απενεργοποίησης της Συσχέτισης Μονάδων είναι υποχρεωτικό πεδίο';
+    const MissingRelationFalseDateValue = 'Η Ημερομηνία Απενεργοποίησης της Συσχέτισης Μονάδων πρέπει να έχει τιμή';
+    const InvalidRelationFalseDateType = 'Η Ημερομηνία Απενεργοποίησης της Συσχέτισης Μονάδων πρέπει να είναι Ημερομηνία (dd-mm-yyyy hh::mm:ss)';
+    const InvalidRelationFalseDateArray = 'Η Ημερομηνία Απενεργοποίησης της Συσχέτισης Μονάδων δεν μπορεί να έχει πολλαπλές τιμές'; 
+    const InvalidRelationFalseDateValidType = 'Η Ημερομηνία Απενεργοποίησης της Συσχέτισης Μονάδων πρέπει να έιναι μεταξύ των τιμών "1975 - current_date"'; //extra date
+    
+    const MissingRelationFalseFekParam = 'Το ΦΕΚ Απενεργοποίησης της Συσχέτισης Μονάδων είναι υποχρεωτικό πεδίο';
+    const MissingRelationFalseFekValue = 'Το ΦΕΚ Απενεργοποίησης της Συσχέτισης Μονάδων πρέπει να έχει τιμή';
+    const InvalidRelationFalseFekType = 'Το ΦΕΚ Απενεργοποίησης της Συσχέτισης Μονάδων πρέπει να είναι αριθμητική ή αλφαριθμητική';
+    const InvalidRelationFalseFekArray = 'Το ΦΕΚ Απενεργοποίησης της Συσχέτισης Μονάδων δεν μπορεί να έχει πολλαπλές τιμές'; 
+    
+    const DuplicatedRelationValue = 'Η Συσχέτιση Μονάδων υπάρχει ήδη';
+    const DuplicatedRelationUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Relation';
+    
 }    
 
 ?>

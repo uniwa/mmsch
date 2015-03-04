@@ -86,5 +86,76 @@ class Relations
      */
     private $hostMm;
 
+    public function getRelationId() {
+        return $this->relationId;
+    }
+
+    public function setRelationId($relationId) {
+        $this->relationId = $relationId;
+    }
+
+    public function getRelationState() {
+        return $this->relationState;
+    }
+
+    public function setRelationState($relationState) {
+        $this->relationState = $relationState;
+    }
+
+    public function getTrueDate() {
+        return $this->trueDate;
+    }
+
+    public function setTrueDate(\DateTime $trueDate) {
+        $this->trueDate = $trueDate;
+    }
+
+    public function getTrueFek() {
+        return $this->trueFek;
+    }
+
+    public function setTrueFek($trueFek) {
+        $this->trueFek = $trueFek;
+    }
+
+    public function getFalseDate() {
+        return $this->falseDate;
+    }
+
+    public function setFalseDate(\DateTime $falseDate) {
+        $this->falseDate = $falseDate;
+    }
+
+    public function getFalseFek() {
+        return $this->falseFek;
+    }
+
+    public function setFalseFek($falseFek) {
+        $this->falseFek = $falseFek;
+    }
+
+    public function getRelationType() {
+        return $this->relationType;
+    }
+
+    public function setRelationType(\RelationTypes $relationType) {
+        $this->relationType = $relationType;
+    }
+
+    public function getGuestMm() {
+        return $this->guestMm;
+    }
+
+    public function setGuestMm(\Units $guestMm) {
+        $this->guestMm = $guestMm;
+    }
+
+    public function getHostMm() {
+        return $this->hostMm;
+    }
+
+    public function setHostMm(\Units $hostMm) {
+        $this->hostMm = $hostMm;
+    }
 
 }
