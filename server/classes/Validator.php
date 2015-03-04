@@ -334,6 +334,30 @@ class Validator
 
         return date($format, trim(strtotime($date)));
     }
+    
+    /**
+     * 
+     * Validates that the value has valid year-range.
+     * 
+     * Use php strtotime function to compare date by user with currentDate and startDate
+     * true condition must have startDate < date < currentDate
+     * 
+     * @return bool True if valid, false if not.  
+     */
+    public static function IsValidDate($date, $format = 'Y-m-d H:i:s')
+    {
+
+      $startDate="1975-1-1";   //min date value
+      $currentDate=date($format);  //max date value
+      $formatDate = date($format, strtotime($date));
+     
+     if ( (strtotime($formatDate) > strtotime($startDate) ) && (strtotime($formatDate) <= strtotime($currentDate) ) ){
+          return true;  
+        } else {
+          return false;
+        }
+
+    }
 
 }
 ?>

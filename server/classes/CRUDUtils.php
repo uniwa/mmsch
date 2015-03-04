@@ -256,5 +256,53 @@ class CRUDUtils {
             throw new Exception(constant('ExceptionMessages::'.$invalidType)." : ".$param, constant('ExceptionCodes::'.$invalidType));
     }
     
+    /**
+     * Set doctrine entity Date parameter
+     * 
+     * @param DoctrineEntity $entity The doctrine entity.
+     * @param mixed[string|integer] $param Value of input parameter by user.   
+     * @param string $exceptionType Short name of input parameter used by ExceptionMessages and ExceptionCodes.
+     * @param string $field Name of parameter used by doctrine Entity.It converted string like “to_camel_case” into Camel Case: “ToCamelCase”.
+     * @param array $params Contain all input parameter by user. Created by loadParameters() function and use $field param.
+     * @param boolean $required Set true if parameter must required or false if not. Default value is true.
+     * @param boolean $is_nullable Set true if parameter can be null or false if not. Default value is false.
+     * @param boolean $dateFormat Set date format. Default value is 'Y-m-d H:i:s'.
+     *
+     * @throws ExceptionMessages::'Missing'.$exceptionType.'Param' , ExceptionCodes::'Missing'.$exceptionType.'Param'
+     * @throws ExceptionMessages::'Missing'.$exceptionType.'Value' , ExceptionCodes::'Missing'.$exceptionType.'Value'
+     * @throws ExceptionMessages::'Invalid'.$exceptionType.'Type' , ExceptionCodes::'Invalid'.$exceptionType.'Type'
+     * 
+     * @return mixed The doctrine entity with set.'$field' or throwException
+     * 
+     */ 
+    public static function entitySetDate(&$entity, $param, $exceptionType, $field, $params, $required = true, $is_nullable = false, $dateFormat = 'Y-m-d H:i:s' ) {
+        
+        $missingParam = 'Missing'.$exceptionType.'Param';
+        $missingValue = 'Missing'.$exceptionType.'Value';
+        $invalidType = 'Invalid'.$exceptionType.'Type';
+        $invalidValidType = 'Invalid'.$exceptionType.'ValidType'; 
+      
+        if (Validator::Missing($field, $params) ){
+            if (!$required) { return; }
+            throw new Exception(constant('ExceptionMessages::'.$missingParam)." : ".$param, constant('ExceptionCodes::'.$missingParam));
+        } 
+        else if ( Validator::IsNull($param) )
+            if (!$is_nullable) { 
+                throw new Exception(constant('ExceptionMessages::'.$missingValue)." : ".$param, constant('ExceptionCodes::'.$missingValue));
+            }else{
+                $method = 'set'.self::to_camel_case($field, true);
+                $entity->$method(Validator::ToNull($param));
+            }
+        else if (! Validator::IsValidDate($param) )
+            throw new Exception(constant('ExceptionMessages::'.$invalidValidType)." : ".$param, constant('ExceptionCodes::'.$invalidValidType));
+        else if ( Validator::IsDate($param, $dateFormat) )
+        {         
+            $method = 'set'.self::to_camel_case($field, true);
+            $entity->$method(new \DateTime( Validator::ToDate($param) ));
+        }
+        else
+            throw new Exception(constant('ExceptionMessages::'.$invalidType)." : ".$param, constant('ExceptionCodes::'.$invalidType));
+    }
+    
 }
 ?>
