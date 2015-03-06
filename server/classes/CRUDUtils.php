@@ -304,5 +304,71 @@ class CRUDUtils {
             throw new Exception(constant('ExceptionMessages::'.$invalidType)." : ".$param, constant('ExceptionCodes::'.$invalidType));
     }
     
+    /**
+     * Check ID (primary key)
+     * 
+     * @param string $field Name of input parameter by user.
+     * @param array $params Contain all input parameter by user. Created by loadParameters() function and use $userField param
+     * @param integer $param Value of input parameter by user.
+     * @param string $exceptionType Short name of input parameter used by ExceptionMessages and ExceptionCodes.
+     * 
+     * @throws ExceptionMessages::'Missing'.$exceptionType.'Param' , ExceptionCodes::'Missing'.$exceptionType.'Param'
+     * @throws ExceptionMessages::'Missing'.$exceptionType.'Value' , ExceptionCodes::'Missing'.$exceptionType.'Value'
+     * @throws ExceptionMessages::'Invalid'.$exceptionType.'Type' , ExceptionCodes::'Invalid'.$exceptionType.'Type'
+     * @throws ExceptionMessages::'Invalid'.$exceptionType.'Array' , ExceptionCodes::'Invalid'.$exceptionType.'Array'
+     * 
+     * @return mixed ID integer format or throwException
+     * 
+     */
+    public static function checkIDParam($field, $params, $param, $exceptionType ){
+
+        $missingParam = 'Missing'.$exceptionType.'Param';
+        $missingValue = 'Missing'.$exceptionType.'Value';
+        $invalidArray = 'Invalid'.$exceptionType.'Array';
+        $invalidType = 'Invalid'.$exceptionType.'Type';
+        
+        if (Validator::Missing($field, $params))
+            throw new Exception(constant('ExceptionMessages::'.$missingParam)." : ".$param, constant('ExceptionCodes::'.$missingParam));       
+        else if (Validator::IsNull($param))
+            throw new Exception(constant('ExceptionMessages::'.$missingValue)." : ".$param, constant('ExceptionCodes::'.$missingValue));
+        else if (Validator::IsArray($param))
+            throw new Exception(constant('ExceptionMessages::'.$invalidArray)." : ".$param, constant('ExceptionCodes::'.$invalidArray));   
+        else if (Validator::IsID($param))
+            return Validator::ToID($param);
+        else
+          throw new Exception(constant('ExceptionMessages::'.$invalidType)." : ".$param, constant('ExceptionCodes::'.$invalidType));
+          
+    }  
+    
+    /**
+     * Find ID (primary key)
+     * 
+     * @param integer $param Value of input parameter by user.
+     * @param string $repo Dotrine Entity class.
+     * @param string $exceptionType Short name of input parameter used by ExceptionMessages and ExceptionCodes.
+     * 
+     * @throws ExceptionMessages::'Invalid'.$exceptionType.'Value' , ExceptionCodes::'Invalid'.$exceptionType.'Value'
+     * @throws ExceptionMessages::'Duplicate'.$exceptionType.'UniqueValue' , ExceptionCodes::'Duplicate'.$exceptionType.'UniqueValue'
+     * 
+     * @return mixed The doctrine entity of ID or throwException
+     * 
+     */
+    public static function findIDParam ($param, $repo, $exceptionType){        
+        
+        global $entityManager;
+             
+        $invalidValue = 'Invalid'.$exceptionType.'Value';
+        $duplicateValue = 'Duplicate'.$exceptionType.'UniqueValue';
+ 
+        $retrievedObject = $entityManager->find($repo, $param);
+        
+        if(!isset($retrievedObject))
+            throw new Exception(constant('ExceptionMessages::'.$invalidValue)." : ".$param, constant('ExceptionCodes::'.$invalidValue));
+        else if (count($retrievedObject) > 1)
+            throw new Exception(constant('ExceptionMessages::'.$duplicateValue)." : ".$param, constant('ExceptionCodes::'.$duplicateValue));           
+        else   
+            return $retrievedObject;
+    }
+    
 }
 ?>
