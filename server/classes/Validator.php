@@ -8,6 +8,22 @@ class Validator
     protected static $maleValues = array('Α', 'M');
     protected static $femaleValues = array('Γ', 'F');
 
+    /**
+     * 
+     * Validates that value has exist.
+     * 
+     *  Use php get_object_vars function that returns NULL if the object isn't an object
+     *  Use php array_key_exists function that checks if the given key or index exists in the array.
+     * 
+     * @return bool True on success, false on failure.
+     * 
+     */
+    public static function IsExists($param) {
+        //$params = get_object_vars( loadParameters() );
+       $params = loadParameters();
+    return array_key_exists($param, $params);
+    }
+    
     public static function Exists($param, $params) {
         return array_key_exists($param, $params);
     }
