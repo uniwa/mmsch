@@ -200,7 +200,15 @@ class ExceptionMessages
     
     const DuplicatedRelationTypeValue = 'Ο Τύπος Συσχέτισης υπάρχει ήδη';
     const DuplicatedRelationTypeUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Relation_type';
+    const UsedRelationTypeByRelations = 'Ο Κωδικός του Τυπου Συσχέτισης χρησιμοποιείται από Συσχέτισεις Μονάδων';
 
+        //delete
+        const DuplicateDelRelationTypeValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο κωδικό του Τυπου Συσχέτισης.'; 
+        const NotFoundDelRelationTypeValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesRelationTypeRelations = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Relations .Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DelRelations ';
+ 
     //= GetIpMasks
     const MissingIpMaskIDParam = 'Ο Κωδικός της Μάσκας Δικτύου είναι υποχρεωτικό πεδίο';
     const MissingIpMaskIDValue = 'Ο Κωδικός της Μάσκας Δικτύου πρέπει να έχει τιμή';

@@ -308,26 +308,27 @@ class ExceptionCodes
 
 
     //= GetRelationTypes========================================================
-    /** {@see ExceptionMessages::MissingRelationTypeIDParam} */
+   
+    /** {@see ExceptionMessages::MissingRelationTypeIDParam} */  
     const MissingRelationTypeIDParam = 500;
-    /** {@see ExceptionMessages::MissingRelationTypeIDValue} */
+    /** {@see ExceptionMessages::MissingRelationTypeIDValue} */  
     const MissingRelationTypeIDValue = 500;
-    /** {@see ExceptionMessages::InvalidRelationTypeIDType} */
+    /** {@see ExceptionMessages::InvalidRelationTypeIDType} */  
     const InvalidRelationTypeIDType = 500;
-    /** {@see ExceptionMessages::InvalidRelationTypeIDArray} */
+    /** {@see ExceptionMessages::InvalidRelationTypeIDArray} */  
     const InvalidRelationTypeIDArray = 500;
     
-    /** {@see ExceptionMessages::MissingRelationTypeValue} */
-    const MissingRelationTypeValue = 500;
-    /** {@see ExceptionMessages::MissingRelationTypeParam} */
+    /** {@see ExceptionMessages::MissingRelationTypeParam} */  
     const MissingRelationTypeParam = 500;
-    /** {@see ExceptionMessages::InvalidRelationTypeValue} */
+    /** {@see ExceptionMessages::MissingRelationTypeValue} */  
+    const MissingRelationTypeValue = 500;
+    /** {@see ExceptionMessages::InvalidRelationTypeValue} */  
     const InvalidRelationTypeValue = 500;
-    /** {@see ExceptionMessages::InvalidRelationTypeType} */
+    /** {@see ExceptionMessages::InvalidRelationTypeType} */  
     const InvalidRelationTypeType = 500;
     /** {@see ExceptionMessages::InvalidRelationTypeArray} */  
     const InvalidRelationTypeArray = 500;
-    
+  
     /** {@see ExceptionMessages::MissingRelationTypeNameParam} */  
     const MissingRelationTypeNameParam = 500;
     /** {@see ExceptionMessages::MissingRelationTypeNameValue} */  
@@ -337,10 +338,22 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidRelationTypeNameArray} */  
     const InvalidRelationTypeNameArray = 500;
     
-    /** {@see ExceptionMessages::DuplicatedRelationTypeValue} */
-    const DuplicatedRelationTypeValue = 500;   
-    /** {@see ExceptionMessages::DuplicatedRelationTypeUniqueValue} */
-    const DuplicatedRelationTypeUniqueValue = 500;
+    /** {@see ExceptionMessages::DuplicatedRelationTypeValue} */  
+    const DuplicatedRelationTypeValue = 500;
+    /** {@see ExceptionMessages::DuplicateRelationTypeUniqueValue} */     
+    const DuplicateRelationTypeUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedRelationTypeByRelations} */  
+    const UsedRelationTypeByRelations = 500;
+    
+       //delete
+        /** {@see ExceptionMessages::DuplicateDelRelationTypeValue} */  
+        const DuplicateDelRelationTypeValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelRelationTypeValue} */  
+        const NotFoundDelRelationTypeValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesRelationTypeRelations} */  
+        const ReferencesRelationTypeRelations = 500;
 
     //= GetIpMasks
     /** {@see ExceptionMessages::MissingIpMaskIDParam} */

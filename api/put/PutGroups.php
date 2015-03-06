@@ -167,130 +167,86 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  */
 
+function PutGroups( $group_id, $mm_id, $level_id, $name, $students_count ) {
+    
+    global $app,$entityManager;
 
-function PutGroups( $group_id, $mm_id, $level, $name, $students_count )
-{
-    global $db;
-    global $Options;
+    $result = array();
 
-    $result = array();  
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
+    $params = loadParameters();
+    $result["parameters"]  = $params;
 
-    $result["method"] = __FUNCTION__;
-
-    try
-    {
-//==============================================================================
-  
-        if (! trim($group_id) )
-            throw new Exception(ExceptionMessages::MissingGroupIDValue, ExceptionCodes::MissingGroupIDValue);
-        else if (!is_numeric($group_id))
-            throw new Exception(ExceptionMessages::InvalidGroupIDType, ExceptionCodes::InvalidGroupIDType);
-        else
-            $fGroupId = $group_id;        
+    try {
         
-        $oGroup = new GroupsExt($db);
+        //$group_id============================================================= 
+        $fGroupId = CRUDUtils::checkIDParam('group_id', $params, $group_id, 'GroupID');
+
+        //init entity for update row============================================
+        $Group = CRUDUtils::findIDParam($fGroupId, 'Groups', 'Group');
         
-        $filter = new DFC(GroupsExt::FIELD_GROUP_ID, $fGroupId, DFC::EXACT);
-        
-        $arrayGroups = $oGroup->findByFilter($db, $filter, true);
-        
-        if (count($arrayGroups) == 0)
-        {
-            throw new Exception(ExceptionMessages::InvalidGroupValue." : ".$fGroupId, ExceptionCodes::InvalidGroupValue);
-        }
-        else
-        {        
-
-//==============================================================================
-
-            $oUnit = new UnitsExt($db);
-
-            if (! trim($mm_id))
-            {
-                throw new Exception(ExceptionMessages::MissingMMIdValue, ExceptionCodes::MissingMMIdValue);
-            }
-            else if (!is_numeric($mm_id))
-            {
-                throw new Exception(ExceptionMessages::InvalidMMIdType, ExceptionCodes::InvalidMMIdType);
-            }
-            else if ($mm_id)
-            {
-                $filter = new DFC(UnitsExt::FIELD_MM_ID, $mm_id, DFC::EXACT);
-                $oUnit = $oUnit->findByFilter($db, $filter, true);
-            }
-
-            if ( $mm_id && (count($oUnit) < 1))
-                throw new Exception(ExceptionMessages::InvalidMMIdValue." : ".$mm_id, ExceptionCodes::InvalidMMIdValue);
-            else if ($mm_id)
-                $fMMId = $oUnit[0]->getMmId ();
-            else
-                $fMMId = NULL;    
-
-//==============================================================================
-
-            $oLevel = new LevelsExt($db);
-
-            if (! $level)
-            {
-                throw new Exception(ExceptionMessages::MissingLevelValue, ExceptionCodes::MissingLevelValue);
-            }
-            else if (is_numeric($level))
-            {
-                $filter = array(
-                    new DFC(LevelsExt::FIELD_MM_ID, $fMMId, DFC::EXACT),
-                    new DFC(LevelsExt::FIELD_LEVEL_ID, $level, DFC::EXACT)
-                );
-                
-                $oLevel = $oLevel->findByFilter($db, $filter, true);  
-            }
-            else if ($level)
-            {
-                $filter = array(
-                    new DFC(LevelsExt::FIELD_MM_ID, $fMMId, DFC::EXACT),
-                    new DFC(LevelsExt::FIELD_NAME, $level, DFC::EXACT)
-                );
-                
-                $oLevel = $oLevel->findByFilter($db, $filter, true);
-            }
-
-            if ( $level && (count($oLevel) < 1))
-                throw new Exception(ExceptionMessages::InvalidLevelValue." : ".$source, ExceptionCodes::InvalidLevelValue);
-            else if ($level)
-                $fLevel = $oLevel[0]->getLevelId ();
-            else 
-                $fLevel = NULL;
-        
-//==============================================================================
-        
-            if (trim($name) == "")
-                throw new Exception(ExceptionMessages::MissingNameValue, ExceptionCodes::MissingNameValue);
-            else
-                $fName = $name;
-
-//==============================================================================
-
-            $oGroup->setGroupId( $fGroupId );
-            $oGroup->setMmId( $fMMId );
-            $oGroup->setLevelId( $fLevel );
-            $oGroup->setName( $fName );
-            $oGroup->setStudentsCount( $students_count );
-
-            $oGroup->updateToDatabase($db);
-
-            $result["group_id"] = $oGroup->getGroupId();
-                    
-            $result["status"] = ExceptionCodes::NoErrors;
-            $result["message"] = ExceptionMessages::NoErrors;
-            
-        }
-    } 
-    catch (Exception $e) 
-    {
-        $result["status"] = $e->getCode();
-        $result["message"] = "[".$result["method"]."] ".$e->getMessage();
+    //$mm_id====================================================================
+    if ( Validator::IsExists('mm_id') ){
+        CRUDUtils::entitySetAssociation($Group, $mm_id, 'Units', 'mm', 'UnitMMID', $params, 'mm_id', true, false, true);
+    } else if ( Validator::IsNull($Group->getMm()) ){
+        throw new Exception(ExceptionMessages::MissingMMIdValue, ExceptionCodes::MissingMMIdValue);
     } 
     
+    //$level_id=================================================================
+    if ( Validator::IsExists('level_id') ){
+        CRUDUtils::entitySetAssociation($Group, $level_id, 'Levels', 'level', 'LevelID', $params, 'level_id', true, false, true);
+    } else if ( Validator::IsNull($Group->getLevel()) ){
+        throw new Exception(ExceptionMessages::MissingLevelIDValue, ExceptionCodes::MissingLevelIDValue);
+    }  
+    
+    //$name=====================================================================
+    if ( Validator::IsExists('name') ){
+        CRUDUtils::entitySetParam($Group, $name, 'GroupName', 'name' , $params);
+    } else if ( Validator::IsNull($Group->getName()) ){
+        throw new Exception(ExceptionMessages::MissingLevelNameValue, ExceptionCodes::MissingLevelNameValue);
+    } 
+    
+    //$students_count===========================================================
+    if ( Validator::IsExists('students_count') ){
+        CRUDUtils::entitySetParam($Group, $students_count, 'GroupStudentsCount', 'students_count' , $params, true, false, true);
+    } else if ( Validator::IsNull($Group->getStudentsCount()) ){
+        throw new Exception(ExceptionMessages::MissingLevelStudentsCountValue, ExceptionCodes::MissingLevelStudentsCountValue);
+    } 
+
+//controls======================================================================   
+
+        //check name duplicate==================================================        
+        $qb = $entityManager->createQueryBuilder()
+                            ->select('COUNT(g.groupId) AS fresult')
+                            ->from('Groups', 'g')
+                            ->where("g.mm = :mm AND g.level = :level AND g.name = :name AND g.groupId != :groupId")
+                            ->setParameter('mm', $Group->getMm())
+                            ->setParameter('level', $Group->getLevel())
+                            ->setParameter('name', $Group->getName())
+                            ->setParameter('groupId', $Group->getGroupId())    
+                            ->getQuery()
+                            ->getSingleResult();
+      
+        if ( $qb["fresult"] != 0 ) {
+             throw new Exception(ExceptionMessages::DuplicatedGroupValue ,ExceptionCodes::DuplicatedGroupValue);
+        }
+       
+//update to db================================================================== 
+        $entityManager->persist($Group);
+        $entityManager->flush($Group);
+
+        $result["group_id"] = $Group->getGroupId();
+           
+//result_messages===============================================================      
+        $result["status"] = ExceptionCodes::NoErrors;
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
+        $result["status"] = $e->getCode();
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    }                
+        
     return $result;
 }
-
 ?>

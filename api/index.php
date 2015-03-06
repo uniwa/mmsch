@@ -422,6 +422,17 @@ function RelationTypesController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostRelationTypes(
+                $params["name"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutRelationTypes(
+                $params["relation_type_id"],
+                $params["name"]
+            );
+            break;
     }
 
     PrepareResponse();
@@ -451,6 +462,12 @@ function CategoriesController()
             break;
          case MethodTypes::POST :
             $result = PostCategories(
+                $params["name"]
+            );
+            break;
+         case MethodTypes::PUT :
+            $result = PutCategories(
+                $params["category_id"],
                 $params["name"]
             );
             break;
@@ -1149,19 +1166,19 @@ function RelationsController()
                 $params["relation_type"]
               );
             break;
-//        case MethodTypes::PUT :
-//            $result = PutRelations(
-//                $params["relation_id,
-//                $params["host_mm_id,
-//                $params["guest_mm_id,
-//                $params["relation_state,
-//                $params["true_date,
-//                $params["true_fek,
-//                $params["false_date,
-//                $params["false_fek,
-//                $params["relation_type
-//              );
-//            break;
+        case MethodTypes::PUT :
+            $result = PutRelations(
+                $params["relation_id"],
+                $params["host_mm_id"],
+                $params["guest_mm_id"],
+                $params["relation_state"],
+                $params["true_date"],
+                $params["true_fek"],
+                $params["false_date"],
+                $params["false_fek"],
+                $params["relation_type"]
+              );
+            break;
     }
 
     PrepareResponse();
@@ -1244,6 +1261,15 @@ function LevelsController()
                 $params["students_count"]
             );
             break;
+         case MethodTypes::PUT :
+            $result = PutLevels(
+                $params["level_id"],
+                $params["mm_id"],
+                $params["name"],
+                $params["groups_count"],
+                $params["students_count"]
+            );
+            break;
     }
 
     PrepareResponse();
@@ -1274,6 +1300,15 @@ function GroupsController()
             break;
          case MethodTypes::POST :
             $result = PostGroups(
+                $params["mm_id"],
+                $params["level_id"],
+                $params["name"],
+                $params["students_count"]
+            );
+            break;
+         case MethodTypes::PUT :
+            $result = PutGroups(
+                $params["group_id"],
                 $params["mm_id"],
                 $params["level_id"],
                 $params["name"],
