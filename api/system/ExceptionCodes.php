@@ -119,41 +119,7 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidNameArray} */
     const InvalidNameArray = 500;
 
-    //= Categories==============================================================
-    
-    /** {@see ExceptionMessages::MissingCategoryIDParam} */
-    const MissingCategoryIDParam = 500;
-    /** {@see ExceptionMessages::MissingCategoryIDValue} */
-    const MissingCategoryIDValue = 500;
-    /** {@see ExceptionMessages::InvalidCategoryIDType} */
-    const InvalidCategoryIDType = 500;
-    /** {@see ExceptionMessages::InvalidCategoryIDArray} */
-    const InvalidCategoryIDArray = 500;
-    /** {@see ExceptionMessages::MissingCategoryParam} */
-    
-    const MissingCategoryParam = 500;
-    /** {@see ExceptionMessages::MissingCategoryValue} */
-    const MissingCategoryValue = 500;
-    /** {@see ExceptionMessages::InvalidCategoryValue} */
-    const InvalidCategoryValue = 500;
-    /** {@see ExceptionMessages::InvalidCategoryType} */
-    const InvalidCategoryType = 500;
-    /** {@see ExceptionMessages::InvalidCategoryArray} */  
-    const InvalidCategoryArray = 500;
 
-    /** {@see ExceptionMessages::MissingCategoryNameParam} */  
-    const MissingCategoryNameParam = 500;
-    /** {@see ExceptionMessages::MissingCategoryNameValue} */  
-    const MissingCategoryNameValue = 500;
-    /** {@see ExceptionMessages::InvalidCategoryNameType} */  
-    const InvalidCategoryNameType = 500;
-    /** {@see ExceptionMessages::InvalidCategoryNameArray} */  
-    const InvalidCategoryNameArray = 500;
-    
-    /** {@see ExceptionMessages::DuplicatedCategoryValue} */
-    const DuplicatedCategoryValue = 500;
-    /** {@see ExceptionMessages::DuplicatedCategoryUniqueValue} */
-    const DuplicatedCategoryUniqueValue = 500;
     
     //= GetLdaps
     /** {@see ExceptionMessages::MissingUnitID} */
@@ -179,27 +145,6 @@ class ExceptionCodes
 
 
 
-    //= GetEducationLevels
-    /** {@see ExceptionMessages::MissingEducationLevelIDParam} */
-    const MissingEducationLevelIDParam = 500;
-    /** {@see ExceptionMessages::MissingEducationLevelIDValue} */
-    const MissingEducationLevelIDValue = 500;
-    /** {@see ExceptionMessages::InvalidEducationLevelIDType} */
-    const InvalidEducationLevelIDType = 500;
-    /** {@see ExceptionMessages::InvalidEducationLevelIDArray} */
-    const InvalidEducationLevelIDArray = 500;
-    /** {@see ExceptionMessages::MissingEducationLevelValue} */
-    const MissingEducationLevelValue = 500;
-    /** {@see ExceptionMessages::MissingEducationLevelParam} */
-    const MissingEducationLevelParam = 500;
-    /** {@see ExceptionMessages::InvalidEducationLevelValue} */
-    const InvalidEducationLevelValue = 500;
-    /** {@see ExceptionMessages::InvalidEducationLevelType} */
-    const InvalidEducationLevelType = 500;
-    /** {@see ExceptionMessages::DuplicatedEducationLevelValue} */
-    const DuplicatedEducationLevelValue = 500;
-
-
 
     //= GetUnitDns
    /** {@see ExceptionMessages::InvalidUnitDNSType} */
@@ -208,31 +153,6 @@ class ExceptionCodes
     const InvalidExtUnitDnsType = 500;
    /** {@see ExceptionMessages::InvalidUnitUIDType} */
     const InvalidUnitUIDType = 500;
-
-
-
-    //= CircuitTypes
-    /** {@see ExceptionMessages::MissingCircuitTypeIDParam} */
-    const MissingCircuitTypeIDParam = 500;
-    /** {@see ExceptionMessages::MissingCircuitTypeIDValue} */
-    const MissingCircuitTypeIDValue = 500;
-    /** {@see ExceptionMessages::InvalidCircuitTypeIDType} */
-    const InvalidCircuitTypeIDType = 500;
-    /** {@see ExceptionMessages::InvalidCircuitTypeIDArray} */
-    const InvalidCircuitTypeIDArray = 500;
-    /** {@see ExceptionMessages::MissingCircuitTypeValue} */
-    const MissingCircuitTypeValue = 500;
-    /** {@see ExceptionMessages::MissingCircuitTypeParam} */
-    const MissingCircuitTypeParam = 500;
-    /** {@see ExceptionMessages::InvalidCircuitTypeValue} */
-    const InvalidCircuitTypeValue = 500;
-    /** {@see ExceptionMessages::InvalidCircuitTypeType} */
-    const InvalidCircuitTypeType = 500;
-    /** {@see ExceptionMessages::DuplicatedCircuitTypeValue} */
-    const DuplicatedCircuitTypeValue = 500;
-    /** {@see ExceptionMessages::UsedCircuitTypeByCircuits} */
-    const UsedCircuitTypeByCircuits = 500;
-
 
 
     //= GetAddrspaceTypes
@@ -255,105 +175,11 @@ class ExceptionCodes
     /** {@see ExceptionMessages::DuplicatedAddrspaceTypeValue} */
     const DuplicatedAddrspaceTypeValue = 500;
     
-    //= GetSources
-    /** {@see ExceptionMessages::MissingSourceIDParam} */
-    const MissingSourceIDParam = 500;
-    /** {@see ExceptionMessages::MissingSourceIDValue} */
-    const MissingSourceIDValue = 500;
-    /** {@see ExceptionMessages::InvalidSourceIDType} */
-    const InvalidSourceIDType = 500;
-    /** {@see ExceptionMessages::InvalidSourceIDArray} */
-    const InvalidSourceIDArray = 500;
-    /** {@see ExceptionMessages::MissingSourceValue} */
-    const MissingSourceValue = 500;
-    /** {@see ExceptionMessages::MissingSourceParam} */
-    const MissingSourceParam = 500;
-    /** {@see ExceptionMessages::InvalidSourceValue} */
-    const InvalidSourceValue = 500;
-    /** {@see ExceptionMessages::InvalidSourceType} */
-    const InvalidSourceType = 500;
-    /** {@see ExceptionMessages::MissingSourceVisibleParam} */
-    const MissingSourceVisibleParam = 500;
-    /** {@see ExceptionMessages::MissingSourceVisibleValue} */
-    const MissingSourceVisibleValue = 500;
-    /** {@see ExceptionMessages::InvalidSourceVisibleType} */
-    const InvalidSourceVisibleType = 500;
-    /** {@see ExceptionMessages::InvalidSourceVisibleArray} */
-    const InvalidSourceVisibleArray = 500;
-    /** {@see ExceptionMessages::DuplicatedSourceValue} */
-    const DuplicatedSourceValue = 500;
 
 
 
-    //= GetStates
-    /** {@see ExceptionMessages::MissingStateIDParam} */
-    const MissingStateIDParam = 500;
-    /** {@see ExceptionMessages::MissingStateIDValue} */
-    const MissingStateIDValue = 500;
-    /** {@see ExceptionMessages::InvalidStateIDType} */
-    const InvalidStateIDType = 500;
-    /** {@see ExceptionMessages::InvalidStateIDArray} */
-    const InvalidStateIDArray = 500;
-    /** {@see ExceptionMessages::MissingStateValue} */
-    const MissingStateValue = 500;
-    /** {@see ExceptionMessages::MissingStateParam} */
-    const MissingStateParam = 500;
-    /** {@see ExceptionMessages::InvalidStateValue} */
-    const InvalidStateValue = 500;
-    /** {@see ExceptionMessages::InvalidStateType} */
-    const InvalidStateType = 500;
-    /** {@see ExceptionMessages::DuplicatedStateValue} */
-    const DuplicatedStateValue = 500;
 
 
-
-    //= GetRelationTypes========================================================
-   
-    /** {@see ExceptionMessages::MissingRelationTypeIDParam} */  
-    const MissingRelationTypeIDParam = 500;
-    /** {@see ExceptionMessages::MissingRelationTypeIDValue} */  
-    const MissingRelationTypeIDValue = 500;
-    /** {@see ExceptionMessages::InvalidRelationTypeIDType} */  
-    const InvalidRelationTypeIDType = 500;
-    /** {@see ExceptionMessages::InvalidRelationTypeIDArray} */  
-    const InvalidRelationTypeIDArray = 500;
-    
-    /** {@see ExceptionMessages::MissingRelationTypeParam} */  
-    const MissingRelationTypeParam = 500;
-    /** {@see ExceptionMessages::MissingRelationTypeValue} */  
-    const MissingRelationTypeValue = 500;
-    /** {@see ExceptionMessages::InvalidRelationTypeValue} */  
-    const InvalidRelationTypeValue = 500;
-    /** {@see ExceptionMessages::InvalidRelationTypeType} */  
-    const InvalidRelationTypeType = 500;
-    /** {@see ExceptionMessages::InvalidRelationTypeArray} */  
-    const InvalidRelationTypeArray = 500;
-  
-    /** {@see ExceptionMessages::MissingRelationTypeNameParam} */  
-    const MissingRelationTypeNameParam = 500;
-    /** {@see ExceptionMessages::MissingRelationTypeNameValue} */  
-    const MissingRelationTypeNameValue = 500;
-    /** {@see ExceptionMessages::InvalidRelationTypeNameType} */  
-    const InvalidRelationTypeNameType = 500;
-    /** {@see ExceptionMessages::InvalidRelationTypeNameArray} */  
-    const InvalidRelationTypeNameArray = 500;
-    
-    /** {@see ExceptionMessages::DuplicatedRelationTypeValue} */  
-    const DuplicatedRelationTypeValue = 500;
-    /** {@see ExceptionMessages::DuplicateRelationTypeUniqueValue} */     
-    const DuplicateRelationTypeUniqueValue = 500;
-    /** {@see ExceptionMessages::UsedRelationTypeByRelations} */  
-    const UsedRelationTypeByRelations = 500;
-    
-       //delete
-        /** {@see ExceptionMessages::DuplicateDelRelationTypeValue} */  
-        const DuplicateDelRelationTypeValue = 500;
-        /** {@see ExceptionMessages::NotFoundDelRelationTypeValue} */  
-        const NotFoundDelRelationTypeValue = 500;
-
-        //references
-        /** {@see ExceptionMessages::ReferencesRelationTypeRelations} */  
-        const ReferencesRelationTypeRelations = 500;
 
     //= GetIpMasks
     /** {@see ExceptionMessages::MissingIpMaskIDParam} */
@@ -374,30 +200,6 @@ class ExceptionCodes
     const InvalidIpMaskType = 500;
     /** {@see ExceptionMessages::DuplicatedIpMaskValue} */
     const DuplicatedIpMaskValue = 500;
-
-
-
-    //= GetPrefectures
-    /** {@see ExceptionMessages::MissingPrefectureIDValue} */
-    const MissingPrefectureIDValue = 500;
-    /** {@see ExceptionMessages::MissingPrefectureIDParam} */
-    const MissingPrefectureIDParam = 500;
-    /** {@see ExceptionMessages::InvalidPrefectureIDType} */
-    const InvalidPrefectureIDType = 500;
-    /** {@see ExceptionMessages::InvalidPrefectureIDArray} */
-    const InvalidPrefectureIDArray = 500;
-    /** {@see ExceptionMessages::MissingPrefectureValue} */
-    const MissingPrefectureValue = 500;
-    /** {@see ExceptionMessages::MissingPrefectureParam} */
-    const MissingPrefectureParam = 500;
-    /** {@see ExceptionMessages::InvalidPrefectureValue} */
-    const InvalidPrefectureValue = 500;
-    /** {@see ExceptionMessages::InvalidPrefectureType} */
-    const InvalidPrefectureType = 500;
-    /** {@see ExceptionMessages::DuplicatedPrefectureValue} */
-    const DuplicatedPrefectureValue = 500;
-
-
 
     //= GetTaxOffices
     /** {@see ExceptionMessages::MissingTaxOfficeIDValue} */
@@ -511,28 +313,6 @@ class ExceptionCodes
 
 
 
-    //= GetUnitTypes
-    /** {@see ExceptionMessages::MissingUnitTypeIDValue} */
-    const MissingUnitTypeIDValue = 500;
-    /** {@see ExceptionMessages::MissingUnitTypeIDParam} */
-    const MissingUnitTypeIDParam = 500;
-    /** {@see ExceptionMessages::InvalidUnitTypeIDType} */
-    const InvalidUnitTypeIDType = 500;
-    /** {@see ExceptionMessages::InvalidUnitTypeIDArray} */
-    const InvalidUnitTypeIDArray = 500;
-    /** {@see ExceptionMessages::MissingUnitTypeValue} */
-    const MissingUnitTypeValue = 500;
-    /** {@see ExceptionMessages::MissingUnitTypeParam} */
-    const MissingUnitTypeParam = 500;
-    /** {@see ExceptionMessages::InvalidUnitTypeValue} */
-    const InvalidUnitTypeValue = 500;
-    /** {@see ExceptionMessages::InvalidUnitTypeType} */
-    const InvalidUnitTypeType = 500;
-    /** {@see ExceptionMessages::DuplicatedUnitTypeValue} */
-    const DuplicatedUnitTypeValue = 500;
-
-
-
     //= GetAddrspaces
     /** {@see ExceptionMessages::MissingAddrspaceIDParam} */
     const MissingAddrspaceIDParam = 500;
@@ -553,49 +333,6 @@ class ExceptionCodes
     /** {@see ExceptionMessages::DuplicatedAddrspaceValue} */
     const DuplicatedAddrspaceValue = 500;
 
-
-
-    //= GetRegionEduAdmins
-    /** {@see ExceptionMessages::MissingRegionEduAdminIDParam} */
-    const MissingRegionEduAdminIDParam = 500;
-    /** {@see ExceptionMessages::MissingRegionEduAdminIDValue} */
-    const MissingRegionEduAdminIDValue = 500;
-    /** {@see ExceptionMessages::InvalidRegionEduAdminIDType} */
-    const InvalidRegionEduAdminIDType = 500;
-    /** {@see ExceptionMessages::InvalidRegionEduAdminIDArray} */
-    const InvalidRegionEduAdminIDArray = 500;
-    /** {@see ExceptionMessages::MissingRegionEduAdminValue} */
-    const MissingRegionEduAdminValue = 500;
-    /** {@see ExceptionMessages::MissingRegionEduAdminParam} */
-    const MissingRegionEduAdminParam = 500;
-    /** {@see ExceptionMessages::InvalidRegionEduAdminValue} */
-    const InvalidRegionEduAdminValue = 500;
-    /** {@see ExceptionMessages::InvalidRegionEduAdminType} */
-    const InvalidRegionEduAdminType = 500;
-    /** {@see ExceptionMessages::DuplicatedRegionEduAdminValue} */
-    const DuplicatedRegionEduAdminValue = 500;
-
-
-
-    //= GetImplementationEntities
-    /** {@see ExceptionMessages::MissingImplementationEntityIDParam} */
-    const MissingImplementationEntityIDParam = 500;
-    /** {@see ExceptionMessages::MissingImplementationEntityIDValue} */
-    const MissingImplementationEntityIDValue = 500;
-    /** {@see ExceptionMessages::InvalidImplementationEntityIDType} */
-    const InvalidImplementationEntityIDType = 500;
-    /** {@see ExceptionMessages::InvalidImplementationEntityIDArray} */
-    const InvalidImplementationEntityIDArray = 500;
-    /** {@see ExceptionMessages::MissingImplementationEntityValue} */
-    const MissingImplementationEntityValue = 500;
-    /** {@see ExceptionMessages::MissingImplementationEntityParam} */
-    const MissingImplementationEntityParam = 500;
-    /** {@see ExceptionMessages::InvalidImplementationEntityValue} */
-    const InvalidImplementationEntityValue = 500;
-    /** {@see ExceptionMessages::InvalidImplementationEntityType} */
-    const InvalidImplementationEntityType = 500;
-    /** {@see ExceptionMessages::DuplicatedImplementationEntityValue} */
-    const DuplicatedImplementationEntityValue = 500;
 
 
 
@@ -640,37 +377,244 @@ class ExceptionCodes
     const InvalidLdapType = 500;
     /** {@see ExceptionMessages::DuplicatedLdapValue} */
     const DuplicatedLdapValue = 500;
+ 
 
 
+//= ImplementationEntities======================================================
+    
+    /** {@see ExceptionMessages::MissingImplementationEntityIDParam} */
+    const MissingImplementationEntityIDParam = 500;
+    /** {@see ExceptionMessages::MissingImplementationEntityIDValue} */
+    const MissingImplementationEntityIDValue = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityIDType} */
+    const InvalidImplementationEntityIDType = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityIDArray} */
+    const InvalidImplementationEntityIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingImplementationEntityParam} */
+    const MissingImplementationEntityParam = 500;
+        /** {@see ExceptionMessages::MissingImplementationEntityValue} */
+    const MissingImplementationEntityValue = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityValue} */
+    const InvalidImplementationEntityValue = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityType} */
+    const InvalidImplementationEntityType = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityArray} */
+    const InvalidImplementationEntityArray = 500;
+    
+    /** {@see ExceptionMessages::MissingImplementationEntityNameParam} */
+    const MissingImplementationEntityNameParam = 500;
+    /** {@see ExceptionMessages::MissingImplementationEntityNameValue} */
+    const MissingImplementationEntityNameValue = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityNameType} */
+    const InvalidImplementationEntityNameType = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityNameArray} */
+    const InvalidImplementationEntityNameArray = 500;
+    
+    /** {@see ExceptionMessages::MissingImplementationEntityInitialParam} */
+    const MissingImplementationEntityInitialParam = 500;
+    /** {@see ExceptionMessages::MissingImplementationEntityInitialValue} */
+    const MissingImplementationEntityInitialValue = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityInitialType} */
+    const InvalidImplementationEntityInitialType = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityInitialArray} */
+    const InvalidImplementationEntityInitialArray = 500;
+    
+    /** {@see ExceptionMessages::MissingImplementationEntityStreetAddressParam} */
+    const MissingImplementationEntityStreetAddressParam = 500;
+    /** {@see ExceptionMessages::MissingImplementationEntityStreetAddressValue} */
+    const MissingImplementationEntityStreetAddressValue = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityStreetAddressType} */
+    const InvalidImplementationEntityStreetAddressType = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityStreetAddressArray} */
+    const InvalidImplementationEntityStreetAddressArray = 500;
+    
+    /** {@see ExceptionMessages::MissingImplementationEntityPostalCodeParam} */
+    const MissingImplementationEntityPostalCodeParam = 500;
+    /** {@see ExceptionMessages::MissingImplementationEntityPostalCodeValue} */
+    const MissingImplementationEntityPostalCodeValue = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityPostalCodeType} */
+    const InvalidImplementationEntityPostalCodeType = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityPostalCodeArray} */
+    const InvalidImplementationEntityPostalCodeArray = 500;
+    
+    /** {@see ExceptionMessages::MissingImplementationEntityEmailParam} */
+    const MissingImplementationEntityEmailParam = 500;
+    /** {@see ExceptionMessages::MissingImplementationEntityEmailValue} */
+    const MissingImplementationEntityEmailValue = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityEmailType} */
+    const InvalidImplementationEntityEmailType = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityEmailArray} */
+    const InvalidImplementationEntityEmailArray = 500;
+    
+    /** {@see ExceptionMessages::MissingImplementationEntityPhoneNumberParam} */
+    const MissingImplementationEntityPhoneNumberParam = 500;
+    /** {@see ExceptionMessages::MissingImplementationEntityPhoneNumberValue} */
+    const MissingImplementationEntityPhoneNumberValue = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityPhoneNumberType} */
+    const InvalidImplementationEntityPhoneNumberType = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityPhoneNumberArray} */
+    const InvalidImplementationEntityPhoneNumberArray = 500;
+    
+    /** {@see ExceptionMessages::MissingImplementationEntityDomainParam} */
+    const MissingImplementationEntityDomainParam = 500;
+    /** {@see ExceptionMessages::MissingImplementationEntityDomainValue} */
+    const MissingImplementationEntityDomainValue = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityDomainType} */
+    const InvalidImplementationEntityDomainType = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityDomainArray} */
+    const InvalidImplementationEntityDomainArray = 500;
+    
+    /** {@see ExceptionMessages::MissingImplementationEntityUrlParam} */
+    const MissingImplementationEntityUrlParam =500;
+    /** {@see ExceptionMessages::MissingImplementationEntityUrlValue} */
+    const MissingImplementationEntityUrlValue = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityUrlType} */
+    const InvalidImplementationEntityUrlType = 500;
+    /** {@see ExceptionMessages::InvalidImplementationEntityUrlArray} */
+    const InvalidImplementationEntityUrlArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedImplementationEntityValue} */
+    const DuplicatedImplementationEntityValue = 500;
+    /** {@see ExceptionMessages::DuplicatedImplementationEntityUniqueValue} */
+    const DuplicatedImplementationEntityUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedImplementationEntityByUnits} */
+    const UsedImplementationEntityByUnits = 500;   
+    /** {@see ExceptionMessages::UsedImplementationEntityByEduAdmins} */
+    const UsedImplementationEntityByEduAdmins = 500;
+    
+//= Categories==================================================================
+    
+    /** {@see ExceptionMessages::MissingCategoryIDParam} */
+    const MissingCategoryIDParam = 500;
+    /** {@see ExceptionMessages::MissingCategoryIDValue} */
+    const MissingCategoryIDValue = 500;
+    /** {@see ExceptionMessages::InvalidCategoryIDType} */
+    const InvalidCategoryIDType = 500;
+    /** {@see ExceptionMessages::InvalidCategoryIDArray} */
+    const InvalidCategoryIDArray = 500;
+    /** {@see ExceptionMessages::MissingCategoryParam} */
+    
+    const MissingCategoryParam = 500;
+    /** {@see ExceptionMessages::MissingCategoryValue} */
+    const MissingCategoryValue = 500;
+    /** {@see ExceptionMessages::InvalidCategoryValue} */
+    const InvalidCategoryValue = 500;
+    /** {@see ExceptionMessages::InvalidCategoryType} */
+    const InvalidCategoryType = 500;
+    /** {@see ExceptionMessages::InvalidCategoryArray} */  
+    const InvalidCategoryArray = 500;
 
-    //= GetEduAdmins
-    /** {@see ExceptionMessages::MissingEduAdminIDParam} */
+    /** {@see ExceptionMessages::MissingCategoryNameParam} */  
+    const MissingCategoryNameParam = 500;
+    /** {@see ExceptionMessages::MissingCategoryNameValue} */  
+    const MissingCategoryNameValue = 500;
+    /** {@see ExceptionMessages::InvalidCategoryNameType} */  
+    const InvalidCategoryNameType = 500;
+    /** {@see ExceptionMessages::InvalidCategoryNameArray} */  
+    const InvalidCategoryNameArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedCategoryValue} */
+    const DuplicatedCategoryValue = 500;
+    /** {@see ExceptionMessages::DuplicatedCategoryUniqueValue} */
+    const DuplicatedCategoryUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedCategoriesByUnits} */
+    const UsedCategoriesByUnits = 500;
+    /** {@see ExceptionMessages::UsedCategoriesBySpecialTypes} */
+    const UsedCategoriesBySpecialTypes = 500;
+    /** {@see ExceptionMessages::UsedCategoriesByLegalCharacters} */
+    const UsedCategoriesByLegalCharacters = 500;
+    /** {@see ExceptionMessages::UsedCategoriesByOperationShifts} */
+    const UsedCategoriesByOperationShifts = 500;
+    /** {@see ExceptionMessages::UsedCategoriesByOrientationTypes} */
+    const UsedCategoriesByOrientationTypes = 500;
+    /** {@see ExceptionMessages::UsedCategoriesByUnitTypes} */
+    const UsedCategoriesByUnitTypes = 500;
+
+//= RegionEduAdmins=============================================================
+    
+    /** {@see ExceptionMessages::MissingRegionEduAdminIDParam} */
+    const MissingRegionEduAdminIDParam = 500;
+    /** {@see ExceptionMessages::MissingRegionEduAdminIDValue} */
+    const MissingRegionEduAdminIDValue = 500;
+    /** {@see ExceptionMessages::InvalidRegionEduAdminIDType} */
+    const InvalidRegionEduAdminIDType = 500;
+    /** {@see ExceptionMessages::InvalidRegionEduAdminIDArray} */
+    const InvalidRegionEduAdminIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingRegionEduAdminParam} */
+    const MissingRegionEduAdminParam = 500;
+    /** {@see ExceptionMessages::MissingRegionEduAdminValue} */
+    const MissingRegionEduAdminValue = 500;
+    /** {@see ExceptionMessages::InvalidRegionEduAdminValue} */
+    const InvalidRegionEduAdminValue = 500;
+    /** {@see ExceptionMessages::InvalidRegionEduAdminType} */
+    const InvalidRegionEduAdminType = 500;
+    /** {@see ExceptionMessages::InvalidRegionEduAdminArray} */
+    const InvalidRegionEduAdminArray = 500;
+ 
+    /** {@see ExceptionMessages::MissingRegionEduAdminNameParam} */
+    const MissingRegionEduAdminNameParam = 500;
+    /** {@see ExceptionMessages::MissingRegionEduAdminNameValue} */
+    const MissingRegionEduAdminNameValue = 500;
+    /** {@see ExceptionMessages::InvalidRegionEduAdminNameType} */
+    const InvalidRegionEduAdminNameType = 500;
+    /** {@see ExceptionMessages::InvalidRegionEduAdminNameArray} */
+    const InvalidRegionEduAdminNameArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedRegionEduAdminValue} */
+    const DuplicatedRegionEduAdminValue = 500;
+    /** {@see ExceptionMessages::DuplicatedRegionEduAdminUniqueValue} */
+    const DuplicatedRegionEduAdminUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedRegionEduAdminByUnits} */
+    const UsedRegionEduAdminByUnits = 500;
+    /** {@see ExceptionMessages::UsedRegionEduAdminByEduAdmins} */   
+    const UsedRegionEduAdminByEduAdmins = 500;
+    /** {@see ExceptionMessages::UsedRegionEduAdminBySchoolCommittees} */   
+    const UsedRegionEduAdminBySchoolCommittees = 500;
+    
+//= EduAdmins===================================================================
+    
+    /** {@see ExceptionMessages::MissingEduAdminIDParam} */   
     const MissingEduAdminIDParam = 500;
-    /** {@see ExceptionMessages::MissingEduAdminIDValue} */
+    /** {@see ExceptionMessages::MissingEduAdminIDValue} */   
     const MissingEduAdminIDValue = 500;
-    /** {@see ExceptionMessages::InvalidEduAdminIDType} */
+    /** {@see ExceptionMessages::InvalidEduAdminIDType} */   
     const InvalidEduAdminIDType = 500;
-    /** {@see ExceptionMessages::InvalidEduAdminIDArray} */
+    /** {@see ExceptionMessages::InvalidEduAdminIDArray} */   
     const InvalidEduAdminIDArray = 500;
     
-    /** {@see ExceptionMessages::MissingEduAdminValue} */
-    const MissingEduAdminValue = 500;
-    /** {@see ExceptionMessages::MissingEduAdminParam} */
+    /** {@see ExceptionMessages::MissingEduAdminParam} */   
     const MissingEduAdminParam = 500;
-    /** {@see ExceptionMessages::InvalidEduAdminValue} */
+    /** {@see ExceptionMessages::MissingEduAdminValue} */   
+    const MissingEduAdminValue = 500;
+    /** {@see ExceptionMessages::InvalidEduAdminValue} */   
     const InvalidEduAdminValue = 500;
-    /** {@see ExceptionMessages::InvalidEduAdminType} */
+    /** {@see ExceptionMessages::InvalidEduAdminType} */   
     const InvalidEduAdminType = 500;
- 
-    /** {@see ExceptionMessages::MissingEduAdminNameParam} */   
-    const MissingEduAdminNameParam = 500;
-    /** {@see ExceptionMessages::MissingEduAdminNameValue} */
-    const MissingEduAdminNameValue =500;
-    /** {@see ExceptionMessages::InvalidEduAdminNameType} */
-    const InvalidEduAdminNameType = 500;
-    /** {@see ExceptionMessages::InvalidEduAdminNameArray} */
-    const InvalidEduAdminNameArray = 500;
+    /** {@see ExceptionMessages::InvalidEduAdminArray} */   
+    const InvalidEduAdminArray = 500;
     
+    /** {@see ExceptionMessages::MissingEduAdminNameParam} */ 
+    const MissingEduAdminNameParam = 500;
+    /** {@see ExceptionMessages::MissingEduAdminNameValue} */ 
+    const MissingEduAdminNameValue = 500;
+    /** {@see ExceptionMessages::InvalidEduAdminNameType} */ 
+    const InvalidEduAdminNameType = 500;
+    /** {@see ExceptionMessages::InvalidEduAdminNameArray} */ 
+    const InvalidEduAdminNameArray = 500;
+
+    /** {@see ExceptionMessages::MissingEduAdminCodeParam} */   
+    const MissingEduAdminCodeParam = 500;
+    /** {@see ExceptionMessages::MissingEduAdminCodeValue} */   
+    const MissingEduAdminCodeValue = 500;
+    /** {@see ExceptionMessages::InvalidEduAdminCodeType} */   
+    const InvalidEduAdminCodeValue = 500;
+    /** {@see ExceptionMessages::InvalidEduAdminCodeValue} */ 
+    const InvalidEduAdminCodeType = 500;
+    /** {@see ExceptionMessages::InvalidEduAdminCodeArray} */   
+    const InvalidEduAdminCodeArray = 500;
+      
     /** {@see ExceptionMessages::MissingEduAdminParentRdnParam} */
     const MissingEduAdminParentRdnParam = 500;
     /** {@see ExceptionMessages::MissingEduAdminParentRdnValue} */
@@ -689,98 +633,598 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidEduAdminThirdLevelDnsArray} */
     const InvalidEduAdminThirdLevelDnsArray = 500;
     
-    /** {@see ExceptionMessages::DuplicatedEduAdminValue} */
+    /** {@see ExceptionMessages::DuplicatedEduAdminValue} */   
     const DuplicatedEduAdminValue = 500;
-
-    //= GetWorkerSpecializations
-    /** {@see ExceptionMessages::MissingWorkerSpecializationIDParam} */
-    const MissingWorkerSpecializationIDParam = 500;
-    /** {@see ExceptionMessages::MissingWorkerSpecializationIDValue} */
-    const MissingWorkerSpecializationIDValue = 500;
-    /** {@see ExceptionMessages::InvalidWorkerSpecializationIDType} */
-    const InvalidWorkerSpecializationIDType = 500;
-    /** {@see ExceptionMessages::InvalidWorkerSpecializationIDArray} */
-    const InvalidWorkerSpecializationIDArray = 500;
-    /** {@see ExceptionMessages::MissingWorkerSpecializationValue} */
-    const MissingWorkerSpecializationValue = 500;
-    /** {@see ExceptionMessages::MissingWorkerSpecializationParam} */
-    const MissingWorkerSpecializationParam = 500;
-    /** {@see ExceptionMessages::InvalidWorkerSpecializationValue} */
-    const InvalidWorkerSpecializationValue = 500;
-    /** {@see ExceptionMessages::InvalidWorkerSpecializationType} */
-    const InvalidWorkerSpecializationType = 500;
-    /** {@see ExceptionMessages::DuplicatedWorkerSpecializationValue} */
-    const DuplicatedWorkerSpecializationValue = 500;
-
-
-
-    //= GetWorkerPositions
-    /** {@see ExceptionMessages::MissingWorkerPositionIDParam} */
-    const MissingWorkerPositionIDParam = 500;
-    /** {@see ExceptionMessages::MissingWorkerPositionIDValue} */
-    const MissingWorkerPositionIDValue = 500;
-    /** {@see ExceptionMessages::InvalidWorkerPositionIDType} */
-    const InvalidWorkerPositionIDType = 500;
-    /** {@see ExceptionMessages::InvalidWorkerPositionIDArray} */
-    const InvalidWorkerPositionIDArray = 500;
-    /** {@see ExceptionMessages::MissingWorkerPositionValue} */
-    const MissingWorkerPositionValue = 500;
-    /** {@see ExceptionMessages::MissingWorkerPositionParam} */
-    const MissingWorkerPositionParam = 500;
-    /** {@see ExceptionMessages::InvalidWorkerPositionValue} */
-    const InvalidWorkerPositionValue = 500;
-    /** {@see ExceptionMessages::InvalidWorkerPositionType} */
-    const InvalidWorkerPositionType = 500;
-    /** {@see ExceptionMessages::DuplicatedWorkerPositionValue} */
-    const DuplicatedWorkerPositionValue = 500;
-
-
-
-
-    //= GetWorkerPositions
-    /** {@see ExceptionMessages::MissingTransferAreaIDParam} */
+    /** {@see ExceptionMessages::DuplicatedEduAdminUniqueValue} */   
+    const DuplicatedEduAdminUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedEduAdminByUnits} */   
+    const UsedEduAdminByUnits =500;
+    /** {@see ExceptionMessages::UsedEduAdminByTransferAreas} */   
+    const UsedEduAdminByTransferAreas = 500;
+    /** {@see ExceptionMessages::UsedEduAdminBySchoolCommittees} */   
+    const UsedEduAdminBySchoolCommittees = 500;
+    
+//= TransferAreas===============================================================
+    
+    /** {@see ExceptionMessages::MissingTransferAreaIDParam} */   
     const MissingTransferAreaIDParam = 500;
-    /** {@see ExceptionMessages::MissingTransferAreaIDValue} */
+    /** {@see ExceptionMessages::MissingTransferAreaIDValue} */   
     const MissingTransferAreaIDValue = 500;
-    /** {@see ExceptionMessages::InvalidTransferAreaIDType} */
+    /** {@see ExceptionMessages::InvalidTransferAreaIDType} */   
     const InvalidTransferAreaIDType = 500;
-    /** {@see ExceptionMessages::InvalidTransferAreaIDArray} */
+    /** {@see ExceptionMessages::InvalidTransferAreaIDArray} */   
     const InvalidTransferAreaIDArray = 500;
-    /** {@see ExceptionMessages::MissingTransferAreaValue} */
-    const MissingTransferAreaValue = 500;
-    /** {@see ExceptionMessages::MissingTransferAreaParam} */
+    
+    /** {@see ExceptionMessages::MissingTransferAreaParam} */   
     const MissingTransferAreaParam = 500;
-    /** {@see ExceptionMessages::InvalidTransferAreaValue} */
+    /** {@see ExceptionMessages::MissingTransferAreaValue} */   
+    const MissingTransferAreaValue = 500;
+    /** {@see ExceptionMessages::InvalidTransferAreaValue} */   
     const InvalidTransferAreaValue = 500;
-    /** {@see ExceptionMessages::InvalidTransferAreaType} */
+    /** {@see ExceptionMessages::InvalidTransferAreaType} */   
     const InvalidTransferAreaType = 500;
-    /** {@see ExceptionMessages::DuplicatedTransferAreaValue} */
+    /** {@see ExceptionMessages::InvalidTransferAreaArray} */   
+    const InvalidTransferAreaArray = 500;
+   
+    /** {@see ExceptionMessages::MissingTransferAreaNameParam} */  
+    const MissingTransferAreaNameParam = 500;
+    /** {@see ExceptionMessages::MissingTransferAreaNameValue} */  
+    const MissingTransferAreaNameValue = 500;
+    /** {@see ExceptionMessages::InvalidTransferAreaNameType} */  
+    const InvalidTransferAreaNameType = 500;
+    /** {@see ExceptionMessages::InvalidTransferAreaNameArray} */  
+    const InvalidTransferAreaNameArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedTransferAreaValue} */   
     const DuplicatedTransferAreaValue = 500;
+    /** {@see ExceptionMessages::DuplicatedTransferAreaUniqueValue} */   
+    const DuplicatedTransferAreaUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedTransferAreaByUnits} */   
+    const UsedTransferAreaByUnits = 500;
+    /** {@see ExceptionMessages::UsedTransferAreaByTransferAreaMunicipality} */   
+    const UsedTransferAreaByTransferAreaMunicipality = 500;
 
-
-
-    //= GetWorkerPositions
-    /** {@see ExceptionMessages::MissingMunicipalityIDParam} */
+//= Municipalities==============================================================
+    
+    /** {@see ExceptionMessages::MissingMunicipalityIDParam} */   
     const MissingMunicipalityIDParam = 500;
-    /** {@see ExceptionMessages::MissingMunicipalityIDValue} */
+    /** {@see ExceptionMessages::MissingMunicipalityIDValue} */   
     const MissingMunicipalityIDValue = 500;
-    /** {@see ExceptionMessages::InvalidMunicipalityIDType} */
+    /** {@see ExceptionMessages::InvalidMunicipalityIDType} */   
     const InvalidMunicipalityIDType = 500;
-    /** {@see ExceptionMessages::InvalidMunicipalityIDArray} */
+    /** {@see ExceptionMessages::InvalidMunicipalityIDArray} */   
     const InvalidMunicipalityIDArray = 500;
-    /** {@see ExceptionMessages::MissingMunicipalityValue} */
-    const MissingMunicipalityValue = 500;
-    /** {@see ExceptionMessages::MissingMunicipalityParam} */
+    
+    /** {@see ExceptionMessages::MissingMunicipalityParam} */   
     const MissingMunicipalityParam = 500;
-    /** {@see ExceptionMessages::InvalidMunicipalityValue} */
+    /** {@see ExceptionMessages::MissingMunicipalityValue} */   
+    const MissingMunicipalityValue = 500;
+    /** {@see ExceptionMessages::InvalidMunicipalityValue} */   
     const InvalidMunicipalityValue = 500;
-    /** {@see ExceptionMessages::InvalidMunicipalityType} */
+    /** {@see ExceptionMessages::InvalidMunicipalityType} */   
     const InvalidMunicipalityType = 500;
-    /** {@see ExceptionMessages::DuplicatedMunicipalityValue} */
+    /** {@see ExceptionMessages::InvalidMunicipalityArray} */   
+    const InvalidMunicipalityArray = 500;
+  
+    /** {@see ExceptionMessages::MissingMunicipalityNameParam} */   
+    const MissingMunicipalityNameParam = 500;
+    /** {@see ExceptionMessages::MissingMunicipalityNameValue} */   
+    const MissingMunicipalityNameValue = 500;
+    /** {@see ExceptionMessages::InvalidMunicipalityNameType} */   
+    const InvalidMunicipalityNameType = 500;
+    /** {@see ExceptionMessages::InvalidMunicipalityNameArray} */   
+    const InvalidMunicipalityNameArray = 500;  
+
+    /** {@see ExceptionMessages::DuplicatedMunicipalityValue} */   
     const DuplicatedMunicipalityValue = 500;
+    /** {@see ExceptionMessages::DuplicatedMunicipalityUniqueValue} */   
+    const DuplicatedMunicipalityUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedMunicipalityByUnits} */   
+    const UsedMunicipalityByUnits = 500;
+    /** {@see ExceptionMessages::UsedMunicipalityByTransferAreaMunicipality} */   
+    const UsedMunicipalityByTransferAreaMunicipality = 500;
+    /** {@see ExceptionMessages::UsedMunicipalityBySchoolCommittees} */   
+    const UsedMunicipalityBySchoolCommittees = 500;
+
+//= Prefectures=================================================================
+    
+    /** {@see ExceptionMessages::MissingPrefectureIDParam} */   
+    const MissingPrefectureIDParam = 500;
+    /** {@see ExceptionMessages::MissingPrefectureIDValue} */   
+    const MissingPrefectureIDValue = 500;
+    /** {@see ExceptionMessages::InvalidPrefectureIDType} */   
+    const InvalidPrefectureIDType = 500;
+    /** {@see ExceptionMessages::InvalidPrefectureIDArray} */   
+    const InvalidPrefectureIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingPrefectureParam} */   
+    const MissingPrefectureParam = 500;
+    /** {@see ExceptionMessages::MissingPrefectureValue} */   
+    const MissingPrefectureValue = 500;
+    /** {@see ExceptionMessages::InvalidPrefectureValue} */   
+    const InvalidPrefectureValue = 500;
+    /** {@see ExceptionMessages::InvalidPrefectureType} */   
+    const InvalidPrefectureType = 500;
+    /** {@see ExceptionMessages::InvalidPrefectureArray} */   
+    const InvalidPrefectureArray = 500;
+  
+    /** {@see ExceptionMessages::MissingPrefectureNameParam} */  
+    const MissingPrefectureNameParam = 500;
+    /** {@see ExceptionMessages::MissingPrefectureNameValue} */  
+    const MissingPrefectureNameValue = 500;
+    /** {@see ExceptionMessages::InvalidPrefectureNameType} */  
+    const InvalidPrefectureNameType = 500;
+    /** {@see ExceptionMessages::InvalidPrefectureNameArray} */  
+    const InvalidPrefectureNameArray = 500;  
+
+    /** {@see ExceptionMessages::DuplicatedPrefectureValue} */   
+    const DuplicatedPrefectureValue = 500;
+    /** {@see ExceptionMessages::DuplicatedPrefectureUniqueValue} */   
+    const DuplicatedPrefectureUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedPrefectureByUnits} */   
+    const UsedPrefectureByUnits = 500;
+    /** {@see ExceptionMessages::UsedPrefectureByMunicipalities} */   
+    const UsedPrefectureByMunicipalities = 500;
+    /** {@see ExceptionMessages::UsedPrefectureBySchoolCommittees} */   
+    const UsedPrefectureBySchoolCommittees = 500;
+
+//= EducationLevels=============================================================
+    
+    /** {@see ExceptionMessages::MissingEducationLevelIDParam} */   
+    const MissingEducationLevelIDParam = 500;
+    /** {@see ExceptionMessages::MissingEducationLevelIDValue} */   
+    const MissingEducationLevelIDValue = 500;
+    /** {@see ExceptionMessages::InvalidEducationLevelIDType} */   
+    const InvalidEducationLevelIDType = 500;
+    /** {@see ExceptionMessages::InvalidEducationLevelIDArray} */   
+    const InvalidEducationLevelIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingEducationLevelParam} */    
+    const MissingEducationLevelParam = 500;
+    /** {@see ExceptionMessages::MissingEducationLevelValue} */   
+    const MissingEducationLevelValue = 500;
+    /** {@see ExceptionMessages::InvalidEducationLevelValue} */   
+    const InvalidEducationLevelValue = 500;
+    /** {@see ExceptionMessages::InvalidEducationLevelType} */   
+    const InvalidEducationLevelType = 500;
+    /** {@see ExceptionMessages::InvalidEducationLevelArray} */   
+    const InvalidEducationLevelArray = 500;
+    
+    /** {@see ExceptionMessages::MissingEducationLevelNameParam} */   
+    const MissingEducationLevelNameParam = 500;
+    /** {@see ExceptionMessages::MissingEducationLevelNameValue} */   
+    const MissingEducationLevelNameValue = 500;
+    /** {@see ExceptionMessages::InvalidEducationLevelNameType} */   
+    const InvalidEducationLevelNameType = 500;
+    /** {@see ExceptionMessages::InvalidEducationLevelNameArray} */   
+    const InvalidEducationLevelNameArray = 500;  
+    
+    /** {@see ExceptionMessages::DuplicatedEducationLevelValue} */   
+    const DuplicatedEducationLevelValue = 500;
+    /** {@see ExceptionMessages::DuplicatedEducationLevelUniqueValue} */   
+    const DuplicatedEducationLevelUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedEducationLevelByUnits} */   
+    const UsedEducationLevelByUnits = 500;
+    /** {@see ExceptionMessages::UsedEducationLevelByUnitTypes} */   
+    const UsedEducationLevelByUnitTypes = 500;
+    /** {@see ExceptionMessages::UsedEducationLevelBySchoolCommittees} */   
+    const UsedEducationLevelBySchoolCommittees = 500;
+    
+//= UnitTypes===================================================================
+    
+    /** {@see ExceptionMessages::MissingUnitTypeIDParam} */   
+    const MissingUnitTypeIDParam = 500;
+    /** {@see ExceptionMessages::MissingUnitTypeIDValue} */   
+    const MissingUnitTypeIDValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitTypeIDType} */   
+    const InvalidUnitTypeIDType = 500;
+    /** {@see ExceptionMessages::InvalidUnitTypeIDArray} */   
+    const InvalidUnitTypeIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingUnitTypeParam} */   
+    const MissingUnitTypeParam = 500;
+    /** {@see ExceptionMessages::MissingUnitTypeValue} */   
+    const MissingUnitTypeValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitTypeValue} */   
+    const InvalidUnitTypeValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitTypeType */   
+    const InvalidUnitTypeType = 500;
+    /** {@see ExceptionMessages::InvalidUnitTypeArray} */   
+    const InvalidUnitTypeArray = 500; 
+    
+    /** {@see ExceptionMessages::MissingUnitTypeNameParam} */   
+    const MissingUnitTypeNameParam = 500;
+    /** {@see ExceptionMessages::MissingUnitTypeNameValue} */   
+    const MissingUnitTypeNameValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitTypeNameType} */   
+    const InvalidUnitTypeNameType = 500;
+    /** {@see ExceptionMessages::InvalidUnitTypeNameArray} */   
+    const InvalidUnitTypeNameArray = 500;
+    
+    /** {@see ExceptionMessages::MissingUnitTypeInitialParam} */   
+    const MissingUnitTypeInitialParam = 500;
+    /** {@see ExceptionMessages::MissingUnitTypeInitialValue} */   
+    const MissingUnitTypeInitialValue = 500;
+    /** {@see ExceptionMessages::InvalidUnitTypeInitialType} */   
+    const InvalidUnitTypeInitialType = 500;
+    /** {@see ExceptionMessages::InvalidUnitTypeInitialArray} */   
+    const InvalidUnitTypeInitialArray = 500;
+  
+    /** {@see ExceptionMessages::DuplicatedUnitTypeValue} */   
+    const DuplicatedUnitTypeValue = 500;
+    /** {@see ExceptionMessages::DuplicatedUnitTypeUniqueValue} */   
+    const DuplicatedUnitTypeUniqueValue = 500;
+    /** {@see ExceptionMessages::DuplicatedUnitTypeNameValue} */   
+    const DuplicatedUnitTypeNameValue = 500;
+    /** {@see ExceptionMessages::DuplicatedUnitTypeInitialValue} */   
+    const DuplicatedUnitTypeInitialValue = 500;
+    /** {@see ExceptionMessages::UsedUnitTypeByUnits} */   
+    const UsedUnitTypeByUnits = 500;
+    /** {@see ExceptionMessages::UsedUnitTypeBySyncTypeUnits} */   
+    const UsedUnitTypeBySyncTypeUnits = 500;
+    
+//= States======================================================================
+    
+    /** {@see ExceptionMessages::MissingStateIDParam} */   
+    const MissingStateIDParam = 500;
+    /** {@see ExceptionMessages::MissingStateIDValue} */   
+    const MissingStateIDValue = 500;
+    /** {@see ExceptionMessages::InvalidStateIDType} */   
+    const InvalidStateIDType = 500;
+    /** {@see ExceptionMessages::InvalidStateIDArray} */   
+    const InvalidStateIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingStateParam} */   
+    const MissingStateParam = 500;
+    /** {@see ExceptionMessages::MissingStateValue} */   
+    const MissingStateValue = 500;
+    /** {@see ExceptionMessages::InvalidStateValue} */   
+    const InvalidStateValue = 500;
+    /** {@see ExceptionMessages::InvalidStateType} */   
+    const InvalidStateType = 500;
+    /** {@see ExceptionMessages::InvalidStateArray} */   
+    const InvalidStateArray = 500;
+    
+    /** {@see ExceptionMessages::MissingStateNameParam} */   
+    const MissingStateNameParam = 500;
+    /** {@see ExceptionMessages::MissingStateNameValue} */ 
+    const MissingStateNameValue = 500;
+    /** {@see ExceptionMessages::InvalidStateNameType} */ 
+    const InvalidStateNameType = 500;
+    /** {@see ExceptionMessages::InvalidStateNameArray} */ 
+    const InvalidStateNameArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedStateValue} */   
+    const DuplicatedStateValue = 500;
+    /** {@see ExceptionMessages::DuplicatedStateUniqueValue} */   
+    const DuplicatedStateUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedStateByUnits} */   
+    const UsedStateByUnits = 500;
+    
+//= CircuitTypes================================================================
+    
+    /** {@see ExceptionMessages::MissingCircuitTypeIDParam} */  
+    const MissingCircuitTypeIDParam = 500;
+    /** {@see ExceptionMessages::MissingCircuitTypeIDValue} */  
+    const MissingCircuitTypeIDValue = 500; 
+    /** {@see ExceptionMessages::InvalidCircuitTypeIDType} */  
+    const InvalidCircuitTypeIDType = 500;
+    /** {@see ExceptionMessages::InvalidCircuitTypeIDArray} */  
+    const InvalidCircuitTypeIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingCircuitTypeParam} */
+    const MissingCircuitTypeParam = 500;
+    /** {@see ExceptionMessages::MissingCircuitTypeValue} */  
+    const MissingCircuitTypeValue = 500;
+    /** {@see ExceptionMessages::InvalidCircuitTypeValue} */  
+    const InvalidCircuitTypeValue = 500;
+    /** {@see ExceptionMessages::InvalidCircuitTypeType} */  
+    const InvalidCircuitTypeType = 500;
+    /** {@see ExceptionMessages::InvalidCircuitTypeArray} */  
+    const InvalidCircuitTypeArray = 500; 
+  
+    /** {@see ExceptionMessages::MissingCircuitTypeNameParam} */  
+    const MissingCircuitTypeNameParam = 500; 
+    /** {@see ExceptionMessages::MissingCircuitTypeNameValue} */  
+    const MissingCircuitTypeNameValue = 500; 
+    /** {@see ExceptionMessages::InvalidCircuitTypeNameType} */  
+    const InvalidCircuitTypeNameType = 500; 
+    /** {@see ExceptionMessages::InvalidCircuitTypeNameArray} */  
+    const InvalidCircuitTypeNameArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedCircuitTypeValue} */  
+    const DuplicatedCircuitTypeValue = 500;
+    /** {@see ExceptionMessages::DuplicatedCircuitTypeUniqueValue} */  
+    const DuplicatedCircuitTypeUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedCircuitTypeByCircuits} */  
+    const UsedCircuitTypeByCircuits = 500;
+    
+//= RelationTypes===============================================================
+   
+    /** {@see ExceptionMessages::MissingRelationTypeIDParam} */  
+    const MissingRelationTypeIDParam = 500;
+    /** {@see ExceptionMessages::MissingRelationTypeIDValue} */  
+    const MissingRelationTypeIDValue = 500;
+    /** {@see ExceptionMessages::InvalidRelationTypeIDType} */  
+    const InvalidRelationTypeIDType = 500;
+    /** {@see ExceptionMessages::InvalidRelationTypeIDArray} */  
+    const InvalidRelationTypeIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingRelationTypeParam} */  
+    const MissingRelationTypeParam = 500;
+    /** {@see ExceptionMessages::MissingRelationTypeValue} */  
+    const MissingRelationTypeValue = 500;
+    /** {@see ExceptionMessages::InvalidRelationTypeValue} */  
+    const InvalidRelationTypeValue = 500;
+    /** {@see ExceptionMessages::InvalidRelationTypeType} */  
+    const InvalidRelationTypeType = 500;
+    /** {@see ExceptionMessages::InvalidRelationTypeArray} */  
+    const InvalidRelationTypeArray = 500;
+  
+    /** {@see ExceptionMessages::MissingRelationTypeNameParam} */  
+    const MissingRelationTypeNameParam = 500;
+    /** {@see ExceptionMessages::MissingRelationTypeNameValue} */  
+    const MissingRelationTypeNameValue = 500;
+    /** {@see ExceptionMessages::InvalidRelationTypeNameType} */  
+    const InvalidRelationTypeNameType = 500;
+    /** {@see ExceptionMessages::InvalidRelationTypeNameArray} */  
+    const InvalidRelationTypeNameArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedRelationTypeValue} */  
+    const DuplicatedRelationTypeValue = 500;
+    /** {@see ExceptionMessages::DuplicateRelationTypeUniqueValue} */     
+    const DuplicateRelationTypeUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedRelationTypeByRelations} */  
+    const UsedRelationTypeByRelations = 500;
+    
+       //delete
+        /** {@see ExceptionMessages::DuplicateDelRelationTypeValue} */  
+        const DuplicateDelRelationTypeValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelRelationTypeValue} */  
+        const NotFoundDelRelationTypeValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesRelationTypeRelations} */  
+        const ReferencesRelationTypeRelations = 500;
+    
+//= WorkerPositions=============================================================
+    
+    /** {@see ExceptionMessages::MissingWorkerPositionIDParam} */  
+    const MissingWorkerPositionIDParam = 500;
+    /** {@see ExceptionMessages::MissingWorkerPositionIDValue} */  
+    const MissingWorkerPositionIDValue = 500;
+    /** {@see ExceptionMessages::InvalidWorkerPositionIDType} */  
+    const InvalidWorkerPositionIDType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerPositionIDArray} */  
+    const InvalidWorkerPositionIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingWorkerPositionParam} */  
+    const MissingWorkerPositionParam = 500;
+    /** {@see ExceptionMessages::MissingWorkerPositionValue} */  
+    const MissingWorkerPositionValue = 500;
+    /** {@see ExceptionMessages::InvalidWorkerPositionValue} */  
+    const InvalidWorkerPositionValue = 500;
+    /** {@see ExceptionMessages::InvalidWorkerPositionType} */  
+    const InvalidWorkerPositionType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerPositionArray} */  
+    const InvalidWorkerPositionArray = 500;
+    
+    /** {@see ExceptionMessages::MissingWorkerPositionNameParam} */  
+    const MissingWorkerPositionNameParam = 500;
+    /** {@see ExceptionMessages::MissingWorkerPositionNameValue} */  
+    const MissingWorkerPositionNameValue = 500;
+    /** {@see ExceptionMessages::InvalidWorkerPositionNameType} */  
+    const InvalidWorkerPositionNameType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerPositionNameArray} */  
+    const InvalidWorkerPositionNameArray = 500; 
+
+    /** {@see ExceptionMessages::DuplicatedWorkerPositionValue} */  
+    const DuplicatedWorkerPositionValue = 500;
+    /** {@see ExceptionMessages::DuplicatedWorkerPositionUniqueValue} */  
+    const DuplicatedWorkerPositionUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedWorkerPositionByUnitWorkers} */  
+    const UsedWorkerPositionByUnitWorkers = 500;
+
+//= WorkerSpecializations=======================================================
+    
+    /** {@see ExceptionMessages::MissingWorkerSpecializationIDParam} */  
+    const MissingWorkerSpecializationIDParam = 500;
+    /** {@see ExceptionMessages::MissingWorkerSpecializationIDValue} */  
+    const MissingWorkerSpecializationIDValue = 500;
+    /** {@see ExceptionMessages::InvalidWorkerSpecializationIDType} */  
+    const InvalidWorkerSpecializationIDType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerSpecializationIDArray} */  
+    const InvalidWorkerSpecializationIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingWorkerSpecializationParam} */  
+    const MissingWorkerSpecializationParam = 500;
+    /** {@see ExceptionMessages::MissingWorkerSpecializationValue} */  
+    const MissingWorkerSpecializationValue = 500;
+    /** {@see ExceptionMessages::InvalidWorkerSpecializationValue} */  
+    const InvalidWorkerSpecializationValue = 500;
+    /** {@see ExceptionMessages::InvalidWorkerSpecializationType} */  
+    const InvalidWorkerSpecializationType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerSpecializationArray} */  
+    const InvalidWorkerSpecializationArray = 500;
+ 
+    /** {@see ExceptionMessages::MissingWorkerSpecializationNameParam} */  
+    const MissingWorkerSpecializationNameParam = 500;
+    /** {@see ExceptionMessages::MissingWorkerSpecializationNameValue} */  
+    const MissingWorkerSpecializationNameValue = 500;
+    /** {@see ExceptionMessages::InvalidWorkerSpecializationNameType} */  
+    const InvalidWorkerSpecializationNameType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerSpecializationNameArray} */  
+    const InvalidWorkerSpecializationNameArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedWorkerSpecializationValue} */  
+    const DuplicatedWorkerSpecializationValue = 500;
+    /** {@see ExceptionMessages::DuplicatedWorkerSpecializationUniqueValue} */  
+    const DuplicatedWorkerSpecializationUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedWorkerSpecializationByUnitWorkers} */  
+    const UsedWorkerSpecializationByUnitWorkers = 500;
+
+//=Sources =====================================================================
+
+    /** {@see ExceptionMessages::MissingSourceIDParam} */  
+    const MissingSourceIDParam = 500;
+    /** {@see ExceptionMessages::MissingSourceIDValue} */  
+    const MissingSourceIDValue = 500;
+    /** {@see ExceptionMessages::InvalidSourceIDType} */  
+    const InvalidSourceIDType = 500;
+    /** {@see ExceptionMessages::InvalidSourceIDArray} */  
+    const InvalidSourceIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingSourceParam} */  
+    const MissingSourceParam = 500;
+    /** {@see ExceptionMessages::MissingSourceValue} */  
+    const MissingSourceValue = 500;
+    /** {@see ExceptionMessages::InvalidSourceValue} */  
+    const InvalidSourceValue = 500;
+    /** {@see ExceptionMessages::InvalidSourceType} */  
+    const InvalidSourceType = 500;
+    /** {@see ExceptionMessages::InvalidSourceArray} */  
+    const InvalidSourceArray = 500;
+
+    /** {@see ExceptionMessages::MissingSourceNameParam} */  
+    const MissingSourceNameParam = 500;
+    /** {@see ExceptionMessages::MissingSourceNameValue} */  
+    const MissingSourceNameValue = 500;
+    /** {@see ExceptionMessages::InvalidSourceNameType} */  
+    const InvalidSourceNameType = 500;
+    /** {@see ExceptionMessages::InvalidSourceNameArray} */  
+    const InvalidSourceNameArray = 500;
+    
+    /** {@see ExceptionMessages::MissingSourceVisibleParam} */
+    const MissingSourceVisibleParam = 500;
+    /** {@see ExceptionMessages::MissingSourceVisibleValue} */
+    const MissingSourceVisibleValue = 500;
+    /** {@see ExceptionMessages::InvalidSourceVisibleType} */
+    const InvalidSourceVisibleType = 500;
+    /** {@see ExceptionMessages::InvalidSourceVisibleArray} */
+    const InvalidSourceVisibleArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedSourceValue} */  
+    const DuplicatedSourceValue = 500;
+    /** {@see ExceptionMessages::DuplicatedSourceUniqueValue} */  
+    const DuplicatedSourceUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedSourceByWorkers} */  
+    const UsedSourceByWorkers = 500;
+    /** {@see ExceptionMessages::UsedSourceByUnits} */  
+    const UsedSourceByUnits = 500; 
+   
+//= Levels======================================================================
+    
+    /** {@see ExceptionMessages::MissingLevelIDParam} */
+    const MissingLevelIDParam = 500;
+    /** {@see ExceptionMessages::MissingLevelIDValue} */
+    const MissingLevelIDValue = 500;
+    /** {@see ExceptionMessages::InvalidLevelIDType} */
+    const InvalidLevelIDType = 500;
+    /** {@see ExceptionMessages::InvalidLevelIDArray} */
+    const InvalidLevelIDArray = 500;
+    /** {@see ExceptionMessages::InvalidLevelIDValue} */
+    const InvalidLevelIDValue = 500;   //EXTRA only for ID REFERENCE
+    
+    /** {@see ExceptionMessages::MissingLevelValue} */
+    const MissingLevelValue = 500;
+    /** {@see ExceptionMessages::MissingLevelParam} */
+    const MissingLevelParam = 500;
+    /** {@see ExceptionMessages::InvalidLevelValue} */
+    const InvalidLevelValue = 500;
+    /** {@see ExceptionMessages::InvalidLevelType} */
+    const InvalidLevelType = 500;
+    /** {@see ExceptionMessages::InvalidLevelArray} */   
+    const InvalidLevelArray = 500;
+    
+    /** {@see ExceptionMessages::MissingLevelNameParam} */
+    const MissingLevelNameParam = 500;
+    /** {@see ExceptionMessages::MissingLevelNameValue} */
+    const MissingLevelNameValue = 500;
+    /** {@see ExceptionMessages::InvalidLevelNameType} */
+    const InvalidLevelNameType = 500;
+    /** {@see ExceptionMessages::InvalidLevelNameArray} */
+    const InvalidLevelNameArray = 500;
+    
+    /** {@see ExceptionMessages::MissingLevelGroupsCountParam} */
+    const MissingLevelGroupsCountParam = 500;   
+    /** {@see ExceptionMessages::MissingLevelGroupsCountValue} */
+    const MissingLevelGroupsCountValue = 500;  
+    /** {@see ExceptionMessages::InvalidLevelGroupsCountType} */
+    const InvalidLevelGroupsCountType = 500;
+    /** {@see ExceptionMessages::InvalidLevelGroupsCountArray} */
+    const InvalidLevelGroupsCountArray = 500;
+    
+    /** {@see ExceptionMessages::MissingLevelStudentsCountParam} */
+    const MissingLevelStudentsCountParam = 500;
+    /** {@see ExceptionMessages::MissingLevelStudentsCountValue} */
+    const MissingLevelStudentsCountValue = 500;
+    /** {@see ExceptionMessages::InvalidLevelStudentsCountType} */
+    const InvalidLevelStudentsCountType = 500;
+    /** {@see ExceptionMessages::InvalidLevelStudentsCountArray} */
+    const InvalidLevelStudentsCountArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedLevelValue} */
+    const DuplicatedLevelValue = 500;
+    /** {@see ExceptionMessages::DuplicatedLevelUniqueValue} */ 
+    const DuplicatedLevelUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedLevelByGroups} */ 
+    const UsedLevelByGroups = 500;
+    /** {@see ExceptionMessages::DuplicatedLevelIDUniqueValue} */
+    const DuplicatedLevelIDUniqueValue = 500;  //EXTRA only for ID REFERENCE
+
+//= Groups======================================================================
+    
+    /** {@see ExceptionMessages::MissingGroupIDParam} */
+    const MissingGroupIDParam = 500;
+    /** {@see ExceptionMessages::MissingGroupIDValue} */
+    const MissingGroupIDValue = 500;
+    /** {@see ExceptionMessages::InvalidGroupIDType} */
+    const InvalidGroupIDType = 500;
+    /** {@see ExceptionMessages::InvalidGroupIDArray} */
+    const InvalidGroupIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingGroupValue} */
+    const MissingGroupValue = 500;
+    /** {@see ExceptionMessages::MissingGroupParam} */
+    const MissingGroupParam = 500;
+    /** {@see ExceptionMessages::InvalidGroupValue} */
+    const InvalidGroupValue = 500;
+    /** {@see ExceptionMessages::InvalidGroupType} */
+    const InvalidGroupType = 500;
+    /** {@see ExceptionMessages::InvalidGroupArray} */  
+    const InvalidGroupArray = 500;
+    
+    /** {@see ExceptionMessages::MissingGroupNameParam} */ 
+    const MissingGroupNameParam = 500;
+    /** {@see ExceptionMessages::MissingGroupNameValue} */ 
+    const MissingGroupNameValue = 500;
+    /** {@see ExceptionMessages::InvalidGroupNameType} */
+    const InvalidGroupNameType = 500;
+    /** {@see ExceptionMessages::InvalidGroupNameArray} */
+    const InvalidGroupNameArray = 500;
+    
+    /** {@see ExceptionMessages::MissingGroupStudentsCountParam} */
+    const MissingGroupStudentsCountParam = 500;
+    /** {@see ExceptionMessages::MissingGroupStudentsCountValue} */
+    const MissingGroupStudentsCountValue = 500;
+    /** {@see ExceptionMessages::InvalidGroupStudentsCountType} */
+    const InvalidGroupStudentsCountType = 500;
+    /** {@see ExceptionMessages::InvalidGroupStudentsCountArray} */
+    const InvalidGroupStudentsCountArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedGroupValue} */
+    const DuplicatedGroupValue = 500;
+     /** {@see ExceptionMessages::DuplicatedGroupUniqueValue} */ 
+    const DuplicatedGroupUniqueValue = 500;
+
+    
 
 
 
+    
+    
+        
+    
     //= GetWorkers
     /** {@see ExceptionMessages::MissingWorkerIDParam} */
     const MissingWorkerIDParam = 500;
@@ -1154,108 +1598,6 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidGuestUnitType} */
     const InvalidGuestUnitType = 500;
 
-    //= Levels==================================================================
-    
-    /** {@see ExceptionMessages::MissingLevelIDParam} */
-    const MissingLevelIDParam = 500;
-    /** {@see ExceptionMessages::MissingLevelIDValue} */
-    const MissingLevelIDValue = 500;
-    /** {@see ExceptionMessages::InvalidLevelIDType} */
-    const InvalidLevelIDType = 500;
-    /** {@see ExceptionMessages::InvalidLevelIDArray} */
-    const InvalidLevelIDArray = 500;
-    /** {@see ExceptionMessages::InvalidLevelIDValue} */
-    const InvalidLevelIDValue = 500;   //EXTRA only for ID REFERENCE
-    
-    /** {@see ExceptionMessages::MissingLevelValue} */
-    const MissingLevelValue = 500;
-    /** {@see ExceptionMessages::MissingLevelParam} */
-    const MissingLevelParam = 500;
-    /** {@see ExceptionMessages::InvalidLevelValue} */
-    const InvalidLevelValue = 500;
-    /** {@see ExceptionMessages::InvalidLevelType} */
-    const InvalidLevelType = 500;
-    /** {@see ExceptionMessages::InvalidLevelArray} */   
-    const InvalidLevelArray = 500;
-    
-    /** {@see ExceptionMessages::MissingLevelNameParam} */
-    const MissingLevelNameParam = 500;
-    /** {@see ExceptionMessages::MissingLevelNameValue} */
-    const MissingLevelNameValue = 500;
-    /** {@see ExceptionMessages::InvalidLevelNameType} */
-    const InvalidLevelNameType = 500;
-    /** {@see ExceptionMessages::InvalidLevelNameArray} */
-    const InvalidLevelNameArray = 500;
-    
-    /** {@see ExceptionMessages::MissingLevelGroupsCountParam} */
-    const MissingLevelGroupsCountParam = 500;   
-    /** {@see ExceptionMessages::MissingLevelGroupsCountValue} */
-    const MissingLevelGroupsCountValue = 500;  
-    /** {@see ExceptionMessages::InvalidLevelGroupsCountType} */
-    const InvalidLevelGroupsCountType = 500;
-    /** {@see ExceptionMessages::InvalidLevelGroupsCountArray} */
-    const InvalidLevelGroupsCountArray = 500;
-    
-    /** {@see ExceptionMessages::MissingLevelStudentsCountParam} */
-    const MissingLevelStudentsCountParam = 500;
-    /** {@see ExceptionMessages::MissingLevelStudentsCountValue} */
-    const MissingLevelStudentsCountValue = 500;
-    /** {@see ExceptionMessages::InvalidLevelStudentsCountType} */
-    const InvalidLevelStudentsCountType = 500;
-    /** {@see ExceptionMessages::InvalidLevelStudentsCountArray} */
-    const InvalidLevelStudentsCountArray = 500;
-    
-    /** {@see ExceptionMessages::DuplicatedLevelValue} */
-    const DuplicatedLevelValue = 500;
-     /** {@see ExceptionMessages::DuplicatedLevelUniqueValue} */ 
-    const DuplicatedLevelUniqueValue = 500;
-    /** {@see ExceptionMessages::DuplicatedLevelIDUniqueValue} */
-    const DuplicatedLevelIDUniqueValue = 500;  //EXTRA only for ID REFERENCE
-
-    //= Groups==================================================================
-    
-    /** {@see ExceptionMessages::MissingGroupIDParam} */
-    const MissingGroupIDParam = 500;
-    /** {@see ExceptionMessages::MissingGroupIDValue} */
-    const MissingGroupIDValue = 500;
-    /** {@see ExceptionMessages::InvalidGroupIDType} */
-    const InvalidGroupIDType = 500;
-    /** {@see ExceptionMessages::InvalidGroupIDArray} */
-    const InvalidGroupIDArray = 500;
-    
-    /** {@see ExceptionMessages::MissingGroupValue} */
-    const MissingGroupValue = 500;
-    /** {@see ExceptionMessages::MissingGroupParam} */
-    const MissingGroupParam = 500;
-    /** {@see ExceptionMessages::InvalidGroupValue} */
-    const InvalidGroupValue = 500;
-    /** {@see ExceptionMessages::InvalidGroupType} */
-    const InvalidGroupType = 500;
-    /** {@see ExceptionMessages::InvalidGroupArray} */  
-    const InvalidGroupArray = 500;
-    
-    /** {@see ExceptionMessages::MissingGroupNameParam} */ 
-    const MissingGroupNameParam = 500;
-    /** {@see ExceptionMessages::MissingGroupNameValue} */ 
-    const MissingGroupNameValue = 500;
-    /** {@see ExceptionMessages::InvalidGroupNameType} */
-    const InvalidGroupNameType = 500;
-    /** {@see ExceptionMessages::InvalidGroupNameArray} */
-    const InvalidGroupNameArray = 500;
-    
-    /** {@see ExceptionMessages::MissingGroupStudentsCountParam} */
-    const MissingGroupStudentsCountParam = 500;
-    /** {@see ExceptionMessages::MissingGroupStudentsCountValue} */
-    const MissingGroupStudentsCountValue = 500;
-    /** {@see ExceptionMessages::InvalidGroupStudentsCountType} */
-    const InvalidGroupStudentsCountType = 500;
-    /** {@see ExceptionMessages::InvalidGroupStudentsCountArray} */
-    const InvalidGroupStudentsCountArray = 500;
-    
-    /** {@see ExceptionMessages::DuplicatedGroupValue} */
-    const DuplicatedGroupValue = 500;
-     /** {@see ExceptionMessages::DuplicatedGroupUniqueValue} */ 
-    const DuplicatedGroupUniqueValue = 500;
 
 
 
