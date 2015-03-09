@@ -119,74 +119,6 @@ class ExceptionMessages
     const InvalidIpMaskType = 'Η Μάσκα Δικτύου πρέπει να είναι αριθμητική ή αλφαριθμητική';
     const DuplicatedIpMaskValue = 'Η Μάσκα Δικτύου ($ip_mask) υπάρχει ήδη';
 
-    //= GetTaxOffices
-    const MissingTaxOfficeIDValue = 'Ο Κωδικός της Δ.Ο.Υ. πρέπει να έχει τιμή';
-    const MissingTaxOfficeIDParam = 'Ο Κωδικός της Δ.Ο.Υ. είναι υποχρεωτικό πεδίο';
-    const InvalidTaxOfficeIDType = 'Ο Κωδικός της Δ.Ο.Υ. πρέπει να είναι αριθμητικός';
-    const InvalidTaxOfficeIDArray = 'Ο Κωδικός της Δ.Ο.Υ. δεν μπορεί να έχει πολλαπλές τιμές';
-    const MissingTaxOfficeValue = 'Η Δ.Ο.Υ. πρέπει να έχει τιμή';
-    const MissingTaxOfficeParam = 'Η Δ.Ο.Υ. είναι υποχρεωτικό πεδίο';
-    const InvalidTaxOfficeValue = 'Η Δ.Ο.Υ. δεν υπάρχει στο λεξικό';
-    const InvalidTaxOfficeType = 'Η Δ.Ο.Υ. πρέπει να είναι αριθμητική ή αλφαριθμητική';
-    const DuplicatedTaxOfficeValue = 'Η Δ.Ο.Υ. υπάρχει ήδη';
-
-
-
-    //= GetSpecialTypes
-    const MissingSpecialTypeIDValue = 'Ο Κωδικός του Ειδικού Χαρακτηρισμού πρέπει να έχει τιμή';
-    const MissingSpecialTypeIDParam = 'Ο Κωδικός του Ειδικού Χαρακτηρισμού είναι υποχρεωτικό πεδίο';
-    const InvalidSpecialTypeIDType = 'Ο Κωδικός του Ειδικού Χαρακτηρισμού πρέπει να είναι αριθμητικός';
-    const InvalidSpecialTypeIDArray = 'Ο Κωδικός του Ειδικού Χαρακτηρισμού δεν μπορεί να έχει πολλαπλές τιμές';
-    const MissingSpecialTypeValue = 'Ο Ειδικός Χαρακτηρισμός πρέπει να έχει τιμή';
-    const MissingSpecialTypeParam = 'Ο Ειδικός Χαρακτηρισμός είναι υποχρεωτικό πεδίο';
-    const InvalidSpecialTypeValue = 'Ο Ειδικός Χαρακτηρισμός δεν υπάρχει στο λεξικό';
-    const InvalidSpecialTypeType = 'Ο Ειδικός Χαρακτηρισμός πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const DuplicatedSpecialTypeValue = 'Ο Ειδικός Χαρακτηρισμός υπάρχει ήδη';
-
-
-
-    //= GetLegalCharacters
-    const MissingLegalCharacterIDValue = 'Ο Κωδικός του Νομικού Χαρακτήρα πρέπει να έχει τιμή';
-    const MissingLegalCharacterIDParam = 'Ο Κωδικός του Νομικού Χαρακτήρα είναι υποχρεωτικό πεδίο';
-    const InvalidLegalCharacterIDType = 'Ο Κωδικός του Νομικού Χαρακτήρα πρέπει να είναι αριθμητικός';
-    const InvalidLegalCharacterIDArray = 'Ο Κωδικός του Νομικού Χαρακτήρα δεν μπορεί να έχει πολλαπλές τιμές';
-    const MissingLegalCharacterValue = 'Ο Νομικός Χαρακτήρας πρέπει να έχει τιμή';
-    const MissingLegalCharacterParam = 'Ο Νομικός Χαρακτήρας είναι υποχρεωτικό πεδίο';
-    const InvalidLegalCharacterValue = 'Ο Νομικός Χαρακτήρας δεν υπάρχει στο λεξικό';
-    const InvalidLegalCharacterType = 'Ο Νομικός Χαρακτήρας πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const DuplicatedLegalCharacterValue = 'Ο Νομικός Χαρακτήρας υπάρχει ήδη';
-
-
-
-    //= GetOrientationTypes
-    const MissingOrientationTypeIDValue = 'Ο Κωδικός του Σχολικού Προσανατολισμού πρέπει να έχει τιμή';
-    const MissingOrientationTypeIDParam = 'Ο Κωδικός του Σχολικού Προσανατολισμού είναι υποχρεωτικό πεδίο';
-    const InvalidOrientationTypeIDType = 'Ο Κωδικός του Σχολικού Προσανατολισμού πρέπει να είναι αριθμητικός';
-    const InvalidOrientationTypeIDArray = 'Ο Κωδικός του Σχολικού Προσανατολισμού δεν μπορεί να έχει πολλαπλές τιμές';
-    const MissingOrientationTypeValue = 'Ο Σχολικός Προσανατολισμός πρέπει να έχει τιμή';
-    const MissingOrientationTypeParam = 'Ο Σχολικός Προσανατολισμός είναι υποχρεωτικό πεδίο';
-    const InvalidOrientationTypeValue = 'Ο Σχολικός Προσανατολισμός δεν υπάρχει στο λεξικό';
-    const InvalidOrientationTypeType = 'Ο Σχολικός Προσανατολισμός πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const DuplicatedOrientationTypeValue = 'Ο Σχολικός Προσανατολισμός υπάρχει ήδη';
-
-
-
-    //= GetOperationShifts
-    const MissingOperationShiftIDValue = 'Ο Κωδικός του Ωραρίου Λειτουργίας πρέπει να έχει τιμή';
-    const MissingOperationShiftIDParam = 'Ο Κωδικός του Ωραρίου Λειτουργίας είναι υποχρεωτικό πεδίο';
-    const InvalidOperationShiftIDType = 'Ο Κωδικός του Ωραρίου Λειτουργίας πρέπει να είναι αριθμητικός';
-    const InvalidOperationShiftIDArray = 'Ο Κωδικός του Ωραρίου Λειτουργίας δεν μπορεί να έχει πολλαπλές τιμές';
-    const MissingOperationShiftValue = 'Το Ωράριο Λειτουργίας πρέπει να έχει τιμή';
-    const MissingOperationShiftParam = 'Το Ωράριο Λειτουργίας είναι υποχρεωτικό πεδίο';
-    const InvalidOperationShiftValue = 'Το Ωράριο Λειτουργίας δεν υπάρχει στο λεξικό';
-    const InvalidOperationShiftType = 'Το Ωράριο Λειτουργίας πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const DuplicatedOperationShiftValue = 'Το Ωράριο Λειτουργίας υπάρχει ήδη';
-
-
-
-
-
-
 
     //= GetAddrspaces
     const MissingAddrspaceIDParam = 'Ο Κωδικός της Διευθυνσιοδότησης είναι υποχρεωτικό πεδίο';
@@ -210,8 +142,6 @@ class ExceptionMessages
     const InvalidCpeType = 'Το Cpe πρέπει να είναι αριθμητικό ή αλφαριθμητικό';
     const DuplicatedCpeValue = 'Το Cpe υπάρχει ήδη';
 
-
-
     //= GetLdaps
     const MissingLdapIDParam = 'Ο Κωδικός του Ldap Λογαριασμού είναι υποχρεωτικό πεδίο';
     const MissingLdapIDValue = 'Ο Κωδικός του Ldap Λογαριασμού πρέπει να έχει τιμή';
@@ -224,14 +154,122 @@ class ExceptionMessages
     const DuplicatedLdapValue = 'Ο Ldap Λογαριασμός υπάρχει ήδη';
 
 
+   
 
+//= TaxOffices==================================================================
+    
+    const MissingTaxOfficeIDParam = 'Ο Κωδικός της Δ.Ο.Υ. είναι υποχρεωτικό πεδίο';
+    const MissingTaxOfficeIDValue = 'Ο Κωδικός της Δ.Ο.Υ. πρέπει να έχει τιμή';
+    const InvalidTaxOfficeIDType = 'Ο Κωδικός της Δ.Ο.Υ. πρέπει να είναι αριθμητικός';
+    const InvalidTaxOfficeIDArray = 'Ο Κωδικός της Δ.Ο.Υ. δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingTaxOfficeParam = 'Η Δ.Ο.Υ. είναι υποχρεωτικό πεδίο';
+    const MissingTaxOfficeValue = 'Η Δ.Ο.Υ. πρέπει να έχει τιμή';
+    const InvalidTaxOfficeValue = 'Η Δ.Ο.Υ. δεν υπάρχει στο λεξικό';
+    const InvalidTaxOfficeType = 'Η Δ.Ο.Υ. πρέπει να είναι αριθμητική ή αλφαριθμητική';
+    const InvalidTaxOfficeArray = 'Η Δ.Ο.Υ. δεν μπορεί να έχει πολλαπλές τιμές';
+     
+    const MissingTaxOfficeNameParam = 'Το Όνομα της Δ.Ο.Υ. είναι υποχρεωτικό πεδίο';
+    const MissingTaxOfficeNameValue = 'Το Όνομα της Δ.Ο.Υ. πρέπει να έχει τιμή';
+    const InvalidTaxOfficeNameType = 'Το Όνομα της Δ.Ο.Υ. πρέπει να είναι αλφαριθμητικό';
+    const InvalidTaxOfficeNameArray = 'Το Όνομα της Δ.Ο.Υ. δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const DuplicatedTaxOfficeValue = 'Η Δ.Ο.Υ. υπάρχει ήδη';
+    const DuplicatedTaxOfficeUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key TaxOffice';
+    const UsedTaxOfficeByUnits = 'Η Δ.Ο.Υ. χρησιμοποιείται από Μονάδες';
+    const UsedTaxOfficeBySchoolCommittees = 'ΟΗ Δ.Ο.Υ. χρησιμοποιείται από Σχολικές Επιτροπές';
+    
+//= SpecialTypes================================================================
+    
+    const MissingSpecialTypeIDParam = 'Ο Κωδικός του Ειδικού Χαρακτηρισμού είναι υποχρεωτικό πεδίο';
+    const MissingSpecialTypeIDValue = 'Ο Κωδικός του Ειδικού Χαρακτηρισμού πρέπει να έχει τιμή';
+    const InvalidSpecialTypeIDType = 'Ο Κωδικός του Ειδικού Χαρακτηρισμού πρέπει να είναι αριθμητικός';
+    const InvalidSpecialTypeIDArray = 'Ο Κωδικός του Ειδικού Χαρακτηρισμού δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingSpecialTypeParam = 'Ο Ειδικός Χαρακτηρισμός είναι υποχρεωτικό πεδίο';
+    const MissingSpecialTypeValue = 'Ο Ειδικός Χαρακτηρισμός πρέπει να έχει τιμή';
+    const InvalidSpecialTypeValue = 'Ο Ειδικός Χαρακτηρισμός δεν υπάρχει στο λεξικό';
+    const InvalidSpecialTypeType = 'Ο Ειδικός Χαρακτηρισμός πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    const InvalidSpecialTypeArray = 'Ο Ειδικός Χαρακτηρισμός δεν μπορεί να έχει πολλαπλές τιμές';
+     
+    const MissingSpecialTypeNameParam = 'Το Όνομα του Ειδικού Χαρακτηρισμού είναι υποχρεωτικό πεδίο';
+    const MissingSpecialTypeNameValue = 'Το Όνομα του Ειδικού Χαρακτηρισμού πρέπει να έχει τιμή';
+    const InvalidSpecialTypeNameType = 'Το Όνομα του Ειδικού Χαρακτηρισμού πρέπει να είναι αλφαριθμητικό';
+    const InvalidSpecialTypeNameArray = 'Το Όνομα του Ειδικού Χαρακτηρισμού δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const DuplicatedSpecialTypeValue = 'Ο Ειδικός Χαρακτηρισμός υπάρχει ήδη';
+    const DuplicatedSpecialTypeUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key SpecialType';
+    const UsedSpecialTypeByUnits = 'Ο Ειδικός Χαρακτηρισμός χρησιμοποιείται από Μονάδες';
+    const UsedSpecialTypeBySyncTypes = 'Ο Ειδικός Χαρακτηρισμός χρησιμοποιείται από τον Πίνακα Συγχρονισμού Τύπων Μονάδας';
+    
+//= LegalCharacters=============================================================
+    
+    const MissingLegalCharacterIDParam = 'Ο Κωδικός του Νομικού Χαρακτήρα είναι υποχρεωτικό πεδίο';
+    const MissingLegalCharacterIDValue = 'Ο Κωδικός του Νομικού Χαρακτήρα πρέπει να έχει τιμή';
+    const InvalidLegalCharacterIDType = 'Ο Κωδικός του Νομικού Χαρακτήρα πρέπει να είναι αριθμητικός';
+    const InvalidLegalCharacterIDArray = 'Ο Κωδικός του Νομικού Χαρακτήρα δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingLegalCharacterParam = 'Ο Νομικός Χαρακτήρας είναι υποχρεωτικό πεδίο';    
+    const MissingLegalCharacterValue = 'Ο Νομικός Χαρακτήρας πρέπει να έχει τιμή';
+    const InvalidLegalCharacterValue = 'Ο Νομικός Χαρακτήρας δεν υπάρχει στο λεξικό';
+    const InvalidLegalCharacterType = 'Ο Νομικός Χαρακτήρας πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    const InvalidLegalCharacterArray = 'Ο Νομικός Χαρακτήρας δεν μπορεί να έχει πολλαπλές τιμές';
+     
+    const MissingLegalCharacterNameParam = 'Το Όνομα του Νομικού Χαρακτήρα είναι υποχρεωτικό πεδίο';
+    const MissingLegalCharacterNameValue = 'Το Όνομα του Νομικού Χαρακτήρα πρέπει να έχει τιμή';
+    const InvalidLegalCharacterNameType = 'Το Όνομα του Νομικού Χαρακτήρα πρέπει να είναι αλφαριθμητικό';
+    const InvalidLegalCharacterNameArray = 'Το Όνομα του Νομικού Χαρακτήρα δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const DuplicatedLegalCharacterValue = 'Ο Νομικός Χαρακτήρας υπάρχει ήδη';
+    const DuplicatedLegalCharacterUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key LegalCharacter';
+    const UsedLegalCharacterByUnits = 'Ο Νομικός Χαρακτήρας χρησιμοποιείται από Μονάδες';
+    const UsedLegalCharacterBySyncTypes = 'Ο Νομικός Χαρακτήρας χρησιμοποιείται από τον Πίνακα Συγχρονισμού Τύπων Μονάδας';
 
+//= OperationShifts=============================================================
+    
+    const MissingOperationShiftIDParam = 'Ο Κωδικός του Ωραρίου Λειτουργίας είναι υποχρεωτικό πεδίο';  
+    const MissingOperationShiftIDValue = 'Ο Κωδικός του Ωραρίου Λειτουργίας πρέπει να έχει τιμή';
+    const InvalidOperationShiftIDType = 'Ο Κωδικός του Ωραρίου Λειτουργίας πρέπει να είναι αριθμητικός';
+    const InvalidOperationShiftIDArray = 'Ο Κωδικός του Ωραρίου Λειτουργίας δεν μπορεί να έχει πολλαπλές τιμές';
+   
+    const MissingOperationShiftParam = 'Το Ωράριο Λειτουργίας είναι υποχρεωτικό πεδίο';
+    const MissingOperationShiftValue = 'Το Ωράριο Λειτουργίας πρέπει να έχει τιμή';
+    const InvalidOperationShiftValue = 'Το Ωράριο Λειτουργίας δεν υπάρχει στο λεξικό';
+    const InvalidOperationShiftType = 'Το Ωράριο Λειτουργίας πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    const InvalidOperationShiftArray = 'Το Ωράριο Λειτουργίας δεν μπορεί να έχει πολλαπλές τιμές';
+     
+    const MissingOperationShiftNameParam = 'Το Όνομα του Ωραρίου Λειτουργίας είναι υποχρεωτικό πεδίο';
+    const MissingOperationShiftNameValue = 'Το Όνομα του Ωραρίου Λειτουργίας πρέπει να έχει τιμή';
+    const InvalidOperationShiftNameType = 'Το Όνομα του Ωραρίου Λειτουργίας πρέπει να είναι αλφαριθμητικό';
+    const InvalidOperationShiftNameArray = 'Το Όνομα του Ωραρίου Λειτουργίας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const DuplicatedOperationShiftValue = 'Το Ωράριο Λειτουργίας υπάρχει ήδη';
+    const DuplicatedOperationShiftUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key OperationShift';
+    const UsedOperationShiftByUnits = 'Το Ωράριο Λειτουργίας χρησιμοποιείται από Μονάδες';
+    const UsedOperationShiftBySyncTypes = 'Το Ωράριο Λειτουργίας χρησιμοποιείται από τον Πίνακα Συγχρονισμού Τύπων Μονάδας';
 
-
-
-
-
-
+//= OrientationTypes============================================================
+    
+    const MissingOrientationTypeIDParam = 'Ο Κωδικός του Σχολικού Προσανατολισμού είναι υποχρεωτικό πεδίο';
+    const MissingOrientationTypeIDValue = 'Ο Κωδικός του Σχολικού Προσανατολισμού πρέπει να έχει τιμή';
+    const InvalidOrientationTypeIDType = 'Ο Κωδικός του Σχολικού Προσανατολισμού πρέπει να είναι αριθμητικός';
+    const InvalidOrientationTypeIDArray = 'Ο Κωδικός του Σχολικού Προσανατολισμού δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingOrientationTypeParam = 'Ο Σχολικός Προσανατολισμός είναι υποχρεωτικό πεδίο';
+    const MissingOrientationTypeValue = 'Ο Σχολικός Προσανατολισμός πρέπει να έχει τιμή';
+    const InvalidOrientationTypeValue = 'Ο Σχολικός Προσανατολισμός δεν υπάρχει στο λεξικό';
+    const InvalidOrientationTypeType = 'Ο Σχολικός Προσανατολισμός πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    const InvalidOrientationTypeArray = 'Ο Σχολικός Προσανατολισμός δεν μπορεί να έχει πολλαπλές τιμές';
+     
+    const MissingOrientationTypeNameParam = 'Το Όνομα του Σχολικού Προσανατολισμού είναι υποχρεωτικό πεδίο';
+    const MissingOrientationTypeNameValue = 'Το Όνομα του Σχολικού Προσανατολισμού πρέπει να έχει τιμή';
+    const InvalidOrientationTypeNameType = 'Το Όνομα του Σχολικού Προσανατολισμού πρέπει να είναι αλφαριθμητικό';
+    const InvalidOrientationTypeNameArray = 'Το Όνομα του Σχολικού Προσανατολισμού δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const DuplicatedOrientationTypeValue = 'Ο Σχολικός Προσανατολισμός υπάρχει ήδη';
+    const DuplicatedOrientationTypeUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key OrientationType';
+    const UsedOrientationTypeByUnits = 'Ο Σχολικός Προσανατολισμός χρησιμοποιείται από Μονάδες';
+    const UsedOrientationTypeBySyncTypes = 'Ο Σχολικός Προσανατολισμός χρησιμοποιείται από τον Πίνακα Συγχρονισμού Τύπων Μονάδας';
     
 //= ImplementationEntities======================================================
     
@@ -453,6 +491,22 @@ class ExceptionMessages
     const UsedPrefectureByMunicipalities = 'Ο Κωδικός Περιφερειακής Ενότητας χρησιμοποιείται από Δήμους';
     const UsedPrefectureBySchoolCommittees = 'Ο Κωδικός Περιφερειακής Ενότητας χρησιμοποιείται από Σχολικές Επιτροπές';
 
+//= TransferAreaMunicipalities==================================================
+    
+    const MissingTransferAreaMunicipalityIDParam = 'Η Συσχέτιση Περιοχής Μετάθεσης με Δήμο είναι υποχρεωτικό πεδίο';
+    const MissingTransferAreaMunicipalityIDValue = 'Η Συσχέτιση Περιοχής Μετάθεσης με Δήμο πρέπει να έχει τιμή';
+    const InvalidTransferAreaMunicipalityIDType = 'Η Συσχέτιση Περιοχής Μετάθεσης με Δήμο πρέπει να είναι αριθμητικός';
+    const InvalidTransferAreaMunicipalityIDArray = 'Η Συσχέτιση Περιοχής Μετάθεσης με Δήμο δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingTransferAreaMunicipalityParam = 'Η Συσχέτιση Περιοχής Μετάθεσης με Δήμο είναι υποχρεωτικό πεδίο';
+    const MissingTransferAreaMunicipalityValue = 'Η Συσχέτιση Περιοχής Μετάθεσης με Δήμο πρέπει να έχει τιμή';
+    const InvalidTransferAreaMunicipalityValue = 'Η Συσχέτιση Περιοχής Μετάθεσης με Δήμο δεν υπάρχει στο λεξικό';
+    const InvalidTransferAreaMunicipalityType = 'Η Συσχέτιση Περιοχής Μετάθεσης με Δήμο πρέπει να είναι αριθμητική ή αλφαριθμητική';
+    const InvalidTransferAreaMunicipalityArray = 'Η Συσχέτιση Περιοχής Μετάθεσης με Δήμο δεν μπορεί να έχει πολλαπλές τιμές';
+        
+    const DuplicatedTransferAreaMunicipalityValue = 'Η Συσχέτιση Περιοχής Μετάθεσης με Δήμο υπάρχει ήδη';
+    const DuplicatedTransferAreaMunicipalityUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key TransferAreaMunicipality';
+    
 //= EducationLevels=============================================================
     
     const MissingEducationLevelIDParam = 'Ο Κωδικός του Επιπέδου Εκπαίδευσης είναι υποχρεωτικό πεδίο';
@@ -505,7 +559,7 @@ class ExceptionMessages
     const DuplicatedUnitTypeNameValue = 'Το Όνομα του Τύπου Μονάδας υπάρχει ήδη';
     const DuplicatedUnitTypeInitialValue = 'Η Συντομογραφία Ονόματος του Τύπου Μονάδας υπάρχει ήδη';
     const UsedUnitTypeByUnits = 'Ο Κωδικός του Τύπου Μονάδας χρησιμοποιείται από Μονάδες';
-    const UsedUnitTypeBySyncTypeUnits = 'Ο Κωδικός του Τύπου Μονάδας χρησιμοποιείται από Πίνακα Συγχρονισμού Τύπων Μονάδας';
+    const UsedUnitTypeBySyncTypeUnits = 'Ο Κωδικός του Τύπου Μονάδας χρησιμοποιείται από τον Πίνακα Συγχρονισμού Τύπων Μονάδας';
 
 //= States======================================================================
     
@@ -1025,7 +1079,7 @@ class ExceptionMessages
     const InvalidWorkerTaxNumberType = 'Ο Αριθμός Φορολογικού Μητρώου ($tax_number)  πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     
     
-    // =Relations===============================================================
+// =Relations===================================================================
 
     const MissingRelationIDParam = 'Ο Κωδικός της Συσχέτισης Μονάδων είναι υποχρεωτικό πεδίο';
     const MissingRelationIDValue = 'Ο Κωδικός της Συσχέτισης Μονάδων πρέπει να έχει τιμή';

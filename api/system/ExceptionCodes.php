@@ -201,118 +201,6 @@ class ExceptionCodes
     /** {@see ExceptionMessages::DuplicatedIpMaskValue} */
     const DuplicatedIpMaskValue = 500;
 
-    //= GetTaxOffices
-    /** {@see ExceptionMessages::MissingTaxOfficeIDValue} */
-    const MissingTaxOfficeIDValue = 500;
-    /** {@see ExceptionMessages::MissingTaxOfficeIDParam} */
-    const MissingTaxOfficeIDParam = 500;
-    /** {@see ExceptionMessages::InvalidTaxOfficeIDType} */
-    const InvalidTaxOfficeIDType = 500;
-    /** {@see ExceptionMessages::InvalidTaxOfficeIDArray} */
-    const InvalidTaxOfficeIDArray = 500;
-    /** {@see ExceptionMessages::MissingTaxOfficeValue} */
-    const MissingTaxOfficeValue = 500;
-    /** {@see ExceptionMessages::MissingTaxOfficeParam} */
-    const MissingTaxOfficeParam = 500;
-    /** {@see ExceptionMessages::InvalidTaxOfficeValue} */
-    const InvalidTaxOfficeValue = 500;
-    /** {@see ExceptionMessages::InvalidTaxOfficeType} */
-    const InvalidTaxOfficeType = 500;
-    /** {@see ExceptionMessages::DuplicatedTaxOfficeValue} */
-    const DuplicatedTaxOfficeValue = 500;
-
-
-
-
-    //= GetSpecialTypes
-    /** {@see ExceptionMessages::MissingSpecialTypeIDValue} */
-    const MissingSpecialTypeIDValue = 500;
-    /** {@see ExceptionMessages::MissingSpecialTypeIDParam} */
-    const MissingSpecialTypeIDParam = 500;
-    /** {@see ExceptionMessages::InvalidSpecialTypeIDType} */
-    const InvalidSpecialTypeIDType = 500;
-    /** {@see ExceptionMessages::InvalidSpecialTypeIDArray} */
-    const InvalidSpecialTypeIDArray = 500;
-    /** {@see ExceptionMessages::MissingSpecialTypeValue} */
-    const MissingSpecialTypeValue = 500;
-    /** {@see ExceptionMessages::MissingSpecialTypeParam} */
-    const MissingSpecialTypeParam = 500;
-    /** {@see ExceptionMessages::InvalidSpecialTypeValue} */
-    const InvalidSpecialTypeValue = 500;
-    /** {@see ExceptionMessages::InvalidSpecialTypeType} */
-    const InvalidSpecialTypeType = 500;
-    /** {@see ExceptionMessages::DuplicatedSpecialTypeValue} */
-    const DuplicatedSpecialTypeValue = 500;
-
-
-
-    //= GetLegalCharacters
-    /** {@see ExceptionMessages::MissingLegalCharacterIDValue} */
-    const MissingLegalCharacterIDValue = 500;
-    /** {@see ExceptionMessages::MissingLegalCharacterIDParam} */
-    const MissingLegalCharacterIDParam = 500;
-    /** {@see ExceptionMessages::InvalidLegalCharacterIDType} */
-    const InvalidLegalCharacterIDType = 500;
-    /** {@see ExceptionMessages::InvalidLegalCharacterIDArray} */
-    const InvalidLegalCharacterIDArray = 500;
-    /** {@see ExceptionMessages::MissingLegalCharacterValue} */
-    const MissingLegalCharacterValue = 500;
-    /** {@see ExceptionMessages::MissingLegalCharacterParam} */
-    const MissingLegalCharacterParam = 500;
-    /** {@see ExceptionMessages::InvalidLegalCharacterValue} */
-    const InvalidLegalCharacterValue = 500;
-    /** {@see ExceptionMessages::InvalidLegalCharacterType} */
-    const InvalidLegalCharacterType = 500;
-    /** {@see ExceptionMessages::DuplicatedLegalCharacterValue} */
-    const DuplicatedLegalCharacterValue = 500;
-
-
-
-    //= GetOrientationTypes
-    /** {@see ExceptionMessages::MissingOrientationTypeIDValue} */
-    const MissingOrientationTypeIDValue = 500;
-    /** {@see ExceptionMessages::MissingOrientationTypeIDParam} */
-    const MissingOrientationTypeIDParam = 500;
-    /** {@see ExceptionMessages::InvalidOrientationTypeIDType} */
-    const InvalidOrientationTypeIDType = 500;
-    /** {@see ExceptionMessages::InvalidOrientationTypeIDArray} */
-    const InvalidOrientationTypeIDArray = 500;
-    /** {@see ExceptionMessages::MissingOrientationTypeValue} */
-    const MissingOrientationTypeValue = 500;
-    /** {@see ExceptionMessages::MissingOrientationTypeParam} */
-    const MissingOrientationTypeParam = 500;
-    /** {@see ExceptionMessages::InvalidOrientationTypeValue} */
-    const InvalidOrientationTypeValue = 500;
-    /** {@see ExceptionMessages::InvalidOrientationTypeType} */
-    const InvalidOrientationTypeType = 500;
-    /** {@see ExceptionMessages::DuplicatedOrientationTypeValue} */
-    const DuplicatedOrientationTypeValue = 500;
-
-
-
-
-    //= GetOperationShifts
-    /** {@see ExceptionMessages::MissingOperationShiftIDValue} */
-    const MissingOperationShiftIDValue = 500;
-    /** {@see ExceptionMessages::MissingOperationShiftIDParam} */
-    const MissingOperationShiftIDParam = 500;
-    /** {@see ExceptionMessages::InvalidOperationShiftIDType} */
-    const InvalidOperationShiftIDType = 500;
-    /** {@see ExceptionMessages::InvalidOperationShiftIDArray} */
-    const InvalidOperationShiftIDArray = 500;
-    /** {@see ExceptionMessages::MissingOperationShiftValue} */
-    const MissingOperationShiftValue = 500;
-    /** {@see ExceptionMessages::MissingOperationShiftParam} */
-    const MissingOperationShiftParam = 500;
-    /** {@see ExceptionMessages::InvalidOperationShiftValue} */
-    const InvalidOperationShiftValue = 500;
-    /** {@see ExceptionMessages::InvalidOperationShiftType} */
-    const InvalidOperationShiftType = 500;
-    /** {@see ExceptionMessages::DuplicatedOperationShiftValue} */
-    const DuplicatedOperationShiftValue = 500;
-
-
-
     //= GetAddrspaces
     /** {@see ExceptionMessages::MissingAddrspaceIDParam} */
     const MissingAddrspaceIDParam = 500;
@@ -378,8 +266,220 @@ class ExceptionCodes
     /** {@see ExceptionMessages::DuplicatedLdapValue} */
     const DuplicatedLdapValue = 500;
  
+    
+    
+    
+    
+    
+    
+    
+    
 
+    
 
+    
+//= TaxOffices==================================================================
+    
+    /** {@see ExceptionMessages::MissingTaxOfficeIDParam} */
+    const MissingTaxOfficeIDParam = 500;
+    /** {@see ExceptionMessages::MissingTaxOfficeIDValue} */
+    const MissingTaxOfficeIDValue = 500;
+    /** {@see ExceptionMessages::InvalidTaxOfficeIDType} */
+    const InvalidTaxOfficeIDType = 500;
+    /** {@see ExceptionMessages::InvalidTaxOfficeIDArray} */
+    const InvalidTaxOfficeIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingTaxOfficeParam} */
+    const MissingTaxOfficeParam = 500;
+    /** {@see ExceptionMessages::MissingTaxOfficeValue} */
+    const MissingTaxOfficeValue = 500;
+    /** {@see ExceptionMessages::InvalidTaxOfficeValue} */
+    const InvalidTaxOfficeValue = 500;
+    /** {@see ExceptionMessages::InvalidTaxOfficeType} */
+    const InvalidTaxOfficeType = 500;
+    /** {@see ExceptionMessages::InvalidTaxOfficeArray} */
+    const InvalidTaxOfficeArray = 500;
+     
+    /** {@see ExceptionMessages::MissingTaxOfficeNameParam} */
+    const MissingTaxOfficeNameParam = 500;
+    /** {@see ExceptionMessages::MissingTaxOfficeNameValue} */
+    const MissingTaxOfficeNameValue = 500;
+    /** {@see ExceptionMessages::InvalidTaxOfficeNameType} */
+    const InvalidTaxOfficeNameType = 500;
+    /** {@see ExceptionMessages::InvalidTaxOfficeNameArray} */
+    const InvalidTaxOfficeNameArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedTaxOfficeValue} */
+    const DuplicatedTaxOfficeValue = 500;    
+    /** {@see ExceptionMessages::DuplicatedTaxOfficeUniqueValue} */
+    const DuplicatedTaxOfficeUniqueValue = 500;  
+    /** {@see ExceptionMessages::UsedTaxOfficeByUnits} */
+    const UsedTaxOfficeByUnits = 500;
+    /** {@see ExceptionMessages::UsedTaxOfficeBySchoolCommittees} */
+    const UsedTaxOfficeBySchoolCommittees = 500;
+ 
+//= SpecialTypes================================================================
+    
+    /** {@see ExceptionMessages::MissingSpecialTypeIDParam} */
+    const MissingSpecialTypeIDParam = 500;
+    /** {@see ExceptionMessages::MissingSpecialTypeIDValue} */
+    const MissingSpecialTypeIDValue = 500;
+    /** {@see ExceptionMessages::InvalidSpecialTypeIDType} */
+    const InvalidSpecialTypeIDType = 500;
+    /** {@see ExceptionMessages::InvalidSpecialTypeIDArray} */
+    const InvalidSpecialTypeIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingSpecialTypeParam} */
+    const MissingSpecialTypeParam = 500;
+    /** {@see ExceptionMessages::MissingSpecialTypeValue} */
+    const MissingSpecialTypeValue = 500;
+    /** {@see ExceptionMessages::InvalidSpecialTypeValue} */
+    const InvalidSpecialTypeValue = 500;
+    /** {@see ExceptionMessages::InvalidSpecialTypeType} */
+    const InvalidSpecialTypeType = 500;
+    /** {@see ExceptionMessages::InvalidSpecialTypeArray} */
+    const InvalidSpecialTypeArray = 500;
+     
+    /** {@see ExceptionMessages::MissingSpecialTypeNameParam} */
+    const MissingSpecialTypeNameParam = 500; 
+    /** {@see ExceptionMessages::MissingSpecialTypeNameValue} */
+    const MissingSpecialTypeNameValue = 500;  
+    /** {@see ExceptionMessages::InvalidSpecialTypeNameType} */
+    const InvalidSpecialTypeNameType = 500;
+    /** {@see ExceptionMessages::InvalidSpecialTypeNameArray} */
+    const InvalidSpecialTypeNameArray =  500;
+    
+    /** {@see ExceptionMessages::DuplicatedSpecialTypeValue} */
+    const DuplicatedSpecialTypeValue = 500;
+    /** {@see ExceptionMessages::DuplicatedSpecialTypeUniqueValue} */
+    const DuplicatedSpecialTypeUniqueValue =  500;
+    /** {@see ExceptionMessages::UsedSpecialTypeByUnits} */
+    const UsedSpecialTypeByUnits =  500;
+    /** {@see ExceptionMessages::UsedSpecialTypeBySyncTypes} */
+    const UsedSpecialTypeBySyncTypes = 500;
+    
+//= LegalCharacters=============================================================
+    
+    /** {@see ExceptionMessages::MissingLegalCharacterIDParam} */
+    const MissingLegalCharacterIDParam = 500;
+    /** {@see ExceptionMessages::MissingLegalCharacterIDValue} */
+    const MissingLegalCharacterIDValue = 500;
+    /** {@see ExceptionMessages::InvalidLegalCharacterIDType} */
+    const InvalidLegalCharacterIDType = 500;
+    /** {@see ExceptionMessages::InvalidLegalCharacterIDArray} */
+    const InvalidLegalCharacterIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingLegalCharacterParam} */
+    const MissingLegalCharacterParam = 500;
+    /** {@see ExceptionMessages::MissingLegalCharacterValue} */
+    const MissingLegalCharacterValue = 500;
+    /** {@see ExceptionMessages::InvalidLegalCharacterValue} */
+    const InvalidLegalCharacterValue = 500;
+    /** {@see ExceptionMessages::InvalidLegalCharacterType} */
+    const InvalidLegalCharacterType = 500;
+    /** {@see ExceptionMessages::InvalidLegalCharacterArray} */
+    const InvalidLegalCharacterArray = 500;  
+     
+    /** {@see ExceptionMessages::MissingLegalCharacterNameParam} */
+    const MissingLegalCharacterNameParam = 500;
+    /** {@see ExceptionMessages::MissingLegalCharacterNameValue} */
+    const MissingLegalCharacterNameValue = 500;
+    /** {@see ExceptionMessages::InvalidLegalCharacterNameType} */
+    const InvalidLegalCharacterNameType = 500;
+    /** {@see ExceptionMessages::InvalidLegalCharacterNameArray} */
+    const InvalidLegalCharacterNameArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedLegalCharacterValue} */
+    const DuplicatedLegalCharacterValue = 500;
+    /** {@see ExceptionMessages::DuplicatedLegalCharacterUniqueValue} */
+    const DuplicatedLegalCharacterUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedLegalCharacterByUnits} */
+    const UsedLegalCharacterByUnits = 500;
+    /** {@see ExceptionMessages::UsedLegalCharacterBySyncTypes} */
+    const UsedLegalCharacterBySyncTypes = 500;
+    
+//= OperationShifts=============================================================
+    
+    /** {@see ExceptionMessages::MissingOperationShiftIDParam} */
+    const MissingOperationShiftIDParam = 500;
+    /** {@see ExceptionMessages::MissingOperationShiftIDValue} */
+    const MissingOperationShiftIDValue = 500;
+    /** {@see ExceptionMessages::InvalidOperationShiftIDType} */
+    const InvalidOperationShiftIDType = 500;
+    /** {@see ExceptionMessages::InvalidOperationShiftIDArray} */
+    const InvalidOperationShiftIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingOperationShiftParam} */
+    const MissingOperationShiftParam = 500;
+    /** {@see ExceptionMessages::MissingOperationShiftValue} */
+    const MissingOperationShiftValue = 500;
+    /** {@see ExceptionMessages::InvalidOperationShiftValue} */
+    const InvalidOperationShiftValue = 500;
+    /** {@see ExceptionMessages::InvalidOperationShiftType} */
+    const InvalidOperationShiftType = 500;
+    /** {@see ExceptionMessages::InvalidOperationShiftArray} */
+    const InvalidOperationShiftArray = 500;   
+     
+    
+    /** {@see ExceptionMessages::MissingOperationShiftNameParam} */
+    const MissingOperationShiftNameParam = 500;  
+    /** {@see ExceptionMessages::MissingOperationShiftNameValue} */
+    const MissingOperationShiftNameValue = 500;
+    /** {@see ExceptionMessages::InvalidOperationShiftNameType} */
+    const InvalidOperationShiftNameType = 500;
+    /** {@see ExceptionMessages::InvalidOperationShiftNameArray} */
+    const InvalidOperationShiftNameArray =  500;
+    
+    
+    /** {@see ExceptionMessages::DuplicatedOperationShiftValue} */
+    const DuplicatedOperationShiftValue = 500;
+    /** {@see ExceptionMessages::DuplicatedOperationShiftUniqueValue} */
+    const DuplicatedOperationShiftUniqueValue =  500;  
+    /** {@see ExceptionMessages::UsedOperationShiftByUnits} */
+    const UsedOperationShiftByUnits =  500;
+    /** {@see ExceptionMessages::UsedOperationShiftBySyncTypes} */
+    const UsedOperationShiftBySyncTypes =  500;
+
+//= OrientationTypes============================================================
+    
+    /** {@see ExceptionMessages::MissingOrientationTypeIDParam} */
+    const MissingOrientationTypeIDParam = 500;
+    /** {@see ExceptionMessages::MissingOrientationTypeIDValue} */
+    const MissingOrientationTypeIDValue =  500;
+    /** {@see ExceptionMessages::InvalidOrientationTypeIDType} */
+    const InvalidOrientationTypeIDType =  500;
+    /** {@see ExceptionMessages::InvalidOrientationTypeIDArray} */
+    const InvalidOrientationTypeIDArray =  500;
+    
+    /** {@see ExceptionMessages::MissingOrientationTypeParam} */
+    const MissingOrientationTypeParam =  500;
+    /** {@see ExceptionMessages::MissingOrientationTypeValue} */
+    const MissingOrientationTypeValue =  500;
+    /** {@see ExceptionMessages::InvalidOrientationTypeValue} */
+    const InvalidOrientationTypeValue =  500;
+    /** {@see ExceptionMessages::InvalidOrientationTypeType} */
+    const InvalidOrientationTypeType =  500;
+    /** {@see ExceptionMessages::InvalidOrientationTypeArray} */
+    const InvalidOrientationTypeArray =  500;
+    
+    /** {@see ExceptionMessages::MissingOrientationTypeNameParam} */
+    const MissingOrientationTypeNameParam =  500;
+    /** {@see ExceptionMessages::MissingOrientationTypeNameValue} */
+    const MissingOrientationTypeNameValue =  500;
+    /** {@see ExceptionMessages::InvalidOrientationTypeNameType} */
+    const InvalidOrientationTypeNameType =  500;
+    /** {@see ExceptionMessages::InvalidOrientationTypeNameArray} */
+    const InvalidOrientationTypeNameArray =  500;
+    
+    /** {@see ExceptionMessages::DuplicatedOrientationTypeValue} */
+    const DuplicatedOrientationTypeValue =  500;
+    /** {@see ExceptionMessages::DuplicatedOrientationTypeUniqueValue} */
+    const DuplicatedOrientationTypeUniqueValue =  500;
+    /** {@see ExceptionMessages::UsedOrientationTypeByUnits} */
+    const UsedOrientationTypeByUnits =  500;
+    /** {@see ExceptionMessages::UsedOrientationTypeBySyncTypes} */
+    const UsedOrientationTypeBySyncTypes =  500;
+    
 //= ImplementationEntities======================================================
     
     /** {@see ExceptionMessages::MissingImplementationEntityIDParam} */
@@ -768,6 +868,33 @@ class ExceptionCodes
     /** {@see ExceptionMessages::UsedPrefectureBySchoolCommittees} */   
     const UsedPrefectureBySchoolCommittees = 500;
 
+//= TransferAreaMunicipalities==================================================
+    
+    /** {@see ExceptionMessages::MissingTransferAreaMunicipalityIDParam} */   
+    const MissingTransferAreaMunicipalityIDParam = 500;
+    /** {@see ExceptionMessages::MissingTransferAreaMunicipalityIDValue} */   
+    const MissingTransferAreaMunicipalityIDValue = 500;
+    /** {@see ExceptionMessages::InvalidTransferAreaMunicipalityIDType} */   
+    const InvalidTransferAreaMunicipalityIDType = 500;
+    /** {@see ExceptionMessages::InvalidTransferAreaMunicipalityIDArray} */   
+    const InvalidTransferAreaMunicipalityIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingTransferAreaMunicipalityParam} */   
+    const MissingTransferAreaMunicipalityParam = 500;
+    /** {@see ExceptionMessages::MissingTransferAreaMunicipalityValue} */   
+    const MissingTransferAreaMunicipalityValue = 500;
+    /** {@see ExceptionMessages::InvalidTransferAreaMunicipalityValue} */   
+    const InvalidTransferAreaMunicipalityValue = 500;
+    /** {@see ExceptionMessages::InvalidTransferAreaMunicipalityType} */   
+    const InvalidTransferAreaMunicipalityType = 500;
+    /** {@see ExceptionMessages::InvalidTransferAreaMunicipalityArray} */   
+    const InvalidTransferAreaMunicipalityArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedTransferAreaMunicipalityValue} */   
+    const DuplicatedTransferAreaMunicipalityValue = 500;
+    /** {@see ExceptionMessages::DuplicatedTransferAreaMunicipalityUniqueValue} */   
+    const DuplicatedTransferAreaMunicipalityUniqueValue = 500;
+    
 //= EducationLevels=============================================================
     
     /** {@see ExceptionMessages::MissingEducationLevelIDParam} */   
