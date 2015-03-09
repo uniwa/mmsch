@@ -414,8 +414,9 @@ class ExceptionMessages
     const InvalidEduAdminThirdLevelDnsType = 'Το ThirdLevelDns της Διεύθυνσης Εκπαίδευσης πρέπει να είναι αλφαριθμητικό';
     const InvalidEduAdminThirdLevelDnsArray = 'Το ThirdLevelDns της Διεύθυνσης Εκπαίδευσης δεν μπορεί να έχει πολλαπλές τιμές';
     
-    const DuplicatedEduAdminValue = 'Η Διεύθυνση Εκπαίδευσης υπάρχει ήδη';
+    const DuplicatedEduAdminValue = 'To όνομα της Διεύθυνσης Εκπαίδευσης υπάρχει ήδη';
     const DuplicatedEduAdminUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key EduAdmin';
+    const DuplicatedEduAdminCodeValue = 'Ο Κωδικός της Διεύθυνσης Εκπαίδευσης υπάρχει ήδη';
     const UsedEduAdminByUnits = 'Ο Κωδικός Διεύθυνσης Εκπαίδευσης χρησιμοποιείται από Μονάδες';
     const UsedEduAdminByTransferAreas = 'Ο Κωδικός Διεύθυνσης Εκπαίδευσης χρησιμοποιείται από Περιοχές Μετάθεσης';
     const UsedEduAdminBySchoolCommittees = 'Ο Κωδικός Διεύθυνσης Εκπαίδευσης χρησιμοποιείται από Σχολικές Επιτροπές';

@@ -97,7 +97,7 @@ class EduAdmins
         return $this->implementationEntity;
     }
 
-    public function setImplementationEntity(\ImplementationEntities $implementationEntity) {
+    public function setImplementationEntity(\ImplementationEntities $implementationEntity=null) {
         $this->implementationEntity = $implementationEntity;
     }
 
@@ -105,10 +105,10 @@ class EduAdmins
         return $this->regionEduAdmin;
     }
 
-    public function setRegionEduAdmin(\RegionEduAdmins $regionEduAdmin) {
+    public function setRegionEduAdmin(\RegionEduAdmins $regionEduAdmin=null) {
         $this->regionEduAdmin = $regionEduAdmin;
     }
-    
+
     public function getParentRdn() {
         return $this->parentRdn;
     }
@@ -116,7 +116,7 @@ class EduAdmins
     public function setParentRdn($parentRdn) {
         $this->parentRdn = $parentRdn;
     }
-    
+
     public function getThirdLevelDns() {
         return $this->thirdLevelDns;
     }
@@ -124,4 +124,5 @@ class EduAdmins
     public function setThirdLevelDns($thirdLevelDns) {
         $this->thirdLevelDns = $thirdLevelDns;
     }
+
 }

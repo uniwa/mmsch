@@ -195,12 +195,14 @@ require_once ('../api/put/PutUnitWorkers.php');
 
 //DOCTRINE READY FUNCTIONS
 require_once ('../api/post/PostCategories.php');
+require_once ('../api/post/PostEduAdmins.php');
 require_once ('../api/post/PostGroups.php');
 require_once ('../api/post/PostLevels.php');
 require_once ('../api/post/PostRelations.php');
 require_once ('../api/post/PostRelationTypes.php');
 
 require_once ('../api/put/PutCategories.php');
+require_once ('../api/put/PutEduAdmins.php');
 require_once ('../api/put/PutGroups.php');
 require_once ('../api/put/PutLevels.php');
 require_once ('../api/put/PutRelations.php');

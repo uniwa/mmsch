@@ -737,6 +737,8 @@ class ExceptionCodes
     const DuplicatedEduAdminValue = 500;
     /** {@see ExceptionMessages::DuplicatedEduAdminUniqueValue} */   
     const DuplicatedEduAdminUniqueValue = 500;
+    /** {@see ExceptionMessages::DuplicatedEduAdminCodeValue} */   
+    const DuplicatedEduAdminCodeValue = 500;
     /** {@see ExceptionMessages::UsedEduAdminByUnits} */   
     const UsedEduAdminByUnits =500;
     /** {@see ExceptionMessages::UsedEduAdminByTransferAreas} */   

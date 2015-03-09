@@ -826,6 +826,27 @@ function EduAdminsController()
                 $params["orderby"]              
             );
             break;
+        case MethodTypes::POST :
+            $result = PostEduAdmins(
+                $params["name"],
+                $params["registry_no"],
+                $params["region_edu_admin"],
+                $params["implementation_entity"],
+                $params["parent_rdn"],
+                $params["third_level_dns"]          
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutEduAdmins(
+                $params["edu_admin_id"],
+                $params["name"],
+                $params["registry_no"],
+                $params["region_edu_admin"],
+                $params["implementation_entity"],
+                $params["parent_rdn"],
+                $params["third_level_dns"]          
+            );
+            break;
     }
 
     PrepareResponse();
