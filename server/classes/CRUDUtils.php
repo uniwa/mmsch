@@ -185,8 +185,13 @@ class CRUDUtils {
             if (!$required) { return; }
             throw new Exception(constant('ExceptionMessages::'.$missingParam)." : ".$param, constant('ExceptionCodes::'.$missingParam));
         } else if ( Validator::IsNull($param) ) {
-            if ($is_nullable) { return; }
-            throw new Exception(constant('ExceptionMessages::'.$missingValue)." : ".$param, constant('ExceptionCodes::'.$missingValue));
+            if (!$is_nullable) {
+                throw new Exception(constant('ExceptionMessages::'.$missingValue)." : ".$param, constant('ExceptionCodes::'.$missingValue));                 
+            } else {
+                $method = 'set'.ucfirst($doctrineField);
+                $entity->$method(Validator::ToNull($param));
+                return;
+            }   
         } else if ( Validator::IsID($param) )
             $retrievedObject = $entityManager->getRepository($repo)->find(Validator::ToID($param));
         else if ( Validator::IsValue($param) && ($only_id == false) )
