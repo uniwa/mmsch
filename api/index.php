@@ -369,6 +369,18 @@ function SourcesController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostSources(
+                $params["name"],
+                $params["visible"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutSources(
+                $params["source_id"],
+                $params["name"],
+                $params["visible"]
+            );
     }
 
     PrepareResponse();
@@ -395,6 +407,16 @@ function StatesController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostStates(
+                $params["name"]          
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutStates(
+                $params["state_id"],
+                $params["name"]
+            );
     }
 
     PrepareResponse();
@@ -498,6 +520,16 @@ function PrefecturesController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostPrefectures(
+                $params["name"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutPrefectures(
+                $params["prefecture_id"],
+                $params["name"]
+            );
     }
 
     PrepareResponse();
@@ -525,6 +557,16 @@ function TaxOfficesController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostTaxOffices(
+                $params["name"]          
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutTaxOffices(
+                $params["tax_office_id"],
+                $params["name"]
+            );
     }
 
     PrepareResponse();
@@ -552,6 +594,18 @@ function SpecialTypesController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostSpecialTypes(
+                $params["name"],
+                $params["category"]                
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutSpecialTypes(
+                $params["special_type_id"],
+                $params["name"],
+                $params["category"]
+            );
     }
 
     PrepareResponse();
@@ -579,6 +633,18 @@ function LegalCharactersController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostLegalCharacters(
+                $params["name"],
+                $params["category"]                
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutLegalCharacters(
+                $params["legal_character_id"],
+                $params["name"],
+                $params["category"]
+            );
     }
 
     PrepareResponse();
@@ -606,6 +672,18 @@ function OrientationTypesController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostOrientationTypes(
+                $params["name"],
+                $params["category"]                
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutOrientationTypes(
+                $params["orientation_type_id"],
+                $params["name"],
+                $params["category"]
+            );
     }
 
     PrepareResponse();
@@ -624,7 +702,7 @@ function OperationShiftsController()
     {
         case MethodTypes::GET :
             $result = GetOperationShifts(
-                $params["orientation_shift"],
+                $params["operation_shift"],
                 $params["category"],
                 $params["pagesize"],
                 $params["page"],
@@ -633,6 +711,18 @@ function OperationShiftsController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostOperationShifts(
+                $params["name"],
+                $params["category"]                
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutOperationShifts(
+                $params["operation_shift_id"],
+                $params["name"],
+                $params["category"]
+            );
     }
 
     PrepareResponse();
@@ -662,6 +752,22 @@ function UnitTypesController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostUnitTypes(
+                $params["name"],
+                $params["initials"],
+                $params["category"],
+                $params["education_level"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutUnitTypes(
+                $params["unit_type_id"],
+                $params["name"],
+                $params["initials"],
+                $params["category"],
+                $params["education_level"]
+            );
     }
 
     PrepareResponse();
@@ -686,6 +792,17 @@ function EducationLevelsController()
                 $params["orderby"],
                 $params["ordertype"],
                 $params["searchtype"]
+            );
+            break;
+            case MethodTypes::POST :
+            $result = PostEducationLevels(
+                $params["name"]
+            );
+            break;
+            case MethodTypes::PUT :
+            $result = PutEducationLevels(
+                $params["education_level_id"],
+                $params["name"]
             );
             break;
     }
@@ -715,6 +832,17 @@ function RegionEduAdminsController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostRegionEduAdmins(
+                $params["name"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutRegionEduAdmins(
+                $params["region_edu_admin_id"],
+                $params["name"]
+            );
+            break;
     }
 
     PrepareResponse();
@@ -741,6 +869,30 @@ function ImplementationEntitiesController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostImplementationEntities(
+                $params["name"],
+                $params["initials"],
+                $params["street_address"],
+                $params["postal_code"],
+                $params["email"],
+                $params["phone_number"],
+                $params["domain"],
+                $params["url"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutImplementationEntities(
+                $params["implementation_entity_id"],
+                $params["name"],
+                $params["initials"],
+                $params["street_address"],
+                $params["postal_code"],
+                $params["email"],
+                $params["phone_number"],
+                $params["domain"],
+                $params["url"]
+            );
     }
 
     PrepareResponse();
@@ -873,6 +1025,17 @@ function WorkerSpecializationsController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostWorkerSpecializations(
+                $params["name"]          
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutWorkerSpecializations(
+                $params["worker_specialization_id"],
+                $params["name"]
+            );
+        
     }
 
     PrepareResponse();
@@ -899,6 +1062,16 @@ function WorkerPositionsController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostWorkerPositions(
+                $params["name"]          
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutWorkerPositions(
+                $params["worker_position_id"],
+                $params["name"]
+            );
     }
 
     PrepareResponse();
@@ -927,6 +1100,18 @@ function TransferAreasController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostTransferAreas(
+                $params["name"],
+                $params["edu_admin"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutTransferAreas(
+                $params["transfer_area_id"],
+                $params["name"],
+                $params["edu_admin"]
+            );
     }
 
     PrepareResponse();
@@ -954,6 +1139,18 @@ function MunicipalitiesController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostMunicipalities(
+                $params["name"],
+                $params["prefecture"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutMunicipalities(
+                $params["municipality_id"],
+                $params["name"],
+                $params["prefecture"]
+            );
     }
 
     PrepareResponse();
@@ -1037,6 +1234,18 @@ function TransferAreaMunicipalitiesController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostTransferAreaMunicipalities(
+                $params["transfer_area"],
+                $params["municipality"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutTransferAreaMunicipalities(
+                $params["transfer_area_municipality_id"],
+                $params["transfer_area"],
+                $params["municipality"]
+            );
     }
 
     PrepareResponse();

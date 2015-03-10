@@ -28,5 +28,20 @@ class EducationLevels
      */
     private $name;
 
+    public function getEducationLevelId() {
+        return $this->educationLevelId;
+    }
+
+    public function setEducationLevelId($educationLevelId) {
+        $this->educationLevelId = $educationLevelId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
 
 }

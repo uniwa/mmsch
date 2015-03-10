@@ -41,5 +41,28 @@ class TransferAreaMunicipalities
      */
     private $transferArea;
 
+    public function getTransferAreaMunicipalityId() {
+        return $this->transferAreaMunicipalityId;
+    }
+
+    public function setTransferAreaMunicipalityId($transferAreaMunicipalityId) {
+        $this->transferAreaMunicipalityId = $transferAreaMunicipalityId;
+    }
+
+    public function getMunicipality() {
+        return $this->municipality;
+    }
+
+    public function setMunicipality(\Municipalities $municipality) {
+        $this->municipality = $municipality;
+    }
+
+    public function getTransferArea() {
+        return $this->transferArea;
+    }
+
+    public function setTransferArea(\TransferAreas $transferArea) {
+        $this->transferArea = $transferArea;
+    }
 
 }
