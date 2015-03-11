@@ -23,46 +23,78 @@ function PutImplementationEntities( $implementation_entity_id, $name, $initials,
     try {
         
         //$municipality_id====================================================== 
-        $fMunicipalityID = CRUDUtils::checkIDParam('municipality_id', $params, $municipality_id, 'MunicipalityID');
+        $fImplementationEntityID = CRUDUtils::checkIDParam('implementation_entity_id', $params, $implementation_entity_id, 'ImplementationEntityID');
 
         //init entity for update row============================================
-        $Municipality = CRUDUtils::findIDParam($fMunicipalityID, 'Municipalities', 'Municipality');
+        $ImplementationEntity = CRUDUtils::findIDParam($fImplementationEntityID, 'ImplementationEntities', 'ImplementationEntity');
         
         //$name=================================================================
         if ( Validator::IsExists('name') ){
-            CRUDUtils::EntitySetParam($Municipality, $name, 'MunicipalityName', 'name', $params);
-        } else if ( Validator::IsNull($Municipality->getName()) ){
-            throw new Exception(ExceptionMessages::MissingMunicipalityNameValue, ExceptionCodes::MissingMunicipalityNameValue);
+            CRUDUtils::EntitySetParam($ImplementationEntity, $name, 'ImplementationEntityName', 'name', $params);
+        } else if ( Validator::IsNull($ImplementationEntity->getName()) ){
+            throw new Exception(ExceptionMessages::MissingImplementationEntityNameValue, ExceptionCodes::MissingImplementationEntityNameValue);
         } 
         
         //$prefecture===========================================================
         if ( Validator::IsExists('prefecture') ){
-            CRUDUtils::entitySetAssociation($Municipality, $prefecture, 'Prefectures', 'prefecture', 'Prefecture', $params, 'prefecture');
-        } else if ( Validator::IsNull($Municipality->getPrefecture()) ){
-            throw new Exception(ExceptionMessages::MissingPrefectureValue, ExceptionCodes::MissingPrefectureValue);
+            CRUDUtils::EntitySetParam($ImplementationEntity, $initials, 'ImplementationEntityInitial', 'initials', $params);
+        } else if ( Validator::IsNull($ImplementationEntity->getInitials()) ){
+            throw new Exception(ExceptionMessages::MissingImplementationEntityInitialValue, ExceptionCodes::MissingImplementationEntityInitialValue);
         } 
+        
+    //$street_address===========================================================
+    CRUDUtils::EntitySetParam($ImplementationEntity, $street_address, 'ImplementationEntityStreetAddress', 'street_address', $params, false, true);
+    
+    //$postal_code==============================================================
+    CRUDUtils::EntitySetParam($ImplementationEntity, $postal_code, 'ImplementationEntityPostalCode', 'postal_code', $params, false, true);
+    
+    //$email====================================================================
+    CRUDUtils::EntitySetParam($ImplementationEntity, $email, 'ImplementationEntityEmail', 'email', $params, false, true);
+    
+    //$phone_number=============================================================
+    CRUDUtils::EntitySetParam($ImplementationEntity, $phone_number, 'ImplementationEntityPhoneNumber', 'phone_number', $params, false, true);
+    
+    //$domain===================================================================
+    CRUDUtils::EntitySetParam($ImplementationEntity, $domain, 'ImplementationEntityDomain', 'domain', $params, false, true);
+    
+    //$url======================================================================
+    CRUDUtils::EntitySetParam($ImplementationEntity, $url, 'ImplementationEntityUrl', 'url', $params, false, true);
  
 //controls======================================================================   
 
         //check name duplicate==================================================        
         $qb = $entityManager->createQueryBuilder()
-                            ->select('COUNT(m.municipalityId) AS fresult')
-                            ->from('Municipalities', 'm')
-                            ->where("m.name = :name AND m.municipalityId != :municipalityId")
-                            ->setParameter('name', $Municipality->getName())
-                            ->setParameter('municipalityId', $Municipality->getMunicipalityId())    
+                            ->select('COUNT(ie.implementationEntityId) AS fresultName')
+                            ->from('ImplementationEntities', 'ie')
+                            ->where("ie.name = :name AND ie.implementationEntityId != :implementationEntityId")
+                            ->setParameter('name', $ImplementationEntity->getName())
+                            ->setParameter('implementationEntityId', $ImplementationEntity->getImplementationEntityId())    
                             ->getQuery()
                             ->getSingleResult();
       
-        if ( $qb["fresult"] != 0 ) {
-             throw new Exception(ExceptionMessages::DuplicatedMunicipalityValue,ExceptionCodes::DuplicatedMunicipalityValue);
+        if ( $qb["fresultName"] != 0 ) {
+             throw new Exception(ExceptionMessages::DuplicatedImplementationEntityValue,ExceptionCodes::DuplicatedImplementationEntityValue);
+        }
+        
+        //check name duplicate==================================================        
+        $qb = $entityManager->createQueryBuilder()
+                            ->select('COUNT(ie.implementationEntityId) AS fresultInitials')
+                            ->from('ImplementationEntities', 'ie')
+                            ->where("ie.initials = :initials AND ie.implementationEntityId != :implementationEntityId")
+                            ->setParameter('initials', $ImplementationEntity->getInitials())
+                            ->setParameter('implementationEntityId', $ImplementationEntity->getImplementationEntityId())    
+                            ->getQuery()
+                            ->getSingleResult();
+      
+        if ( $qb["fresultInitials"] != 0 ) {
+             throw new Exception(ExceptionMessages::DuplicatedImplementationEntityInitialsValue,ExceptionCodes::DuplicatedImplementationEntityInitialsValue);
         }
         
 //update to db================================================================== 
-        $entityManager->persist($Municipality);
-        $entityManager->flush($Municipality);
+        $entityManager->persist($ImplementationEntity);
+        $entityManager->flush($ImplementationEntity);
 
-        $result["municipality_id"] = $Municipality->getMunicipalityId();
+        $result["implementation_entity_id"] = $ImplementationEntity->getImplementationEntityId();
 
 //result_messages===============================================================      
         $result["status"] = ExceptionCodes::NoErrors;

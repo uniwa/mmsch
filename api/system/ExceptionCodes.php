@@ -576,6 +576,8 @@ class ExceptionCodes
     
     /** {@see ExceptionMessages::DuplicatedImplementationEntityValue} */
     const DuplicatedImplementationEntityValue = 500;
+     /** {@see ExceptionMessages::DuplicatedImplementationEntityInitialsValue} */   
+    const DuplicatedImplementationEntityInitialsValue = 500;
     /** {@see ExceptionMessages::DuplicatedImplementationEntityUniqueValue} */
     const DuplicatedImplementationEntityUniqueValue = 500;
     /** {@see ExceptionMessages::UsedImplementationEntityByUnits} */

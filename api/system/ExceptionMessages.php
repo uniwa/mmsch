@@ -324,7 +324,8 @@ class ExceptionMessages
     const InvalidImplementationEntityUrlType = 'Η Διεύθυνση URL του Φορέας Υλοποίησης πρέπει να είναι αλφαριθμητικό';
     const InvalidImplementationEntityUrlArray = 'Η Διεύθυνση URL του Φορέας Υλοποίησης δεν μπορεί να έχει πολλαπλές τιμές';
     
-    const DuplicatedImplementationEntityValue = 'Ο Φορέας Υλοποίησης υπάρχει ήδη';
+    const DuplicatedImplementationEntityValue = 'Το όνομα του Φορέα Υλοποίησης υπάρχει ήδη';
+    const DuplicatedImplementationEntityInitialsValue = 'Τα αρχικά του Φορέα Υλοποίησης υπάρχουν ήδη';
     const DuplicatedImplementationEntityUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key ImplementationEntity';
     const UsedImplementationEntityByUnits = 'Ο Φορέας Υλοποίησης χρησιμοποιείται από Μονάδες';
     const UsedImplementationEntityByEduAdmins = 'Ο Φορέας Υλοποίησης χρησιμοποιείται από Διευθύνσεις Εκπαίδευσης';
