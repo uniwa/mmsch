@@ -317,7 +317,19 @@ class ExceptionCodes
     const UsedTaxOfficeByUnits = 500;
     /** {@see ExceptionMessages::UsedTaxOfficeBySchoolCommittees} */
     const UsedTaxOfficeBySchoolCommittees = 500;
- 
+    
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelTaxOfficeValue} */
+        const DuplicateDelTaxOfficeValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelTaxOfficeValue} */
+        const NotFoundDelTaxOfficeValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesTaxOfficeUnits} */
+        const ReferencesTaxOfficeUnits = 500;
+        /** {@see ExceptionMessages::ReferencesTaxOfficeSchoolCommittees} */
+        const ReferencesTaxOfficeSchoolCommittees = 500;
+    
 //= SpecialTypes================================================================
     
     /** {@see ExceptionMessages::MissingSpecialTypeIDParam} */
@@ -358,6 +370,18 @@ class ExceptionCodes
     /** {@see ExceptionMessages::UsedSpecialTypeBySyncTypes} */
     const UsedSpecialTypeBySyncTypes = 500;
     
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelSpecialTypeValue} */
+        const DuplicateDelSpecialTypeValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelSpecialTypeValue} */
+        const NotFoundDelSpecialTypeValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesSpecialTypeUnits} */
+        const ReferencesSpecialTypeUnits = 500;
+        /** {@see ExceptionMessages::ReferencesSpecialTypeSyncTypes} */
+        const ReferencesSpecialTypeSyncTypes = 500;
+  
 //= LegalCharacters=============================================================
     
     /** {@see ExceptionMessages::MissingLegalCharacterIDParam} */
@@ -398,6 +422,18 @@ class ExceptionCodes
     /** {@see ExceptionMessages::UsedLegalCharacterBySyncTypes} */
     const UsedLegalCharacterBySyncTypes = 500;
     
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelLegalCharacterValue} */
+        const DuplicateDelLegalCharacterValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelLegalCharacterValue} */
+        const NotFoundDelLegalCharacterValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesLegalCharacterUnits} */
+        const ReferencesLegalCharacterUnits = 500;
+        /** {@see ExceptionMessages::ReferencesLegalCharacterSyncTypes} */
+        const ReferencesLegalCharacterSyncTypes = 500;
+         
 //= OperationShifts=============================================================
     
     /** {@see ExceptionMessages::MissingOperationShiftIDParam} */
@@ -440,6 +476,18 @@ class ExceptionCodes
     /** {@see ExceptionMessages::UsedOperationShiftBySyncTypes} */
     const UsedOperationShiftBySyncTypes =  500;
 
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelOperationShiftValue} */
+        const DuplicateDelOperationShiftValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelOperationShiftValue} */
+        const NotFoundDelOperationShiftValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesOperationShiftUnits} */
+        const ReferencesOperationShiftUnits = 500;
+        /** {@see ExceptionMessages::ReferencesOperationShiftSyncTypes} */
+        const ReferencesOperationShiftSyncTypes = 500;
+        
 //= OrientationTypes============================================================
     
     /** {@see ExceptionMessages::MissingOrientationTypeIDParam} */
@@ -479,6 +527,18 @@ class ExceptionCodes
     const UsedOrientationTypeByUnits =  500;
     /** {@see ExceptionMessages::UsedOrientationTypeBySyncTypes} */
     const UsedOrientationTypeBySyncTypes =  500;
+    
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelOrientationTypeValue} */
+        const DuplicateDelOrientationTypeValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelOrientationTypeValue} */
+        const NotFoundDelOrientationTypeValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesOrientationTypeUnits} */
+        const ReferencesOrientationTypeUnits = 500;
+        /** {@see ExceptionMessages::ReferencesOrientationTypeSyncTypes} */
+        const ReferencesOrientationTypeSyncTypes = 500;
     
 //= ImplementationEntities======================================================
     
@@ -585,6 +645,18 @@ class ExceptionCodes
     /** {@see ExceptionMessages::UsedImplementationEntityByEduAdmins} */
     const UsedImplementationEntityByEduAdmins = 500;
     
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelImplementationEntityValue} */
+        const DuplicateDelImplementationEntityValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelImplementationEntityValue} */
+        const NotFoundDelImplementationEntityValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesImplementationEntityUnits} */
+        const ReferencesImplementationEntityUnits = 500;
+        /** {@see ExceptionMessages::ReferencesImplementationEntityEduAdmins} */
+        const ReferencesImplementationEntityEduAdmins = 500;
+    
 //= Categories==================================================================
     
     /** {@see ExceptionMessages::MissingCategoryIDParam} */
@@ -632,7 +704,27 @@ class ExceptionCodes
     const UsedCategoriesByOrientationTypes = 500;
     /** {@see ExceptionMessages::UsedCategoriesByUnitTypes} */
     const UsedCategoriesByUnitTypes = 500;
-
+    
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelCategoryValue} */
+        const DuplicateDelCategoryValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelCategoryValue} */
+        const NotFoundDelCategoryValue = 500;
+        
+        //references
+        /** {@see ExceptionMessages::ReferencesCategoryUnits} */
+        const ReferencesCategoryUnits = 500;
+        /** {@see ExceptionMessages::ReferencesCategorySpecialTypes} */
+        const ReferencesCategorySpecialTypes = 500;
+        /** {@see ExceptionMessages::ReferencesCategoryUnitTypes} */
+        const ReferencesCategoryUnitTypes = 500;
+        /** {@see ExceptionMessages::ReferencesCategoryOrientationTypes} */
+        const ReferencesCategoryOrientationTypes = 500;
+        /** {@see ExceptionMessages::ReferencesCategoryOperationShifts} */
+        const ReferencesCategoryOperationShifts = 500;
+        /** {@see ExceptionMessages::ReferencesCategoryLegalCharacters} */
+        const ReferencesCategoryLegalCharacters = 500;
+    
 //= RegionEduAdmins=============================================================
     
     /** {@see ExceptionMessages::MissingRegionEduAdminIDParam} */
@@ -675,6 +767,20 @@ class ExceptionCodes
     /** {@see ExceptionMessages::UsedRegionEduAdminBySchoolCommittees} */   
     const UsedRegionEduAdminBySchoolCommittees = 500;
     
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelRegionEduAdminValue} */ 
+        const DuplicateDelRegionEduAdminValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelRegionEduAdminValue} */ 
+        const NotFoundDelRegionEduAdminValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesRegionEduAdminUnits} */ 
+        const ReferencesRegionEduAdminUnits = 500;
+        /** {@see ExceptionMessages::ReferencesRegionEduAdminEduAdmins} */ 
+        const ReferencesRegionEduAdminEduAdmins = 500;
+        /** {@see ExceptionMessages::ReferencesRegionEduAdminSchoolCommittees} */ 
+        const ReferencesRegionEduAdminSchoolCommittees = 500;
+  
 //= EduAdmins===================================================================
     
     /** {@see ExceptionMessages::MissingEduAdminIDParam} */   
@@ -748,6 +854,20 @@ class ExceptionCodes
     /** {@see ExceptionMessages::UsedEduAdminBySchoolCommittees} */   
     const UsedEduAdminBySchoolCommittees = 500;
     
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelEduAdminValue} */   
+        const DuplicateDelEduAdminValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelEduAdminValue} */   
+        const NotFoundDelEduAdminValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesEduAdminUnits} */   
+        const ReferencesEduAdminUnits = 500;
+        /** {@see ExceptionMessages::ReferencesEduAdminSchoolCommittees} */   
+        const ReferencesEduAdminSchoolCommittees = 500;
+        /** {@see ExceptionMessages::ReferencesEduAdminTransferAreas} */   
+        const ReferencesEduAdminTransferAreas= 500;
+    
 //= TransferAreas===============================================================
     
     /** {@see ExceptionMessages::MissingTransferAreaIDParam} */   
@@ -788,6 +908,18 @@ class ExceptionCodes
     /** {@see ExceptionMessages::UsedTransferAreaByTransferAreaMunicipality} */   
     const UsedTransferAreaByTransferAreaMunicipality = 500;
 
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelTransferAreaValue} */   
+        const DuplicateDelTransferAreaValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelTransferAreaValue} */   
+        const NotFoundDelTransferAreaValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesTransferAreaUnits} */   
+        const ReferencesTransferAreaUnits = 500;
+        /** {@see ExceptionMessages::ReferencesTransferAreaTransferAreaMunicipalitiesc} */   
+        const ReferencesTransferAreaTransferAreaMunicipalities = 500;
+        
 //= Municipalities==============================================================
     
     /** {@see ExceptionMessages::MissingMunicipalityIDParam} */   
@@ -830,6 +962,20 @@ class ExceptionCodes
     /** {@see ExceptionMessages::UsedMunicipalityBySchoolCommittees} */   
     const UsedMunicipalityBySchoolCommittees = 500;
 
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelMunicipalityValue} */ 
+        const DuplicateDelMunicipalityValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelMunicipalityValue} */ 
+        const NotFoundDelMunicipalityValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesMunicipalityUnits} */ 
+        const ReferencesMunicipalityUnits = 500;
+        /** {@see ExceptionMessages::ReferencesMunicipalityTransferAreaMunicipalities} */ 
+        const ReferencesMunicipalityTransferAreaMunicipalities = 500;
+        /** {@see ExceptionMessages::ReferencesMunicipalitySchoolCommittees} */ 
+        const ReferencesMunicipalitySchoolCommittees = 500;
+        
 //= Prefectures=================================================================
     
     /** {@see ExceptionMessages::MissingPrefectureIDParam} */   
@@ -872,6 +1018,20 @@ class ExceptionCodes
     /** {@see ExceptionMessages::UsedPrefectureBySchoolCommittees} */   
     const UsedPrefectureBySchoolCommittees = 500;
 
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelPrefectureValue} */ 
+        const DuplicateDelPrefectureValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelPrefectureValue} */ 
+        const NotFoundDelPrefectureValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesPrefectureUnits} */ 
+        const ReferencesPrefectureUnits = 500;
+        /** {@see ExceptionMessages::ReferencesPrefectureMunicipalities} */ 
+        const ReferencesPrefectureMunicipalities = 500;
+        /** {@see ExceptionMessages::ReferencesPrefectureSchoolCommittees} */ 
+        const ReferencesPrefectureSchoolCommittees = 500;
+
 //= TransferAreaMunicipalities==================================================
     
     /** {@see ExceptionMessages::MissingTransferAreaMunicipalityIDParam} */   
@@ -898,6 +1058,12 @@ class ExceptionCodes
     const DuplicatedTransferAreaMunicipalityValue = 500;
     /** {@see ExceptionMessages::DuplicatedTransferAreaMunicipalityUniqueValue} */   
     const DuplicatedTransferAreaMunicipalityUniqueValue = 500;
+    
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelTransferAreaMunicipalityValue} */   
+        const DuplicateDelTransferAreaMunicipalityValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelTransferAreaMunicipalityValue} */   
+        const NotFoundDelTransferAreaMunicipalityValue = 500;
     
 //= EducationLevels=============================================================
     
@@ -940,6 +1106,20 @@ class ExceptionCodes
     const UsedEducationLevelByUnitTypes = 500;
     /** {@see ExceptionMessages::UsedEducationLevelBySchoolCommittees} */   
     const UsedEducationLevelBySchoolCommittees = 500;
+    
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelEducationLevelValue} */   
+        const DuplicateDelEducationLevelValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelEducationLevelValue} */   
+        const NotFoundDelEducationLevelValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesEducationLevelUnits} */   
+        const ReferencesEducationLevelUnits = 500;
+        /** {@see ExceptionMessages::ReferencesEducationLevelSchoolCommittees} */   
+        const ReferencesEducationLevelSchoolCommittees = 500;
+        /** {@see ExceptionMessages::ReferencesEducationLevelUnitTypes} */   
+        const ReferencesEducationLevelUnitTypes = 500;
     
 //= UnitTypes===================================================================
     
@@ -994,6 +1174,18 @@ class ExceptionCodes
     /** {@see ExceptionMessages::UsedUnitTypeBySyncTypeUnits} */   
     const UsedUnitTypeBySyncTypeUnits = 500;
     
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelUnitTypeValue} */ 
+        const DuplicateDelUnitTypeValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelUnitTypeValue} */ 
+        const NotFoundDelUnitTypeValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesUnitTypeUnits} */ 
+        const ReferencesUnitTypeUnits = 500;
+        /** {@see ExceptionMessages::ReferencesUnitTypeSyncTypes} */ 
+        const ReferencesUnitTypeSyncTypes = 500;
+      
 //= States======================================================================
     
     /** {@see ExceptionMessages::MissingStateIDParam} */   
@@ -1031,6 +1223,17 @@ class ExceptionCodes
     const DuplicatedStateUniqueValue = 500;
     /** {@see ExceptionMessages::UsedStateByUnits} */   
     const UsedStateByUnits = 500;
+    
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelStateValue} */   
+        const DuplicateDelStateValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelStateValue} */   
+        const NotFoundDelStateValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesStateUnits} */   
+        const ReferencesStateUnits = 500;
+   
     
 //= CircuitTypes================================================================
     
@@ -1155,6 +1358,16 @@ class ExceptionCodes
     const DuplicatedWorkerPositionUniqueValue = 500;
     /** {@see ExceptionMessages::UsedWorkerPositionByUnitWorkers} */  
     const UsedWorkerPositionByUnitWorkers = 500;
+    
+        //delete
+         /** {@see ExceptionMessages::DuplicateDelWorkerPositionValue} */  
+        const DuplicateDelWorkerPositionValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelWorkerPositionValue} */  
+        const NotFoundDelWorkerPositionValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesWorkerPositionUnitWorkers} */  
+        const ReferencesWorkerPositionUnitWorkers = 500;
 
 //= WorkerSpecializations=======================================================
     
@@ -1194,6 +1407,16 @@ class ExceptionCodes
     /** {@see ExceptionMessages::UsedWorkerSpecializationByUnitWorkers} */  
     const UsedWorkerSpecializationByUnitWorkers = 500;
 
+        //delete
+         /** {@see ExceptionMessages::DuplicateDelWorkerSpecializationValue} */  
+        const DuplicateDelWorkerSpecializationValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelWorkerSpecializationValue} */  
+        const NotFoundDelWorkerSpecializationValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesWorkerSpecializationWorkers} */  
+        const ReferencesWorkerSpecializationWorkers = 500;
+      
 //=Sources =====================================================================
 
     /** {@see ExceptionMessages::MissingSourceIDParam} */  
@@ -1241,8 +1464,20 @@ class ExceptionCodes
     /** {@see ExceptionMessages::UsedSourceByWorkers} */  
     const UsedSourceByWorkers = 500;
     /** {@see ExceptionMessages::UsedSourceByUnits} */  
-    const UsedSourceByUnits = 500; 
-   
+    const UsedSourceByUnits = 500;
+    
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelSourceValue} */  
+        const DuplicateDelSourceValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelSourceValue} */  
+        const NotFoundDelSourceValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesSourceUnits} */  
+        const ReferencesSourceUnits = 500;
+        /** {@see ExceptionMessages::ReferencesSourceWorkers} */  
+        const ReferencesSourceWorkers = 500;
+
 //= Levels======================================================================
     
     /** {@see ExceptionMessages::MissingLevelIDParam} */
@@ -1303,6 +1538,16 @@ class ExceptionCodes
     /** {@see ExceptionMessages::DuplicatedLevelIDUniqueValue} */
     const DuplicatedLevelIDUniqueValue = 500;  //EXTRA only for ID REFERENCE
 
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelLevelsValue} */
+        const DuplicateDelLevelsValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelLevelsValue} */
+        const NotFoundDelLevelsValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesLevelsGroups} */
+        const ReferencesLevelsGroups = 500;
+        
 //= Groups======================================================================
     
     /** {@see ExceptionMessages::MissingGroupIDParam} */
@@ -1348,7 +1593,13 @@ class ExceptionCodes
      /** {@see ExceptionMessages::DuplicatedGroupUniqueValue} */ 
     const DuplicatedGroupUniqueValue = 500;
 
-    
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelGroupValue} */
+        const DuplicateDelGroupValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelGroupValue} */
+        const NotFoundDelGroupValue = 500;
+
+//******************************************************************************  
 
 
 
@@ -1985,6 +2236,12 @@ class ExceptionCodes
     /** {@see ExceptionMessages::DuplicatedRelationUniqueValue} */
     const DuplicatedRelationUniqueValue = 500;
   
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelRelationValue} */
+        const DuplicateDelRelationValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelRelationValue} */
+        const NotFoundDelRelationValue = 500;
+        
 }
 
 ?>

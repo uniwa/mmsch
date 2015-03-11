@@ -215,8 +215,8 @@ require_once ('../api/post/PostTaxOffices.php');
 require_once ('../api/post/PostTransferAreas.php');
 require_once ('../api/post/PostTransferAreaMunicipalities.php');
 require_once ('../api/post/PostUnitTypes.php');
-require_once ('../api/post/PostWorkerSpecializations.php');
 require_once ('../api/post/PostWorkerPositions.php');
+require_once ('../api/post/PostWorkerSpecializations.php');
 
 require_once ('../api/put/PutCategories.php');
 require_once ('../api/put/PutEduAdmins.php');
@@ -239,7 +239,24 @@ require_once ('../api/put/PutTaxOffices.php');
 require_once ('../api/put/PutTransferAreas.php');
 require_once ('../api/put/PutTransferAreaMunicipalities.php');
 require_once ('../api/put/PutUnitTypes.php');
-require_once ('../api/put/PutWorkerSpecializations.php');
 require_once ('../api/put/PutWorkerPositions.php');
+require_once ('../api/put/PutWorkerSpecializations.php');
+
+
+require_once ('../api/delete/DeleteCategories.php');
+require_once ('../api/delete/DeleteEduAdmins.php');
+require_once ('../api/delete/DeleteEducationLevels.php');
+require_once ('../api/delete/DeleteGroups.php');
+require_once ('../api/delete/DeleteImplementationEntities.php');
+require_once ('../api/delete/DeleteLegalCharacters.php');
+require_once ('../api/delete/DeleteLevels.php');
+require_once ('../api/delete/DeleteMunicipalities.php');
+require_once ('../api/delete/DeleteOperationShifts.php');
+require_once ('../api/delete/DeleteOrientationTypes.php');
+require_once ('../api/delete/DeletePrefectures.php');
+require_once ('../api/delete/DeleteRegionEduAdmins.php');
+require_once ('../api/delete/DeleteUnitTypes.php');
+require_once ('../api/delete/DeleteWorkerPositions.php');
+require_once ('../api/delete/DeleteWorkerSpecializations.php');
 
 ?>

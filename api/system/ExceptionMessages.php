@@ -179,6 +179,14 @@ class ExceptionMessages
     const UsedTaxOfficeByUnits = 'Η Δ.Ο.Υ. χρησιμοποιείται από Μονάδες';
     const UsedTaxOfficeBySchoolCommittees = 'ΟΗ Δ.Ο.Υ. χρησιμοποιείται από Σχολικές Επιτροπές';
     
+        //delete
+        const DuplicateDelTaxOfficeValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Δ.Ο.Υ.'; 
+        const NotFoundDelTaxOfficeValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesTaxOfficeUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';
+        const ReferencesTaxOfficeSchoolCommittees = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα SchoolCommittees.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteSchoolCommittees';
+    
 //= SpecialTypes================================================================
     
     const MissingSpecialTypeIDParam = 'Ο Κωδικός του Ειδικού Χαρακτηρισμού είναι υποχρεωτικό πεδίο';
@@ -201,6 +209,14 @@ class ExceptionMessages
     const DuplicatedSpecialTypeUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key SpecialType';
     const UsedSpecialTypeByUnits = 'Ο Ειδικός Χαρακτηρισμός χρησιμοποιείται από Μονάδες';
     const UsedSpecialTypeBySyncTypes = 'Ο Ειδικός Χαρακτηρισμός χρησιμοποιείται από τον Πίνακα Συγχρονισμού Τύπων Μονάδας';
+    
+        //delete
+        const DuplicateDelSpecialTypeValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Ειδικού Χαρακτηρισμού'; 
+        const NotFoundDelSpecialTypeValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesSpecialTypeUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';
+        const ReferencesSpecialTypeSyncTypes = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα SyncTypes.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteSyncTypes';
     
 //= LegalCharacters=============================================================
     
@@ -225,6 +241,14 @@ class ExceptionMessages
     const UsedLegalCharacterByUnits = 'Ο Νομικός Χαρακτήρας χρησιμοποιείται από Μονάδες';
     const UsedLegalCharacterBySyncTypes = 'Ο Νομικός Χαρακτήρας χρησιμοποιείται από τον Πίνακα Συγχρονισμού Τύπων Μονάδας';
 
+        //delete
+        const DuplicateDelLegalCharacterValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Νομικού Χαρακτήρα'; 
+        const NotFoundDelLegalCharacterValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesLegalCharacterUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';
+        const ReferencesLegalCharacterSyncTypes = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα SyncTypes.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteSyncTypes';
+        
 //= OperationShifts=============================================================
     
     const MissingOperationShiftIDParam = 'Ο Κωδικός του Ωραρίου Λειτουργίας είναι υποχρεωτικό πεδίο';  
@@ -248,6 +272,14 @@ class ExceptionMessages
     const UsedOperationShiftByUnits = 'Το Ωράριο Λειτουργίας χρησιμοποιείται από Μονάδες';
     const UsedOperationShiftBySyncTypes = 'Το Ωράριο Λειτουργίας χρησιμοποιείται από τον Πίνακα Συγχρονισμού Τύπων Μονάδας';
 
+        //delete
+        const DuplicateDelOperationShiftValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Ωραρίου Λειτουργίας'; 
+        const NotFoundDelOperationShiftValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesOperationShiftUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';      
+        const ReferencesOperationShiftSyncTypes = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα SyncTypes.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteSyncTypes';      
+        
 //= OrientationTypes============================================================
     
     const MissingOrientationTypeIDParam = 'Ο Κωδικός του Σχολικού Προσανατολισμού είναι υποχρεωτικό πεδίο';
@@ -270,6 +302,14 @@ class ExceptionMessages
     const DuplicatedOrientationTypeUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key OrientationType';
     const UsedOrientationTypeByUnits = 'Ο Σχολικός Προσανατολισμός χρησιμοποιείται από Μονάδες';
     const UsedOrientationTypeBySyncTypes = 'Ο Σχολικός Προσανατολισμός χρησιμοποιείται από τον Πίνακα Συγχρονισμού Τύπων Μονάδας';
+    
+        //delete
+        const DuplicateDelOrientationTypeValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Σχολικού Προσανατολισμού'; 
+        const NotFoundDelOrientationTypeValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesOrientationTypeUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';      
+        const ReferencesOrientationTypeSyncTypes = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα SyncTypes.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteSyncTypes';      
     
 //= ImplementationEntities======================================================
     
@@ -330,6 +370,14 @@ class ExceptionMessages
     const UsedImplementationEntityByUnits = 'Ο Φορέας Υλοποίησης χρησιμοποιείται από Μονάδες';
     const UsedImplementationEntityByEduAdmins = 'Ο Φορέας Υλοποίησης χρησιμοποιείται από Διευθύνσεις Εκπαίδευσης';
    
+        //delete
+        const DuplicateDelImplementationEntityValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Φορέα Υλοποίησης'; 
+        const NotFoundDelImplementationEntityValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesImplementationEntityUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';
+        const ReferencesImplementationEntityEduAdmins = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα EduAdmins.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteEduAdmins';
+    
 //= Categories==================================================================
     
     const MissingCategoryIDParam = 'Ο Κωδικός της Κατηγορίας είναι υποχρεωτικό πεδίο';
@@ -357,6 +405,18 @@ class ExceptionMessages
     const UsedCategoriesByOrientationTypes = 'Ο Κωδικός Κατηγορίας χρησιμοποιείται από Σχολικούς Προσανατολισμούς Μονάδων';
     const UsedCategoriesByUnitTypes = 'Ο Κωδικός Κατηγορίας χρησιμοποιείται από Τύπους Μονάδων';
     
+        //delete
+        const DuplicateDelCategoryValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Κατηγορίας'; 
+        const NotFoundDelCategoryValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesCategoryUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';
+        const ReferencesCategorySpecialTypes = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα SpecialTypes.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteSpecialTypes';
+        const ReferencesCategoryUnitTypes = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα UnitTypes.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnitTypes';
+        const ReferencesCategoryOrientationTypes = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα OrientationTypes.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteOrientationTypes';
+        const ReferencesCategoryOperationShifts = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα OperationShifts.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteOperationShifts';
+        const ReferencesCategoryLegalCharacters = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα LegalCharacters.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteLegalCharacters';
+    
 //= RegionEduAdmins=============================================================
     
     const MissingRegionEduAdminIDParam = 'Ο Κωδικός της Περιφέρειας είναι υποχρεωτικό πεδίο';
@@ -381,6 +441,15 @@ class ExceptionMessages
     const UsedRegionEduAdminByEduAdmins = 'Ο Κωδικός Περιφέρειας χρησιμοποιείται από Διευθύνσεις Εκπαίδευσης';
     const UsedRegionEduAdminBySchoolCommittees = 'Ο Κωδικός Περιφέρειας χρησιμοποιείται από Σχολικές Επιτροπές';
     
+        //delete
+        const DuplicateDelRegionEduAdminValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Περιφέρειας'; 
+        const NotFoundDelRegionEduAdminValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesRegionEduAdminUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';      
+        const ReferencesRegionEduAdminEduAdmins = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα EduAdmins.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteEduAdmins';      
+        const ReferencesRegionEduAdminSchoolCommittees = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα SchoolCommittees.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteSchoolCommittees';      
+  
 //= EduAdmins===================================================================
       
     const MissingEduAdminIDParam = 'Ο Κωδικός της Διεύθυνσης Εκπαίδευσης είναι υποχρεωτικό πεδίο';
@@ -421,7 +490,16 @@ class ExceptionMessages
     const UsedEduAdminByUnits = 'Ο Κωδικός Διεύθυνσης Εκπαίδευσης χρησιμοποιείται από Μονάδες';
     const UsedEduAdminByTransferAreas = 'Ο Κωδικός Διεύθυνσης Εκπαίδευσης χρησιμοποιείται από Περιοχές Μετάθεσης';
     const UsedEduAdminBySchoolCommittees = 'Ο Κωδικός Διεύθυνσης Εκπαίδευσης χρησιμοποιείται από Σχολικές Επιτροπές';
+    
+        //delete
+        const DuplicateDelEduAdminValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Διεύθυνσης Εκπαίδευσης'; 
+        const NotFoundDelEduAdminValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
 
+        //references
+        const ReferencesEduAdminUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';
+        const ReferencesEduAdminSchoolCommittees = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα SchoolCommittees.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteSchoolCommittees';
+        const ReferencesEduAdminTransferAreas= 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα TransferAreas.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteTransferAreas';
+    
 //= TransferAreas===============================================================
     
     const MissingTransferAreaIDParam = 'Ο Κωδικός της Περιοχής Μετάθεσης είναι υποχρεωτικό πεδίο';
@@ -445,6 +523,14 @@ class ExceptionMessages
     const UsedTransferAreaByUnits = 'Ο Κωδικός Περιοχής Μετάθεσης χρησιμοποιείται από Μονάδες';
     const UsedTransferAreaByTransferAreaMunicipality = 'Ο Κωδικός Περιοχής Μετάθεσης χρησιμοποιείται από Συσχετίσεις Περιοχών Μετάθεσης με Δήμο ';
 
+        //delete
+        const DuplicateDelTransferAreaValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Περιοχής Μετάθεσης'; 
+        const NotFoundDelTransferAreaValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesTransferAreaUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';
+        const ReferencesTransferAreaTransferAreaMunicipalities = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα TransferAreaMunicipalities.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteTransferAreaMunicipalities';   
+    
 //= Municipalities==============================================================
       
     const MissingMunicipalityIDParam = 'Ο Κωδικός του Δήμου είναι υποχρεωτικό πεδίο';
@@ -469,6 +555,15 @@ class ExceptionMessages
     const UsedMunicipalityByTransferAreaMunicipality = 'Ο Κωδικός Δήμου χρησιμοποιείται από Συσχετίσεις Περιοχών Μετάθεσης με Δήμο';
     const UsedMunicipalityBySchoolCommittees = 'Ο Κωδικός Δήμου χρησιμοποιείται από Σχολικές Επιτροπές'; 
 
+        //delete
+        const DuplicateDelMunicipalityValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Δήμου'; 
+        const NotFoundDelMunicipalityValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesMunicipalityUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';      
+        const ReferencesMunicipalityTransferAreaMunicipalities = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα TransferAreaMunicipalities.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteTransferAreaMunicipalities';      
+        const ReferencesMunicipalitySchoolCommittees = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα SchoolCommittees.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteSchoolCommittees';      
+    
 //= Prefectures=================================================================
         
     const MissingPrefectureIDParam = 'Ο Κωδικός της Περιφερειακής Ενότητας είναι υποχρεωτικό πεδίο';
@@ -493,6 +588,15 @@ class ExceptionMessages
     const UsedPrefectureByMunicipalities = 'Ο Κωδικός Περιφερειακής Ενότητας χρησιμοποιείται από Δήμους';
     const UsedPrefectureBySchoolCommittees = 'Ο Κωδικός Περιφερειακής Ενότητας χρησιμοποιείται από Σχολικές Επιτροπές';
 
+        //delete
+        const DuplicateDelPrefectureValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Περιφερειακής Ενότητας'; 
+        const NotFoundDelPrefectureValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesPrefectureUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';      
+        const ReferencesPrefectureMunicipalities = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Municipalities.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteMunicipalities';      
+        const ReferencesPrefectureSchoolCommittees = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα SchoolCommittees.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteSchoolCommittees';      
+
 //= TransferAreaMunicipalities==================================================
     
     const MissingTransferAreaMunicipalityIDParam = 'Η Συσχέτιση Περιοχής Μετάθεσης με Δήμο είναι υποχρεωτικό πεδίο';
@@ -509,6 +613,10 @@ class ExceptionMessages
     const DuplicatedTransferAreaMunicipalityValue = 'Η Συσχέτιση Περιοχής Μετάθεσης με Δήμο υπάρχει ήδη';
     const DuplicatedTransferAreaMunicipalityUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key TransferAreaMunicipality';
     
+        //delete
+        const DuplicateDelTransferAreaMunicipalityValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Συσχέτισης Περιοχής Μετάθεσης με Δήμο'; 
+        const NotFoundDelTransferAreaMunicipalityValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
 //= EducationLevels=============================================================
     
     const MissingEducationLevelIDParam = 'Ο Κωδικός του Επιπέδου Εκπαίδευσης είναι υποχρεωτικό πεδίο';
@@ -532,6 +640,15 @@ class ExceptionMessages
     const UsedEducationLevelByUnits = 'Ο Κωδικός Επίπεδου Εκπαίδευσης χρησιμοποιείται από Μονάδες';
     const UsedEducationLevelByUnitTypes = 'Ο Κωδικός Επίπεδου Εκπαίδευσης χρησιμοποιείται από Τύπους Μονάδων';
     const UsedEducationLevelBySchoolCommittees = 'Ο Κωδικός Επίπεδου Εκπαίδευσης χρησιμοποιείται από Σχολικές Επιτροπές';
+
+        //delete
+        const DuplicateDelEducationLevelValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Επιπέδου Εκπαίδευσης'; 
+        const NotFoundDelEducationLevelValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesEducationLevelUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';
+        const ReferencesEducationLevelSchoolCommittees = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα SchoolCommittees.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteSchoolCommittees';
+        const ReferencesEducationLevelUnitTypes = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα UnitTypes.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnitTypes';
     
 //= UnitTypes===================================================================
     
@@ -562,6 +679,14 @@ class ExceptionMessages
     const DuplicatedUnitTypeInitialValue = 'Η Συντομογραφία Ονόματος του Τύπου Μονάδας υπάρχει ήδη';
     const UsedUnitTypeByUnits = 'Ο Κωδικός του Τύπου Μονάδας χρησιμοποιείται από Μονάδες';
     const UsedUnitTypeBySyncTypeUnits = 'Ο Κωδικός του Τύπου Μονάδας χρησιμοποιείται από τον Πίνακα Συγχρονισμού Τύπων Μονάδας';
+    
+        //delete
+        const DuplicateDelUnitTypeValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Τύπου Μονάδας'; 
+        const NotFoundDelUnitTypeValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesUnitTypeUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';
+        const ReferencesUnitTypeSyncTypes = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα SyncTypes.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteSyncTypes';
 
 //= States======================================================================
     
@@ -585,6 +710,13 @@ class ExceptionMessages
     const DuplicatedStateUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key State';
     const UsedStateByUnits = 'Ο Κωδικός της Κατάστασης χρησιμοποιείται από Μονάδες';
 
+        //delete
+        const DuplicateDelStateValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Κατάστασης'; 
+        const NotFoundDelStateValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesStateUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';
+   
 //= CircuitTypes================================================================
     
     const MissingCircuitTypeIDParam = 'Ο Κωδικός του Τυπου Τηλεπικοινωνιακού Κυκλώματος είναι υποχρεωτικό πεδίο';
@@ -634,7 +766,7 @@ class ExceptionMessages
         const NotFoundDelRelationTypeValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
 
         //references
-        const ReferencesRelationTypeRelations = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Relations .Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DelRelations ';
+        const ReferencesRelationTypeRelations = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Relations .Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteRelations ';
    
 //= WorkerPositions=============================================================
         
@@ -657,7 +789,14 @@ class ExceptionMessages
     const DuplicatedWorkerPositionValue = 'Η Θέση Εργασίας υπάρχει ήδη';
     const DuplicatedWorkerPositionUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key WorkerPosition';
     const UsedWorkerPositionByUnitWorkers = 'Ο Κωδικός της Θέσης Εργασίας χρησιμοποιείται από Εργαζόμενους Μοναδων';
+    
+        //delete
+        const DuplicateDelWorkerPositionValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικός Θέσης Εργασίας'; 
+        const NotFoundDelWorkerPositionValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
 
+        //references
+        const ReferencesWorkerPositionUnitWorkers = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα UnitWorkers.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnitWorkers';
+   
 //= WorkerSpecializations=======================================================
     
     const MissingWorkerSpecializationIDParam = 'Ο Κωδικός της Ειδικότητας Εργαζόμενου είναι υποχρεωτικό πεδίο';
@@ -680,6 +819,13 @@ class ExceptionMessages
     const DuplicatedWorkerSpecializationUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key WorkerSpecialization';
     const UsedWorkerSpecializationByUnitWorkers = 'Ο Κωδικός της Ειδικότητας Εργαζόμενου χρησιμοποιείται από Εργαζόμενους Μοναδων';
 
+        //delete
+        const DuplicateDelWorkerSpecializationValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Ειδικότητας Εργαζόμενου'; 
+        const NotFoundDelWorkerSpecializationValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesWorkerSpecializationWorkers = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Workers.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteWorkers';
+    
 //= Sources=====================================================================
     
     const MissingSourceIDParam = 'Ο Κωδικός της Πρωτογενής Πηγής Δεδομένων είναι υποχρεωτικό πεδίο';
@@ -707,6 +853,14 @@ class ExceptionMessages
     const DuplicatedSourceUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Source';
     const UsedSourceByWorkers = 'Ο Κωδικός της Πρωτογενής Πηγής Δεδομένων χρησιμοποιείται από Εργαζόμενο';
     const UsedSourceByUnits = 'Ο Κωδικός της Πρωτογενής Πηγής Δεδομένων χρησιμοποιείται από Μονάδα';
+
+        //delete
+        const DuplicateDelSourceValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο κωδικό της Πρωτογενής Πηγής Δεδομένων'; 
+        const NotFoundDelSourceValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesSourceUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units .Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits ';
+        const ReferencesSourceWorkers = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Workers .Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteWorkers ';
 
 //= Levels======================================================================
     
@@ -742,6 +896,13 @@ class ExceptionMessages
     const UsedLevelByGroups = 'Ο Κωδικός της Τάξης χρησιμοποιείται από Τμήμα';
     const DuplicatedLevelIDUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key LevelID'; //EXTRA only for ID REFERENCE
 
+        //delete
+        const DuplicateDelLevelsValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Τάξης'; 
+        const NotFoundDelLevelsValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesLevelsGroups = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Groups.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteGroups';      
+    
 //= Groups======================================================================
     
     const MissingGroupIDParam = 'Ο Κωδικός του Τμήματος είναι υποχρεωτικό πεδίο';
@@ -768,8 +929,11 @@ class ExceptionMessages
     const DuplicatedGroupValue = 'Το Τμήμα υπάρχει ήδη';
     const DuplicatedGroupUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Group';
 
+        //delete
+        const DuplicateDelGroupValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Διεύθυνσης Εκπαίδευσης'; 
+        const NotFoundDelGroupValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
 
-
+//******************************************************************************
 
     
     //= GetWorkers
@@ -1135,6 +1299,10 @@ class ExceptionMessages
     
     const DuplicatedRelationValue = 'Η Συσχέτιση Μονάδων υπάρχει ήδη';
     const DuplicatedRelationUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Relation';
+    
+        //delete
+        const DuplicateDelRelationValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Συσχέτισης Μονάδων'; 
+        const NotFoundDelRelationValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
     
 }    
 
