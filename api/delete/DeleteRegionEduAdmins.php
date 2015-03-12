@@ -9,7 +9,7 @@
 
 header("Content-Type: text/html; charset=utf-8");
 
-function DeleteRegionEduAdmins($prefecture_id) {
+function DeleteRegionEduAdmins($region_edu_admin_id) {
 
     global $app,$entityManager;
 
@@ -23,35 +23,35 @@ function DeleteRegionEduAdmins($prefecture_id) {
     
     try {
            
-        //$prefecture_id======================================================== 
-        $fPrefectureID = CRUDUtils::checkIDParam('prefecture_id', $params, $prefecture_id, 'PrefectureID');
+        //$region_edu_admin_id================================================== 
+        $fRegionEduAdminID = CRUDUtils::checkIDParam('region_edu_admin_id', $params, $region_edu_admin_id, 'RegionEduAdminID');
  
 //controls======================================================================          
         
         //check duplicates and unique row=======================================        
-        $check = $entityManager->getRepository('Prefectures')->findBy(array( 'prefectureId' => $fPrefectureID ));
+        $check = $entityManager->getRepository('RegionEduAdmins')->findBy(array( 'regionEduAdminId' => $fRegionEduAdminID ));
         $count= count($check);
  
         if ($count == 1)
-            $Prefectures = $entityManager->find('Prefectures', $fPrefectureID);
+            $RegionEduAdmins = $entityManager->find('RegionEduAdmins', $fRegionEduAdminID);
         else if ($count == 0)
-            throw new Exception(ExceptionMessages::NotFoundDelPrefectureValue." : ".$fPrefectureID, ExceptionCodes::NotFoundDelPrefectureValue);
+            throw new Exception(ExceptionMessages::NotFoundDelRegionEduAdminValue." : ".$fRegionEduAdminID, ExceptionCodes::NotFoundDelRegionEduAdminValue);
         else 
-            throw new Exception(ExceptionMessages::DuplicateDelPrefectureValue." : ".$fPrefectureID, ExceptionCodes::DuplicateDelPrefectureValue);
+            throw new Exception(ExceptionMessages::DuplicateDelRegionEduAdminValue." : ".$fRegionEduAdminID, ExceptionCodes::DuplicateDelRegionEduAdminValue);
         
         //check for references =================================================   
-        $checkReference = $entityManager->getRepository('Units')->findOneBy(array( 'prefecture'  => $fPrefectureID ));
-        if (count($checkReference) != 0) throw new Exception(ExceptionMessages::ReferencesPrefectureUnits, ExceptionCodes::ReferencesPrefectureUnits);
+        $checkReference = $entityManager->getRepository('Units')->findOneBy(array( 'regionEduAdmin'  => $fRegionEduAdminID ));
+        if (count($checkReference) != 0) throw new Exception(ExceptionMessages::ReferencesRegionEduAdminUnits, ExceptionCodes::ReferencesRegionEduAdminUnits);
         
-        $checkReference = $entityManager->getRepository('Municipalities')->findOneBy(array( 'prefecture'  => $fPrefectureID ));
-        if (count($checkReference) != 0) throw new Exception(ExceptionMessages::ReferencesPrefectureMunicipalities, ExceptionCodes::ReferencesPrefectureMunicipalities); 
+        $checkReference = $entityManager->getRepository('EduAdmins')->findOneBy(array( 'regionEduAdmin'  => $fRegionEduAdminID ));
+        if (count($checkReference) != 0) throw new Exception(ExceptionMessages::ReferencesRegionEduAdminEduAdmins, ExceptionCodes::ReferencesRegionEduAdminEduAdmins); 
         
-        $checkReference = $entityManager->getRepository('SchoolCommittees')->findOneBy(array( 'prefecture'  => $fPrefectureID ));
-        if (count($checkReference) != 0) throw new Exception(ExceptionMessages::ReferencesPrefectureSchoolCommittees, ExceptionCodes::ReferencesPrefectureSchoolCommittees);  
+        $checkReference = $entityManager->getRepository('SchoolCommittees')->findOneBy(array( 'regionEduAdmin'  => $fRegionEduAdminID ));
+        if (count($checkReference) != 0) throw new Exception(ExceptionMessages::ReferencesRegionEduAdminSchoolCommittees, ExceptionCodes::ReferencesRegionEduAdminSchoolCommittees);  
          
 //delete from db================================================================
-        $entityManager->remove($Prefectures);
-        $entityManager->flush($Prefectures);
+        $entityManager->remove($RegionEduAdmins);
+        $entityManager->flush($RegionEduAdmins);
            
 //result_messages===============================================================      
         $result["status"] = ExceptionCodes::NoErrors;
