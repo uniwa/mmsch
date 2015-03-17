@@ -142,6 +142,12 @@ private static $Permissions = array(
                                         'PUT' => array('ADMIN'),
                                         'DELETE' => array('ADMIN'),
                                         ) ,
+    'municipality_communities' => array(
+                                        'GET' => array('USER', 'ADMIN'),
+                                        'POST' => array('ADMIN'),
+                                        'PUT' => array('ADMIN'),
+                                        'DELETE' => array('ADMIN'),
+                                        ) ,
     'workers'        => array(
                                         'GET' => array('USER', 'ADMIN'),
                                         'POST' => array('ADMIN'),

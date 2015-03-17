@@ -33,6 +33,8 @@ $app->map('/legal_characters', Authentication, UserRolesPermission, LegalCharact
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/levels', Authentication, UserRolesPermission, LevelsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/municipality_communities', Authentication, UserRolesPermission, MunicipalityCommunitiesController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/municipalities', Authentication, UserRolesPermission, MunicipalitiesController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/operation_shifts', Authentication, UserRolesPermission, OperationShiftsController)
@@ -656,6 +658,50 @@ function MunicipalitiesController()
         case MethodTypes::DELETE :
             $result = DeleteMunicipalities(
                 $params["municipality_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function MunicipalityCommunitiesController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetMunicipalityCommunities(
+                $params["municipality_community_id"],
+                $params["name"],
+                $params["municipality"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostMunicipalityCommunities(
+                $params["name"],
+                $params["municipality"],
+                $params["myschoolMunicipalityCommunityId"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutMunicipalityCommunities(
+                $params["municipality_community_id"],
+                $params["name"],
+                $params["municipality"],
+                $params["myschoolMunicipalityCommunityId"]
+            );
+        case MethodTypes::DELETE :
+            $result = DeleteMunicipalityCommunities(
+                $params["municipality_community_id"]
             );
             break;
     }

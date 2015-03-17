@@ -131,7 +131,7 @@ require_once ('../api/get/GetRelations.php');
 require_once ('../api/get/GetLevels.php');
 require_once ('../api/get/GetGroups.php');
 require_once ('../api/get/GetExtLogEntries.php');
-
+require_once ('../api/get/GetMunicipalityCommunities.php');
 
 
 
