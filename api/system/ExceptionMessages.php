@@ -563,7 +563,38 @@ class ExceptionMessages
         const ReferencesMunicipalityUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';      
         const ReferencesMunicipalityTransferAreaMunicipalities = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα TransferAreaMunicipalities.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteTransferAreaMunicipalities';      
         const ReferencesMunicipalitySchoolCommittees = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα SchoolCommittees.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteSchoolCommittees';      
+
+//= MunicipalityCommunities=====================================================
+      
+    const MissingMunicipalityCommunityIDParam = 'Ο Κωδικός της Δημοτικής Ενότητας είναι υποχρεωτικό πεδίο';
+    const MissingMunicipalityCommunityIDValue = 'Ο Κωδικός της Δημοτικής Ενότητας πρέπει να έχει τιμή';
+    const InvalidMunicipalityCommunityIDType = 'Ο Κωδικός της Δημοτικής Ενότητας πρέπει να είναι αριθμητικός';
+    const InvalidMunicipalityCommunityIDArray = 'Ο Κωδικός της Δημοτικής Ενότητας δεν μπορεί να έχει πολλαπλές τιμές';
+
+    const MissingMunicipalityCommunityParam = 'Η Δημοτική Ενότητα είναι υποχρεωτικό πεδίο';
+    const MissingMunicipalityCommunityValue = 'Η Δημοτική Ενότητα πρέπει να έχει τιμή';
+    const InvalidMunicipalityCommunityValue = 'Η Δημοτική Ενότητα δεν υπάρχει στο λεξικό';
+    const InvalidMunicipalityCommunityType = 'Η Δημοτική Ενότητα πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    const InvalidMunicipalityCommunityArray = 'Η Δημοτική Ενότητα δεν μπορεί να έχει πολλαπλές τιμές';
     
+    const MissingMunicipalityCommunityNameParam = 'Το Όνομα της Δημοτικής Ενότητας είναι υποχρεωτικό πεδίο';
+    const MissingMunicipalityCommunityNameValue = 'Το Όνομα της Δημοτικής Ενότητας πρέπει να έχει τιμή';
+    const InvalidMunicipalityCommunityNameType = 'Το Όνομα της Δημοτικής Ενότητας πρέπει να είναι αλφαριθμητικό';
+    const InvalidMunicipalityCommunityNameArray = 'Το Όνομα της Δημοτικής Ενότητας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const DuplicatedMunicipalityCommunityValue = 'Η Δημοτική Ενότητα υπάρχει ήδη';
+    const DuplicatedMunicipalityCommunityUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key MunicipalityCommunity';
+    const UsedMunicipalityCommunityByUnits = 'Ο Κωδικός της Δημοτικής Ενότητας χρησιμοποιείται από Μονάδες';
+    const UsedMunicipalityCommunityByMunicipalities = 'Ο Κωδικός της Δημοτικής Ενότητας χρησιμοποιείται από Δήμους';
+
+        //delete
+        const DuplicateDelMunicipalityCommunityValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Δημοτικής Ενότητας'; 
+        const NotFoundDelMunicipalityCommunityValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+
+        //references
+        const ReferencesMunicipalityCommunityUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';      
+        const ReferencesMunicipalityCommunityMunicipalities = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Municipalities.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteMunicipalities';      
+ 
 //= Prefectures=================================================================
         
     const MissingPrefectureIDParam = 'Ο Κωδικός της Περιφερειακής Ενότητας είναι υποχρεωτικό πεδίο';

@@ -976,6 +976,58 @@ class ExceptionCodes
         /** {@see ExceptionMessages::ReferencesMunicipalitySchoolCommittees} */ 
         const ReferencesMunicipalitySchoolCommittees = 500;
         
+//= MunicipalityCommunities=====================================================
+      
+    /** {@see ExceptionMessages::MissingMunicipalityCommunityIDParam} */ 
+    const MissingMunicipalityCommunityIDParam = 500;
+    /** {@see ExceptionMessages::MissingMunicipalityCommunityIDValue} */ 
+    const MissingMunicipalityCommunityIDValue = 500;
+    /** {@see ExceptionMessages::InvalidMunicipalityCommunityIDType} */ 
+    const InvalidMunicipalityCommunityIDType = 500;
+    /** {@see ExceptionMessages::InvalidMunicipalityCommunityIDArray} */ 
+    const InvalidMunicipalityCommunityIDArray = 500;
+    
+    /** {@see ExceptionMessages::MissingMunicipalityCommunityParam} */ 
+    const MissingMunicipalityCommunityParam = 500;
+    /** {@see ExceptionMessages::MissingMunicipalityCommunityValue} */ 
+    const MissingMunicipalityCommunityValue = 500;
+    /** {@see ExceptionMessages::InvalidMunicipalityCommunityValue} */ 
+    const InvalidMunicipalityCommunityValue = 500;
+    /** {@see ExceptionMessages::InvalidMunicipalityCommunityType} */ 
+    const InvalidMunicipalityCommunityType = 500;
+    /** {@see ExceptionMessages::InvalidMunicipalityCommunityArray} */ 
+    const InvalidMunicipalityCommunityArray = 500;
+    
+    /** {@see ExceptionMessages::MissingMunicipalityCommunityNameParam} */ 
+    const MissingMunicipalityCommunityNameParam = 500;
+    /** {@see ExceptionMessages::MissingMunicipalityCommunityNameValue} */ 
+    const MissingMunicipalityCommunityNameValue = 500;
+    /** {@see ExceptionMessages::InvalidMunicipalityCommunityNameType} */ 
+    const InvalidMunicipalityCommunityNameType = 500;
+    /** {@see ExceptionMessages::InvalidMunicipalityCommunityNameArray} */ 
+    const InvalidMunicipalityCommunityNameArray = 500;
+    
+    /** {@see ExceptionMessages::DuplicatedMunicipalityCommunityValue} */ 
+    const DuplicatedMunicipalityCommunityValue = 500;
+    /** {@see ExceptionMessages::DuplicatedMunicipalityCommunityUniqueValue} */ 
+    const DuplicatedMunicipalityCommunityUniqueValue = 500;
+    /** {@see ExceptionMessages::UsedMunicipalityCommunityByUnits} */ 
+    const UsedMunicipalityCommunityByUnits = 500;
+    /** {@see ExceptionMessages::UsedMunicipalityCommunityByMunicipalities} */ 
+    const UsedMunicipalityCommunityByMunicipalities = 500;
+
+        //delete  
+        /** {@see ExceptionMessages::DuplicateDelMunicipalityCommunityValue} */ 
+        const DuplicateDelMunicipalityCommunityValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelMunicipalityCommunityValue} */ 
+        const NotFoundDelMunicipalityCommunityValue = 500;
+
+        //references
+        /** {@see ExceptionMessages::ReferencesMunicipalityCommunityUnits} */ 
+        const ReferencesMunicipalityCommunityUnits = 500;
+        /** {@see ExceptionMessages::ReferencesMunicipalityCommunityMunicipalities} */ 
+        const ReferencesMunicipalityCommunityMunicipalities = 500;
+ 
 //= Prefectures=================================================================
     
     /** {@see ExceptionMessages::MissingPrefectureIDParam} */   
