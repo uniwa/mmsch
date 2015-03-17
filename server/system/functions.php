@@ -106,6 +106,18 @@ function load_municipalities(&$a_municipalities, &$o_municipalities)
     }
 }
 
+function load_municipality_communities(&$a_municipality_communities, &$o_municipality_communities)
+{
+    $a_municipality_communities = array();
+    $o_municipality_communities = array();
+    $data = loadData("/municipality_communities");
+    foreach ($data->data as $item)
+    {
+        $a_municipality_communities[$item->municipality_community_id] = $item->municipality_community;
+        $o_municipality_communities[$item->municipality_community_id] = $item;
+    }
+}
+
 function load_prefectures(&$a_prefectures, &$o_prefectures)
 {
     $a_prefectures = array();

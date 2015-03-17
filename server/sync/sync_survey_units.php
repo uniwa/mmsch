@@ -151,6 +151,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
         load_edu_admins($this->a_edu_admins, $this->o_edu_admins);
         load_transfer_areas($this->a_transfer_areas, $this->o_transfer_areas);
         load_municipalities($this->a_municipalities, $this->o_municipalities);
+        load_municipality_communities($this->a_municipality_communities, $this->o_municipality_communities);
         load_prefectures($this->a_prefectures, $this->o_prefectures);
         load_unit_types($this->a_unit_types, $this->o_unit_types);
         load_operation_shifts($this->a_operation_shifts, $this->o_operation_shifts);
@@ -271,6 +272,8 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
             $municipality_id = $this->getDictionary($unit, $unit["Municipality"], $this->a_municipalities, $this->o_municipalities, 'InvalidMunicipalityValue', 'Municipalities', 'municipalityId', 'name', load_municipalities);
 ;
+
+            $municipality_community_id = $this->getDictionary($unit, $unit["municipalityCommunity"], $this->a_municipality_communities, $this->o_municipality_communities, 'InvalidMunicipalityCommunityValue', 'MunicipalityCommunities', 'municipalityCommunityId', 'name', load_municipality_communities);
 
             $unit["SchoolType"] = $this->distinguishSchoolType($unit["SchoolType"], $unit);
             $sync_unit_type_id = $this->getDictionary($unit, mb_strtoupper(str_replace($accented, $nonaccented, $unit["SchoolType"]), 'UTF-8'), $this->a_sync_unit_types, $this->o_sync_unit_types, 'InvalidEduAdminValue', 'SyncTypes', 'syncTypeId', 'name', load_sync_unit_types);
