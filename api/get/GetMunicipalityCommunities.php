@@ -79,15 +79,16 @@ function GetMunicipalityCommunities( $municipality_community_id, $name, $municip
 
 //data results==================================================================       
         $count = 0;
+        
         foreach ($results as $municipalityCommunity)
         {
 
             $result["data"][] = array(
                                         "municipality_community_id"         => $municipalityCommunity->getMunicipalityCommunityId(),
-                                        "name"                              => $municipalityCommunity->getName(),
-                                        "MySchool_MunicipalityCommunityId"  => $municipalityCommunity->getMyschoolMunicipalityCommunityId(),    
-                                        "municipality_id"                   => $municipalityCommunity->getMunicipality()->getMunicipalityId(),
-                                        "municipality_name"                 => $municipalityCommunity->getMunicipality()->getName()
+                                        "municipality_community"            => $municipalityCommunity->getName(),
+                                        "myschoolMunicipalityCommunityId"   => $municipalityCommunity->getMyschoolMunicipalityCommunityId(),    
+                                        "municipality_id"                   => Validator::IsNull($municipalityCommunity->getMunicipality()) ? Validator::ToNull() : $municipalityCommunity->getMunicipality()->getMunicipalityId(),
+                                        "municipality_name"                 => Validator::IsNull($municipalityCommunity->getMunicipality()) ? Validator::ToNull() : $municipalityCommunity->getMunicipality()->getName()
                                      );
             $count++;
         }

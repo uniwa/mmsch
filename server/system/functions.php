@@ -113,7 +113,7 @@ function load_municipality_communities(&$a_municipality_communities, &$o_municip
     $data = loadData("/municipality_communities");
     foreach ($data->data as $item)
     {
-        $a_municipality_communities[$item->municipality_community_id] = $item->municipality_community;
+        $a_municipality_communities[$item->municipality_community_id] = $item->myschoolMunicipalityCommunityId;
         $o_municipality_communities[$item->municipality_community_id] = $item;
     }
 }

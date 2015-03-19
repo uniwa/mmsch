@@ -175,6 +175,10 @@ header("Content-Type: text/html; charset=utf-8");
  * <br>Ο Δήμος ΟΤΑ της Μονάδας (Λεξικό : {@see GetMunicipalities})
  * <br>Αν η τιμή της παραμέτρου είναι αριθμητική η αναζήτηση γίνεται με τον κωδικό αλλιώς με την ονομασία
  * 
+ * @param mixed $municipality_community Δημοτική Ενότητα
+ * <br>Η Δημοτική Ενότητα της Μονάδας (Λεξικό : {@see GetMunicipalityCommunities})
+ * <br>Η τιμή της παραμέτρου είναι αριθμητική η αναζήτηση γίνεται με τον κωδικό αλλιώς με την ονομασία
+ * 
  * @param mixed $prefecture Νομός
  * <br>Ο Νομός της Μονάδας (Λεξικό : {@see GetPrefectures})
  * <br>Αν η τιμή της παραμέτρου είναι αριθμητική η αναζήτηση γίνεται με τον κωδικό αλλιώς με την ονομασία
@@ -285,6 +289,7 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws InvalidImplementationEntityValue {@see ExceptionMessages::InvalidImplementationEntityValue}
  * @throws InvalidTransferAreaValue {@see ExceptionMessages::InvalidTransferAreaValue}
  * @throws InvalidMunicipalityValue {@see ExceptionMessages::InvalidMunicipalityValue}
+ * @throws InvalidMunicipalityCommunityValue {@see ExceptionMessages::InvalidMunicipalityCommunityValue}
  * @throws InvalidPrefectureValue {@see ExceptionMessages::InvalidPrefectureValue}
  * @throws InvalidOperationShiftValue {@see ExceptionMessages::InvalidOperationShiftValue}
  * @throws InvalidLegalCharacterValue {@see ExceptionMessages::InvalidLegalCharacterValue}
@@ -297,7 +302,7 @@ header("Content-Type: text/html; charset=utf-8");
 
 function PostUnits( 
     $registry_no, $source, $name, $special_name, $state, $region_edu_admin, 
-    $edu_admin, $implementation_entity, $transfer_area, $prefecture, $municipality, 
+    $edu_admin, $implementation_entity, $transfer_area, $prefecture, $municipality, $municipality_community,
     $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code, 
     $tax_number, $tax_office, $area_team_number, $category, $unit_type, $operation_shift, 
     $legal_character, $orientation_type, $special_type, $levels_count, $groups_count, 
@@ -365,6 +370,10 @@ function PostUnits(
 //==============================================================================
 
         CRUDUtils::entitySetAssociationOld($unit, $municipality, 'Municipalities', 'municipality', 'Municipality', false);
+        
+//==============================================================================
+
+        CRUDUtils::entitySetAssociationOld($unit, $municipality_community, 'MunicipalityCommunities', 'municipalityCommunity', 'MunicipalityCommunity', false);
 
 //==============================================================================
 

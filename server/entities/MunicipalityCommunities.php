@@ -31,7 +31,7 @@ class MunicipalityCommunities
     /**
      * @var integer
      *
-     * @ORM\Column(name="myschoolMunicipalityCommunityId", type="integer", nullable=false)
+     * @ORM\Column(name="myschoolMunicipalityCommunityId", type="integer", nullable=false, unique=true)
      */
     private $myschoolMunicipalityCommunityId;
     
@@ -68,7 +68,7 @@ class MunicipalityCommunities
     public function setMyschoolMunicipalityCommunityId($myschoolMunicipalityCommunityId) {
         $this->myschoolMunicipalityCommunityId = $myschoolMunicipalityCommunityId;
     }
-
+    
     public function getMunicipality() {
         return $this->municipality;
     }
