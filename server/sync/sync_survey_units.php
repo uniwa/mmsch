@@ -275,7 +275,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             $municipality_id = $this->getDictionary($unit, $unit["Municipality"], $this->a_municipalities, $this->o_municipalities, 'InvalidMunicipalityValue', 'Municipalities', 'municipalityId', 'name', load_municipalities);
                        
             $municipality_community_id = $this->getDictionary($unit, $unit["MunicipalityCommunityId"], $this->a_municipality_communities, $this->o_municipality_communities, 'InvalidMunicipalityCommunityValue', 'MunicipalityCommunities', 'municipalityCommunityId', 'myschoolMunicipalityCommunityId', load_municipality_communities);
-                      
+        
             if ($this->a_municipality_communities[$municipality_community_id] !== null && $this->convert_greek_accents($unit["MunicipalityCommunity"]) != $this->convert_greek_accents($this->o_municipality_communities[$municipality_community_id]->municipality_community) ) {
                 $municipalityCommunityObj = $entityManager->getRepository('MunicipalityCommunities')->findOneBy( array( 'municipalityCommunityId' => $municipality_community_id));
 
@@ -288,8 +288,10 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 $entityManager->persist($municipalityCommunityObj);
                 $entityManager->flush($municipalityCommunityObj);
                 //load_edu_admins($this->a_municipality_communities, $this->o_municipality_communities); // Refresh
+            } else {
+                $municipality_community_id = null;
             }
-            
+
             $unit["SchoolType"] = $this->distinguishSchoolType($unit["SchoolType"], $unit);
             $sync_unit_type_id = $this->getDictionary($unit, mb_strtoupper(str_replace($accented, $nonaccented, $unit["SchoolType"]), 'UTF-8'), $this->a_sync_unit_types, $this->o_sync_unit_types, 'InvalidEduAdminValue', 'SyncTypes', 'syncTypeId', 'name', load_sync_unit_types);
 
