@@ -14,7 +14,7 @@ require_once ('libs/db2php/DSC.class.php');
 // Doctrine & Entities autoloading
 require_once ('libs/doctrine/bootstrap.php');
 spl_autoload_register(function($class) {
-    include 'entities/' . $class . '.php';
+    @include 'entities/' . $class . '.php';
 });
 
 require_once ('libs/phpCAS/CAS.php');

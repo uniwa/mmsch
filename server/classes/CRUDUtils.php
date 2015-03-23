@@ -36,7 +36,6 @@ class CRUDUtils {
         { } //throw new Exception(ExceptionMessages::MissingNameValue, ExceptionCodes::MissingNameValue);}
         else if ( Validator::IsValue($param) )
         {
-            
             $method = 'set'.self::to_camel_case($field, true);
             $entity->$method(Validator::ToValue($param));
         }
