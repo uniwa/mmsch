@@ -177,13 +177,13 @@ function PutUnitWorkers( $unit_worker_id, $mm_id, $worker, $worker_position )
             throw new Exception(ExceptionMessages::InvalidUnitWorkerValue." : ".$mm_id, ExceptionCodes::InvalidUnitWorkerValue);
         
 //==============================================================================
-    CRUDUtils::entitySetAssociation($unitWorker, $mm_id, 'Units', 'mm', 'Unit');
+    CRUDUtils::entitySetAssociationOld($unitWorker, $mm_id, 'Units', 'mm', 'Unit');
   
 //==============================================================================
-    CRUDUtils::entitySetAssociation($unitWorker, $worker, 'Workers', 'worker', 'Worker');
+    CRUDUtils::entitySetAssociationOld($unitWorker, $worker, 'Workers', 'worker', 'Worker');
 
 //==============================================================================
-    CRUDUtils::entitySetAssociation($unitWorker, $worker_position, 'WorkerPositions', 'workerPosition', 'WorkerPosition');
+    CRUDUtils::entitySetAssociationOld($unitWorker, $worker_position, 'WorkerPositions', 'workerPosition', 'WorkerPosition');
 
 //==============================================================================
 

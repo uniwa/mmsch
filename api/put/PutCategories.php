@@ -186,168 +186,63 @@ header("Content-Type: text/html; charset=utf-8");
  *
  */
 
+function PutCategories( $category_id, $name ) {
+    
+    global $app, $entityManager;
 
-function PutCategories($category_id, $name)
-{
-    global $db;
-
-    $filters = array();
     $result = array();
 
-    $result["method"] = __FUNCTION__;
-
-    try
-    {
-        //==============================================================================================================
-        //= Check if $connectivity_type_id exists
-        //==============================================================================================================
-        if ( $category_id === _MISSED_ )
-            throw new Exception(ExceptionMessages::MissingCategoryIDParam, ExceptionCodes::MissingCategoryIDParam);
-        else if ( Validator::IsNull($category_id) )
-            throw new Exception(ExceptionMessages::MissingCategoryIDValue, ExceptionCodes::MissingCategoryIDValue);
-        else if ( Validator::IsID($category_id) )
-            $filters["category_id"] = "$category_id = " . $db->quote(Validator::ToID($category_id));
-        else
-            throw new Exception(ExceptionMessages::InvalidCategoryIDType." : ".$category_id, ExceptionCodes::InvalidCategoryIDType);
-
-        $sql = "SELECT category_id, name FROM categories WHERE ".$filters["category_id"];
-        echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        if ( $stmt->rowCount() <> 1 )
-        {
-            throw new Exception(ExceptionMessages::InvalidCategoryValue." : ".$category_id, ExceptionCodes::InvalidCategoryValue);
-        }
-
-        //==============================================================================================================
-        //= Check name for duplicates
-        //==============================================================================================================
-        if ( $name === _MISSED_ )
-            throw new Exception(ExceptionMessages::MissingNameParam, ExceptionCodes::MissingNameParam);
-        else if ( Validator::IsNull($name) )
-            throw new Exception(ExceptionMessages::MissingNameValue, ExceptionCodes::MissingNameValue);
-        else if ( Validator::IsValue($name) )
-        {
-            $filters["name"] = "name = " . $db->quote(Validator::ToValue($name));
-        }
-        else
-            throw new Exception(ExceptionMessages::InvalidNameType." : ".$name, ExceptionCodes::InvalidNameType);
-
-        $sql = "SELECT category_id, name FROM categories WHERE ".$filters["name"]." AND NOT ".$filters["category_id"];
-        echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        if ( $stmt->rowCount() > 0 )
-        {
-            throw new Exception(ExceptionMessages::DuplicatedCategoryValue." : ".$name, ExceptionCodes::DuplicatedCategoryValue);
-        }
-
-        //==============================================================================================================
-        //= Update =====================================================================================================
-        //==============================================================================================================
-
-        $sqlWhere = " WHERE ". $filters["category_id"];
-
-        unset($filters["category_id"]);
-
-        $sql = "UPDATE categories SET " . implode(", ", $filters) .$sqlWhere;
-        echo "<br><br>".$sql."<br><br>";
-
-        if ( $db->query( $sql ) )
-        {
-            $result["category_id"] = $category_id;
-        }
-
-        $result["status"] = ExceptionCodes::NoErrors;
-        $result["message"] = ExceptionMessages::NoErrors;
-
-    }
-    catch (Exception $e)
-    {
-        $result["status"] = $e->getCode();
-        $result["message"] = "[".__FUNCTION__."]:".$e->getMessage();
-    }
-
-    return $result;
-}
-
-/*
-
-function PutCategories($name)
-{
-    global $db;
-    global $app;
-    global $Options;
-    
-    $filter = array();
-    $result = array();
-
-    $result["data"] = array();
-
-    $controller = $app->environment();
-    $controller = substr($controller["PATH_INFO"], 1);
-    
-    $result["function"] = $controller;
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
     $result["method"] = $app->request()->getMethod();
+    $params = loadParameters();
+    $result["parameters"]  = $params;
 
-    try
-    {
-        if (! trim($name) )
-            throw new Exception(ExceptionMessages::MissingNameValue, ExceptionCodes::MissingNameValue);
-        else
-            $filter[] = new DFC(CategoriesExt::FIELD_NAME, $name, DFC::EXACT);
+    try {
 
-        $oCategories = new CategoriesExt($db);
+        //$category_id========================================================== 
+        $fCategoryId = CRUDUtils::checkIDParam('category_id', $params, $category_id, 'CategoryID');
 
-        $arrayCategories = $oCategories->findByFilter($db, $filter, true);
+        //init entity for update row============================================
+        $Category = CRUDUtils::findIDParam($fCategoryId, 'Categories', 'Category');
+        
+        //$name=================================================================
+        if ( Validator::IsExists('name') ){
+            CRUDUtils::EntitySetParam($Category, $name, 'CategoryName', 'name', $params );
+        } else if ( Validator::IsNull($Category->getName()) ){
+            throw new Exception(ExceptionMessages::MissingCategoryNameValue, ExceptionCodes::MissingCategoryNameValue);
+        } 
 
-        if ( count( $arrayCategories ) > 0 ) 
-        { 
-            $oCategories = $arrayCategories[0];
+//controls======================================================================   
+
+        //check name duplicate==================================================        
+        $qb = $entityManager->createQueryBuilder()
+                            ->select('COUNT(c.categoryId) AS fresult')
+                            ->from('Categories', 'c')
+                            ->where("c.name = :name AND c.categoryId != :categoryId")
+                            ->setParameter('name', $Category->getName())
+                            ->setParameter('categoryId', $Category->getCategoryId())    
+                            ->getQuery()
+                            ->getSingleResult();
+      
+        if ( $qb["fresult"] != 0 ) {
+             throw new Exception(ExceptionMessages::DuplicatedCategoryValue ,ExceptionCodes::DuplicatedCategoryValue);
         }
-        
-        $oWorkers->setRegistryNo($fRegistryNo);
-        $oWorkers->setLastname($fLastname);
-        $oWorkers->setFirstname($fFirstname);
-        $oWorkers->setFathername($fFathername);
-        $oWorkers->setSex($fSex);
-        $oWorkers->setTaxNumber($fTaxNumber);
-        $oWorkers->setWorkerSpecializationId($fWorkerSpecialization);
+       
+//update to db================================================================== 
+        $entityManager->persist($Category);
+        $entityManager->flush($Category);
 
-        if ($oWorkers->getWorkerId())
-            $oWorkers->updateToDatabase ($db);
-        else
-            $oWorkers->insertIntoDatabase ($db);
-        
-        $result["worker_id"] = $oWorkers->getWorkerId();
-                
-        
-        
-        
-        $result["count"] = count( $rows );
-
-        foreach ($rows as $row)
-        {
-            $result["data"][] = array(
-                "category_id" => $row->getCategoryId(), 
-                "name" => $row->getName()
-            );
-        }
-
-        $result["status"] = 200;
-        $result["message"] = "[".$result["method"]."][".$result["function"]."]:"."success";
-    } 
-    catch (Exception $e) 
-    {
+        $result["category_id"] = $Category->getCategoryId();
+           
+//result_messages===============================================================      
+        $result["status"] = ExceptionCodes::NoErrors;
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
         $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
-    } 
-    
+    }                
+        
     return $result;
 }
-*/
 ?>

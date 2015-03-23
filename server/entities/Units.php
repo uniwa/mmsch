@@ -243,6 +243,17 @@ class Units
      * @Gedmo\Versioned
      */
     private $municipality;
+    
+    /**
+     * @var \MunicipalityCommunities
+     *
+     * @ORM\ManyToOne(targetEntity="MunicipalityCommunities")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="municipality_community_id", referencedColumnName="municipality_community_id")
+     * })
+     * @Gedmo\Versioned
+     */
+    private $municipalityCommunity;
 
     /**
      * @var \OperationShifts
@@ -578,6 +589,14 @@ class Units
         $this->municipality = $municipality;
     }
 
+    public function getMunicipalityCommunity() {
+        return $this->municipalityCommunity;
+    }
+
+    public function setMunicipalityCommunity(\MunicipalityCommunities $municipalityCommunity) {
+        $this->municipalityCommunity = $municipalityCommunity;
+    }
+    
     public function getOperationShift() {
         return $this->operationShift;
     }

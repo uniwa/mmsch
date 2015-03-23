@@ -38,5 +38,28 @@ class SpecialTypes
      */
     private $category;
 
+    public function getSpecialTypeId() {
+        return $this->specialTypeId;
+    }
 
+    public function setSpecialTypeId($specialTypeId) {
+        $this->specialTypeId = $specialTypeId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function getCategory() {
+        return $this->category;
+    }
+
+    public function setCategory(\Categories $category) {
+        $this->category = $category;
+    }
+    
 }

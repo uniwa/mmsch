@@ -8,6 +8,22 @@ class Validator
     protected static $maleValues = array('Α', 'M');
     protected static $femaleValues = array('Γ', 'F');
 
+    /**
+     * 
+     * Validates that value has exist.
+     * 
+     *  Use php get_object_vars function that returns NULL if the object isn't an object
+     *  Use php array_key_exists function that checks if the given key or index exists in the array.
+     * 
+     * @return bool True on success, false on failure.
+     * 
+     */
+    public static function IsExists($param) {
+        //$params = get_object_vars( loadParameters() );
+       $params = loadParameters();
+    return array_key_exists($param, $params);
+    }
+    
     public static function Exists($param, $params) {
         return array_key_exists($param, $params);
     }
@@ -333,6 +349,30 @@ class Validator
     {   
 
         return date($format, trim(strtotime($date)));
+    }
+    
+    /**
+     * 
+     * Validates that the value has valid year-range.
+     * 
+     * Use php strtotime function to compare date by user with currentDate and startDate
+     * true condition must have startDate < date < currentDate
+     * 
+     * @return bool True if valid, false if not.  
+     */
+    public static function IsValidDate($date, $format = 'Y-m-d H:i:s')
+    {
+
+      $startDate="1975-1-1";   //min date value
+      $currentDate=date($format);  //max date value
+      $formatDate = date($format, strtotime($date));
+     
+     if ( (strtotime($formatDate) > strtotime($startDate) ) && (strtotime($formatDate) <= strtotime($currentDate) ) ){
+          return true;  
+        } else {
+          return false;
+        }
+
     }
 
 }

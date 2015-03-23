@@ -38,5 +38,28 @@ class LegalCharacters
      */
     private $category;
 
+    public function getLegalCharacterId() {
+        return $this->legalCharacterId;
+    }
+
+    public function setLegalCharacterId($legalCharacterId) {
+        $this->legalCharacterId = $legalCharacterId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function getCategory() {
+        return $this->category;
+    }
+
+    public function setCategory(\Categories $category) {
+        $this->category = $category;
+    }
 
 }

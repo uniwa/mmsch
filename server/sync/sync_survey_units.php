@@ -152,6 +152,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
         load_edu_admins($this->a_edu_admins, $this->o_edu_admins);
         load_transfer_areas($this->a_transfer_areas, $this->o_transfer_areas);
         load_municipalities($this->a_municipalities, $this->o_municipalities);
+        load_municipality_communities($this->a_municipality_communities, $this->o_municipality_communities);
         load_prefectures($this->a_prefectures, $this->o_prefectures);
         load_unit_types($this->a_unit_types, $this->o_unit_types);
         load_operation_shifts($this->a_operation_shifts, $this->o_operation_shifts);
@@ -260,6 +261,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 $eduAdminObj = $entityManager->getRepository('EduAdmins')->findOneBy(array(
                     'registryNo' => $unit["DiefthinsiRegistryNo"],
                 ));
+                
                 $eduAdminObj->setName($unit["Diefthinsi"]);
                 $entityManager->persist($eduAdminObj);
                 $entityManager->flush($eduAdminObj);
@@ -272,8 +274,26 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
             $prefecture_id = $this->getDictionary($unit, $unit["Prefecture"], $this->a_prefectures, $this->o_prefectures, 'InvalidPrefectureValue', 'Prefectures', 'prefectureId', 'name', load_prefectures);
 
+            if (($unit["Municipality"] == "ΗΡΑΚΛΕΙΟΥ") && ($unit["Perifereia"] == "ΠΕΡΙΦΕΡΕΙΑΚΗ ΔΙΕΥΘΥΝΣΗ ΑΤΤΙΚΗΣ")) {$unit["Municipality"] = "ΗΡΑΚΛΕΙΟ ΑΤΤΙΚΗΣ";}          
             $municipality_id = $this->getDictionary($unit, $unit["Municipality"], $this->a_municipalities, $this->o_municipalities, 'InvalidMunicipalityValue', 'Municipalities', 'municipalityId', 'name', load_municipalities);
-;
+                       
+            $municipality_community_id = $this->getDictionary($unit, $unit["MunicipalityCommunityId"], $this->a_municipality_communities, $this->o_municipality_communities, 'InvalidMunicipalityCommunityValue', 'MunicipalityCommunities', 'municipalityCommunityId', 'myschoolMunicipalityCommunityId', load_municipality_communities);
+        
+            if ($this->a_municipality_communities[$municipality_community_id] !== null && $this->convert_greek_accents($unit["MunicipalityCommunity"]) != $this->convert_greek_accents($this->o_municipality_communities[$municipality_community_id]->municipality_community) ) {
+                $municipalityCommunityObj = $entityManager->getRepository('MunicipalityCommunities')->findOneBy( array( 'municipalityCommunityId' => $municipality_community_id));
+
+                if ($this->a_municipalities[ $municipality_id ] != null) {
+                    $municipalityRetrieveObj = $entityManager->getRepository('Municipalities')->findOneBy( array( 'municipalityId' => $municipality_id));
+                    $municipalityCommunityObj->setMunicipality($municipalityRetrieveObj);
+                }
+
+                $municipalityCommunityObj->setName($this->convert_greek_accents(trim($unit["MunicipalityCommunity"])));
+                $entityManager->persist($municipalityCommunityObj);
+                $entityManager->flush($municipalityCommunityObj);
+                //load_edu_admins($this->a_municipality_communities, $this->o_municipality_communities); // Refresh
+            } else {
+                $municipality_community_id = null;
+            }
 
             $unit["SchoolType"] = $this->distinguishSchoolType($unit["SchoolType"], $unit);
             $sync_unit_type_id = $this->getDictionary($unit, mb_strtoupper(str_replace($accented, $nonaccented, $unit["SchoolType"]), 'UTF-8'), $this->a_sync_unit_types, $this->o_sync_unit_types, 'InvalidEduAdminValue', 'SyncTypes', 'syncTypeId', 'name', load_sync_unit_types);
@@ -339,6 +359,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                     "implementation_entity" => $this->a_implementation_entities[ $implementation_entity_id ],
                     "transfer_area"         => $this->a_transfer_areas[ $transfer_area_id ],
                     "municipality"          => $this->a_municipalities[ $municipality_id ],
+                    "municipality_community" => $municipality_community_id,
                     "prefecture"            => $this->a_prefectures[ $prefecture_id ],
                     "unit_type"             => $this->a_unit_types[ $unit_type_id ],
                     "operation_shift"       => $this->a_operation_shifts[ $operation_shift_id ],
@@ -378,7 +399,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
                 if ( $row["mm_id"] )
                 {
-                    $params["mm_id"] = $row["mm_id"];
+                    $params["mm_id"] = $row["mm_id"];                
                     $lastSync = new \DateTime($row["last_sync"]);
                     //if(!($lastUpdate instanceof \DateTime) || $lastSync >= $lastUpdate) { 
 		    if(!($lastUpdate instanceof \DateTime) || ($lastSync->format('Y-m-d H:i:s') >= $lastUpdate->format('Y-m-d H:i:s'))) {
@@ -2454,7 +2475,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
         return $schoolType;
     }
 
-    private function getDictionary($unit, $value, &$a_values, &$o_values, $exceptionString, $classname, $idAttr, $attr, callable $reloadFunc) {
+    private function getDictionary($unit, $value, &$a_values, &$o_values, $exceptionString, $classname, $idAttr, $attr, callable $reloadFunc ) {
         global $entityManager;
 
         if(trim($value) == 'null') { return -1; }
@@ -2462,12 +2483,13 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
         $origValue = $value;
         $value = mb_strtoupper($this->convert_greek_accents(trim($value)), 'UTF-8'); // ΔΟΥ κΑΛΑΜΠΑΚΑΣ...
         $converted_values = array_map(array($this, 'convert_greek_accents'), $a_values);
+       
         if ($value)
         {
+
             if (!in_array($value, $converted_values)) {
-                $obj = $entityManager->getRepository($classname)->findOneBy(array(
-                    $attr => $value,
-                ));
+                $obj = $entityManager->getRepository($classname)->findOneBy(array( $attr => $value ));
+
                 if(!isset($obj)) {
                     $obj = new $classname();
                     $setMethod = 'set'.ucfirst($attr);
@@ -2489,6 +2511,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                                  . " '".$value."'";
             }
         }
+        
         return array_search($value, $converted_values);
     }
 

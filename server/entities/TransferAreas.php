@@ -61,4 +61,5 @@ class TransferAreas
     public function setEduAdmin(\EduAdmins $eduAdmin) {
         $this->eduAdmin = $eduAdmin;
     }
+
 }

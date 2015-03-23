@@ -61,4 +61,5 @@ class Municipalities
     public function setPrefecture(\Prefectures $prefecture) {
         $this->prefecture = $prefecture;
     }
+
 }

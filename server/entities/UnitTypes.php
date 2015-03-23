@@ -94,4 +94,5 @@ class UnitTypes
     public function setEducationLevel(\EducationLevels $educationLevel) {
         $this->educationLevel = $educationLevel;
     }
+    
 }
