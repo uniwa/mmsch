@@ -202,28 +202,28 @@ function PostWorkers( $registry_no, $lastname, $firstname, $fathername, $sex, $t
 
 
     //==============================================================================
-    CRUDUtils::entitySetParam($Worker, $registry_no, ExceptionCodes::InvalidWorkerRegistryNoType, 'registryNo');
+    CRUDUtils::entitySetParamOld($Worker, $registry_no, ExceptionCodes::InvalidWorkerRegistryNoType, 'registryNo');
   
     //==============================================================================
-    CRUDUtils::entitySetParam($Worker, $lastname, ExceptionCodes::InvalidWorkerLastnameType, 'lastname');
+    CRUDUtils::entitySetParamOld($Worker, $lastname, ExceptionCodes::InvalidWorkerLastnameType, 'lastname');
 
     //==============================================================================
-    CRUDUtils::entitySetParam($Worker, $firstname, ExceptionCodes::InvalidWorkerFirstnameType, 'firstname');
+    CRUDUtils::entitySetParamOld($Worker, $firstname, ExceptionCodes::InvalidWorkerFirstnameType, 'firstname');
     
     //==============================================================================
-    CRUDUtils::entitySetParam($Worker, $fathername, ExceptionCodes::InvalidWorkerFathernameType, 'fathername');
+    CRUDUtils::entitySetParamOld($Worker, $fathername, ExceptionCodes::InvalidWorkerFathernameType, 'fathername');
   
     //==============================================================================
-    CRUDUtils::entitySetParam($Worker, $sex, ExceptionCodes::InvalidWorkerSexType, 'sex');
+    CRUDUtils::entitySetParamOld($Worker, $sex, ExceptionCodes::InvalidWorkerSexType, 'sex');
 
     //==============================================================================
-    CRUDUtils::entitySetParam($Worker, $tax_number, ExceptionCodes::InvalidWorkerTaxNumberType, 'taxNumber');
+    CRUDUtils::entitySetParamOld($Worker, $tax_number, ExceptionCodes::InvalidWorkerTaxNumberType, 'taxNumber');
 
     //==============================================================================
-    CRUDUtils::entitySetParam($Worker, $worker_specialization, ExceptionCodes::InvalidWorkerSpecializationType, 'workerSpecialization');
+    CRUDUtils::entitySetParamOld($Worker, $worker_specialization, ExceptionCodes::InvalidWorkerSpecializationType, 'workerSpecialization');
       
     //==============================================================================
-    CRUDUtils::entitySetAssociation($Worker, $source, 'Sources', 'source', 'Source');
+    CRUDUtils::entitySetAssociationOld($Worker, $source, 'Sources', 'source', 'Source');
         
     //==============================================================================
             

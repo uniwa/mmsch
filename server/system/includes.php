@@ -131,7 +131,7 @@ require_once ('../api/get/GetRelations.php');
 require_once ('../api/get/GetLevels.php');
 require_once ('../api/get/GetGroups.php');
 require_once ('../api/get/GetExtLogEntries.php');
-
+require_once ('../api/get/GetMunicipalityCommunities.php');
 
 
 
@@ -176,9 +176,6 @@ require_once ('../api/post/PostUnits.php');
 require_once ('../api/post/PostWorkers.php');
 
 //require_once ('../api/post/PostUnitWorkers.php');
-//require_once ('../api/post/PostRelations.php');
-//require_once ('../api/post/PostLevels.php');
-//require_once ('../api/post/PostGroups.php');
 //require_once ('../api/post/PostConnectivityTypes.php');
 //
 require_once ('../api/put/PutUnits.php');
@@ -192,8 +189,82 @@ require_once ('../api/put/PutWorkers.php');
 
 //require_once ('../api/post/PostCategories.php');
 
-//DOCTRINE READY FUNCTIONS
+//DOCTRINE OLD FUNCTIONS
 require_once ('../api/post/PostUnitWorkers.php');
 require_once ('../api/put/PutUnitWorkers.php');
+
+//DOCTRINE READY FUNCTIONS
+require_once ('../api/post/PostCategories.php');
+require_once ('../api/post/PostEduAdmins.php');
+require_once ('../api/post/PostEducationLevels.php');
+require_once ('../api/post/PostGroups.php');
+require_once ('../api/post/PostImplementationEntities.php');
+require_once ('../api/post/PostLegalCharacters.php');
+require_once ('../api/post/PostLevels.php');
+require_once ('../api/post/PostMunicipalities.php');
+require_once ('../api/post/PostOperationShifts.php');
+require_once ('../api/post/PostOrientationTypes.php');
+require_once ('../api/post/PostPrefectures.php');
+require_once ('../api/post/PostRegionEduAdmins.php');
+require_once ('../api/post/PostRelations.php');
+require_once ('../api/post/PostRelationTypes.php');
+require_once ('../api/post/PostSources.php');
+require_once ('../api/post/PostSpecialTypes.php');
+require_once ('../api/post/PostStates.php');
+require_once ('../api/post/PostTaxOffices.php');
+require_once ('../api/post/PostTransferAreaMunicipalities.php');
+require_once ('../api/post/PostTransferAreas.php');
+require_once ('../api/post/PostUnitTypes.php');
+require_once ('../api/post/PostWorkerPositions.php');
+require_once ('../api/post/PostWorkerSpecializations.php');
+
+require_once ('../api/put/PutCategories.php');
+require_once ('../api/put/PutEduAdmins.php');
+require_once ('../api/put/PutEducationLevels.php');
+require_once ('../api/put/PutGroups.php');
+require_once ('../api/put/PutImplementationEntities.php');
+require_once ('../api/put/PutLegalCharacters.php');
+require_once ('../api/put/PutLevels.php');
+require_once ('../api/put/PutMunicipalities.php');
+require_once ('../api/put/PutOperationShifts.php');
+require_once ('../api/put/PutOrientationTypes.php');
+require_once ('../api/put/PutPrefectures.php');
+require_once ('../api/put/PutRegionEduAdmins.php');
+require_once ('../api/put/PutRelations.php');
+require_once ('../api/put/PutRelationTypes.php');
+require_once ('../api/put/PutSources.php');
+require_once ('../api/put/PutSpecialTypes.php');
+require_once ('../api/put/PutStates.php');
+require_once ('../api/put/PutTaxOffices.php');
+require_once ('../api/put/PutTransferAreaMunicipalities.php');
+require_once ('../api/put/PutTransferAreas.php');
+require_once ('../api/put/PutUnitTypes.php');
+require_once ('../api/put/PutWorkerPositions.php');
+require_once ('../api/put/PutWorkerSpecializations.php');
+
+
+require_once ('../api/delete/DeleteCategories.php');
+require_once ('../api/delete/DeleteEduAdmins.php');
+require_once ('../api/delete/DeleteEducationLevels.php');
+require_once ('../api/delete/DeleteGroups.php');
+require_once ('../api/delete/DeleteImplementationEntities.php');
+require_once ('../api/delete/DeleteLegalCharacters.php');
+require_once ('../api/delete/DeleteLevels.php');
+require_once ('../api/delete/DeleteMunicipalities.php');
+require_once ('../api/delete/DeleteOperationShifts.php');
+require_once ('../api/delete/DeleteOrientationTypes.php');
+require_once ('../api/delete/DeletePrefectures.php');
+require_once ('../api/delete/DeleteRegionEduAdmins.php');
+require_once ('../api/delete/DeleteRelations.php');
+require_once ('../api/delete/DeleteRelationTypes.php');
+require_once ('../api/delete/DeleteSources.php');
+require_once ('../api/delete/DeleteSpecialTypes.php');
+require_once ('../api/delete/DeleteStates.php');
+require_once ('../api/delete/DeleteTaxOffices.php');
+require_once ('../api/delete/DeleteTransferAreaMunicipalities.php');
+require_once ('../api/delete/DeleteTransferAreas.php');
+require_once ('../api/delete/DeleteUnitTypes.php');
+require_once ('../api/delete/DeleteWorkerPositions.php');
+require_once ('../api/delete/DeleteWorkerSpecializations.php');
 
 ?>

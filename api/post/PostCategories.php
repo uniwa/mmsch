@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * @version 1.0.3
+ * @version 2.0
  * @author  ΤΕΙ Αθήνας
  * @package POST
  */
@@ -167,104 +167,45 @@ header("Content-Type: text/html; charset=utf-8");
  *
  */
 
+function PostCategories( $name ) {
+    
+    global $app, $entityManager;
 
-function PostCategories(
-    $category
-)
-{
-    global $db;
-
-    $array_sql = array();
-    $filters = array();
+    $Category = new Categories();
     $result = array();
 
-    $result["method"] = __FUNCTION__;
-
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
     $params = loadParameters();
+    $result["parameters"]  = $params;
 
-    try
-    {
+    try {
+        
+    //$name=====================================================================
+     CRUDUtils::EntitySetParam($Category, $name, 'CategoryName', 'name', $params);
 
-//======================================================================================================================
-//= Check $circuit_type
-//======================================================================================================================
+//controls======================================================================   
 
-        $param = $category;
-        $table_column_name = 'category';
-        $table_column_alias = 'name';
+        //check for duplicate ==================================================   
+        $checkDuplicate = $entityManager->getRepository('Categories')->findOneBy(array( 'name'  => $Category->getName() ));
+        
+        if ((count($checkDuplicate) != 0))
+            throw new Exception(ExceptionMessages::DuplicatedCategoryValue,ExceptionCodes::DuplicatedCategoryValue);  
+        
+//insert to db================================================================== 
+        $entityManager->persist($Category);
+        $entityManager->flush($Category);
 
-        if ( Validator::Exists($table_column_name, $params) )
-        {
-            if ( Validator::isNull($param) )
-            {
-                throw new Exception(ExceptionMessages::MissingCategoryValue, ExceptionCodes::MissingCategoryValue);
-            }
-            elseif ( Validator::isArray($param) )
-            {
-                throw new Exception(ExceptionMessages::InvalidCircuitTypeArray." : ".$param, ExceptionCodes::InvalidCircuitTypeArray);
-            }
-            elseif ( Validator::isValue($param) )
-            {
-                $category = Validator::toValue( $param );
+        $result["category_id"] = $Category->getCategoryId();
 
-                $filters[ $table_column_name ] = "$table_column_alias = " . $db->quote( $category );
-            }
-            else
-            {
-                throw new Exception(ExceptionMessages::InvalidCategoryType." : ".$param, ExceptionCodes::InvalidCategoryType);
-            }
-        }
-        else
-        {
-            throw new Exception(ExceptionMessages::MissingCategoryParam, ExceptionCodes::MissingCategoryParam);
-        }
-
-//======================================================================================================================
-//= Check for duplicates
-//======================================================================================================================
-
-        $sql = "SELECT
-                    category_id,
-                    name
-                FROM categories WHERE name like " . $db->quote( $category );
-
-        //echo "<br><br>".$sql."<br><br>";
-        $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        if ( $stmt->rowCount() > 0 )
-        {
-            throw new Exception(ExceptionMessages::DuplicatedCategoryValue." : ".$rows[0]["category_id"], ExceptionCodes::DuplicatedCategoryValue);
-        }
-
-//======================================================================================================================
-//= INSERT
-//======================================================================================================================
-
-        $sql = "INSERT INTO categories SET " . implode(", ", $filters);
-        //echo "<br><br>".$sql."<br><br>";
-        $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-        if ( $db->query( $sql ) )
-        {
-            $result["category_id"] = $db->lastInsertId();
-        }
-
+//result_messages===============================================================      
         $result["status"] = ExceptionCodes::NoErrors;
-        $result["message"] = ExceptionMessages::NoErrors;
-    }
-    catch (Exception $e)
-    {
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".__FUNCTION__."]:".$e->getMessage();
-    }
-
-    if ( Validator::isTrue( $params["debug"] ) )
-    {
-        $result["sql"] = $array_sql;
-    }
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    }  
 
     return $result;
 }

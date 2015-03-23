@@ -28,5 +28,20 @@ class RelationTypes
      */
     private $name;
 
+    public function getRelationTypeId() {
+        return $this->relationTypeId;
+    }
+
+    public function setRelationTypeId($relationTypeId) {
+        $this->relationTypeId = $relationTypeId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
 
 }

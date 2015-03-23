@@ -177,6 +177,8 @@ header("Content-Type: text/html; charset=utf-8");
  *    "prefecture": "ΑΤΤΙΚΗΣ",
  *    "municipality_id": 5,
  *    "municipality": "ΑΘΗΝΑΙΩΝ",
+ *    "municipality_community_id": 61,
+ *    "municipality_community": "ΑΘΗΝΑΙΩΝ",
  *    "education_level_id": 1,
  *    "education_level": "ΠΡΩΤΟΒΑΘΜΙΑ",
  *    "unit_type_id": 2,
@@ -587,6 +589,15 @@ header("Content-Type: text/html; charset=utf-8");
  *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
  *    </ul>
  * 
+ * @param mixed $municipality_community Δημοτική Ενότητα
+ * <br>Η Δημοτική Ενότητα της Μονάδας (Λεξικό : {@see GetMunicipalityCommunities})
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
+ *    <ul>
+ *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
+ *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
+ *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
+ *    </ul>
+ * 
  * @param mixed $education_level Βαθμίδα
  * <br>Το Επίπεδο Εκπαίδευσης της μονάδας (Λεξικό : {@see GetEducationLevels})
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
@@ -901,6 +912,8 @@ header("Content-Type: text/html; charset=utf-8");
  *      <li>string : <b>prefecture</b> : Ο Νομός της Μονάδας (Λεξικό : {@see GetPrefectures})</li>
  *      <li>integer : <b>municipality_id</b> : Ο Κωδικός του Δήμου ΟΤΑ της Μονάδας (Λεξικό : {@see GetMunicipalities})</li>
  *      <li>string : <b>municipality</b> : Ο Δήμος ΟΤΑ της Μονάδας (Λεξικό : {@see GetMunicipalities})</li>
+ *      <li>integer : <b>municipality_community_id</b> : Η Δημοτική Ενότητα της Μονάδας (Λεξικό : {@see GetMunicipalityCommunities})</li>
+ *      <li>string : <b>municipality_community</b> : Η Δημοτική Ενότητα της Μονάδας (Λεξικό : {@see GetMunicipalityCommunities})</li>
  *      <li>integer : <b>education_level_id</b> : Ο Κωδικός του Επιπέδου Εκπαίδευσης της μονάδας (Λεξικό : {@see GetEducationLevels})</li>
  *      <li>string : <b>education_level</b> : Το Επίπεδο Εκπαίδευσης της μονάδας (Λεξικό : {@see GetEducationLevels})</li>
  *      <li>string : <b>phone_number</b> : Το Τηλέφωνο Επικοινωνίας της Μονάδας</li>
@@ -1095,6 +1108,7 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws InvalidTransferAreaType {@see ExceptionMessages::InvalidTransferAreaType}
  * @throws InvalidPrefectureType {@see ExceptionMessages::InvalidPrefectureType}
  * @throws InvalidMunicipalityType {@see ExceptionMessages::InvalidMunicipalityType}
+ * @throws InvalidMunicipalityCommunityType {@see ExceptionMessages::InvalidMunicipalityCommunityType}
  * @throws InvalidEducationLevelType {@see ExceptionMessages::InvalidEducationLevelType}
  * @throws InvalidPhoneNumberType {@see ExceptionMessages::InvalidPhoneNumberType}
  * @throws InvalidEmailType {@see ExceptionMessages::InvalidEmailType}
@@ -1139,7 +1153,7 @@ header("Content-Type: text/html; charset=utf-8");
 
 function GetUnits(
     $mm_id, $registry_no, $source, $name, $special_name, $state, $region_edu_admin, $edu_admin, $implementation_entity,
-    $transfer_area, $prefecture, $municipality, $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code,
+    $transfer_area, $prefecture, $municipality, $municipality_community, $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code,
     $tax_number, $tax_office, $area_team_number, $category, $unit_type, $operation_shift, $legal_character, $orientation_type,
     $special_type, $levels_count, $groups_count, $students_count, $latitude, $longitude, $positioning, $creation_fek, $last_update, $last_sync, $comments,
     $pagesize, $page, $orderby, $ordertype, $searchtype, $export )
@@ -2024,6 +2038,35 @@ function GetUnits(
         }
 
 //======================================================================================================================
+//= $municipality_community
+//======================================================================================================================
+
+        if ( Validator::Exists('municipality_community', $params) )
+        {
+            $table_name = "municipality_communities";
+            $table_column_id = "municipality_community_id";
+            $table_column_name = "name";
+
+            $param = Validator::toArray($municipality_community);
+
+            $paramFilters = array();
+
+            foreach ($param as $values)
+            {
+                if ( Validator::isNull($values) )
+                    $paramFilters[] = "$table_name.$table_column_name is null";
+                else if ( Validator::isID($values) )
+                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
+                else if ( Validator::isValue($values) )
+                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
+                else
+                    throw new Exception(ExceptionMessages::InvalidMunicipalityCommunityType." : ".$values, ExceptionCodes::InvalidMunicipalityCommunityType);
+            }
+
+            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
+        }
+        
+//======================================================================================================================
 //= $education_level
 //======================================================================================================================
 
@@ -2306,6 +2349,8 @@ function GetUnits(
                 "prefecture",
                 "municipality_id",
                 "municipality",
+                "municipality_community_id",
+                "municipality_community",
                 "education_level_id",
                 "education_level",
                 "unit_type_id",
@@ -2373,7 +2418,9 @@ function GetUnits(
                         prefectures.prefecture_id, 
                         prefectures.name as prefecture, 
                         municipalities.municipality_id, 
-                        municipalities.name as municipality, 
+                        municipalities.name as municipality,
+                        municipality_communities.municipality_community_id, 
+                        municipality_communities.name as municipality_community, 
                         education_levels.education_level_id, 
                         education_levels.name as education_level, 
                         unit_types.unit_type_id, 
@@ -2406,6 +2453,7 @@ function GetUnits(
                         LEFT JOIN transfer_areas ON units.transfer_area_id = transfer_areas.transfer_area_id
                         LEFT JOIN prefectures ON units.prefecture_id = prefectures.prefecture_id
                         LEFT JOIN municipalities ON units.municipality_id = municipalities.municipality_id
+                        LEFT JOIN municipality_communities ON units.municipality_community_id = municipality_communities.municipality_community_id
                         LEFT JOIN education_levels ON units.education_level_id = education_levels.education_level_id
                         LEFT JOIN unit_types ON units.unit_type_id = unit_types.unit_type_id
                         LEFT JOIN orientation_types ON units.orientation_type_id = orientation_types.orientation_type_id
@@ -2890,6 +2938,8 @@ function GetUnits(
                 "prefecture"               => $row["prefecture"],
                 "municipality_id"          => $row["municipality_id"] ? (int)$row["municipality_id"] : null,
                 "municipality"             => $row["municipality"],
+                "municipality_community_id"          => $row["municipality_community_id"] ? (int)$row["municipality_community_id"] : null,
+                "municipality_community"             => $row["municipality_community"],
                 "education_level_id"       => $row["education_level_id"] ? (int)$row["education_level_id"] : null,
                 "education_level"          => $row["education_level"],
                 "unit_type_id"             => $row["unit_type_id"] ? (int)$row["unit_type_id"] : null,

@@ -1,4 +1,6 @@
 <?php
+
+
 header("Content-Type: text/html; charset=utf-8");
 header('Content-Type: application/json');
 
@@ -15,69 +17,65 @@ $app = new \Slim\Slim();
 
 $app->config('debug', true);
 
-$app->map('/school_committees', Authentication, UserRolesPermission, SchoolCommitteesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/circuit_types', Authentication, UserRolesPermission, CircuitTypesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/sources', Authentication, UserRolesPermission, SourcesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/states', Authentication, UserRolesPermission, StatesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/relation_types', Authentication, UserRolesPermission, RelationTypesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/categories', Authentication, UserRolesPermission, CategoriesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/prefectures', Authentication, UserRolesPermission, PrefecturesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/tax_offices', Authentication, UserRolesPermission, TaxOfficesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/special_types', Authentication, UserRolesPermission, SpecialTypesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/legal_characters', Authentication, UserRolesPermission, LegalCharactersController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/orientation_types', Authentication, UserRolesPermission, OrientationTypesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/operation_shifts', Authentication, UserRolesPermission, OperationShiftsController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/unit_types', Authentication, UserRolesPermission, UnitTypesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/education_levels', Authentication, UserRolesPermission, EducationLevelsController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/region_edu_admins', Authentication, UserRolesPermission, RegionEduAdminsController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/implementation_entities', Authentication, UserRolesPermission, ImplementationEntitiesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/cpes', Authentication, UserRolesPermission, CpesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/ldaps', Authentication, UserRolesPermission, LDapsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/edu_admins', Authentication, UserRolesPermission, EduAdminsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/worker_specializations', Authentication, UserRolesPermission, WorkerSpecializationsController)
+$app->map('/education_levels', Authentication, UserRolesPermission, EducationLevelsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/worker_positions', Authentication, UserRolesPermission, WorkerPositionsController)
+$app->map('/groups', Authentication, UserRolesPermission, GroupsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/transfer_areas', Authentication, UserRolesPermission, TransferAreasController)
+$app->map('/implementation_entities', Authentication, UserRolesPermission, ImplementationEntitiesController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/ldaps', Authentication, UserRolesPermission, LDapsController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/legal_characters', Authentication, UserRolesPermission, LegalCharactersController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/levels', Authentication, UserRolesPermission, LevelsController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/municipality_communities', Authentication, UserRolesPermission, MunicipalityCommunitiesController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/municipalities', Authentication, UserRolesPermission, MunicipalitiesController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/workers', Authentication, UserRolesPermission, WorkersController)
+$app->map('/operation_shifts', Authentication, UserRolesPermission, OperationShiftsController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/orientation_types', Authentication, UserRolesPermission, OrientationTypesController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/prefectures', Authentication, UserRolesPermission, PrefecturesController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/region_edu_admins', Authentication, UserRolesPermission, RegionEduAdminsController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/relations', Authentication, UserRolesPermission, RelationsController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/relation_types', Authentication, UserRolesPermission, RelationTypesController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/school_committees', Authentication, UserRolesPermission, SchoolCommitteesController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/sources', Authentication, UserRolesPermission, SourcesController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/special_types', Authentication, UserRolesPermission, SpecialTypesController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/states', Authentication, UserRolesPermission, StatesController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/tax_offices', Authentication, UserRolesPermission, TaxOfficesController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/transfer_area_municipalities', Authentication, UserRolesPermission, TransferAreaMunicipalitiesController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/transfer_areas', Authentication, UserRolesPermission, TransferAreasController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/circuit_types', Authentication, UserRolesPermission, CircuitTypesController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/cpes', Authentication, UserRolesPermission, CpesController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/workers', Authentication, UserRolesPermission, WorkersController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/circuits', Authentication, UserRolesPermission, CircuitsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/unit_workers', Authentication, UserRolesPermission, UnitWorkersController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/relations', Authentication, UserRolesPermission, RelationsController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/connections', Authentication, UserRolesPermission, ConnectionsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/units', Authentication, UserRolesPermission, UnitsController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/levels', Authentication, UserRolesPermission, LevelsController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/groups', Authentication, UserRolesPermission, GroupsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/unit_dns', Authentication, UserRolesPermission, UnitDnsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
@@ -88,6 +86,12 @@ $app->map('/unit_network_subnets', Authentication, UserRolesPermission, UnitNetw
 $app->map('/unit_network_objects', Authentication, UserRolesPermission, UnitNetworkObjectsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/connection_unit_network_subnets', Authentication, UserRolesPermission, ConnectionUnitNetworkSubnetsController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/unit_types', Authentication, UserRolesPermission, UnitTypesController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/worker_positions', Authentication, UserRolesPermission, WorkerPositionsController)
+    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/worker_specializations', Authentication, UserRolesPermission, WorkerSpecializationsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 
 $app->map('/statistic_units', Authentication, UserRolesPermission, StatisticUnitsController)
@@ -280,10 +284,688 @@ function toGreek($value)
 //= Functions
 //======================================================================================================================
 
-function SchoolCommitteesController()
+function CategoriesController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetCategories(
+                $params["category"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+         case MethodTypes::POST :
+            $result = PostCategories(
+                $params["name"]
+            );
+            break;
+         case MethodTypes::PUT :
+            $result = PutCategories(
+                $params["category_id"],
+                $params["name"]
+            );
+            break;
+        case MethodTypes::DELETE :
+            $result = DeleteCategories(
+                $params["category_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function EduAdminsController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetEduAdmins(
+                $params["edu_admin"],
+                $params["region_edu_admin"],
+                $params["implementation_entity"],
+                $params["parent_rdn"],
+                $params["third_level_dns"],
+                $params["pagesize"],
+                $params["page"],
+                $params["searchtype"],
+                $params["ordertype"],
+                $params["orderby"]              
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostEduAdmins(
+                $params["name"],
+                $params["registry_no"],
+                $params["region_edu_admin"],
+                $params["implementation_entity"],
+                $params["parent_rdn"],
+                $params["third_level_dns"]          
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutEduAdmins(
+                $params["edu_admin_id"],
+                $params["name"],
+                $params["registry_no"],
+                $params["region_edu_admin"],
+                $params["implementation_entity"],
+                $params["parent_rdn"],
+                $params["third_level_dns"]          
+            );
+            break;
+        case MethodTypes::DELETE :
+            $result = DeleteEduAdmins(
+                $params["edu_admin_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function EducationLevelsController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetEducationLevels(
+                $params["education_level"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostEducationLevels(
+                $params["name"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutEducationLevels(
+                $params["education_level_id"],
+                $params["name"]
+            );
+            break;
+        case MethodTypes::DELETE :
+            $result = DeleteEducationLevels(
+                $params["education_level_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function GroupsController()
 {
     global $app;
 
+    $params = loadParameters();
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetGroups(
+                $params["group"],
+                $params["unit"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+         case MethodTypes::POST :
+            $result = PostGroups(
+                $params["mm_id"],
+                $params["level_id"],
+                $params["name"],
+                $params["students_count"]
+            );
+            break;
+         case MethodTypes::PUT :
+            $result = PutGroups(
+                $params["group_id"],
+                $params["mm_id"],
+                $params["level_id"],
+                $params["name"],
+                $params["students_count"]
+            );
+            break;
+        case MethodTypes::DELETE :
+            $result = DeleteGroups(
+                $params["group_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function ImplementationEntitiesController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetImplementationEntities(
+                $params["implementation_entity"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostImplementationEntities(
+                $params["name"],
+                $params["initials"],
+                $params["street_address"],
+                $params["postal_code"],
+                $params["email"],
+                $params["phone_number"],
+                $params["domain"],
+                $params["url"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutImplementationEntities(
+                $params["implementation_entity_id"],
+                $params["name"],
+                $params["initials"],
+                $params["street_address"],
+                $params["postal_code"],
+                $params["email"],
+                $params["phone_number"],
+                $params["domain"],
+                $params["url"]
+            );
+        case MethodTypes::DELETE :
+            $result = DeleteImplementationEntities(
+                $params["implementation_entity_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function LDapsController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetLDaps(
+                $params["ldap"],
+                $params["unit"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function LegalCharactersController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetLegalCharacters(
+                $params["legal_character"],
+                $params["category"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostLegalCharacters(
+                $params["name"],
+                $params["category"]                
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutLegalCharacters(
+                $params["legal_character_id"],
+                $params["name"],
+                $params["category"]
+            );
+        case MethodTypes::DELETE :
+            $result = DeleteLegalCharacters(
+                $params["legal_character_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+
+function LevelsController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetLevels(
+                $params["level"],
+                $params["unit"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+         case MethodTypes::POST :
+            $result = PostLevels(
+                $params["mm_id"],
+                $params["name"],
+                $params["groups_count"],
+                $params["students_count"]
+            );
+            break;
+         case MethodTypes::PUT :
+            $result = PutLevels(
+                $params["level_id"],
+                $params["mm_id"],
+                $params["name"],
+                $params["groups_count"],
+                $params["students_count"]
+            );
+            break;
+        case MethodTypes::DELETE :
+            $result = DeleteLevels(
+                $params["level_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function MunicipalitiesController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetMunicipalities(
+                $params["municipality"],
+                $params["prefecture"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostMunicipalities(
+                $params["name"],
+                $params["prefecture"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutMunicipalities(
+                $params["municipality_id"],
+                $params["name"],
+                $params["prefecture"]
+            );
+        case MethodTypes::DELETE :
+            $result = DeleteMunicipalities(
+                $params["municipality_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function MunicipalityCommunitiesController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetMunicipalityCommunities(
+                $params["municipality_community_id"],
+                $params["name"],
+                $params["municipality"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostMunicipalityCommunities(
+                $params["name"],
+                $params["municipality"],
+                $params["myschoolMunicipalityCommunityId"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutMunicipalityCommunities(
+                $params["municipality_community_id"],
+                $params["name"],
+                $params["municipality"],
+                $params["myschoolMunicipalityCommunityId"]
+            );
+        case MethodTypes::DELETE :
+            $result = DeleteMunicipalityCommunities(
+                $params["municipality_community_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function OperationShiftsController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetOperationShifts(
+                $params["operation_shift"],
+                $params["category"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostOperationShifts(
+                $params["name"],
+                $params["category"]                
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutOperationShifts(
+                $params["operation_shift_id"],
+                $params["name"],
+                $params["category"]
+            );
+        case MethodTypes::DELETE :
+            $result = DeleteOperationShifts(
+                $params["operation_shift_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function OrientationTypesController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetOrientationTypes(
+                $params["orientation_type"],
+                $params["category"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostOrientationTypes(
+                $params["name"],
+                $params["category"]                
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutOrientationTypes(
+                $params["orientation_type_id"],
+                $params["name"],
+                $params["category"]
+            );
+        case MethodTypes::DELETE :
+            $result = DeleteOrientationTypes(
+                $params["orientation_type_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function PrefecturesController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetPrefectures(
+                $params["prefecture"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostPrefectures(
+                $params["name"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutPrefectures(
+                $params["prefecture_id"],
+                $params["name"]
+            );
+        case MethodTypes::DELETE :
+            $result = DeletePrefectures(
+                $params["prefecture_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function RegionEduAdminsController()
+{
+    global $app;
+
+    $params = loadParameters();
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetRegionEduAdmins(
+                $params["region_edu_admin"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostRegionEduAdmins(
+                $params["name"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutRegionEduAdmins(
+                $params["region_edu_admin_id"],
+                $params["name"]
+            );
+            break;
+        case MethodTypes::DELETE :
+            $result = DeleteRegionEduAdmins(
+                $params["region_edu_admin_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function RelationsController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetRelations(
+                $params["host_unit"],
+                $params["guest_unit"],
+                $params["relation_type"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostRelations(
+                $params["host_mm_id"],
+                $params["guest_mm_id"],
+                $params["relation_state"],
+                $params["true_date"],
+                $params["true_fek"],
+                $params["false_date"],
+                $params["false_fek"],
+                $params["relation_type"]
+              );
+            break;
+        case MethodTypes::PUT :
+            $result = PutRelations(
+                $params["relation_id"],
+                $params["host_mm_id"],
+                $params["guest_mm_id"],
+                $params["relation_state"],
+                $params["true_date"],
+                $params["true_fek"],
+                $params["false_date"],
+                $params["false_fek"],
+                $params["relation_type"]
+              );
+            break;
+        case MethodTypes::DELETE :
+            $result = DeleteRelations(
+                $params["relation_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function RelationTypesController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetRelationTypes(
+                $params["relation_type"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostRelationTypes(
+                $params["name"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutRelationTypes(
+                $params["relation_type_id"],
+                $params["name"]
+            );
+            break;
+        case MethodTypes::DELETE :
+            $result = DeleteRelationTypes(
+                $params["relation_type_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function SchoolCommitteesController()
+{
+    global $app;
     $params = loadParameters();
 
     switch ( strtoupper( $app->request()->getMethod() ) )
@@ -302,7 +984,247 @@ function SchoolCommitteesController()
     }
 
     PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
 
+function SourcesController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetSources(
+                $params["source"],
+                $params["visible"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostSources(
+                $params["name"],
+                $params["visible"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutSources(
+                $params["source_id"],
+                $params["name"],
+                $params["visible"]
+            );
+        case MethodTypes::DELETE :
+            $result = DeleteSources(
+                $params["source_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function SpecialTypesController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetSpecialTypes(
+                $params["special_type"],
+                $params["category"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostSpecialTypes(
+                $params["name"],
+                $params["category"]                
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutSpecialTypes(
+                $params["special_type_id"],
+                $params["name"],
+                $params["category"]
+            );
+        case MethodTypes::DELETE :
+            $result = DeleteSpecialTypes(
+                $params["special_type_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function StatesController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetStates(
+                $params["state"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostStates(
+                $params["name"]          
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutStates(
+                $params["state_id"],
+                $params["name"]
+            );
+        case MethodTypes::DELETE :
+            $result = DeleteStates(
+                $params["state_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function TaxOfficesController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetTaxOffices(
+                $params["tax_office"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostTaxOffices(
+                $params["name"]          
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutTaxOffices(
+                $params["tax_office_id"],
+                $params["name"]
+            );
+        case MethodTypes::DELETE :
+            $result = DeleteTaxOffices(
+                $params["tax_office_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function TransferAreaMunicipalitiesController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetTransferAreaMunicipalities(
+                $params["transfer_area"],
+                $params["municipality"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostTransferAreaMunicipalities(
+                $params["transfer_area"],
+                $params["municipality"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutTransferAreaMunicipalities(
+                $params["transfer_area_municipality_id"],
+                $params["transfer_area"],
+                $params["municipality"]
+            );
+        case MethodTypes::DELETE :
+            $result = DeleteTransferAreaMunicipalities(
+                $params["transfer_area_municipality_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function TransferAreasController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetTransferAreas(
+                $params["transfer_area"],
+                $params["edu_admin"],
+                $params["region_edu_admin"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"]
+            );
+            break;
+        case MethodTypes::POST :
+            $result = PostTransferAreas(
+                $params["name"],
+                $params["edu_admin"]
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutTransferAreas(
+                $params["transfer_area_id"],
+                $params["name"],
+                $params["edu_admin"]
+            );
+        case MethodTypes::DELETE :
+            $result = DeleteTransferAreas(
+                $params["transfer_area_id"]
+            );
+            break;
+    }
+
+    PrepareResponse();
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
 
@@ -347,384 +1269,6 @@ function CircuitTypesController()
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
 
-
-function SourcesController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetSources(
-                $params["source"],
-                $params["visible"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-function StatesController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetStates(
-                $params["state"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-
-function RelationTypesController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetRelationTypes(
-                $params["relation_type"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-
-function CategoriesController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetCategories(
-                $params["category"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-
-function PrefecturesController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetPrefectures(
-                $params["prefecture"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-
-function TaxOfficesController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetTaxOffices(
-                $params["tax_office"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-function SpecialTypesController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetSpecialTypes(
-                $params["special_type"],
-                $params["category"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-function LegalCharactersController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetLegalCharacters(
-                $params["legal_character"],
-                $params["category"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-function OrientationTypesController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetOrientationTypes(
-                $params["orientation_type"],
-                $params["category"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-function OperationShiftsController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetOperationShifts(
-                $params["orientation_shift"],
-                $params["category"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-
-function UnitTypesController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetUnitTypes(
-                $params["unit_type"],
-                $params["category"],
-                $params["education_level"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-function EducationLevelsController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetEducationLevels(
-                $params["education_level"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-
-function RegionEduAdminsController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetRegionEduAdmins(
-                $params["region_edu_admin"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-function ImplementationEntitiesController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetImplementationEntities(
-                $params["implementation_entity"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
 function CpesController()
 {
     global $app;
@@ -751,20 +1295,18 @@ function CpesController()
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
 
-
-
-function LDapsController()
+function UnitTypesController()
 {
     global $app;
-
     $params = loadParameters();
 
     switch ( strtoupper( $app->request()->getMethod() ) )
     {
         case MethodTypes::GET :
-            $result = GetLDaps(
-                $params["ldap"],
-                $params["unit"],
+            $result = GetUnitTypes(
+                $params["unit_type"],
+                $params["category"],
+                $params["education_level"],
                 $params["pagesize"],
                 $params["page"],
                 $params["orderby"],
@@ -772,74 +1314,36 @@ function LDapsController()
                 $params["searchtype"]
             );
             break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-function EduAdminsController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetEduAdmins(
-                $params["edu_admin"],
-                $params["region_edu_admin"],
-                $params["implementation_entity"],
-                $params["parent_rdn"],
-                $params["third_level_dns"],
-                $params["pagesize"],
-                $params["page"],
-                $params["searchtype"],
-                $params["ordertype"],
-                $params["orderby"]              
+        case MethodTypes::POST :
+            $result = PostUnitTypes(
+                $params["name"],
+                $params["initials"],
+                $params["category"],
+                $params["education_level"]
             );
             break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-function WorkerSpecializationsController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetWorkerSpecializations(
-                $params["worker_specialization"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
+        case MethodTypes::PUT :
+            $result = PutUnitTypes(
+                $params["unit_type_id"],
+                $params["name"],
+                $params["initials"],
+                $params["category"],
+                $params["education_level"]
             );
-            break;
+        case MethodTypes::DELETE :
+            $result = DeleteUnitTypes(
+                $params["unit_type_id"]          
+            );
+            break;  
     }
 
     PrepareResponse();
-
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
-
 
 function WorkerPositionsController()
 {
     global $app;
-
     $params = loadParameters();
 
     switch ( strtoupper( $app->request()->getMethod() ) )
@@ -854,27 +1358,37 @@ function WorkerPositionsController()
                 $params["searchtype"]
             );
             break;
+        case MethodTypes::POST :
+            $result = PostWorkerPositions(
+                $params["name"]          
+            );
+            break;
+        case MethodTypes::PUT :
+            $result = PutWorkerPositions(
+                $params["worker_position_id"],
+                $params["name"]
+            );
+        case MethodTypes::DELETE :
+            $result = DeleteWorkerPositions(
+                $params["worker_position_id"]          
+            );
+            break;  
     }
 
     PrepareResponse();
-
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
 
-
-function TransferAreasController()
+function WorkerSpecializationsController()
 {
     global $app;
-
     $params = loadParameters();
 
     switch ( strtoupper( $app->request()->getMethod() ) )
     {
         case MethodTypes::GET :
-            $result = GetTransferAreas(
-                $params["transfer_area"],
-                $params["edu_admin"],
-                $params["region_edu_admin"],
+            $result = GetWorkerSpecializations(
+                $params["worker_specialization"],
                 $params["pagesize"],
                 $params["page"],
                 $params["orderby"],
@@ -882,40 +1396,26 @@ function TransferAreasController()
                 $params["searchtype"]
             );
             break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-function MunicipalitiesController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetMunicipalities(
-                $params["municipality"],
-                $params["prefecture"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
+        case MethodTypes::POST :
+            $result = PostWorkerSpecializations(
+                $params["name"]          
             );
             break;
+        case MethodTypes::PUT :
+            $result = PutWorkerSpecializations(
+                $params["worker_specialization_id"],
+                $params["name"]
+            );
+        case MethodTypes::DELETE :
+            $result = DeleteWorkerSpecializations(
+                $params["worker_specialization_id"]          
+            );
+            break;        
     }
 
     PrepareResponse();
-
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
-
 
 function WorkersController()
 {
@@ -970,35 +1470,6 @@ function WorkersController()
     $app->response()->setStatus(200);
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
-
-
-
-function TransferAreaMunicipalitiesController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetTransferAreaMunicipalities(
-                $params["transfer_area"],
-                $params["municipality"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
 
 function CircuitsController()
 {
@@ -1109,59 +1580,6 @@ function UnitWorkersController()
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
 
-
-function RelationsController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetRelations(
-                $params["host_unit"],
-                $params["guest_unit"],
-                $params["relation_type"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-//        case MethodTypes::POST :
-//            $result = PostRelations(
-//                $params["host_mm_id,
-//                $params["guest_mm_id,
-//                $params["relation_state,
-//                $params["true_date,
-//                $params["true_fek,
-//                $params["false_date,
-//                $params["false_fek,
-//                $params["relation_type
-//              );
-//            break;
-//        case MethodTypes::PUT :
-//            $result = PutRelations(
-//                $params["relation_id,
-//                $params["host_mm_id,
-//                $params["guest_mm_id,
-//                $params["relation_state,
-//                $params["true_date,
-//                $params["true_fek,
-//                $params["false_date,
-//                $params["false_fek,
-//                $params["relation_type
-//              );
-//            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
 function ConnectionsController()
 {
     global $app;
@@ -1208,63 +1626,6 @@ function ConnectionsController()
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
 
-
-
-function LevelsController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetLevels(
-                $params["level"],
-                $params["unit"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
-
-function GroupsController()
-{
-    global $app;
-
-    $params = loadParameters();
-
-    switch ( strtoupper( $app->request()->getMethod() ) )
-    {
-        case MethodTypes::GET :
-            $result = GetGroups(
-                $params["group"],
-                $params["unit"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
-            );
-            break;
-    }
-
-    PrepareResponse();
-
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
-}
-
-
 function UnitsController()
 {
     global $app;
@@ -1287,6 +1648,7 @@ function UnitsController()
                 $params["transfer_area"],
                 $params["prefecture"],
                 $params["municipality"],
+                $params["municipality_community"],
                 $params["education_level"],
                 $params["phone_number"],
                 $params["email"],
@@ -1334,6 +1696,7 @@ function UnitsController()
                 in_array ("transfer_area", $parameters) ? $params["transfer_area"] : _MISSED_,
                 in_array ("prefecture", $parameters) ? $params["prefecture"] : _MISSED_,
                 in_array ("municipality", $parameters) ? $params["municipality"] : _MISSED_,
+                in_array ("municipality_community", $parameters) ? $params["municipality_community"] : _MISSED_,
                 in_array ("education_level", $parameters) ? $params["education_level"] : _MISSED_,
                 in_array ("phone_number", $parameters) ? $params["phone_number"] : _MISSED_,
                 in_array ("email", $parameters) ? $params["email"] : _MISSED_,
@@ -1377,6 +1740,7 @@ function UnitsController()
                 in_array ("transfer_area", $parameters) ? $params["transfer_area"] : _MISSED_,
                 in_array ("prefecture", $parameters) ? $params["prefecture"] : _MISSED_,
                 in_array ("municipality", $parameters) ? $params["municipality"] : _MISSED_,
+                in_array ("municipality_community", $parameters) ? $params["municipality_community"] : _MISSED_,
                 in_array ("education_level", $parameters) ? $params["education_level"] : _MISSED_,
                 in_array ("phone_number", $parameters) ? $params["phone_number"] : _MISSED_,
                 in_array ("email", $parameters) ? $params["email"] : _MISSED_,

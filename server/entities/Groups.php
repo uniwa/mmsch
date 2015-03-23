@@ -55,5 +55,45 @@ class Groups
      */
     private $mm;
 
+    public function getGroupId() {
+        return $this->groupId;
+    }
 
+    public function setGroupId($groupId) {
+        $this->groupId = $groupId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function getStudentsCount() {
+        return $this->studentsCount;
+    }
+
+    public function setStudentsCount($studentsCount) {
+        $this->studentsCount = $studentsCount;
+    }
+
+    public function getLevel() {
+        return $this->level;
+    }
+
+    public function setLevel(\Levels $level) {
+        $this->level = $level;
+    }
+
+    public function getMm() {
+        return $this->mm;
+    }
+
+    public function setMm(\Units $mm) {
+        $this->mm = $mm;
+    }
+
+    
 }

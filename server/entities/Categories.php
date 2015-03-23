@@ -28,5 +28,20 @@ class Categories
      */
     private $name;
 
+    public function getCategoryId() {
+        return $this->categoryId;
+    }
 
+    public function setCategoryId($categoryId) {
+        $this->categoryId = $categoryId;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+  
 }

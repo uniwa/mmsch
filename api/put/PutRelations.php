@@ -197,142 +197,118 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  */
 
-
 function PutRelations( $relation_id, $host_mm_id, $guest_mm_id, $relation_state, $true_date, $true_fek, $false_date, $false_fek, $relation_type )
 {
-    global $db;
-    global $Options;
+    
+    global $app,$entityManager;
 
-    $result = array();  
+    $result = array();
 
-    $result["method"] = __FUNCTION__;
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
+    $params = loadParameters();
+    $result["parameters"]  = $params;
 
-    try
-    {
-//==============================================================================
+    try {
         
-        if (! trim($relation_id) )
-            throw new Exception(ExceptionMessages::MissingRelationIDValue, ExceptionCodes::MissingRelationIDValue);
-        else if (!is_numeric($relation_id))
-            throw new Exception(ExceptionMessages::InvalidRelationIDType, ExceptionCodes::InvalidRelationIDType);
-        else
-            $fRelationId = $relation_id;
-        
-        
-        $oRelation = new RelationsExt($db);
-        
-        $filter = new DFC(RelationsExt::FIELD_RELATION_ID, $fRelationId, DFC::EXACT);
-        
-        $arrayRelations = $oRelation->findByFilter($db, $filter, true);
+        //$relation_id========================================================== 
+        $fRelationId = CRUDUtils::checkIDParam('relation_id', $params, $relation_id, 'RelationID');
 
-        if (count($arrayRelations) == 0)
-        {
-            throw new Exception(ExceptionMessages::InvalidRelationValue." : ".$fRelationId, ExceptionCodes::InvalidRelationValue);
-        }
-        else
-        {
-//==============================================================================
+        //init entity for update row============================================
+        $Relation = CRUDUtils::findIDParam($fRelationId, 'Relations', 'Relation');
 
-            $oUnits = new UnitsExt($db);
-
-            if (! trim($host_mm_id))
-            {
-                throw new Exception(ExceptionMessages::MissingHostMMIdValue, ExceptionCodes::MissingHostMMIdValue);
-            }
-            else if (!is_numeric($host_mm_id))
-            {
-                throw new Exception(ExceptionMessages::InvalidHostMMIdType, ExceptionCodes::InvalidHostMMIdType);
-            }
-            else if ($host_mm_id)
-            {
-                $filter = new DFC(UnitsExt::FIELD_MM_ID, $host_mm_id, DFC::EXACT);
-                $oUnits = $oUnits->findByFilter($db, $filter, true);
-            }
-
-            if ( $host_mm_id && (count($oUnits) < 1))
-                throw new Exception(ExceptionMessages::InvalidHostMMIdValue." : ".$host_mm_id, ExceptionCodes::InvalidHostMMIdValue);
-            else if ($host_mm_id)
-                $fHostMMId = $oUnits[0]->getMmId ();
-            else
-                $fHostMMId = NULL;            
-            
-//==============================================================================
-        
-            $oUnits = new UnitsExt($db);
-
-            if (! trim($guest_mm_id))
-            {
-                throw new Exception(ExceptionMessages::MissingGuestMMIdValue, ExceptionCodes::MissingGuestMMIdValue);
-            }
-            else if (!is_numeric($guest_mm_id))
-            {
-                throw new Exception(ExceptionMessages::InvalidGuestMMIdType, ExceptionCodes::InvalidGuestMMIdType);
-            }
-            else if ($guest_mm_id)
-            {
-                $filter = new DFC(UnitsExt::FIELD_MM_ID, $guest_mm_id, DFC::EXACT);
-                $oUnits = $oUnits->findByFilter($db, $filter, true);
-            }
-
-            if ( $guest_mm_id && (count($oUnits) < 1))
-                throw new Exception(ExceptionMessages::InvalidGuestMMIdValue." : ".$guest_mm_id, ExceptionCodes::InvalidGuestMMIdValue);
-            else if ($guest_mm_id)
-                $fGuestMMId = $oUnits[0]->getMmId ();
-            else
-                $fGuestMMId = NULL;            
-            
-//==============================================================================
-        
-            $oRelationTypes = new RelationTypesExt($db);
-            if (! $relation_type)
-            {
-                throw new Exception(ExceptionMessages::MissingRelationTypeValue, ExceptionCodes::MissingRelationTypeValue);
-            }
-            else if (is_numeric($relation_type))
-            {
-                $filter = array( new DFC(RelationTypesExt::FIELD_RELATION_TYPE_ID, $relation_type, DFC::EXACT) );
-                $oRelationTypes = $oRelationTypes->findByFilter($db, $filter, true);  
-            }
-            else if ($relation_type)
-            {
-                $filter = array( new DFC(RelationTypesExt::FIELD_NAME, $relation_type, DFC::EXACT) );
-                $oRelationTypes = $oRelationTypes->findByFilter($db, $filter, true);
-            }
-
-            if ( $relation_type && (count($oRelationTypes) < 1))
-                throw new Exception(ExceptionMessages::InvalidRelationTypeValue." : ".$relation_type, ExceptionCodes::InvalidRelationTypeValue);
-            else if ($relation_type)
-                $fRelationType = $oRelationTypes[0]->getRelationTypeId ();
-            else
-                $fRelationType = NULL;
-        
-//==============================================================================
-
-            $oRelation->setRelationId($fRelationId);
-            $oRelation->setHostMmId($fHostMMId);
-            $oRelation->setGuestMmId($fGuestMMId);
-            $oRelation->setRelationTypeId($fRelationType);
-            $oRelation->setRelationState($relation_state);
-            $oRelation->setTrueDate($true_date);
-            $oRelation->setTrueFek($true_fek);
-            $oRelation->setFalseDate($false_date);
-            $oRelation->setFalseFek($false_fek);
-
-            $oRelation->updateToDatabase($db);
-
-            $result["relation_id"] = $oRelation->getRelationId();
-            
-            $result["status"] = ExceptionCodes::NoErrors;;
-            $result["message"] = ExceptionMessages::NoErrors;
-        }
-    } 
-    catch (Exception $e) 
-    {
-        $result["status"] = $e->getCode();
-        $result["message"] = "[".$result["method"]."]:".$e->getMessage();
+    //$host_mm_id===============================================================
+    if ( Validator::IsExists('host_mm_id') ){
+        CRUDUtils::entitySetAssociation($Relation, $host_mm_id, 'Units', 'hostMm', 'RelationHostUnitMMID', $params, 'host_mm_id', true, false, true);
+    } else if ( Validator::IsNull($Relation->getMm()) ){
+        throw new Exception(ExceptionMessages::MissingRelationHostUnitMMIDValue, ExceptionCodes::MissingRelationHostUnitMMIDValue);
     } 
     
+    //$guest_mm_id==============================================================
+    if ( Validator::IsExists('guest_mm_id') ){
+        CRUDUtils::entitySetAssociation($Relation, $guest_mm_id, 'Units', 'guestMm', 'RelationGuestUnitMMID', $params, 'guest_mm_id', true, false, true);
+    } else if ( Validator::IsNull($Relation->getMm()) ){
+        throw new Exception(ExceptionMessages::MissingRelationGuestUnitMMIDValue, ExceptionCodes::MissingRelationGuestUnitMMIDValue);
+    } 
+    
+    //$relation_state===========================================================
+    if ( Validator::IsExists('relation_state') ){    
+        if ($relation_state  == 0 || $relation_state  == 1 )
+            CRUDUtils::entitySetParam($Relation, $relation_state, 'RelationState', 'relation_state' , $params , true, false, true);
+        else
+            throw new Exception(ExceptionMessages::InvalidRelationStateType, ExceptionCodes::InvalidRelationStateType);
+    } else if ( Validator::IsNull($Relation->getMm()) ){
+        throw new Exception(ExceptionMessages::MissingRelationStateValue, ExceptionCodes::MissingRelationStateValue);
+    } 
+    
+    //$true_date================================================================  
+    if ( Validator::IsExists('true_date') ){
+        CRUDUtils::entitySetDate($Relation, $true_date, 'RelationTrueDate', 'true_date' , $params);
+    } else if ( Validator::IsNull($Relation->getMm()) ){
+        throw new Exception(ExceptionMessages::MissingRelationTrueDateValue, ExceptionCodes::MissingRelationTrueDateValue);
+    } 
+    
+    //$true_fek=================================================================
+    if ( Validator::IsExists('true_fek') ){
+        CRUDUtils::entitySetParam($Relation, $true_fek, 'RelationTrueFek', 'true_fek' , $params);
+    } else if ( Validator::IsNull($Relation->getMm()) ){
+        throw new Exception(ExceptionMessages::MissingRelationTrueFekValue, ExceptionCodes::MissingRelationTrueFekValue);
+    } 
+    
+    //$false_fek================================================================
+    if ( Validator::IsExists('false_fek') ){
+        CRUDUtils::entitySetParam($Relation, $false_fek, 'RelationFalseFek', 'false_fek' , $params);
+    } else if ( Validator::IsNull($Relation->getMm()) ){
+        throw new Exception(ExceptionMessages::MissingRelationFalseFekValue, ExceptionCodes::MissingRelationFalseFekValue);
+    } 
+    
+    //$false_date===============================================================
+    if ( Validator::IsExists('false_date') ){
+        CRUDUtils::entitySetDate($Relation, $false_date, 'RelationFalseDate', 'false_date' , $params);
+    } else if ( Validator::IsNull($Relation->getMm()) ){
+        throw new Exception(ExceptionMessages::MissingRelationFalseDateValue, ExceptionCodes::MissingRelationFalseDateValue);
+    } 
+    
+    //$relation_type============================================================
+    if ( Validator::IsExists('relation_type') ){
+        CRUDUtils::entitySetAssociation($Relation, $relation_type, 'RelationTypes', 'relationType', 'RelationType', $params, 'relation_type');
+    } else if ( Validator::IsNull($Relation->getMm()) ){
+        throw new Exception(ExceptionMessages::MissingRelationTypeValue, ExceptionCodes::MissingRelationTypeValue);
+    } 
+
+//controls======================================================================   
+
+        //check name duplicate==================================================        
+        $qb = $entityManager->createQueryBuilder()
+                            ->select('COUNT(r.relationId) AS fresult')
+                            ->from('Relations', 'r')
+                            ->where("r.hostMm = :hostMm AND r.guestMm = :guestMm AND r.relationType = :relationType AND r.relationId != :relationId")
+                            ->setParameter('hostMm', $Relation->getHostMm())
+                            ->setParameter('guestMm', $Relation->getGuestMm())
+                            ->setParameter('relationType', $Relation->getRelationType())
+                            ->setParameter('relationId', $Relation->getRelationId())    
+                            ->getQuery()
+                            ->getSingleResult();
+      
+        if ( $qb["fresult"] != 0 ) {
+             throw new Exception(ExceptionMessages::DuplicatedRelationValue ,ExceptionCodes::DuplicatedRelationValue);
+        }
+        
+//update to db================================================================== 
+        $entityManager->persist($Relation);
+        $entityManager->flush($Relation);
+
+        $result["relation_id"] = $Relation->getRelationId();
+           
+//result_messages===============================================================      
+        $result["status"] = ExceptionCodes::NoErrors;
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
+        $result["status"] = $e->getCode();
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    }                
+        
     return $result;
 }
-
 ?>

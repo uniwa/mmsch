@@ -27,6 +27,13 @@ class Sources
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="visible", type="string", length=5, nullable=false)
+     */
+    private $visible;
 
     public function getSourceId() {
         return $this->sourceId;
@@ -42,6 +49,14 @@ class Sources
 
     public function setName($name) {
         $this->name = $name;
+    }
+    
+    public function getVisible() {
+        return $this->visible;
+    }
+
+    public function setVisible($visible) {
+        $this->visible = $visible;
     }
 
 }
