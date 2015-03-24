@@ -279,7 +279,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                        
             $municipality_community_id = $this->getDictionary($unit, $unit["MunicipalityCommunityId"], $this->a_municipality_communities, $this->o_municipality_communities, 'InvalidMunicipalityCommunityValue', 'MunicipalityCommunities', 'municipalityCommunityId', 'myschoolMunicipalityCommunityId', load_municipality_communities);
         
-            if ($this->a_municipality_communities[$municipality_community_id] !== null && $this->convert_greek_accents($unit["MunicipalityCommunity"]) != $this->convert_greek_accents($this->o_municipality_communities[$municipality_community_id]->municipality_community) ) {
+            if ($this->a_municipality_communities[$municipality_community_id] !== null && $this->convert_greek_accents($unit["MunicipalityCommunity"]) != $this->o_municipality_communities[$municipality_community_id]->municipality_community ) {
                 $municipalityCommunityObj = $entityManager->getRepository('MunicipalityCommunities')->findOneBy( array( 'municipalityCommunityId' => $municipality_community_id));
 
                 if ($this->a_municipalities[ $municipality_id ] != null) {
