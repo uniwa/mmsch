@@ -359,9 +359,10 @@ function GetCpes(
 //= E X E C U T E
 //======================================================================================================================
 
-        $curl = curl_init('http://inventory-devel.sch.gr/creports/pub/results.json?id=14&gsn_registry_code='.$unit[0].'&');
+        $curl = curl_init('http://inventory.sch.gr/creports/pub/results.json?id=14&gsn_registry_code='.$unit[0].'&');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        $data = curl_exec($curl);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3); 
+	$data = curl_exec($curl);
         $data = json_decode( $data, true );
         $rows = $data["flat_results"];
         $result["total"] = count($rows);
