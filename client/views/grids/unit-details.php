@@ -307,10 +307,6 @@ position: fixed;
 									<td class="term-value"><a href="##" class="k-button btnShowImplementationEntityInfo" data-implementation_entity_id="#= implementation_entity_id #">#= implementation_entity_initials #</a></td>
 								</tr>
 								# } #
-								<tr>
-									<td class="detail-term">Τηλέφωνο Επικοινωνίας</td>
-									<td class="term-value">#= phone_number #</td>
-								</tr>
 							</tbody>
 						</table>
 						</script>
@@ -546,6 +542,7 @@ position: fixed;
 							</div>	
 						</div>
 					
+						<!-- Υποδίκτυα -->
 						<div id="holder-set-ips" class="detail-section-tab">
 							<h4>Υποδίκτυα</h4>
 							<div class="detail-section-tab-content">
@@ -766,6 +763,11 @@ position: fixed;
 								<tr>
 									<td class="detail-term">Περιφερειακή ενότητα</td>
 									<td class="term-value" data-bind="text: unitData.prefecture"></td>
+								</tr>
+
+								<tr>
+									<td class="detail-term">Δημοτική Ενότητα</td>
+									<td class="term-value" data-bind="text: unitData.municipality_community"></td>
 								</tr>
 								
 								<tr>
