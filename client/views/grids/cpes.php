@@ -19,8 +19,8 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					
 	<div class="k-widget filters-wrapper" >
 		<div class="grid-view-search pull-left" style="margin-right:10px">
-			<input id="txtUnit" type="text" class="k-textbox" style="" placeholder="Πληκτρολογήστε τον Κωδικό της Μονάδας">
-			<i class="fa fa-search"></i>
+			<input id="txtUnit" type="text" class="k-textbox" style="width:250px" placeholder="Πληκτρολογήστε τον Κωδικό της Μονάδας">
+			<i class="fa fa-search k-link" id="btnSearchCpe"></i>
 		</div>
 		<div class="grid-cpes-filters pull-left" style="font-size:8pt;"></div>
 		<div class="pull-right"></div>
@@ -218,85 +218,6 @@ $(document).ready(function() {
 						
 	var dlgWndSelectColms = $("#dlgWndSelectColms").data("kendoWindow");
 
-	/*
-	dlgWndSelectColms.bind("activate", function(){
-		// build the content
-		$("#dlgWndSelectColms #cntGridColms").empty();
-								
-		var ul = $("<ul>", {'id': 'list-grid-cpes-columns','class': 'k-reset'});
-	
-		$.each(gridCpes.columns, function(i, item) {
-																	
-			var checked = (!item.hidden)? "checked":"";
-	
-			ul.append(
-				"<li class=\"k-item k-state-default\" role=\"menuitem\">" +
-				"<span class=\"k-link\">" +
-				"<input "+ checked  +" type=\"checkbox\" id=\"chb-"+ item.field +"\" class=\"\" data-index=\""+i+"\" data-field=\""+item.field+"\">" +
-				"<label class=\"k-link\" for=\"chb-"+ item.field +"\">" + item.title + "</label>" +
-				"</span>" +
-				"</li>"
-			);
-		});
-	
-		$("#dlgWndSelectColms #cntGridColms").append(ul);
-		ul.makeCol(3);
-								
-		// fix the width
-		var $dlgWndSelectColmsContainer = $('#dlgWndSelectColms').parent();
-	
-		$dlgWndSelectColmsContainer.css({"width":"50%"});
-	
-		// fix the height 
-		dlgWndSelectColms.trigger("resize");
-	
-		// fix position
-		$dlgWndSelectColmsContainer.position({
-			my: "right top+10",
-			at: "right bottom",
-			of:$('#btnShowColumnChooser'),
-			collision: "fit"
-		});
-	});
-	*/
-	
-	/*
-	dlgWndSelectColms.bind("resize", function(){
-		$("#dlgWndSelectColms #cntGridColms").css({
-			height:$("#dlgWndSelectColms.k-window-content").height()-80 + "px",
-			"overflow-y":"auto",
-			"overflow-x":"hidden"
-		});
-	});
-
-	$('body').on('click', '#btnShowColumnChooser', function(e) {
-		$('#dlgWndSelectColms').data("kendoWindow").open();
-	});
-	*/
-
-	/*
-	$('body').on('click', '#btnApplyColms', function(e) {
-
-		var cols = $("#list-grid-cpes-columns input[type='checkbox']");
-
-		$.each(cols, function(i, item) {
-			var col = $(item);
-			var field = col.data('field');
-			var checked = $(item).is(':checked');
-
-			if (checked){
-				gridCpes.showColumn(field);
-			}
-			else {
-				gridCpes.hideColumn(field);
-			}
-		});
-							
-		resizeGrid('grid-cpes');
-	});
-	*/
-	/**/
-
 	mmschApp.modules['cpes'].init();
 						
 	var grid_pane = $('.splitter-holder-inner div#left-pane:first');
@@ -326,7 +247,7 @@ $(document).ready(function() {
 				}
 			},
 			error: function(e){
-				alert(e.errors);
+				//alert(e.errors);
 			},
 			requestStart: function(e) {
 
@@ -422,8 +343,6 @@ $(document).ready(function() {
 					}
 				},
 				requestEnd: function(e) {
-
-					$('#btnSearch').button('reset');
 					
 					var xhrResponse = e.response;
 
@@ -445,6 +364,7 @@ $(document).ready(function() {
 					if(data.length > 0){
 						var results_no = data.length;
 					}
+					
 				}
 			}), // END OF DATASOURCE CONFIG
 			sortable: {
@@ -523,10 +443,7 @@ $(document).ready(function() {
 			}
 	}).data('kendoGrid');
 						
-	// start - get units from server with specific filter
-	gridCpes.dataSource.filter([]);
-	// end - get units from server
-
+	//gridCpes.dataSource.filter([]);
 
 	$("body").on("click", "#grid-cpes .k-grid-content tr[role='row'].k-master-row", function(e){
 
@@ -541,137 +458,49 @@ $(document).ready(function() {
 
 	$("#txtUnit").keydown(function(e) {
 		if (e.keyCode == 13) {
-			//gridCpes.options.inSearching = true;
-			
-			var cfgFilters = gridCpes.dataSource.filter();
-
-			var filters = null;
-
-			if (typeof cfgFilters == "undefined"){
-				filters = [];
-			}
-			else {
-				filters = cfgFilters.filters;
-			}
-			
-			var idxFilterName = lookup(filters, "unit", "field");
-
-			if (idxFilterName > -1){
-				filters[idxFilterName].value = $("#txtUnit").val();
-			}	
-			else {
-				filters.push({'field': 'unit', 'value': $("#txtUnit").val()});
-			}
-
-			//$( "#dlgWndSearchBy input[name='txtName']" ).val($("#txtUnit").val())
-			//
-
-			gridCpes.dataSource.filter(filters);
+			handlerSearchCpe();
 		}
 	});
 
-	/*
-	$('body').on('click', '#btnSearch', function(e) {
-
-		e.preventDefault();
-        $(this).button('loading');
-        
-		var grid = $('#grid-cpes').data('kendoGrid');
-		grid.dataSource.transport.options.read.url = apiUrl + "cpes";
-
-		var $frm = $("#dlgWndSearchBy").find("form:visible");
-		var frmID = $frm.attr("id");
-
-		var endPoint = "cpes";
-
-		grid.dataSource.transport.options.read.url = apiUrl + endPoint;
-
-        var frmData = $frm.serializeArray();
-
-        var dsSrcParams = [];
-
-        $.each(frmData, function(i, v) {
-            dsSrcParams.push({'field': v.name, 'value': v.value});
-        });
-
-        grid.options.inSearching = true;
-        grid.dataSource.filter(dsSrcParams);        
-    });
-	*/
-
-	/*
-	$("body").on('click', "#btnClearFrmSearch", function(e){
-     	
-		e.preventDefault();
-
-		var grid = $('#grid-cpes').data('kendoGrid');
-		grid.dataSource.transport.options.read.url = apiUrl + "cpes";
-
-		var $frm = $("#dlgWndSearchBy").find("form:visible");
-		var frmID = $frm.attr("id");
-		
-		$frm[0].reset();
-
-		if (frmID == "frmCpeMainSearch"){
-		}
-		
-     });
-	*/
-
-	/*
-	$('body').on('keypress', '#dlgWndSearchBy', function(e) {
-		if (e.keyCode == 13 && e.target.type != "textarea") {
-			$("#btnSearch").trigger("click");
-		}
-	});
-	*/
-
-	/*
-	var viewModel = kendo.observable({
-		
-								
-		
-		_resizeInnerSplitter: function(e){
-			resetPopPosition();
-			
-			
-			if ( preview_pane.hasClass("unpinned") ){
-		
-				var r = (preview_pane.width()-40)*-1;
-		
-				grid_pane.css({"width":"auto"});
-				preview_pane.css({"left":"auto", "right": r + "px" });
-				
-				
-				
-			}
-			
-			resizeGrid("grid-cpes");
-		}
-		
-		
-	});
-	*/
-
-	//kendo.bind(".splitter-holder-inner", viewModel);
-						
 	
-						
-	//$(".splitter-holder-inner").data('kendoSplitter').trigger('resize');
-						
-						
-	/*
-	$('#btnShowDlgSearch').click(function(e){
-		mmschApp.modules['cpes'].toggleSearchBoxModal();
-	});
-	*/
 	
+	$("#mod-cpes").on("click", "#btnSearchCpe", function(e) {
+		handlerSearchCpe();
+	});
+
+	function handlerSearchCpe(){
+		
+		var cfgFilters = gridCpes.dataSource.filter();
+
+		var filters = null;
+
+		if (typeof cfgFilters == "undefined"){
+			filters = [];
+		}
+		else {
+			filters = cfgFilters.filters;
+		}
+		
+		var idxFilterName = lookup(filters, "unit", "field");
+
+		if (idxFilterName > -1){
+			filters[idxFilterName].value = $("#txtUnit").val();
+		}	
+		else {
+			filters.push({'field': 'unit', 'value': $("#txtUnit").val()});
+		}
+
+		gridCpes.dataSource.filter(filters);
+	}
+
+
 	resizeGrid("grid-cpes");
 						
 						
 
 }); // end of
 
+ 
 
 function resetPopPosition(){
 	

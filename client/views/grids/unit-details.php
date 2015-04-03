@@ -618,6 +618,8 @@ position: fixed;
 									
 									# var circuit = circuits[i]; #
 									
+									# if (circuit.deactivated_date != null) continue; #
+									
 									<div class="mmsch-list-item">
 									<table class="table borderless">
 									<tbody>
@@ -666,8 +668,8 @@ position: fixed;
 									</tr>
 									</tbody>
 									</table>
-									
 									</div>
+
 									# } #
 									
 									
