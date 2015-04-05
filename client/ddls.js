@@ -7,9 +7,15 @@ function ddls(){
         dataTextField: "category",
         dataValueField: "category_id",
         optionLabel: "Επιλέξτε...",
-        //dataSource: dsCategories,
-		dataSource: inMemoryCategories,
-        autoBind: true,
+        dataSource: new kendo.data.DataSource({
+            transport: tsCategories,
+            schema: {
+                data: "data",
+                total: "total"
+            }
+        }),
+		//dataSource: inMemoryCategories,
+        autoBind: false,
         change: function() {
 
             var value = this.value();
@@ -84,7 +90,7 @@ function ddls(){
         optionLabel: "Επιλέξτε...",
         //dataSource: dsEducationLevels,
 		dataSource: inMemoryΕducationLevels,
-        autoBind: true,
+        autoBind: false,
         change: function() {
             var value = this.value();
             $('#src_educationLevel').val(value);
@@ -164,12 +170,20 @@ if (typeof $("#src_unitType").data('kendoMultiSelect') != "object"){
     
 if (typeof $("#src_regionEduAdmin").data('kendoMultiSelect') != "object"){
 		$("#src_regionEduAdmin").kendoMultiSelect({
+			animation: false,
             dataTextField: "region_edu_admin",
             dataValueField: "region_edu_admin_id",
             optionLabel: "Επιλέψτε...",
-            //dataSource: dsRegionEduAdmins,
-            dataSource: inMemoryRegionEduAdmins.data(),
-            //autoBind: true,
+            dataSource: new kendo.data.DataSource({
+                serverFiltering: true,
+                transport: tsRegionEduAdmins,
+                schema: {
+                    data: "data",
+                    total: "total"
+                }
+            }),
+            //dataSource: inMemoryRegionEduAdmins.data(),
+            autoBind: false,
             change: function() {
                 var value = this.value();
                 $('#src_regionEduAdmin').val(value);
@@ -214,26 +228,50 @@ if (typeof $("#src_regionEduAdmin").data('kendoMultiSelect') != "object"){
                 }
             },
             dataBound: function() {
+            	//this.dataSource.insert(0, { region_edu_admin_id: -1, region_edu_admin: "--Χωρίς Περιφέρεια--" });
                 //var totalItems = this.dataSource.total();
                 //var lbl = this.element.parent().prev();
                 //lbl.find('.badge').html(totalItems);
+            },
+            open: function(e) {
+            	
+            	/**
+            	 * execute only at first time open
+            	 */
+                if (typeof this["noneOptionSet"] != "undefined" ){
+                	//do nothing
+                }
+                else{
+                	this.dataSource.insert(0, { region_edu_admin_id: -1, region_edu_admin: "--Χωρίς Περιφέρεια--" });
+                	this["noneOptionSet"] = 1;
+                }
             }
         });
+		
+		
 }
-        //$src_regionEduAdmin.data('kendoMultiSelect').dataSource.insert(0, { region_edu_admin_id: -1, name: "--Χωρίς Περιφέρεια--" });
+ 
 
 if (typeof $("#src_eduAdmin").data('kendoMultiSelect') != "object"){
 		$("#src_eduAdmin").kendoMultiSelect({
-            cascadeFrom: "src_regionEduAdmin",
-            dataTextField: "short_name",
+			animation: false,
+            //cascadeFrom: "src_regionEduAdmin",
+            dataTextField: "edu_admin",
             dataValueField: "edu_admin_id",
             optionLabel: "Επιλέξτε...",
             //dataSource: inMemoryEduAdmins.data(),
             //dataSource: inMemoryEduAdmins.data(),
-			dataSource: inMemoryEduAdmins.data(),
-            //dataSource: dsEduAdmins,
+			//dataSource: inMemoryEduAdmins.data(),
+            dataSource: new kendo.data.DataSource({
+                serverFiltering: false,
+                transport: tsEduAdmins,
+                schema: {
+                    data: "data",
+                    total: "total"
+                }
+            }),
             //autoBind: false,
-            autoBind: true,
+            autoBind: false,
             change: function() {
                 var value = this.value();
                 $('#src_eduAdmin').val(value);
@@ -270,7 +308,17 @@ if (typeof $("#src_eduAdmin").data('kendoMultiSelect') != "object"){
                  var lbl = this.element.parent().prev();
                  lbl.find('.badge').html(totalItems);*/
                 
-                //this.dataSource.insert(0, { edu_admin_id: -1, name: "--Χωρίς Διεύθυνση εκπαίδευσης--" });
+                //
+            	/**
+            	 * execute only at first time open
+            	 */
+                if (typeof this["noneOptionSet"] != "undefined" ){
+                	//do nothing
+                }
+                else{
+                	this.dataSource.insert(0, { edu_admin_id: -1, edu_admin: "--Χωρίς Διεύθυνση εκπαίδευσης--" });
+                	this["noneOptionSet"] = 1;
+                }
             }
         });
 }     
@@ -278,12 +326,21 @@ if (typeof $("#src_eduAdmin").data('kendoMultiSelect') != "object"){
 
 if (typeof $("#src_transferArea").data('kendoMultiSelect') != "object"){
         $("#src_transferArea").kendoMultiSelect({
+        	animation: false,
             //cascadeFrom: "src_regionEduAdmin",
             dataTextField: "transfer_area",
             dataValueField: "transfer_area_id",
             optionLabel: "Επιλέξτε...",
-            dataSource: inMemoryTransferAreas,
-            autoBind: true,
+            //dataSource: inMemoryTransferAreas,
+            dataSource: new kendo.data.DataSource({
+                serverFiltering: false,
+                transport: tsTransferAreas,
+                schema: {
+                    data: "data",
+                    total: "total"
+                }
+            }),
+            autoBind: false,
             change: function() {
                 var value = this.value();
                 $('#src_transferArea').val(value);
@@ -292,6 +349,16 @@ if (typeof $("#src_transferArea").data('kendoMultiSelect') != "object"){
                 //var totalItems = this.dataSource.total();
                 //var lbl = this.element.parent().prev();
                 //lbl.find('.badge').html(totalItems);
+            },
+            open: function(){
+            	
+            	if (typeof this["noneOptionSet"] != "undefined" ){
+                	//do nothing
+                }
+                else{
+                	this.dataSource.insert(0, { transfer_area_id: -1, transfer_area: "--Χωρίς Περιοχή Μετάθεσης--" });
+                	this["noneOptionSet"] = 1;
+                }
             }
         });
 }    
@@ -299,6 +366,7 @@ if (typeof $("#src_transferArea").data('kendoMultiSelect') != "object"){
 
 if (typeof $("#src_orientationType").data('kendoMultiSelect') != "object"){
         $("#src_orientationType").kendoMultiSelect({
+        	animation: false,
             cascadeFrom: "src_category",
 			dataTextField: "orientation_type",
             dataValueField: "orientation_type_id",
@@ -337,6 +405,7 @@ if (typeof $("#src_orientationType").data('kendoMultiSelect') != "object"){
 
 if (typeof $("#src_operationShift").data('kendoMultiSelect') != "object"){
         $("#src_operationShift").kendoMultiSelect({
+        	animation: false,
             cascadeFrom: "src_category",
 			dataTextField: "operation_shift",
             dataValueField: "operation_shift_id",
@@ -375,6 +444,7 @@ if (typeof $("#src_operationShift").data('kendoMultiSelect') != "object"){
 
 if (typeof $("#src_prefecture").data('kendoMultiSelect') != "object"){
         $("#src_prefecture").kendoMultiSelect({
+        	animation: false,
             dataTextField: "prefecture",
             dataValueField: "prefecture_id",
             optionLabel: "Επιλέξτε...",
@@ -435,6 +505,7 @@ if (typeof $("#src_prefecture").data('kendoMultiSelect') != "object"){
 
 if (typeof $("#src_municipality").data('kendoMultiSelect') != "object"){
         $("#src_municipality").kendoMultiSelect({
+        	animation: false,
             cascadeFrom: "src_prefecture",
 			dataTextField: "municipality",
             dataValueField: "municipality_id",
@@ -463,10 +534,13 @@ if (typeof $("#src_municipality").data('kendoMultiSelect') != "object"){
 
 if (typeof $("#src_implementationEntity").data('kendoMultiSelect') != "object"){
         $("#src_implementationEntity").kendoMultiSelect({
+        	animation: false,
             dataTextField: "implementation_entity_initials",
             dataValueField: "implementation_entity_id",
             optionLabel: "Επιλέξτε...",
-			dataSource: staticData.ImplEnt.data,
+			//dataSource: staticData.ImplEnt.data,
+            dataSource: dsImplementationEntities,
+            autoBind: false,
 			//value: [g_impEnt[0].implementation_entity_id], 
             change: function() {
                 var value = this.value();
@@ -490,11 +564,21 @@ if (typeof $("#src_implementationEntity").data('kendoMultiSelect') != "object"){
         
         if (typeof $("#src_source").data('kendoMultiSelect') != "object"){        
         $("#src_source").kendoMultiSelect({
+        	animation: false,
             dataTextField: "source",
             dataValueField: "source_id",
             optionLabel: "Επιλέξτε...",
-            dataSource: inMemorySources,
-            autoBind: true,
+            //dataSource: inMemorySources,
+            dataSource: new kendo.data.DataSource({
+            	transport: tsSources,
+            	schema: {
+            	        data: "data",
+            	        total: "total"
+            	},
+            	serverFiltering: true,
+            	filter: { field: "visible", operator: "eq", value: "true" }
+            }), 
+            autoBind: false,
             change: function() {
                 var value = this.value();
 				$('#src_source').val(value);
@@ -509,6 +593,7 @@ if (typeof $("#src_implementationEntity").data('kendoMultiSelect') != "object"){
 
         if (typeof $("#src_state").data('kendoMultiSelect') != "object"){
         $("#src_state").kendoMultiSelect({
+        	animation: false,
             dataTextField: "state",
             dataValueField: "state_id",
             optionLabel: "Επιλέξτε...",
@@ -537,6 +622,7 @@ if (typeof $("#src_implementationEntity").data('kendoMultiSelect') != "object"){
 
         if (typeof $("#src_specialType").data('kendoMultiSelect') != "object"){
         $("#src_specialType").kendoMultiSelect({
+        	animation: false,
             cascadeFrom: "src_category",
 			dataTextField: "special_type",
             dataValueField: "special_type_id",
@@ -565,6 +651,7 @@ if (typeof $("#src_implementationEntity").data('kendoMultiSelect') != "object"){
 		
         if (typeof $("#src_legalCharacter").data('kendoMultiSelect') != "object"){
 		$("#src_legalCharacter").kendoMultiSelect({
+			animation: false,
             cascadeFrom: "src_category",
 			dataTextField: "legal_character",
             dataValueField: "legal_character_id",
@@ -588,6 +675,7 @@ if (typeof $("#src_implementationEntity").data('kendoMultiSelect') != "object"){
 		
         if (typeof $("#src_subnetType").data('kendoMultiSelect') != "object"){
 		$("#src_subnetType").kendoMultiSelect({
+			animation: false,
             dataTextField: "subnet_type",
             dataValueField: "unit_network_subnet_type_id",
             optionLabel: "Επιλέξτε...",
@@ -610,6 +698,7 @@ if (typeof $("#src_implementationEntity").data('kendoMultiSelect') != "object"){
 		
         if (typeof $("#src_circuitType").data('kendoMultiSelect') != "object"){
 		$("#src_circuitType").kendoMultiSelect({
+			animation: false,
             dataTextField: "circuit_type",
             dataValueField: "circuit_type_id",
             optionLabel: "Επιλέξτε...",

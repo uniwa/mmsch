@@ -721,7 +721,22 @@ $isAnonymous = @ $_GET['is_anonymous'];
 							title: "Αναζήτηση",
 							visible: false,
 							animation: false,
-							modal: true
+							modal: true,
+							open: function(){
+								if (typeof this["initialized"] != "undefined"){
+								}
+								else {
+
+									$("#src_category").data('kendoMultiSelect').dataSource.fetch();
+									$("#src_educationLevel").data('kendoMultiSelect').dataSource.fetch();
+									$("#src_regionEduAdmin").data('kendoMultiSelect').dataSource.fetch();
+									$("#src_eduAdmin").data('kendoMultiSelect').dataSource.fetch();
+									$("#src_transferArea").data('kendoMultiSelect').dataSource.fetch();
+									
+									this["initialized"]=1;
+									
+								}
+							}
 						});
 
 						$("#dlgWndSearchBy.k-window-content").css({overflow:"hidden"});
