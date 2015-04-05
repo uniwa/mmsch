@@ -108,6 +108,7 @@ position: fixed;
 					<div class="alert alert-success success-create" style="display:none;">Η διασύνδεση δημιουργήθηκε επιτυχώς</div>
 					<div class="alert alert-success success-update" style="display:none;">Η διασύνδεση ενημερώθηκε επιτυχώς</div>
 					
+					<!-- IPs -->
 					<div class="k-block">
 						<div class="k-header">» IPs</div>
 						<div class="k-content">
@@ -220,19 +221,10 @@ position: fixed;
 		<div class="clearfix k-content wnd-footer">
 			<div class="k-window-action">
 				<button id="btnSaveConnection" 
-				data-template="tpl-button-label" 
-				data-bind="source:this ,events:{click: saveConnection}" 
-				data-loading-text="Loading..."
-				class="k-button pull-right" type="button">Δημιουργία Διασύνδεσης</button>
-				
-				<script id="tpl-button-label" type="text/x-kendo-template" >
-				# if (editedConnection == null) { #
-				Αποθήκευση
-				# } else { #
-				Αποθήκευση
-				# } #
-				</script>
-				
+					data-bind="events:{ click: saveConnection }, html: setLabelbtnSaveConnection"
+					data-loading-text="Loading..."
+					class="k-button pull-right" type="button">
+				</button>
 			</div>
 		</div>
 	</div>
@@ -413,6 +405,7 @@ position: fixed;
                 </div>
 				<?php } ?>
 
+				<!-- @ΔΙΚΤΥΑΚΑ ΣΤΟΙΧΕΙΑ  -->
 				<?php if (!$isAnonymous) { ?>
 					<div id="holder-net-infos" class="detail-section">
 					
@@ -436,7 +429,7 @@ position: fixed;
 							</div>
 						</div> 
 						
-					
+						<!-- @ΣΤΟΙΧΕΙΑ ΔΙΑΣΥΝΔΕΣΕΙΣ  -->
 						<div class="detail-section-tab">
 							<h4>Διασυνδέσεις</h4>
 							<div class="clearfix" style="padding-right:10px;">
@@ -541,8 +534,9 @@ position: fixed;
 								</script>
 							</div>	
 						</div>
+						<!-- ΣΤΟΙΧΕΙΑ ΔΙΑΣΥΝΔΕΣΕΙΣ@  -->
 					
-						<!-- Υποδίκτυα -->
+						<!-- @ΥΠΟΔΙΚΤΥΑ -->
 						<div id="holder-set-ips" class="detail-section-tab">
 							<h4>Υποδίκτυα</h4>
 							<div class="detail-section-tab-content">
@@ -603,8 +597,9 @@ position: fixed;
 							
 							</div>
 						</div>
+						<!-- ΥΠΟΔΙΚΤΥΑ@ -->
 					
-						<!-- Κυκλώματα -->
+						<!-- @ΚΥΚΛΩΜΑΤΑ -->
 						<div id="holder-circuits" class="detail-section-tab">
 							<h4>Κυκλώματα</h4>
 							<div class="detail-section-tab-content" data-bind="source: unitData" data-template="tmpl-circuit-list"></div>
@@ -618,7 +613,7 @@ position: fixed;
 									
 									# var circuit = circuits[i]; #
 									
-									# if (circuit.deactivated_date != null) continue; #
+									# if (circuit.status != 1) continue; #
 									
 									<div class="mmsch-list-item">
 									<table class="table borderless">
@@ -680,8 +675,9 @@ position: fixed;
 								</script>
 							
 						</div>
+						<!-- ΚΥΚΛΩΜΑΤΑ@ -->
 					
-						<!-- CPEs -->
+						<!-- @CPEs -->
 						<div id="holder-cpes" class="detail-section-tab">
 							<h4>CPEs</h4>
 							<div class="detail-section-tab-content" data-bind="source: unitData" data-template="tmpl-cpe-list"></div>
@@ -713,8 +709,9 @@ position: fixed;
 								</script>
 							
 						</div>
+						<!-- CPEs@ -->
 					
-						<!-- UIDs -->
+						<!-- @UIDs -->
 						<div id="holder-uids" class="detail-section-tab">
 							<h4>UIDs</h4>
 							<div class="detail-section-tab-content" data-bind="source: unitData" data-template="tmpl-ldap-list"></div>
@@ -745,14 +742,15 @@ position: fixed;
 								<p class="text-muted"><em>Δεν υπάρχουν διαθέσιμοι λογαριασμοί υπηρεσίας</em></p>
 								# } #
 								</script>
-							
 						</div>
+						<!-- UIDs@ -->
 					
 					</div>
 					<?php } ?>
+				<!-- ΔΙΚΤΥΑΚΑ ΣΤΟΙΧΕΙΑ@  -->	
 				
                 
-                
+                <!-- @ΤΟΠΟΛΟΓΙΚΑ ΣΤΟΙΧΕΙΑ -->
 				<?php if (!$isAnonymous) { ?>
                 <div id="holder-geo-infos" class="detail-section">
 					
@@ -811,7 +809,9 @@ position: fixed;
 					</div>
                 </div>
 				<?php } ?>
+				<!-- ΤΟΠΟΛΟΓΙΚΑ ΣΤΟΙΧΕΙΑ@ -->
 
+				<!-- @ΔΙΟΙΚΗΤΙΚΑ ΣΤΟΙΧΕΙΑ -->
 				<?php if (!$isAnonymous) { ?>
                 <div id="holder-manage-infos" class="detail-section">
 					<div class="detail-section-header"><h3 class="k-widget">Διοικητικά Στοιχεία</h3></div>
@@ -841,7 +841,9 @@ position: fixed;
 					</div>
                 </div>
 				<?php } ?>
+				<!-- ΔΙΟΙΚΗΤΙΚΑ ΣΤΟΙΧΕΙΑ@ -->
 
+				<!-- @ΣΤΟΙΧΕΙΑ ΜΕΤΑΒΑΣΕΩΝ -->
 				<?php if (!$isAnonymous) { ?>
                 <div id="holder-transitions-infos" class="detail-section">
 					<div class="detail-section-header"><h3 class="k-widget">Μεταβάσεις</h3></div>
@@ -850,7 +852,7 @@ position: fixed;
 							
 							<script id="tmpl-transaction-list" type="text/x-kendo-template">
 							
-							# if (logs != null) { #
+							# if ( typeof logs != "undefined" &&  logs != null) { #
 								
    								# for (var i = logs.length-1, len = 0;  i >= len; i-- ){ #
 
@@ -948,6 +950,7 @@ position: fixed;
                     </div>
                 </div>
                 <?php } ?>
+				<!-- ΣΤΟΙΧΕΙΑ ΜΕΤΑΒΑΣΕΩΝ@ -->
 			
     	</div>
     </div>
@@ -977,6 +980,8 @@ position: fixed;
 			
 			//$("body").off("click", "button.editConnection");
 			//$("body").off("click", "button.deleteConnection");
+			
+			//$('#btnSaveConnection').click(function() { return false; });
 		});
 		
 		$("#unit-" + mm_id + "-preview").on("click", "button.editConnection", function(e){
@@ -1087,6 +1092,16 @@ position: fixed;
 			
 			editedConnection: null,
 			
+			setLabelbtnSaveConnection: function(){
+				
+				if ( typeof viewModel['editedConnection'] != "undefined" && viewModel['editedConnection'] != null){
+					return "Αποθήκευση";
+				}
+				else {
+					return "Αποθήκευση";
+				}
+			},
+			
 			unitSource: new kendo.data.DataSource({
 				transport: {
 					read: {
@@ -1095,6 +1110,10 @@ position: fixed;
 						type: "GET",
 						data: {
 							mm_id: mm_id
+						},
+						complete : function(){
+							console.log("read  complete");
+							//viewModel.handlerFetchUnit(false);
 						}
 					},
 					parameterMap: function(data, type) {
@@ -1112,6 +1131,10 @@ position: fixed;
 					}
 				},
 				change: function(e) {
+
+					//e.preventDefault();
+					
+					console.log("unit data change");
 				
 					var viewModel = this.parent();
 					
@@ -1130,8 +1153,11 @@ position: fixed;
 			}),
 			
 			createConnection: function(e){
+
+				var self = this;
 				//kendo.bind($("#wnd_create_connection_" + mm_id), viewModel);
 				wnd_create_connection.center().open();
+				//self.refreshGrds();
 			},
 			
 			backToNetInfo: function(){
@@ -1159,6 +1185,7 @@ position: fixed;
 				//console.log(self.get("editedConnection"));
 				
 				wnd_create_connection.center().open();
+				//self.refreshGrds();
 			},
 
 			saveConnection: function(e){
@@ -1343,22 +1370,46 @@ position: fixed;
 						
                     	$.when.apply($, addConnectionRequests).then(
                             function(){
-                            	$.when.apply($, deleteConnectionRequests).then(
-                                	function(){
-                                		btn.button("reset");
 
-                						//at this point every check passes show display sucess msg depending on method post/put
-                						if (method == "POST"){
-                							$form.find(".alert-success.success-create").show("fast");
-                						}
-                						if (method == "PUT"){
-                							$form.find(".alert-success.success-update").show("fast");
-                						}
+                            	//self.get("unitSource").filter([]);
+                            	
+                            	
+                            	
+                                if (deleteConnectionRequests.length > 0) {
+	                            	$.when.apply($, deleteConnectionRequests).then(
+	                                	function(){
+	                                		btn.button("reset");
+	
+	                						//at this point every check passes show display sucess msg depending on method post/put
+	                						if (method == "POST"){
+	                							$form.find(".alert-success.success-create").show("fast");
+	                						}
+	                						if (method == "PUT"){
+	                							$form.find(".alert-success.success-update").show("fast");
+	                						}
+	
+	                						//self.get("unitSource").read();
+	                						//self.get("unitSource").filter([]);
+	                						
+	                						
+	                						self.get("unitSource").read();
+	                						
+	                						
+	                                	}
+	                                );
+                                }
+                                else {
+                                	btn.button("reset");
 
-                						self.get("unitSource").read();
-                						
-                                	}
-                                );
+                                	if (method == "POST"){
+            							$form.find(".alert-success.success-create").show("fast");
+            						}
+            						if (method == "PUT"){
+            							$form.find(".alert-success.success-update").show("fast");
+            						}
+            						
+                                	self.get("unitSource").read();
+                                }  
                             }	
                         );
 					},
@@ -1444,6 +1495,8 @@ position: fixed;
 			},
 			
 			renderRadioNetworkSubnet: function(e){
+
+				console.log("renderRadioNetworkSubnet");
 				
 				var self = this;
 				var editConnection = self.get("editedConnection");
@@ -1473,14 +1526,23 @@ position: fixed;
 					var cssClass = "";
 					
 					if (e.is_connected){
+
+						//console.log("e.is_connected");
 						
 						if (self.isSubnetInConnectionSubnets(e.unit_network_subnet_id)){
+
+							//console.log("isSubnetInConnectionSubnets");
+							
 							checked = "checked ";
 							
 							var tr = $("#grd-network-elements").find("input[value='"+editConnection.unit_network_subnet_id+"'] ").closest("tr");
 							tr.addClass("k-state-selected");
 						}
 						else {
+
+
+							//console.log("!isSubnetInConnectionSubnets");
+							
 							disabled = "disabled ";
 							return "<span class=\"k-icon k-i-cancel\"></span>";
 						}
@@ -1531,8 +1593,8 @@ position: fixed;
 				var self = this;
 				var editConnection = self.get("editedConnection");
 
+				// if circuit is disabled then don't show it
 				if (e.status != 1){
-					//console.log($("#grd-circuits").find("tr[data-uid='"+e.uid+"'] "));
 					$("#grd-circuits").find("tr[data-uid='"+e.uid+"'] ").hide();
 				}
 				
@@ -1701,7 +1763,7 @@ position: fixed;
 				
 				if (grd.dataSource.total() == 0){
 					grd.element.hide();
-					notificationEmpty.show()
+					notificationEmpty.show();
 				}
 				else{
 					grd.element.show();
@@ -1822,6 +1884,126 @@ position: fixed;
 						radio.prop("checked", true);
 					}
 				}
+			},
+
+			refreshGrds: function(){
+				$("#grd-network-elements").data("kendoGrid").refresh();
+				$("#grd-circuits").data("kendoGrid").refresh();
+				$("#grd-cpes").data("kendoGrid").refresh();
+				$("#grd-ldaps").data("kendoGrid").refresh();
+			},
+
+
+			handlerFetchUnit : function(){
+
+				console.log("read unit");
+				
+				var self = this;
+				var unitSource = self.unitSource;
+				
+				//var self = this.unitSource;
+
+				registry_no = (self.unitSource).data()[0].registry_no;
+
+				
+	            var populateUnitDetails = function() {
+
+	            	
+	            		console.log("populate details");
+		            
+	            		kendo.bind($("#unit-" + mm_id + "-preview"), self);
+	                	kendo.bind($("#wnd_create_connection_" + mm_id).parent(), self);
+
+		                // Hide create/edit/delete connection buttons if the user is not FY or not responsible for the unit
+		                if(typeof user.l == 'undefined' || user.l.split(',').indexOf('ou=partners') == -1 || typeof g_impEnt[0] == 'undefined' || typeof unitSource.data()[0] == 'undefined' || g_impEnt[0].implementation_entity_id != unitSource.data()[0].implementation_entity_id) {
+	    	                console.log("user is not fy. hiding connection buttons");
+	        	            $('#unit-'+mm_id+'-preview').find('#btnCreateConnection').parent().hide();
+	            	        $('#unit-'+mm_id+'-preview').find('.detail-section-tab-content[data-template="tmpl-connection-list"] .detail-term.term-head > button').hide();
+						}
+
+						resizeTabContent();
+	            	
+
+					kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
+				};
+
+				
+				
+				<?php if (!$isAnonymous) { ?>
+				$.ajax({
+						type: "GET",
+						url: apiUrl + "ext_log_entries", 
+						data: {'object_id': mm_id},
+	                    dataType: "json", 
+
+	                    success: function(resp){
+
+	                    	/**/
+	                    	var logs = new Array();
+							var curr_dataItem = {"data": {"lastUpdate": {"date": ""}}};                    	
+
+	                    	$.each(resp.data, function(i, item){
+
+	                    		if (typeof item.data["lastUpdate"] == "undefined") {
+	                    			return;
+	                    		}
+
+	                    		if (item.data.lastUpdate === null){
+	                    			return; 
+	                    		}
+								
+	                        	if (!equal(curr_dataItem.data.lastUpdate.date, item.data.lastUpdate.date) ){
+
+	                        		if (item.data.hasOwnProperty("state") || item.data.hasOwnProperty("name")) {
+	                            		logs.push(item);
+	                            		curr_dataItem = item;
+	                            	}
+	                        	}
+	                    	});
+	                    	/**/
+
+	                    	unitSource.data()[0]['logs'] = logs;
+	                    	//console.log(viewModel);
+	                    	//self.data()[0]['logs'] = resp.data;
+
+	                    	$.ajax({
+								type: "GET",
+								url: apiUrl + "cpes",
+								data: {'unit': mm_id},
+	                			dataType: "json",
+				                success: function(resp){
+
+					                try {
+	            			        	var cpes = resp.data;
+	            			        	unitSource.data()[0]['cpes'] = cpes;
+					                }
+					                catch(ex){
+						                console.log(ex);
+					                }
+					                finally {
+					                	populateUnitDetails();
+						            }
+	                			},
+	                			beforeSend: function(xhr){
+	        						xhr.setRequestHeader(
+	        							'Authorization',
+	        							make_base_auth (user.backendAuthorizationHash)
+	        						);
+	        					}
+							});
+						},
+						beforeSend: function(xhr){
+							xhr.setRequestHeader(
+								'Authorization',
+								make_base_auth (user.backendAuthorizationHash)
+							);
+						}
+					});
+
+					<?php } else { ?>
+						populateUnitDetails();
+					<?php } ?>
+						
 			}
 
 		});
@@ -1836,6 +2018,15 @@ position: fixed;
                     modal: true,
                     visible: false,
                     resizable: true,
+                    open: function(e){
+						console.log("open window");
+						if ( typeof viewModel['editedConnection'] != "undefined" && viewModel['editedConnection'] != null){
+							this.title("Ενημέρωση Διασύνδεσης");
+						}
+						else {
+							this.title("Δημιουργία Διασύνδεσης");
+						}
+					},
 					close: function(e) {
 						
 						viewModel.set("editedConnection",null);
@@ -1869,14 +2060,16 @@ position: fixed;
 		var content = $("#wnd_create_connection_" + mm_id + " .wnd-footer").parent().parent().find(".k-window-content");
 		var footer = $("#wnd_create_connection_" + mm_id + " .wnd-footer");
 		footer.insertAfter(content);
+		
+		//console.log(viewModel);
+		//kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
+	    //kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
 
 		viewModel.unitSource.fetch(function(){
+
+			viewModel.handlerFetchUnit();
+			/*
 			console.log("read unit");
-			//kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
-			
-			//viewModel.set("unitData", this.data()[0]);
-			//
-			
 			
 			var self = viewModel.unitSource;
 
@@ -1898,7 +2091,7 @@ position: fixed;
 				kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
 			};
 
-			<?php if (!$isAnonymous) { ?>
+			<?php //if (!$isAnonymous) { ?>
 			$.ajax({
 					type: "GET",
 					url: apiUrl + "ext_log_entries", 
@@ -1907,7 +2100,7 @@ position: fixed;
 
                     success: function(resp){
 
-                    	/**/
+                    	
                     	var logs = new Array();
 						var curr_dataItem = {"data": {"lastUpdate": {"date": ""}}};                    	
 
@@ -1929,7 +2122,7 @@ position: fixed;
                             	}
                         	}
                     	});
-                    	/**/
+                    	
 
                     	self.data()[0]['logs'] = logs;
                     	//console.log(viewModel);
@@ -1969,9 +2162,10 @@ position: fixed;
 					}
 				});
 
-				<?php } else { ?>
+				<?php //} else { ?>
 					populateUnitDetails();
-				<?php } ?>
+				<?php //} ?>
+			*/			
 			
 			/*
 			kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
@@ -1987,8 +2181,13 @@ position: fixed;
 			resizeTabContent();
 			*/
 		});
-		
-		
+
+
+		/*
+		$("body").on("click","#btnSaveConnection", function(e){
+			viewModel.saveConnection(e);
+		});
+		*/
 		
 		
         var gridUnitTransitions = $("#unit-" + mm_id + "-transitions").kendoGrid({
