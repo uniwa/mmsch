@@ -1097,10 +1097,10 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * 
  * @throws InvalidUnitMMIDType {@see ExceptionMessages::InvalidUnitMMIDType}
- * @throws InvalidRegistryNoType {@see ExceptionMessages::InvalidRegistryNoType}
+ * @throws InvalidUnitRegistryNoType {@see ExceptionMessages::InvalidUnitRegistryNoType}
  * @throws InvalidSourceType {@see ExceptionMessages::InvalidSourceType}
- * @throws InvalidNameType {@see ExceptionMessages::InvalidNameType}
- * @throws InvalidSpecialNameType {@see ExceptionMessages::InvalidSpecialNameType}
+ * @throws InvalidUnitNameType {@see ExceptionMessages::InvalidUnitNameType}
+ * @throws InvalidUnitSpecialNameType {@see ExceptionMessages::InvalidUnitSpecialNameType}
  * @throws InvalidStateType {@see ExceptionMessages::InvalidStateType}
  * @throws InvalidRegionEduAdminType {@see ExceptionMessages::InvalidRegionEduAdminType}
  * @throws InvalidEduAdminType {@see ExceptionMessages::InvalidEduAdminType}
@@ -1110,30 +1110,30 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws InvalidMunicipalityType {@see ExceptionMessages::InvalidMunicipalityType}
  * @throws InvalidMunicipalityCommunityType {@see ExceptionMessages::InvalidMunicipalityCommunityType}
  * @throws InvalidEducationLevelType {@see ExceptionMessages::InvalidEducationLevelType}
- * @throws InvalidPhoneNumberType {@see ExceptionMessages::InvalidPhoneNumberType}
- * @throws InvalidEmailType {@see ExceptionMessages::InvalidEmailType}
- * @throws InvalidFaxNumberType {@see ExceptionMessages::InvalidFaxNumberType}
- * @throws InvalidStreetAddressType {@see ExceptionMessages::InvalidStreetAddressType}
- * @throws InvalidPostalCodeType {@see ExceptionMessages::InvalidPostalCodeType}
- * @throws InvalidTaxNumberType {@see ExceptionMessages::InvalidTaxNumberType}
+ * @throws InvalidUnitPhoneNumberType {@see ExceptionMessages::InvalidUnitPhoneNumberType}
+ * @throws InvalidUnitEmailType {@see ExceptionMessages::InvalidUnitEmailType}
+ * @throws InvalidUnitFaxNumberType {@see ExceptionMessages::InvalidUnitFaxNumberType}
+ * @throws InvalidUnitStreetAddressType {@see ExceptionMessages::InvalidUnitStreetAddressType}
+ * @throws InvalidUnitPostalCodeType {@see ExceptionMessages::InvalidUnitPostalCodeType}
+ * @throws InvalidUnitTaxNumberType {@see ExceptionMessages::InvalidUnitTaxNumberType}
  * @throws InvalidTaxOfficeType {@see ExceptionMessages::InvalidTaxOfficeType}
- * @throws InvalidAreaTeamNumberType {@see ExceptionMessages::InvalidAreaTeamNumberType}
+ * @throws InvalidUnitAreaTeamNumberType {@see ExceptionMessages::InvalidUnitAreaTeamNumberType}
  * @throws InvalidCategoryType {@see ExceptionMessages::InvalidCategoryType}
  * @throws InvalidUnitTypeType {@see ExceptionMessages::InvalidUnitTypeType}
  * @throws InvalidOperationShiftType {@see ExceptionMessages::InvalidOperationShiftType}
  * @throws InvalidLegalCharacterType {@see ExceptionMessages::InvalidLegalCharacterType}
  * @throws InvalidOrientationTypeType {@see ExceptionMessages::InvalidOrientationTypeType}
  * @throws InvalidSpecialTypeType {@see ExceptionMessages::InvalidSpecialTypeType}
- * @throws InvalidLevelsCountType {@see ExceptionMessages::InvalidLevelsCountType}
- * @throws InvalidGroupsCountType {@see ExceptionMessages::InvalidGroupsCountType}
- * @throws InvalidStudentsCountType {@see ExceptionMessages::InvalidStudentsCountType}
- * @throws InvalidLatitudeType {@see ExceptionMessages::InvalidLatitudeType}
- * @throws InvalidLongitudeType {@see ExceptionMessages::InvalidLongitudeType}
- * @throws InvalidPositioningType {@see ExceptionMessages::InvalidPositioningType}
- * @throws InvalidFekType {@see ExceptionMessages::InvalidFekType}
- * @throws InvalidLastUpdateType {@see ExceptionMessages::InvalidLastUpdateType}
- * @throws InvalidLastSyncType {@see ExceptionMessages::InvalidLastSyncType}
- * @throws InvalidCommentsType {@see ExceptionMessages::InvalidCommentsType}
+ * @throws InvalidUnitLevelsCountType {@see ExceptionMessages::InvalidUnitLevelsCountType}
+ * @throws InvalidUnitGroupsCountType {@see ExceptionMessages::InvalidUnitGroupsCountType}
+ * @throws InvalidUnitStudentsCountType {@see ExceptionMessages::InvalidUnitStudentsCountType}
+ * @throws InvalidUnitLatitudeType {@see ExceptionMessages::InvalidUnitLatitudeType}
+ * @throws InvalidUnitLongitudeType {@see ExceptionMessages::InvalidUnitLongitudeType}
+ * @throws InvalidUnitPositioningType {@see ExceptionMessages::InvalidUnitPositioningType}
+ * @throws InvalidUnitFekType {@see ExceptionMessages::InvalidUnitFekType}
+ * @throws InvalidUnitLastUpdateType {@see ExceptionMessages::InvalidUnitLastUpdateType}
+ * @throws InvalidUnitLastSyncType {@see ExceptionMessages::InvalidUnitLastSyncType}
+ * @throws InvalidUnitCommentsType {@see ExceptionMessages::InvalidUnitCommentsType}
  * @throws MissingPageValue {@see ExceptionMessages::MissingPageValue}
  * @throws InvalidPageArray {@see ExceptionMessages::InvalidPageArray}
  * @throws InvalidPageNumber {@see ExceptionMessages::InvalidPageNumber}
@@ -1248,7 +1248,7 @@ function GetUnits(
                 else if ( Validator::isValue($values) )
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
                 else
-                    throw new Exception(ExceptionMessages::InvalidRegistryNoType." : ".$values, ExceptionCodes::InvalidRegistryNoType);
+                    throw new Exception(ExceptionMessages::InvalidUnitRegistryNoType." : ".$values, ExceptionCodes::InvalidUnitRegistryNoType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1303,7 +1303,7 @@ function GetUnits(
                     }
                 }
                 else
-                    throw new Exception(ExceptionMessages::InvalidNameType." : ".$values, ExceptionCodes::InvalidNameType);
+                    throw new Exception(ExceptionMessages::InvalidUnitNameType." : ".$values, ExceptionCodes::InvalidUnitNameType);
 
                 switch ($searchtype)
                 {
@@ -1341,7 +1341,7 @@ function GetUnits(
                 else if ( Validator::isValue($values) )
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
                 else
-                    throw new Exception(ExceptionMessages::InvalidSpecialNameType." : ".$values, ExceptionCodes::InvalidSpecialNameType);
+                    throw new Exception(ExceptionMessages::InvalidUnitSpecialNameType." : ".$values, ExceptionCodes::InvalidUnitSpecialNameType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1368,7 +1368,7 @@ function GetUnits(
                 else if ( Validator::isValue($values) )
                     $paramFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
                 else
-                    throw new Exception(ExceptionMessages::InvalidPhoneNumberType." : ".$values, ExceptionCodes::InvalidPhoneNumberType);
+                    throw new Exception(ExceptionMessages::InvalidUnitPhoneNumberType." : ".$values, ExceptionCodes::InvalidUnitPhoneNumberType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1395,7 +1395,7 @@ function GetUnits(
                 else if ( Validator::isValue($values) )
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
                 else
-                    throw new Exception(ExceptionMessages::InvalidEmailType." : ".$values, ExceptionCodes::InvalidEmailType);
+                    throw new Exception(ExceptionMessages::InvalidUnitEmailType." : ".$values, ExceptionCodes::InvalidUnitEmailType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1422,7 +1422,7 @@ function GetUnits(
                 else if ( Validator::isValue($values) )
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
                 else
-                    throw new Exception(ExceptionMessages::InvalidFaxNumberType." : ".$values, ExceptionCodes::InvalidFaxNumberType);
+                    throw new Exception(ExceptionMessages::InvalidUnitFaxNumberType." : ".$values, ExceptionCodes::InvalidUnitFaxNumberType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1449,7 +1449,7 @@ function GetUnits(
                 else if ( Validator::isValue($values) )
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
                 else
-                    throw new Exception(ExceptionMessages::InvalidPostalCodeType." : ".$values, ExceptionCodes::InvalidPostalCodeType);
+                    throw new Exception(ExceptionMessages::InvalidUnitPostalCodeType." : ".$values, ExceptionCodes::InvalidUnitPostalCodeType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1476,7 +1476,7 @@ function GetUnits(
                 else if ( Validator::isValue($values) )
                     $paramFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
                 else
-                    throw new Exception(ExceptionMessages::InvalidStreetAddressType." : ".$values, ExceptionCodes::InvalidStreetAddressType);
+                    throw new Exception(ExceptionMessages::InvalidUnitStreetAddressType." : ".$values, ExceptionCodes::InvalidUnitStreetAddressType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1502,7 +1502,7 @@ function GetUnits(
                 else if ( Validator::isValue($values) )
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
                 else
-                    throw new Exception(ExceptionMessages::InvalidTaxNumberType." : ".$values, ExceptionCodes::InvalidTaxNumberType);
+                    throw new Exception(ExceptionMessages::InvalidUnitTaxNumberType." : ".$values, ExceptionCodes::InvalidUnitTaxNumberType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1529,7 +1529,7 @@ function GetUnits(
                 else if ( Validator::isValue($values) )
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
                 else
-                    throw new Exception(ExceptionMessages::InvalidAreaTeamNumberType." : ".$values, ExceptionCodes::InvalidAreaTeamNumberType);
+                    throw new Exception(ExceptionMessages::InvalidUnitAreaTeamNumberType." : ".$values, ExceptionCodes::InvalidUnitAreaTeamNumberType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1556,7 +1556,7 @@ function GetUnits(
                 else if ( Validator::toNumeric($values) )
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toNumeric($values) );
                 else
-                    throw new Exception(ExceptionMessages::InvalidLevelsCountType." : ".$values, ExceptionCodes::InvalidLevelsCountType);
+                    throw new Exception(ExceptionMessages::InvalidUnitLevelsCountType." : ".$values, ExceptionCodes::InvalidUnitLevelsCountType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1583,7 +1583,7 @@ function GetUnits(
                 else if ( Validator::toNumeric($values) )
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toNumeric($values) );
                 else
-                    throw new Exception(ExceptionMessages::InvalidStudentsCountType." : ".$values, ExceptionCodes::InvalidStudentsCountType);
+                    throw new Exception(ExceptionMessages::InvalidUnitStudentsCountType." : ".$values, ExceptionCodes::InvalidUnitStudentsCountType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1610,7 +1610,7 @@ function GetUnits(
                 else if ( Validator::toNumeric($values) )
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toNumeric($values) );
                 else
-                    throw new Exception(ExceptionMessages::InvalidGroupsCountType." : ".$values, ExceptionCodes::InvalidGroupsCountType);
+                    throw new Exception(ExceptionMessages::InvalidUnitGroupsCountType." : ".$values, ExceptionCodes::InvalidUnitGroupsCountType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1637,7 +1637,7 @@ function GetUnits(
                 else if ( Validator::toNumeric($values) )
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toNumeric($values) );
                 else
-                    throw new Exception(ExceptionMessages::InvalidLatitudeType." : ".$values, ExceptionCodes::InvalidLatitudeType);
+                    throw new Exception(ExceptionMessages::InvalidUnitLatitudeType." : ".$values, ExceptionCodes::InvalidUnitLatitudeType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1664,7 +1664,7 @@ function GetUnits(
                 else if ( Validator::toNumeric($values) )
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toNumeric($values) );
                 else
-                    throw new Exception(ExceptionMessages::InvalidLongitudeType." : ".$values, ExceptionCodes::InvalidLongitudeType);
+                    throw new Exception(ExceptionMessages::InvalidUnitLongitudeType." : ".$values, ExceptionCodes::InvalidUnitLongitudeType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1691,7 +1691,7 @@ function GetUnits(
                 else if ( Validator::isValue($values) )
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
                 else
-                    throw new Exception(ExceptionMessages::InvalidPositioningType." : ".$values, ExceptionCodes::InvalidPositioningType);
+                    throw new Exception(ExceptionMessages::InvalidUnitPositioningType." : ".$values, ExceptionCodes::InvalidUnitPositioningType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1718,7 +1718,7 @@ function GetUnits(
                 else if ( Validator::isValue($values) )
                     $paramFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
                 else
-                    throw new Exception(ExceptionMessages::InvalidFekType." : ".$values, ExceptionCodes::InvalidFekType);
+                    throw new Exception(ExceptionMessages::InvalidUnitCreationFekType." : ".$values, ExceptionCodes::InvalidUnitCreationFekType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1745,7 +1745,7 @@ function GetUnits(
                 else if ( Validator::isValue($values) )
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( '%'.Validator::toValue($values).'%' );
                 else
-                    throw new Exception(ExceptionMessages::InvalidLastUpdateType." : ".$values, ExceptionCodes::InvalidLastUpdateType);
+                    throw new Exception(ExceptionMessages::InvalidUnitLastUpdateType." : ".$values, ExceptionCodes::InvalidUnitLastUpdateType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1772,7 +1772,7 @@ function GetUnits(
                 else if ( Validator::isValue($values) )
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( '%'.Validator::toValue($values).'%' );
                 else
-                    throw new Exception(ExceptionMessages::InvalidLastSyncType." : ".$values, ExceptionCodes::InvalidLastSyncType);
+                    throw new Exception(ExceptionMessages::InvalidUnitLastSyncType." : ".$values, ExceptionCodes::InvalidUnitLastSyncType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
@@ -1782,7 +1782,7 @@ function GetUnits(
 //= $comments
 //======================================================================================================================
 
-        if ( Validator::Exists('positioning', $params) )
+        if ( Validator::Exists('comments', $params) )
         {
             $table_name = "units";
             $table_column_id = "comments";
@@ -1799,7 +1799,7 @@ function GetUnits(
                 else if ( Validator::isValue($values) )
                     $paramFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
                 else
-                    throw new Exception(ExceptionMessages::InvalidCommentsType." : ".$values, ExceptionCodes::InvalidCommentsType);
+                    throw new Exception(ExceptionMessages::InvalidUnitCommentsType." : ".$values, ExceptionCodes::InvalidUnitCommentsType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";

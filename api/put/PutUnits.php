@@ -272,7 +272,7 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws MissingMMIdValue {@see ExceptionMessages::MissingMMIdValue}
  * @throws InvalidMMIdType {@see ExceptionMessages::InvalidMMIdType}
  * @throws InvalidMMIdValue {@see ExceptionMessages::InvalidMMIdValue}
- * @throws MissingNameValue {@see ExceptionMessages::MissingNameValue}
+ * @throws MissingUnitNameValue {@see ExceptionMessages::MissingUnitNameValue}
  * @throws MissingCategoryValue {@see ExceptionMessages::MissingCategoryValue}
  * @throws InvalidCategoryValue {@see ExceptionMessages::InvalidCategoryValue}
  * @throws MissingStateValue {@see ExceptionMessages::MissingStateValue}
@@ -281,7 +281,7 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws InvalidSourceValue {@see ExceptionMessages::InvalidSourceValue}
  * @throws MissingUnitTypeValue {@see ExceptionMessages::MissingUnitTypeValue}
  * @throws InvalidUnitTypeValue {@see ExceptionMessages::InvalidUnitTypeValue}
- * @throws MissingRegistryNoValue {@see ExceptionMessages::MissingRegistryNoValue}
+ * @throws MissingUnitRegistryNoValue {@see ExceptionMessages::MissingUnitRegistryNoValue}
  * @throws MissingEducationLevelValue {@see ExceptionMessages::MissingEducationLevelValue}
  * @throws InvalidEducationLevelValue {@see ExceptionMessages::InvalidEducationLevelValue}
  * @throws InvalidRegionEduAdminValue {@see ExceptionMessages::InvalidRegionEduAdminValue}
@@ -296,193 +296,171 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws InvalidOrientationTypeValue {@see ExceptionMessages::InvalidOrientationTypeValue}
  * @throws InvalidSpecialTypeValue {@see ExceptionMessages::InvalidSpecialTypeValue}
  * @throws InvalidTaxOfficeValue {@see ExceptionMessages::InvalidTaxOfficeValue}
- * @throws InvalidFekType {@see ExceptionMessages::InvalidFekType}
+ * @throws InvalidUnitCreationFekType {@see ExceptionMessages::InvalidUnitCreationFekType}
  * 
  */
 
-function PutUnits( 
-    $mm_id, $registry_no, $source, $name, $special_name, $state, $region_edu_admin, 
-    $edu_admin, $implementation_entity, $transfer_area, $prefecture, $municipality, $municipality_community,
-    $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code, 
-    $tax_number, $tax_office, $area_team_number, $category, $unit_type, $operation_shift, 
-    $legal_character, $orientation_type, $special_type, $levels_count, $groups_count, 
-    $students_count, $latitude, $longitude, $positioning, $creation_fek, $last_update, $last_sync, 
-    $comments, $fek 
-)
-{
-    global $db, $entityManager;
-
-    $result = array();  
-
-    $result["method"] = __FUNCTION__;
+function PutUnits(  $mm_id, $registry_no, $source, $name, $special_name, $state, $region_edu_admin, 
+                    $edu_admin, $implementation_entity, $transfer_area, $prefecture, $municipality, $municipality_community,
+                    $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code, 
+                    $tax_number, $tax_office, $area_team_number, $category, $unit_type, $operation_shift, 
+                    $legal_character, $orientation_type, $special_type, $levels_count, $groups_count, 
+                    $students_count, $latitude, $longitude, $positioning, $creation_fek, $last_update, $last_sync, 
+                    $comments ) {
     
-    try
-    {
+    global $app, $entityManager, $db;
+    $result = array();  
+    
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
+    $params = loadParameters();
+    $result["parameters"]  = $params;
+    
+    try {
 
-//==============================================================================
+        //$mm_id================================================================
+        $fUnitMMId = CRUDUtils::checkIDParam('mm_id', $params, $mm_id, 'UnitMMID');
 
-        if ( $mm_id === _MISSED_ )
-            throw new Exception(ExceptionMessages::MissingMMIdParam, ExceptionCodes::MissingMMIdParam);
-        else if ( Validator::IsNull($mm_id) )
-            throw new Exception(ExceptionMessages::MissingMMIdValue, ExceptionCodes::MissingMMIdValue);
-        else if ( Validator::IsID($mm_id) )
-            $mm_id = Validator::ToID($mm_id);
-        else
-            throw new Exception(ExceptionMessages::InvalidMMIdType." : ".$mm_id, ExceptionCodes::InvalidMMIdType);
+        //init entity for update row============================================
+        $unit = CRUDUtils::findIDParam($fUnitMMId, 'Units', 'Unit');
 
-        $unit = $entityManager->find('Units', $mm_id);
-        if(!isset($unit))
-            throw new Exception(ExceptionMessages::InvalidMMIdValue." : ".$mm_id, ExceptionCodes::InvalidMMIdValue);
+    //$category=================================================================
+    if ( Validator::IsExists('category') ){
+        CRUDUtils::entitySetAssociation($unit, $category, 'Categories', 'category', 'Category', $params, 'category');
+    } else if ( Validator::IsNull($unit->getCategory()) ){
+        throw new Exception(ExceptionMessages::MissingCategoryValue, ExceptionCodes::MissingCategoryValue);
+    } 
 
-//==============================================================================
+    //$source===================================================================
+    if ( Validator::IsExists('source') ){
+        CRUDUtils::entitySetAssociation($unit, $source, 'Sources', 'source', 'Source', $params, 'source');
+    } else if ( Validator::IsNull($unit->getSource()) ){
+        throw new Exception(ExceptionMessages::MissingSourceValue, ExceptionCodes::MissingSourceValue);
+    } 
 
-        CRUDUtils::entitySetAssociationOld($unit, $category, 'Categories', 'category', 'Category');
+    //$unit_type================================================================
+    if ( Validator::IsExists('unit_type') ){
+        CRUDUtils::entitySetAssociation($unit, $unit_type, 'UnitTypes', 'unitType', 'UnitType', $params, 'unit_type');
+    } else if ( Validator::IsNull($unit->getUnitType()) ){
+        throw new Exception(ExceptionMessages::MissingUnitTypeValue, ExceptionCodes::MissingUnitTypeValue);
+    } 
 
-//==============================================================================
-            
-        CRUDUtils::entitySetAssociationOld($unit, $source, 'Sources', 'source', 'Source');
-            
-//==============================================================================            
+    //$state====================================================================
+    if ( Validator::IsExists('state') ){
+        CRUDUtils::entitySetAssociation($unit, $state, 'States', 'state', 'State', $params, 'state');
+    } else if ( Validator::IsNull($unit->getState()) ){
+        throw new Exception(ExceptionMessages::MissingStateValue, ExceptionCodes::MissingStateValue);
+    } 
 
-        CRUDUtils::entitySetAssociationOld($unit, $unit_type, 'UnitTypes', 'unitType', 'UnitType');
-            
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $name, ExceptionMessages::InvalidNameType, 'name');
+    //$education_level==========================================================
+    if ( Validator::IsExists('education_level') ){
+        CRUDUtils::entitySetAssociation($unit, $education_level, 'EducationLevels', 'educationLevel', 'EducationLevel', $params, 'education_level');
+    } else if ( Validator::IsNull($unit->getEducationLevel()) ){
+        throw new Exception(ExceptionMessages::MissingEducationLevelValue , ExceptionCodes::MissingEducationLevelValue);
+    } 
+    
+    //$name=====================================================================
+    if ( Validator::IsExists('name') ){
+        CRUDUtils::EntitySetParam($unit, $name, 'UnitName', 'name', $params);
+    } else if ( Validator::IsNull($unit->getName()) ){
+        throw new Exception(ExceptionMessages::MissingUnitNameValue, ExceptionCodes::MissingUnitNameValue);
+    } 
         
-//==============================================================================
+    //$registry_no==============================================================
+    CRUDUtils::entitySetParam($unit, $registry_no, 'UnitRegistryNo', 'registry_no' , $params, false, true );
+            
+    //$region_edu_admin=========================================================      
+    CRUDUtils::entitySetAssociation($unit, $region_edu_admin, 'RegionEduAdmins', 'regionEduAdmin', 'RegionEduAdmin', $params, 'region_edu_admin', false, true);
+
+    //$edu_admin================================================================
+    CRUDUtils::entitySetAssociation($unit, $edu_admin, 'EduAdmins', 'eduAdmin', 'EduAdmin', $params, 'edu_admin', false, true);
+
+    //$transfer_area============================================================
+    CRUDUtils::entitySetAssociation($unit, $transfer_area, 'TransferAreas', 'transferArea', 'TransferArea', $params, 'transfer_area', false, true);
+
+    //$implementation_entity====================================================
+    CRUDUtils::entitySetAssociation($unit, $implementation_entity, 'ImplementationEntities', 'implementationEntity', 'ImplementationEntity', $params, 'implementation_entity', false, true);
+            
+    //$prefecture===============================================================      
+    CRUDUtils::entitySetAssociation($unit, $prefecture, 'Prefectures', 'prefecture', 'Prefecture', $params, 'prefecture', false, true);
+
+    //$municipality=============================================================
+    CRUDUtils::entitySetAssociation($unit, $municipality, 'Municipalities', 'municipality', 'Municipality', $params, 'municipality', false, true);
         
-        CRUDUtils::entitySetParamOld($unit, $registry_no, ExceptionCodes::InvalidRegistryNoType, 'registryNo');
-            
-//==============================================================================
-            
-        CRUDUtils::entitySetAssociationOld($unit, $state, 'States', 'state', 'State');
-            
-//==============================================================================
-            
-        CRUDUtils::entitySetAssociationOld($unit, $education_level, 'EducationLevels', 'educationLevel', 'EducationLevel', false);
+    //$municipality_communities=================================================
+    CRUDUtils::entitySetAssociation($unit, $municipality_community, 'MunicipalityCommunities', 'municipalityCommunity', 'MunicipalityCommunity', $params, 'municipality_community', false, true);
 
-//==============================================================================
-
-        CRUDUtils::entitySetAssociationOld($unit, $region_edu_admin, 'RegionEduAdmins', 'regionEduAdmin', 'RegionEduAdmin', false);
+    //$tax_office===============================================================
+    CRUDUtils::entitySetAssociation($unit, $tax_office, 'TaxOffices', 'taxOffice', 'TaxOffice', $params, 'tax_office', false, true);
             
-//==============================================================================
+    //$operation_shift==========================================================
+    CRUDUtils::entitySetAssociation($unit, $operation_shift, 'OperationShifts', 'operationShift', 'OperationShift', $params, 'operation_shift', false, true);
 
-        CRUDUtils::entitySetAssociationOld($unit, $edu_admin, 'EduAdmins', 'eduAdmin', 'EduAdmin', false);
-                
-//==============================================================================
+    //$legal_character==========================================================
+    CRUDUtils::entitySetAssociation($unit, $legal_character, 'LegalCharacters', 'legalCharacter', 'LegalCharacter', $params, 'legal_character', false, true);
 
-        CRUDUtils::entitySetAssociationOld($unit, $transfer_area, 'TransferAreas', 'transferArea', 'TransferArea', false);
-            
-//==============================================================================
+    //$orientation_type=========================================================
+    CRUDUtils::entitySetAssociation($unit, $orientation_type, 'OrientationTypes', 'orientationType', 'OrientationType', $params, 'orientation_type', false, true);
 
-        CRUDUtils::entitySetAssociationOld($unit, $implementation_entity, 'ImplementationEntities', 'implementationEntity', 'ImplementationEntity', false);
-            
-//==============================================================================
+    //$special_type=============================================================
+    CRUDUtils::entitySetAssociation($unit, $special_type, 'SpecialTypes', 'specialType', 'SpecialType', $params, 'special_type', false, true);
 
-        CRUDUtils::entitySetAssociationOld($unit, $prefecture, 'Prefectures', 'prefecture', 'Prefecture', false);
-            
-//==============================================================================
+    //$special_name=============================================================
+    CRUDUtils::entitySetParam($unit, $special_name, 'UnitSpecialName', 'special_name' , $params, false, true );
 
-        CRUDUtils::entitySetAssociationOld($unit, $municipality, 'Municipalities', 'municipality', 'Municipality', false);
+    //$phoneNumber==============================================================
+    CRUDUtils::entitySetParam($unit, $phone_number, 'UnitPhoneNumber', 'phoneNumber' , $params, false, true );
+
+    //$email====================================================================
+    CRUDUtils::entitySetParam($unit, $email, 'UnitEmail', 'email' , $params, false, true );
+
+    //$fax_number===============================================================
+    CRUDUtils::entitySetParam($unit, $fax_number, 'UnitFaxNumber', 'fax_number' , $params, false, true );
+
+    //$street_address===========================================================
+    CRUDUtils::entitySetParam($unit, $street_address, 'UnitStreetAddress', 'street_address' , $params, false, true );
+
+    //$postal_code==============================================================
+    CRUDUtils::entitySetParam($unit, $postal_code, 'UnitPostalCode', 'postal_code' , $params, false, true );
+
+    //$tax_number===============================================================
+    CRUDUtils::entitySetParam($unit, $tax_number, 'UnitTaxNumber', 'tax_number' , $params, false, true );
+
+    //$area_team_number=========================================================
+    CRUDUtils::entitySetParam($unit, $area_team_number, 'UnitAreaTeamNumber', 'area_team_number' , $params, false, true );
+
+    //$levels_count=============================================================
+    CRUDUtils::entitySetParam($unit, $levels_count, 'UnitLevelsCount', 'levels_count' , $params, false, true, true );
+
+    //$groups_count=============================================================
+    CRUDUtils::entitySetParam($unit, $groups_count, 'UnitGroupsCount', 'groups_count' , $params, false, true, true );
+
+    //$students_count===========================================================
+    CRUDUtils::entitySetParam($unit, $students_count, 'UnitStudentsCount', 'students_count' , $params, false, true, true );
+
+    //$latitude=================================================================
+    CRUDUtils::entitySetParam($unit, $latitude, 'UnitLatitude', 'latitude' , $params, false, true );
+
+    //$longitude================================================================
+    CRUDUtils::entitySetParam($unit, $longitude, 'UnitLongitude', 'longitude' , $params, false, true );
+
+    //$positioning==============================================================
+    CRUDUtils::entitySetParam($unit, $positioning, 'UnitPositioning', 'positioning' , $params, false, true );
+
+    //$creation_fek=============================================================
+    CRUDUtils::entitySetParam($unit, $creation_fek, 'UnitCreationFek', 'creation_fek' , $params, false, true ); 
         
-//==============================================================================
+    //$last_update==============================================================
+    CRUDUtils::entitySetParam($unit, $last_update, 'UnitLastUpdate', 'last_update' , $params, false, true ); 
 
-        CRUDUtils::entitySetAssociationOld($unit, $municipality_community, 'MunicipalityCommunities', 'municipalityCommunity', 'MunicipalityCommunity', false);
-            
-//==============================================================================
+    //$last_sync================================================================
+    CRUDUtils::entitySetParam($unit, $last_sync, 'UnitLastSync', 'last_sync' , $params, false, true ); 
 
-        CRUDUtils::entitySetAssociationOld($unit, $tax_office, 'TaxOffices', 'taxOffice', 'TaxOffice', false);
-            
-//==============================================================================
+    //$comments=================================================================
+    CRUDUtils::entitySetParam($unit, $comments, 'UnitComments', 'comments' , $params, false, true );
 
-        CRUDUtils::entitySetAssociationOld($unit, $operation_shift, 'OperationShifts', 'operationShift', 'OperationShift', false);
-            
-//==============================================================================
-
-        CRUDUtils::entitySetAssociationOld($unit, $legal_character, 'LegalCharacters', 'legalCharacter', 'LegalCharacter', false);
-            
-//==============================================================================
-
-        CRUDUtils::entitySetAssociationOld($unit, $orientation_type, 'OrientationTypes', 'orientationType', 'OrientationType', false);
-            
-//==============================================================================
-                
-        CRUDUtils::entitySetAssociationOld($unit, $special_type, 'SpecialTypes', 'specialType', 'SpecialType', false);
-
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $special_name, ExceptionCodes::InvalidSpecialNameType, 'specialName');
-
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $phone_number, ExceptionCodes::InvalidPhoneNumberType, 'phoneNumber');
-
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $email, ExceptionCodes::InvalidEmailType, 'email');
-
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $fax_number, ExceptionCodes::InvalidFaxNumberType, 'fax_number');
-
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $street_address, ExceptionCodes::InvalidStreetAddressType, 'street_address');
-
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $postal_code, ExceptionCodes::InvalidPostalCodeType, 'postal_code');
-
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $tax_number, ExceptionCodes::InvalidTaxNumberType, 'tax_number');
-
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $area_team_number, ExceptionCodes::InvalidAreaTeamNumberType, 'area_team_number');
-
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $levels_count, ExceptionCodes::InvalidLevelsCountType, 'levels_count');
-
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $groups_count, ExceptionCodes::InvalidGroupsCountType, 'groups_count');
-
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $students_count, ExceptionCodes::InvalidStudentsCountType, 'students_count');
-
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $latitude, ExceptionCodes::InvalidLatitudeType, 'latitude');
-
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $longitude, ExceptionCodes::InvalidLongitudeType, 'longitude');
-
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $positioning, ExceptionCodes::InvalidPositioningType, 'positioning');
-
-//==============================================================================
-        
-        CRUDUtils::entitySetParamOld($unit, $creation_fek, ExceptionCodes::InvalidFekType, 'creation_fek');
-        
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $last_update, ExceptionCodes::InvalidLastUpdateType, 'last_update');
-
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $last_sync, ExceptionCodes::InvalidLastSyncType, 'last_sync');
-
-//==============================================================================
-
-        CRUDUtils::entitySetParamOld($unit, $comments, 'Invalid comments', 'comments');
-
-//==============================================================================
+//update to db==================================================================
 
         $entityManager->persist($unit);
         if ( $entityManager->flush($unit) )
@@ -506,19 +484,17 @@ function PutUnits(
                 );
             }
         }
-//==============================================================================
-            
-            $result["status"] = ExceptionCodes::NoErrors;;
-            $result["message"] = ExceptionMessages::NoErrorsUpdateUnit;
-            $result["mm_id"] = $unit->getMmId();
-        }
-    catch (Exception $e) 
-    {
+
+        $result["mm_id"] = $unit->getMmId();
+                 
+//result_messages===============================================================      
+        $result["status"] = ExceptionCodes::NoErrors;
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrorsUpdateUnit;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".$result["method"]."]: ".$e->getMessage();
-    } 
-   
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    }  
+
     return $result;
 }
-
 ?>

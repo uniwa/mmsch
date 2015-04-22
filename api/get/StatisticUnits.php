@@ -418,7 +418,7 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws MissingYAxisParam {@see ExceptionMessages::MissingYAxisParam}
  * 
  * @throws InvalidUnitMMIDType {@see ExceptionMessages::InvalidUnitMMIDType}
- * @throws InvalidRegistryNoType {@see ExceptionMessages::InvalidRegistryNoType}
+ * @throws InvalidUnitRegistryNoType {@see ExceptionMessages::InvalidUnitRegistryNoType}
  * @throws InvalidNameType {@see ExceptionMessages::InvalidNameType}
  * @throws InvalidSpecialNameType {@see ExceptionMessages::InvalidSpecialNameType}
  * @throws InvalidSourceType {@see ExceptionMessages::InvalidSourceType}
@@ -588,7 +588,7 @@ function StatisticUnits(
                 else if ( Validator::isValue($values) )
                     $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
                 else
-                    throw new Exception(ExceptionMessages::InvalidRegistryNoType." : ".$values, ExceptionCodes::InvalidRegistryNoType);
+                    throw new Exception(ExceptionMessages::InvalidUnitRegistryNoType." : ".$values, ExceptionCodes::InvalidUnitRegistryNoType);
             }
 
             $filter[] = "(" . implode(" OR ", $paramFilters) . ")";

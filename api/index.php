@@ -1721,8 +1721,7 @@ function UnitsController()
                 in_array ("creation_fek", $parameters) ? $params["creation_fek"] : _MISSED_,
                 in_array ("last_update", $parameters) ? $params["last_update"] : _MISSED_,
                 in_array ("last_sync", $parameters) ? $params["last_sync"] : _MISSED_,
-                in_array ("comments", $parameters) ? $params["comments"] : _MISSED_,
-                in_array ("fek", $parameters) ? $params["fek"] : _MISSED_
+                in_array ("comments", $parameters) ? $params["comments"] : _MISSED_
             );
             break;
         case MethodTypes::PUT :
@@ -1765,8 +1764,7 @@ function UnitsController()
                 in_array ("creation_fek", $parameters) ? $params["creation_fek"] : _MISSED_,
                 in_array ("last_update", $parameters) ? $params["last_update"] : _MISSED_,
                 in_array ("last_sync", $parameters) ? $params["last_sync"] : _MISSED_,
-                in_array ("comments", $parameters) ? $params["comments"] : _MISSED_,
-                in_array ("fek", $parameters) ? $params["fek"] : _MISSED_
+                in_array ("comments", $parameters) ? $params["comments"] : _MISSED_
             );
             break;
     }

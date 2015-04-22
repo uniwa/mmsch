@@ -561,7 +561,7 @@ class Units
         return $this->eduAdmin;
     }
 
-    public function setEduAdmin(\EduAdmins $eduAdmin) {
+    public function setEduAdmin(\EduAdmins $eduAdmin=null) {
         $this->eduAdmin = $eduAdmin;
     }
 
@@ -569,7 +569,7 @@ class Units
         return $this->implementationEntity;
     }
 
-    public function setImplementationEntity(\ImplementationEntities $implementationEntity) {
+    public function setImplementationEntity(\ImplementationEntities $implementationEntity=null) {
         $this->implementationEntity = $implementationEntity;
     }
 
@@ -577,7 +577,7 @@ class Units
         return $this->legalCharacter;
     }
 
-    public function setLegalCharacter(\LegalCharacters $legalCharacter) {
+    public function setLegalCharacter(\LegalCharacters $legalCharacter=null) {
         $this->legalCharacter = $legalCharacter;
     }
 
@@ -585,7 +585,7 @@ class Units
         return $this->municipality;
     }
 
-    public function setMunicipality(\Municipalities $municipality) {
+    public function setMunicipality(\Municipalities $municipality=null) {
         $this->municipality = $municipality;
     }
 
@@ -593,7 +593,7 @@ class Units
         return $this->municipalityCommunity;
     }
 
-    public function setMunicipalityCommunity(\MunicipalityCommunities $municipalityCommunity) {
+    public function setMunicipalityCommunity(\MunicipalityCommunities $municipalityCommunity=null) {
         $this->municipalityCommunity = $municipalityCommunity;
     }
     
@@ -601,7 +601,7 @@ class Units
         return $this->operationShift;
     }
 
-    public function setOperationShift(\OperationShifts $operationShift) {
+    public function setOperationShift(\OperationShifts $operationShift=null) {
         $this->operationShift = $operationShift;
     }
 
@@ -609,7 +609,7 @@ class Units
         return $this->orientationType;
     }
 
-    public function setOrientationType(\OrientationTypes $orientationType) {
+    public function setOrientationType(\OrientationTypes $orientationType=null) {
         $this->orientationType = $orientationType;
     }
 
@@ -617,7 +617,7 @@ class Units
         return $this->prefecture;
     }
 
-    public function setPrefecture(\Prefectures $prefecture) {
+    public function setPrefecture(\Prefectures $prefecture=null) {
         $this->prefecture = $prefecture;
     }
 
@@ -625,7 +625,7 @@ class Units
         return $this->regionEduAdmin;
     }
 
-    public function setRegionEduAdmin(\RegionEduAdmins $regionEduAdmin) {
+    public function setRegionEduAdmin(\RegionEduAdmins $regionEduAdmin=null) {
         $this->regionEduAdmin = $regionEduAdmin;
     }
 
@@ -641,7 +641,7 @@ class Units
         return $this->specialType;
     }
 
-    public function setSpecialType(\SpecialTypes $specialType) {
+    public function setSpecialType(\SpecialTypes $specialType=null) {
         $this->specialType = $specialType;
     }
 
@@ -657,7 +657,7 @@ class Units
         return $this->taxOffice;
     }
 
-    public function setTaxOffice(\TaxOffices $taxOffice) {
+    public function setTaxOffice(\TaxOffices $taxOffice=null) {
         $this->taxOffice = $taxOffice;
     }
 
@@ -665,7 +665,7 @@ class Units
         return $this->transferArea;
     }
 
-    public function setTransferArea(\TransferAreas $transferArea) {
+    public function setTransferArea(\TransferAreas $transferArea=null) {
         $this->transferArea = $transferArea;
     }
 

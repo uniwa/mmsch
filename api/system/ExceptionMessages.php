@@ -1159,7 +1159,7 @@ class ExceptionMessages
     const DuplicatedConnectionUnitNetworkOSubnetValue = 'Η Διασύνδεση του Υποδικτύου της Μονάδας υπάρχει ήδη';
     const DifferenceConnectionUnitNetworkOSubnetMMIdValue = 'Δεν είναι δυνατή η εισαγωγή Διασύνδεσης και Υποδικτύου Μονάδας με διαφορετικό Κωδικό Σχολικής Μονάδας';
     
-    //= GetUnits
+    //= Units===================================================================
     const MissingUnitMMIDParam = 'Ο Κωδικός ΜΜ είναι υποχρεωτικό πεδίο';
     const MissingUnitMMIDValue = 'Ο Κωδικός ΜΜ πρέπει να έχει τιμή';
     const InvalidUnitMMIDType = 'Ο Κωδικός ΜΜ πρέπει να είναι αριθμητικός';
@@ -1171,14 +1171,110 @@ class ExceptionMessages
     const InvalidUnitValue = 'Η Μονάδα δεν βρέθηκε';
     const InvalidUnitType = 'Η Μονάδα πρέπει να είναι αριθμητική ή αλφαριθμητική';
     const InvalidUnitArray = 'Η Μονάδα δεν μπορεί να έχει πολλαπλές τιμές';
+     
+    const MissingUnitNameParam = 'Το Όνομα της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitNameValue = 'Το Όνομα της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitNameType = 'Το Όνομα της Μονάδας πρέπει να είναι αλφαριθμητικό';
+    const InvalidUnitNameArray = 'Το Όνομα της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
     
+    const MissingUnitRegistryNoParam = 'Ο Κωδικός ΥΠΕΠΘ της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitRegistryNoValue = 'Ο Κωδικός ΥΠΕΠΘ της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitRegistryNoType = 'Ο Κωδικός ΥΠΕΠΘ της Μονάδας πρέπει να είναι αλφαριθμητικό';
+    const InvalidUnitRegistryNoArray = 'Ο Κωδικός ΥΠΕΠΘ της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitSpecialNameParam = 'Το Προσωνύμιο της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitSpecialNameValue = 'Το Προσωνύμιο της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitSpecialNameType = 'Το Προσωνύμιο της Μονάδας πρέπει να είναι αλφαριθμητικό';
+    const InvalidUnitSpecialNameArray = 'Το Προσωνύμιο της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+       
+    const MissingUnitPhoneNumberParam = 'Το Τηλέφωνο Επικοινωνίας της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitPhoneNumberValue = 'Το Τηλέφωνο Επικοινωνίας της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitPhoneNumberType = 'Το Τηλέφωνο Επικοινωνίας της Μονάδας πρέπει να είναι αριθμητικό';
+    const InvalidUnitPhoneNumberArray = 'Το Τηλέφωνο Επικοινωνίας της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitEmailParam = 'Η Ηλεκτρονική Αλληλογραφία της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitEmailValue = 'Η Ηλεκτρονική Αλληλογραφία της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitEmailType = 'Η Ηλεκτρονική Αλληλογραφία της Μονάδας πρέπει να είναι αλφαριθμητικός';
+    const InvalidUnitEmailArray = 'Η Ηλεκτρονική Αλληλογραφία της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitFaxNumberParam = 'Το Φαξ Επικοινωνίας της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitFaxNumberValue = 'Το Φαξ Επικοινωνίας της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitFaxNumberType = 'Το Φαξ Επικοινωνίας της Μονάδας πρέπει να είναι αριθμητικό';
+    const InvalidUnitFaxNumberArray = 'Το Φαξ Επικοινωνίας της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitStreetAddressParam = 'Η Διεύθυνση (Οδός και Αριθμός) είναι υποχρεωτικό πεδίο';
+    const MissingUnitStreetAddressValue = 'Η Διεύθυνση (Οδός και Αριθμός) πρέπει να έχει τιμή';
+    const InvalidUnitStreetAddressType = 'Η Διεύθυνση (Οδός και Αριθμός) της Μονάδας πρέπει να είναι αλφαριθμητικό';
+    const InvalidUnitStreetAddressArray = 'Η Διεύθυνση (Οδός και Αριθμός)της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitPostalCodeParam = 'Ο Ταχυδρομικός Κώδικας της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitPostalCodeValue = 'Ο Ταχυδρομικός Κώδικας της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitPostalCodeType = 'Ο Ταχυδρομικός Κώδικας της Μονάδας πρέπει να είναι αριθμητικός';
+    const InvalidUnitPostalCodeArray = 'Ο Ταχυδρομικός Κώδικας της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitTaxNumberParam = 'Ο Αριθμός Φορολογικού Μητρώου της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitTaxNumberValue = 'Ο Αριθμός Φορολογικού Μητρώου της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitTaxNumberType = 'Ο Αριθμός Φορολογικού Μητρώου της Μονάδας πρέπει να είναι αριθμητικός';
+    const InvalidUnitTaxNumberArray = 'Ο Αριθμός Φορολογικού Μητρώου της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitAreaTeamNumberParam = 'Η Ομάδα Σχολείων της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitAreaTeamNumberValue = 'Η Ομάδα Σχολείων της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitAreaTeamNumberType = 'Η Ομάδα Σχολείων της Μονάδας πρέπει να είναι αλφαριθμητική';
+    const InvalidUnitAreaTeamNumberArray = 'Η Ομάδα Σχολείων της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitLevelsCountParam = 'Το Πλήθος των Κωδικών Τάξεων της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitLevelsCountValue = 'Το Πλήθος των Κωδικών Τάξεων της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitLevelsCountType = 'Το Πλήθος των Κωδικών Τάξεων της Μονάδας πρέπει να είναι αλφαριθμητικό';
+    const InvalidUnitLevelsCountArray = 'Το Πλήθος των Κωδικών Τάξεων της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitGroupsCountParam = 'Το Πλήθος των Τμημάτων της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitGroupsCountValue = 'Το Πλήθος των Τμημάτων της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitGroupsCountType = 'Το Πλήθος των Τμημάτων της Μονάδας πρέπει να είναι αριθμητικό';
+    const InvalidUnitGroupsCountArray = 'Το Πλήθος των Τμημάτων της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitStudentsCountParam = 'Το Πλήθος των Μαθητών της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitStudentsCountValue = 'Το Πλήθος των Μαθητών της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitStudentsCountType = 'Το Πλήθος των Μαθητών της Μονάδας πρέπει να είναι αριθμητικό';
+    const InvalidUnitStudentsCountArray = 'Το Πλήθος των Μαθητών της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitLatitudeParam = 'Το Γεωγραφικό Πλάτος της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitLatitudeValue = 'Το Γεωγραφικό Πλάτος της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitLatitudeType = 'Το Γεωγραφικό Πλάτος της Μονάδας πρέπει να είναι αλφαριθμητικό';
+    const InvalidUnitLatitudeArray = 'Το Γεωγραφικό Πλάτος της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitLongitudeParam = 'Το Γεωγραφικό Μήκος της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitLongitudeValue = 'Το Γεωγραφικό Μήκος της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitLongitudeType = 'Το Γεωγραφικό Μήκος της Μονάδας πρέπει να είναι αλφαριθμητικό';
+    const InvalidUnitLongitudeArray = 'Το Γεωγραφικό Μήκος της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitPositioningParam = 'Η Κτηριακή Θέση της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitPositioningValue = 'Η Κτηριακή Θέση της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitPositioningType = 'Η Κτηριακή Θέση της Μονάδας πρέπει να είναι αλφαριθμητικό';
+    const InvalidUnitPositioningArray = 'Η Κτηριακή Θέση της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitCreationFekParam = 'Ο Αριθμός ΦΕΚ της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitCreationFekValue = 'Ο Αριθμός ΦΕΚ της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitCreationFekType = 'Ο Αριθμός ΦΕΚ της Μονάδας πρέπει να είναι αλφαριθμητικός';
+    const InvalidUnitCreationFekArray = 'Ο Αριθμός ΦΕΚ της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitLastUpdateParam = 'Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας από το Myschool είναι υποχρεωτικό πεδίο';
+    const MissingUnitLastUpdateValue = 'Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας από το Myschool πρέπει να έχει τιμή';
+    const InvalidUnitLastUpdateType = 'Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας από το Myschool πρέπει να είναι αριθμητικός';
+    const InvalidUnitLastUpdateArray = 'Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας από το Myschool δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitLastSyncParam = 'Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας από συγχρονισμό είναι υποχρεωτικό πεδίο';
+    const MissingUnitLastSyncValue = 'Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας από συγχρονισμό πρέπει να έχει τιμή';
+    const InvalidUnitLastSyncType = 'Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας από συγχρονισμό πρέπει να είναι αριθμητικός';
+    const InvalidUnitLastSyncArray = 'Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας από συγχρονισμό δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingUnitCommentsParam = 'Τα Σχόλια της Μονάδας είναι υποχρεωτικό πεδίο';
+    const MissingUnitCommentsValue = 'Τα Σχόλια της Μονάδας πρέπει να έχει τιμή';
+    const InvalidUnitCommentsType = 'Τα Σχόλια της Μονάδας πρέπει να είναι αλφαριθμητικά';
+    const InvalidUnitCommentsArray = 'Τα Σχόλια της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+        
     const DuplicatedUnitValue = 'Η Μονάδα υπάρχει ήδη';
     const DuplicatedUnitUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Unit';
     const DuplicatedUnitMMIDUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key UnitMMID'; //EXTRA only for ID REFERENCE
-
-    const MissingRegistryNoValue = 'Ο Κωδικός ΥΠΕΠΘ πρέπει να έχει τιμή';
-    const MissingRegistryNoParam = 'Ο Κωδικός ΥΠΕΠΘ είναι υποχρεωτικό πεδίο';
-    const InvalidRegistryNoType = 'Ο Κωδικός ΥΠΕΠΘ πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
 
     const MissingHostUnitValue = 'Η Host Μονάδα πρέπει να έχει τιμή';
     const MissingHostUnitParam = 'Η Host Μονάδα είναι υποχρεωτικό πεδίο';
@@ -1190,8 +1286,7 @@ class ExceptionMessages
     const InvalidGuestUnitValue = 'Η Guest Μονάδα δεν υπάρχει στο λεξικό';
     const InvalidGuestUnitType = 'Η Guest Μονάδα πρέπει να είναι αριθμητική ή αλφαριθμητική';
 
-
-    //= Connections
+    //= Connections=============================================================
     const MissingConnectionIDParam = 'Ο Κωδικός της Διασύνδεσης είναι υποχρεωτικό πεδίο';
     const MissingConnectionIDValue = 'Ο Κωδικός της Διασύνδεσης πρέπει να έχει τιμή';
     const InvalidConnectionIDType = 'Ο Κωδικός της Διασύνδεσης πρέπει να είναι αριθμητικός';
@@ -1237,39 +1332,11 @@ class ExceptionMessages
     const MissingMMIdValue = 'Ο Κωδικός ΜΜ πρέπει να έχει τιμή';
     const InvalidMMIdType  = 'Ο Κωδικός ΜΜ  πρέπει να είναι αριθμητικός';
     const InvalidMMIdValue = 'Η Μονάδα δεν βρέθηκε';
-    
-
-
-
-
-
-          
 
 
     const InvalidIpNatMaskType = 'Η Μάσκα του Δρομολογητή ($ip_nat_mask) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const InvalidIpLanMaskType = 'Η Μάσκα του Τοπικού Δικτύου ($ip_lan_mask) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
 
-
-
-    const InvalidSpecialNameType = 'Το Προσωνύμιο της Μονάδας ($special_name) πρέπει να είναι αλφαριθμητικός';
-    
-    const InvalidPhoneNumberType = 'Το Τηλέφωνο Επικοινωνίας ($fax_number) πρέπει να είναι αριθμητικό';
-    const InvalidFaxNumberType = 'Το Φαξ Επικοινωνίας ($fax_number) πρέπει να είναι αριθμητικό';
-    const InvalidEmailType = 'Η Ηλεκτρονική Αλληλογραφία ($email) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const InvalidStreetAddressType = 'Η Διεύθυνση (Οδός και Αριθμός) της Μονάδας ($street_address) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const InvalidPostalCodeType = 'Ο Ταχυδρομικός Κώδικας της Μονάδας ($postal_code) πρέπει να είναι αριθμητικό';
-    const InvalidTaxNumberType = 'Ο Αριθμός Φορολογικού Μητρώου της Μονάδας ($tax_number) πρέπει να είναι αριθμητικό';
-    const InvalidAreaTeamNumberType = 'Η Ομάδα Σχολείων της Μονάδας ($area_team_number) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const InvalidLevelsCountType = 'Η Ομάδα Σχολείων της Μονάδας ($levels_count) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const InvalidGroupsCountType = 'Το Πλήθος των Τμημάτων της Μονάδας ($groups_count) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const InvalidStudentsCountType = 'Το Πλήθος των Μαθητών της Μονάδας ($students_sum) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const InvalidLatitudeType = 'Το Γεωγραφικό Πλάτος της Μονάδας ($latitude) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const InvalidLongitudeType = 'Το Γεωγραφικό Μήκος της Μονάδας ($longitude) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const InvalidPositioningType = 'Η Κτηριακή Θέση της Μονάδας ($positioning) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const InvalidLastUpdateType = 'Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας ($last_update) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const InvalidLastSyncType = 'Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας ($last_sync) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const InvalidFekType = 'Ο Αριθμός ΦΕΚ ($fek) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const InvalidCommentsType = 'Τα σχόλια ($comments) πρέπει να είναι αλφαριθμητικός';
       
     const InvalidWorkerLastnameType = 'Το Επώνυμο ($lastname) πρέπει να είναι αλφαριθμητικός';
     const InvalidWorkerFirstnameType = 'Το Όνομα ($firstname) πρέπει να είναι αλφαριθμητικός';
