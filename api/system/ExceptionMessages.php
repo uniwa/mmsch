@@ -968,29 +968,54 @@ class ExceptionMessages
 
 //******************************************************************************
 
-    
-    //= GetWorkers
+//= Workers=====================================================================
+        
     const MissingWorkerIDParam = 'Ο Κωδικός του Εργαζομένου είναι υποχρεωτικό πεδίο';
     const MissingWorkerIDValue = 'Ο Κωδικός του Εργαζομένου πρέπει να έχει τιμή';
     const InvalidWorkerIDType = 'Ο Κωδικός του Εργαζομένου πρέπει να είναι αριθμητικός';
     const InvalidWorkerIDArray = 'Ο Κωδικός του Εργαζομένου δεν μπορεί να έχει πολλαπλές τιμές';
     
-    const MissingWorkerParam = 'Ο Εργαζόμενος είναι υποχρεωτικό πεδίο';
     const MissingWorkerValue = 'Ο Εργαζόμενος πρέπει να έχει τιμή';
-    const InvalidWorkerType = 'Ο Εργαζόμενος πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    const MissingWorkerParam = 'Ο Εργαζόμενος είναι υποχρεωτικό πεδίο';
     const InvalidWorkerValue = 'Ο Εργαζόμενος δεν βρέθηκε';
-    const DuplicatedWorkerValue = 'Ο Εργαζόμενος αυτός υπάρχει ήδη';
+    const InvalidWorkerType = 'Ο Εργαζόμενος πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    const InvalidWorkerArray = 'Ο Εργαζόμενος δεν μπορεί να έχει πολλαπλές τιμές';
 
+    const MissingWorkerRegistryNoParam = 'Ο Αριθμός Μητρώου του Εργαζομένου είναι υποχρεωτικό πεδίο';
     const MissingWorkerRegistryNoValue = 'Ο Αριθμός Μητρώου του Εργαζομένου πρέπει να έχει τιμή';
     const InvalidWorkerRegistryNoType = 'Ο Αριθμός Μητρώου του Εργαζομένου πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    const MissingWorkerRegistryNoParam = 'Ο Αριθμός Μητρώου του Εργαζομένου είναι υποχρεωτικό πεδίο';
-    const DuplicatedWorkerRegistryNoValue = 'Ο Αριθμός Μητρώου του Εργαζομένου υπάρχει ήδη';
+    const InvalidWorkerRegistryNoArray = 'Ο Αριθμός Μητρώου του Εργαζομένου δεν μπορεί να έχει πολλαπλές τιμές';
 
+    const MissingWorkerTaxNumberParam = 'To ΑΦΜ του Εργαζομένου είναι υποχρεωτικό πεδίο';
+    const MissingWorkerTaxNumberValue = 'To ΑΦΜ του Εργαζομένου πρέπει να έχει τιμή';
+    const InvalidWorkerTaxNumberType = 'To ΑΦΜ του Εργαζομένου πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    const InvalidWorkerTaxNumberArray = 'To ΑΦΜ του Εργαζομένου δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingWorkerLastnameParam = 'To Επώνυμο του Εργαζομένου είναι υποχρεωτικό πεδίο';
     const MissingWorkerLastnameValue = 'Το Επώνυμο του Εργαζομένου πρέπει να έχει τιμή';
+    const InvalidWorkerLastnameType = 'To Επώνυμο του Εργαζομένου πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    const InvalidWorkerLastnameArray = 'To Επώνυμο του Εργαζομένου δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingWorkerFirstnameParam = 'To Όνομα του Εργαζομένου είναι υποχρεωτικό πεδίο';
     const MissingWorkerFirstnameValue = 'Το Όνομα του Εργαζομένου πρέπει να έχει τιμή';
+    const InvalidWorkerFirstnameType = 'To Όνομα του Εργαζομένου πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    const InvalidWorkerFirstnameArray = 'To Όνομα του Εργαζομένου δεν μπορεί να έχει πολλαπλές τιμές';
+    
+    const MissingWorkerFathernameParam = 'To Όνομα Πατρός του Εργαζομένου είναι υποχρεωτικό πεδίο';
+    const MissingWorkerFathernameValue = 'Το Όνομα Πατρός του Εργαζομένου πρέπει να έχει τιμή';
+    const InvalidWorkerFathernameType = 'To Όνομα Πατρός του Εργαζομένου πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    const InvalidWorkerFathernameArray = 'To Όνομα Πατρός του Εργαζομένου δεν μπορεί να έχει πολλαπλές τιμές'; 
 
+    const MissingWorkerSexParam = 'To Φύλο του Εργαζομένου είναι υποχρεωτικό πεδίο';
+    const MissingWorkerSexValue = 'Το Φύλο του Εργαζομένου πρέπει να έχει τιμή';
+    const InvalidWorkerSexType = 'To Φύλο του Εργαζομένου πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
+    const InvalidWorkerSexArray = 'To Φύλο του Εργαζομένου δεν μπορεί να έχει πολλαπλές τιμές';
 
-    //= Circuits
+    const DuplicatedWorkerValue = 'Ο Εργαζόμενος αυτός υπάρχει ήδη';
+    const DuplicatedWorkerUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Worker';
+        
+//= Circuits====================================================================
+    
     const MissingCircuitIDParam = 'Ο Κωδικός του Τηλεπικοινωνιακού Κυκλώματος είναι υποχρεωτικό πεδίο';
     const MissingCircuitIDValue = 'Ο Κωδικός του Τηλεπικοινωνιακού Κυκλώματος πρέπει να έχει τιμή';
     const InvalidCircuitIDType = 'Ο Κωδικός του Τηλεπικοινωνιακού Κυκλώματος πρέπει να είναι αριθμητικός';
@@ -1306,10 +1331,7 @@ class ExceptionMessages
     const BanConnectionCircuitStatusValue = 'Δεν είναι δυνατή η εισαγωγή Καταργημένου Κυκλώματος ';
     const UsedConnectionByUnitNetworkSubnets = 'Η Διασύνδεση Συσχετίζεται με Υποδικτύο της Μονάδας';
 
-
-    //======================================================================================================================
-    // =UnitWorkers
-    //======================================================================================================================
+    // =UnitWorkers=============================================================
     const MissingUnitWorkerIDParam = 'Ο Κωδικός της Συσχέτισης Εργαζομενου - Μονάδας είναι υποχρεωτικό πεδίο';
     const MissingUnitWorkerIDValue = 'Ο Κωδικός της Συσχέτισης Εργαζομενου - Μονάδας  πρέπει να έχει τιμή';
     const InvalidUnitWorkerIDType = 'Ο Κωδικός της Συσχέτισης Εργαζομενου - Μονάδας  πρέπει να είναι αριθμητικός';
@@ -1323,10 +1345,7 @@ class ExceptionMessages
     
     const DuplicatedUnitWorkerValue = 'Η Συσχέτιση Εργαζομένου και Μονάδας υπάρχει ήδη';
 
-
-
-
-
+//other=========================================================================
 
     const MissingMMIdParam = 'Ο Κωδικός ΜΜ είναι υποχρεωτικό πεδίο';
     const MissingMMIdValue = 'Ο Κωδικός ΜΜ πρέπει να έχει τιμή';
@@ -1337,14 +1356,6 @@ class ExceptionMessages
     const InvalidIpNatMaskType = 'Η Μάσκα του Δρομολογητή ($ip_nat_mask) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const InvalidIpLanMaskType = 'Η Μάσκα του Τοπικού Δικτύου ($ip_lan_mask) πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
 
-      
-    const InvalidWorkerLastnameType = 'Το Επώνυμο ($lastname) πρέπει να είναι αλφαριθμητικός';
-    const InvalidWorkerFirstnameType = 'Το Όνομα ($firstname) πρέπει να είναι αλφαριθμητικός';
-    const InvalidWorkerFathernameType = 'Το Πατρώνυμο ($fathername) πρέπει να είναι αλφαριθμητικός';
-    const InvalidWorkerSexType = 'Το Φύλο ($sex) πρέπει να είναι κάποια από τις προκαθορισμένες τιμές';
-    const InvalidWorkerTaxNumberType = 'Ο Αριθμός Φορολογικού Μητρώου ($tax_number)  πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
-    
-    
 // =Relations===================================================================
 
     const MissingRelationIDParam = 'Ο Κωδικός της Συσχέτισης Μονάδων είναι υποχρεωτικό πεδίο';

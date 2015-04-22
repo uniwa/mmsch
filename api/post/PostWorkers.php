@@ -187,61 +187,60 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  */
 
-
-function PostWorkers( $registry_no, $lastname, $firstname, $fathername, $sex, $tax_number, $worker_specialization, $source )
-{
-    global $entityManager;
+function PostWorkers( $registry_no, $lastname, $firstname, $fathername, $sex, $tax_number,
+                      $worker_specialization, $source ) {
+    
+    global $app, $entityManager;
     
     $Worker = new Workers();
     $result = array();
 
-    $result["method"] = __FUNCTION__;
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
+    $params = loadParameters();
+    $result["parameters"]  = $params;
 
-    try
-    {
+    try {
 
-
-    //==============================================================================
-    CRUDUtils::entitySetParamOld($Worker, $registry_no, ExceptionCodes::InvalidWorkerRegistryNoType, 'registryNo');
+    //$registry_no==============================================================
+    CRUDUtils::entitySetParam($Worker, $registry_no, 'WorkerRegistryNo', 'registry_no' , $params, false, true );
   
-    //==============================================================================
-    CRUDUtils::entitySetParamOld($Worker, $lastname, ExceptionCodes::InvalidWorkerLastnameType, 'lastname');
+    //$lastname=================================================================
+    CRUDUtils::entitySetParam($Worker, $lastname, 'WorkerLastname', 'lastname' , $params, false, true );
 
-    //==============================================================================
-    CRUDUtils::entitySetParamOld($Worker, $firstname, ExceptionCodes::InvalidWorkerFirstnameType, 'firstname');
-    
-    //==============================================================================
-    CRUDUtils::entitySetParamOld($Worker, $fathername, ExceptionCodes::InvalidWorkerFathernameType, 'fathername');
+    //$firstname================================================================
+    CRUDUtils::entitySetParam($Worker, $firstname, 'WorkerFirstname', 'firstname' , $params, false, true );
+
+    //$fathername===============================================================
+    CRUDUtils::entitySetParam($Worker, $fathername, 'WorkerFathername', 'fathername' , $params, false, true );
   
-    //==============================================================================
-    CRUDUtils::entitySetParamOld($Worker, $sex, ExceptionCodes::InvalidWorkerSexType, 'sex');
+    //$sex======================================================================
+    CRUDUtils::entitySetParam($Worker, $sex, 'WorkerSex', 'sex' , $params, false, true );
 
-    //==============================================================================
-    CRUDUtils::entitySetParamOld($Worker, $tax_number, ExceptionCodes::InvalidWorkerTaxNumberType, 'taxNumber');
+    //$tax_number===============================================================
+    CRUDUtils::entitySetParam($Worker, $tax_number, 'WorkerTaxNumber', 'tax_number' , $params, false, true );
 
-    //==============================================================================
-    CRUDUtils::entitySetParamOld($Worker, $worker_specialization, ExceptionCodes::InvalidWorkerSpecializationType, 'workerSpecialization');
+    //$worker_specialization====================================================
+    CRUDUtils::entitySetAssociation($Worker, $worker_specialization, 'WorkerSpecializations', 'workerSpecialization', 'WorkerSpecialization', $params, 'worker_specialization', false, true);
       
-    //==============================================================================
-    CRUDUtils::entitySetAssociationOld($Worker, $source, 'Sources', 'source', 'Source');
-        
-    //==============================================================================
-            
+    //$source===================================================================
+    CRUDUtils::entitySetAssociation($Worker, $source, 'Sources', 'source', 'Source', $params, 'source');
+
+    //insert to db==============================================================
            $entityManager->persist($Worker);
            $entityManager->flush($Worker);
-       
-            $result["status"] = ExceptionCodes::NoErrors;;
-            $result["message"] = ExceptionMessages::NoErrors;
-            $result["worker_id"] = $Worker->getWorkerId();
-            
-    } 
-    catch (Exception $e) 
-    {
+
+           $result["worker_id"] = $Worker->getWorkerId();
+                 
+//result_messages===============================================================      
+        $result["status"] = ExceptionCodes::NoErrors;
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".$result["method"]."]: ".$e->getMessage();
-    } 
-    
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    }  
+
     return $result;
 }
-
 ?>

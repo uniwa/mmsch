@@ -143,7 +143,7 @@ class Workers
         return $this->workerSpecialization;
     }
 
-    public function setWorkerSpecialization(\WorkerSpecializations $workerSpecialization) {
+    public function setWorkerSpecialization(\WorkerSpecializations $workerSpecialization=null) {
         $this->workerSpecialization = $workerSpecialization;
     }
 

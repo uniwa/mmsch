@@ -1646,7 +1646,7 @@ class ExceptionCodes
     
     /** {@see ExceptionMessages::DuplicatedGroupValue} */
     const DuplicatedGroupValue = 500;
-     /** {@see ExceptionMessages::DuplicatedGroupUniqueValue} */ 
+    /** {@see ExceptionMessages::DuplicatedGroupUniqueValue} */ 
     const DuplicatedGroupUniqueValue = 500;
 
         //delete
@@ -1656,51 +1656,90 @@ class ExceptionCodes
         const NotFoundDelGroupValue = 500;
 
 //******************************************************************************  
-
-
-
     
-    
-        
-    
-    //= GetWorkers
-    /** {@see ExceptionMessages::MissingWorkerIDParam} */
+//= Workers=================================================================
+
+    /** {@see ExceptionMessages::MissingWorkerIDParam} */ 
     const MissingWorkerIDParam = 500;
-    /** {@see ExceptionMessages::MissingWorkerIDValue} */
+    /** {@see ExceptionMessages::MissingWorkerIDValue} */ 
     const MissingWorkerIDValue = 500;
-    /** {@see ExceptionMessages::InvalidWorkerIDType} */
+    /** {@see ExceptionMessages::InvalidWorkerIDType} */ 
     const InvalidWorkerIDType = 500;
-    /** {@see ExceptionMessages::InvalidWorkerIDArray} */
+    /** {@see ExceptionMessages::InvalidWorkerIDArray} */ 
     const InvalidWorkerIDArray = 500;
-
-    /** {@see ExceptionMessages::MissingWorkerParam} */
-    const MissingWorkerParam = 500;
-    /** {@see ExceptionMessages::MissingWorkerValue} */
+    
+    /** {@see ExceptionMessages::MissingWorkerValue} */ 
     const MissingWorkerValue = 500;
-    /** {@see ExceptionMessages::InvalidWorkerType} */
-    const InvalidWorkerType = 500;
-    /** {@see ExceptionMessages::InvalidWorkerValue} */
+    /** {@see ExceptionMessages::MissingWorkerParam} */ 
+    const MissingWorkerParam = 500;    
+    /** {@see ExceptionMessages::InvalidWorkerValue} */ 
     const InvalidWorkerValue = 500;
-    /** {@see ExceptionMessages::DuplicatedWorkerValue} */
-    const DuplicatedWorkerValue = 500;
+    /** {@see ExceptionMessages::InvalidWorkerType} */ 
+    const InvalidWorkerType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerArray} */ 
+    const InvalidWorkerArray = 500;
 
-    /** {@see ExceptionMessages::MissingWorkerRegistryNoValue} */
-    const MissingWorkerRegistryNoValue = 500;
-    /** {@see ExceptionMessages::InvalidWorkerRegistryNoType} */
-    const InvalidWorkerRegistryNoType = 500;
-    /** {@see ExceptionMessages::MissingWorkerRegistryNoParam} */
+    /** {@see ExceptionMessages::MissingWorkerRegistryNoParam} */ 
     const MissingWorkerRegistryNoParam = 500;
-    /** {@see ExceptionMessages::DuplicatedWorkerRegistryNoValue} */
-    const DuplicatedWorkerRegistryNoValue = 500;
+    /** {@see ExceptionMessages::MissingWorkerRegistryNoValue} */ 
+    const MissingWorkerRegistryNoValue = 500;
+    /** {@see ExceptionMessages::InvalidWorkerRegistryNoType} */ 
+    const InvalidWorkerRegistryNoType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerRegistryNoArray} */ 
+    const InvalidWorkerRegistryNoArray = 500;
 
-    /** {@see ExceptionMessages::MissingWorkerLastnameValue} */
+    /** {@see ExceptionMessages::MissingWorkerTaxNumberParam} */ 
+    const MissingWorkerTaxNumberParam = 500;
+    /** {@see ExceptionMessages::MissingWorkerTaxNumberValue} */ 
+    const MissingWorkerTaxNumberValue = 500;
+    /** {@see ExceptionMessages::InvalidWorkerTaxNumberType} */ 
+    const InvalidWorkerTaxNumberType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerTaxNumberArray} */ 
+    const InvalidWorkerTaxNumberArray = 500;
+    
+    /** {@see ExceptionMessages::MissingWorkerLastnameParam} */ 
+    const MissingWorkerLastnameParam = 500;
+    /** {@see ExceptionMessages::MissingWorkerLastnameValue} */ 
     const MissingWorkerLastnameValue = 500;
-    /** {@see ExceptionMessages::MissingWorkerFirstnameValue} */
+    /** {@see ExceptionMessages::InvalidWorkerLastnameType} */ 
+    const InvalidWorkerLastnameType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerLastnameArray} */ 
+    const InvalidWorkerLastnameArray = 500;
+    
+    /** {@see ExceptionMessages::MissingWorkerFirstnameParam} */ 
+    const MissingWorkerFirstnameParam = 500;
+    /** {@see ExceptionMessages::MissingWorkerFirstnameValue} */ 
     const MissingWorkerFirstnameValue = 500;
+    /** {@see ExceptionMessages::InvalidWorkerFirstnameType} */ 
+    const InvalidWorkerFirstnameType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerFirstnameArray} */ 
+    const InvalidWorkerFirstnameArray = 500;
+    
+    /** {@see ExceptionMessages::MissingWorkerFathernameParam} */ 
+    const MissingWorkerFathernameParam = 500;
+    /** {@see ExceptionMessages::MissingWorkerFathernameValue} */ 
+    const MissingWorkerFathernameValue = 500;
+    /** {@see ExceptionMessages::InvalidWorkerFathernameType} */ 
+    const InvalidWorkerFathernameType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerFathernameArray} */ 
+    const InvalidWorkerFathernameArray = 500;
 
+    /** {@see ExceptionMessages::MissingWorkerSexParam} */ 
+    const MissingWorkerSexParam = 500;
+    /** {@see ExceptionMessages::MissingWorkerSexValue} */ 
+    const MissingWorkerSexValue = 500;
+    /** {@see ExceptionMessages::InvalidWorkerSexType} */ 
+    const InvalidWorkerSexType = 500;
+    /** {@see ExceptionMessages::InvalidWorkerSexArray} */ 
+    const InvalidWorkerSexArray = 500;
 
+    /** {@see ExceptionMessages::DuplicatedWorkerValue} */ 
+    const DuplicatedWorkerValue = 500;
+    /** {@see ExceptionMessages::DuplicatedWorkerUniqueValue} */ 
+    const DuplicatedWorkerUniqueValue = 500;
 
-    //= Circuits
+//= Circuits====================================================================
+    
     /** {@see ExceptionMessages::MissingCircuitIDParam} */
     const MissingCircuitIDParam = 500;
     /** {@see ExceptionMessages::MissingCircuitIDValue} */
@@ -2245,7 +2284,7 @@ class ExceptionCodes
     /** {@see ExceptionMessages::UsedConnectionByUnitNetworkSubnets} */
     const UsedConnectionByUnitNetworkSubnets = 500;
     
-    // =UnitWorkers
+    // =UnitWorkers=============================================================
     /** {@see ExceptionMessages::MissingUnitWorkerIDParam} */
     const MissingUnitWorkerIDParam = 500;
     /** {@see ExceptionMessages::MissingUnitWorkerIDValue} */
@@ -2269,9 +2308,7 @@ class ExceptionCodes
     /** {@see ExceptionMessages::DuplicatedUnitWorkerValue} */
     const DuplicatedUnitWorkerValue = 500;
 
-
-
-
+//other=========================================================================
     /** {@see ExceptionMessages::MissingMMIdParam} */
     const MissingMMIdParam = 500;
     /** {@see ExceptionMessages::MissingMMIdValue} */
@@ -2286,17 +2323,6 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidIpLanMaskType} */
     const InvalidIpLanMaskType = 500;
    
-    /** {@see ExceptionMessages::InvalidWorkerLastnameType} */
-    const InvalidWorkerLastnameType = 500;
-    /** {@see ExceptionMessages::InvalidWorkerFirstnameType} */
-    const InvalidWorkerFirstnameType = 500;
-    /** {@see ExceptionMessages::InvalidWorkerFathernameType} */
-    const InvalidWorkerFathernameType = 500;
-    /** {@see ExceptionMessages::InvalidWorkerSexType} */
-    const InvalidWorkerSexType = 500;
-    /** {@see ExceptionMessages::InvalidWorkerTaxNumberType} */
-    const InvalidWorkerTaxNumberType = 500;
-
     /** {@see ExceptionMessages::MissingConnectivityTypeValue} */
     const MissingConnectivityTypeValue = 500;
     /** {@see ExceptionMessages::MissingConnectivityTypeParam} */
