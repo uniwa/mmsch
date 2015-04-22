@@ -185,12 +185,12 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws MissingRelationIDValue {@see ExceptionMessages::MissingRelationIDValue}
  * @throws InvalidRelationIDType {@see ExceptionMessages::InvalidRelationIDType}
  * @throws InvalidRelationValue {@see ExceptionMessages::InvalidRelationValue}
- * @throws MissingHostMMIdValue {@see ExceptionMessages::MissingHostMMIdValue}
- * @throws InvalidHostMMIdType {@see ExceptionMessages::InvalidHostMMIdType}
- * @throws InvalidHostMMIdValue {@see ExceptionMessages::InvalidHostMMIdValue}
- * @throws MissingGuestMMIdValue {@see ExceptionMessages::MissingGuestMMIdValue}
- * @throws InvalidGuestMMIdType {@see ExceptionMessages::InvalidGuestMMIdType}
- * @throws InvalidGuestMMIdValue {@see ExceptionMessages::InvalidGuestMMIdValue}
+ * @throws MissingRelationHostUnitMMIDValue {@see ExceptionMessages::MissingRelationHostUnitMMIDValue}
+ * @throws InvalidRelationHostUnitMMIDType {@see ExceptionMessages::InvalidRelationHostUnitMMIDType}
+ * @throws InvalidRelationHostUnitMMIDValue {@see ExceptionMessages::InvalidRelationHostUnitMMIDValue}
+ * @throws MissingRelationGuestUnitMMIDValue {@see ExceptionMessages::MissingRelationGuestUnitMMIDValue}
+ * @throws InvalidRelationGuestUnitMMIDType {@see ExceptionMessages::InvalidRelationGuestUnitMMIDType}
+ * @throws InvalidRelationGuestUnitMMIDValue {@see ExceptionMessages::InvalidRelationGuestUnitMMIDValue}
  * @throws MissingRelationTypeValue {@see ExceptionMessages::MissingRelationTypeValue}
  * @throws InvalidRelationTypeValue {@see ExceptionMessages::InvalidRelationTypeValue}
  * 

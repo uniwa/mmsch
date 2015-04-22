@@ -2328,36 +2328,36 @@ class ExceptionCodes
     const InvalidIpNatMaskType = 500;
     /** {@see ExceptionMessages::InvalidIpLanMaskType} */
     const InvalidIpLanMaskType = 500;
-   
-    /** {@see ExceptionMessages::MissingConnectivityTypeValue} */
-    const MissingConnectivityTypeValue = 500;
-    /** {@see ExceptionMessages::MissingConnectivityTypeParam} */
-    const MissingConnectivityTypeParam = 500;
-    /** {@see ExceptionMessages::InvalidConnectivityTypeValue} */
-    const InvalidConnectivityTypeValue = 500;
-    /** {@see ExceptionMessages::InvalidConnectivityTypeType} */
-    const InvalidConnectivityTypeType = 500;
-    /** {@see ExceptionMessages::DuplicatedConnectivityTypeValue} */
-    const DuplicatedConnectivityTypeValue = 500;
-    /** {@see ExceptionMessages::MissingConnectivityTypeIDParam} */
-    const MissingConnectivityTypeIDParam = 500;
-    /** {@see ExceptionMessages::MissingConnectivityTypeIDValue} */
-    const MissingConnectivityTypeIDValue = 500;
-    /** {@see ExceptionMessages::InvalidConnectivityTypeIDType} */
-    const InvalidConnectivityTypeIDType = 500;
-
-     /** {@see ExceptionMessages::MissingHostMMIdValue} */
-    const MissingHostMMIdValue = 500;
-    /** {@see ExceptionMessages::InvalidHostMMIdType} */
-    const InvalidHostMMIdType  = 500;
-    /** {@see ExceptionMessages::InvalidHostMMIdValue} */
-    const InvalidHostMMIdValue = 500;
-    /** {@see ExceptionMessages::MissingGuestMMIdValue} */
-    const MissingGuestMMIdValue = 500;
-    /** {@see ExceptionMessages::InvalidGuestMMIdType} */
-    const InvalidGuestMMIdType  = 500;
-    /** {@see ExceptionMessages::InvalidGuestMMIdValue} */
-    const InvalidGuestMMIdValue = 500;
+    
+//    /** {@see ExceptionMessages::MissingConnectivityTypeValue} */
+//    const MissingConnectivityTypeValue = 500;
+//    /** {@see ExceptionMessages::MissingConnectivityTypeParam} */
+//    const MissingConnectivityTypeParam = 500;
+//    /** {@see ExceptionMessages::InvalidConnectivityTypeValue} */
+//    const InvalidConnectivityTypeValue = 500;
+//    /** {@see ExceptionMessages::InvalidConnectivityTypeType} */
+//    const InvalidConnectivityTypeType = 500;
+//    /** {@see ExceptionMessages::DuplicatedConnectivityTypeValue} */
+//    const DuplicatedConnectivityTypeValue = 500;
+//    /** {@see ExceptionMessages::MissingConnectivityTypeIDParam} */
+//    const MissingConnectivityTypeIDParam = 500;
+//    /** {@see ExceptionMessages::MissingConnectivityTypeIDValue} */
+//    const MissingConnectivityTypeIDValue = 500;
+//    /** {@see ExceptionMessages::InvalidConnectivityTypeIDType} */
+//    const InvalidConnectivityTypeIDType = 500;
+//
+//     /** {@see ExceptionMessages::MissingHostMMIdValue} */
+//    const MissingHostMMIdValue = 500;
+//    /** {@see ExceptionMessages::InvalidHostMMIdType} */
+//    const InvalidHostMMIdType  = 500;
+//    /** {@see ExceptionMessages::InvalidHostMMIdValue} */
+//    const InvalidHostMMIdValue = 500;
+//    /** {@see ExceptionMessages::MissingGuestMMIdValue} */
+//    const MissingGuestMMIdValue = 500;
+//    /** {@see ExceptionMessages::InvalidGuestMMIdType} */
+//    const InvalidGuestMMIdType  = 500;
+//    /** {@see ExceptionMessages::InvalidGuestMMIdValue} */
+//    const InvalidGuestMMIdValue = 500;
     
     // =Relations===============================================================
     /** {@see ExceptionMessages::MissingRelationIDParam} */
