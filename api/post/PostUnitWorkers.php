@@ -144,46 +144,48 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  */
 
-
-function PostUnitWorkers( $mm_id, $worker, $worker_position )
-{
-    global $entityManager;
+function PostUnitWorkers( $mm_id, $worker, $worker_position ) {
+    
+    global $app, $entityManager;
     
     $unitWorker = new UnitWorkers();
     $result = array();
 
-    $result["method"] = __FUNCTION__;
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
+    $params = loadParameters();
+    $result["parameters"]  = $params;
    
-    try
-    {
+    try {
 
-//==============================================================================
-    CRUDUtils::entitySetAssociationOld($unitWorker, $mm_id, 'Units', 'mm', 'Unit');
+    //$mm_id====================================================================
+    CRUDUtils::entitySetAssociation($unitWorker, $mm_id, 'Units', 'mm', 'UnitMMID', $params, 'mm_id', true, false, true);
   
-//==============================================================================
-    CRUDUtils::entitySetAssociationOld($unitWorker, $worker, 'Workers', 'worker', 'Worker');
+    //$worker===================================================================
+    CRUDUtils::entitySetAssociation($unitWorker, $worker, 'Workers', 'worker', 'WorkerID', $params, 'worker', true, false, true);
 
-//==============================================================================
-    CRUDUtils::entitySetAssociationOld($unitWorker, $worker_position, 'WorkerPositions', 'workerPosition', 'WorkerPosition');
+    //$worker_position==========================================================
+    CRUDUtils::entitySetAssociation($unitWorker, $worker_position, 'WorkerPositions', 'workerPosition', 'WorkerPosition', $params, 'worker_position');
 
-//==============================================================================
+//controls======================================================================
 
+       //check for duplicate====================================================
        $checkDuplicate = $entityManager->getRepository('UnitWorkers')->findOneBy(array( 'mm' => Validator::toID($mm_id),
                                                                                         'worker' => Validator::toID($worker),
                                                                                         'workerPosition' => Validator::toID($worker_position),
                                                                                        ));
-            
+
        if (!Validator::isNull($checkDuplicate)){
            throw new Exception(ExceptionMessages::DuplicatedUnitWorkerValue ,ExceptionCodes::DuplicatedUnitWorkerValue);
        }
 
-       $distinctSpecialties = array( // Only one worker of this specialty is allowed per unit
-           'ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ'
-       );
+       // Only one worker of this specialty is allowed per unit
+       $distinctSpecialties = array( 'ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ' );
 
        if(in_array($worker_position, $distinctSpecialties)) {
             $checkDistinct = $entityManager->getRepository('UnitWorkers')->findBy(array( 'mm' => Validator::toID($mm_id),
-                                                                                        'workerPosition' => $unitWorker->getWorkerPosition(),
+                                                                                         'workerPosition' => $unitWorker->getWorkerPosition(),
                                                                                        ));
             $toFlush = array();
             foreach($checkDistinct as $curDistinctWorker) {
@@ -193,21 +195,20 @@ function PostUnitWorkers( $mm_id, $worker, $worker_position )
             $entityManager->flush($toFlush);
        }
 
+ //insert to db================================================================== 
            $entityManager->persist($unitWorker);
            $entityManager->flush($unitWorker);
 
-            $result["status"] = ExceptionCodes::NoErrors;;
-            $result["message"] = ExceptionMessages::NoErrors;
-            $result["unit_worker_id"] = $unitWorker->getUnitWorkerId();
+           $result["unit_worker_id"] = $unitWorker->getUnitWorkerId();
             
-    } 
-    catch (Exception $e) 
-    {
+//result_messages===============================================================      
+        $result["status"] = ExceptionCodes::NoErrors;
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".$result["method"]."]: ".$e->getMessage();
-    } 
-    
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    }  
+
     return $result;
 }
-
 ?>

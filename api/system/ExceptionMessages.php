@@ -974,6 +974,7 @@ class ExceptionMessages
     const MissingWorkerIDValue = 'Ο Κωδικός του Εργαζομένου πρέπει να έχει τιμή';
     const InvalidWorkerIDType = 'Ο Κωδικός του Εργαζομένου πρέπει να είναι αριθμητικός';
     const InvalidWorkerIDArray = 'Ο Κωδικός του Εργαζομένου δεν μπορεί να έχει πολλαπλές τιμές';
+    const InvalidWorkerIDValue = 'Ο Κωδικός του Εργαζομένου δεν βρέθηκε'; //EXTRA only for ID REFERENCE
     
     const MissingWorkerValue = 'Ο Εργαζόμενος πρέπει να έχει τιμή';
     const MissingWorkerParam = 'Ο Εργαζόμενος είναι υποχρεωτικό πεδίο';
@@ -1013,7 +1014,8 @@ class ExceptionMessages
 
     const DuplicatedWorkerValue = 'Ο Εργαζόμενος αυτός υπάρχει ήδη';
     const DuplicatedWorkerUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Worker';
-        
+    const DuplicatedWorkerIDUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key WorkerID'; //EXTRA only for ID REFERENCE
+       
 //= Circuits====================================================================
     
     const MissingCircuitIDParam = 'Ο Κωδικός του Τηλεπικοινωνιακού Κυκλώματος είναι υποχρεωτικό πεδίο';
@@ -1344,7 +1346,8 @@ class ExceptionMessages
     const InvalidUnitWorkerArray = 'Η Συσχέτιση Εργαζομενου - Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
     
     const DuplicatedUnitWorkerValue = 'Η Συσχέτιση Εργαζομένου και Μονάδας υπάρχει ήδη';
-
+    const DuplicatedUnitWorkerUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key UnitWorker';
+   
 //other=========================================================================
 
     const MissingMMIdParam = 'Ο Κωδικός ΜΜ είναι υποχρεωτικό πεδίο';

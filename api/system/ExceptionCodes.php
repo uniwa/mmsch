@@ -1667,6 +1667,8 @@ class ExceptionCodes
     const InvalidWorkerIDType = 500;
     /** {@see ExceptionMessages::InvalidWorkerIDArray} */ 
     const InvalidWorkerIDArray = 500;
+    /** {@see ExceptionMessages::InvalidWorkerIDValue} */ 
+    const InvalidWorkerIDValue = 500;
     
     /** {@see ExceptionMessages::MissingWorkerValue} */ 
     const MissingWorkerValue = 500;
@@ -1737,6 +1739,8 @@ class ExceptionCodes
     const DuplicatedWorkerValue = 500;
     /** {@see ExceptionMessages::DuplicatedWorkerUniqueValue} */ 
     const DuplicatedWorkerUniqueValue = 500;
+    /** {@see ExceptionMessages::DuplicatedWorkerIDUniqueValue} */ 
+    const DuplicatedWorkerIDUniqueValue = 500;
 
 //= Circuits====================================================================
     
@@ -2307,6 +2311,8 @@ class ExceptionCodes
     
     /** {@see ExceptionMessages::DuplicatedUnitWorkerValue} */
     const DuplicatedUnitWorkerValue = 500;
+    /** {@see ExceptionMessages::DuplicatedUnitWorkerUniqueValue} */
+    const DuplicatedUnitWorkerUniqueValue = 500;
 
 //other=========================================================================
     /** {@see ExceptionMessages::MissingMMIdParam} */

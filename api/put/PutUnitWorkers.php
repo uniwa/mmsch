@@ -151,42 +151,49 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  */
 
-
-function PutUnitWorkers( $unit_worker_id, $mm_id, $worker, $worker_position )
-{
-    global $entityManager;
-    
-    $result = array();
-
-    $result["method"] = __FUNCTION__;
-
-    try
-    {
-
-        if ( $unit_worker_id === _MISSED_ )
-            throw new Exception(ExceptionMessages::MissingUnitWorkerIDParam, ExceptionCodes::MissingUnitWorkerIDParam);
-        else if ( Validator::IsNull($unit_worker_id) )
-            throw new Exception(ExceptionMessages::MissingUnitWorkerIDValue, ExceptionCodes::MissingUnitWorkerIDValue);
-        else if ( Validator::IsID($unit_worker_id) )
-            $unit_worker_id = Validator::ToID($unit_worker_id);
-        else
-            throw new Exception(ExceptionMessages::InvalidUnitWorkerIDType." : ".$unit_worker_id, ExceptionCodes::InvalidUnitWorkerIDType);
-
-        $unitWorker = $entityManager->find('UnitWorkers', $unit_worker_id);
-        if(!isset($unit_worker_id))
-            throw new Exception(ExceptionMessages::InvalidUnitWorkerValue." : ".$mm_id, ExceptionCodes::InvalidUnitWorkerValue);
-        
-//==============================================================================
-    CRUDUtils::entitySetAssociationOld($unitWorker, $mm_id, 'Units', 'mm', 'Unit');
+function PutUnitWorkers( $unit_worker_id, $mm_id, $worker, $worker_position ) {
   
-//==============================================================================
-    CRUDUtils::entitySetAssociationOld($unitWorker, $worker, 'Workers', 'worker', 'Worker');
+    global $app, $entityManager;
+    $result = array();  
+    
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
+    $params = loadParameters();
+    $result["parameters"]  = $params;
 
-//==============================================================================
-    CRUDUtils::entitySetAssociationOld($unitWorker, $worker_position, 'WorkerPositions', 'workerPosition', 'WorkerPosition');
+    try {
+        
+        //$unit_worker_id=======================================================
+        $fUnitWorkerId = CRUDUtils::checkIDParam('unit_worker_id', $params, $unit_worker_id, 'UnitWorkerID');
 
-//==============================================================================
+        //init entity for update row============================================
+        $unitWorker = CRUDUtils::findIDParam($fUnitWorkerId, 'UnitWorkers', 'UnitWorker');
+                
+    //$mm_id====================================================================
+    if ( Validator::IsExists('mm_id') ){
+        CRUDUtils::entitySetAssociation($unitWorker, $mm_id, 'Units', 'mm', 'UnitMMID', $params, 'mm_id', true, false, true);
+    } else if ( Validator::IsNull($unitWorker->getMm()) ){
+        throw new Exception(ExceptionMessages::MissingUnitMMIDValue, ExceptionCodes::MissingUnitMMIDValue);
+    } 
+  
+    //$worker===================================================================
+    if ( Validator::IsExists('worker') ){
+        CRUDUtils::entitySetAssociation($unitWorker, $worker, 'Workers', 'worker', 'WorkerID', $params, 'worker', true, false, true);
+    } else if ( Validator::IsNull($unitWorker->getWorker()) ){
+        throw new Exception(ExceptionMessages::MissingWorkerIDValue, ExceptionCodes::MissingWorkerIDValue);
+    } 
+    
+    //$worker_position==========================================================
+    if ( Validator::IsExists('worker_position') ){
+        CRUDUtils::entitySetAssociation($unitWorker, $worker_position, 'WorkerPositions', 'workerPosition', 'WorkerPosition', $params, 'worker_position');
+    } else if ( Validator::IsNull($unitWorker->getWorkerPosition()) ){
+        throw new Exception(ExceptionMessages::MissingWorkerPositionValue, ExceptionCodes::MissingWorkerPositionValue);
+    } 
 
+//controls======================================================================
+
+       //check for duplicate====================================================
        $checkDuplicate = $entityManager->getRepository('UnitWorkers')->findOneBy(array( 'mm' => Validator::toID($mm_id),
                                                                                         'worker' => Validator::toID($worker),
                                                                                         'workerPosition' => Validator::toID($worker_position),
@@ -196,14 +203,13 @@ function PutUnitWorkers( $unit_worker_id, $mm_id, $worker, $worker_position )
            throw new Exception(ExceptionMessages::DuplicatedUnitWorkerValue ,ExceptionCodes::DuplicatedUnitWorkerValue);
        }
 
-       $distinctSpecialties = array( // Only one worker of this specialty is allowed per unit
-           'ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ'
-       );
+       // Only one worker of this specialty is allowed per unit
+       $distinctSpecialties = array( 'ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ' );
 
        if(in_array($worker_position, $distinctSpecialties)) {
             $checkDistinct = $entityManager->getRepository('UnitWorkers')->findBy(array( 'mm' => Validator::toID($mm_id),
-                                                                                        'workerPosition' => $unitWorker->getWorkerPosition(),
-                                                                                       ));
+                                                                                         'workerPosition' => $unitWorker->getWorkerPosition(),
+                                                                                        ));
             $toFlush = array();
             foreach($checkDistinct as $curDistinctWorker) {
                 if($curDistinctWorker->getUnitWorkerId() == $unit_worker_id) { continue; }
@@ -213,21 +219,20 @@ function PutUnitWorkers( $unit_worker_id, $mm_id, $worker, $worker_position )
             $entityManager->flush($toFlush);
        }
 
+//update to db==================================================================
            $entityManager->persist($unitWorker);
            $entityManager->flush($unitWorker);
        
-            $result["status"] = ExceptionCodes::NoErrors;;
-            $result["message"] = ExceptionMessages::NoErrors;
-            $result["unit_worker_id"] = $unitWorker->getUnitWorkerId();
+           $result["unit_worker_id"] = $unitWorker->getUnitWorkerId();
             
-    } 
-    catch (Exception $e) 
-    {
+//result_messages===============================================================      
+        $result["status"] = ExceptionCodes::NoErrors;
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".$result["method"]."]: ".$e->getMessage();
-    } 
-    
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    }  
+
     return $result;
 }
-
 ?>
