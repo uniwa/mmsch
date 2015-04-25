@@ -683,7 +683,7 @@ position: fixed;
 							<div class="detail-section-tab-content" data-bind="source: unitData" data-template="tmpl-cpe-list"></div>
 								
 								<script type="text/x-kendo-template" id="tmpl-cpe-list">
-								# if (cpes != null && cpes.length > 0) { #
+								# if (typeof cpes != "undefined" && cpes != null && cpes.length > 0) { #
 									
 									<table class="table borderless">
 									<tbody>
@@ -1909,10 +1909,17 @@ position: fixed;
 	            var populateUnitDetails = function() {
 
 	            	
-	            		console.log("populate details");
-		            
-	            		kendo.bind($("#unit-" + mm_id + "-preview"), self);
-	                	kendo.bind($("#wnd_create_connection_" + mm_id).parent(), self);
+	            		console.log("-->populate details");
+
+	            		console.log(self);
+
+	            		try{
+	            			kendo.bind($("#unit-" + mm_id + "-preview"), self);
+	                		kendo.bind($("#wnd_create_connection_" + mm_id).parent(), self);
+	            		}
+	            		catch(ex){
+		            		//do nothing. Just for GUI not crash
+	            		}
 
 		                // Hide create/edit/delete connection buttons if the user is not FY or not responsible for the unit
 		                if(typeof user.l == 'undefined' || user.l.split(',').indexOf('ou=partners') == -1 || typeof g_impEnt[0] == 'undefined' || typeof unitSource.data()[0] == 'undefined' || g_impEnt[0].implementation_entity_id != unitSource.data()[0].implementation_entity_id) {
@@ -1924,7 +1931,9 @@ position: fixed;
 						resizeTabContent();
 	            	
 
-					kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
+						kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
+
+						console.log("populate details-->");
 				};
 
 				
@@ -1938,29 +1947,34 @@ position: fixed;
 
 	                    success: function(resp){
 
-	                    	/**/
+	                    	console.log("-->Request ext_log_entries");
+
 	                    	var logs = new Array();
-							var curr_dataItem = {"data": {"lastUpdate": {"date": ""}}};                    	
 
-	                    	$.each(resp.data, function(i, item){
-
-	                    		if (typeof item.data["lastUpdate"] == "undefined") {
-	                    			return;
-	                    		}
-
-	                    		if (item.data.lastUpdate === null){
-	                    			return; 
-	                    		}
-								
-	                        	if (!equal(curr_dataItem.data.lastUpdate.date, item.data.lastUpdate.date) ){
-
-	                        		if (item.data.hasOwnProperty("state") || item.data.hasOwnProperty("name")) {
-	                            		logs.push(item);
-	                            		curr_dataItem = item;
-	                            	}
-	                        	}
-	                    	});
-	                    	/**/
+	                    	
+	                    	if (resp.status != 401){
+	                    	
+								var curr_dataItem = {"data": {"lastUpdate": {"date": ""}}};                    	
+	
+		                    	$.each(resp.data, function(i, item){
+	
+		                    		if (typeof item.data["lastUpdate"] == "undefined") {
+		                    			return;
+		                    		}
+	
+		                    		if (item.data.lastUpdate === null){
+		                    			return; 
+		                    		}
+									
+		                        	if (!equal(curr_dataItem.data.lastUpdate.date, item.data.lastUpdate.date) ){
+	
+		                        		if (item.data.hasOwnProperty("state") || item.data.hasOwnProperty("name")) {
+		                            		logs.push(item);
+		                            		curr_dataItem = item;
+		                            	}
+		                        	}
+		                    	});
+	                    	}
 
 	                    	unitSource.data()[0]['logs'] = logs;
 	                    	//console.log(viewModel);
@@ -1973,8 +1987,17 @@ position: fixed;
 	                			dataType: "json",
 				                success: function(resp){
 
+				                	var cpes = new Array();
+				                	
 					                try {
-	            			        	var cpes = resp.data;
+
+					                	if (resp.status != 401){
+					                		cpes = resp.data;
+					                	}
+					                	else {
+						                	//console.log(resp.message);
+					                	}
+															                	
 	            			        	unitSource.data()[0]['cpes'] = cpes;
 					                }
 					                catch(ex){
