@@ -245,8 +245,13 @@ private static $Permissions = array(
     'ext_log_entries' => array(
                                         'GET' => array('USER', 'ADMIN')                                   
                                         ) ,
+    
     'check_required_values' => array(
-                                    'GET' => array('USER', 'ADMIN')                                   
+                                        'GET' => array('USER', 'ADMIN')                                   
+                                        ) ,
+    
+    'crm_data' => array(
+                                        'GET' => array('USER', 'ADMIN')                                   
                                         ) ,
     );
 
