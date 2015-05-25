@@ -94,6 +94,8 @@ $app->map('/worker_positions', Authentication, UserRolesPermission, WorkerPositi
 $app->map('/worker_specializations', Authentication, UserRolesPermission, WorkerSpecializationsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 
+$app->map('/crm_data', Authentication, UserRolesPermission, CrmDataController)
+    ->via(MethodTypes::GET);
 $app->map('/statistic_units', Authentication, UserRolesPermission, StatisticUnitsController)
     ->via(MethodTypes::GET);
 $app->map('/ext_log_entries', Authentication, UserRolesPermission, ExtLogEntriesController)
@@ -2107,6 +2109,25 @@ function CheckRequiredValuesController() {
                 $params["state"],
                 $params["source"],
                 $params["export"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function CrmDataController() {
+    global $app;
+    
+    $params = loadParameters();
+    
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetCrmData(
+                $params["mm_id"]
             );
             break;
     }

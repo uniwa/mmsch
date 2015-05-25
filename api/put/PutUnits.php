@@ -410,7 +410,7 @@ function PutUnits(  $mm_id, $registry_no, $source, $name, $special_name, $state,
     CRUDUtils::entitySetParam($unit, $special_name, 'UnitSpecialName', 'special_name' , $params, false, true );
 
     //$phoneNumber==============================================================
-    CRUDUtils::entitySetParam($unit, $phone_number, 'UnitPhoneNumber', 'phoneNumber' , $params, false, true );
+    CRUDUtils::entitySetParam($unit, $phone_number, 'UnitPhoneNumber', 'phone_number' , $params, false, true );
 
     //$email====================================================================
     CRUDUtils::entitySetParam($unit, $email, 'UnitEmail', 'email' , $params, false, true );
