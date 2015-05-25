@@ -92,144 +92,6 @@ position: fixed;
 		</table>
 	</script>
 	
-	<!-- start dialog declaration -->
-	<div id="wnd_create_connection_<?php echo $_GET['mm_id']; ?>" 
-			class="wnd_create_connection" 
-			style="width:100%; height:100%; position: absolute: left:auto; z-index: 33010; border:none; border-radius:0px;"
-			>
-		
-		<div class="modal-body">
-			<form id="frm_create_connection_<?php echo $_GET['mm_id']; ?>">
-				<input type="hidden" name="connection_id" id="connection_id" data-bind="value: editedConnection.connection_id"  >
-				<div class="k-content">
-					
-					<div class="alert alert-danger empty-network-element" style="display:none;">Δεν έχετε επιλέξει set ip στοιχείων για την διασύνδεση</div>
-					<div class="alert alert-danger empty-circuit" style="display:none;">Δεν έχετε επιλέξει κύκλωμα για την διασύνδεση</div>
-					<div class="alert alert-success success-create" style="display:none;">Η διασύνδεση δημιουργήθηκε επιτυχώς</div>
-					<div class="alert alert-success success-update" style="display:none;">Η διασύνδεση ενημερώθηκε επιτυχώς</div>
-					
-					<!-- IPs -->
-					<div class="k-block">
-						<div class="k-header">» IPs</div>
-						<div class="k-content">
-							
-							<div id="grd-network-elements" 
-								class="mmsch-grid"
-								
-								data-modelid="unit_network_subnet_id"
-								data-selmodelid="unit_network_subnet_id"
-								
-								
-								data-role="grid" 
-								data-scrollable="false"
-								data-selectable="row"
-								
-								data-columns="[
-									{'title':'', 'width':'10px', template: '<span data-bind=\'html:renderRadioNetworkSubnet\' ></span>', encoded: true},										
-									{'title':'IP', 'field': 'subnet_ip'},
-									{'title':'Μάσκα', 'field': 'mask'},
-									{'title':'Default Gateway', 'field': 'subnet_default_router'}, 
-									{'title':'Τύπος', 'field': 'unit_network_subnet_type'}
-								]" 
-								data-bind="source: unitData.unit_network_subnets, events: {change: grdNetworksChangeListener, dataBound: grdBoundListener}"></div>
-								
-							<p class="text-muted text-center"><small><em>Δεν υπάρχουν διαθέσιμα IP στοιχεία</em></small></p>
-							
-						</div>
-					</div>
-					
-					<!-- Κυκλώματα -->
-					<div class="k-block">
-						<div class="k-header">» Κυκλώματα</div>
-						<div class="k-content">
-							<div id="grd-circuits" 
-								class="mmsch-grid"
-								data-modelid="circuit_id"
-								data-selmodelid="circuit_id"
-								data-role="grid" 
-								data-scrollable="false"
-								data-selectable="row"
-								
-								data-columns="[
-									{'title':'', 'width':'10px', template: '<span data-bind=\'html:renderRadioCircuit\' ></span>', encoded: true},		
-									{'title':'Αριθμός', 'field': 'phone_number'},
-									{'title':'Τύπος', 'field': 'circuit_type'},
-									{'title':'Χρηματοδότηση', 'field': 'paid_by_psd'}
-								]" 
-								data-bind="source: unitData.circuits, events: {change: grdCircuitsChangeListener, dataBound: grdBoundListener}"></div>
-							
-							<p class="text-muted text-center"><small><em>Δεν υπάρχουν διαθέσιμα τηλεπικοινωνιακά κυκλώματα</em></small></p>
-					
-						</div>
-					</div>
-					
-					
-
-					<!-- CPEs -->
-					<div class="k-block">
-						<div class="k-header">» CPEs</div>
-						<div class="k-content">
-							
-							<div id="grd-cpes" 
-								class="mmsch-grid"
-								data-modelid="cpe_id"
-								data-selmodelid="cpe_id"
-								data-role="grid" 
-								data-scrollable="false"
-								data-selectable="row"
-								data-columns="[
-									{'title':'', 'width':'10px', template: '<span data-bind=\'html:renderRadioCpe\' ></span>', encoded: true},		
-									{'title':'&nbsp;', 'field': 'name'}
-								]" 
-								data-bind="source: unitData.cpes, events: {change: grdCpesChangeListener, dataBound: grdBoundListener}"></div>
-							
-							<p class="text-muted text-center"><small><em>Δεν υπάρχουν διαθέσιμοι τερματικοί εξοπλισμοί</em></small></p>
-						</div>
-					</div>
-					
-					
-					
-					<!-- UIDs -->
-					<div class="k-block">
-						<div class="k-header">» UIDs</div>
-						<div class="k-content">
-						
-							<div id="grd-ldaps" 
-								class="mmsch-grid"
-								data-modelid="ldap_id"
-								data-selmodelid="ldap_id"
-								data-role="grid" 
-								data-scrollable="false"
-								data-selectable="row"
-								data-columns="[
-									{'title':'', 'width':'10px', template: '<span data-bind=\'html:renderRadioLdap\' ></span>', encoded: true},		
-									{'title':'&nbsp;', 'field': 'ldap_uid'}
-								]" 
-								data-bind="source: unitData.ldaps, events: {change: grdLdapsChangeListener, dataBound: grdBoundListener}">
-							</div>
-
-							<p class="text-muted text-center"><small><em>Δεν υπάρχουν διαθέσιμοι λογαριασμοί υπηρεσίας</em></small></p>
-							
-						</div>
-					</div>
-					
-					
-					
-                </div>
-			</form>
-		</div>
-		<div class="clearfix k-content wnd-footer">
-			<div class="k-window-action">
-				<button id="btnSaveConnection" 
-					data-bind="events:{ click: saveConnection }, html: setLabelbtnSaveConnection"
-					data-loading-text="Loading..."
-					class="k-button pull-right" type="button">
-				</button>
-			</div>
-		</div>
-	</div>
-	<!-- end dialog declaration -->
-	
 	
     <div class="k-content accordion-wrapper" style="padding:10px;">
        	
@@ -444,83 +306,75 @@ position: fixed;
 																		
 									# for (var i = 0, len = connections.length;  i < len; i++ ){ #
 									
-									# var subnets = connections[i].unit_network_subnets;  #									
+									# var con_subnets = connections[i].subnets;  #
+
+									# var con_circuits = connections[i].circuits;  #									
 									
-									# var safeSubnets = JSON.stringify(subnets); #
+									# var safeSubnets = JSON.stringify(con_subnets);  #
 
 									<div class="mmsch-list-item">
 									<table class="table borderless">
 										<tbody>
 											<tr>
 												<td class="detail-term term-head" colspan="2">Διασύνδεση ${i+1}
-												<button class="k-button editConnection" 
-															
-															data-connection_id="${connections[i]['connection_id']}"
-															data-subnets=${safeSubnets}
-															data-circuit_id="${connections[i]['circuit']['circuit_id']}"
-															data-cpe_id="${connections[i]['cpe']['cpe_id']}"
-															data-ldap_id="${connections[i]['ldap']['ldap_id']}"
-															><span class="glyphicon glyphicon-pencil"></span></button>
-												
-												<button class="k-button deleteConnection" 
-														data-connection_id="${connections[i]['connection_id']}"
-														data-loading-text="Loading..."
-														><span class="glyphicon glyphicon-remove"></span></button>
-												
 												</td>
 											</tr>
 											
-											# for (var j = 0, slen = subnets.length;  j < slen; j++ ){ #
+											# for (var j = 0, slen = con_subnets.length;  j < slen; j++ ){ #
+
+											# var subnet_idx = lookup(subnets, con_subnets[j], "id"); #
+
+											# var con_subnet = subnets[subnet_idx]; console.log(con_subnet); #
+
+											# var con_subnet = subnets[subnet_idx]; console.log(con_subnet); #
+
 											<tr><td colspan="2" class="connectionSubnet" ><table class="borderless"><tbody>
 
 											<tr>
 												<td class="detail-term">IP</td>
 												<td class="term-value">
-													<a class="data" href="telnet://${subnets[j].subnet_ip}">${subnets[j].subnet_ip}</a>
+													<a class="data" href="telnet://${con_subnet.network}">${con_subnet.network}</a>
 												</td>
-											</tr>
-											<tr>
-												<td class="detail-term">Μάσκα</td>
-												<td class="term-value">${subnets[j].mask}</td>
-											</tr>
-											<tr>
-												<td class="detail-term">Default Gateway</td>
-												<td class="term-value">${subnets[j].subnet_default_router}</td>
 											</tr>
 											<tr>
 												<td class="detail-term">Τύπος</td>
-												<td class="term-value">${subnets[j].unit_network_subnet_type}</td>
+												<td class="term-value">${con_subnet.type}</td>
 											</tr>
-											
-											# if (subnets[j].unit_network_subnet_type_id == 3) { #
-											<tr>
-												<td class="detail-term">Router Hostname</td>
-												<td class="term-value">${subnets[j].unit_network_object_name}</td>
-											</tr>
-											# } #
-
+															
 											</tbody></table></td></tr>
 											# } #
 											
+
+											<tr><td colspan="2"><hr/></td></tr>
+
+
+											# for (var j = 0, slen = con_circuits.length;  j < slen; j++ ){ #
+
+											# var circuit_idx = lookup(circuits, con_circuits[j], "id"); #
+
+											# var con_circuit = circuits[circuit_idx]; #
+
+											<tr><td colspan="2" class="connectionCircuit" ><table class="borderless"><tbody>
+
 											<tr>
-												<td class="detail-term">Κύκλωμα</td>
-												<td class="term-value">
-													${connections[i]["circuit"]["phone_number"]}&nbsp;&nbsp;${connections[i]["circuit"]["circuit_type"]}&nbsp;&nbsp;
-													# if ( connections[i]["circuit"]["paid_by_psd"] ) { #
-													[ΠΣΔ]
-													# } else { #
-													[ΙΔΙΩΤΙΚΟ]
-													# } #
-												</td>
-											</tr>
-											<tr>
-												<td class="detail-term">CPE</td>
-												<td class="term-value">${connections[i]["cpe"]["name"]}</td>
-											</tr>		
-											<tr>
-												<td class="detail-term">Λογαριασμός Υπηρεσίας</td>
-												<td class="term-value">${connections[i]["ldap"]["ldap_uid"]}</td>
-											</tr>
+											<td class="detail-term">Τηλ. Αριθμός</td>
+											<td class="term-value">${con_circuit.linenumber}</td>
+										</tr>	
+										<tr>
+											<td class="detail-term">Τύπος</td>
+											<td class="term-value">${con_circuit.type}</td>
+										</tr>
+										<tr>
+											<td class="detail-term">Χρηματοδότηση</td>
+											<td class="term-value">${con_circuit.owner}</td>
+										</tr>
+															
+											</tbody></table></td></tr>
+											# } #
+
+
+											
+											
 										</tbody>
 									</table>
 									</div>
@@ -537,54 +391,36 @@ position: fixed;
 						<!-- ΣΤΟΙΧΕΙΑ ΔΙΑΣΥΝΔΕΣΕΙΣ@  -->
 					
 						<!-- @ΥΠΟΔΙΚΤΥΑ -->
+						 
 						<div id="holder-set-ips" class="detail-section-tab">
 							<h4>Υποδίκτυα</h4>
 							<div class="detail-section-tab-content">
 								<div class="data-table" id="unit-<?php echo $_GET['mm_id']; ?>-network_subnets" data-bind="source: unitData" data-template="tmpl-network-network-list"></div>
 								
 								<script id="tmpl-network-network-list" type="text/x-kendo-template">
-								# if (unit_network_subnets != null && unit_network_subnets.length > 0) { #
+								# if (subnets != null && subnets.length > 0) { #
 								
-									# for (var i = 0, len = unit_network_subnets.length;  i < len; i++ ){ #
+									# for (var i = 0, len = subnets.length;  i < len; i++ ){ #
 									
-									# var unit_network_subnet = unit_network_subnets[i]; #
+									# var subnet = subnets[i]; #
 									
 									<div class="mmsch-list-item">
 									<table class="table borderless">
 										<tbody>	
-											<tr><td class="detail-term term-head" colspan="2">Στοιχεία IP ${i+1}
-											# if (unit_network_subnet.is_connected == true) { #
-											<span class="label label-warning">Mapped</span>
-											<button type="button" class="k-button toggleNetworkElementInfo"><span class="fa fa-expand"></span></button>
-											# } else { #
-											<span class="label label-success">Διαθέσιμο</span>
-											<button class="btn btn-default btn-xs toggleNetworkElementInfo"><span class="fa fa-compress"></span></button>
-											# } #
-											</td></tr>							
-											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
+																		
+											<tr >
 												<td class="detail-term">IP</td>
 												<td class="term-value">
-													<a class="data" href="telnet://${unit_network_subnet.subnet_ip}">${unit_network_subnet.subnet_ip}</a>
+													<a class="data" href="telnet://${subnet.network}">${subnet.network}</a>
 												</td>
 											</tr>
-											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
-												<td class="detail-term">Μάσκα</td>
-												<td class="term-value">${unit_network_subnet.mask}</td>
-											</tr>
-											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
-												<td class="detail-term">Default Gateway</td>
-												<td class="term-value">${unit_network_subnet.subnet_default_router}</td>
-											</tr>
-											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
+
+											<tr>
 												<td class="detail-term">Τύπος</td>
-												<td class="term-value">${unit_network_subnet.unit_network_subnet_type}</td>
+												<td class="term-value">${subnet.type}</td>
 											</tr>
-											# if (unit_network_subnet.unit_network_subnet_type_id == 3) { #
-											<tr class="# if (unit_network_subnet.is_connected) { # soft-hide # } #">
-												<td class="detail-term">Router Hostname</td>
-												<td class="term-value">${unit_network_subnet.unit_network_object_name}</td>
-											</tr>
-											# } #
+											
+
 										</tbody>
 									</table>
 									</div>
@@ -597,6 +433,7 @@ position: fixed;
 							
 							</div>
 						</div>
+						
 						<!-- ΥΠΟΔΙΚΤΥΑ@ -->
 					
 						<!-- @ΚΥΚΛΩΜΑΤΑ -->
@@ -611,55 +448,26 @@ position: fixed;
 									
 									# for (var i = 0, len = circuits.length;  i < len; i++ ){ #
 									
-									# var circuit = circuits[i]; #
-									
-									# if (circuit.status != 1) continue; #
+									# var circuit = circuits[i]; console.log(circuit); #
 									
 									<div class="mmsch-list-item">
 									<table class="table borderless">
 									<tbody>
 										<tr>
-											<td colspan="2" class="detail-term term-head">Κύκλωμα ${i+1}
-												# if (circuit.is_connected == true) { #
-												<span class="label label-warning">Mapped</span>
-												<button class="k-button toggleCircuitInfo"><span class="fa fa-expand"></span></button>
-												# } else { #
-												<span class="label label-success">Διαθέσιμο</span>
-												<button class="k-button toggleCircuitInfo"><span class="fa fa-compress"></span></button>
-												# } #
-												
-												
-											</td>
-											
+											<td colspan="2" class="detail-term term-head">Κύκλωμα ${i+1}</td>
 										</tr>
-										<tr class="# if (circuit.is_connected) { # soft-hide # } #">
+										<tr>
 											<td class="detail-term">Τηλ. Αριθμός</td>
-											<td class="term-value">${circuit.phone_number}</td>
+											<td class="term-value">${circuit.linenumber}</td>
 										</tr>	
-										<tr class="# if (circuit.is_connected) { # soft-hide # } #">
+										<tr>
 											<td class="detail-term">Τύπος</td>
-											<td class="term-value">${circuit.circuit_type}</td>
+											<td class="term-value">${circuit.type}</td>
 										</tr>
-										<tr class="# if (circuit.is_connected) { # soft-hide # } #">
+										<tr>
 											<td class="detail-term">Χρηματοδότηση</td>
-											<td class="term-value">
-												# if(circuit.paid_by_psd){ #
-												[ΠΣΔ]
-												# } else { #
-												[ΙΔΙΩΤΙΚΟ]
-												# } #
-											</td>
+											<td class="term-value">${circuit.owner}</td>
 										</tr>
-										<tr class="# if (circuit.is_connected) { # soft-hide # } #">
-											<td class="detail-term">Κατάσταση</td>
-											<td class="term-value">
-												# if(circuit.status == 1){ #
-												Ενεργό
-												# } else { #
-												Ανενεργό
-												# } #
-											</td>
-										</tr>		
 									</tr>
 									</tbody>
 									</table>
@@ -973,7 +781,7 @@ position: fixed;
 		
 		$("#unit-" + mm_id + "-preview").on("destroyed", function () {
 			console.log("Element " + mm_id + " was destroyed");
-			$("#wnd_create_connection_" + mm_id).data("kendoWindow").destroy();
+			
 			wnd_implementation_entity_info.destroy();
 
 			$(window).off('resize', resizeTabContent );
@@ -1111,9 +919,10 @@ position: fixed;
 						data: {
 							mm_id: mm_id
 						},
-						complete : function(){
+						complete : function(e){
 							console.log("read  complete");
 							//viewModel.handlerFetchUnit(false);
+							console.log(e);
 						}
 					},
 					parameterMap: function(data, type) {
@@ -1134,6 +943,7 @@ position: fixed;
 
 					//e.preventDefault();
 					
+					
 					console.log("unit data change");
 				
 					var viewModel = this.parent();
@@ -1149,14 +959,27 @@ position: fixed;
 					kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
 					kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
 					*/
+				},
+				requestEnd: function(e) {
+
+					console.log("requestEnd");
+					 var response = e.response;
+
+					 console.log(response);
+					 
+					 delete response.data[0].circuits;
+					 delete response.data[0].subnets;
+					 delete response.data[0].connections;
+					 
 				}
+				 
 			}),
 			
 			createConnection: function(e){
 
 				var self = this;
 				//kendo.bind($("#wnd_create_connection_" + mm_id), viewModel);
-				wnd_create_connection.center().open();
+				
 				//self.refreshGrds();
 			},
 			
@@ -1184,378 +1007,21 @@ position: fixed;
 				
 				//console.log(self.get("editedConnection"));
 				
-				wnd_create_connection.center().open();
+				
 				//self.refreshGrds();
 			},
 
 			saveConnection: function(e){
-				console.log("saveConnection btn clicked.");
-				var self = this;
-			
-				var $form = $("#frm_create_connection_" + mm_id);
-			
-				var btn = $(e.target);
-			
-				var connection_id = $('form#frm_create_connection_' + mm_id + ' input#connection_id').val();
-				//var unit_network_subnet_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_net_elem]:checked').val() || null;
-				var circuit_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_circuits]:checked').val() || null;
-				var ldap_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_ldaps]:checked').val() || null;
-				var cpe_id = $('form#frm_create_connection_' + mm_id + ' input[name=group_cpes]:checked').val() || null;
-				var subnets = new Array();
-				$.each($("input[name='subnets[]']:checked"), function() {
-					subnets.push($(this).val());
-				});
-
-				//console.log(subnets);return;
-
-				var params = {
-					'mm_id': mm_id
-				};			
-
-				if (circuit_id != null){
-					params["circuit_id"] = circuit_id;
-				}
-
-				if (ldap_id != null){
-					params["ldap_id"] = ldap_id;
-				}
-
-				if (cpe_id != null){
-					params["cpe_id"] = cpe_id;
-				}
 				
-				var method="POST";
-				if (connection_id != ""){
-					params['connection_id'] = connection_id;
-					method="PUT";
-				}
-				
-				// display or hide errors none subnet is selected
-				if (subnets.length == 0){
-					$form.find(".alert-danger.empty-network-element").show("fast");
-					return;
-				}else {
-					$form.find(".alert-danger.empty-network-element").hide();
-				}
-				
-				// display or hide errors depending on circuit value
-				if (circuit_id == null){
-					$form.find(".alert-danger.empty-circuit").show("fast");
-					return;
-				}else {
-					$form.find(".alert-danger.empty-circuit").hide();
-				}
-								
-				btn.button("loading");
-
-				var editConnection = self.get("editedConnection");
-				var connectionSubnets = new Array();
-				
-				if (editConnection != null){
-
-					//find connection
-					var editedConnection = null;
-					$.each(self.get("unitData").connections, function(idx, conx){
-						if (conx.connection_id == editConnection.connection_id){
-							editedConnection = conx;
-							return;
-						}
-					});
-					
-					$.each(editedConnection.unit_network_subnets, function(i,t){
-						connectionSubnets.push(
-							{
-								"connection_unit_network_subnet_id": (t.connection_unit_network_subnet_id).toString(),
-								 "unit_network_subnet_id": (t.unit_network_subnet_id).toString()
-							}
-						);
-					});
-				}
-
-				var subnets2add = [];
-				$.each(subnets, function(key,value) {
-					
-				    var found = false;
-
-				    $.each(connectionSubnets, function(k, connectionSubnet){
-					    if (connectionSubnet.unit_network_subnet_id == value){
-					    	found = true;
-					    	return;
-					    }
-					});
-
-					if (!found)
-				    subnets2add.push(value);
-				});
-
-
-				var subnets2delete = [];
-				$.each(connectionSubnets, function(key,connectionSubnet) {
-					
-					var found = false;
-
-				    $.each(subnets, function(k, subnet){
-					    if (connectionSubnet.unit_network_subnet_id == subnet){
-					    	found = true;
-					    	return;
-					    }
-					});
-
-					if (!found)
-					subnets2delete.push(connectionSubnet.connection_unit_network_subnet_id);
-				    
-				});
-				
-				$.ajax({
-					type: method,
-					url: apiUrl + "connections", 
-					data: params,
-                    dataType: "json", 
-
-                    success: function(resp){
-
-                    	if (typeof resp['status'] != "undefined"){
-                        	if (resp.status==401){
-                            	alert(resp.message);
-                            	btn.button("reset");
-                            	return 0;
-                        	}
-                    	}
-                    	
-                    	if (method == "POST"){
-							connection_id = resp.connection_id;
-                    	}
-						//console.log(addConnectionRequests);
-                    	var addConnectionRequests = [];
-                    	if (subnets2add.length > 0){
-                        	for (var i = 0; i < subnets2add.length; i++){
-                        		addConnectionRequests.push(
-									$.ajax({
-										type: "POST",
-										url: apiUrl + "connection_unit_network_subnets", 
-										data: {
-											"connection_id" : connection_id,
-										    "unit_network_subnet_id" : subnets2add[i]
-										},
-						                dataType: "json",
-						                beforeSend: function(xhr){
-											xhr.setRequestHeader(
-												'Authorization',
-												make_base_auth (user.backendAuthorizationHash)
-											);
-										}
-									})
-                                );
-                        	}
-                    	}
-
-                    	var deleteConnectionRequests = [];
-                    	if (subnets2delete.length > 0){
-                        	for (var i = 0; i < subnets2delete.length; i++){
-                        		deleteConnectionRequests.push(
-									$.ajax({
-										type: "DELETE",
-										url: apiUrl + "connection_unit_network_subnets?connection_unit_network_subnet_id=" + subnets2delete[i], 
-						                dataType: "json",
-						                beforeSend: function(xhr){
-											xhr.setRequestHeader(
-												'Authorization',
-												make_base_auth (user.backendAuthorizationHash)
-											);
-										}
-									})
-                                );
-                        	}
-                    	}
-						
-                    	$.when.apply($, addConnectionRequests).then(
-                            function(){
-
-                            	//self.get("unitSource").filter([]);
-                            	
-                            	
-                            	
-                                if (deleteConnectionRequests.length > 0) {
-	                            	$.when.apply($, deleteConnectionRequests).then(
-	                                	function(){
-	                                		btn.button("reset");
-	
-	                						//at this point every check passes show display sucess msg depending on method post/put
-	                						if (method == "POST"){
-	                							$form.find(".alert-success.success-create").show("fast");
-	                						}
-	                						if (method == "PUT"){
-	                							$form.find(".alert-success.success-update").show("fast");
-	                						}
-	
-	                						//self.get("unitSource").read();
-	                						//self.get("unitSource").filter([]);
-	                						
-	                						
-	                						self.get("unitSource").read();
-	                						
-	                						
-	                                	}
-	                                );
-                                }
-                                else {
-                                	btn.button("reset");
-
-                                	if (method == "POST"){
-            							$form.find(".alert-success.success-create").show("fast");
-            						}
-            						if (method == "PUT"){
-            							$form.find(".alert-success.success-update").show("fast");
-            						}
-            						
-                                	self.get("unitSource").read();
-                                }  
-                            }	
-                        );
-					},
-					beforeSend: function(xhr){
-						xhr.setRequestHeader(
-							'Authorization',
-							make_base_auth (user.backendAuthorizationHash)
-						);
-					}
-				});
 			},
 
 			deleteConnection: function(e){
 
-				e.preventDefault();
-				
-				var btn = $(e.target);
-				
-				var self = this;
-				var data = $(e.target).data();
-				
-				var conf = confirm("Είστε σίγουροι ότι θέλετε να διαγράψετε τη διασύνδεση;");
-				
-				if (conf == true){ 
-					
-					btn.button("loading");
-					
-					var conx = null;
-					$.each(self.get("unitData").connections, function(idx, connection){
-						if (data.connection_id = connection.connection_id){
-							conx = connection;
-							return 0;
-						}
-					});
-					
-					var deleteConnectionSubnetsRequests = new Array();
-					
-					if (conx != null){
-
-						$.each(conx.unit_network_subnets, function(i,connection_subnet){
-								
-							deleteConnectionSubnetsRequests.push(
-								$.ajax({ 
-									type: "DELETE",
-									url: apiUrl + "connection_unit_network_subnets?connection_unit_network_subnet_id=" + connection_subnet.connection_unit_network_subnet_id,
-									dataType: "json", 
-									success: function(resp){},
-									beforeSend: function(xhr){
-											
-										xhr.setRequestHeader(
-											'Authorization',
-											make_base_auth (user.backendAuthorizationHash)
-										);
-									}
-								})		
-							);
-							
-						});
-
-						$.when.apply($, deleteConnectionSubnetsRequests).then(function(){
-
-							$.ajax({ 
-								type: "DELETE",
-								url: apiUrl + "connections?connection_id=" + data.connection_id,
-								dataType: "json", 
-								success: function(resp){
-									
-									btn.button("reset");
-									
-									self.get("unitSource").read();
-								},
-								beforeSend: function(xhr){
-									
-									xhr.setRequestHeader(
-										'Authorization',
-										make_base_auth (user.backendAuthorizationHash)
-									);
-								}
-							});		
-						});
-					}
-				}
 			},
 			
 			renderRadioNetworkSubnet: function(e){
 
-				console.log("renderRadioNetworkSubnet");
-				
-				var self = this;
-				var editConnection = self.get("editedConnection");
-				
-				// create new connection				
-				if (editConnection === null)
-				{
-					
-					var disabled = "";
-					if (e.is_connected){
-						disabled="disabled";
-
-						return "<span class=\"k-icon k-i-cancel\" title=\"\"></span>";
-					}
-					
-					return "<input type=\"checkbox\"  " +
-							" id=\"net_elem_" + e.unit_network_subnet_id + "\" "+
-							" name=\"subnets[]\" " +
-							" value=\"" + e.unit_network_subnet_id + "\" "+ 
-							disabled + 
-							">";
-				}
-				else // edit connection 
-				{
-					var disabled = "";
-					var checked = "";
-					var cssClass = "";
-					
-					if (e.is_connected){
-
-						//console.log("e.is_connected");
-						
-						if (self.isSubnetInConnectionSubnets(e.unit_network_subnet_id)){
-
-							//console.log("isSubnetInConnectionSubnets");
-							
-							checked = "checked ";
-							
-							var tr = $("#grd-network-elements").find("input[value='"+editConnection.unit_network_subnet_id+"'] ").closest("tr");
-							tr.addClass("k-state-selected");
-						}
-						else {
-
-
-							//console.log("!isSubnetInConnectionSubnets");
-							
-							disabled = "disabled ";
-							return "<span class=\"k-icon k-i-cancel\"></span>";
-						}
-					}
-					
-					return "<input type=\"checkbox\"  " +
-							" id=\"net_elem_" + e.unit_network_subnet_id + "\" "+
-							" name=\"subnets[]\" " +
-							" value=\"" + e.unit_network_subnet_id + "\" "+ 
-							disabled + 
-							checked + 
-							">";
-				}
+			
 			},
 
 			isSubnetInConnectionSubnets: function(currentSubnetID){
@@ -1590,161 +1056,17 @@ position: fixed;
 			
 			renderRadioCircuit: function(e){
 				
-				var self = this;
-				var editConnection = self.get("editedConnection");
-
-				// if circuit is disabled then don't show it
-				if (e.status != 1){
-					$("#grd-circuits").find("tr[data-uid='"+e.uid+"'] ").hide();
-				}
 				
-				
-				if (editConnection == null)
-				{
-					var disabled = "";
-					
-					if (e.is_connected){
-						disabled="disabled";
-						return "<span class=\"k-icon k-i-cancel\"></span>";
-					}
-									
-					return "<input type=\"radio\"  " +
-							" id=\"circuit_" + e.circuit_id + "\" "+
-							" name=\"group_circuits\" " +
-							" value=\"" + e.circuit_id + "\" "+ 
-							disabled + 
-							">";
-				}
-				else 
-				{
-					var disabled = "";
-					var checked = "";
-					var cssClass = "";
-					
-					if (e.is_connected){
-						
-						if (e.circuit_id ==  editConnection.circuit_id){
-							checked = "checked ";
-							
-							var tr = $("#grd-circuits").find("input[value='"+editConnection.circuit_id+"'] ").closest("tr");
-							tr.addClass("k-state-selected");
-						}
-						else {
-							disabled = "disabled ";
-							return "<span class=\"k-icon k-i-cancel\"></span>";
-						}
-					}
-					
-					return "<input type=\"radio\"  " +
-							" id=\"circuit_" + e.circuit_id + "\" "+
-							" name=\"group_circuits\" " +
-							" value=\"" + e.circuit_id + "\" "+ 
-							disabled + 
-							checked + 
-							">";
-				}
 			},
 			
 			renderRadioCpe: function(e){
 
-				console.log("render");
 				
-				var self = this;
-				var editConnection = self.get("editedConnection");
 				
-				if (editConnection == null)
-				{
-					var disabled = "";
-					if (e.is_connected){
-						disabled="disabled";
-						return "<span class=\"k-icon k-i-cancel\"></span>";
-					}
-					
-					return "<input type=\"radio\"  " +
-							" id=\"cpe_" + e.cpe_id + "\" "+
-							" name=\"group_cpes\" " +
-							" value=\"" + e.cpe_id + "\" "+ 
-							disabled + 
-							">";
-				}
-				else 
-				{
-					var disabled = "";
-					var checked = "";
-					var cssClass = "";
-					
-					if (e.is_connected){
-						
-						if (e.cpe_id ==  editConnection.cpe_id){
-							checked = "checked ";
-							
-							var tr = $("#grd-cpes").find("input[value='"+editConnection.cpe_id+"'] ").closest("tr");
-							tr.addClass("k-state-selected");
-						}
-						else {
-							disabled = "disabled ";
-							return "<span class=\"k-icon k-i-cancel\"></span>";
-						}
-					}
-					
-					return "<input type=\"radio\"  " +
-							" id=\"cpe_" + e.cpe_id + "\" "+
-							" name=\"group_cpes\" " +
-							" value=\"" + e.cpe_id + "\" "+ 
-							disabled + 
-							checked + 
-							">";
-				}
 			},
 			
 			renderRadioLdap: function(e){
 				
-				var self = this;
-				var editConnection = self.get("editedConnection");
-				
-				if (editConnection == null)
-				{
-					var disabled = "";
-					if (e.is_connected){
-						disabled="disabled";
-						return "<span class=\"k-icon k-i-cancel\"></span>";
-					}
-					
-					return "<input type=\"radio\"  " +
-							" id=\"ldap_" + e.ldap_id + "\" "+
-							" name=\"group_ldaps\" " +
-							" value=\"" + e.ldap_id + "\" "+ 
-							disabled + 
-							">";
-				}
-				else 
-				{
-					var disabled = "";
-					var checked = "";
-					var cssClass = "";
-					
-					if (e.is_connected){
-						
-						if (e.ldap_id ==  editConnection.ldap_id){
-							checked = "checked ";
-							
-							var tr = $("#grd-ldaps").find("input[value='"+editConnection.ldap_id+"'] ").closest("tr");
-							tr.addClass("k-state-selected");
-						}
-						else {
-							disabled = "disabled ";
-							return "<span class=\"k-icon k-i-cancel\"></span>";
-						}
-					}
-					
-					return "<input type=\"radio\"  " +
-							" id=\"ldap_" + e.ldap_id + "\" "+
-							" name=\"group_ldaps\" " +
-							" value=\"" + e.ldap_id + "\" "+ 
-							disabled + 
-							checked + 
-							">";
-				}
 			},
 			
 			grdBoundListener: function(e){
@@ -1803,87 +1125,15 @@ position: fixed;
 			},
 			
 			grdCircuitsChangeListener: function(e){
-				var self = this;
 				
-				var grd = e.sender;
-								
-				var selectedRow = grd.dataItem(grd.select());
-				
-				if (selectedRow != null){
-				
-					if (selectedRow.is_connected ){
-						
-						if(self.get("editedConnection")==null || (self.get("editedConnection")!=null && selectedRow.circuit_id != self.get("editedConnection").circuit_id))
-						{
-							e.preventDefault();
-							grd.select().removeClass('k-state-selected');
-						}
-						else if (self.get("editedConnection")!=null && selectedRow.circuit_id == self.get("editedConnection").circuit_id ){
-							var radio = grd.select().find("input[type='radio']");
-							radio.prop("checked", true);
-						}
-
-					} else {
-						var radio = grd.select().find("input[type='radio']");					
-						radio.prop("checked", true);
-					}
-				}
 			},
 			
 			grdCpesChangeListener: function(e){
-				var self = this;
 				
-				var grd = e.sender;
-								
-				var selectedRow = grd.dataItem(grd.select());
-				
-				if (selectedRow != null){
-				
-					if (selectedRow.is_connected ){
-						
-						if(self.get("editedConnection")==null || (self.get("editedConnection")!=null && selectedRow.cpe_id != self.get("editedConnection").cpe_id))
-						{
-							e.preventDefault();
-							grd.select().removeClass('k-state-selected');
-						}
-						else if (self.get("editedConnection")!=null && selectedRow.cpe_id == self.get("editedConnection").cpe_id ){
-							var radio = grd.select().find("input[type='radio']");
-							radio.prop("checked", true);
-						}
-
-					} else {
-						var radio = grd.select().find("input[type='radio']");					
-						radio.prop("checked", true);
-					}
-				}
 			},
 			
 			grdLdapsChangeListener: function(e){
-				var self = this;
 				
-				var grd = e.sender;
-								
-				var selectedRow = grd.dataItem(grd.select());
-				
-				if (selectedRow != null){
-				
-					if (selectedRow.is_connected ){
-						
-						if(self.get("editedConnection")==null || (self.get("editedConnection")!=null && selectedRow.ldap_id != self.get("editedConnection").ldap_id))
-						{
-							e.preventDefault();
-							grd.select().removeClass('k-state-selected');
-						}
-						else if (self.get("editedConnection")!=null && selectedRow.ldap_id == self.get("editedConnection").ldap_id ){
-							var radio = grd.select().find("input[type='radio']");
-							radio.prop("checked", true);
-						}
-
-					} else {
-						var radio = grd.select().find("input[type='radio']");					
-						radio.prop("checked", true);
-					}
-				}
 			},
 
 			refreshGrds: function(){
@@ -1900,6 +1150,8 @@ position: fixed;
 				
 				var self = this;
 				var unitSource = self.unitSource;
+
+				//(self.unitSource).data()[0].circuits = null;
 				
 				//var self = this.unitSource;
 
@@ -1907,15 +1159,16 @@ position: fixed;
 
 				
 	            var populateUnitDetails = function() {
-
 	            	
 	            		console.log("-->populate details");
 
 	            		console.log(self);
 
+	            		//self.set("unitData",self.v);
+
 	            		try{
 	            			kendo.bind($("#unit-" + mm_id + "-preview"), self);
-	                		kendo.bind($("#wnd_create_connection_" + mm_id).parent(), self);
+	                		//kendo.bind($("#wnd_create_connection_" + mm_id).parent(), self);
 	            		}
 	            		catch(ex){
 		            		//do nothing. Just for GUI not crash
@@ -2026,6 +1279,74 @@ position: fixed;
 					<?php } else { ?>
 						populateUnitDetails();
 					<?php } ?>
+
+
+					<?php if (!$isAnonymous) { ?>
+					$.ajax({
+						type: "GET",
+						url: apiUrl + "crm_data", 
+						data: {'mm_id': mm_id},
+	                    dataType: "json", 
+
+	                    success: function(resp){
+		                    
+	                    	console.log("-->Request crm_data");
+
+	                    	var circuits = new Array();
+	                    	var subnets = new Array();
+	                    	var connections = new Array();
+
+	                    	 try {
+
+				                	if (resp.status != 401){
+				                		circuits = resp.data.circuits;
+				                		subnets = resp.data.subnets;
+				                		connections = resp.data.connections;
+				                	}
+				                	else {
+					                	//console.log(resp.message);
+				                	}
+
+				                	$.each(circuits, function(idxCircuit, circuit){
+
+				                		circuit["is_connected"] = false;
+				                		
+				                		$.each(connections, function(idxConnection, connection){
+
+				                			if ($.inArray( circuit.id, connection.circuits)){
+					                			circuit["is_connected"] = true;
+					                			return false;		
+				                			}
+					                	});
+					                	
+				                	});
+														                	
+				                	unitSource.data()[0]['circuits'] = circuits;
+
+			                    	unitSource.data()[0]['subnets'] = subnets;
+
+			                    	unitSource.data()[0]['connections'] = connections;
+			                    	
+				             }
+				             catch(ex){
+					                console.log(ex);
+				             }
+				             finally {
+				             	populateUnitDetails();
+					         }
+
+	                    	console.log("Request crm_data-->");
+	                    },
+            			beforeSend: function(xhr){
+    						xhr.setRequestHeader(
+    							'Authorization',
+    							make_base_auth (user.backendAuthorizationHash)
+    						);
+    					}
+	                    
+	                });
+					
+					<?php } ?>
 						
 			}
 
@@ -2034,56 +1355,9 @@ position: fixed;
 		
 		
 		
-		wnd_create_connection = $("#wnd_create_connection_" + mm_id)
-				.kendoWindow({
-					title: "Δημιουργία Διασύνδεσης",
-					animation:false,
-                    modal: true,
-                    visible: false,
-                    resizable: true,
-                    open: function(e){
-						console.log("open window");
-						if ( typeof viewModel['editedConnection'] != "undefined" && viewModel['editedConnection'] != null){
-							this.title("Ενημέρωση Διασύνδεσης");
-						}
-						else {
-							this.title("Δημιουργία Διασύνδεσης");
-						}
-					},
-					close: function(e) {
-						
-						viewModel.set("editedConnection",null);
-						
-						//$("#grd-network-elements").data('kendoGrid').clearSelection();
-						//$("#grd-network-elements input[type='radio']").prop('checked',false);
-						
-						//reset grids selections
-						$.each($("#frm_create_connection_" + mm_id).find(".k-grid"), function(idx, gridElem){
-							$(gridElem).data('kendoGrid').clearSelection();
-							$(gridElem).find("input[type='radio']").prop('checked',false);
-						});
-						
-						this.element.find(".alert").hide();
-
-						//$("#wnd_create_connection_" + mm_id).data("kendoWindow").destroy();
-					}
-					
-                    
-		}).data("kendoWindow");	
-
-		var wnd_create_connection_container = wnd_create_connection.element.parent();
 		
 
-		
-		wnd_create_connection_container.addClass("mmsch-window");
-	
-		wnd_create_connection_container.css("width","60%");
-		wnd_create_connection_container.css("height","60%");	
-		
-		var content = $("#wnd_create_connection_" + mm_id + " .wnd-footer").parent().parent().find(".k-window-content");
-		var footer = $("#wnd_create_connection_" + mm_id + " .wnd-footer");
-		footer.insertAfter(content);
-		
+				
 		//console.log(viewModel);
 		//kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
 	    //kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
