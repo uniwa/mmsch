@@ -291,12 +291,14 @@ position: fixed;
 							</div>
 						</div> 
 						
-						<!-- @ΣΤΟΙΧΕΙΑ ΔΙΑΣΥΝΔΕΣΕΙΣ  -->
+						<!-- @ΣΤΟΙΧΕΙΑ ΣΥΝΔΕΣΕΩΝ  -->
 						<div class="detail-section-tab">
+							<!-- 
 							<h4>Διασυνδέσεις</h4>
 							<div class="clearfix" style="padding-right:10px;">
 								<button id="btnCreateConnection" data-bind="click: createConnection" class="k-button pull-right" type="button"><i class="glyphicon glyphicon-plus"></i> Δημιουργία Διασύνδεσης</button>
 							</div>
+							 -->
 							<div class="detail-section-tab-content">
 								
 								<div class="detail-section-tab-content" data-bind="source: unitData" data-template="tmpl-connection-list"></div>
@@ -310,74 +312,114 @@ position: fixed;
 
 									# var con_circuits = connections[i].circuits;  #									
 									
-									# var safeSubnets = JSON.stringify(con_subnets);  #
+									# var con_devices = connections[i].devices;  #
+									
+									<h4>
+										${connections[i].name}
+									</h4>
+									
 
-									<div class="mmsch-list-item">
-									<table class="table borderless">
-										<tbody>
+
+									# if (con_subnets != null && con_subnets.length > 0) { #	
+									<div class="mmsch-list-item container-fluid">
+									<table class="table table-bordered">
+									<caption>Υποδίκτυα</caption>
+									<thead><tr><th class="detail-term col-md-3">IP</th><th class="detail-term">Τύπος</th></tr></thead>
+									<tbody>
+									# for (var j = 0, slen = con_subnets.length;  j < slen; j++){ #
+
+									# var subnet_idx = lookup(subnets, con_subnets[j], "id"); #
+
+									# var con_subnet = subnets[subnet_idx]; #
+
+									# var con_subnet = subnets[subnet_idx]; #							
+
 											<tr>
-												<td class="detail-term term-head" colspan="2">Διασύνδεση ${i+1}
-												</td>
-											</tr>
-											
-											# for (var j = 0, slen = con_subnets.length;  j < slen; j++ ){ #
-
-											# var subnet_idx = lookup(subnets, con_subnets[j], "id"); #
-
-											# var con_subnet = subnets[subnet_idx]; console.log(con_subnet); #
-
-											# var con_subnet = subnets[subnet_idx]; console.log(con_subnet); #
-
-											<tr><td colspan="2" class="connectionSubnet" ><table class="borderless"><tbody>
-
-											<tr>
-												<td class="detail-term">IP</td>
+												
 												<td class="term-value">
 													<a class="data" href="telnet://${con_subnet.network}">${con_subnet.network}</a>
 												</td>
-											</tr>
-											<tr>
-												<td class="detail-term">Τύπος</td>
+											
+												
 												<td class="term-value">${con_subnet.type}</td>
 											</tr>
-															
-											</tbody></table></td></tr>
-											# } #
 											
-
-											<tr><td colspan="2"><hr/></td></tr>
-
-
-											# for (var j = 0, slen = con_circuits.length;  j < slen; j++ ){ #
-
-											# var circuit_idx = lookup(circuits, con_circuits[j], "id"); #
-
-											# var con_circuit = circuits[circuit_idx]; #
-
-											<tr><td colspan="2" class="connectionCircuit" ><table class="borderless"><tbody>
-
-											<tr>
-											<td class="detail-term">Τηλ. Αριθμός</td>
-											<td class="term-value">${con_circuit.linenumber}</td>
-										</tr>	
-										<tr>
-											<td class="detail-term">Τύπος</td>
-											<td class="term-value">${con_circuit.type}</td>
-										</tr>
-										<tr>
-											<td class="detail-term">Χρηματοδότηση</td>
-											<td class="term-value">${con_circuit.owner}</td>
-										</tr>
-															
-											</tbody></table></td></tr>
-											# } #
-
-
-											
-											
-										</tbody>
+									# } #		
+									</tbody>
 									</table>
 									</div>
+									# } #	
+									
+
+
+
+
+
+
+
+
+
+									# if (con_circuits != null && con_circuits.length > 0) { #	
+									<div class="mmsch-list-item container-fluid">
+									<table class="table table-bordered" >
+									<caption>Κυκλώματα</caption>
+									<thead><tr><th class="detail-term col-md-3">Τηλ. Αριθμός</th><th class="detail-term col-md-3">Τύπος</th><th class="detail-term">Χρηματοδότηση</th></tr></thead>
+									<tbody>
+									# for (var j = 0, slen = con_circuits.length;  j < slen; j++ ){ #
+
+									# var circuit_idx = lookup(circuits, con_circuits[j], "id"); #
+
+									# var con_circuit = circuits[circuit_idx]; #							
+
+											<tr>
+												
+												<td class="term-value">${con_circuit.linenumber}</td>
+											
+												
+												<td class="term-value">${con_circuit.type}</td>
+											
+												
+												<td class="term-value">${con_circuit.owner}</td>
+											</tr>
+											
+									# } #		
+									</tbody>
+									</table>
+									</div>
+									# } #		
+
+
+									# if (con_devices != null && con_devices.length > 0) { #
+									<div class="mmsch-list-item container-fluid">
+									<table class="table table-bordered" >
+									<caption>Συσκεύες</caption>
+									<thead><tr><th class="detail-term col-md-3">Συσκεύη</th><th class="detail-term col-md-3">Μοντέλο</th><th class="detail-term">SN</th></tr></thead>
+									<tbody>
+									# for (var j = 0, slen = con_devices.length;  j < slen; j++ ){ #
+
+									# var con_device = con_devices[j]; #							
+
+											<tr>
+												
+												<td class="term-value">${con_device.name}</td>
+											
+												
+												<td class="term-value">${con_device.model}</td>
+											
+												
+												<td class="term-value">${con_device.serialNumber}</td>
+											</tr>
+											
+									# } #		
+									</tbody>
+									</table>
+									</div>
+									# } #	
+
+
+
+
+
 									# } #
 									
 									
@@ -400,31 +442,33 @@ position: fixed;
 								<script id="tmpl-network-network-list" type="text/x-kendo-template">
 								# if (subnets != null && subnets.length > 0) { #
 								
+									<div class="mmsch-list-item container-fluid">
+									<table class="table table-bordered" >
+										
+										<thead><tr><th class="detail-term col-md-3">IP</th><th class="detail-term">Τύπος</th></tr></thead>
+									<tbody>	
+
 									# for (var i = 0, len = subnets.length;  i < len; i++ ){ #
 									
 									# var subnet = subnets[i]; #
 									
-									<div class="mmsch-list-item">
-									<table class="table borderless">
-										<tbody>	
+									
 																		
 											<tr >
-												<td class="detail-term">IP</td>
+												
 												<td class="term-value">
 													<a class="data" href="telnet://${subnet.network}">${subnet.network}</a>
 												</td>
-											</tr>
-
-											<tr>
-												<td class="detail-term">Τύπος</td>
+											
+												
 												<td class="term-value">${subnet.type}</td>
 											</tr>
-											
+									# } #	
 
-										</tbody>
+									</tbody>
 									</table>
 									</div>
-									# } #
+									
 									
 								# } else { #
 								<p class="text-muted"><em>Δεν υπάρχουν Υποδίκτυα</em></p>
@@ -443,37 +487,45 @@ position: fixed;
 														
 								<script id="tmpl-circuit-list" type="text/x-kendo-template">
 								# if (circuits != null && circuits.length > 0) { #
+									<div class="mmsch-list-item container-fluid">
+									<table class="table table-bordered">
 									
 									
-									
+									<thead><tr><th class="detail-term col-md-3">Τηλ. Αριθμός</th><th class="detail-term">Τύπος</th>
+<th class="detail-term">Χρηματοδότηση</th><th class="detail-term">Υπηρεσίες</th></tr></thead>
+<tbody>
 									# for (var i = 0, len = circuits.length;  i < len; i++ ){ #
 									
-									# var circuit = circuits[i]; console.log(circuit); #
+									# var circuit = circuits[i]; #
+
+									# var services = circuit.services; #
 									
-									<div class="mmsch-list-item">
-									<table class="table borderless">
-									<tbody>
+									
 										<tr>
-											<td colspan="2" class="detail-term term-head">Κύκλωμα ${i+1}</td>
-										</tr>
-										<tr>
-											<td class="detail-term">Τηλ. Αριθμός</td>
+											
+										
+											
 											<td class="term-value">${circuit.linenumber}</td>
-										</tr>	
-										<tr>
-											<td class="detail-term">Τύπος</td>
+											
 											<td class="term-value">${circuit.type}</td>
-										</tr>
-										<tr>
-											<td class="detail-term">Χρηματοδότηση</td>
+											
 											<td class="term-value">${circuit.owner}</td>
+
+											<td class="term-value">
+											# for (var j = 0, len = services.length;  j < len; j++) { #
+												${services[j].type} / ${services[j].bandwidth} / ${services[j].owner} <br/> 
+												 
+											# } #
+											</td>
 										</tr>
 									</tr>
+
+									# } #
 									</tbody>
 									</table>
 									</div>
 
-									# } #
+									
 									
 									
 									
@@ -537,7 +589,7 @@ position: fixed;
 
 									<tr>
 										<td class="detail-term">Λογαριασμός Υπηρεσίας </td>
-										<td class="term-value">${ldap.ldap_uid}</td>
+										<td class="term-value">${ldap.uid}</td>
 									</tr>
 
 									# } #
@@ -970,6 +1022,7 @@ position: fixed;
 					 delete response.data[0].circuits;
 					 delete response.data[0].subnets;
 					 delete response.data[0].connections;
+					 delete response.data[0].ldaps;
 					 
 				}
 				 
@@ -989,26 +1042,7 @@ position: fixed;
 			},
 			
 			editConnection: function(e){
-
-				//console.log($(e.target).data());
-
-				var self = this;
-				var data = $(e.target).data();
 				
-				self.set("editedConnection", {
-					connection_id: data.connection_id,
-					subnets: data.subnets,
-					circuit_id: data.circuit_id,
-					cpe_id: data.cpe_id,
-					ldap_id:data.ldap_id
-				});
-				
-				//editedConnection = self.get("editedConnection");
-				
-				//console.log(self.get("editedConnection"));
-				
-				
-				//self.refreshGrds();
 			},
 
 			saveConnection: function(e){
@@ -1282,6 +1316,7 @@ position: fixed;
 
 
 					<?php if (!$isAnonymous) { ?>
+					
 					$.ajax({
 						type: "GET",
 						url: apiUrl + "crm_data", 
@@ -1336,6 +1371,53 @@ position: fixed;
 					         }
 
 	                    	console.log("Request crm_data-->");
+	                    },
+            			beforeSend: function(xhr){
+    						xhr.setRequestHeader(
+    							'Authorization',
+    							make_base_auth (user.backendAuthorizationHash)
+    						);
+    					}
+	                    
+	                });
+					
+					<?php } ?>
+
+
+					<?php if (!$isAnonymous) { ?>
+					
+					$.ajax({
+						type: "GET",
+						url: apiUrl + "ldap_entries", 
+						data: {'mm_id': mm_id},
+	                    dataType: "json", 
+
+	                    success: function(resp){
+		                    
+	                    	console.log("-->Request ldaps");
+
+	                    	var ldaps = new Array();
+
+	                    	 try {
+
+				                	if (resp.status != 401){
+				                		ldaps = resp.data.ldaps;
+				                	}
+				                	else {
+					                	//console.log(resp.message);
+				                	}
+														                	
+				                	unitSource.data()[0]['ldaps'] = ldaps;
+			                    	
+				             }
+				             catch(ex){
+					                console.log(ex);
+				             }
+				             finally {
+				             	populateUnitDetails();
+					         }
+
+	                    	console.log("Request ldaps-->");
 	                    },
             			beforeSend: function(xhr){
     						xhr.setRequestHeader(

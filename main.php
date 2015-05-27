@@ -122,7 +122,7 @@ if (isset($user["l"])){
 
 <link rel="stylesheet" type="text/css" media="screen" href="client/vendors/kendo/styles/kendo.default.min.css" />
 
-<link rel="stylesheet" type="text/css" media="screen" href="client/vendors/bootstrap32/css/bootstrap.css" >
+<link rel="stylesheet" type="text/css" media="screen" href="client/vendors/bootstrap334/css/bootstrap.css" >
 
 <link rel="stylesheet" type="text/css" media="screen" href="client/styles/override.bts.kendo.css.css" />
 
@@ -136,7 +136,7 @@ if (isset($user["l"])){
 <script type="text/javascript" src="client/vendors/kendo/js/kendo.web.min.js"></script>
 <script type="text/javascript" src="client/vendors/kendo/js/cultures/kendo.culture.el-GR.min.js"></script>
   
-<script type="text/javascript" src="client/vendors/bootstrap32/js/bootstrap.js"></script>
+<script type="text/javascript" src="client/vendors/bootstrap334/js/bootstrap.js"></script>
 
 <script type="text/javascript" src="client/js/webtoolkit.base64.js"></script>
 <script type="text/javascript" src="client/dataSources.js"></script>

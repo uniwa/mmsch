@@ -832,7 +832,7 @@ nav#sidemenu{
 	margin-bottom: 20px;
 }
 
-.detail-section-tab > h4,
+.detail-section-tab h4,
 .detail-section .detail-section-header h3
 {
 	margin: 0px;
@@ -847,7 +847,7 @@ nav#sidemenu{
 	
 }
 
-.detail-section-tab > h4
+.detail-section-tab h4
 {
 	font-size: 13px;
 	margin-top: 30px;
@@ -880,9 +880,11 @@ nav#sidemenu{
 	overflow: hidden;
 }
 
+/*
 .table{
 	width:auto !important;
 }
+*/
 
 .mmsch-form {
 	font-size:11px;

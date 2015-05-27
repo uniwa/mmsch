@@ -24,10 +24,10 @@ $whatsnew = trim(file_get_contents_utf8('whatsnew.txt'));
 
 <title>MMSCH</title>
 
-<link rel="stylesheet" type="text/css" media="screen" href="client/vendors/bootstrap32/css/bootstrap.css" >
+<link rel="stylesheet" type="text/css" media="screen" href="client/vendors/bootstrap334/css/bootstrap.css" >
 
 <script type="text/javascript" src="client/vendors/kendo/js/jquery.min.js"></script>
-<script type="text/javascript" src="client/vendors/bootstrap32/js/bootstrap.js"></script>
+<script type="text/javascript" src="client/vendors/bootstrap334/js/bootstrap.js"></script>
 
 
 <style>
