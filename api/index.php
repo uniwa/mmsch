@@ -29,6 +29,8 @@ $app->map('/implementation_entities', Authentication, UserRolesPermission, Imple
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/ldaps', Authentication, UserRolesPermission, LDapsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/ldap_entries', Authentication, UserRolesPermission, LDapEntriesController)
+    ->via(MethodTypes::GET);
 $app->map('/legal_characters', Authentication, UserRolesPermission, LegalCharactersController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/levels', Authentication, UserRolesPermission, LevelsController)
@@ -531,6 +533,24 @@ function LDapsController()
                 $params["orderby"],
                 $params["ordertype"],
                 $params["searchtype"]
+            );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function LDapEntriesController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetLdapEntries(
+                $params["mm_id"]
             );
             break;
     }

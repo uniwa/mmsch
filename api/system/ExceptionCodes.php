@@ -2463,6 +2463,14 @@ class ExceptionCodes
         /** {@see ExceptionMessages::NotFoundDelRelationValue} */
         const NotFoundDelRelationValue = 500;
         
-}
+// =LdapEntries=================================================================       
 
+    /** {@see ExceptionMessages::NotFoundLdapEntryMMIDValue} */
+    const NotFoundLdapEntryMMIDValue = 500;
+    /** {@see ExceptionMessages::DuplicateLdapEntryMMIDValue} */
+    const DuplicateLdapEntryMMIDValue = 500;
+    /** {@see ExceptionMessages::NotFoundLdapEntryDnAttributeValue} */
+    const NotFoundLdapEntryDnAttributeValue = 500;
+
+}
 ?>

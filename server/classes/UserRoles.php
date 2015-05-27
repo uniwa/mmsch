@@ -253,6 +253,10 @@ private static $Permissions = array(
     'crm_data' => array(
                                         'GET' => array('USER', 'ADMIN')                                   
                                         ) ,
+    
+    'ldap_entries' => array(
+                                        'GET' => array('USER', 'ADMIN')                                   
+                                        ) ,
     );
 
 

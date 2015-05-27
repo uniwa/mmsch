@@ -1418,6 +1418,11 @@ class ExceptionMessages
         const DuplicateDelRelationValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Συσχέτισης Μονάδων'; 
         const NotFoundDelRelationValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
     
+// =LdapEntries=================================================================       
+    
+    const NotFoundLdapEntryMMIDValue = 'Δεν βρέθηκε η Μονάδα στον ΠΣ LDAP';
+    const DuplicateLdapEntryMMIDValue = 'Βρέθηκαν πολλαπλές Μονάδες με το ίδιο gsnResistryCode στον ΠΣ LDAP';
+    const NotFoundLdapEntryDnAttributeValue = 'Δεν βρέθηκε το attribute Dn της Μονάδας στον ΠΣ LDAP';
 }    
 
 ?>
