@@ -589,7 +589,7 @@ position: fixed;
 
 									<tr>
 										<td class="detail-term">Λογαριασμός Υπηρεσίας </td>
-										<td class="term-value">${ldap.uid}</td>
+										<td class="term-value">${ldap.ldap_entry_uid}</td>
 									</tr>
 
 									# } #
@@ -1408,7 +1408,7 @@ position: fixed;
 				                	}
 														                	
 				                	unitSource.data()[0]['ldaps'] = ldaps;
-			                    	
+                                                        
 				             }
 				             catch(ex){
 					                console.log(ex);
