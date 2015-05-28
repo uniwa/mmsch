@@ -281,7 +281,7 @@ position: fixed;
 									<table class="table borderless">
 										<tbody>								
 											<tr>
-												<td class="detail-term">DNS Μονάδας</td>
+												<td class="detail-term"><b>DNS Μονάδας</b></td>
 												<td class="term-value">#= unit_dns #</td>
 											</tr>
 											
@@ -585,7 +585,7 @@ position: fixed;
 									
                                                                         <div class="mmsch-list-item container-fluid">
 									<table class="table table-bordered">
-                                                                        <thead><tr><th class="detail-term col-md-3">Όνομα</th><th class="detail-term col-md-3">Λογαριασμός</th></tr></thead>
+                                                                        <thead><tr><th class="detail-term col-md-3">Τύπος</th><th class="detail-term col-md-3">Λογαριασμός</th></tr></thead>
 									<tbody>
 
 									# for (var i = 0, len = ldaps.length;  i < len; i++ ){ #
