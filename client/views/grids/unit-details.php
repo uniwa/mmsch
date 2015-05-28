@@ -539,13 +539,15 @@ position: fixed;
 					
 						<!-- @CPEs -->
 						<div id="holder-cpes" class="detail-section-tab">
-							<h4>CPEs</h4>
+							<h4>CPEs (Διασύνδεση με ΠΣ Κτηματολόγιο)</h4>
 							<div class="detail-section-tab-content" data-bind="source: unitData" data-template="tmpl-cpe-list"></div>
 								
 								<script type="text/x-kendo-template" id="tmpl-cpe-list">
 								# if (typeof cpes != "undefined" && cpes != null && cpes.length > 0) { #
 									
-									<table class="table borderless">
+                                                                        <div class="mmsch-list-item container-fluid">
+									<table class="table table-bordered">
+                                                                        <thead><tr><th class="detail-term col-md-3">Αριθμός</th><th class="detail-term col-md-3">Μοντέλο</th><th class="detail-term col-md-3">Τοποθεσία</th><th class="detail-term col-md-3">Κατασκευαστής</th></tr></thead>
 									<tbody>
 									
 									# for (var i = 0, len = cpes.length;  i < len; i++ ){ #
@@ -553,15 +555,17 @@ position: fixed;
 									# var cpe = cpes[i]; #
 
 									<tr>
-										<td class="term-value term-head">CPE ${i+1}</td>
-										<td class="term-value">${cpe.item_name}</td>
+										<td class="term-value">CPE ${i+1}</td>
+                                                                                <td class="term-value">${cpe.item_name}</td>
+                                                                                <td class="term-value">${cpe.location}</td>
+                                                                                <td class="term-value">${cpe.manufacturer}</td>
 									</tr>
 									
 									# } #
 									
 									</tbody>
 									</table>
-									
+									</div>
 									
 								# } else { #
 								<p class="text-muted"><em>Δεν υπάρχουν διαθέσιμοι τερματικοί εξοπλισμοί</em></p>
@@ -573,14 +577,15 @@ position: fixed;
 					
 						<!-- @UIDs -->
 						<div id="holder-uids" class="detail-section-tab">
-							<h4>UIDs</h4>
+							<h4>UIDs (Διασύνδεση με ΠΣ LDAP)</h4>
 							<div class="detail-section-tab-content" data-bind="source: unitData" data-template="tmpl-ldap-list"></div>
 								
 								<script type="text/x-kendo-template" id="tmpl-ldap-list">
 								# if (ldaps != null && ldaps.length > 0) { #
 									
-									
-									<table class="table borderless">
+                                                                        <div class="mmsch-list-item container-fluid">
+									<table class="table table-bordered">
+                                                                        <thead><tr><th class="detail-term col-md-3">Όνομα</th><th class="detail-term col-md-3">Λογαριασμός</th></tr></thead>
 									<tbody>
 
 									# for (var i = 0, len = ldaps.length;  i < len; i++ ){ #
@@ -588,7 +593,7 @@ position: fixed;
 									# var ldap = ldaps[i]; #
 
 									<tr>
-										<td class="detail-term">Λογαριασμός Υπηρεσίας </td>
+                                                                                <td class="term-value">${ldap.ldap_entry_cn}</td>
 										<td class="term-value">${ldap.ldap_entry_uid}</td>
 									</tr>
 
@@ -596,6 +601,7 @@ position: fixed;
 
 									</tbody>
 									</table>
+                                                                        </div>
 									
 
 								# } else { #
@@ -1399,14 +1405,13 @@ position: fixed;
 	                    	var ldaps = new Array();
 
 	                    	 try {
-
 				                	if (resp.status != 401){
-				                		ldaps = resp.data.ldaps;
+				                		ldaps = resp.data;
 				                	}
 				                	else {
 					                	//console.log(resp.message);
 				                	}
-														                	
+						                	
 				                	unitSource.data()[0]['ldaps'] = ldaps;
                                                         
 				             }

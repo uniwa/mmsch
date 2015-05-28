@@ -29,9 +29,9 @@ function GetLdapEntries( $mm_id ) {
         $ldap = new \Zend\Ldap\Ldap($ldapOptions);
         $lresult = $ldap->search('(gsnRegistryCode='.$fMMID.')', 'dc=sch,dc=gr', \Zend\Ldap\Ldap::SEARCH_SCOPE_SUB);
         
-        if ($lresult->count() == 1)
-             $result["ldap_gsnRegistryCode_found"] = 'yes';
-        else if ($lresult->count() == 0) 
+        if ($lresult->count() == 1){
+            $result["ldap_gsnRegistryCode_found"] = 'yes';
+        }else if ($lresult->count() == 0) 
             throw new Exception(ExceptionMessages::NotFoundLdapEntryMMIDValue, ExceptionCodes::NotFoundLdapEntryMMIDValue); 
         else 
             throw new Exception(ExceptionMessages::DuplicateLdapEntryMMIDValue, ExceptionCodes::DuplicateLdapEntryMMIDValue);
@@ -55,7 +55,7 @@ function GetLdapEntries( $mm_id ) {
 
             $rows = array_map(function($prow) {
                                                 $row = array();
-                                                $row['cn'] = $prow['cn'][0];
+                                                $row['cn'] = (($prow['physicaldeliveryofficename'][0] == 'ΕΠΙΣΗΜΟΣ ΛΟΓΑΡΙΑΣΜΟΣ') || ($prow['physicaldeliveryofficename;lang-en'][0] == 'EPISIMOS LOGARIASMOS' ))  ? 'ΕΠΙΣΗΜΟΣ ΛΟΓΑΡΙΑΣΜΟΣ' : $prow['cn'][0];
                                                 $row['uid'] = $prow['uid'][0];
                                                 return $row;
                                               }, $rows);

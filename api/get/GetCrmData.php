@@ -34,7 +34,8 @@ function GetCrmData( $mm_id )
         $curl = curl_init( $crmOptions['crmHOST'].$mm_id[0]);
         curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($curl, CURLOPT_USERPWD, $crmOptions['crmUSER'] . ":" . $crmOptions['crmPASS']);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);     
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3); 
 	$data = curl_exec($curl);
         $data = json_decode( $data, true );
