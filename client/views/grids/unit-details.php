@@ -330,6 +330,8 @@ position: fixed;
 
 									# var subnet_idx = lookup(subnets, con_subnets[j], "id"); #
 
+									# if (subnet_idx >= 0) { #
+
 									# var con_subnet = subnets[subnet_idx]; #
 
 									# var con_subnet = subnets[subnet_idx]; #							
@@ -344,6 +346,8 @@ position: fixed;
 												<td class="term-value">${con_subnet.type}</td>
 											</tr>
 											
+									# } #
+
 									# } #		
 									</tbody>
 									</table>
@@ -369,6 +373,8 @@ position: fixed;
 
 									# var circuit_idx = lookup(circuits, con_circuits[j], "id"); #
 
+									# if (circuit_idx >= 0) { #
+
 									# var con_circuit = circuits[circuit_idx]; #							
 
 											<tr>
@@ -382,6 +388,7 @@ position: fixed;
 												<td class="term-value">${con_circuit.owner}</td>
 											</tr>
 											
+									# } #
 									# } #		
 									</tbody>
 									</table>
@@ -1387,7 +1394,10 @@ position: fixed;
 	                    
 	                });
 					
+					<?php } else { ?>
+						populateUnitDetails();
 					<?php } ?>
+					
 
 
 					<?php if (!$isAnonymous) { ?>
@@ -1433,7 +1443,10 @@ position: fixed;
 	                    
 	                });
 					
+					<?php } else { ?>
+						populateUnitDetails();
 					<?php } ?>
+					
 						
 			}
 
