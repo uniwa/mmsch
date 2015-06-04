@@ -164,8 +164,10 @@ $isAnonymous = @ $_GET['is_anonymous'];
         
 	        <ul>
 				<li class="k-state-active">Κύρια</li>
-	  			<li>Κυκλώματα</li>
+	  	<!--		
+                                <li>Κυκλώματα</li>
 	  			<li>Υποδίκτυα</li>
+                -->
 			</ul>
 
 		
@@ -393,7 +395,7 @@ $isAnonymous = @ $_GET['is_anonymous'];
 										
 										</form>
     								</div>
-    								
+    			<!--					
     								<div class="" id="circuitSearch">
     									<form id="frmUnitCircuitSearch" class="mmsch-form">
 
@@ -428,7 +430,8 @@ $isAnonymous = @ $_GET['is_anonymous'];
 					    				
     									</form>
     								</div>
-    								
+                        -->
+                        <!--        
     								<div class="" id="subnetSearch">
     									<form id="frmUnitSubnetSearch" class="mmsch-form">
        									<div>
@@ -486,7 +489,7 @@ $isAnonymous = @ $_GET['is_anonymous'];
        				
 										</form>
     								</div>
-    								
+    				-->		
 									</div>
 									
 									<div class="cs-window-footer pull-right" style="margin-top:10px;">
