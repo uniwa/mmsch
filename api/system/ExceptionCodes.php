@@ -67,6 +67,8 @@ class ExceptionCodes
 
     /** {@see ExceptionMessages::InvalidMaxPageNumber} */
     const InvalidMaxPageNumber = 500;
+    /** {@see ExceptionMessages::InvalidMaxPageNumber} */  
+    const InvalidMaxLdapPageNumber = 500;
 
 
 

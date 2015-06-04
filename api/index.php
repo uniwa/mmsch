@@ -526,13 +526,7 @@ function LDapsController()
     {
         case MethodTypes::GET :
             $result = GetLDaps(
-                $params["ldap"],
-                $params["unit"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
+                $params["mm_id"]
             );
             break;
     }

@@ -42,7 +42,7 @@ class ExceptionMessages
     const MissingPageSizeNegativeValue = 'Ο Αριθμός Εγγραφών/Σελίδα δεν μπορεί να έχει αρνητική τιμή και πρέπει να είναι μεγαλύτερος από 0';
 
     const InvalidMaxPageNumber = 'Ο Αριθμός Σελίδας έιναι μεγαλύτερος από την μέγιστη τιμή της σελιδοποίησης. Μέγιστη τιμή σελιδοποίησης = ';
-    
+    const InvalidMaxLdapPageNumber = 'Το πλήθος των Μονάδων είναι μεγαλύτερο από την επιτρεπόμενη μέγιστη τιμή.';
 
 
     const InvalidSearchType = 'Ο Τύπος Αναζήτησης είναι λάθος';

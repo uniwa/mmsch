@@ -9,20 +9,15 @@
 header("Content-Type: text/html; charset=utf-8");
 
 /** 
- * <b>LDap Λογαριασμοί</b>
+ * <b>Ldap Attributes</b>
  * 
  * 
  * 
- * Η συνάρτηση αυτή επιστρέφει όλα τους LDap Λογαριασμούς σύμφωνα με τις παραμέτρους που έγινε η κλήση
+ * Η συνάρτηση αυτή επιστρέφει Ldap attributes μονάδων σύμφωνα με τις παραμέτρους που έγινε η κλήση
  *
  *
  * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
  * <br> https://mm.sch.gr/api/ldaps
- *
- *
- * Τα αποτελέσματα είναι ταξινομημένα ως προς το UID του LDap Λογαριασμού
- * <br>Μέσω των παραμέτρων Πεδίο Ταξινόμησης (<a href="#$orderby">$orderby</a>) και Τύπος Ταξινόμησης (<a href="#$ordertype">$ordertype</a>)
- * μπορεί να καθοριστεί το πεδίο και η σειρά ταξινόμησης
  *
  *
  * <br><b>Πίνακας Παραμέτρων</b>
@@ -30,7 +25,6 @@ header("Content-Type: text/html; charset=utf-8");
  * μπορεί να γίνει η κλήση της συνάρτησης
  * <br>Όλοι οι παράμετροι είναι προαιρετικοί εκτός από αυτές που έχουν χαρακτηριστεί ως υποχρεωτικοί
  * <br>Οι παράμετροι μπορούν να χρησιμοποιηθούν με οποιαδήποτε σειρά
- * <br>Οι παράμετροι μπορούν να πάρουν τιμή "NULL" για να αναζητήσουν τις κενές εγγραφές στα αντίστοιχα πεδία
  *
  *
  * <br><b>Πίνακας Αποτελεσμάτων</b>
@@ -134,268 +128,162 @@ header("Content-Type: text/html; charset=utf-8");
  * <br><b>Πίνακας Δεδομένων</b>
  * <br><a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα του λεξικού σε μορφή JSON :
  * <code>
- * {"data":[
- * ]}
+ *{
+ * "data": [
+ *   {
+ *     "accountstatus": [
+ *       "ΕΝΕΡΓΗ"
+ *     ],
+ *     "description": [
+ *       "10ο ΓΥΜΝΑΣΙΟ ΙΛΙΟΥ"
+ *     ],
+ *     "dn": "ou=10gym-iliou,ou=att-g,ou=units,dc=sch,dc=gr",
+ *     "gsnregistrycode": [
+ *       "1000169"
+ *     ],
+ *     "gsnunitcode": [
+ *       "0501659"
+ *     ],
+ *     "ou": [
+ *       "10gym-iliou"
+ *     ]
+ *   },
+ *   {
+ *     "accountstatus": [
+ *       "ΕΝΕΡΓΗ"
+ *     ],
+ *     "description": [
+ *       "10ο ΓΥΜΝΑΣΙΟ ΠΕΡΙΣΤΕΡΙΟΥ"
+ *     ],
+ *     "dn": "ou=10gym-perist,ou=att-g,ou=units,dc=sch,dc=gr",
+ *     "gsnregistrycode": [
+ *       "1011718"
+ *     ],
+ *     "gsnunitcode": [
+ *       "0501727"
+ *     ],
+ *     "ou": [
+ *       "10gym-perist"
+ *     ]
+ *   }
+ * ],
+ * "controller": "GetLdaps",
+ * "function": "ldaps",
+ * "method": "GET",
+ * "total_by_user": 2,
+ * "total_by_ldap": 2,
+ * "not_foundby_ldap": [],
+ * "status": 200,
+ * "message": "success"
  * </code>
  * <br>
  * 
  *  
- * 
- * @param mixed $ldap LDap Λογαριασμός
- * <br>Το UID ή ο Κωδικός του LDap Λογαριασμού
- * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- * <ul>
- *    <li>integer
- *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό του LDap Λογαριασμού
- *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
- *    </li>
- *    <li>string
- *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το UID του LDap Λογαριασμού
- *       <br>Με την χρήση της παραμέτρου Τύπος Αναζήτησης (<a href="#$searchtype">$searchtype</a>) μπορεί να καθοριστεί ο τρόπος με τον οποίο
- *       θα αναζητηθεί η τιμή της παραμέτρου
- *       <br>Αν η παράμετρος δεν έχει τιμή τότε η αναζήτηση γίνεται με τον Tύπο {@see SearchEnumTypes::ContainAll}
- *    </li>
- *    <li>array[integer|string]
- *       <br>Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
- *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
- *    </li>
- * </ul>
- *
- *
- * @param mixed $unit Μονάδα
- * <br>Το Όνομα ή ο Κωδικός MM της Μονάδας
- * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
- * <br>Μονάδες : {@see GetUnits}
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
+ * @param integer $mm_id Κωδικός ΜΜ Μονάδας
+ * <br>Ο Κωδικός ΜΜ της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer|array[integer]
  *    <ul>
- *       <li>integer
- *          <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ΜΜ της Μονάδας
- *          <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
- *       </li>
- *       <li>string
- *          <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Μονάδας
- *          <br>Η αναζήτηση στο Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
- *       </li>
- *       <li>array[integer|string]
- *          <br>Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
- *          <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
- *       </li>
+ *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
+ *       <li>array[integer] : Σύνολο από Αριθμητικές τιμές διαχωρισμένες με κόμμα</li>
  *    </ul>
- *
- *
- * @param integer $pagesize Αριθμός Εγγραφών/Σελίδα
- * <br>Ο αριθμός των εγγραφών που θα επιστρέψουν ανα σελίδα
- * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Αν η παράμετρος δεν έχει τιμή τότε θα επιστραφούν όλες οι εγγραφές ({@see Parameters::AllPageSize})
- * <br>Λίστα Παραμέτρων Σελιδοποίησης : {@see Parameters}
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer
- * <ul>
- *    <li>integer
- *       <br>Αριθμητική : Η τιμή της παραμέτρου πρέπει να είναι μεγαλύτερη από 0
- *    </li>
- * </ul>
- *
- *
- * @param integer $page Αριθμός Σελίδας
- * <br>Ο αριθμός της σελίδας με τις <a href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν σύμφωμα με τις παραμέτρους
- * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Αν η παράμετρος δεν έχει τιμή τότε θα επιστραφεί η πρώτη σελίδα
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer
- * <ul>
- *    <li>integer
- *       <br>Αριθμητική : Η τιμή της παραμέτρου πρέπει να είναι μεγαλύτερη από 0
- *    </li>
- * </ul>
- *
- *
- * @param string $orderby Πεδίο Ταξινόμησης
- * <br>Το όνομα του πεδίου με το οποίο γίνεται η ταξινόμηση των εγγραφών
- * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Αν η παράμετρος δεν έχει τιμή τότε η ταξινόμηση γίνεται με το UID του LDap Λογαριασμού
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- * <ul>
- *    <li>string
- *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι οποιοδήποτε πεδίο επιστρέφει η συνάρτηση στον πίνακα data
- *    </li>
- * </ul>
- *
- *
- * @param string $ordertype Τύπος Ταξινόμησης
- * <br>Ο Τύπος Ταξινόμησης με τον οποίο γίνεται η ταξινόμηση των εγγραφών
- * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Αν η παράμετρος δεν έχει τιμή τότε η ταξινόμηση γίνεται με Αύξουσα Σειρά ({@see OrderEnumTypes::ASC})
- * <br>Λίστα Τύπων Ταξινόμησης : {@see OrderEnumTypes}
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- * <ul>
- *    <li>string
- *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see OrderEnumTypes}
- *    </li>
- * </ul>
- *
- *
- *  * @param string $searchtype Τύπος Αναζήτησης
- * <br>Ο Τύπος Αναζήτησης με τον οποίο γίνεται η αναζήτηση στον LDap Λογαριασμό (<a href="#$ldap">$ldap</a>)
- * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Αν η παράμετρος δεν έχει τιμή τότε η αναζήτηση γίνεται με τον Τύπο {@see SearchEnumTypes::ContainAll}
- * <br>Αν η παράμετρος LDap Λογαριασμός (<a href="#$ldap">$ldap</a>) έχει Αριθμητική Τιμή τότε η αναζήτηση γίνεται
- * με τον Κωδικό του LDap Λογαριασμού με Τύπο {@see SearchEnumTypes::Exact}
- * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- * <ul>
- *    <li>string
- *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see SearchEnumTypes}
- *    </li>
- * </ul>
  * 
  * 
- *
  * @return Array<JSON> Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία :
  * <br>
+ * <br>string : <b>controller</b> : O controller της συνάρτησης
+ * <br>string : <b>function</b> : H ονομασία κλήσης της συνάρτησης
  * <br>string : <b>method</b> : Η μέθοδος κλήσης της συνάρτησης
  * <br>integer : <b>status</b> : Ο Κωδικός {@see ExceptionCodes} του αποτελέσματος της κλήσης
  * <br>string : <b>message</b> : Το Μήνυμα {@see ExceptionMessages} του αποτελέσματος της κλήσης
- * <br>integer : <b>count</b> : Το πλήθος των εγγραφών της κλήσης σύμφωνα με τις παραμέτρους σελιδοποίησης
- * <br>integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς τις παραμέτρους σελιδοποίησης
- * <br>array : <b>data</b> : Ο Πίνακας με το λεξικό
+ * <br>integer : <b>total_by_user</b> : Το πλήθος των μονάδων που καταχώρησε ο χρήστης
+ * <br>integer : <b>total_by_ldap</b> : Το πλήθος των μονάδων που βρέθηκαν στον ldap
+ * <br>array : <b>not_foundby_ldap</b> : Οι κωδικοί ΜΜ των Μονάδων που δεν βρέθηκαν στον ldap
+ * <br>array : <b>data</b> : Ο Πίνακας με τα αποτελέσματα
  * <ul>
- *    <li>integer : <b>ldap_id</b> : Ο Κωδικός του LDap Λογαριασμού</li>
- *    <li>string : <b>ldap_uid</b> : Το UID του LDap Λογαριασμού</li>
- *    <li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας (Μονάδες : {@see GetUnits})</li>
- *    <li>string : <b>registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της Μονάδας</li>
- *    <li>string : <b>unit_name</b> : Το Όνομα της Μονάδας</li>
- *    <li>string : <b>unit_special_name</b> : Το Προσωνύμιο της Μονάδας</li>
+ *    <li>string : <b>accountstatus</b> : Η λειτουργική Κατάσταση της Μονάδας</li>
+ *    <li>string : <b>description</b> : Το όνομα της Μονάδας</li>
+ *    <li>string : <b>dn</b> : Το ldap dn της Μονάδας</li>
+ *    <li>string : <b>gsnregistrycode</b> : Ο Κωδικός MM της Μονάδας</li>
+ *    <li>string : <b>gsnunitcode</b> : Ο Κωδικός ΥΠΕΠΘ της Μονάδας</li>
+ *    <li>string : <b>ou</b> : Το ldap ou της Μονάδας</li>
  * </ul>
  * 
  * 
- * 
- * @throws InvalidSearchType {@see ExceptionMessages::InvalidSearchType}
- * <br>{@see ExceptionCodes::InvalidSearchType}
- * <br>Ο Τύπος Αναζήτησης είναι λάθος
- *
- * @throws MissingPageValue {@see ExceptionMessages::MissingPageValue}
- * <br>{@see ExceptionCodes::MissingPageValue}
- * <br>Ο Αριθμός Σελίδας πρέπει να έχει τιμή
- *
- * @throws InvalidPageArray {@see ExceptionMessages::InvalidPageArray}
- * <br>{@see ExceptionCodes::InvalidPageArray}
- * <br>Ο Αριθμός Σελίδας δεν μπορεί να έχει πολλαπλές τιμές
- *
- * @throws InvalidPageNumber {@see ExceptionMessages::InvalidPageNumber}
- * <br>{@see ExceptionCodes::InvalidPageNumber}
- * <br>Ο Αριθμός Σελίδας πρέπει να είναι μεγαλύτερος από 0
- *
- * @throws InvalidPageType {@see ExceptionMessages::InvalidPageType}
- * <br>{@see ExceptionCodes::InvalidPageType}
- * <br>Ο Αριθμός Σελίδας πρέπει να είναι αριθμητικός
- *
- * @throws MissingPageSizeValue {@see ExceptionMessages::MissingPageSizeValue}
- * <br>{@see ExceptionCodes::MissingPageSizeValue}
- * <br>Ο Αριθμός Εγγραφών/Σελίδα πρέπει να έχει τιμή
- *
- * @throws InvalidPageSizeArray {@see ExceptionMessages::InvalidPageSizeArray}
- * <br>{@see ExceptionCodes::InvalidPageSizeArray}
- * <br>Ο Αριθμός Εγγραφών/Σελίδα δεν μπορεί να έχει πολλαπλές τιμές
- *
- * @throws InvalidPageSizeNumber {@see ExceptionMessages::InvalidPageSizeNumber}
- * <br>{@see ExceptionCodes::InvalidPageSizeNumber}
- * <br>Ο Αριθμός Εγγραφών/Σελίδα πρέπει να είναι από 0 έως 500
- *
- * @throws InvalidPageSizeType {@see ExceptionMessages::InvalidPageSizeType}
- * <br>{@see ExceptionCodes::InvalidPageSizeType}
- * <br>Ο Αριθμός Εγγραφών/Σελίδα πρέπει να είναι αριθμητικός
- *
- * @throws InvalidLdapType {@see ExceptionMessages::InvalidCpeType}
- * <br>{@see ExceptionCodes::InvalidCpeType}
- * <br>Ο LDap Λογαριασμός πρέπει να είναι αριθμητικός ή αλφαριθμητικός
- *
- * @throws InvalidUnitType {@see ExceptionMessages::InvalidUnitType}
- * <br>{@see ExceptionCodes::InvalidUnitType}
- * <br>Η Μονάδα πρέπει να είναι αριθμητική ή αλφαριθμητική
- *
- * @throws InvalidOrderType {@see ExceptionMessages::InvalidOrderType}
- * <br>{@see ExceptionCodes::InvalidOrderType}
- * <br>Ο Τύπος Ταξινόμησης πρέπει να είναι ASC ή DESC
- *
- * @throws InvalidOrderBy {@see ExceptionMessages::InvalidOrderBy}
- * <br>{@see ExceptionCodes::InvalidOrderBy}
- * <br>Το Πεδίο Ταξινόμησης πρέπει να είναι κάποιο από τα πεδία που επιστρέφει η συνάρτηση
+ * @throws InvalidMaxLdapPageNumber {@see ExceptionMessages::InvalidMaxLdapPageNumber}
+ * <br>{@see ExceptionCodes::InvalidMaxLdapPageNumber}
  *
  */
 
-function GetLdaps(
-    $ldap, $unit,
-    $pagesize, $page, $orderby, $ordertype, $searchtype
-)
-{
-    global $db, $ldapOptions;
-
-    $filter = array();
+function GetLdaps( $mm_id ) {
+    
+    global  $app, $syncLdapOptions;
     $result = array();
-
+    $found_dn = array();
+    
     $result["data"] = array();
-
-    $result["method"] = __FUNCTION__;
-
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
     $params = loadParameters();
+   
+    try {
 
-    try
-    {
-//======================================================================================================================
-//= $unit
-//======================================================================================================================
-
-        if ( Validator::Exists('unit', $params) )
-        {
-            $unit = Validator::toArray($unit);
-        } else {
-            throw new Exception(ExceptionMessages::MissingUnitID." : ".$ordertype, ExceptionCodes::MissingUnitID);
+        //$mm_id================================================================
+        $mm_ids = Validator::toArray($mm_id);
+        $result["total_by_user"] = count($mm_ids);
+        
+        if  ($result["total_by_user"] > Parameters::MaxLdapPageSize)
+            throw new Exception(ExceptionMessages:: InvalidMaxLdapPageNumber, ExceptionCodes::InvalidMaxLdapPageNumber);
+            
+        foreach ($mm_ids as $mm_id) {
+            $fMMID = CRUDUtils::checkIDParam('mm_id', $params, $mm_id, 'UnitMMID');
+            $filter .= '(gsnRegistryCode='.$fMMID.')';
         }
-
-//======================================================================================================================
-//= E X E C U T E
-//======================================================================================================================
-        $ldap = new \Zend\Ldap\Ldap($ldapOptions);
-        $ldap->bind('uid=mmeye,dc=sch,dc=gr', 'mmeye');
-        $lresult = $ldap->search('(gsnRegistryCode='.$unit[0].')', 'dc=sch,dc=gr', \Zend\Ldap\Ldap::SEARCH_SCOPE_SUB);
+        
+        // ldap queries=========================================================
+        $filter = '(|'.$filter.')' ;
+        $ldap = new \Zend\Ldap\Ldap($syncLdapOptions);
+        
+        $lresult = $ldap->search($filter, 'dc=sch,dc=gr', \Zend\Ldap\Ldap::SEARCH_SCOPE_SUB);
         $rows = iterator_to_array($lresult);
-        $rows = array_map(function($prow) {
-            $row = array();
-            $row['accountstatus'] = $prow['accountstatus'][0];
-            $row['businesscategory'] = $prow['businesscategory'][0];
-            $row['cn'] = $prow['cn'][0];
-            $row['description'] = $prow['description'][0];
-            $row['dn'] = $prow['dn'][0];
-            $row['gsnunitcode'] = $prow['gsnunitcode'][0];
-            $row['l'] = $prow['l'][0];
-            $row['labeleduri'] = $prow['labeleduri'][0];
-            $row['memberurl'] = $prow['memberurl'][0];
-            $row['ou'] = $prow['ou'][0];
-            $row['postaladdress'] = $prow['postaladdress'][0];
-            $row['postalcode'] = $prow['postalcode'][0];
-            $row['telephonenumber'] = $prow['telephonenumber'][0];
-            $row['title'] = $prow['title'][0];
-            $row['umdobject'] = $prow['umdobject'][0];
-            return $row;
-        }, $rows);
-
-        $result["total"] = $lresult->count(); // This should be all the results
-        $result["count"] = count($rows);
 
         foreach ($rows as $row)
         {
-            $result["data"][] = array(
-                "ldap_id"           => (int)$row["gsnunitcode"],
-                "ldap_uid"          => $row["cn"],
-                "mm_id"             => (int)$unit,
-                "unit_name"         => $row["description"],
-                "special_unit_name" => $row["l"],
-                "registry_no"       => $row["gsnunitcode"]
+            $result["data"][] = array(      
+            'accountstatus' => $row['accountstatus'],
+//            'accountstatus;lang-en' => $row['accountstatus;lang-en'],
+//            'businesscategory' => $row['businesscategory'],
+//            'businesscategory;lang-en' => $row['businesscategory;lang-en'],
+//            'cn' => $row['cn'],
+            'description' => $row['description'],
+//            'description;lang-en' => $row['description;lang-en'],
+            'dn' => $row['dn'],
+//            'facsimiletelephonenumber' => $row['facsimiletelephonenumber'],
+            'gsnregistrycode' => $row['gsnregistrycode'],
+            'gsnunitcode' => $row['gsnunitcode'],
+//            'l' => $row['l'],
+//            'l;lang-en' => $row['l;lang-en'],
+//            'labeleduri' => $row['labeleduri'],
+//            'memberurl' => $row['memberurl'],
+//            'objectclass' => $row['objectclass'],
+            'ou' => $row['ou'],
+//            'ou;lang-en' => $row['ou;lang-en'],
+//            'postaladdress' => $row['postaladdress'],
+//            'postaladdress;lang-en' => $row['postaladdress;lang-en'],
+//            'postalcode' => $row['postalcode'],
+//            'telephonenumber' => $row['telephonenumber'],
+//            'title' => $row['title'],
+//            'title;lang-en' => $row['title;lang-en'],
+//            'umdobject' => $row['umdobject']
             );
+            array_push($found_dn, $row["gsnregistrycode"][0]) ;
         }
-
+             
+        $ldap_count =  $lresult->count();
+        $result["total_by_ldap"] = $ldap_count;
+        $result_diff = array_diff($mm_ids, $found_dn);
+        $result["not_foundby_ldap"] = $result_diff;
+        
         $result["status"] = ExceptionCodes::NoErrors;
         $result["message"] = ExceptionMessages::NoErrors;
     }
@@ -407,6 +295,5 @@ function GetLdaps(
 
     return $result;
 }
-
 
 ?>
