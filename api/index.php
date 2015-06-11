@@ -28,7 +28,7 @@ $app->map('/groups', Authentication, UserRolesPermission, GroupsController)
 $app->map('/implementation_entities', Authentication, UserRolesPermission, ImplementationEntitiesController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/ldaps', Authentication, UserRolesPermission, LDapsController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+    ->via(MethodTypes::GET);
 $app->map('/ldap_entries', Authentication, UserRolesPermission, LDapEntriesController)
     ->via(MethodTypes::GET);
 $app->map('/legal_characters', Authentication, UserRolesPermission, LegalCharactersController)
@@ -103,6 +103,8 @@ $app->map('/statistic_units', Authentication, UserRolesPermission, StatisticUnit
 $app->map('/ext_log_entries', Authentication, UserRolesPermission, ExtLogEntriesController)
     ->via(MethodTypes::GET);
 $app->map('/check_required_values', Authentication, UserRolesPermission, CheckRequiredValuesController)
+    ->via(MethodTypes::GET);
+$app->map('/units_old', Authentication, UserRolesPermission, UnitsOldController)
     ->via(MethodTypes::GET);
 
 $app->get('/docs/*', function () use ($app) {
@@ -2148,6 +2150,67 @@ function CrmDataController() {
 
     PrepareResponse();
 
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function UnitsOldController()
+{
+    global $app;
+    $params = loadParameters();
+
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = GetUnitsOld(
+                $params["mm_id"],
+                $params["registry_no"],
+                $params["source"],
+                $params["name"],
+                $params["special_name"],
+                $params["state"],
+                $params["region_edu_admin"],
+                $params["edu_admin"],
+                $params["implementation_entity"],
+                $params["transfer_area"],
+                $params["prefecture"],
+                $params["municipality"],
+                $params["municipality_community"],
+                $params["education_level"],
+                $params["phone_number"],
+                $params["email"],
+                $params["fax_number"],
+                $params["street_address"],
+                $params["postal_code"],
+                $params["tax_number"],
+                $params["tax_office"],
+                $params["area_team_number"],
+                $params["category"],
+                $params["unit_type"],
+                $params["operation_shift"],
+                $params["legal_character"],
+                $params["orientation_type"],
+                $params["special_type"],
+                $params["levels_count"],
+                $params["groups_count"],
+                $params["students_count"],
+                $params["latitude"],
+                $params["longitude"],
+                $params["positioning"],
+                $params["creation_fek"],
+                $params["last_update"],
+                $params["last_sync"],
+                $params["comments"],
+                $params["pagesize"],
+                $params["page"],
+                $params["orderby"],
+                $params["ordertype"],
+                $params["searchtype"],
+                $params["export"]
+            );
+            break;
+    }
+
+    PrepareResponse();
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
 

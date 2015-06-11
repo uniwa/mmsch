@@ -257,6 +257,10 @@ private static $Permissions = array(
     'ldap_entries' => array(
                                         'GET' => array('USER', 'ADMIN')                                   
                                         ) ,
+    
+    'units_old' => array(
+                                        'GET' => array('USER', 'ADMIN', 'GUEST')                                   
+                                        ) ,
     );
 
 

@@ -24,5 +24,17 @@ class Filters {
         
         return $ordertype;
     }
+    
+    public static function getExportType($export, $params) {
+        
+        if ( Validator::Missing('export', $params) )
+            $export = ExportDataEnumTypes::JSON;
+        else if ( ExportDataEnumTypes::isValidValue( $export ) || ExportDataEnumTypes::isValidName( $export ) ) {
+            $export = ExportDataEnumTypes::getValue($export);
+        } else
+            throw new Exception(ExceptionMessages::InvalidExportType." : ".$export, ExceptionCodes::InvalidExportType);
+        
+        return $export;
+    }
 }
 ?>

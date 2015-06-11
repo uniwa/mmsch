@@ -127,5 +127,106 @@ class UnitsExt {
     return $filename;
 }
 
+    public static function exportResults($export, $result) {
+        
+        global $Options;
+        
+        if ($export == 'JSON'){
+            return $result;
+        } else if ($export == 'XLSX') {
+           $xlsx_filename = UnitsExt::ExcelCsvCreate($result, $export);
+           unset($result['data']);
+           return array("result"=>$result,"tmp_xlsx_filepath" => $Options["WebTmpFolder"].$xlsx_filename);
+        } else if ($export == 'CSV'){
+           $csv_filename = UnitsExt::ExcelCsvCreate($result, $export);
+           unset($result['data']);
+           return array("result"=>$result,"tmp_csv_filepath" => $Options["WebTmpFolder"].$csv_filename);
+        } else if ($export == 'PHP_ARRAY'){
+           return print_r($result);
+        } else {     
+           return $result;
+        }
+        
+    }
+    
+    public static function getColumns() {
+        $columns = array(
+                            "u.mmId"                => "mm_id",
+                            "u.registryNo"          => "registry_no",
+                            "u.name"                => "name",
+                            "u.specialName"         => "special_name",
+                            "sr.sourceId"       => "source_id",
+                            "sr.name"           => "source",
+                            "c.categoryId"      => "category_id",
+                            "c.name"            => "category",
+                            "st.stateId"        => "state_id",
+                            "st.name"           => "state",
+                            "u.areaTeamNumber"      => "area_team_number",
+                            "u.streetAddress"       => "street_address",
+                            "u.postalCode"          => "postal_code",
+                            "u.faxNumber"           => "fax_number",
+                            "u.phoneNumber"         => "phone_number",
+                            "u.email"               => "email",
+                            "u.studentsCount"       => "students_count",
+                            "u.groupsCount"         => "groups_count",
+                            "u.levelsCount"         => "levels_count",
+                            "u.lastUpdate"          => "last_update",
+                            "u.taxNumber"           => "tax_number",
+                            "u.comments"            => "comments",
+                            "u.lastSync"            => "last_sync",
+                            "rea.regionEduAdminId"       => "region_edu_admin_id",
+                            "rea.name"          => "region_edu_admin",
+                            "ea.eduAdminId"     => "edu_admin_id",
+                            "ea.name"           => "edu_admin",
+                            "ta.transferAreaId" => "transfer_area_id",
+                            "ta.name"           => "transfer_area",
+                            "p.prefectureId"    => "prefecture_id",
+                            "p.name"            => "prefecture",
+                            "m.municipalityId"  => "municipality_id",
+                            "m.name"            =>  "municipality",
+                            "mc.municipalityCommunityId" => "municipality_community_id",
+                            "mc.name"                    => "municipality_community",
+                            "el.educationLevelId"        =>"education_level_id",
+                            "el.name"                    =>"education_level",
+                            "ut.unitTypeId"              =>"unit_type_id",
+                            "ut.name"                    =>"unit_type",
+                            "ot.orientationTypeId"       =>"orientation_type_id",
+                            "ot.name"                    =>"orientation_type",
+                            "os.operationShiftId"        =>"operation_shift_id",
+                            "os.name"                    =>"operation_shift",
+                            "lc.legalCharacterId"        =>"legal_character_id",
+                            "lc.name"                    =>"legal_character",
+                            "ie.implementationEntityId"  =>"implementation_entity_id",
+                            "ie.name"                    =>"implementation_entity",
+                            "ie.implementationEntityInitials"   =>"implementation_entity_initials",
+                            "to.taxOfficeId"                    =>"tax_office_id",
+                            "to.name"                           =>"tax_office",
+                            "st.specialTypeId"                  =>"special_type_id",
+                            "st.name"                           =>"special_type",
+                            "u.latitude"            => "latitude",
+                            "u.longitude"           => "longitude",
+                            "u.positioning"         => "positioning",
+                            "u.creationFek"         => "creation_fek"
+                       );
+        
+        return $columns;
+    }
+    
+    
+    public static function getOrderBy($params, $orderby) {
+              
+       if ( Validator::Missing('orderby', $params) )
+            $orderby = "name";
+        else
+        {   
+            $orderby = Validator::ToLower($orderby);
+            if ( !in_array($orderby, UnitsExt::getColumns()) )
+                throw new Exception(ExceptionMessages::InvalidOrderBy." : ".$orderby, ExceptionCodes::InvalidOrderBy);
+        } 
+        
+        return $orderby;
+        
+    }
+
 }
 ?>
