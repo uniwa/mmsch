@@ -3,7 +3,7 @@
  *
  * @version 1.1
  * @author  ΤΕΙ Αθήνας
- * @package POST
+ * @package PUT
  * 
  */
  

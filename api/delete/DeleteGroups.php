@@ -3,7 +3,7 @@
  *
  * @version 2.0
  * @author  ΤΕΙ Αθήνας
- * @package POST
+ * @package DELETE
  * 
  */
 

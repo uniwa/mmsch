@@ -747,12 +747,13 @@ header("Content-Type: text/html; charset=utf-8");
  *  <li>string : <b>message</b> : Το Μήνυμα {@see ExceptionMessages} του αποτελέσματος της κλήσης</li>
  *  <li>integer : <b>count</b> : Το πλήθος των εγγραφών της κλήσης σύμφωνα με τις παραμέτρους σελιδοποίησης</li>
  *  <li>integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς τις παραμέτρους σελιδοποίησης</li>
- *  <li>array : <b>pagination</b> : Οι παράμετροι σελιδοποίησης των εγγραφών της κλήσης</li>
+ *  <li>array : <b>pagination</b> : Οι παράμετροι σελιδοποίησης των εγγραφών της κλήσης
  *      <ul>
  *          <li>integer : <b>page</b> : Ο αριθμός της σελίδας των αποτελεσμάτων</li>
  *          <li>integer : <b>maxPage</b> : Ο μέγιστος αριθμός της σελίδας των αποτελεσμάτων</li>
  *          <li>integer : <b>pagesize</b> : Ο αριθμός των εγγραφών προς επιστροφή</li>
  *      </ul>
+ * </li>
  *  <li>array : <b>data</b> : Ο Πίνακας με το λεξικό
  *    <ul>
  *      <li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
