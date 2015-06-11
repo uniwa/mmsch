@@ -364,6 +364,48 @@ class Units
      * @Gedmo\Versioned
      */
     private $unitType;
+    
+    /**
+     * @var \UnitDns
+     *
+     * @ORM\OneToMany(targetEntity="UnitDns", mappedBy="mm")
+     */
+    private $unitDns;
+    
+    /**
+     * @var \Levels
+     *
+     * @ORM\OneToMany(targetEntity="Levels", mappedBy="mm")
+     */
+    private $levels;
+    
+    /**
+     * @var \Groups
+     *
+     * @ORM\OneToMany(targetEntity="Groups", mappedBy="mm")
+     */
+    private $groups;
+    
+    /**
+     * @var \Relations
+     *
+     * @ORM\OneToMany(targetEntity="Relations", mappedBy="guestMm")
+     */
+    private $guestRelations;
+    
+    /**
+     * @var \Relations
+     *
+     * @ORM\OneToMany(targetEntity="Relations", mappedBy="hostMm")
+     */
+    private $hostRelations;
+    
+    /**
+     * @var \UnitWorkers
+     *
+     * @ORM\OneToMany(targetEntity="UnitWorkers", mappedBy="mm")
+     */
+    private $unitWorkers;
 
     public function getMmId() {
         return $this->mmId;
@@ -676,4 +718,53 @@ class Units
     public function setUnitType(\UnitTypes $unitType) {
         $this->unitType = $unitType;
     }
+    
+    public function getUnitDns() {
+        return $this->unitDns;
+    }
+
+    public function setUnitDns(\UnitDns $unitDns) {
+        $this->unitDns = $unitDns;
+    }
+
+    public function getLevels() {
+        return $this->levels;
+    }
+
+    public function setLevels(\Levels $levels) {
+        $this->levels = $levels;
+    }
+
+    public function getGroups() {
+        return $this->groups;
+    }
+
+    public function setGroups(\Groups $groups) {
+        $this->groups = $groups;
+    }
+    
+    public function getGuestRelations() {
+        return $this->guestRelations;
+    }
+
+    public function setGuestRelations(\Relations $guestRelations) {
+        $this->guestRelations = $guestRelations;
+    }
+
+    public function getHostRelations() {
+        return $this->hostRelations;
+    }
+
+    public function setHostRelations(\Relations $hostRelations) {
+        $this->hostRelations = $hostRelations;
+    }
+
+    public function getUnitWorkers() {
+        return $this->unitWorkers;
+    }
+
+    public function setUnitWorkers(\UnitWorkers $unitWorkers) {
+        $this->unitWorkers = $unitWorkers;
+    }
+
 }

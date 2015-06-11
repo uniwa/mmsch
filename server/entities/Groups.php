@@ -38,7 +38,7 @@ class Groups
     /**
      * @var \Levels
      *
-     * @ORM\ManyToOne(targetEntity="Levels")
+     * @ORM\ManyToOne(targetEntity="Levels", inversedBy="levels")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="level_id", referencedColumnName="level_id")
      * })
@@ -48,7 +48,7 @@ class Groups
     /**
      * @var \Units
      *
-     * @ORM\ManyToOne(targetEntity="Units")
+     * @ORM\ManyToOne(targetEntity="Units", inversedBy="groups")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="mm_id", referencedColumnName="mm_id")
      * })

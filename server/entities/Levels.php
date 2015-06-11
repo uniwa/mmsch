@@ -45,12 +45,19 @@ class Levels
     /**
      * @var \Units
      *
-     * @ORM\ManyToOne(targetEntity="Units")
+     * @ORM\ManyToOne(targetEntity="Units", inversedBy="levels")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="mm_id", referencedColumnName="mm_id")
      * })
      */
     private $mm;
+    
+    /**
+     * @var \Groups
+     *
+     * @ORM\OneToMany(targetEntity="Groups", mappedBy="level")
+     */
+    private $groups;
 
     public function getLevelId() {
         return $this->levelId;
@@ -90,6 +97,14 @@ class Levels
 
     public function setMm(\Units $mm) {
         $this->mm = $mm;
+    }
+    
+    public function getGroups() {
+        return $this->groups;
+    }
+
+    public function setGroups(\Groups $groups) {
+        $this->groups = $groups;
     }
 
 }

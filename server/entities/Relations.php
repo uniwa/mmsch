@@ -69,7 +69,7 @@ class Relations
     /**
      * @var \Units
      *
-     * @ORM\ManyToOne(targetEntity="Units")
+     * @ORM\ManyToOne(targetEntity="Units", inversedBy="guestRelations")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="guest_mm_id", referencedColumnName="mm_id")
      * })
@@ -79,7 +79,7 @@ class Relations
     /**
      * @var \Units
      *
-     * @ORM\ManyToOne(targetEntity="Units")
+     * @ORM\ManyToOne(targetEntity="Units", inversedBy="hostRelations")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="host_mm_id", referencedColumnName="mm_id")
      * })

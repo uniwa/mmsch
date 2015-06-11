@@ -34,16 +34,47 @@ class UnitDns
      * @ORM\Column(name="unit_ext_dns", type="string", length=255, nullable=true)
      */
     private $unitExtDns;
-/**
+
     /**
      * @var \Units
      *
-     * @ORM\ManyToOne(targetEntity="Units")
+     * @ORM\ManyToOne(targetEntity="Units", inversedBy="unitDns")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="mm_id", referencedColumnName="mm_id")
      * })
      */
     private $mm;
+    
+    public function getUnitDnsId() {
+        return $this->unitDnsId;
+    }
 
+    public function setUnitDnsId($unitDnsId) {
+        $this->unitDnsId = $unitDnsId;
+    }
+
+    public function getUnitDns() {
+        return $this->unitDns;
+    }
+
+    public function setUnitDns($unitDns) {
+        $this->unitDns = $unitDns;
+    }
+
+    public function getUnitExtDns() {
+        return $this->unitExtDns;
+    }
+
+    public function setUnitExtDns($unitExtDns) {
+        $this->unitExtDns = $unitExtDns;
+    }
+
+    public function getMm() {
+        return $this->mm;
+    }
+
+    public function setMm(\Units $mm) {
+        $this->mm = $mm;
+    }
 
 }

@@ -24,7 +24,7 @@ class UnitWorkers
     /**
      * @var \Units
      *
-     * @ORM\ManyToOne(targetEntity="Units")
+     * @ORM\ManyToOne(targetEntity="Units", inversedBy="unitWorkers")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="mm_id", referencedColumnName="mm_id")
      * })
