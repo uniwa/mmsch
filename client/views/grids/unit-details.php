@@ -503,9 +503,9 @@ position: fixed;
 <tbody>
 									# for (var i = 0, len = circuits.length;  i < len; i++ ){ #
 									
-									# var circuit = circuits[i]; #
+									# var circuit = circuits[i];  #
 
-									# var services = circuit.services; #
+									
 									
 									
 										<tr>
@@ -519,7 +519,9 @@ position: fixed;
 											<td class="term-value">${circuit.owner}</td>
 
 											<td class="term-value">
-											# for (var j = 0, len = services.length;  j < len; j++) { #
+											# var services = circuit.services; #
+											# for (var j = 0, srv_col_len = services.length;  j < srv_col_len; j++) { #
+
 												${services[j].type} / ${services[j].bandwidth} / ${services[j].owner} <br/> 
 												 
 											# } #
@@ -987,7 +989,7 @@ position: fixed;
 						complete : function(e){
 							console.log("read  complete");
 							//viewModel.handlerFetchUnit(false);
-							console.log(e);
+							//console.log(e);
 						}
 					},
 					parameterMap: function(data, type) {
@@ -1030,7 +1032,7 @@ position: fixed;
 					console.log("requestEnd");
 					 var response = e.response;
 
-					 console.log(response);
+					 //console.log(response);
 					 
 					 delete response.data[0].circuits;
 					 delete response.data[0].subnets;
@@ -1350,11 +1352,16 @@ position: fixed;
 				                		circuits = resp.data.circuits;
 				                		subnets = resp.data.subnets;
 				                		connections = resp.data.connections;
+
+				                		console.log("<---");
+				                		console.log(circuits);
+				                		console.log("--->");
 				                	}
 				                	else {
 					                	//console.log(resp.message);
 				                	}
 
+				                	/*
 				                	$.each(circuits, function(idxCircuit, circuit){
 
 				                		circuit["is_connected"] = false;
@@ -1368,6 +1375,7 @@ position: fixed;
 					                	});
 					                	
 				                	});
+				                	*/
 														                	
 				                	unitSource.data()[0]['circuits'] = circuits;
 
