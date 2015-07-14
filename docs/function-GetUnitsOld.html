@@ -1,0 +1,2581 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Function GetUnitsOld | mm.sch.gr</title>
+
+	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
+	<script type="text/javascript" src="elementlist.js?1325412420"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li class="active"><a href="package-GET.html">GET</a>
+						</li>
+				<li><a href="package-POST.html">POST</a>
+						</li>
+				<li><a href="package-PUT.html">PUT</a>
+						</li>
+				<li><a href="package-System.html">System</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+
+
+
+
+
+			<h3>Functions</h3>
+			<ul>
+				<li><a href="function-CheckRequiredValues.html">CheckRequiredValues</a></li>
+				<li><a href="function-GetCategories.html">GetCategories</a></li>
+				<li><a href="function-GetCircuits.html">GetCircuits</a></li>
+				<li><a href="function-GetCircuitTypes.html">GetCircuitTypes</a></li>
+				<li><a href="function-GetConnections.html">GetConnections</a></li>
+				<li><a href="function-GetConnectionUnitNetworkSubnets.html">GetConnectionUnitNetworkSubnets</a></li>
+				<li><a href="function-GetCpes.html">GetCpes</a></li>
+				<li><a href="function-GetCrmData.html">GetCrmData</a></li>
+				<li><a href="function-GetEduAdmins.html">GetEduAdmins</a></li>
+				<li><a href="function-GetEducationLevels.html">GetEducationLevels</a></li>
+				<li><a href="function-GetExtLogEntries.html">GetExtLogEntries</a></li>
+				<li><a href="function-GetGroups.html">GetGroups</a></li>
+				<li><a href="function-GetImplementationEntities.html">GetImplementationEntities</a></li>
+				<li><a href="function-GetLdapEntries.html">GetLdapEntries</a></li>
+				<li><a href="function-GetLdaps.html">GetLdaps</a></li>
+				<li><a href="function-GetLegalCharacters.html">GetLegalCharacters</a></li>
+				<li><a href="function-GetLevels.html">GetLevels</a></li>
+				<li><a href="function-GetMunicipalities.html">GetMunicipalities</a></li>
+				<li><a href="function-GetMunicipalityCommunities.html">GetMunicipalityCommunities</a></li>
+				<li><a href="function-GetOperationShifts.html">GetOperationShifts</a></li>
+				<li><a href="function-GetOrientationTypes.html">GetOrientationTypes</a></li>
+				<li><a href="function-GetPrefectures.html">GetPrefectures</a></li>
+				<li><a href="function-GetRegionEduAdmins.html">GetRegionEduAdmins</a></li>
+				<li><a href="function-GetRelations.html">GetRelations</a></li>
+				<li><a href="function-GetRelationTypes.html">GetRelationTypes</a></li>
+				<li><a href="function-GetSchoolCommittees.html">GetSchoolCommittees</a></li>
+				<li><a href="function-GetSources.html">GetSources</a></li>
+				<li><a href="function-GetSpecialTypes.html">GetSpecialTypes</a></li>
+				<li><a href="function-GetStates.html">GetStates</a></li>
+				<li><a href="function-GetTaxOffices.html">GetTaxOffices</a></li>
+				<li><a href="function-GetTransferAreaMunicipalities.html">GetTransferAreaMunicipalities</a></li>
+				<li><a href="function-GetTransferAreas.html">GetTransferAreas</a></li>
+				<li><a href="function-GetUnitDns.html">GetUnitDns</a></li>
+				<li><a href="function-GetUnitNetworkObjects.html">GetUnitNetworkObjects</a></li>
+				<li><a href="function-GetUnitNetworkSubnets.html">GetUnitNetworkSubnets</a></li>
+				<li><a href="function-GetUnitNetworkSubnetTypes.html">GetUnitNetworkSubnetTypes</a></li>
+				<li><a href="function-GetUnits.html">GetUnits</a></li>
+				<li class="active"><a href="function-GetUnitsOld.html">GetUnitsOld</a></li>
+				<li><a href="function-GetUnitTypes.html">GetUnitTypes</a></li>
+				<li><a href="function-GetUnitWorkers.html">GetUnitWorkers</a></li>
+				<li><a href="function-GetWorkerPositions.html">GetWorkerPositions</a></li>
+				<li><a href="function-GetWorkers.html">GetWorkers</a></li>
+				<li><a href="function-GetWorkerSpecializations.html">GetWorkerSpecializations</a></li>
+				<li><a href="function-StatisticUnits.html">StatisticUnits</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-GET.html" title="Summary of GET"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Function</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="function">
+	<h1>Function GetUnitsOld</h1>
+
+
+	<div class="description">
+	
+<p><b>Μονάδες</b></p>
+
+<p>Η συνάρτηση αυτή επιστρέφει όλες τις
+Μονάδες σύμφωνα με τις παραμέτρους που
+έγινε η κλήση</p>
+
+<p>Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο GET :<br />
+<a href="https://mm.sch.gr/api/units">https://mm.sch.gr/api/units</a></p>
+
+<p>Τα αποτελέσματα είναι ταξινομημένα ως
+προς το Όνομα της Μονάδας<br />
+Μέσω των παραμέτρων Πεδίο Ταξινόμησης (<a
+href="#$orderby">$orderby</a>) και Τύπος Ταξινόμησης (<a
+href="#$ordertype">$ordertype</a>) μπορεί να καθοριστεί το
+πεδίο και η σειρά ταξινόμησης</p>
+
+<p>Τα αποτελέσματα μπορούν να επιστραφούν με
+διαφορετικού Τύπους Εξαγωγής Δεδομένων.<br />
+Μέσω των παραμέτρων Τύπος Εξαγωγής
+Δεδομένων (<a href="#$export">$export</a>) μπορεί να
+καθοριστεί ο τύπος εξαγωγής δεδομένων.<br />
+Ο προκαθορισμένος Τύπος Εξαγωγής Δεδομένων
+είναι JSON<br />
+Όταν ο Τύπος Επιστροφής Εξαγωγής έχει τιμή
+XLSX ή CSV τότε η τιμή του pagesize αυτόματα από το
+σύστημα είναι 1000 και δεν μπορεί να
+αλλάξει.<br />
+Σε κάθε περιπτωση που η τιμή του count είναι 1000
+για την επιστροφή όλων δεδομένων, πρέπει να
+υλοποιηθεί κληση του ιδίου api request με
+αυξημένη κατα 1 την τιμή του page καθε φορά.
+Επίσης είναι διακριτό το μέγεθος της
+σελιδοποίησης από τις τιμές του pagination.</p>
+
+<p><br />
+<b>Πίνακας Παραμέτρων</b><br />
+Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+summary</a> εμφανίζονται όλοι οι παράμετροι με
+τους οποίους μπορεί να γίνει η κλήση της
+συνάρτησης<br />
+Όλοι οι παράμετροι είναι προαιρετικοί
+εκτός από αυτές που έχουν χαρακτηριστεί ως
+υποχρεωτικοί<br />
+Οι παράμετροι μπορούν να χρησιμοποιηθούν
+με οποιαδήποτε σειρά<br />
+Οι παράμετροι μπορούν να πάρουν τιμή "NULL"
+για να αναζητήσουν τις κενές εγγραφές στα
+αντίστοιχα πεδία</p>
+
+<p><br />
+<b>Πίνακας Αποτελεσμάτων</b><br />
+Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value
+summary</a> εμφανίζονται οι μεταβλητές που
+επιστρέφει η συνάρτηση<br />
+Όλες οι μεταβλητές επιστρέφονται σε ένα
+πίνακα σε JSON μορφή<br />
+Η μεταβλητή data είναι ο πίνακας με το
+λεξικό<br />
+Η μεταβλητή status καθορίζει αν η εκτέλεση της
+συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+προέκυψε κάποιο σφάλμα</p>
+
+<p><br />
+<b>Πίνακας Σφαλμάτων</b><br />
+Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+που μπορεί να προκύψουν κατά την κλήση της
+συνάρτησης<br />
+Οι περιγραφές των Σφαλμάτων καθώς και οι
+Κωδικοί τους είναι διαθέσιμες μέσω του
+πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+αντίστοιχα</p>
+
+<p><br />
+<b>Παραδείγματα Κλήσης</b><br />
+Παρακάτω εμφανίζεται μια σειρά από
+παραδείγματα κλήσης της συνάρτησης με
+διάφορους τρόπους :<br />
+<a href="#cURL">cURL</a> | <a href="#JavaScript">JavaScript</a> | <a
+href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a></p>
+
+<div><br />
+</div>
+
+<p><a id="cURL"></a>Παράδειγμα κλήσης της
+συνάρτησης με <b>cURL</b> (console) :</p>
+
+<pre>
+curl -X GET https:<span
+class="php-comment">//mm.sch.gr/api/units \</span>
+  -H <span
+class="php-quote">&quot;Content-Type: application/json&quot;</span> \
+  -H <span
+class="php-quote">&quot;Accept: application/json&quot;</span> \
+  -u username:password \
+  -d <span
+class="php-quote">'{&quot;state&quot;: &quot;ΕΝΕΡΓΗ&quot;, &quot;prefecture&quot;: &quot;ΑΤΤΙΚΗΣ&quot;}'</span>
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="JavaScript"></a>Παράδειγμα κλήσης της
+συνάρτησης με <b>JavaScript</b> :</p>
+
+<pre>
+&lt;script&gt;
+   <span
+class="php-keyword1">var</span> params = JSON.stringify({ <span
+class="php-quote">&quot;state&quot;</span>: <span
+class="php-quote">&quot;ΕΝΕΡΓΗ&quot;</span>, <span
+class="php-quote">&quot;prefecture&quot;</span>: <span
+class="php-quote">&quot;ΑΤΤΙΚΗΣ&quot;</span> });
+
+   <span
+class="php-keyword1">var</span> http = <span
+class="php-keyword1">new</span> XMLHttpRequest();
+   http.open(<span
+class="php-quote">&quot;GET&quot;</span>, <span
+class="php-quote">&quot;https://mm.sch.gr/api/units&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Accept&quot;</span>, <span
+class="php-quote">&quot;application/json&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Content-type&quot;</span>, <span
+class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
+   http.setRequestHeader(<span
+class="php-quote">&quot;Content-length&quot;</span>, params.length);
+
+   http.onreadystatechange = <span
+class="php-keyword1">function</span>() {
+       <span
+class="php-keyword1">if</span>(http.readyState == <span
+class="php-num">4</span> &amp;&amp; http.status == <span
+class="php-num">200</span>) {
+           alert(http.responseText);
+       }
+   }
+
+   http.send(params);
+&lt;/script&gt;
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="PHP"></a>Παράδειγμα κλήσης της συνάρτησης
+με <b>PHP</b> :</p>
+
+<pre>
+<span class="xlang">&lt;?php</span>
+<span
+class="php-keyword2">header</span>(<span
+class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
+
+<span
+class="php-var">$params</span> = <span class="php-keyword1">array</span>(<span
+class="php-quote">&quot;state&quot;</span> =&gt; <span
+class="php-quote">&quot;ΕΝΕΡΓΗ&quot;</span>, <span
+class="php-quote">&quot;prefecture&quot;</span> =&gt; <span
+class="php-quote">&quot;ΑΤΤΙΚΗΣ&quot;</span>);
+
+<span
+class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
+class="php-quote">&quot;https://mm.sch.gr/api/units&quot;</span>);
+
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_USERPWD, <span
+class="php-quote">&quot;username:password&quot;</span>);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
+class="php-quote">&quot;GET&quot;</span>);
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_POSTFIELDS, <span
+class="php-keyword2">json_encode</span>( <span
+class="php-var">$params</span> ));
+<span
+class="php-keyword2">curl_setopt</span>(<span
+class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
+class="php-keyword1">true</span>);
+
+<span class="php-var">$data</span> = <span
+class="php-keyword2">json_decode</span>( <span
+class="php-keyword2">curl_exec</span>(<span
+class="php-var">$curl</span>) );
+<span class="php-keyword1">echo</span> <span
+class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
+class="php-keyword2">var_dump</span>( <span
+class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
+class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
+<span
+class="xlang">?&gt;</span>
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="Ajax"></a>Παράδειγμα κλήσης της
+συνάρτησης με <b>Ajax</b> :</p>
+
+<pre>
+&lt;script&gt;
+   <span class="php-var">$</span>.ajax({
+       type: <span
+class="php-quote">'GET'</span>,
+       url: <span
+class="php-quote">'https://mm.sch.gr/api/units'</span>,
+       dataType: <span
+class="php-quote">&quot;json&quot;</span>,
+       data: {
+         <span
+class="php-quote">&quot;state&quot;</span>: <span
+class="php-quote">&quot;ΕΝΕΡΓΗ&quot;</span>,
+         <span
+class="php-quote">&quot;prefecture&quot;</span>: <span
+class="php-quote">&quot;ΑΤΤΙΚΗΣ&quot;</span>
+       },
+       beforeSend: <span
+class="php-keyword1">function</span>(req) {
+           req.setRequestHeader(<span
+class="php-quote">'Authorization'</span>, btoa(<span
+class="php-quote">'username'</span> + <span
+class="php-quote">&quot;:&quot;</span> + <span
+class="php-quote">'password'</span>));
+       },
+       success: <span
+class="php-keyword1">function</span>(data){
+           console.<span
+class="php-keyword2">log</span>(data);
+       }
+   });
+&lt;/script&gt;
+</pre>
+
+<div><br />
+</div>
+
+<p><a id="data"></a>Παρακάτω εμφανίζεται το λεξικό
+σε μορφή JSON :</p>
+
+<pre>
+{<span class="php-quote">&quot;data&quot;</span>:[
+ {
+   <span
+class="php-quote">&quot;mm_id&quot;</span>: <span
+class="php-num">1002553</span>,
+   <span
+class="php-quote">&quot;registry_no&quot;</span>: <span
+class="php-quote">&quot;9050097&quot;</span>,
+   <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;100ο ΟΛΟΗΜΕΡΟ ΔΗΜΟΤΙΚΟ ΣΧΟΛΕΙΟ ΑΘΗΝΩΝ&quot;</span>,
+   <span
+class="php-quote">&quot;special_name&quot;</span>: <span
+class="php-keyword1">null</span>,
+   <span
+class="php-quote">&quot;source_id&quot;</span>: <span
+class="php-num">1</span>,
+   <span
+class="php-quote">&quot;source&quot;</span>: <span
+class="php-quote">&quot;SURVEY&quot;</span>,
+   <span
+class="php-quote">&quot;category_id&quot;</span>: <span
+class="php-num">1</span>,
+   <span
+class="php-quote">&quot;category&quot;</span>: <span
+class="php-quote">&quot;ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ&quot;</span>,
+   <span
+class="php-quote">&quot;state_id&quot;</span>: <span
+class="php-num">1</span>,
+   <span
+class="php-quote">&quot;state&quot;</span>: <span
+class="php-quote">&quot;ΕΝΕΡΓΗ&quot;</span>,
+   <span
+class="php-quote">&quot;area_team_number&quot;</span>: <span
+class="php-num">1</span>,
+   <span
+class="php-quote">&quot;street_address&quot;</span>: <span
+class="php-quote">&quot;ΠΥΡΡΑΣ 15&quot;</span>,
+   <span
+class="php-quote">&quot;postal_code&quot;</span>: <span
+class="php-quote">&quot;11745&quot;</span>,
+   <span
+class="php-quote">&quot;fax_number&quot;</span>: <span
+class="php-quote">&quot;2109335509&quot;</span>,
+   <span
+class="php-quote">&quot;phone_number&quot;</span>: <span
+class="php-quote">&quot;2109335509&quot;</span>,
+   <span
+class="php-quote">&quot;email&quot;</span>: <span
+class="php-quote">&quot;mail@100dim-athin.att.sch.gr&quot;</span>,
+   <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">166</span>,
+   <span
+class="php-quote">&quot;groups_count&quot;</span>: <span
+class="php-num">9</span>,
+   <span
+class="php-quote">&quot;levels_count&quot;</span>: <span
+class="php-num">6</span>,
+   <span
+class="php-quote">&quot;tax_number&quot;</span>: <span
+class="php-quote">&quot;090291213&quot;</span>,
+   <span
+class="php-quote">&quot;region_edu_admin_id&quot;</span>: <span
+class="php-num">3</span>,
+   <span
+class="php-quote">&quot;region_edu_admin&quot;</span>: <span
+class="php-quote">&quot;ΑΤΤΙΚΗΣ&quot;</span>,
+   <span
+class="php-quote">&quot;edu_admin_id&quot;</span>: <span
+class="php-num">28</span>,
+   <span
+class="php-quote">&quot;edu_admin&quot;</span>: <span
+class="php-quote">&quot;ΔΙΕΥΘΥΝΣΗ Π.Ε. Α΄ ΑΘΗΝΑΣ&quot;</span>,
+   <span
+class="php-quote">&quot;transfer_area_id&quot;</span>: <span
+class="php-num">27</span>,
+   <span
+class="php-quote">&quot;transfer_area&quot;</span>: <span
+class="php-quote">&quot;Α΄ Αθηνών (Π.Ε.)&quot;</span>,
+   <span
+class="php-quote">&quot;prefecture_id&quot;</span>: <span
+class="php-num">3</span>,
+   <span
+class="php-quote">&quot;prefecture&quot;</span>: <span
+class="php-quote">&quot;ΑΤΤΙΚΗΣ&quot;</span>,
+   <span
+class="php-quote">&quot;municipality_id&quot;</span>: <span
+class="php-num">5</span>,
+   <span
+class="php-quote">&quot;municipality&quot;</span>: <span
+class="php-quote">&quot;ΑΘΗΝΑΙΩΝ&quot;</span>,
+   <span
+class="php-quote">&quot;municipality_community_id&quot;</span>: <span
+class="php-num">61</span>,
+   <span
+class="php-quote">&quot;municipality_community&quot;</span>: <span
+class="php-quote">&quot;ΑΘΗΝΑΙΩΝ&quot;</span>,
+   <span
+class="php-quote">&quot;education_level_id&quot;</span>: <span
+class="php-num">1</span>,
+   <span
+class="php-quote">&quot;education_level&quot;</span>: <span
+class="php-quote">&quot;ΠΡΩΤΟΒΑΘΜΙΑ&quot;</span>,
+   <span
+class="php-quote">&quot;unit_type_id&quot;</span>: <span
+class="php-num">2</span>,
+   <span
+class="php-quote">&quot;unit_type&quot;</span>: <span
+class="php-quote">&quot;ΔΗΜΟΤΙΚΟ&quot;</span>,
+   <span
+class="php-quote">&quot;orientation_type_id&quot;</span>: <span
+class="php-keyword1">null</span>,
+   <span
+class="php-quote">&quot;orientation_type&quot;</span>: <span
+class="php-keyword1">null</span>,
+   <span
+class="php-quote">&quot;operation_shift_id&quot;</span>: <span
+class="php-num">3</span>,
+   <span
+class="php-quote">&quot;operation_shift&quot;</span>: <span
+class="php-quote">&quot;ΟΛΟΗΜΕΡΟ&quot;</span>,
+   <span
+class="php-quote">&quot;legal_character_id&quot;</span>: <span
+class="php-num">1</span>,
+   <span
+class="php-quote">&quot;legal_character&quot;</span>: <span
+class="php-quote">&quot;ΔΗΜΟΣΙΟ&quot;</span>,
+   <span
+class="php-quote">&quot;implementation_entity_id&quot;</span>: <span
+class="php-num">3</span>,
+   <span
+class="php-quote">&quot;implementation_entity&quot;</span>: <span
+class="php-quote">&quot;ΕΘΝΙΚΟ &amp; ΚΑΠΟΔΙΣΤΡΙΑΚΟ ΠΑΝ\/ΜΙΟ ΑΘΗΝΩΝ&quot;</span>,
+   <span
+class="php-quote">&quot;implementation_entity_initials&quot;</span>: <span
+class="php-quote">&quot;Ε.Κ.Π.Α.&quot;</span>,
+   <span
+class="php-quote">&quot;tax_office_id&quot;</span>: <span
+class="php-num">4</span>,
+   <span
+class="php-quote">&quot;tax_office&quot;</span>: <span
+class="php-quote">&quot;ΑΘΗΝΩΝ ΙΗ&quot;</span>,
+   <span
+class="php-quote">&quot;special_type_id&quot;</span>: <span
+class="php-keyword1">null</span>,
+   <span
+class="php-quote">&quot;special_type&quot;</span>: <span
+class="php-keyword1">null</span>,
+   <span
+class="php-quote">&quot;latitude&quot;</span>: <span
+class="php-keyword1">null</span>,
+   <span
+class="php-quote">&quot;longitude&quot;</span>: <span
+class="php-keyword1">null</span>,
+   <span
+class="php-quote">&quot;positioning&quot;</span>: <span
+class="php-keyword1">null</span>,
+   <span
+class="php-quote">&quot;creation_fek&quot;</span>: <span
+class="php-keyword1">null</span>,
+   <span
+class="php-quote">&quot;last_sync&quot;</span>: <span
+class="php-quote">&quot;2013-11-11 22:37:52&quot;</span>,
+   <span
+class="php-quote">&quot;last_update&quot;</span>: <span
+class="php-quote">&quot;2013-10-02 09:51:58&quot;</span>,
+   <span
+class="php-quote">&quot;comments&quot;</span>: <span
+class="php-keyword1">null</span>,
+   <span
+class="php-quote">&quot;version&quot;</span>: <span
+class="php-num">20</span>,
+   <span
+class="php-quote">&quot;levels&quot;</span>: [
+     {
+       <span
+class="php-quote">&quot;level_id&quot;</span>: <span
+class="php-num">3061</span>,
+       <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;Α&quot;</span>,
+       <span
+class="php-quote">&quot;groups_count&quot;</span>: <span
+class="php-num">2</span>,
+       <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">38</span>,
+       <span
+class="php-quote">&quot;groups&quot;</span>: [
+         {
+           <span
+class="php-quote">&quot;group_id&quot;</span>: <span
+class="php-num">6773</span>,
+           <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;Α1&quot;</span>,
+           <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">20</span>
+         },
+         {
+           <span
+class="php-quote">&quot;group_id&quot;</span>: <span
+class="php-num">6774</span>,
+           <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;Α2&quot;</span>,
+           <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">18</span>
+         }
+       ]
+     },
+     {
+       <span
+class="php-quote">&quot;level_id&quot;</span>: <span
+class="php-num">3062</span>,
+       <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;Β&quot;</span>,
+       <span
+class="php-quote">&quot;groups_count&quot;</span>: <span
+class="php-num">2</span>,
+       <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">29</span>,
+       <span
+class="php-quote">&quot;groups&quot;</span>: [
+         {
+           <span
+class="php-quote">&quot;group_id&quot;</span>: <span
+class="php-num">6775</span>,
+           <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;Β1&quot;</span>,
+           <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">14</span>
+         },
+         {
+           <span
+class="php-quote">&quot;group_id&quot;</span>: <span
+class="php-num">6776</span>,
+           <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;Β2&quot;</span>,
+           <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">15</span>
+         }
+       ]
+     },
+     {
+       <span
+class="php-quote">&quot;level_id&quot;</span>: <span
+class="php-num">3063</span>,
+       <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;Γ&quot;</span>,
+       <span
+class="php-quote">&quot;groups_count&quot;</span>: <span
+class="php-num">1</span>,
+       <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">24</span>,
+       <span
+class="php-quote">&quot;groups&quot;</span>: [
+         {
+           <span
+class="php-quote">&quot;group_id&quot;</span>: <span
+class="php-num">6777</span>,
+           <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;Γ1&quot;</span>,
+           <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">24</span>
+         }
+       ]
+     },
+     {
+       <span
+class="php-quote">&quot;level_id&quot;</span>: <span
+class="php-num">3064</span>,
+       <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;Δ&quot;</span>,
+       <span
+class="php-quote">&quot;groups_count&quot;</span>: <span
+class="php-num">1</span>,
+       <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">16</span>,
+       <span
+class="php-quote">&quot;groups&quot;</span>: [
+         {
+           <span
+class="php-quote">&quot;group_id&quot;</span>: <span
+class="php-num">6778</span>,
+           <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;Δ1&quot;</span>,
+           <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">16</span>
+         }
+       ]
+     },
+     {
+       <span
+class="php-quote">&quot;level_id&quot;</span>: <span
+class="php-num">3065</span>,
+       <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;Ε&quot;</span>,
+       <span
+class="php-quote">&quot;groups_count&quot;</span>: <span
+class="php-num">2</span>,
+       <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">32</span>,
+       <span
+class="php-quote">&quot;groups&quot;</span>: [
+         {
+           <span
+class="php-quote">&quot;group_id&quot;</span>: <span
+class="php-num">6779</span>,
+           <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;Ε1&quot;</span>,
+           <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">16</span>
+         },
+         {
+           <span
+class="php-quote">&quot;group_id&quot;</span>: <span
+class="php-num">6780</span>,
+           <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;Ε2&quot;</span>,
+           <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">16</span>
+         }
+       ]
+     },
+     {
+       <span
+class="php-quote">&quot;level_id&quot;</span>: <span
+class="php-num">3066</span>,
+       <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;ΣΤ&quot;</span>,
+       <span
+class="php-quote">&quot;groups_count&quot;</span>: <span
+class="php-num">2</span>,
+       <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">32</span>,
+       <span
+class="php-quote">&quot;groups&quot;</span>: [
+         {
+           <span
+class="php-quote">&quot;group_id&quot;</span>: <span
+class="php-num">6781</span>,
+           <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;ΣΤ1&quot;</span>,
+           <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">16</span>
+         },
+         {
+           <span
+class="php-quote">&quot;group_id&quot;</span>: <span
+class="php-num">6782</span>,
+           <span
+class="php-quote">&quot;name&quot;</span>: <span
+class="php-quote">&quot;ΣΤ2&quot;</span>,
+           <span
+class="php-quote">&quot;students_count&quot;</span>: <span
+class="php-num">16</span>
+         }
+       ]
+     }
+   ],
+   <span
+class="php-quote">&quot;host_relations&quot;</span>: [],
+   <span
+class="php-quote">&quot;guest_relations&quot;</span>: [],
+   <span
+class="php-quote">&quot;workers&quot;</span>: [
+     {
+       <span
+class="php-quote">&quot;unit_worker_id&quot;</span>: <span
+class="php-num">973</span>,
+       <span
+class="php-quote">&quot;worker_id&quot;</span>: <span
+class="php-num">946</span>,
+       <span
+class="php-quote">&quot;registry_no&quot;</span>: <span
+class="php-quote">&quot;538069&quot;</span>,
+       <span
+class="php-quote">&quot;tax_number&quot;</span>: <span
+class="php-quote">&quot;018831123&quot;</span>,
+       <span
+class="php-quote">&quot;lastname&quot;</span>: <span
+class="php-quote">&quot;ΣΑΡΔΕΛΗ&quot;</span>,
+       <span
+class="php-quote">&quot;firstname&quot;</span>: <span
+class="php-quote">&quot;ΛΑΜΠΡΙΝΗ&quot;</span>,
+       <span
+class="php-quote">&quot;fathername&quot;</span>: <span
+class="php-quote">&quot;ΒΑΣΙΛΕΙΟΣ&quot;</span>,
+       <span
+class="php-quote">&quot;fullname&quot;</span>: <span
+class="php-quote">&quot;ΣΑΡΔΕΛΗ ΛΑΜΠΡΙΝΗ&quot;</span>,
+       <span
+class="php-quote">&quot;sex&quot;</span>: <span
+class="php-quote">&quot;Γ&quot;</span>,
+       <span
+class="php-quote">&quot;worker_specialization_id&quot;</span>: <span
+class="php-keyword1">null</span>,
+       <span
+class="php-quote">&quot;worker_specialization&quot;</span>: <span
+class="php-keyword1">null</span>,
+       <span
+class="php-quote">&quot;worker_position_id&quot;</span>: <span
+class="php-num">1</span>,
+       <span
+class="php-quote">&quot;worker_position&quot;</span>: <span
+class="php-quote">&quot;ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ&quot;</span>,
+       <span
+class="php-quote">&quot;worker_source_id&quot;</span> : <span
+class="php-quote">&quot;0&quot;</span>,
+       <span
+class="php-quote">&quot;worker_source&quot;</span> : <span
+class="php-quote">&quot;null&quot;</span>
+     }
+   ],
+   <span
+class="php-quote">&quot;unit_dns&quot;</span>: [
+     {
+       <span
+class="php-quote">&quot;unit_dns_id&quot;</span>: <span
+class="php-num">7140</span>,
+       <span
+class="php-quote">&quot;unit_dns&quot;</span>: <span
+class="php-quote">&quot;100dim-athin&quot;</span>,
+       <span
+class="php-quote">&quot;ext_dns&quot;</span>: <span
+class="php-keyword1">null</span>
+     }
+   ],
+}
+]}
+</pre>
+
+<div><br />
+</div>
+
+	</div>
+
+	<div class="info">
+		
+		<b>Package:</b> <a href="package-GET.html">GET</a><br />
+				<b>Author:</b>
+				ΤΕΙ Αθήνας<br />
+		<b>Located at</b> api/get/GetUnitsOld.php<br />
+	</div>
+
+
+	<table class="summary" id="parameters">
+	<caption>Parameters summary</caption>
+	<tr id="$mm_id">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$mm_id</var></code></td>
+		<td>
+			 Κωδικός ΜΜ Μονάδας<br />
+Ο Κωδικός ΜΜ της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|array[integer]
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>array[integer] : Σύνολο από Αριθμητικές τιμές
+	διαχωρισμένες με κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$registry_no">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$registry_no</var></code></td>
+		<td>
+			 Κωδικός ΥΠΕΠΘ<br />
+Ο Κωδικός ΥΠΕΠΘ της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό ΥΠΕΠΘ)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το Κωδικό ΥΠΕΠΘ)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$source">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$source</var></code></td>
+		<td>
+			 Πρωτογενής Πηγή<br />
+Η Πρωτογενής Πηγή της Μονάδας (Λεξικό : <code><a href="function-GetSources.html">GetSources()</a></code>)<br />
+Λεξικό : Πρωτογενείς Πηγές Μονάδων <code><a href="function-GetSources.html">GetSources()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$name">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$name</var></code></td>
+		<td>
+			 Ονομασία<br />
+Το Όνομα της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$special_name">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$special_name</var></code></td>
+		<td>
+			 Ειδική Ονομασία<br />
+Το Προσωνύμιο της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το προσωνύμιο)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$state">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$state</var></code></td>
+		<td>
+			 Κατάσταση<br />
+Η Κατάσταση της Μονάδας (Λεξικό : <code><a href="function-GetStates.html">GetStates()</a></code>)<br
+/>
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$region_edu_admin">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$region_edu_admin</var></code></td>
+		<td>
+			 Περιφέρεια<br />
+Η Περιφέρεια της Μονάδας (Λεξικό : <code><a href="function-GetRegionEduAdmins.html">GetRegionEduAdmins()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$edu_admin">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$edu_admin</var></code></td>
+		<td>
+			 Διεύθυνση Εκπαίδευσης<br />
+Η Διεύθυνση Εκπαίδευσης της Μονάδας (Λεξικό
+: <code><a href="function-GetEduAdmins.html">GetEduAdmins()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$implementation_entity">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$implementation_entity</var></code></td>
+		<td>
+			 Φοράς Υλοποίησης<br />
+Ο Φοράς Υλοποίησης της μονάδας (Λεξικό : <code><a href="function-GetImplementationEntities.html">GetImplementationEntities()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$transfer_area">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$transfer_area</var></code></td>
+		<td>
+			 Περιοχή Μετάθεσης<br />
+Η Περιοχή Μετάθεσης της Μονάδας (Λεξικό : <code><a href="function-GetTransferAreas.html">GetTransferAreas()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$prefecture">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$prefecture</var></code></td>
+		<td>
+			 Νομός<br />
+Ο Νομός της Μονάδας (Λεξικό : <code><a href="function-GetPrefectures.html">GetPrefectures()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$municipality">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$municipality</var></code></td>
+		<td>
+			 Δήμος ΟΤΑ<br />
+Ο Δήμος ΟΤΑ της Μονάδας (Λεξικό : <code><a href="function-GetMunicipalities.html">GetMunicipalities()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$municipality_community">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$municipality_community</var></code></td>
+		<td>
+			 Δημοτική Ενότητα<br />
+Η Δημοτική Ενότητα της Μονάδας (Λεξικό : <code><a href="function-GetMunicipalityCommunities.html">GetMunicipalityCommunities()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$education_level">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$education_level</var></code></td>
+		<td>
+			 Βαθμίδα<br />
+Το Επίπεδο Εκπαίδευσης της μονάδας (Λεξικό :
+<code><a href="function-GetEducationLevels.html">GetEducationLevels()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$phone_number">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$phone_number</var></code></td>
+		<td>
+			 Τηλέφωνο Επικοινωνίας<br />
+Το Τηλέφωνο Επικοινωνίας της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το τηλέφωνο επικοινωνίας)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$email">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$email</var></code></td>
+		<td>
+			 Ηλεκτρονική Αλληλογραφία<br />
+Η Ηλεκτρονική Αλληλογραφία της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με την ηλεκτρονική αλληλογραφία)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$fax_number">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$fax_number</var></code></td>
+		<td>
+			 Αριθμός FAX<br />
+Ο Αριθμός Τηλεομοιοτυπίας (φαξ) της
+Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με τον αριθμός FAX)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$street_address">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$street_address</var></code></td>
+		<td>
+			 Οδός, Αριθμός<br />
+Η Διεύθυνση (Οδός και Αριθμός) της Μονάδας<br
+/>
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με την διεύθυνση)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$postal_code">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$postal_code</var></code></td>
+		<td>
+			 Ταχυδρομικός Κώδικας<br />
+Ο Ταχυδρομικός Κώδικας της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με τον ταχυδρομικό κώδικα)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$tax_number">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$tax_number</var></code></td>
+		<td>
+			 Αριθμός Φορολογικού Μητρώου<br />
+Ο Αριθμός Φορολογικού Μητρώου της Μονάδας<br
+/>
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με τον αριθμός φορολογικού μητρώου)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$tax_office">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$tax_office</var></code></td>
+		<td>
+			 Δ.Ο.Υ.<br />
+Η Δ.Ο.Υ. της Μονάδας (Λεξικό : <code><a href="function-GetTaxOffices.html">GetTaxOffices()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$area_team_number">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$area_team_number</var></code></td>
+		<td>
+			 Ομάδα Σχολείων<br />
+Η Ομάδα Σχολείων της Μονάδας (1η έως 40η)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	την ομάδα σχολείων)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με την ομάδα σχολείων)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$category">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$category</var></code></td>
+		<td>
+			 Κατηγορία<br />
+Η Κατηγορία της Μονάδας (Λεξικό : <code><a href="function-GetCategories.html">GetCategories()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$unit_type">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$unit_type</var></code></td>
+		<td>
+			 Τύπος Μονάδας<br />
+Ο Τύπος της Μονάδας (Λεξικό : <code><a href="function-GetUnitTypes.html">GetUnitTypes()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$operation_shift">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$operation_shift</var></code></td>
+		<td>
+			 Ωράριο Λειτουργίας<br />
+Το Ωράριο Λειτουργίας της Μονάδας (Λεξικό :
+<code><a href="function-GetOperationShifts.html">GetOperationShifts()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$legal_character">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$legal_character</var></code></td>
+		<td>
+			 Νομικός Χαρακτήρας<br />
+Ο Νομικός Χαρακτήρας της Μονάδας (Λεξικό :
+<code><a href="function-GetLegalCharacters.html">GetLegalCharacters()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$orientation_type">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$orientation_type</var></code></td>
+		<td>
+			 Προσανατολισμός<br />
+Ο Προσανατολισμός της Μονάδας (Λεξικό : <code><a href="function-GetOrientationTypes.html">GetOrientationTypes()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$special_type">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$special_type</var></code></td>
+		<td>
+			 Ειδικός Χαρακτηρισμός<br />
+Καθορίζει αν η Μονάδα έχει Ειδικό
+Χαρακτηρισμό (Λεξικό : <code><a href="function-GetSpecialTypes.html">GetSpecialTypes()</a></code>)<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	τον κωδικό)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[integer|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$levels_count">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$levels_count</var></code></td>
+		<td>
+			 Πλήθος Τάξεων<br />
+Το Πλήθος των Τάξεων της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|array[integer]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	το πλήθος τάξεων)</li>
+
+	<li>array[integer] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$groups_count">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$groups_count</var></code></td>
+		<td>
+			 Πλήθος Τμημάτων<br />
+Το Πλήθος των Τμημάτων της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|array[integer]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	το πλήθος τμημάτων)</li>
+
+	<li>array[integer] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$students_count">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$students_count</var></code></td>
+		<td>
+			 Πλήθος Μαθητών<br />
+Το Πλήθος των Μαθητών της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|array[integer|string]}
+<ul>
+	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
+	το πλήθος μαθητών)</li>
+
+	<li>array[integer] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$latitude">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$latitude</var></code></td>
+		<td>
+			 Γεωγραφικό Πλάτος<br />
+Το Γεωγραφικό Πλάτος της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το γεωγραφικό πλάτος)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$longitude">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$longitude</var></code></td>
+		<td>
+			 Γεωγραφικό Μήκος<br />
+Το Γεωγραφικό Μήκος της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το γεωγραφικό μήκος)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$positioning">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$positioning</var></code></td>
+		<td>
+			 Κτηριακή Θέση<br />
+Η Κτηριακή Θέση της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με την κτηριακή θέση )</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$creation_fek">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$creation_fek</var></code></td>
+		<td>
+			 Φ.Ε.Κ. (Δημιουργίας)<br />
+Το Φ.Ε.Κ. (Δημιουργίας) της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα Φ.Ε.Κ. Δημιουργίας )</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$last_update">
+		<td class="name"><code>midex</code></td>
+		<td class="value"><code><var>$last_update</var></code></td>
+		<td>
+			 Ημερομηνία Τελευταίας Ενημέρωσης<br />
+Η Ημερομηνία Τελευταίας Ενημέρωσης της
+Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{datetime|string|array[datetime|string]}
+<ul>
+	<li>datetime : Ημερομηνία (Η αναζήτηση γίνεται με
+	την ημερομηνία τελευταίας ενημέρωσης)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με την ημερομηνία τελευταίας ενημέρωσης)</li>
+
+	<li>array[datetime|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$last_sync">
+		<td class="name"><code>midex</code></td>
+		<td class="value"><code><var>$last_sync</var></code></td>
+		<td>
+			 Ημερομηνία Τελευταίου Συγχρονισμού<br />
+Η Ημερομηνία Τελευταίου Συγχρονισμού της
+Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{datetime|string|array[datetime|string]}
+<ul>
+	<li>datetime : Ημερομηνία (Η αναζήτηση γίνεται με
+	την ημερομηνία τελευταίου συγχρονισμού)</li>
+
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με την ημερομηνία τελευταίου
+	συγχρονισμού)</li>
+
+	<li>array[datetime|string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$comments">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$comments</var></code></td>
+		<td>
+			 Παρατηρήσεις - Σχόλια<br />
+Παρατηρήσεις - Σχόλια της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{string|array[string]}
+<ul>
+	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
+	με το όνομα)</li>
+
+	<li>array[string] : Σύνολο από Αριθμητικές και
+	Αλφαριθμητικές τιμές διαχωρισμένες με
+	κόμμα</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$pagesize">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$pagesize</var></code></td>
+		<td>
+			 Αριθμός Εγγραφών/Σελίδα<br />
+Ο αριθμός των εγγραφών που θα επιστρέψουν
+ανα σελίδα<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε θα
+επιστραφούν όλες οι εγγραφές (<code><a href="class-Parameters.html#AllPageSize">Parameters::<b>AllPageSize</b></a></code>)<br />
+Λίστα Παραμέτρων Σελιδοποίησης : <code><a href="class-Parameters.html">Parameters</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η τιμή της παραμέτρου πρέπει να
+	είναι μεγαλύτερη από 0</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$page">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$page</var></code></td>
+		<td>
+			 Αριθμός Σελίδας<br />
+Ο αριθμός της σελίδας με τις <a
+href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
+σύμφωμα με τις παραμέτρους<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε θα
+επιστραφεί η πρώτη σελίδα<br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η τιμή της παραμέτρου πρέπει να
+	είναι μεγαλύτερη από 0</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$orderby">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$orderby</var></code></td>
+		<td>
+			 Πεδίο Ταξινόμησης<br />
+Το όνομα του πεδίου με το οποίο γίνεται η
+ταξινόμηση των εγγραφών<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε η
+ταξινόμηση γίνεται με το Όνομα της
+Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+<ul>
+	<li>string<br />
+	Αλφαριθμητική : Η τιμή της παραμέτρου
+	μπορεί να είναι οποιοδήποτε πεδίο
+	επιστρέφει η συνάρτηση στον πίνακα data</li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$ordertype">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$ordertype</var></code></td>
+		<td>
+			 Τύπος Ταξινόμησης<br />
+Ο Τύπος Ταξινόμησης με τον οποίο γίνεται η
+ταξινόμηση των εγγραφών<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε η
+ταξινόμηση γίνεται με Αύξουσα Σειρά (<code><a href="class-OrderEnumTypes.html#ASC">OrderEnumTypes::<b>ASC</b></a></code>)<br />
+Λίστα Τύπων Ταξινόμησης : <code><a href="class-OrderEnumTypes.html">OrderEnumTypes</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+<ul>
+	<li>string<br />
+	Αλφαριθμητική : Η τιμή της παραμέτρου
+	μπορεί να είναι ένας από τους Tύπους <code><a href="class-OrderEnumTypes.html">OrderEnumTypes</a></code></li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$searchtype">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$searchtype</var></code></td>
+		<td>
+			 Τύπος Αναζήτησης<br />
+Ο Τύπος Αναζήτησης με τον οποίο γίνεται η
+αναζήτηση στον όνομα (<a href="#$name">$name</a>) της
+Μονάδας<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε η
+αναζήτηση στα πεδία αυτά γίνεται με τον
+Τύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code><br />
+Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+<ul>
+	<li>string<br />
+	Αλφαριθμητική : Η τιμή της παραμέτρου
+	μπορεί να είναι ένας από τους Tύπους <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code></li>
+</ul>
+
+		</td>
+	</tr>
+	<tr id="$export">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$export</var></code></td>
+		<td>
+			 Τύπος Εξαγωγής Δεδομένων<br />
+Ο Τύπος Εξαγωγής Δεδομένων με τον οποίο θα
+γίνει η εξαγωγή σε συγκεκριμένη μορφή τών
+δεδομένων<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε η εξαγωγή
+δεδομένων γίνεται με τον Τύπο <code><a href="class-ExportDataEnumTypes.html#JSON">ExportDataEnumTypes::<b>JSON</b></a></code><br />
+Λίστα Τύπων Εξαγωγής Δεδομένων : <code><a href="class-ExportDataEnumTypes.html">ExportDataEnumTypes</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+<ul>
+	<li>string<br />
+	Αλφαριθμητική : Η τιμή της παραμέτρου
+	μπορεί να είναι ένας από τους Tύπους <code><a href="class-ExportDataEnumTypes.html">ExportDataEnumTypes</a></code></li>
+</ul>
+
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="returns">
+	<caption>Return value summary</caption>
+	<tr>
+		<td class="name"><code>
+			Array&lt;JSON&gt;
+		</code></td>
+		<td>
+			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
+:<br />
+
+<ul>
+	<li>string : <b>controller</b> : Ο controller που
+	χρησιμοποιείται</li>
+
+	<li>string : <b>function</b> : Η συνάρτηση που
+	υλοποιείται από το σύστημα</li>
+
+	<li>string : <b>method</b> : Η μέθοδος κλήσης της
+	συνάρτησης</li>
+
+	<li>integer : <b>status</b> : Ο Κωδικός <code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code> του
+	αποτελέσματος της κλήσης</li>
+
+	<li>string : <b>message</b> : Το Μήνυμα <code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code> του
+	αποτελέσματος της κλήσης</li>
+
+	<li>integer : <b>count</b> : Το πλήθος των εγγραφών της
+	κλήσης σύμφωνα με τις παραμέτρους
+	σελιδοποίησης</li>
+
+	<li>integer : <b>total</b> : Το πλήθος των εγγραφών
+	χωρίς τις παραμέτρους σελιδοποίησης</li>
+
+	<li>array : <b>pagination</b> : Οι παράμετροι
+	σελιδοποίησης των εγγραφών της κλήσης
+		<ul>
+			<li>integer : <b>page</b> : Ο αριθμός της σελίδας των
+			αποτελεσμάτων</li>
+
+			<li>integer : <b>maxPage</b> : Ο μέγιστος αριθμός της
+			σελίδας των αποτελεσμάτων</li>
+
+			<li>integer : <b>pagesize</b> : Ο αριθμός των εγγραφών
+			προς επιστροφή</li>
+		</ul>
+	</li>
+
+	<li>array : <b>data</b> : Ο Πίνακας με το λεξικό
+		<ul>
+			<li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
+
+			<li>string : <b>registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της
+			Μονάδας</li>
+
+			<li>integer : <b>source_id</b> : Ο Κωδικός της Πρωτογενής
+			Πηγή της Μονάδας (Λεξικό : <code><a href="function-GetSources.html">GetSources()</a></code>)</li>
+
+			<li>string : <b>source</b> : Η Πρωτογενής Πηγή της
+			Μονάδας (Λεξικό : <code><a href="function-GetSources.html">GetSources()</a></code>)</li>
+
+			<li>string : <b>name</b> : Το Όνομα της Μονάδας</li>
+
+			<li>string : <b>special_name</b> : Το Προσωνύμιο της
+			Μονάδας</li>
+
+			<li>integer : <b>state_id</b> : Ο Κωδικός της Κατάστασης
+			της Μονάδας (Λεξικό : <code><a href="function-GetStates.html">GetStates()</a></code>)</li>
+
+			<li>string : <b>state</b> : Η Κατάσταση της Μονάδας
+			(Λεξικό : <code><a href="function-GetStates.html">GetStates()</a></code>)</li>
+
+			<li>integer : <b>region_edu_admin_id</b> : Ο Κωδικός της
+			Περιφέρειας της Μονάδας (Λεξικό : <code><a href="function-GetRegionEduAdmins.html">GetRegionEduAdmins()</a></code>)</li>
+
+			<li>string : <b>region_edu_admin</b> : Η Περιφέρεια της
+			Μονάδας (Λεξικό : <code><a href="function-GetRegionEduAdmins.html">GetRegionEduAdmins()</a></code>)</li>
+
+			<li>integer : <b>edu_admin_id</b> : Ο Κωδικός της
+			Διεύθυνσης Εκπαίδευσης της Μονάδας (Λεξικό
+			: <code><a href="function-GetEduAdmins.html">GetEduAdmins()</a></code>)</li>
+
+			<li>string : <b>edu_admin</b> : Η Διεύθυνση Εκπαίδευσης
+			της Μονάδας (Λεξικό : <code><a href="function-GetEduAdmins.html">GetEduAdmins()</a></code>)</li>
+
+			<li>integer : <b>implementation_entity_id</b> : Ο Κωδικός της
+			Φορεάς Υλοποίησης της μονάδας (Λεξικό : <code><a href="function-GetImplementationEntities.html">GetImplementationEntities()</a></code>)</li>
+
+			<li>string : <b>implementation_entity</b> : Ο Φοράς Υλοποίησης
+			της μονάδας (Λεξικό : <code><a href="function-GetImplementationEntities.html">GetImplementationEntities()</a></code>)</li>
+
+			<li>string : <b>implementation_entity_initials</b> : Τα αρχικά του
+			Φοράς Υλοποίησης της μονάδας (Λεξικό : <code><a href="function-GetImplementationEntities.html">GetImplementationEntities()</a></code>)</li>
+
+			<li>integer : <b>transfer_area_id</b> : Ο Κωδικός της
+			Περιοχής Μετάθεσης της Μονάδας (Λεξικό : <code><a href="function-GetTransferAreas.html">GetTransferAreas()</a></code>)</li>
+
+			<li>string : <b>transfer_area</b> : Η Περιοχή Μετάθεσης της
+			Μονάδας (Λεξικό : <code><a href="function-GetTransferAreas.html">GetTransferAreas()</a></code>)</li>
+
+			<li>integer : <b>prefecture_id</b> : Ο Κωδικός του Νομού της
+			Μονάδας (Λεξικό : <code><a href="function-GetPrefectures.html">GetPrefectures()</a></code>)</li>
+
+			<li>string : <b>prefecture</b> : Ο Νομός της Μονάδας
+			(Λεξικό : <code><a href="function-GetPrefectures.html">GetPrefectures()</a></code>)</li>
+
+			<li>integer : <b>municipality_id</b> : Ο Κωδικός του Δήμου
+			ΟΤΑ της Μονάδας (Λεξικό : <code><a href="function-GetMunicipalities.html">GetMunicipalities()</a></code>)</li>
+
+			<li>string : <b>municipality</b> : Ο Δήμος ΟΤΑ της Μονάδας
+			(Λεξικό : <code><a href="function-GetMunicipalities.html">GetMunicipalities()</a></code>)</li>
+
+			<li>integer : <b>municipality_community_id</b> : Η Δημοτική
+			Ενότητα της Μονάδας (Λεξικό : <code><a href="function-GetMunicipalityCommunities.html">GetMunicipalityCommunities()</a></code>)</li>
+
+			<li>string : <b>municipality_community</b> : Η Δημοτική Ενότητα
+			της Μονάδας (Λεξικό : <code><a href="function-GetMunicipalityCommunities.html">GetMunicipalityCommunities()</a></code>)</li>
+
+			<li>integer : <b>education_level_id</b> : Ο Κωδικός του
+			Επιπέδου Εκπαίδευσης της μονάδας (Λεξικό :
+			<code><a href="function-GetEducationLevels.html">GetEducationLevels()</a></code>)</li>
+
+			<li>string : <b>education_level</b> : Το Επίπεδο Εκπαίδευσης
+			της μονάδας (Λεξικό : <code><a href="function-GetEducationLevels.html">GetEducationLevels()</a></code>)</li>
+
+			<li>string : <b>phone_number</b> : Το Τηλέφωνο
+			Επικοινωνίας της Μονάδας</li>
+
+			<li>string : <b>email</b> : Η Ηλεκτρονική Αλληλογραφία
+			της Μονάδας</li>
+
+			<li>string : <b>fax_number</b> : Ο Αριθμός
+			Τηλεομοιοτυπίας (φαξ) της Μονάδας</li>
+
+			<li>string : <b>street_address</b> : Η Διεύθυνση (Οδός και
+			Αριθμός) της Μονάδας</li>
+
+			<li>string : <b>postal_code</b> : Ο Ταχυδρομικός Κώδικας
+			της Μονάδας</li>
+
+			<li>string : <b>tax_number</b> : Ο Αριθμός Φορολογικού
+			Μητρώου της Μονάδας</li>
+
+			<li>integer : <b>tax_office_id</b> : Ο Κωδικός της Δ.Ο.Υ. της
+			Μονάδας (Λεξικό : <code><a href="function-GetTaxOffices.html">GetTaxOffices()</a></code>)</li>
+
+			<li>string : <b>tax_office</b> : Η Δ.Ο.Υ. της Μονάδας
+			(Λεξικό : <code><a href="function-GetTaxOffices.html">GetTaxOffices()</a></code>)</li>
+
+			<li>integer : <b>area_team_number</b> : Η Ομάδα Σχολείων της
+			Μονάδας (1η έως 40η)</li>
+
+			<li>integer : <b>category_id</b> : Ο Κωδικός της Κατηγορίας
+			της Μονάδας (Λεξικό : Κατηγορίες <code><a href="function-GetCategories.html">GetCategories()</a></code>)</li>
+
+			<li>string : <b>category</b> : Η Κατηγορία της Μονάδας
+			(Λεξικό : Κατηγορίες <code><a href="function-GetCategories.html">GetCategories()</a></code>)</li>
+
+			<li>integer : <b>unit_type_id</b> : Ο Κωδικός του Τύπου της
+			Μονάδας (Λεξικό : Τύποι Μονάδων <code><a href="function-GetUnitTypes.html">GetUnitTypes()</a></code>)</li>
+
+			<li>string : <b>unit_type</b> : Ο Τύπος της Μονάδας
+			(Λεξικό : Τύποι Μονάδων <code><a href="function-GetUnitTypes.html">GetUnitTypes()</a></code>)</li>
+
+			<li>integer : <b>operation_shift_id</b> : Ο Κωδικός του
+			Ωραρίου Λειτουργίας της Μονάδας (Λεξικό :
+			<code><a href="function-GetOperationShifts.html">GetOperationShifts()</a></code>)</li>
+
+			<li>string : <b>operation_shift</b> : Το Ωράριο Λειτουργίας
+			της Μονάδας (Λεξικό : <code><a href="function-GetOperationShifts.html">GetOperationShifts()</a></code>)</li>
+
+			<li>integer : <b>legal_character_id</b> : Ο Κωδικός του
+			Νομικου Χαρακτήρα της Μονάδας (Λεξικό : <code><a href="function-GetLegalCharacters.html">GetLegalCharacters()</a></code>)</li>
+
+			<li>string : <b>legal_character</b> : Ο Νομικός Χαρακτήρας
+			της Μονάδας (Λεξικό : <code><a href="function-GetLegalCharacters.html">GetLegalCharacters()</a></code>)</li>
+
+			<li>integer : <b>orientation_type_id</b> : Ο Κωδικός του
+			Προσανατολισμού της Μονάδας (Λεξικό : <code><a href="function-GetOrientationTypes.html">GetOrientationTypes()</a></code>)</li>
+
+			<li>string : <b>orientation_type</b> : Ο Προσανατολισμός της
+			Μονάδας (Λεξικό : <code><a href="function-GetOrientationTypes.html">GetOrientationTypes()</a></code>)</li>
+
+			<li>integer : <b>special_type_id</b> : Ο Κωδικός του Ειδικού
+			Χαρακτηρισμού της Μονάδας (Λεξικό : <code><a href="function-GetSpecialTypes.html">GetSpecialTypes()</a></code>)</li>
+
+			<li>string : <b>special_type</b> : Ο Ειδικός Χαρακτηρισμός
+			της Μονάδας (Λεξικό : <code><a href="function-GetSpecialTypes.html">GetSpecialTypes()</a></code>)</li>
+
+			<li>integer : <b>levels_count</b> : Το Πλήθος των Τάξεων της
+			Μονάδας</li>
+
+			<li>integer : <b>groups_count</b> : Το Πλήθος των Τμημάτων
+			της Μονάδας</li>
+
+			<li>integer : <b>students_count</b> : Το Πλήθος των Μαθητών
+			της Μονάδας</li>
+
+			<li>string : <b>latitude</b> : Το Γεωγραφικό Πλάτος της
+			Μονάδας</li>
+
+			<li>string : <b>longitude</b> : Το Γεωγραφικό Μήκος της
+			Μονάδας</li>
+
+			<li>string : <b>positioning</b> : Η Κτηριακή Θέση της
+			Μονάδας</li>
+
+			<li>string : <b>creation_fek</b> : Το Φ.Ε.Κ. (Δημιουργίας)
+			της Μονάδας</li>
+
+			<li>datetime : <b>last_update</b> : Η Ημερομηνία Τελευταίας
+			Ενημέρωσης της Μονάδας</li>
+
+			<li>datetime : <b>last_sync</b> : Η Ημερομηνία Τελευταίου
+			Συγχρονισμού της Μονάδας</li>
+
+			<li>string : <b>comments</b> : Παρατηρήσεις - Σχόλια της
+			Μονάδας<br />
+			<br />
+		</li>
+
+			<li>string : <b>version</b> : H version συγχρονισμού των
+			δεδομένων της Μονάδας<br />
+			<br />
+		</li>
+
+			<li>array : <b>levels</b> : Πίνακας Τάξεων (Λεξικό : <code><a href="function-GetLevels.html">GetLevels()</a></code>)
+				<ul>
+					<li>integer : <b>level_id</b> : Ο Κωδικός της Τάξης</li>
+
+					<li>string : <b>name</b> : Το όνομα της Τάξης</li>
+
+					<li>integer : <b>groups_count</b> : Το Πλήθος των Τμημάτων
+					της Τάξης</li>
+
+					<li>integer : <b>studens_count</b> : Το Πλήθος των Μαθητών
+					της Τάξης</li>
+
+					<li>array : <b>groups</b> : Πίνακας Τμημάτων (Λεξικό :
+					<code><a href="function-GetGroups.html">GetGroups()</a></code>)
+						<ul>
+							<li>integer : <b>group_id</b> : Ο Κωδικός του Τμήματος</li>
+
+							<li>string : <b>name</b> : Το όνομα του Τμήματος</li>
+
+							<li>integer : <b>studens_count</b> : Το Πλήθος των Μαθητών
+							του Τμήματος</li>
+						</ul>
+					</li>
+				</ul>
+				<br />
+		</li>
+
+			<li>array : <b>host_relations</b> : Πίνακας Host Συσχετίσεων
+			Μονάδων (Λεξικό : <code><a href="function-GetRelations.html">GetRelations()</a></code>)
+				<ul>
+					<li>integer : <b>relation_id</b> : Ο Κωδικός της
+					Συσχέτισης</li>
+
+					<li>integer : <b>host_mm_id</b> : Ο Κωδικός ΜΜ της
+					Μονάδας</li>
+
+					<li>integer : <b>guest_mm_id</b> : Ο Κωδικός ΜΜ της
+					Μονάδας</li>
+
+					<li>boolean : <b>relation_state</b> : Καθορίζει αν η
+					Συσχέτιση είναι Ενεργή</li>
+
+					<li>date : <b>true_date</b> : Η Ημερομηνία που η
+					Συσχέτιση έγινε Ενεργή</li>
+
+					<li>string : <b>true_fek</b> : Το ΦΕΚ όταν η Συσχέτιση
+					έγινε Ενεργή</li>
+
+					<li>date : <b>false_date</b> : Η Ημερομηνία που η
+					Συσχέτιση έγινε Ανενεργή</li>
+
+					<li>string : <b>false_fek</b> : Το ΦΕΚ όταν η Συσχέτιση
+					έγινε Ανενεργή</li>
+
+					<li>string : <b>relation_type</b> : Ο Τύπος Συσχέτισης των
+					Μονάδων (Λεξικό : <code><a href="function-GetRelationTypes.html">GetRelationTypes()</a></code>)</li>
+				</ul>
+				<br />
+		</li>
+
+			<li>array : <b>guest_relations</b> : Πίνακας Guest Συσχετίσεων
+			Μονάδων (Λεξικό : <code><a href="function-GetRelations.html">GetRelations()</a></code>)
+				<ul>
+					<li>integer : <b>relation_id</b> : Ο Κωδικός της
+					Συσχέτισης</li>
+
+					<li>integer : <b>host_mm_id</b> : Ο Κωδικός ΜΜ της
+					Μονάδας</li>
+
+					<li>integer : <b>guest_mm_id</b> : Ο Κωδικός ΜΜ της
+					Μονάδας</li>
+
+					<li>boolean : <b>relation_state</b> : Καθορίζει αν η
+					Συσχέτιση είναι Ενεργή</li>
+
+					<li>date : <b>true_date</b> : Η Ημερομηνία που η
+					Συσχέτιση έγινε Ενεργή</li>
+
+					<li>string : <b>true_fek</b> : Το ΦΕΚ όταν η Συσχέτιση
+					έγινε Ενεργή</li>
+
+					<li>date : <b>false_date</b> : Η Ημερομηνία που η
+					Συσχέτιση έγινε Ανενεργή</li>
+
+					<li>string : <b>false_fek</b> : Το ΦΕΚ όταν η Συσχέτιση
+					έγινε Ανενεργή</li>
+
+					<li>string : <b>relation_type</b> : Ο Τύπος Συσχέτισης των
+					Μονάδων (Λεξικό : <code><a href="function-GetRelationTypes.html">GetRelationTypes()</a></code>)</li>
+				</ul>
+				<br />
+		</li>
+
+			<li>array : <b>workers</b> : Πίνακας Εργαζομένων (Λεξικό
+			: <code><a href="function-GetUnitWorkers.html">GetUnitWorkers()</a></code>)
+				<ul>
+					<li>integer : <b>unit_worker_id</b> : Το πρωτεύον κλειδί του
+					πίνακα αντιστοίχησης Εργαζομένων-Θέση
+					Ευθύνης</li>
+
+					<li>integer : <b>worker_id</b> : Ο Κωδικός του
+					Εργαζόμενου</li>
+
+					<li>string : <b>registry_no</b> : Ο Αριθμός Μητρώου του
+					Εργαζόμενου</li>
+
+					<li>string : <b>tax_number</b> : Ο Αριθμός Φορολογικού
+					Μητρώου του Εργαζόμενου</li>
+
+					<li>string : <b>lastname</b> : Το Επώνυμο του
+					Εργαζόμενου</li>
+
+					<li>string : <b>firstname</b> : Το Όνομα του
+					Εργαζόμενου</li>
+
+					<li>string : <b>fathername</b> : Το Πατρώνυμο του
+					Εργαζόμενου</li>
+
+					<li>string : <b>fullname</b> : Το Ονοματεπώνυμο του
+					Εργαζόμενου</li>
+
+					<li>string : <b>sex</b> : Το Φύλο του Εργαζόμενου</li>
+
+					<li>string : <b>worker_specialization_id</b> : Ο Κωδικός της
+					Ειδικότητα του Εργαζομένου</li>
+
+					<li>string : <b>worker_specialization</b> : Η Ειδικότητα του
+					Εργαζομένου (Λεξικό : <code><a href="function-GetWorkerSpecializations.html">GetWorkerSpecializations()</a></code>)</li>
+
+					<li>string : <b>worker_position_id</b> : Ο Κωδικός της Θέση
+					Εργασίας του Εργαζομένου</li>
+
+					<li>string : <b>worker_position</b> : Η Θέση Εργασίας του
+					Εργαζομένου (Λεξικό : <code><a href="function-GetWorkerPositions.html">GetWorkerPositions()</a></code>)</li>
+
+					<li>integer : <b>worker_source_id</b> : Ο Κωδικός της
+					Πρωτογενής Πηγής του Εργαζομένου</li>
+
+					<li>string : <b>worker_source</b> : Η Πρωτογενής Πηγή του
+					Εργαζομένου (Λεξικό : <code><a href="function-GetSources.html">GetSources()</a></code>)</li>
+				</ul>
+				<br />
+		</li>
+
+			<li>array : <b>unit_dns</b> : Πίνακας DNS Στοιχείων
+			Μονάδας (Λεξικό : <code><a href="function-GetUnitDns.html">GetUnitDns()</a></code>)
+				<ul>
+					<li>integer : <b>unit_dns_id</b> : Ο Κωδικός του DNS
+					Μονάδας</li>
+
+					<li>string : <b>unit_dns</b> : Το Όνομα του DNS Μονάδας</li>
+
+					<li>string : <b>unit_ext_dns</b> : Το Όνομα του ExtDNS
+					Μονάδας</li>
+				</ul>
+				<br />
+		</li>
+		</ul>
+	</li>
+</ul>
+
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="throws">
+	<caption>Thrown exceptions summary</caption>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitMMIDType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitMMIDType">ExceptionMessages::<b>InvalidUnitMMIDType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitRegistryNoType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitRegistryNoType">ExceptionMessages::<b>InvalidUnitRegistryNoType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSourceType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSourceType">ExceptionMessages::<b>InvalidSourceType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNameType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNameType">ExceptionMessages::<b>InvalidUnitNameType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitSpecialNameType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitSpecialNameType">ExceptionMessages::<b>InvalidUnitSpecialNameType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidStateType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidStateType">ExceptionMessages::<b>InvalidStateType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRegionEduAdminType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRegionEduAdminType">ExceptionMessages::<b>InvalidRegionEduAdminType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEduAdminType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEduAdminType">ExceptionMessages::<b>InvalidEduAdminType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidImplementationEntityType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityType">ExceptionMessages::<b>InvalidImplementationEntityType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidTransferAreaType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidTransferAreaType">ExceptionMessages::<b>InvalidTransferAreaType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPrefectureType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPrefectureType">ExceptionMessages::<b>InvalidPrefectureType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMunicipalityType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityType">ExceptionMessages::<b>InvalidMunicipalityType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMunicipalityCommunityType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityCommunityType">ExceptionMessages::<b>InvalidMunicipalityCommunityType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEducationLevelType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEducationLevelType">ExceptionMessages::<b>InvalidEducationLevelType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitPhoneNumberType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitPhoneNumberType">ExceptionMessages::<b>InvalidUnitPhoneNumberType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitEmailType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitEmailType">ExceptionMessages::<b>InvalidUnitEmailType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitFaxNumberType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitFaxNumberType">ExceptionMessages::<b>InvalidUnitFaxNumberType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitStreetAddressType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitStreetAddressType">ExceptionMessages::<b>InvalidUnitStreetAddressType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitPostalCodeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitPostalCodeType">ExceptionMessages::<b>InvalidUnitPostalCodeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitTaxNumberType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitTaxNumberType">ExceptionMessages::<b>InvalidUnitTaxNumberType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidTaxOfficeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidTaxOfficeType">ExceptionMessages::<b>InvalidTaxOfficeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitAreaTeamNumberType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitAreaTeamNumberType">ExceptionMessages::<b>InvalidUnitAreaTeamNumberType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidCategoryType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidCategoryType">ExceptionMessages::<b>InvalidCategoryType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitTypeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitTypeType">ExceptionMessages::<b>InvalidUnitTypeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOperationShiftType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOperationShiftType">ExceptionMessages::<b>InvalidOperationShiftType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLegalCharacterType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLegalCharacterType">ExceptionMessages::<b>InvalidLegalCharacterType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOrientationTypeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOrientationTypeType">ExceptionMessages::<b>InvalidOrientationTypeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSpecialTypeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSpecialTypeType">ExceptionMessages::<b>InvalidSpecialTypeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitLevelsCountType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitLevelsCountType">ExceptionMessages::<b>InvalidUnitLevelsCountType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitGroupsCountType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitGroupsCountType">ExceptionMessages::<b>InvalidUnitGroupsCountType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitStudentsCountType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitStudentsCountType">ExceptionMessages::<b>InvalidUnitStudentsCountType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitLatitudeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitLatitudeType">ExceptionMessages::<b>InvalidUnitLatitudeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitLongitudeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitLongitudeType">ExceptionMessages::<b>InvalidUnitLongitudeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitPositioningType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitPositioningType">ExceptionMessages::<b>InvalidUnitPositioningType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitFekType
+		</code></td>
+		<td>
+			ExceptionMessages::InvalidUnitFekType
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitLastUpdateType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitLastUpdateType">ExceptionMessages::<b>InvalidUnitLastUpdateType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitLastSyncType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitLastSyncType">ExceptionMessages::<b>InvalidUnitLastSyncType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitCommentsType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitCommentsType">ExceptionMessages::<b>InvalidUnitCommentsType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingPageValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingPageValue">ExceptionMessages::<b>MissingPageValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageArray">ExceptionMessages::<b>InvalidPageArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageNumber
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageNumber">ExceptionMessages::<b>InvalidPageNumber</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageType">ExceptionMessages::<b>InvalidPageType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingPageSizeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingPageSizeValue">ExceptionMessages::<b>MissingPageSizeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageSizeArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageSizeArray">ExceptionMessages::<b>InvalidPageSizeArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageSizeNumber
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageSizeNumber">ExceptionMessages::<b>InvalidPageSizeNumber</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPageSizeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPageSizeType">ExceptionMessages::<b>InvalidPageSizeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOrderBy
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOrderBy">ExceptionMessages::<b>InvalidOrderBy</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOrderType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOrderType">ExceptionMessages::<b>InvalidOrderType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSearchType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSearchType">ExceptionMessages::<b>InvalidSearchType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidExportType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidExportType">ExceptionMessages::<b>InvalidExportType</b></a></code>
+		</td>
+	</tr>
+	</table>
+
+</div>
+
+	<div id="footer">
+		mm.sch.gr API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>
