@@ -68,7 +68,7 @@ $app->map('/transfer_areas', Authentication, UserRolesPermission, TransferAreasC
 $app->map('/circuit_types', Authentication, UserRolesPermission, CircuitTypesController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/cpes', Authentication, UserRolesPermission, CpesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+    ->via(MethodTypes::GET);
 $app->map('/workers', Authentication, UserRolesPermission, WorkersController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/circuits', Authentication, UserRolesPermission, CircuitsController)
@@ -1298,13 +1298,7 @@ function CpesController()
     {
         case MethodTypes::GET :
             $result = GetCpes(
-                $params["cpe"],
-                $params["unit"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
+                $params["unit"]
             );
             break;
     }

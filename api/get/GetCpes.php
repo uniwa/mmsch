@@ -324,44 +324,31 @@ header("Content-Type: text/html; charset=utf-8");
  *
  */
 
-function GetCpes(
-    $cpe, $unit,
-    $pagesize, $page, $orderby, $ordertype, $searchtype
-)
-{
+function GetCpes( $unit ) {
     
     //temporary close connection with inventory-devel.sch.gr
     //return;
     
-    $result = array();
-
+    global  $app, $syncLdapOptions;
+    $result = array();  
+    
     $result["data"] = array();
-
-    $result["method"] = __FUNCTION__;
-
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
     $params = loadParameters();
 
     try
     {
 
-//======================================================================================================================
-//= $unit
-//======================================================================================================================
-
-        if ( Validator::Exists('unit', $params) )
-        {
-            $unit = Validator::toArray($unit);
-        } else {
-            throw new Exception(ExceptionMessages::MissingUnitID." : ".$ordertype, ExceptionCodes::MissingUnitID);
-        }
-
-//======================================================================================================================
-//= E X E C U T E
-//======================================================================================================================
-
+        //$unit=================================================================
+        $fMMID = CRUDUtils::checkIDParam('unit', $params, $unit, 'UnitMMID');
+        $unit = Validator::toArray($fMMID);
+        
+        //execution=============================================================
         $curl = curl_init('http://inventory.sch.gr/creports/pub/results.json?id=14&gsn_registry_code='.$unit[0].'&');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3); 
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3); 
 	$data = curl_exec($curl);
         $data = json_decode( $data, true );
         $rows = $data["flat_results"];
@@ -383,17 +370,14 @@ function GetCpes(
             );
         }
 
+//result_messages===============================================================      
         $result["status"] = ExceptionCodes::NoErrors;
-        $result["message"] = ExceptionMessages::NoErrors;
-    }
-    catch (Exception $e)
-    {
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".__FUNCTION__."]:".$e->getMessage();
-    }
-
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    } 
     return $result;
 }
-
 
 ?>
