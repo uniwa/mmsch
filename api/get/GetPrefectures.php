@@ -317,181 +317,97 @@ header("Content-Type: text/html; charset=utf-8");
  *
  */
 
-function GetPrefectures(
-    $prefecture,
-    $pagesize, $page, $orderby, $ordertype, $searchtype
-)
-{
-    global $db;
+function GetPrefectures( $prefecture,
+                         $pagesize, $page, $orderby, $ordertype, $searchtype) {
+    
+    global $entityManager, $app;
 
-    $filter = array();
-    $result = array();
+    $qb = $entityManager->createQueryBuilder();
+    $result = array();  
 
     $result["data"] = array();
-
-    $result["method"] = __FUNCTION__;
-
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
     $params = loadParameters();
 
-    try
-    {
-//======================================================================================================================
-//= Paging
-//======================================================================================================================
+    try {
 
-        if ( Validator::Missing('searchtype', $params) )
-            $searchtype = SearchEnumTypes::ContainAll ;
-        else if ( SearchEnumTypes::isValidValue( $searchtype ) || SearchEnumTypes::isValidName( $searchtype ) )
-            $searchtype = SearchEnumTypes::getValue($searchtype);
-        else
-            throw new Exception(ExceptionMessages::InvalidSearchType." : ".$searchtype, ExceptionCodes::InvalidSearchType);
-
+//$page - $pagesize - $searchtype - $ordertype =================================
        $page = Pagination::getPage($page, $params);
-       $pagesize = Pagination::getPagesize($pagesize, $params, true);   
+       $pagesize = Pagination::getPagesize($pagesize, $params, true);     
+       $searchtype = Filters::getSearchType($searchtype, $params);
+       $ordertype =  Filters::getOrderType($ordertype, $params);
+
+//$orderby======================================================================
+       $columns = array(
+                        "p.prefectureId"       => "prefecture_id",
+                        "p.name"               => "prefecture"
+                        );
        
-//======================================================================================================================
-//= $prefecture
-//======================================================================================================================
-
-        if ( Validator::Exists('prefecture', $params) )
-        {
-            $table_name = "prefectures";
-            $table_column_id = "prefecture_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($prefecture);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                $paramWordsFilters = array();
-
-                if ( Validator::isNull($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                {
-                    if ( $searchtype == SearchEnumTypes::Exact )
-                        $paramWordsFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                    else if ( $searchtype == SearchEnumTypes::Contain )
-                        $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
-                    else
-                    {
-                        $words = Validator::toArray($values, " ");
-
-                        foreach ($words as $word)
-                        {
-                            switch ($searchtype)
-                            {
-                                case SearchEnumTypes::ContainAll :
-                                case SearchEnumTypes::ContainAny :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::StartWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::EndWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word) );
-                                    break;
-                            }
-                        }
-                    }
-                }
-                else
-                    throw new Exception(ExceptionMessages::InvalidPrefectureType." : ".$values, ExceptionCodes::InvalidPrefectureType);
-
-                switch ($searchtype)
-                {
-                    case SearchEnumTypes::ContainAny :
-                        $paramFilters[] = "(" . implode(" OR ", $paramWordsFilters) . ")";
-                        break;
-                    default :
-                        $paramFilters[] = "(" . implode(" AND ", $paramWordsFilters) . ")";
-                        break;
-                }
-
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $ordertype
-//======================================================================================================================
-
-        if ( Validator::Missing('ordertype', $params) )
-            $ordertype = OrderEnumTypes::ASC ;
-        else if ( OrderEnumTypes::isValidValue( $ordertype ) || OrderEnumTypes::isValidName( $ordertype ) )
-            $ordertype = OrderEnumTypes::getValue($ordertype);
+       if ( Validator::Missing('orderby', $params) )
+            $orderby = "prefecture";
         else
-            throw new Exception(ExceptionMessages::InvalidOrderType." : ".$ordertype, ExceptionCodes::InvalidOrderType);
-
-//======================================================================================================================
-//= $orderby
-//======================================================================================================================
-
-        if ( Validator::Exists('orderby', $params) )
-        {
-            $columns = array(
-                "prefecture_id",
-                "prefecture"
-            );
-
+        {   
+            $orderby = Validator::ToLower($orderby);
             if (!in_array($orderby, $columns))
                 throw new Exception(ExceptionMessages::InvalidOrderBy." : ".$orderby, ExceptionCodes::InvalidOrderBy);
+        } 
+        
+//$prefecture===================================================================
+        if (Validator::Exists('prefecture', $params)){
+                CRUDUtils::setFilter($qb, $prefecture, "p", "prefectureId", "name", "id,value", ExceptionMessages::InvalidPrefectureType, ExceptionCodes::InvalidPrefectureType);
         }
-        else
-            $orderby = "prefecture";
 
-//======================================================================================================================
+//execution=====================================================================
+        $qb->select('p');
+        $qb->from('Prefectures','p');
+        $qb->orderBy(array_search($orderby, $columns), $ordertype);
 
-        $sqlSelect = "SELECT
-                        prefectures.prefecture_id,
-                        prefectures.name as prefecture
-                     ";
+//pagination and results========================================================      
+        $results = new Doctrine\ORM\Tools\Pagination\Paginator($qb->getQuery());
+        $result["total"] = count($results);
+        $results->getQuery()->setFirstResult($pagesize * ($page-1));
+        $pagesize!==Parameters::AllPageSize ? $results->getQuery()->setMaxResults($pagesize) : null;
 
-        $sqlFrom   = "FROM prefectures";
-
-        $sqlWhere = (count($filter) > 0 ? " WHERE " . implode(" AND ", $filter) : "" );
-        $sqlOrder = " ORDER BY ". $orderby ." ". $ordertype;
-        $sqlLimit = ($page && $pagesize) ? " LIMIT ".(($page - 1) * $pagesize).", ".$pagesize : "";
-
-
-        $sql = "SELECT count(*) as total " . $sqlFrom . $sqlWhere;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetch(PDO::FETCH_ASSOC);
-        $result["total"] = $rows["total"];
-
-
-        $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder . $sqlLimit;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $result["count"] = $stmt->rowCount();
-
-        foreach ($rows as $row)
+//data results==================================================================       
+        $count = 0;
+        foreach ($results as $row)
         {
+
             $result["data"][] = array(
-                "prefecture_id" => (int)$row["prefecture_id"],
-                "prefecture"    => $row["prefecture"]
-            );
+                                        "prefecture_id"     => $row->getPrefectureId(),
+                                        "prefecture"        => $row->getName()
+                                     );
+            $count++;
         }
-
-        $result["status"] = ExceptionCodes::NoErrors;;
-        $result["message"] = ExceptionMessages::NoErrors;
-    }
-    catch (Exception $e)
-    {
+        $result["count"] = $count;
+   
+//pagination results============================================================     
+        $maxPage = Pagination::getMaxPage($result["total"],$page,$pagesize);
+        $pagination = array( "page" => $page,   
+                             "maxPage" => $maxPage, 
+                             "pagesize" => $pagesize 
+                            );    
+        $result["pagination"]=$pagination;
+        
+//result_messages===============================================================      
+        $result["status"] = ExceptionCodes::NoErrors;
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".__FUNCTION__."]:".$e->getMessage();
-    }
-
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    } 
+    
+//debug=========================================================================
+   if ( Validator::IsTrue( $params["debug"]  ) )
+   {
+        $result["DQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
+        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
+   }
+    
     return $result;
+    
 }
 
 ?>

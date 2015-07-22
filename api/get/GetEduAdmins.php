@@ -428,12 +428,12 @@ function GetEduAdmins( $edu_admin, $region_edu_admin, $implementation_entity, $p
     
  //$orderby=====================================================================
        $columns = array(
-                            "ea.eduAdminId"         => "edu_admin_id",
-                            "ea.name"               => "name",
-                            "ea.parentRdn"          => "parent_rdn",
-                            "ea.thirdLevelDns"      => "third_level_dns",
-                            "rea.regionEduAdminId"  => "region_edu_admin_id" ,
-                            "rea.name"              => "region_edu_admin_name",
+                            "ea.eduAdminId"              => "edu_admin_id",
+                            "ea.name"                    => "name",
+                            "ea.parentRdn"               => "parent_rdn",
+                            "ea.thirdLevelDns"           => "third_level_dns",
+                            "rea.regionEduAdminId"       => "region_edu_admin_id" ,
+                            "rea.name"                   => "region_edu_admin_name",
                             "ie.implementationEntityId"  => "implementation_entity_id" ,
                             "ie.name"                    => "implementation_entity_name"
                         );
@@ -491,16 +491,16 @@ function GetEduAdmins( $edu_admin, $region_edu_admin, $implementation_entity, $p
         {
 
             $result["data"][] = array(
-                                            "edu_admin_id"           => $eduadmin->getEduAdminId(),
-                                            "edu_admin"              => $eduadmin->getName(),
-                                            "registry_no"            => $eduadmin->getRegistryNo(),
-                                            "parent_rdn"             => $eduadmin->getParentRdn(),
-                                            "third_level_dns"        => $eduadmin->getThirdLevelDns(), 
-                                            "region_edu_admin_id"    => Validator::IsNull($eduadmin->getRegionEduAdmin()) ? Validator::ToNull() : $eduadmin->getRegionEduAdmin()->getRegionEduAdminId(),
-                                            "region_edu_admin_name"  => Validator::IsNull($eduadmin->getRegionEduAdmin()) ? Validator::ToNull() : $eduadmin->getRegionEduAdmin()->getName(),
-                                            "implementation_entity_id"       => Validator::IsNull($eduadmin->getImplementationEntity()) ? Validator::ToNull() : $eduadmin->getImplementationEntity()->getImplementationEntityId(),
-                                            "implementation_entity"          => Validator::IsNull($eduadmin->getImplementationEntity()) ? Validator::ToNull() : $eduadmin->getImplementationEntity()->getName(),
-                                            "implementation_entity_initials" => Validator::IsNull($eduadmin->getImplementationEntity()) ? Validator::ToNull() : $eduadmin->getImplementationEntity()->getInitials()
+                                        "edu_admin_id"                   => $eduadmin->getEduAdminId(),
+                                        "edu_admin"                      => $eduadmin->getName(),
+                                        "registry_no"                    => $eduadmin->getRegistryNo(),
+                                        "parent_rdn"                     => $eduadmin->getParentRdn(),
+                                        "third_level_dns"                => $eduadmin->getThirdLevelDns(), 
+                                        "region_edu_admin_id"            => Validator::IsNull($eduadmin->getRegionEduAdmin()) ? Validator::ToNull() : $eduadmin->getRegionEduAdmin()->getRegionEduAdminId(),
+                                        "region_edu_admin_name"          => Validator::IsNull($eduadmin->getRegionEduAdmin()) ? Validator::ToNull() : $eduadmin->getRegionEduAdmin()->getName(),
+                                        "implementation_entity_id"       => Validator::IsNull($eduadmin->getImplementationEntity()) ? Validator::ToNull() : $eduadmin->getImplementationEntity()->getImplementationEntityId(),
+                                        "implementation_entity"          => Validator::IsNull($eduadmin->getImplementationEntity()) ? Validator::ToNull() : $eduadmin->getImplementationEntity()->getName(),
+                                        "implementation_entity_initials" => Validator::IsNull($eduadmin->getImplementationEntity()) ? Validator::ToNull() : $eduadmin->getImplementationEntity()->getInitials()
                                      );
             $count++;
         }

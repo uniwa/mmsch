@@ -1172,6 +1172,7 @@ function TransferAreaMunicipalitiesController()
     {
         case MethodTypes::GET :
             $result = GetTransferAreaMunicipalities(
+                $params["transfer_area_municipality_id"],
                 $params["transfer_area"],
                 $params["municipality"],
                 $params["pagesize"],
