@@ -1480,7 +1480,8 @@ function WorkersController()
             break;
     }
 
-    $app->response()->setStatus(200);
+    PrepareResponse();
+
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
 
@@ -1802,6 +1803,7 @@ function UnitDnsController()
         case MethodTypes::GET :
             $result = GetUnitDns(
                 $params["unit_dns"],
+                $params["unit_dns_extra"],
                 $params["unit_ext_dns"],
                 $params["unit"],
                 $params["pagesize"],

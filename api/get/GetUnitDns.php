@@ -400,295 +400,124 @@ header("Content-Type: text/html; charset=utf-8");
  */
 
 
-function GetUnitDns(
-    $unit_dns, $unit_ext_dns, $unit,
-    $pagesize, $page, $orderby, $ordertype, $searchtype
-)
-{
-    global $db;
+function GetUnitDns( $unit_dns, $unit_dns_extra, $unit_ext_dns, $unit, 
+                     $pagesize, $page, $orderby, $ordertype, $searchtype) {
+    
+    global $entityManager, $app, $db;
 
-    $filter = array();
-    $result = array();
+    $qb = $entityManager->createQueryBuilder();
+    $result = array();  
 
     $result["data"] = array();
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
+    $params = loadParameters();    
 
-    $result["method"] = __FUNCTION__;
+    try {
 
-    $params = loadParameters();
-
-    try
-    {
-//======================================================================================================================
-//= Paging
-//======================================================================================================================
-
-        if ( Validator::Missing('searchtype', $params) )
-            $searchtype = SearchEnumTypes::ContainAll ;
-        else if ( SearchEnumTypes::isValidValue( $searchtype ) || SearchEnumTypes::isValidName( $searchtype ) )
-            $searchtype = SearchEnumTypes::getValue($searchtype);
-        else
-            throw new Exception(ExceptionMessages::InvalidSearchType." : ".$searchtype, ExceptionCodes::InvalidSearchType);
-
+//$page - $pagesize - $searchtype - $ordertype =================================
        $page = Pagination::getPage($page, $params);
-       $pagesize = Pagination::getPagesize($pagesize, $params);
+       $pagesize = Pagination::getPagesize($pagesize, $params);     
+       $searchtype = Filters::getSearchType($searchtype, $params);
+       $ordertype =  Filters::getOrderType($ordertype, $params);
 
-//======================================================================================================================
-//= $unit_dns
-//======================================================================================================================
-
-        if ( Validator::Exists('unit_dns', $params) )
-        {
-            $table_name = "unit_dns";
-            $table_column_id = "unit_dns_id";
-            $table_column_name = "unit_dns";
-
-            $param = Validator::toArray($unit_dns);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                $paramWordsFilters = array();
-
-                if ( Validator::isNull($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                {
-                    if ( $searchtype == SearchEnumTypes::Exact )
-                        $paramWordsFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                    else if ( $searchtype == SearchEnumTypes::Contain )
-                        $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
-                    else
-                    {
-                        $words = Validator::toArray($values, " ");
-
-                        foreach ($words as $word)
-                        {
-                            switch ($searchtype)
-                            {
-                                case SearchEnumTypes::ContainAll :
-                                case SearchEnumTypes::ContainAny :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::StartWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::EndWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word) );
-                                    break;
-                            }
-                        }
-                    }
-                }
-                else
-                    throw new Exception(ExceptionMessages::InvalidUnitDNSType." : ".$values, ExceptionCodes::InvalidUnitDNSType);
-
-                switch ($searchtype)
-                {
-                    case SearchEnumTypes::ContainAny :
-                        $paramFilters[] = "(" . implode(" OR ", $paramWordsFilters) . ")";
-                        break;
-                    default :
-                        $paramFilters[] = "(" . implode(" AND ", $paramWordsFilters) . ")";
-                        break;
-                }
-
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $unit_ext_dns
-//======================================================================================================================
-
-        if ( Validator::Exists('unit_ext_dns', $params) )
-        {
-            $table_name = "unit_dns";
-            $table_column_id = "unit_dns_id";
-            $table_column_name = "unit_ext_dns";
-
-            $param = Validator::toArray($unit_ext_dns);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                $paramWordsFilters = array();
-
-                if ( Validator::isNull($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isValue($values) )
-                {
-                    if ( $searchtype == SearchEnumTypes::Exact )
-                        $paramWordsFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                    else if ( $searchtype == SearchEnumTypes::Contain )
-                        $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
-                    else
-                    {
-                        $words = Validator::toArray($values, " ");
-
-                        foreach ($words as $word)
-                        {
-                            switch ($searchtype)
-                            {
-                                case SearchEnumTypes::ContainAll :
-                                case SearchEnumTypes::ContainAny :
-                                    $paramWordsFilters[] =  "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::StartWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::EndWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word) );
-                                    break;
-                            }
-                        }
-                    }
-                }
-                else
-                    throw new Exception(ExceptionMessages::InvalidUnitExtDnsType." : ".$values, ExceptionCodes::InvalidUnitExtDnsType);
-
-                switch ($searchtype)
-                {
-                    case SearchEnumTypes::ContainAny :
-                        $paramFilters[] = "(" . implode(" OR ", $paramWordsFilters) . ")";
-                        break;
-                    default :
-                        $paramFilters[] = "(" . implode(" AND ", $paramWordsFilters) . ")";
-                        break;
-                }
-
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $unit
-//======================================================================================================================
-
-        if ( Validator::Exists('unit', $params) )
-        {
-            $table_name = "units";
-            $table_column_id = "mm_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($unit);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                else
-                    throw new Exception(ExceptionMessages::InvalidUnitType." : ".$values, ExceptionCodes::InvalidUnitType);
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $ordertype
-//======================================================================================================================
-
-        if ( Validator::Missing('ordertype', $params) )
-            $ordertype = OrderEnumTypes::ASC ;
-        else if ( OrderEnumTypes::isValidValue( $ordertype ) || OrderEnumTypes::isValidName( $ordertype ) )
-            $ordertype = OrderEnumTypes::getValue($ordertype);
+//$orderby======================================================================
+       $columns = array(
+                        "ud.unitDnsId"   => "unit_dns_id",
+                        "ud.unitDns"     => "unit_dns",
+                        "ud.unitExtDns"  => "unit_ext_dns" ,
+                        "u.mmId"         => "mm_id",
+                        "u.name"         => "unit_name",
+                        "u.specialName"  => "special_unit_name",
+                        "u.registryNo"   => "registry_no"
+                        );
+       
+       if ( Validator::Missing('orderby', $params) )
+            $orderby = "unit_dns";
         else
-            throw new Exception(ExceptionMessages::InvalidOrderType." : ".$ordertype, ExceptionCodes::InvalidOrderType);
-
-//======================================================================================================================
-//= $orderby
-//======================================================================================================================
-
-        if ( Validator::Exists('orderby', $params) )
-        {
-            $columns = array(
-                "unit_dns_id",
-                "unit_dns",
-                "unit_ext_dns" ,
-                "mm_id",
-                "unit_name",
-                "special_unit_name",
-                "registry_no"
-            );
-
+        {   
+            $orderby = Validator::ToLower($orderby);
             if (!in_array($orderby, $columns))
                 throw new Exception(ExceptionMessages::InvalidOrderBy." : ".$orderby, ExceptionCodes::InvalidOrderBy);
+        }   
+      
+//$unit_dns=====================================================================
+        if (Validator::Exists('unit_dns', $params)){
+                CRUDUtils::setFilter($qb, $unit_dns, "ud", "unitDnsId", "unitDns", "null,id,value", ExceptionMessages::InvalidUnitDnsIDType, ExceptionCodes::InvalidUnitDnsIDType);
         }
-        else
-            $orderby = "unit_dns";
+        
+//$unit_dns_extra===============================================================
+   if (Validator::Exists('unit_dns_extra', $params)){
+       CRUDUtils::setSearchFilter($qb, $unit_dns_extra, "ud", "unitDns", $searchtype, ExceptionMessages::InvalidUnitDnsType, ExceptionCodes::InvalidUnitDnsType);    
+   }
+   
+//$unit_ext_dns=================================================================
+   if (Validator::Exists('unit_ext_dns', $params)){
+       CRUDUtils::setSearchFilter($qb, $unit_ext_dns, "ud", "unitExtDns", $searchtype, ExceptionMessages::InvalidUnitExtDnsType, ExceptionCodes::InvalidUnitExtDnsType);    
+   }
 
-//======================================================================================================================
-//= E X E C U T E
-//======================================================================================================================
+//$unit=========================================================================
+        if (Validator::Exists('unit', $params)){
+                CRUDUtils::setFilter($qb, $unit, "u", "mmId", "name", "null,id,value", ExceptionMessages::InvalidUnitType, ExceptionCodes::InvalidUnitType);
+        }
 
-        $sqlSelect = "SELECT
-                        unit_dns.unit_dns_id,
-                        unit_dns.unit_dns,
-                        unit_dns.unit_ext_dns,
-                        units.mm_id,
-                        units.registry_no,
-                        units.name as unit_name,
-                        units.special_name as special_unit_name
-                    ";
+//execution=====================================================================
+        $qb->select('ud');
+        $qb->from('UnitDns','ud');
+        $qb->leftjoin('ud.mm','u');
+        $qb->orderBy(array_search($orderby, $columns), $ordertype);
 
-        $sqlFrom = "FROM unit_dns
-                    LEFT JOIN units ON unit_dns.mm_id = units.mm_id";
-
-        $sqlWhere = (count($filter) > 0 ? " WHERE " . implode(" AND ", $filter) : "" );
-        $sqlOrder = " ORDER BY ". $orderby ." ". $ordertype;
-        $sqlLimit = ($page && $pagesize) ? " LIMIT ".(($page - 1) * $pagesize).", ".$pagesize : "";
-
-
-        $sql = "SELECT count(*) as total " . $sqlFrom . $sqlWhere;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetch(PDO::FETCH_ASSOC);
-        $result["total"] = $rows["total"];
-
-
-        $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder . $sqlLimit;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $result["count"] = $stmt->rowCount();
-
-        foreach ($rows as $row)
+//pagination and results========================================================      
+        $results = new Doctrine\ORM\Tools\Pagination\Paginator($qb->getQuery());
+        $result["total"] = count($results);
+        $results->getQuery()->setFirstResult($pagesize * ($page-1));
+        $pagesize!==Parameters::AllPageSize ? $results->getQuery()->setMaxResults($pagesize) : null;
+        
+//data results==================================================================       
+        $count = 0;
+        foreach ($results as $row)
         {
+
             $result["data"][] = array(
-                "unit_dns_id"       => (int)$row["unit_dns_id"],
-                "unit_dns"          => $row["unit_dns"],
-                "unit_ext_dns"      => $row["unit_ext_dns"],
-                "mm_id"             => (int)$row["mm_id"],
-                "unit_name"         => $row["unit_name"],
-                "special_unit_name" => $row["special_unit_name"],
-                "registry_no"       => $row["registry_no"]
-            );
+                                        "unit_dns_id"          => $row->getUnitDnsId(),
+                                        "unit_dns"             => $row->getUnitDns(),
+                                        "unit_ext_dns"         => $row->getUnitExtDns(),
+                                        "mm_id"                => (int)$row->getMm()->getMmId(),
+                                        "unit_name"            => $row->getMm()->getName(),
+                                        "special_unit_name"    => $row->getMm()->getSpecialName(),
+                                        "registry_no"          => $row->getMm()->getRegistryNo()
+                          );
+            
+            $count++;
+
         }
+        $result["count"] = $count;
 
-        $result["status"] = ExceptionCodes::NoErrors;;
-        $result["message"] = ExceptionMessages::NoErrors;
-    }
-    catch (Exception $e)
-    {
+//pagination results============================================================     
+        $maxPage = Pagination::getMaxPage($result["total"],$page,$pagesize);
+        $pagination = array( "page" => $page,   
+                             "maxPage" => $maxPage, 
+                             "pagesize" => $pagesize 
+                            );    
+        $result["pagination"]=$pagination;
+
+//result_messages===============================================================      
+        $result["status"] = ExceptionCodes::NoErrors;
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".__FUNCTION__."]:".$e->getMessage();
-    }
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    } 
 
+//debug=========================================================================
+   if ( Validator::IsTrue( $params["debug"]  ) )
+   {
+        $result["DQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
+        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
+   }
+    
     return $result;
 }
-
 
 ?>

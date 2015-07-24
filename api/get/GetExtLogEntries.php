@@ -435,82 +435,61 @@ header("Content-Type: text/html; charset=utf-8");
  *
  */
 
-function GetExtLogEntries(
-    $id, $action, $logged_at, $object_id, $object_class, $version, $username, $ip,
-    $pagesize, $page, $orderby, $ordertype, $searchtype, $datesearchtype
-)
-{
-    global $db, $entityManager;
+function GetExtLogEntries( $id, $action, $logged_at, $object_id, $object_class, $version, $username, $ip,
+                           $pagesize, $page, $orderby, $ordertype, $searchtype, $datesearchtype) {
+    
+    global $entityManager, $app, $db;
 
     $qb = $entityManager->createQueryBuilder();
-    $result = array();
+    $result = array();  
 
     $result["data"] = array();
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
+    $params = loadParameters();    
 
-    $result["method"] = __FUNCTION__;
+    try {
 
-    $params = loadParameters();
-
-    try
-    {
-//======================================================================================================================
-//= Paging
-//======================================================================================================================
-
-        if ( Validator::Missing('searchtype', $params) )
-            $searchtype = SearchEnumTypes::ContainAll ;
-        else if ( SearchEnumTypes::isValidValue( $searchtype ) || SearchEnumTypes::isValidName( $searchtype ) )
-            $searchtype = SearchEnumTypes::getValue($searchtype);
-        else
-            throw new Exception(ExceptionMessages::InvalidSearchType." : ".$searchtype, ExceptionCodes::InvalidSearchType);
-
+//$page - $pagesize - $searchtype - $ordertype =================================
        $page = Pagination::getPage($page, $params);
-       $pagesize = Pagination::getPagesize($pagesize, $params); 
+       $pagesize = Pagination::getPagesize($pagesize, $params);     
+       $searchtype = Filters::getSearchType($searchtype, $params);
+       $ordertype =  Filters::getOrderType($ordertype, $params);
 
-//======================================================================================================================
-//= $id
-//======================================================================================================================
-
-        if ( Validator::Exists('id', $params) )
-        {
-            $param = Validator::toArray($id);
-            $orx = $qb->expr()->orX();
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $orx->add($qb->expr()->isNull("el.id"));
-                else if ( Validator::isID($values) )
-                    $orx->add($qb->expr()->eq("el.id", $db->quote(Validator::toID($values))));
-                else
-                    throw new Exception(ExceptionMessages::InvalidExtLogEntryIDType." : ".$values, ExceptionCodes::InvalidExtLogEntryIDType);
-            }
-            $qb->andWhere($orx);
+//$orderby======================================================================
+       $columns = array(
+                        "el.id" => "id",
+                        "el.action" => "action",
+                        "el.loggedAt" => "logged_at" ,
+                        "el.objectId" => "object_id",
+                        "el.objectClass" => "object_class",
+                        "el.version" => "version",
+                        "el.username" => "username",
+                        "el.ip" => "ip"
+                        );
+       
+       if ( Validator::Missing('orderby', $params) )
+            $orderby = "id";
+        else
+        {   
+            $orderby = Validator::ToLower($orderby);
+            if (!in_array($orderby, $columns))
+                throw new Exception(ExceptionMessages::InvalidOrderBy." : ".$orderby, ExceptionCodes::InvalidOrderBy);
+        }   
+       
+//$id===========================================================================
+        if (Validator::Exists('id', $params)){
+                CRUDUtils::setFilter($qb, $id, "el", "id", "id", "null,id", ExceptionMessages::InvalidExtLogEntryIDType, ExceptionCodes::InvalidExtLogEntryIDType);
         }
 
-//======================================================================================================================
-//= $action
-//======================================================================================================================
-
-        if ( Validator::Exists('action', $params) )
-        {
-            $param = Validator::toArray($action);
-            $orx = $qb->expr()->orX();
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $orx->add($qb->expr()->isNull("el.action"));
-                else if ( Validator::isValue($values) )
-                    $orx->add($qb->expr()->eq("el.action", $db->quote(Validator::toValue($values))));
-                else
-                    throw new Exception(ExceptionMessages::InvalidExtLogEntryActionType." : ".$values, ExceptionCodes::InvalidExtLogEntryActionType);
-            }
-            $qb->andWhere($orx);
+//$action=======================================================================
+        if (Validator::Exists('action', $params)){
+                CRUDUtils::setFilter($qb, $action, "el", "action", "action", "null,value", ExceptionMessages::InvalidExtLogEntryActionType, ExceptionCodes::InvalidExtLogEntryActionType);
         }
-
-//======================================================================================================================
-//= $logged_at
-//======================================================================================================================
-
+        
+//$logged_at====================================================================
+        
         if ( Validator::Exists('logged_at', $params) )
         {
             $param = Validator::toArray($logged_at);
@@ -537,179 +516,85 @@ function GetExtLogEntries(
             $qb->andWhere($orx);
         }
 
-//======================================================================================================================
-//= $object_id
-//======================================================================================================================
-
-        if ( Validator::Exists('object_id', $params) )
-        {
-            $param = Validator::toArray($object_id);
-            $orx = $qb->expr()->orX();
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $orx->add($qb->expr()->isNull("el.objectId"));
-                else if ( Validator::isID($values) )
-                    $orx->add($qb->expr()->eq("el.objectId", $db->quote(Validator::toID($values))));
-                else
-                    throw new Exception(ExceptionMessages::InvalidExtLogEntryObjectIdType." : ".$values, ExceptionCodes::InvalidExtLogEntryObjectIdType);
-            }
-            $qb->andWhere($orx);
-        }
-//======================================================================================================================
-//= $object_class
-//======================================================================================================================
-
-        if ( Validator::Exists('object_class', $params) )
-        {
-            $param = Validator::toArray($object_class);
-            $orx = $qb->expr()->orX();
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $orx->add($qb->expr()->isNull("el.objectClass"));
-                else if ( Validator::isValue($values) )
-                    $orx->add($qb->expr()->eq("el.objectClass", $db->quote(Validator::toValue($values))));
-                else
-                    throw new Exception(ExceptionMessages::InvalidExtLogEntryObjectClassType." : ".$values, ExceptionCodes::InvalidExtLogEntryIDType);
-            }
-            $qb->andWhere($orx);
-        }
-//======================================================================================================================
-//= $version
-//======================================================================================================================
-
-        if ( Validator::Exists('version', $params) )
-        {
-            $param = Validator::toArray($version);
-            $orx = $qb->expr()->orX();
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $orx->add($qb->expr()->isNull("el.version"));
-                else if ( Validator::isID($values) )
-                    $orx->add($qb->expr()->eq("el.version", $db->quote(Validator::toID($values))));
-                else
-                    throw new Exception(ExceptionMessages::InvalidExtLogEntryVersionType." : ".$values, ExceptionCodes::InvalidExtLogEntryVersionType);
-            }
-            $qb->andWhere($orx);
-        }
-//======================================================================================================================
-//= $username
-//======================================================================================================================
-
-        if ( Validator::Exists('username', $params) )
-        {
-            $param = Validator::toArray($username);
-            $orx = $qb->expr()->orX();
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $orx->add($qb->expr()->isNull("el.username"));
-                else if ( Validator::isValue($values) )
-                    $orx->add($qb->expr()->eq("el.username", $db->quote(Validator::toValue($values))));
-                else
-                    throw new Exception(ExceptionMessages::InvalidExtLogEntryUsernameType." : ".$values, ExceptionCodes::InvalidExtLogEntryUsernameType);
-            }
-            $qb->andWhere($orx);
-        }
-//======================================================================================================================
-//= $ip
-//======================================================================================================================
-
-        if ( Validator::Exists('ip', $params) )
-        {
-            $param = Validator::toArray($ip);
-            $orx = $qb->expr()->orX();
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $orx->add($qb->expr()->isNull("el.ip"));
-                else if ( Validator::isValue($values) )
-                    $orx->add($qb->expr()->eq("el.ip", $db->quote(Validator::toID($values))));
-                else
-                    throw new Exception(ExceptionMessages::InvalidExtLogEntryIpType." : ".$values, ExceptionCodes::InvalidExtLogEntryIpType);
-            }
-            $qb->andWhere($orx);
-        }
-//======================================================================================================================
-//= $ordertype
-//======================================================================================================================
-
-        if ( Validator::Missing('ordertype', $params) )
-            $ordertype = OrderEnumTypes::ASC ;
-        else if ( OrderEnumTypes::isValidValue( $ordertype ) || OrderEnumTypes::isValidName( $ordertype ) )
-            $ordertype = OrderEnumTypes::getValue($ordertype);
-        else
-            throw new Exception(ExceptionMessages::InvalidOrderType." : ".$ordertype, ExceptionCodes::InvalidOrderType);
-
-//======================================================================================================================
-//= $orderby
-//======================================================================================================================
-
-        $columns = array(
-            "el.id" => "id",
-            "el.action" => "action",
-            "el.loggedAt" => "logged_at" ,
-            "el.objectId" => "object_id",
-            "el.objectClass" => "object_class",
-            "el.version" => "version",
-            "el.username" => "username",
-            "el.ip" => "ip"
-        );
-        if ( Validator::Missing('orderby', $params) )
-            $orderby = "id";
-        else
-        {
-            if (!in_array($orderby, $columns))
-                throw new Exception(ExceptionMessages::InvalidOrderBy." : ".$orderby, ExceptionCodes::InvalidOrderBy);
+//$object_id====================================================================
+        if (Validator::Exists('object_id', $params)){
+                CRUDUtils::setFilter($qb, $object_id, "el", "objectId", "objectId", "null,id", ExceptionMessages::InvalidExtLogEntryObjectIdType, ExceptionCodes::InvalidExtLogEntryObjectIdType);
         }
 
-//======================================================================================================================
-//= E X E C U T E
-//======================================================================================================================
+//$object_class=================================================================
+        if (Validator::Exists('object_class', $params)){
+                CRUDUtils::setFilter($qb, $object_class, "el", "objectClass", "objectClass", "null,value", ExceptionMessages::InvalidExtLogEntryObjectClassType, ExceptionCodes::InvalidExtLogEntryObjectClassType);
+        }
 
+//$version======================================================================
+        if (Validator::Exists('version', $params)){
+                CRUDUtils::setFilter($qb, $version, "el", "version", "version", "null,id", ExceptionMessages::InvalidExtLogEntryVersionType, ExceptionCodes::InvalidExtLogEntryVersionType);
+        }
+        
+//$username===========================================================================
+        if (Validator::Exists('username', $params)){
+                CRUDUtils::setFilter($qb, $username, "el", "username", "username", "null,value", ExceptionMessages::InvalidExtLogEntryUsernameType, ExceptionCodes::InvalidExtLogEntryUsernameType);
+        }
+        
+//$ip===========================================================================
+        if (Validator::Exists('ip', $params)){
+                CRUDUtils::setFilter($qb, $ip, "el", "ip", "ip", "null,value", ExceptionMessages::InvalidExtLogEntryIpType, ExceptionCodes::InvalidExtLogEntryIpType);
+        }
+
+//execution=====================================================================
         $qb->select('el');
-        $qb->from('ExtLogEntries', 'el');
+        $qb->from('ExtLogEntries','el');
         $qb->orderBy(array_search($orderby, $columns), $ordertype);
 
-        $results = new Doctrine\ORM\Tools\Pagination\Paginator($qb->getQuery());
-        $results->getQuery()->setFirstResult($pagesize * ($page-1));
-        $results->getQuery()->setMaxResults($pagesize);
-        $result["total"] = count($results);
 
+//pagination and results========================================================      
+        $results = new Doctrine\ORM\Tools\Pagination\Paginator($qb->getQuery());
+        $result["total"] = count($results);
+        $results->getQuery()->setFirstResult($pagesize * ($page-1));
+        $pagesize!==Parameters::AllPageSize ? $results->getQuery()->setMaxResults($pagesize) : null;
+
+//data results==================================================================
         $count = 0;
         foreach ($results as $extlog)
         {
             $result["data"][] = array(
-                "id"            => $extlog->getId(),
-                "action"        => $extlog->getAction(),
-                "logged_at"     => $extlog->getLoggedAt() instanceof \DateTime ? $extlog->getLoggedAt()->format('Y-m-d H:i:s') : null,
-                "object_id"     => $extlog->getObjectId(),
-                "object_class"  => $extlog->getObjectClass(),
-                "version"       => $extlog->getVersion(),
-                "data"          => unserialize($extlog->getData()),
-                "username"      => $extlog->getUsername(),
-                "ip"            => $extlog->getIp()
-            );
+                                        "id"            => $extlog->getId(),
+                                        "action"        => $extlog->getAction(),
+                                        "logged_at"     => $extlog->getLoggedAt() instanceof \DateTime ? $extlog->getLoggedAt()->format('Y-m-d H:i:s') : null,
+                                        "object_id"     => $extlog->getObjectId(),
+                                        "object_class"  => $extlog->getObjectClass(),
+                                        "version"       => $extlog->getVersion(),
+                                        "data"          => unserialize($extlog->getData()),
+                                        "username"      => $extlog->getUsername(),
+                                        "ip"            => $extlog->getIp()
+                                    );
             $count++;
         }
         $result["count"] = $count;
+        
+//pagination results============================================================     
+        $maxPage = Pagination::getMaxPage($result["total"],$page,$pagesize);
+        $pagination = array( "page" => $page,   
+                             "maxPage" => $maxPage, 
+                             "pagesize" => $pagesize 
+                            );    
+        $result["pagination"]=$pagination;
 
-        $result["status"] = ExceptionCodes::NoErrors;;
-        $result["message"] = ExceptionMessages::NoErrors;
-    }
-    catch (Exception $e)
-    {
+//result_messages===============================================================      
+        $result["status"] = ExceptionCodes::NoErrors;
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".__FUNCTION__."]:".$e->getMessage();
-    }
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    } 
 
-    if ( Validator::isBoolean( $params["debug"] ) )
-    {
-        $result["sql"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
-    }
-
+//debug=========================================================================
+   if ( Validator::IsTrue( $params["debug"]  ) )
+   {
+        $result["DQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
+        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
+   }
+    
     return $result;
 }
 

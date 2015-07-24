@@ -386,8 +386,7 @@ header("Content-Type: text/html; charset=utf-8");
 
 function GetRelations( $host_mm_id, $guest_mm_id, $relation_type,
                        $pagesize, $page, $orderby, $ordertype, $searchtype ) {
-    
-        
+     
     global $entityManager, $app;
 
     $qb = $entityManager->createQueryBuilder();
@@ -438,12 +437,12 @@ function GetRelations( $host_mm_id, $guest_mm_id, $relation_type,
         
 //$host_mm_id===================================================================
         if (Validator::Exists('host_mm_id', $params)){
-                CRUDUtils::setFilter($qb, $host_mm_id, "hu", "mmId", "name", "null,id", ExceptionMessages::InvalidRelationHostUnitMMIDType, ExceptionCodes::InvalidRelationHostUnitMMIDType);
+                CRUDUtils::setFilter($qb, $host_mm_id, "hu", "mmId", "mmId", "null,id", ExceptionMessages::InvalidRelationHostUnitMMIDType, ExceptionCodes::InvalidRelationHostUnitMMIDType);
         }
 
 //$guest_mm_id==================================================================
         if (Validator::Exists('guest_mm_id', $params)){
-                CRUDUtils::setFilter($qb, $guest_mm_id, "gu", "mmId", "name", "null,id", ExceptionMessages::InvalidRelationGuestUnitMMIDType, ExceptionCodes::InvalidRelationGuestUnitMMIDType);
+                CRUDUtils::setFilter($qb, $guest_mm_id, "gu", "mmId", "mmId", "null,id", ExceptionMessages::InvalidRelationGuestUnitMMIDType, ExceptionCodes::InvalidRelationGuestUnitMMIDType);
         }
 
 //$relation_type================================================================
@@ -471,27 +470,27 @@ function GetRelations( $host_mm_id, $guest_mm_id, $relation_type,
         foreach ($results as $row)
         {
 
-            $data = array(
-                            "relation_id"             => $row->getRelationId(),
-                            "relation_state"          => $row->getRelationState(),
-                            "true_date"               => ($row->getTrueDate() instanceof \DateTime)? $row->getTrueDate()->format('Y-m-d H:i:s') : null,
-                            "true_fek"                => $row->getTrueFek(),
-                            "false_date"              => ($row->getFalseDate() instanceof \DateTime)? $row->getFalseDate()->format('Y-m-d H:i:s') : null,
-                            "false_fek"               => $row->getFalseFek(),
-                            "relation_type_id"        => $row->getRelationType()->getRelationTypeId(),
-                            "relation_type_name"      => $row->getRelationType()->getName(),
-                            "host_mm_id"              => (int)$row->getHostMm()->getMmId(),
-                            "host_registry_no"        => $row->getHostMm()->getRegistryNo(),
-                            "host_unit_name"          => $row->getHostMm()->getName(),
-                            "host_special_unit_name"  => $row->getHostMm()->getSpecialName(),
-                            "guest_mm_id"             => (int)$row->getGuestMm()->getMmId(),
-                            "guest_registry_no"       => $row->getGuestMm()->getRegistryNo(),
-                            "guest_unit_name"         => $row->getGuestMm()->getName(),
-                            "guest_special_unit_name" => $row->getGuestMm()->getSpecialName()
-                          );
+            $result["data"][]  = array(
+                                        "relation_id"             => $row->getRelationId(),
+                                        "relation_state"          => $row->getRelationState(),
+                                        "true_date"               => ($row->getTrueDate() instanceof \DateTime)? $row->getTrueDate()->format('Y-m-d H:i:s') : null,
+                                        "true_fek"                => $row->getTrueFek(),
+                                        "false_date"              => ($row->getFalseDate() instanceof \DateTime)? $row->getFalseDate()->format('Y-m-d H:i:s') : null,
+                                        "false_fek"               => $row->getFalseFek(),
+                                        "relation_type_id"        => $row->getRelationType()->getRelationTypeId(),
+                                        "relation_type_name"      => $row->getRelationType()->getName(),
+                                        "host_mm_id"              => (int)$row->getHostMm()->getMmId(),
+                                        "host_registry_no"        => $row->getHostMm()->getRegistryNo(),
+                                        "host_unit_name"          => $row->getHostMm()->getName(),
+                                        "host_special_unit_name"  => $row->getHostMm()->getSpecialName(),
+                                        "guest_mm_id"             => (int)$row->getGuestMm()->getMmId(),
+                                        "guest_registry_no"       => $row->getGuestMm()->getRegistryNo(),
+                                        "guest_unit_name"         => $row->getGuestMm()->getName(),
+                                        "guest_special_unit_name" => $row->getGuestMm()->getSpecialName()
+                                      );
             
             $count++;
-            $result["data"][] = $data;
+ 
         }
         $result["count"] = $count;
 
