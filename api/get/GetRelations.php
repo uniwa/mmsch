@@ -384,332 +384,141 @@ header("Content-Type: text/html; charset=utf-8");
  *
  */
 
+function GetRelations( $host_mm_id, $guest_mm_id, $relation_type,
+                       $pagesize, $page, $orderby, $ordertype, $searchtype ) {
+    
+        
+    global $entityManager, $app;
 
-function GetRelations(
-    $host_unit, $guest_unit, $relation_type,
-    $pagesize, $page, $orderby, $ordertype, $searchtype
-)
-{
-    global $db;
-
-    $filter = array();
+    $qb = $entityManager->createQueryBuilder();
     $result = array();
 
     $result["data"] = array();
-
-    $result["method"] = __FUNCTION__;
-
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
     $params = loadParameters();
 
-    try
-    {
+    try {
 
-//======================================================================================================================
-//= Paging
-//======================================================================================================================
-
-        if ( Validator::Missing('searchtype', $params) )
-            $searchtype = SearchEnumTypes::ContainAll ;
-        else if ( SearchEnumTypes::isValidValue( $searchtype ) || SearchEnumTypes::isValidName( $searchtype ) )
-            $searchtype = SearchEnumTypes::getValue($searchtype);
-        else
-            throw new Exception(ExceptionMessages::InvalidSearchType." : ".$searchtype, ExceptionCodes::InvalidSearchType);
-
+//$page - $pagesize - $searchtype - $ordertype =================================
        $page = Pagination::getPage($page, $params);
-       $pagesize = Pagination::getPagesize($pagesize, $params);
+       $pagesize = Pagination::getPagesize($pagesize, $params);     
+       $searchtype = Filters::getSearchType($searchtype, $params);
+       $ordertype =  Filters::getOrderType($ordertype, $params);
 
-//======================================================================================================================
-//= $host
-//======================================================================================================================
-
-        if ( Validator::Exists('host_unit', $params) )
-        {
-            $table_name = "host_units";
-            $table_column_id = "mm_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($host_unit);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                $paramWordsFilters = array();
-
-                if ( Validator::isNull($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                {
-                    if ( $searchtype == SearchEnumTypes::Exact )
-                        $paramWordsFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                    else if ( $searchtype == SearchEnumTypes::Contain )
-                        $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
-                    else
-                    {
-                        $words = Validator::toArray($values, " ");
-
-                        foreach ($words as $word)
-                        {
-                            switch ($searchtype)
-                            {
-                                case SearchEnumTypes::ContainAll :
-                                case SearchEnumTypes::ContainAny :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::StartWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::EndWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word) );
-                                    break;
-                            }
-                        }
-                    }
-                }
-                else
-                    throw new Exception(ExceptionMessages::InvalidHostUnitType." : ".$values, ExceptionCodes::InvalidHostUnitType);
-
-                switch ($searchtype)
-                {
-                    case SearchEnumTypes::ContainAny :
-                        $paramFilters[] = "(" . implode(" OR ", $paramWordsFilters) . ")";
-                        break;
-                    default :
-                        $paramFilters[] = "(" . implode(" AND ", $paramWordsFilters) . ")";
-                        break;
-                }
-
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $guest
-//======================================================================================================================
-
-        if ( Validator::Exists('guest_unit', $params) )
-        {
-            $table_name = "guest_units";
-            $table_column_id = "mm_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($guest_unit);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                $paramWordsFilters = array();
-
-                if ( Validator::isNull($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                {
-                    if ( $searchtype == SearchEnumTypes::Exact )
-                        $paramWordsFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                    else if ( $searchtype == SearchEnumTypes::Contain )
-                        $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
-                    else
-                    {
-                        $words = Validator::toArray($values, " ");
-
-                        foreach ($words as $word)
-                        {
-                            switch ($searchtype)
-                            {
-                                case SearchEnumTypes::ContainAll :
-                                case SearchEnumTypes::ContainAny :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::StartWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::EndWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word) );
-                                    break;
-                            }
-                        }
-                    }
-                }
-                else
-                    throw new Exception(ExceptionMessages::InvalidGuestUnitType." : ".$values, ExceptionCodes::InvalidGuestUnitType);
-
-                switch ($searchtype)
-                {
-                    case SearchEnumTypes::ContainAny :
-                        $paramFilters[] = "(" . implode(" OR ", $paramWordsFilters) . ")";
-                        break;
-                    default :
-                        $paramFilters[] = "(" . implode(" AND ", $paramWordsFilters) . ")";
-                        break;
-                }
-
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $relation_type
-//======================================================================================================================
-
-        if ( Validator::Exists('relation_type', $params) )
-        {
-            $table_name = "relation_types";
-            $table_column_id = "relation_type_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($relation_type);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                else
-                    throw new Exception(ExceptionMessages::InvalidRelationTypeType." : ".$values, ExceptionCodes::InvalidRelationTypeType);
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $ordertype
-//======================================================================================================================
-
-        if ( Validator::Missing('ordertype', $params) )
-            $ordertype = OrderEnumTypes::ASC ;
-        else if ( OrderEnumTypes::isValidValue( $ordertype ) || OrderEnumTypes::isValidName( $ordertype ) )
-            $ordertype = OrderEnumTypes::getValue($ordertype);
+//$orderby======================================================================
+       $columns = array(
+                        "r.relationId"       => "relation_id",
+                        "r.relationState"    => "relation_state",
+                        "r.trueDate"         => "true_date",
+                        "r.trueFek"          => "true_fek",
+                        "r.falseDate"        => "false_date",
+                        "r.falseFek"         => "false_fek",
+                        "hu.mmId"            => "host_mm_id",
+                        "hu.registryNo"      => "host_registry_no",
+                        "hu.name"            => "host_unit_name",
+                        "hu.specialName"     => "host_special_unit_name",
+                        "gu.mmId"            => "guest_mm_id",
+                        "gu.registryNo"      => "guest_registry_no",
+                        "gu.name"            => "guest_unit_name",
+                        "gu.specialName"     => "guest_special_unit_name",
+                        "rt.relationTypeId"  => "relation_type_id",
+                        "rt.name"            => "relation_type_name"
+                       );
+       
+       if ( Validator::Missing('orderby', $params) )
+            $orderby = "host_unit_name";
         else
-            throw new Exception(ExceptionMessages::InvalidOrderType." : ".$ordertype, ExceptionCodes::InvalidOrderType);
-
-//======================================================================================================================
-//= $orderby
-//======================================================================================================================
-
-        if ( Validator::Exists('orderby', $params) )
-        {
-            $columns = array(
-                "relation_id",
-                "host_mm_id",
-                "host_registry_no",
-                "host_unit_name",
-                "host_special_unit_name",
-                "guest_mm_id",
-                "guest_registry_no",
-                "guest_unit_name",
-                "guest_special_unit_name",
-                "relation_state",
-                "true_date",
-                "true_fek",
-                "false_date",
-                "false_fek",
-                "relation_type_id",
-                "relation_type"
-            );
-
+        {   
+            $orderby = Validator::ToLower($orderby);
             if (!in_array($orderby, $columns))
                 throw new Exception(ExceptionMessages::InvalidOrderBy." : ".$orderby, ExceptionCodes::InvalidOrderBy);
+        } 
+        
+//$host_mm_id===================================================================
+        if (Validator::Exists('host_mm_id', $params)){
+                CRUDUtils::setFilter($qb, $host_mm_id, "hu", "mmId", "name", "null,id", ExceptionMessages::InvalidRelationHostUnitMMIDType, ExceptionCodes::InvalidRelationHostUnitMMIDType);
         }
-        else
-            $orderby = "host_unit_name";
 
-//======================================================================================================================
-//= E X E C U T E
-//======================================================================================================================
+//$guest_mm_id==================================================================
+        if (Validator::Exists('guest_mm_id', $params)){
+                CRUDUtils::setFilter($qb, $guest_mm_id, "gu", "mmId", "name", "null,id", ExceptionMessages::InvalidRelationGuestUnitMMIDType, ExceptionCodes::InvalidRelationGuestUnitMMIDType);
+        }
 
-        $sqlSelect = "SELECT
-                        relations.relation_id,
-                        host_units.mm_id as host_mm_id,
-                        host_units.registry_no as host_registry_no,
-                        host_units.name as host_unit_name,
-                        host_units.special_name as host_special_unit_name,
-                        guest_units.mm_id as guest_mm_id,
-                        guest_units.registry_no as guest_registry_no,
-                        guest_units.name as guest_unit_name,
-                        guest_units.special_name as guest_special_unit_name,
-                        relations.relation_state,
-                        relations.true_date,
-                        relations.true_fek,
-                        relations.false_date,
-                        relations.false_fek,
-                        relation_types.relation_type_id,
-                        relation_types.name as relation_type
-                     ";
+//$relation_type================================================================
+        if (Validator::Exists('relation_type', $params)){
+             CRUDUtils::setFilter($qb, $relation_type, "rt", "relationTypeId", "name", "null,id,value", ExceptionMessages::InvalidRelationTypeType, ExceptionCodes::InvalidRelationTypeType);
+        } 
 
-        $sqlFrom = "FROM relations
-                      LEFT JOIN units host_units ON relations.host_mm_id = host_units.mm_id
-                      LEFT JOIN units guest_units ON relations.guest_mm_id = guest_units.mm_id
-                      LEFT JOIN relation_types ON relations.relation_type_id = relation_types.relation_type_id";
+//execution=====================================================================
+        $qb->select('r');
+        $qb->from('Relations','r');
+        $qb->leftjoin('r.relationType','rt');
+        $qb->leftjoin('r.guestMm','gu');
+        $qb->leftjoin('r.hostMm','hu');
+        $qb->orderBy(array_search($orderby, $columns), $ordertype);
 
-        $sqlWhere = (count($filter) > 0 ? " WHERE " . implode(" AND ", $filter) : "" );
-        $sqlOrder = " ORDER BY ". $orderby ." ". $ordertype;
-        $sqlLimit = ($page && $pagesize) ? " LIMIT ".(($page - 1) * $pagesize).", ".$pagesize : "";
+//pagination and results========================================================      
+        $results = new Doctrine\ORM\Tools\Pagination\Paginator($qb->getQuery());
+        $result["total"] = count($results);
+        $results->getQuery()->setFirstResult($pagesize * ($page-1));
+        $pagesize!==Parameters::AllPageSize ? $results->getQuery()->setMaxResults($pagesize) : null;
+        
 
-
-        $sql = "SELECT count(*) as total " . $sqlFrom . $sqlWhere;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetch(PDO::FETCH_ASSOC);
-        $result["total"] = $rows["total"];
-
-
-        $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder . $sqlLimit;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $result["count"] = $stmt->rowCount();
-
-        foreach ($rows as $row)
+//data results==================================================================       
+        $count = 0;
+        foreach ($results as $row)
         {
-            $result["data"][] = array(
-                "relation_id"             => $row["relation_id"] ? (int)$row["relation_id"] : null,
-                "relation_state"          => $row["relation_state"] ? (bool)$row["relation_state"] : null,
-                "true_date"               => $row["true_date"],
-                "true_fek"                => $row["true_fek"],
-                "false_date"              => $row["false_date"],
-                "false_fek"               => $row["false_fek"],
-                "relation_type_id"        => $row["relation_type_id"] ? (int)$row["relation_type_id"] : null,
-                "relation_type"           => $row["relation_type"],
 
-                "host_unit"               => array(
-                    "host_mm_id"              => $row["host_mm_id"] ? (int)$row["host_mm_id"] : null,
-                    "host_registry_no"        => $row["host_registry_no"],
-                    "host_unit_name"          => $row["host_unit_name"],
-                    "host_special_unit_name"  => $row["host_special_unit_name"],
-                ),
-
-                "guest_unit"              => array(
-                    "guest_mm_id"             => $row["guest_mm_id"] ? (int)$row["guest_mm_id"] : null,
-                    "guest_registry_no"       => $row["guest_registry_no"],
-                    "guest_unit_name"         => $row["guest_unit_name"],
-                    "guest_special_unit_name" => $row["guest_special_unit_name"]
-                )
-            );
+            $data = array(
+                            "relation_id"             => $row->getRelationId(),
+                            "relation_state"          => $row->getRelationState(),
+                            "true_date"               => ($row->getTrueDate() instanceof \DateTime)? $row->getTrueDate()->format('Y-m-d H:i:s') : null,
+                            "true_fek"                => $row->getTrueFek(),
+                            "false_date"              => ($row->getFalseDate() instanceof \DateTime)? $row->getFalseDate()->format('Y-m-d H:i:s') : null,
+                            "false_fek"               => $row->getFalseFek(),
+                            "relation_type_id"        => $row->getRelationType()->getRelationTypeId(),
+                            "relation_type_name"      => $row->getRelationType()->getName(),
+                            "host_mm_id"              => (int)$row->getHostMm()->getMmId(),
+                            "host_registry_no"        => $row->getHostMm()->getRegistryNo(),
+                            "host_unit_name"          => $row->getHostMm()->getName(),
+                            "host_special_unit_name"  => $row->getHostMm()->getSpecialName(),
+                            "guest_mm_id"             => (int)$row->getGuestMm()->getMmId(),
+                            "guest_registry_no"       => $row->getGuestMm()->getRegistryNo(),
+                            "guest_unit_name"         => $row->getGuestMm()->getName(),
+                            "guest_special_unit_name" => $row->getGuestMm()->getSpecialName()
+                          );
+            
+            $count++;
+            $result["data"][] = $data;
         }
+        $result["count"] = $count;
 
-        $result["status"] = ExceptionCodes::NoErrors;;
-        $result["message"] = ExceptionMessages::NoErrors;
-    }
-    catch (Exception $e)
-    {
+//pagination results============================================================     
+        $maxPage = Pagination::getMaxPage($result["total"],$page,$pagesize);
+        $pagination = array( "page" => $page,   
+                             "maxPage" => $maxPage, 
+                             "pagesize" => $pagesize 
+                            );    
+        $result["pagination"]=$pagination;
+        
+//result_messages===============================================================      
+        $result["status"] = ExceptionCodes::NoErrors;
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".__FUNCTION__."]:".$e->getMessage();
-    }
-
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    } 
+    
+//debug=========================================================================
+   if ( Validator::IsTrue( $params["debug"]  ) )
+   {
+        $result["DQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
+        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
+   }
+    
     return $result;
 }
+
 ?>

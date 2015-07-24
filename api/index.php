@@ -896,8 +896,8 @@ function RelationsController()
     {
         case MethodTypes::GET :
             $result = GetRelations(
-                $params["host_unit"],
-                $params["guest_unit"],
+                $params["host_mm_id"],
+                $params["guest_mm_id"],
                 $params["relation_type"],
                 $params["pagesize"],
                 $params["page"],
