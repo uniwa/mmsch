@@ -106,6 +106,8 @@ $app->map('/check_required_values', Authentication, UserRolesPermission, CheckRe
     ->via(MethodTypes::GET);
 $app->map('/units_old', Authentication, UserRolesPermission, UnitsOldController)
     ->via(MethodTypes::GET);
+$app->map('/del_ext_log', Authentication, UserRolesPermission, DelExtLog)
+    ->via(MethodTypes::GET);
 
 $app->get('/docs/*', function () use ($app) {
     $app->redirect("http://mmsch.teiath.gr/docs/");
@@ -2204,6 +2206,22 @@ function UnitsOldController()
                 $params["searchtype"],
                 $params["export"]
             );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function DelExtLog() {
+    global $app;
+    
+    $params = loadParameters();
+    
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = DeleteExtLog();
             break;
     }
 

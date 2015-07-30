@@ -261,6 +261,10 @@ private static $Permissions = array(
     'units_old' => array(
                                         'GET' => array('USER', 'ADMIN', 'GUEST')                                   
                                         ) ,
+    
+    'del_ext_log' => array(
+                                        'GET' => array('ADMIN')                                   
+                                        ) ,
     );
 
 
