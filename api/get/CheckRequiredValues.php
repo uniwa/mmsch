@@ -49,19 +49,22 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  */
 
-function CheckRequiredValues( $selection, $all_data, $category, $unit_type, $state, $source, $export )
-{
-    global $entityManager;
-        
+function CheckRequiredValues( $selection, $all_data, $category, $unit_type, $state, $source, 
+                              $export ) {
+    
+    global $entityManager, $app;
+
     $qb = $entityManager->createQueryBuilder();
-    $result = array();
-    
-    $result["method"] = __FUNCTION__;
+    $result = array();  
+
+    $result["data"] = array();
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
     $params = loadParameters();
-    
-    try
-    {
-        
+
+    try {
+
 //$export=======================================================================       
         if ( Validator::Missing('export', $params) )
             $export = ExportDataEnumTypes::JSON;
@@ -75,7 +78,7 @@ function CheckRequiredValues( $selection, $all_data, $category, $unit_type, $sta
             CRUDUtils::setFilter($qb, $category, "c", "categoryId", "name", "null,id,value", ExceptionMessages::InvalidCategoryType, ExceptionCodes::InvalidCategoryType);       
         }
         
-//$school_unit_type=============================================================
+//$unit_type====================================================================
         if (Validator::Exists('unit_type', $params)){
             CRUDUtils::setFilter($qb, $unit_type, "ut", "unitTypeId", "name", "null,id,value", ExceptionMessages::InvalidUnitTypeType, ExceptionCodes::InvalidUnitTypeType);     
         }
@@ -92,16 +95,18 @@ function CheckRequiredValues( $selection, $all_data, $category, $unit_type, $sta
         
 //make db query=================================================================  
             function nullForeignKeys ($qb, $foreignKeyId, $foreignReferenceTable){
-            $qb->select('u.mmId, u.registryNo, u.name, fk.'.$foreignKeyId);
-            $qb->from('Units','u');
-            $qb->leftjoin('u.'.$foreignReferenceTable, 'fk');
-            $qb->leftjoin('u.category', 'c');
-            $qb->leftjoin('u.unitType', 'ut');
-            $qb->leftjoin('u.state', 's');
-            $qb->leftjoin('u.source', 'sr');
+                
+                //execution=====================================================
+                $qb->select('u.mmId, u.registryNo, u.name, fk.'.$foreignKeyId);
+                $qb->from('Units','u');
+                $qb->leftjoin('u.'.$foreignReferenceTable, 'fk');
+                $qb->leftjoin('u.category', 'c');
+                $qb->leftjoin('u.unitType', 'ut');
+                $qb->leftjoin('u.state', 's');
+                $qb->leftjoin('u.source', 'sr');
 
-            $query = $qb->getQuery();       
-            return $results = $query->getResult(); 
+                $query = $qb->getQuery();       
+                return $results = $query->getResult(); 
             }  
         
 //$selection==================================================================== 
@@ -163,16 +168,14 @@ function CheckRequiredValues( $selection, $all_data, $category, $unit_type, $sta
 
 //show more analytics infos about results======================================= 
         if ( Validator::Exists('all_data', $params) ) {   
-            if (Validator::isTrue($all_data)){
+            if (Validator::isTrue($all_data)) {
                 $count =0;
-                $result["data"] = array();
-
-                foreach ($fResults as $result)
-                 {
-
-                     $Results[] = array( 'mm_id'       => $result['mmId'],
-                                         'registry_no' => $result['registryNo'],
-                                         'name'        => $result['name']                              
+               
+                //data results==================================================
+                foreach ($fResults as $fResult) {
+                     $Results[] = array( 'mm_id'       => $fResult['mmId'],
+                                         'registry_no' => $fResult['registryNo'],
+                                         'name'        => $fResult['name']                              
                                       );
                      $count++;
                  }
@@ -183,22 +186,22 @@ function CheckRequiredValues( $selection, $all_data, $category, $unit_type, $sta
                 throw new Exception(ExceptionMessages::InvalidAllDataSelectionCheckRequiredValue, ExceptionCodes::InvalidAllDataSelectionCheckRequiredValue); 
  
         }
- //show count and general messages/codes========================================
         $result["total"] = count($fResults);
-        $result["status"] = ExceptionCodes::NoErrors;;
-        $result["message"] = ExceptionMessages::NoErrors;
-    }
-    catch (Exception $e)
-    {
+        
+//result_messages===============================================================      
+        $result["status"] = ExceptionCodes::NoErrors;
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".__FUNCTION__."]:".$e->getMessage();
-    }
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    } 
 
-//debug selection===============================================================
-    if ( Validator::isBoolean( $params["debug"] ) )
-    {
-        $result["sql"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
-    }
+//debug=========================================================================
+   if ( Validator::IsTrue( $params["debug"]  ) )
+   {
+        $result["DQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
+        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
+   }
 
 //export selection==============================================================
     if ($export == 'JSON'){
