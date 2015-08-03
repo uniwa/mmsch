@@ -1161,31 +1161,31 @@ function GetUnits(   $mm_id, $registry_no, $source, $name, $special_name, $state
         
  //unit_type====================================================================
         if (Validator::Exists('unit_type', $params)){
-            $qb->leftjoin('u.unit_type', 'ut');
+            $qb->leftjoin('u.unitType', 'ut');
             CRUDUtils::setFilter($qb, $unit_type, "ut", "unitTypeId", "name", "null,id,value", ExceptionMessages::InvalidUnitTypeType, ExceptionCodes::InvalidUnitTypeType);
         }
 
  //operation_shift==============================================================
         if (Validator::Exists('operation_shift', $params)){
-            $qb->leftjoin('u.operation_shift', 'os');
+            $qb->leftjoin('u.operationShift', 'os');
             CRUDUtils::setFilter($qb, $operation_shift, "os", "operationShiftId", "name", "null,id,value", ExceptionMessages::InvalidOperationShiftType, ExceptionCodes::InvalidOperationShiftType);
         }
         
  //legal_character==============================================================
         if (Validator::Exists('legal_character', $params)){
-            $qb->leftjoin('u.legal_character', 'lc');
+            $qb->leftjoin('u.legalCharacter', 'lc');
             CRUDUtils::setFilter($qb, $legal_character, "lc", "legalCharacterId", "name", "null,id,value", ExceptionMessages::InvalidLegalCharacterType, ExceptionCodes::InvalidLegalCharacterType);
         } 
         
  //orientation_type=============================================================
         if (Validator::Exists('orientation_type', $params)){
-            $qb->leftjoin('u.orientation_type', 'ot');
+            $qb->leftjoin('u.orientationType', 'ot');
             CRUDUtils::setFilter($qb, $orientation_type, "ot", "orientationTypeId", "name", "null,id,value", ExceptionMessages::InvalidOrientationTypeType, ExceptionCodes::InvalidOrientationTypeType);
         }
         
  //special_type=================================================================
         if (Validator::Exists('special_type', $params)){
-            $qb->leftjoin('u.special_type', 'st');
+            $qb->leftjoin('u.specialType', 'st');
             CRUDUtils::setFilter($qb, $special_type, "st", "specialTypeId", "name", "null,id,value", ExceptionMessages::InvalidSpecialTypeType, ExceptionCodes::InvalidSpecialTypeType);
         }
         
