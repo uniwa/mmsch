@@ -51,6 +51,7 @@ class Units
      * @var integer
      *
      * @ORM\Column(name="area_team_number", type="integer", nullable=true)
+     * @Gedmo\Versioned
      */
     private $areaTeamNumber;
 
@@ -98,13 +99,15 @@ class Units
      * @var integer
      *
      * @ORM\Column(name="students_count", type="integer", nullable=true)
-     */
+     * @Gedmo\Versioned     
+    */
     private $studentsCount;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="groups_count", type="integer", nullable=true)
+     * @Gedmo\Versioned
      */
     private $groupsCount;
 
@@ -112,6 +115,7 @@ class Units
      * @var integer
      *
      * @ORM\Column(name="levels_count", type="integer", nullable=true)
+     * @Gedmo\Versioned
      */
     private $levelsCount;
 
