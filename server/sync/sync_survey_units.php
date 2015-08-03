@@ -224,6 +224,76 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
       // do nothing
     }
 
+    public function compareUnits($mySchoolRegistryNo){
+    	global $db;
+        
+	$sql = "SELECT
+                units.registry_no as registry_no,
+                sources.name as source,
+                units.name as name,
+                units.special_name as special_name,
+                categories.name as category,
+                states.name as state,
+                region_edu_admins.name as region_edu_admin,
+                edu_admins.name as edu_admin,
+                implementation_entities.name as implementation_entity,
+                transfer_areas.name as transfer_area,
+                municipalities.name as municipality,
+                municipality_communities.municipality_community_id as municipality_community,
+                prefectures.name as prefecture,
+                unit_types.name as unit_type,
+                operation_shifts.name as operation_shift,
+                legal_characters.name as legal_character,
+                orientation_types.name as orientation_type,
+                special_types.name as special_type,
+                education_levels.name as education_level,
+                units.postal_code as postal_code,
+                units.area_team_number as area_team_number,
+                units.email as email,
+                units.fax_number as fax_number,
+                units.street_address as street_address,
+                units.phone_number as phone_number,
+                units.levels_count as levels_count,
+                units.groups_count as groups_count,
+                units.students_count as students_count,
+                units.last_sync as last_sync,
+                units.last_update as last_update,
+                units.tax_number as tax_number,
+                tax_offices.name as tax_office,
+                units.creation_fek as creation_fek,
+                units.mm_id as mm_id
+                FROM units
+                left join sources on  units.source_id = sources.source_id
+                left join categories on  units.category_id = categories.category_id
+                left join states on  units.state_id = states.state_id
+                left join education_levels on  units.education_level_id = education_levels.education_level_id
+                left join unit_types on  units.unit_type_id = unit_types.unit_type_id
+                left join region_edu_admins on  units.region_edu_admin_id = region_edu_admins.region_edu_admin_id
+                left join edu_admins on  units.edu_admin_id = edu_admins.edu_admin_id
+                left join transfer_areas on  units.transfer_area_id = transfer_areas.transfer_area_id
+                left join prefectures on  units.prefecture_id = prefectures.prefecture_id
+                left join municipalities on  units.municipality_id = municipalities.municipality_id
+                left join municipality_communities on  units.municipality_community_id = municipality_communities.municipality_community_id
+                left join orientation_types on  units.orientation_type_id = orientation_types.orientation_type_id
+                left join operation_shifts on  units.operation_shift_id = operation_shifts.operation_shift_id
+                left join legal_characters on  units.legal_character_id = legal_characters.legal_character_id
+                left join implementation_entities on  units.implementation_entity_id = implementation_entities.implementation_entity_id
+                left join tax_offices on  units.tax_office_id = tax_offices.tax_office_id
+                left join special_types on  units.special_type_id = special_types.special_type_id
+                left join unit_dns on units.mm_id = unit_dns.mm_id
+                WHERE units.registry_no = '".mysql_escape_string(trim($mySchoolRegistryNo))."' and (units.source_id = 1 OR units.source_id = 5)";
+
+         $stmt = $db->query( $sql );
+         $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+         return $row;
+    }    
+
+    public function transforToNull($param){
+	$param = (Validator::isNull($param)? Validator::toNull($param) : $param) ;
+	return $param;
+   }
+
     public function addUnit($unit) {
         global $db, $Options, $entityManager;
         $this->isError = false;
@@ -399,13 +469,44 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 {
                     $params["mm_id"] = $row["mm_id"];                
                     $lastSync = new \DateTime($row["last_sync"]);
-                    //if(!($lastUpdate instanceof \DateTime) || $lastSync >= $lastUpdate) { 
+
+                    //echo '--- last_sync from database ';
+                    //var_dump($lastSync);
+                    //echo '--- last_update from sync txt file ';
+                    //var_dump($lastUpdate);
+
 		    if(!($lastUpdate instanceof \DateTime) || ($lastSync->format('Y-m-d H:i:s') >= $lastUpdate->format('Y-m-d H:i:s'))) {
 		    // We already have the latest version, skip the unit
+                        //echo ' -CASE1- mm_id = '.$row["mm_id"].' : lastSync(db) >= lastUpdate(txt) OR lastUpdate(txt) not DateTime format- '. PHP_EOL;
                         $this->blockRowsSkiped++;
                         $this->totalRowsSkipped++;
                         return true;
                     }
+
+                 	$dbUnitData =	$paramsCleared = $checkData = null;                     
+                 	$dbUnitData = $this->compareUnits($unit["RegistryNo"]);                
+                 	foreach ($params as $key => $parameter){
+                 		$paramsCleared[$key] = $this->transforToNull($parameter);
+                 	}
+
+                	$paramsCleared["municipality_community"] = (string)$paramsCleared["municipality_community"];         
+                	$checkData = array_diff_assoc($paramsCleared,$dbUnitData);
+               
+               		// var_dump($checkData);
+                	if ((count($checkData) == 1) && (array_key_exists('last_sync', $checkData))){
+                        	echo ' -CASE2- mm_id = '.$row["mm_id"].' : lastSync(txt) is only changed key/value '. PHP_EOL;
+                        	$this->blockRowsSkiped++;
+                        	$this->totalRowsSkipped++;
+                        	return true;
+                        }
+
+                	if ((count($checkData) == 2) && (array_key_exists('last_update', $checkData))){
+		 		echo  ' -CASE3- mm_id = '.$row["mm_id"].' : lastSync(txt) AND lastUpdate(txt) is only changed key/value '. PHP_EOL;
+                        	$this->blockRowsSkiped++;
+                        	$this->totalRowsSkipped++;
+                        	return true;
+			}    
+
                 }
 
                 $curl = curl_init($Options["ServerURL"]."/units");
