@@ -470,11 +470,6 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                     $params["mm_id"] = $row["mm_id"];                
                     $lastSync = new \DateTime($row["last_sync"]);
 
-                    //echo '--- last_sync from database ';
-                    //var_dump($lastSync);
-                    //echo '--- last_update from sync txt file ';
-                    //var_dump($lastUpdate);
-
 		    if(!($lastUpdate instanceof \DateTime) || ($lastSync->format('Y-m-d H:i:s') >= $lastUpdate->format('Y-m-d H:i:s'))) {
 		    // We already have the latest version, skip the unit
                         //echo ' -CASE1- mm_id = '.$row["mm_id"].' : lastSync(db) >= lastUpdate(txt) OR lastUpdate(txt) not DateTime format- '. PHP_EOL;
@@ -492,7 +487,6 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 	$paramsCleared["municipality_community"] = (string)$paramsCleared["municipality_community"];         
                 	$checkData = array_diff_assoc($paramsCleared,$dbUnitData);
                
-               		// var_dump($checkData);
                 	if ((count($checkData) == 1) && (array_key_exists('last_sync', $checkData))){
                         	echo ' -CASE2- mm_id = '.$row["mm_id"].' : lastSync(txt) is only changed key/value '. PHP_EOL;
                         	$this->blockRowsSkiped++;
@@ -506,6 +500,18 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                         	$this->totalRowsSkipped++;
                         	return true;
 			}    
+
+                        //var_dump($checkData);
+                        //echo '-------------';
+                        //var_dump(count($checkData));
+                        //echo '-------------';
+                        //var_dump((count($checkData) == 2 ) && (array_key_exists('last_update', $checkData)));
+                        //echo '-------------';
+                        //var_dump($dbUnitData);
+                        //echo '-------------';
+                        //var_dump($params);
+                        //echo '-------------';
+                        //var_dump($paramsCleared);
 
                 }
 

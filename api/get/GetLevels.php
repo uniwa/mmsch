@@ -478,279 +478,132 @@ header("Content-Type: text/html; charset=utf-8");
  *
  */
 
-function GetLevels(
-    $level, $unit,
-    $pagesize, $page, $orderby, $ordertype, $searchtype
-)
-{
-    global $db;
+function GetLevels( $level, $unit,
+                    $pagesize, $page, $orderby, $ordertype, $searchtype) {
+    
+    global $entityManager, $app;
 
-    $filter = array();
-    $result = array();
+    $qb = $entityManager->createQueryBuilder();
+    $result = array();  
 
     $result["data"] = array();
-
-    $result["method"] = __FUNCTION__;
-
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
     $params = loadParameters();
 
-    try
-    {
-//======================================================================================================================
-//= Paging
-//======================================================================================================================
+    try {
 
-        if ( Validator::Missing('searchtype', $params) )
-            $searchtype = SearchEnumTypes::ContainAll ;
-        else if ( SearchEnumTypes::isValidValue( $searchtype ) || SearchEnumTypes::isValidName( $searchtype ) )
-            $searchtype = SearchEnumTypes::getValue($searchtype);
-        else
-            throw new Exception(ExceptionMessages::InvalidSearchType." : ".$searchtype, ExceptionCodes::InvalidSearchType);
-    
+//$page - $pagesize - $searchtype - $ordertype =================================
        $page = Pagination::getPage($page, $params);
-       $pagesize = Pagination::getPagesize($pagesize, $params, true);   
+       $pagesize = Pagination::getPagesize($pagesize, $params);     
+       $searchtype = Filters::getSearchType($searchtype, $params);
+       $ordertype =  Filters::getOrderType($ordertype, $params);
 
-//======================================================================================================================
-//= $level
-//======================================================================================================================
-
-        if ( Validator::Exists('level', $params) )
-        {
-            $table_name = "levels";
-            $table_column_id = "level_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($level);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                $paramWordsFilters = array();
-
-                if ( Validator::isNull($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                {
-                    if ( $searchtype == SearchEnumTypes::Exact )
-                        $paramWordsFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                    else if ( $searchtype == SearchEnumTypes::Contain )
-                        $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
-                    else
-                    {
-                        $words = Validator::toArray($values, " ");
-
-                        foreach ($words as $word)
-                        {
-                            switch ($searchtype)
-                            {
-                                case SearchEnumTypes::ContainAll :
-                                case SearchEnumTypes::ContainAny :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::StartWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::EndWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word) );
-                                    break;
-                            }
-                        }
-                    }
-                }
-                else
-                    throw new Exception(ExceptionMessages::InvalidLevelType." : ".$values, ExceptionCodes::InvalidLevelType);
-
-                switch ($searchtype)
-                {
-                    case SearchEnumTypes::ContainAny :
-                        $paramFilters[] = "(" . implode(" OR ", $paramWordsFilters) . ")";
-                        break;
-                    default :
-                        $paramFilters[] = "(" . implode(" AND ", $paramWordsFilters) . ")";
-                        break;
-                }
-
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $unit
-//======================================================================================================================
-
-        if ( Validator::Exists('unit', $params) )
-        {
-            $table_name = "units";
-            $table_column_id = "mm_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($unit);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                else
-                    throw new Exception(ExceptionMessages::InvalidUnitType." : ".$values, ExceptionCodes::InvalidUnitType);
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $ordertype
-//======================================================================================================================
-
-        if ( Validator::Missing('ordertype', $params) )
-            $ordertype = OrderEnumTypes::ASC ;
-        else if ( OrderEnumTypes::isValidValue( $ordertype ) || OrderEnumTypes::isValidName( $ordertype ) )
-            $ordertype = OrderEnumTypes::getValue($ordertype);
+//$orderby======================================================================
+       $columns = array(
+                        "l.levelId"        => "level_id",
+                        "l.name"           => "level",
+                        "l.groupsCount"    => "groups_count",
+                        "l.studentsCount"  => "students_count",
+                        "u.mmId"           => "mm_id",
+                        "u.registryNo"     => "registry_no",
+                        "u.name"           => "unit_name",
+                        "u.specialName"    => "special_unit_name"      
+                       );
+       
+       if ( Validator::Missing('orderby', $params) )
+            $orderby = "level";
         else
-            throw new Exception(ExceptionMessages::InvalidOrderType." : ".$ordertype, ExceptionCodes::InvalidOrderType);
-
-//======================================================================================================================
-//= $orderby
-//======================================================================================================================
-
-        if ( Validator::Exists('orderby', $params) )
-        {
-            $columns = array(
-                "level_id",
-                "level",
-                "groups_count",
-                "students_count",
-                "mm_id",
-                "registry_no",
-                "unit_name",
-                "special_unit_name"
-            );
-
+        {   
+            $orderby = Validator::ToLower($orderby);
             if (!in_array($orderby, $columns))
                 throw new Exception(ExceptionMessages::InvalidOrderBy." : ".$orderby, ExceptionCodes::InvalidOrderBy);
+        } 
+
+//$level========================================================================
+        if (Validator::Exists('level', $params)){
+                CRUDUtils::setFilter($qb, $level, "l", "levelId", "name", "id,value", ExceptionMessages::InvalidLevelType, ExceptionCodes::InvalidLevelType);
         }
-        else
-            $orderby = "level";
 
-//======================================================================================================================
-//= E X E C U T E
-//======================================================================================================================
+//$unit=========================================================================
+        if (Validator::Exists('unit', $params)){
+                CRUDUtils::setFilter($qb, $unit, "u", "mmId", "name", "id,value", ExceptionMessages::InvalidUnitType, ExceptionCodes::InvalidUnitType);
+        }
+  
+//execution=====================================================================
+        $qb->select('l,u,g');
+        $qb->from('Levels','l');
+        $qb->leftjoin('l.mm','u');
+        $qb->leftjoin('l.groups','g');
+        $qb->orderBy(array_search($orderby, $columns), $ordertype);
 
-        $sqlSelect = "SELECT
-                        levels.level_id,
-                        levels.name as level,
-                        levels.groups_count,
-                        levels.students_count,
-                        units.mm_id,
-                        units.registry_no,
-                        units.name as unit_name,
-                        units.special_name as special_unit_name
-                     ";
+//pagination and results========================================================      
+        $results = new Doctrine\ORM\Tools\Pagination\Paginator($qb->getQuery());
+        $result["total"] = count($results);
+        $results->getQuery()->setFirstResult($pagesize * ($page-1));
+        $pagesize!==Parameters::AllPageSize ? $results->getQuery()->setMaxResults($pagesize) : null;
 
-        $sqlFrom   = "FROM levels
-                        LEFT JOIN units on levels.mm_id = units.mm_id";
-
-        $sqlWhere = (count($filter) > 0 ? " WHERE " . implode(" AND ", $filter) : "" );
-        $sqlOrder = " ORDER BY ". $orderby ." ". $ordertype;
-        $sqlLimit = ($page && $pagesize) ? " LIMIT ".(($page - 1) * $pagesize).", ".$pagesize : "";
-
-
-        $sql = "SELECT count(*) as total " . $sqlFrom . $sqlWhere;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetch(PDO::FETCH_ASSOC);
-        $result["total"] = $rows["total"];
-
-
-        $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder . $sqlLimit;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $result["count"] = $stmt->rowCount();
-
-
-        $ids = "'0'";
-        foreach ($rows as $row)
+//data results==================================================================       
+        $count = 0;
+        foreach ($results as $row)
         {
-            $ids .= ($ids ? ", " : "") . "'".$row["level_id"]."'";
+
+            $data = array(
+                            "level_id"        => $row->getLevelId(),
+                            "level"           => $row->getName(),
+                            "groups_count"    => $row->getGroupsCount(), 
+                            "students_count"  => $row->getStudentsCount()  
+                          );
+            
+            //UNITS results=====================================================
+            $data["unit"] = array();
+            $data["unit"] = array(  "mm_id"             => (int)$row->getMm()->getMmId(),
+                                    "registry_no"       => $row->getMm()->getRegistryNo(),
+                                    "unit_name"         => $row->getMm()->getName(),
+                                    "special_unit_name" => $row->getMm()->getSpecialName()
+                                 );
+            
+                $data["groups"] = array();
+                foreach ($row->getGroups() as $rowGroup)
+                {
+                //LEVELS results================================================            
+                $data["groups"][] = array(  "group_id"       => $rowGroup->getGroupId(),
+                                           "group"          => $rowGroup->getName(),
+                                           "students_count" => $rowGroup->getStudentsCount()
+                                       );
+                }
+
+            $count++;
+            $result["data"][] = $data;
         }
-
-        $sqlSelect = "SELECT
-                        groups.group_id,
-                        groups.name as 'group',
-                        groups.students_count,
-                        groups.level_id,
-                        groups.mm_id
-                     ";
-
-        $sqlFrom   = "FROM groups";
-
-        $sqlWhere = " WHERE groups.level_id in (".$ids.")";
-        $sqlOrder = " ORDER BY groups.mm_id ASC, groups.name ASC";
-
-        $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $groups_stmt = $db->query( $sql );
-        $array_groups = $groups_stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        foreach ($array_groups as $group)
-        {
-            $groups[ $group["mm_id"] ][ $group["level_id"] ][] = $group;
-        }
-
-
-        foreach ($rows as $row)
-        {
-            $levels["groups"] = array();
-            foreach ($groups[ $row["mm_id"] ][ $row["level_id"] ] as $group)
-            {
-                $levels["groups"][] = array(
-                    "group_id"       => $group["group_id"] ? (int)$group["group_id"] : null,
-                    "group"          => $group["group"],
-                    "students_count" => $group["students_count"] ? (int)$group["students_count"] : null,
-                );
-            }
-
-            $result["data"][] = array(
-                "level_id"          => $row["level_id"] ? (int)$row["level_id"] : null,
-                "level"             => $row["level"],
-                "groups_count"      => $row["groups_count"] ? (int)$row["groups_count"] : null,
-                "students_count"    => $row["students_count"] ? (int)$row["students_count"] : null,
-
-                "unit" => array(
-                    "mm_id"             => $row["mm_id"] ? (int)$row["mm_id"] : null,
-                    "registry_no"       => $row["registry_no"],
-                    "unit_name"         => $row["unit_name"],
-                    "special_unit_name" => $row["special_unit_name"]
-                ),
-
-                "groups" => $levels["groups"]
-
-            );
-        }
-
-        $result["status"] = ExceptionCodes::NoErrors;;
-        $result["message"] = ExceptionMessages::NoErrors;
-    }
-    catch (Exception $e)
-    {
+        $result["count"] = $count;
+   
+//pagination results============================================================     
+        $maxPage = Pagination::getMaxPage($result["total"],$page,$pagesize);
+        $pagination = array( "page" => $page,   
+                             "maxPage" => $maxPage, 
+                             "pagesize" => $pagesize 
+                            );    
+        $result["pagination"]=$pagination;
+        
+//result_messages===============================================================      
+        $result["status"] = ExceptionCodes::NoErrors;
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".__FUNCTION__."]:".$e->getMessage();
-    }
-
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    } 
+    
+//debug=========================================================================
+   if ( Validator::IsTrue( $params["debug"]  ) )
+   {
+        $result["DQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
+        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
+   }
+    
     return $result;
+    
 }
-
+ 
 ?>

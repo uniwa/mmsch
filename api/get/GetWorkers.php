@@ -461,67 +461,73 @@ header("Content-Type: text/html; charset=utf-8");
  *
  */
 
+function GetWorkers( $worker, $registry_no, $worker_specialization, $source,
+                     $pagesize, $page, $orderby, $ordertype, $searchtype) {
+            
+    global $entityManager, $app, $db;
 
-function GetWorkers(
-    $worker, $registry_no, $worker_specialization, $source,
-    $pagesize, $page, $orderby, $ordertype, $searchtype
-)
-{
-    global $db;
-
-    $filter = array();
+    $qb = $entityManager->createQueryBuilder();
     $result = array();
 
     $result["data"] = array();
-
-    $result["method"] = __FUNCTION__;
-
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
     $params = loadParameters();
 
-    try
-    {
-//======================================================================================================================
-//= Paging
-//======================================================================================================================
+    try {
 
-        if ( Validator::Missing('searchtype', $params) )
-            $searchtype = SearchEnumTypes::ContainAll ;
-        else if ( SearchEnumTypes::isValidValue( $searchtype ) || SearchEnumTypes::isValidName( $searchtype ) )
-            $searchtype = SearchEnumTypes::getValue($searchtype);
-        else
-            throw new Exception(ExceptionMessages::InvalidSearchType." : ".$searchtype, ExceptionCodes::InvalidSearchType);
-
+//$page - $pagesize - $searchtype - $ordertype =================================
        $page = Pagination::getPage($page, $params);
-       $pagesize = Pagination::getPagesize($pagesize, $params);
+       $pagesize = Pagination::getPagesize($pagesize, $params);     
+       $searchtype = Filters::getSearchType($searchtype, $params);
+       $ordertype =  Filters::getOrderType($ordertype, $params);
 
-//======================================================================================================================
-//= $worker
-//======================================================================================================================
+//$orderby======================================================================
+       $fullname =  $qb->addOrderBy('w.lastname', $ordertype)->addOrderBy('w.firstname', $ordertype);
 
-        if ( Validator::Exists('worker', $params) )
-        {
-            $table_name = "workers";
-            $table_column_id = "worker_id";
-            $table_column_name = "concat_ws(' ', workers.lastname, workers.firstname)";
-
+       $columns = array(
+                        "w.workerId"                 => "worker_id",
+                        "w.registryNo"               => "registry_no",
+                        "w.lastname"                 => "lastname",
+                        "w.firstname"                => "firstname",
+                        "w.fathername"               => "fathername",
+                        "w.sex"                      => "sex",
+                        "w.taxNumber"                => "tax_number",
+                        "ws.workerSpecializationId"  => "worker_specialization_id",
+                        "ws.name"                    => "worker_specialization",
+                        "s.sourceId"                 => "source_id",
+                        "s.name"                     => "source"
+                       );
+       
+       if ( Validator::Missing('orderby', $params) )
+            $orderby = "fullname";
+        else
+        {   
+            $orderby = Validator::ToLower($orderby);
+            if (!in_array($orderby, $columns))
+                throw new Exception(ExceptionMessages::InvalidOrderBy." : ".$orderby, ExceptionCodes::InvalidOrderBy);
+        } 
+     
+//$worker=======================================================================
+        if (Validator::Exists('worker', $params)){
             $param = Validator::toArray($worker);
-
-            $paramFilters = array();
 
             foreach ($param as $values)
             {
-                $paramWordsFilters = array();
+              $orx = $qb->expr()->orX();
+              $andx = $qb->expr()->andX();
 
                 if ( Validator::isNull($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_name is null";
+                     $andx->add($qb->expr()->isNull("w.workerId"));
                 else if ( Validator::isID($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
+                     $orx->add($qb->expr()->eq("w.workerId", $db->quote(Validator::toID($values))));
+                else if ( Validator::IsValue($values) )
                 {
                     if ( $searchtype == SearchEnumTypes::Exact )
-                        $paramWordsFilters[] = "$table_column_name = ". $db->quote( Validator::toValue($values) );
+                        $orx->add($qb->expr()->eq( $qb->expr()->concat('w.lastname', $qb->expr()->concat($qb->expr()->literal(' '), 'w.firstname')), $db->quote(Validator::toValue($values) )));         
                     else if ( $searchtype == SearchEnumTypes::Contain )
-                        $paramWordsFilters[] = "$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
+                        $orx->add($qb->expr()->like( $qb->expr()->concat('w.lastname', $qb->expr()->concat($qb->expr()->literal(' '), 'w.firstname')), $db->quote('%'.Validator::toValue($values).'%')));
                     else
                     {
                         $words = Validator::toArray($values, " ");
@@ -531,229 +537,116 @@ function GetWorkers(
                             switch ($searchtype)
                             {
                                 case SearchEnumTypes::ContainAll :
+                                    $andx->add($qb->expr()->like( $qb->expr()->concat('w.lastname', $qb->expr()->concat($qb->expr()->literal(' '), 'w.firstname')), $db->quote('%'.Validator::toValue($word).'%')));
+                                    break;
                                 case SearchEnumTypes::ContainAny :
-                                    $paramWordsFilters[] = "$table_column_name like ". $db->quote( '%'.Validator::toValue($word).'%' );
+                                    $orx->add($qb->expr()->like( $qb->expr()->concat('w.lastname', $qb->expr()->concat($qb->expr()->literal(' '), 'w.firstname')), $db->quote('%'.Validator::toValue($word).'%')));                                
                                     break;
                                 case SearchEnumTypes::StartWith :
-                                    $paramWordsFilters[] = "$table_column_name like ". $db->quote( Validator::toValue($word).'%' );
+                                    $orx->add($qb->expr()->like( $qb->expr()->concat('w.lastname', $qb->expr()->concat($qb->expr()->literal(' '), 'w.firstname')), $db->quote(Validator::toValue($word).'%')));                                
                                     break;
                                 case SearchEnumTypes::EndWith :
-                                    $paramWordsFilters[] = "$table_column_name like ". $db->quote( '%'.Validator::toValue($word) );
+                                    $orx->add($qb->expr()->like( $qb->expr()->concat('w.lastname', $qb->expr()->concat($qb->expr()->literal(' '), 'w.firstname')), $db->quote('%'.Validator::toValue($word))));  
                                     break;
                             }
                         }
                     }
                 }
                 else
-                    throw new Exception(ExceptionMessages::InvalidWorkerType." : ".$values, ExceptionCodes::InvalidWorkerType);
+                    throw new Exception(InvalidWorkerType . " : " . $values, InvalidWorkerType);
 
                 switch ($searchtype)
                 {
-                    case SearchEnumTypes::ContainAny :
-                        $paramFilters[] = "(" . implode(" OR ", $paramWordsFilters) . ")";
+                    case Validator::isID($values) :
+                        $qb->orWhere($orx);
+                        break;
+                    case SearchEnumTypes::ContainAll :
+                        $qb->andWhere($andx);
                         break;
                     default :
-                        $paramFilters[] = "(" . implode(" AND ", $paramWordsFilters) . ")";
+                        $qb->andWhere($orx);
                         break;
                 }
 
             }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
         }
 
-//======================================================================================================================
-//= $registry_no
-//======================================================================================================================
+//$registry_no==================================================================
+        if (Validator::Exists('registry_no', $params)){
+             CRUDUtils::setFilter($qb, $registry_no, "w", "registryNo", "registryNo", "null,id,value", ExceptionMessages::InvalidWorkerRegistryNoType, ExceptionCodes::InvalidWorkerRegistryNoType);
+        } 
 
-        if ( Validator::Exists('registry_no', $params) )
-        {
-            $table_name = "workers";
-            $table_column_id = "registry_no";
-            $table_column_name = "registry_no";
-
-            $param = Validator::toArray($registry_no);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                else
-                    throw new Exception(ExceptionMessages::InvalidWorkerRegistryNoType." : ".$values, ExceptionCodes::InvalidWorkerRegistryNoType);
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $worker_specialization
-//======================================================================================================================
-
-        if ( Validator::Exists('worker_specialization', $params) )
-        {
-            $table_name = "worker_specializations";
-            $table_column_id = "worker_specialization_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($worker_specialization);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                else
-                    throw new Exception(ExceptionMessages::InvalidWorkerSpecializationType." : ".$values, ExceptionCodes::InvalidWorkerSpecializationType);
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $source
-//======================================================================================================================
-
-        if ( Validator::Exists('source', $params) )
-        {
-            $table_name = "sources";
-            $table_column_id = "source_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($source);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                else
-                    throw new Exception(ExceptionMessages::InvalidUnitType." : ".$values, ExceptionCodes::InvalidUnitType);
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
+//$worker_specialization========================================================
+        if (Validator::Exists('worker_specialization', $params)){
+             CRUDUtils::setFilter($qb, $worker_specialization, "ws", "workerSpecializationId", "name", "null,id,value", ExceptionMessages::InvalidWorkerSpecializationType, ExceptionCodes::InvalidWorkerSpecializationType);
+        } 
         
-//======================================================================================================================
-//= $ordertype
-//======================================================================================================================
+//$source=======================================================================
+        if (Validator::Exists('source', $params)){
+             CRUDUtils::setFilter($qb, $source, "s", "sourceId", "name", "null,id,value", ExceptionMessages::InvalidUnitType, ExceptionCodes::InvalidUnitType);
+        } 
 
-        if ( Validator::Missing('ordertype', $params) )
-            $ordertype = OrderEnumTypes::ASC ;
-        else if ( OrderEnumTypes::isValidValue( $ordertype ) || OrderEnumTypes::isValidName( $ordertype ) )
-            $ordertype = OrderEnumTypes::getValue($ordertype);
-        else
-            throw new Exception(ExceptionMessages::InvalidOrderType." : ".$ordertype, ExceptionCodes::InvalidOrderType);
+//execution=====================================================================
+        $qb->select('w');
+        $qb->from('Workers','w');
+        $qb->leftjoin('w.workerSpecialization','ws');
+        $qb->leftjoin('w.source','s');
+        $orderby == 'fullname' ? $fullname : $qb->orderBy(array_search($orderby, $columns), $ordertype);
 
-//======================================================================================================================
-//= $orderby
-//======================================================================================================================
-
-        if ( Validator::Exists('orderby', $params) )
+//pagination and results========================================================      
+        $results = new Doctrine\ORM\Tools\Pagination\Paginator($qb->getQuery());
+        $result["total"] = count($results);
+        $results->getQuery()->setFirstResult($pagesize * ($page-1));
+        $pagesize!==Parameters::AllPageSize ? $results->getQuery()->setMaxResults($pagesize) : null;
+        
+//data results==================================================================       
+        $count = 0;
+        foreach ($results as $row)
         {
-            $columns = array(
-                "worker_id",
-                "registry_no",
-                "lastname",
-                "firstname",
-                "fullname",
-                "fathername",
-                "sex",
-                "tax_number",
-                "worker_specialization_id",
-                "worker_specialization",
-                "source_id",
-                "source"
-            );
 
-            if (!in_array($orderby, $columns))
-                throw new Exception(ExceptionMessages::InvalidOrderBy." : ".$orderby, ExceptionCodes::InvalidOrderBy);
-        }
-        else
-            $orderby = "fullname";
-
-//==============================================================================
-
-        $sqlSelect = "SELECT
-                        workers.worker_id,
-                        workers.registry_no,
-                        workers.tax_number,
-                        workers.lastname,
-                        workers.firstname,
-                        concat_ws(' ', workers.lastname, workers.firstname) as fullname,
-                        workers.fathername,
-                        workers.sex,
-                        worker_specializations.worker_specialization_id,
-                        worker_specializations.name as worker_specialization,
-                        sources.source_id, 
-                        sources.name as source
-                     ";
-
-        $sqlFrom   = "FROM workers
-                      LEFT JOIN worker_specializations ON workers.worker_specialization_id = worker_specializations.worker_specialization_id
-                      LEFT JOIN sources ON workers.source_id = sources.source_id";
-
-        $sqlWhere = (count($filter) > 0 ? " WHERE " . implode(" AND ", $filter) : "" );
-        $sqlOrder = " ORDER BY ". $orderby ." ". $ordertype;
-        $sqlLimit = ($page && $pagesize) ? " LIMIT ".(($page - 1) * $pagesize).", ".$pagesize : "";
-
-        $sql = "SELECT count(*) as total " . $sqlFrom . $sqlWhere;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetch(PDO::FETCH_ASSOC);
-        $result["total"] = $rows["total"];
-
-
-        $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder . $sqlLimit;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $result["count"] = $stmt->rowCount();
-
-        foreach ($rows as $row)
-        {
             $result["data"][] = array(
-                "worker_id"                => (int)$row["worker_id"],
-                "registry_no"              => $row["registry_no"],
-                "lastname"                 => $row["lastname"],
-                "firstname"                => $row["firstname"],
-                "fullname"                 => $row["fullname"],
-                "fathername"               => $row["fathername"],
-                "sex"                      => $row["sex"],
-                "tax_number"               => $row["tax_number"],
-                "worker_specialization_id" => $row["worker_specialization_id"] ? (int)$row["worker_specialization_id"] : null,
-                "worker_specialization"    => $row["worker_specialization"],
-                "source_id" => (int)$row["source_id"] ? (int)$row["source_id"] : null,
-                "source"    => $row["source"]
-            );
+                                        "worker_id"                 => $row->getWorkerId(),
+                                        "registry_no"               => $row->getRegistryNo(),
+                                        "lastname"                  => $row->getLastname(),
+                                        "firstname"                 => $row->getFirstname(),
+                                        "fullname"                  => $row->getLastname().' '.$row->getFirstname(),
+                                        "fathername"                => $row->getFathername(),
+                                        "sex"                       => $row->getSex(),
+                                        "tax_number"                => $row->getTaxNumber(),
+                                        "worker_specialization_id"  => Validator::IsNull($row->getWorkerSpecialization()) ? Validator::ToNull() : $row->getWorkerSpecialization()->getWorkerSpecializationId(),
+                                        "worker_specialization"     => Validator::IsNull($row->getWorkerSpecialization()) ? Validator::ToNull() : $row->getWorkerSpecialization()->getName(),
+                                        "source_id"                 => Validator::IsNull($row->getSource()) ? Validator::ToNull() : $row->getSource()->getSourceId(),
+                                        "source"                    => Validator::IsNull($row->getSource()) ? Validator::ToNull() : $row->getSource()->getName()
+                                      );
+            
+            $count++;
+            
         }
-
-        $result["status"] = ExceptionCodes::NoErrors;;
-        $result["message"] = ExceptionMessages::NoErrors;
-    }
-    catch (Exception $e)
-    {
+        $result["count"] = $count;
+        
+//pagination results============================================================     
+        $maxPage = Pagination::getMaxPage($result["total"],$page,$pagesize);
+        $pagination = array( "page" => $page,   
+                             "maxPage" => $maxPage, 
+                             "pagesize" => $pagesize 
+                            );    
+        $result["pagination"]=$pagination;
+        
+//result_messages===============================================================      
+        $result["status"] = ExceptionCodes::NoErrors;
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".__FUNCTION__."]:".$e->getMessage();
-    }
-
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    } 
+    
+//debug=========================================================================
+   if ( Validator::IsTrue( $params["debug"]  ) )
+   {
+        $result["DQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
+        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
+   }
+    
     return $result;
 }
 

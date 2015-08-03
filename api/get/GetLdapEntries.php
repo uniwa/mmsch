@@ -250,4 +250,5 @@ function GetLdapEntries( $mm_id ) {
     } 
     return $result;
 }
+
 ?>

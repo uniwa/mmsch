@@ -68,7 +68,7 @@ $app->map('/transfer_areas', Authentication, UserRolesPermission, TransferAreasC
 $app->map('/circuit_types', Authentication, UserRolesPermission, CircuitTypesController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/cpes', Authentication, UserRolesPermission, CpesController)
-    ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+    ->via(MethodTypes::GET);
 $app->map('/workers', Authentication, UserRolesPermission, WorkersController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/circuits', Authentication, UserRolesPermission, CircuitsController)
@@ -105,6 +105,8 @@ $app->map('/ext_log_entries', Authentication, UserRolesPermission, ExtLogEntries
 $app->map('/check_required_values', Authentication, UserRolesPermission, CheckRequiredValuesController)
     ->via(MethodTypes::GET);
 $app->map('/units_old', Authentication, UserRolesPermission, UnitsOldController)
+    ->via(MethodTypes::GET);
+$app->map('/del_ext_log', Authentication, UserRolesPermission, DelExtLog)
     ->via(MethodTypes::GET);
 
 $app->get('/docs/*', function () use ($app) {
@@ -896,8 +898,8 @@ function RelationsController()
     {
         case MethodTypes::GET :
             $result = GetRelations(
-                $params["host_unit"],
-                $params["guest_unit"],
+                $params["host_mm_id"],
+                $params["guest_mm_id"],
                 $params["relation_type"],
                 $params["pagesize"],
                 $params["page"],
@@ -1172,6 +1174,7 @@ function TransferAreaMunicipalitiesController()
     {
         case MethodTypes::GET :
             $result = GetTransferAreaMunicipalities(
+                $params["transfer_area_municipality_id"],
                 $params["transfer_area"],
                 $params["municipality"],
                 $params["pagesize"],
@@ -1297,13 +1300,7 @@ function CpesController()
     {
         case MethodTypes::GET :
             $result = GetCpes(
-                $params["cpe"],
-                $params["unit"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"]
+                $params["unit"]
             );
             break;
     }
@@ -1485,7 +1482,8 @@ function WorkersController()
             break;
     }
 
-    $app->response()->setStatus(200);
+    PrepareResponse();
+
     $app->response()->setBody( toGreek( json_encode( $result ) ) );
 }
 
@@ -1807,6 +1805,7 @@ function UnitDnsController()
         case MethodTypes::GET :
             $result = GetUnitDns(
                 $params["unit_dns"],
+                $params["unit_dns_extra"],
                 $params["unit_ext_dns"],
                 $params["unit"],
                 $params["pagesize"],
@@ -2207,6 +2206,22 @@ function UnitsOldController()
                 $params["searchtype"],
                 $params["export"]
             );
+            break;
+    }
+
+    PrepareResponse();
+    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+}
+
+function DelExtLog() {
+    global $app;
+    
+    $params = loadParameters();
+    
+    switch ( strtoupper( $app->request()->getMethod() ) )
+    {
+        case MethodTypes::GET :
+            $result = DeleteExtLog();
             break;
     }
 

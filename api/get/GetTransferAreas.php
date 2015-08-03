@@ -401,256 +401,118 @@ header("Content-Type: text/html; charset=utf-8");
  *
  */
 
+function GetTransferAreas( $transfer_area, $edu_admin, $region_edu_admin,
+                           $pagesize, $page, $orderby, $ordertype, $searchtype) {
+    
+    global $entityManager, $app;
 
-function GetTransferAreas(
-    $transfer_area, $edu_admin, $region_edu_admin,
-    $pagesize, $page, $orderby, $ordertype, $searchtype
-)
-{
-    global $db;
-
-    $filter = array();
-    $result = array();
+    $qb = $entityManager->createQueryBuilder();
+    $result = array();  
 
     $result["data"] = array();
-
-    $result["method"] = __FUNCTION__;
-
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
     $params = loadParameters();
 
-    try
-    {
-//======================================================================================================================
-//= Paging
-//======================================================================================================================
+    try {
 
-        if ( Validator::Missing('searchtype', $params) )
-            $searchtype = SearchEnumTypes::ContainAll ;
-        else if ( SearchEnumTypes::isValidValue( $searchtype ) || SearchEnumTypes::isValidName( $searchtype ) )
-            $searchtype = SearchEnumTypes::getValue($searchtype);
-        else
-            throw new Exception(ExceptionMessages::InvalidSearchType." : ".$searchtype, ExceptionCodes::InvalidSearchType);
-
+//$page - $pagesize - $searchtype - $ordertype =================================
        $page = Pagination::getPage($page, $params);
-       $pagesize = Pagination::getPagesize($pagesize, $params, true);   
+       $pagesize = Pagination::getPagesize($pagesize, $params, true);     
+       $searchtype = Filters::getSearchType($searchtype, $params);
+       $ordertype =  Filters::getOrderType($ordertype, $params);
 
-//======================================================================================================================
-//= $edu_admin
-//======================================================================================================================
-
-        if ( Validator::Exists('transfer_area', $params) )
-        {
-            $table_name = "transfer_areas";
-            $table_column_id = "transfer_area_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($transfer_area);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                $paramWordsFilters = array();
-
-                if ( Validator::isNull($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramWordsFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                {
-                    if ( $searchtype == SearchEnumTypes::Exact )
-                        $paramWordsFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                    else if ( $searchtype == SearchEnumTypes::Contain )
-                        $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($values).'%' );
-                    else
-                    {
-                        $words = Validator::toArray($values, " ");
-
-                        foreach ($words as $word)
-                        {
-                            switch ($searchtype)
-                            {
-                                case SearchEnumTypes::ContainAll :
-                                case SearchEnumTypes::ContainAny :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::StartWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( Validator::toValue($word).'%' );
-                                    break;
-                                case SearchEnumTypes::EndWith :
-                                    $paramWordsFilters[] = "$table_name.$table_column_name like ". $db->quote( '%'.Validator::toValue($word) );
-                                    break;
-                            }
-                        }
-                    }
-                }
-                else
-                    throw new Exception(ExceptionMessages::InvalidTransferAreaType." : ".$values, ExceptionCodes::InvalidTransferAreaType);
-
-                switch ($searchtype)
-                {
-                    case SearchEnumTypes::ContainAny :
-                        $paramFilters[] = "(" . implode(" OR ", $paramWordsFilters) . ")";
-                        break;
-                    default :
-                        $paramFilters[] = "(" . implode(" AND ", $paramWordsFilters) . ")";
-                        break;
-                }
-
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $edu_admin
-//======================================================================================================================
-
-        if ( Validator::Exists('edu_admin', $params) )
-        {
-            $table_name = "edu_admins";
-            $table_column_id = "edu_admin_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($edu_admin);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                else
-                    throw new Exception(ExceptionMessages::InvalidRegionEduAdminType." : ".$values, ExceptionCodes::InvalidRegionEduAdminType);
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $region_edu_admin
-//======================================================================================================================
-
-        if ( Validator::Exists('region_edu_admin', $params) )
-        {
-            $table_name = "region_edu_admins";
-            $table_column_id = "region_edu_admin_id";
-            $table_column_name = "name";
-
-            $param = Validator::toArray($region_edu_admin);
-
-            $paramFilters = array();
-
-            foreach ($param as $values)
-            {
-                if ( Validator::isNull($values) )
-                    $paramFilters[] = "$table_name.$table_column_name is null";
-                else if ( Validator::isID($values) )
-                    $paramFilters[] = "$table_name.$table_column_id = ". $db->quote( Validator::toID($values) );
-                else if ( Validator::isValue($values) )
-                    $paramFilters[] = "$table_name.$table_column_name = ". $db->quote( Validator::toValue($values) );
-                else
-                    throw new Exception(ExceptionMessages::InvalidRegionEduAdminType." : ".$values, ExceptionCodes::InvalidRegionEduAdminType);
-            }
-
-            $filter[] = "(" . implode(" OR ", $paramFilters) . ")";
-        }
-
-//======================================================================================================================
-//= $ordertype
-//======================================================================================================================
-
-        if ( Validator::Missing('ordertype', $params) )
-            $ordertype = OrderEnumTypes::ASC ;
-        else if ( OrderEnumTypes::isValidValue( $ordertype ) || OrderEnumTypes::isValidName( $ordertype ) )
-            $ordertype = OrderEnumTypes::getValue($ordertype);
+//$orderby======================================================================
+       $columns = array(
+                        "ta.transferAreaId"     => "transfer_area_id",
+                        "ta.name"               => "transfer_area",
+                        "ea.eduAdminId"         => "edu_admin_id",
+                        "ea.name"               => "edu_admin",
+                        "rea.regionEduAdminId"  => "region_edu_admin_id" ,
+                        "rea.name"              => "region_edu_admin",
+                        );
+       
+       if ( Validator::Missing('orderby', $params) )
+            $orderby = "transfer_area";
         else
-            throw new Exception(ExceptionMessages::InvalidOrderType." : ".$ordertype, ExceptionCodes::InvalidOrderType);
-
-//======================================================================================================================
-//= $orderby
-//======================================================================================================================
-
-        if ( Validator::Exists('orderby', $params) )
-        {
-            $columns = array(
-                "transfer_area_id",
-                "transfer_area",
-                "edu_admin_id",
-                "edu_admin",
-                "region_edu_admin_id",
-                "region_edu_admin"
-            );
-
+        {   
+            $orderby = Validator::ToLower($orderby);
             if (!in_array($orderby, $columns))
                 throw new Exception(ExceptionMessages::InvalidOrderBy." : ".$orderby, ExceptionCodes::InvalidOrderBy);
-        }
-        else
-            $orderby = "edu_admin";
+        }  
 
-//======================================================================================================================
-//= E X E C U T E
-//======================================================================================================================
+//$transfer_area================================================================
+        if (Validator::Exists('transfer_area', $params)){
+             CRUDUtils::setFilter($qb, $transfer_area, "ta", "transferAreaId", "name", "id,value", ExceptionMessages::InvalidTransferAreaType, ExceptionCodes::InvalidTransferAreaType);
+        } 
+        
+//$edu_admin====================================================================
+        if (Validator::Exists('edu_admin', $params)){
+             CRUDUtils::setFilter($qb, $edu_admin, "ea", "eduAdminId", "name", "null,id,value", ExceptionMessages::InvalidEduAdminType, ExceptionCodes::InvalidEduAdminType);
+        } 
+        
+//$region_edu_admin=============================================================
+        if (Validator::Exists('region_edu_admin', $params)){
+            CRUDUtils::setFilter($qb, $region_edu_admin, "rea", "regionEduAdminId", "name", "null,id,value", ExceptionMessages::InvalidRegionEduAdminType, ExceptionCodes::InvalidRegionEduAdminType);
+        } 
 
-        $sqlSelect = "SELECT
-                        transfer_areas.transfer_area_id,
-                        transfer_areas.name as transfer_area,
-                        edu_admins.edu_admin_id,
-                        edu_admins.name as edu_admin,
-                        region_edu_admins.region_edu_admin_id,
-                        region_edu_admins.name as region_edu_admin
-                     ";
+//execution=====================================================================
+        $qb->select('ta,ea,rea');
+        $qb->from('TransferAreas','ta');
+        $qb->leftjoin('ta.eduAdmin','ea');
+        $qb->leftjoin('ea.regionEduAdmin','rea');
+        $qb->orderBy(array_search($orderby, $columns), $ordertype);
 
-        $sqlFrom   = "FROM transfer_areas
-                      LEFT JOIN edu_admins ON transfer_areas.edu_admin_id = edu_admins.edu_admin_id
-                      LEFT JOIN region_edu_admins ON edu_admins.region_edu_admin_id = region_edu_admins.region_edu_admin_id";
+//pagination and results========================================================      
+        $results = new Doctrine\ORM\Tools\Pagination\Paginator($qb->getQuery());
+        $result["total"] = count($results);
+        $results->getQuery()->setFirstResult($pagesize * ($page-1));
+        $pagesize!==Parameters::AllPageSize ? $results->getQuery()->setMaxResults($pagesize) : null;
 
-
-        $sqlWhere = (count($filter) > 0 ? " WHERE " . implode(" AND ", $filter) : "" );
-        $sqlOrder = " ORDER BY ". $orderby ." ". $ordertype;
-        $sqlLimit = ($page && $pagesize) ? " LIMIT ".(($page - 1) * $pagesize).", ".$pagesize : "";
-
-
-        $sql = "SELECT count(*) as total " . $sqlFrom . $sqlWhere;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetch(PDO::FETCH_ASSOC);
-        $result["total"] = $rows["total"];
-
-
-        $sql = $sqlSelect . $sqlFrom . $sqlWhere . $sqlOrder . $sqlLimit;
-        //echo "<br><br>".$sql."<br><br>";
-
-        $stmt = $db->query( $sql );
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $result["count"] = $stmt->rowCount();
-
-        foreach ($rows as $row)
+//data results==================================================================       
+        $count = 0;
+        foreach ($results as $row)
         {
+
             $result["data"][] = array(
-                "transfer_area_id"    => (int)$row["transfer_area_id"],
-                "transfer_area"       => $row["transfer_area"],
-                "edu_admin_id"        => $row["edu_admin_id"]? (int)$row["edu_admin_id"] : null,
-                "edu_admin"           => $row["edu_admin"],
-                "region_edu_admin_id" => $row["region_edu_admin_id"]? (int)$row["region_edu_admin_id"] : null,
-                "region_edu_admin"    => $row["region_edu_admin"]
-            );
+                                        "transfer_area_id"        => $row->getTransferAreaId(),
+                                        "transfer_area"           => $row->getName(),                
+                                        "edu_admin_id"            => Validator::IsNull($row->getEduAdmin()) ? Validator::ToNull() : $row->getEduAdmin()->getEduAdminId(),
+                                        "edu_admin"               => Validator::IsNull($row->getEduAdmin()) ? Validator::ToNull() : $row->getEduAdmin()->getName(),
+                                        "region_edu_admin_id"     => Validator::IsNull($row->getEduAdmin()) || Validator::IsNull($row->getEduAdmin()->getRegionEduAdmin()) ? Validator::ToNull() : $row->getEduAdmin()->getRegionEduAdmin()->getRegionEduAdminId(),
+                                        "region_edu_admin"        => Validator::IsNull($row->getEduAdmin()) || Validator::IsNull($row->getEduAdmin()->getRegionEduAdmin()) ? Validator::ToNull() : $row->getEduAdmin()->getRegionEduAdmin()->getName()
+                    
+                                     );
+            $count++;
         }
-
+        $result["count"] = $count;
+   
+//pagination results============================================================     
+        $maxPage = Pagination::getMaxPage($result["total"],$page,$pagesize);
+        $pagination = array( "page" => $page,   
+                             "maxPage" => $maxPage, 
+                             "pagesize" => $pagesize 
+                            );    
+        $result["pagination"]=$pagination;
+        
+//result_messages===============================================================      
         $result["status"] = ExceptionCodes::NoErrors;
-        $result["message"] = ExceptionMessages::NoErrors;
-    }
-    catch (Exception $e)
-    {
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".__FUNCTION__."]:".$e->getMessage();
-    }
-
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    } 
+    
+//debug=========================================================================
+   if ( Validator::IsTrue( $params["debug"]  ) )
+   {
+        $result["DQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
+        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
+   }
+    
     return $result;
+    
 }
+
 ?>
