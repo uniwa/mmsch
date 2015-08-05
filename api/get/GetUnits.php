@@ -1191,16 +1191,16 @@ function GetUnits(   $mm_id, $registry_no, $source, $name, $special_name, $state
         
 //joins=========================================================================
         
-    //        $qb->leftjoin('u.hostRelations', 'hr');
-    //        $qb->leftjoin('hr.relationType', 'rt');
-    //        $qb->leftjoin('u.unitDns', 'ud');
-    //        $qb->leftjoin('u.levels', 'l');
-    //        $qb->leftjoin('l.groups', 'g');
-    //        $qb->leftjoin('u.unitWorkers', 'uw');
-    //        $qb->leftjoin('uw.worker', 'w');
-    //        $qb->leftjoin('uw.workerPosition', 'wp');
-    //        $qb->leftjoin('w.workerSpecialization', 'ws');
-    //        $qb->leftjoin('w.source', 's');
+//            $qb->leftjoin('u.hostRelations', 'hr');
+//            $qb->leftjoin('hr.relationType', 'rt');
+//            $qb->leftjoin('u.unitDns', 'ud');
+//            $qb->leftjoin('u.levels', 'l');
+//            $qb->leftjoin('l.groups', 'g');
+//            $qb->leftjoin('u.unitWorkers', 'uw');
+//            $qb->leftjoin('uw.worker', 'w');
+//            $qb->leftjoin('uw.workerPosition', 'wp');
+//            $qb->leftjoin('w.workerSpecialization', 'ws');
+//            $qb->leftjoin('w.source', 's');
 
 //pagination and results========================================================
         $qb->orderBy(array_search($orderby, UnitsExt::getColumns() ), $ordertype);
@@ -1231,15 +1231,15 @@ function GetUnits(   $mm_id, $registry_no, $source, $name, $special_name, $state
                             "category"                  => Validator::IsNull($unit->getCategory()) ? Validator::ToNull() : $unit->getCategory()->getName(),
                             "state_id"                  => Validator::IsNull($unit->getState()) ? Validator::ToNull() : $unit->getState()->getStateId(),
                             "state"                     => Validator::IsNull($unit->getState()) ? Validator::ToNull() : $unit->getState()->getName(),
-                            "area_team_number"      => $unit->getAreaTeamNumber(),
+                            //"area_team_number"      => $unit->getAreaTeamNumber(),
                             "street_address"        => $unit->getStreetAddress(),
                             "postal_code"           => $unit->getPostalCode(),
                             "fax_number"            => $unit->getFaxNumber(),
                             "phone_number"          => $unit->getPhoneNumber(),
                             "email"                 => $unit->getEmail(),
-                            "students_count"        => $unit->getStudentsCount(),
-                            "groups_count"          => $unit->getGroupsCount(),
-                            "levels_count"          => $unit->getLevelsCount(),
+                            //"students_count"        => $unit->getStudentsCount(),
+                            //"groups_count"          => $unit->getGroupsCount(),
+                            //"levels_count"          => $unit->getLevelsCount(),
                             "tax_number"            => $unit->getTaxNumber(),
                             "region_edu_admin_id"       => Validator::IsNull($unit->getRegionEduAdmin()) ? Validator::ToNull() : $unit->getRegionEduAdmin()->getRegionEduAdminId(),
                             "region_edu_admin"          => Validator::IsNull($unit->getRegionEduAdmin()) ? Validator::ToNull() : $unit->getRegionEduAdmin()->getName(),
@@ -1282,27 +1282,27 @@ function GetUnits(   $mm_id, $registry_no, $source, $name, $special_name, $state
             
             if($app->request->userRoles != 'GUEST') {
                 //LEVELS results================================================
-                $data["levels"] = array();
-                foreach ($unit->getLevels() as $level) {
-                    $levels = array(    "level_id"       => $level->getLevelId(),
-                                        "name"           => $level->getName(),
-                                        "groups_count"   => $level->getGroupsCount(),
-                                        "students_count" => $level->getStudentsCount()
-                                    );
-
-                    //LEVELS-GROUPS results=====================================
-                    $levels["groups"] = array();
-                    foreach ($level->getGroups() as $group) {
-                        $levels["groups"][] = array(
-                                                        "group_id"       => $group->getGroupId(),
-                                                        "name"           => $group->getName(),
-                                                        "students_count" => $group->getStudentsCount()
-                                                    );
-
-                    }    
-
-                $data["levels"][] = $levels;
-                }
+//                $data["levels"] = array();
+//                foreach ($unit->getLevels() as $level) {
+//                    $levels = array(    "level_id"       => $level->getLevelId(),
+//                                        "name"           => $level->getName(),
+//                                        "groups_count"   => $level->getGroupsCount(),
+//                                        "students_count" => $level->getStudentsCount()
+//                                    );
+//
+//                    //LEVELS-GROUPS results=====================================
+//                    $levels["groups"] = array();
+//                    foreach ($level->getGroups() as $group) {
+//                        $levels["groups"][] = array(
+//                                                        "group_id"       => $group->getGroupId(),
+//                                                        "name"           => $group->getName(),
+//                                                        "students_count" => $group->getStudentsCount()
+//                                                    );
+//
+//                    }    
+//
+//                $data["levels"][] = $levels;
+//                }
 
                 //HOST_RELATIONS results========================================
                 $data["host_relations"] = array();

@@ -31,10 +31,11 @@ class UnitsExt {
     $objPHPExcel->getActiveSheet()->setCellValue('H1', "Διεύθυνση");
     $objPHPExcel->getActiveSheet()->setCellValue('I1', "Ταχυδρομικός Κώδικας",PHPExcel_Cell_DataType::TYPE_STRING);
     $objPHPExcel->getActiveSheet()->setCellValue('J1', "Αριθμός Φορολογικού Μητρώου",PHPExcel_Cell_DataType::TYPE_STRING);
-    $objPHPExcel->getActiveSheet()->setCellValue('K1', "Ομάδα Σχολείων");
-    $objPHPExcel->getActiveSheet()->setCellValue('L1', "Πλήθος των Τάξεων");
-    $objPHPExcel->getActiveSheet()->setCellValue('M1', "Πλήθος των Τμημάτων");
-    $objPHPExcel->getActiveSheet()->setCellValue('N1', "Πλήθος των Μαθητών");
+//    $objPHPExcel->getActiveSheet()->setCellValue('K1', "Ομάδα Σχολείων");
+//    $objPHPExcel->getActiveSheet()->setCellValue('L1', "Πλήθος των Τάξεων");
+//    $objPHPExcel->getActiveSheet()->setCellValue('M1', "Πλήθος των Τμημάτων");
+//    $objPHPExcel->getActiveSheet()->setCellValue('N1', "Πλήθος των Μαθητών");
+    $objPHPExcel->getActiveSheet()->setCellValue('N1', "Δήμοτική Ενότητα");
     $objPHPExcel->getActiveSheet()->setCellValue('O1', "Γεωγραφικό Πλάτος",PHPExcel_Cell_DataType::TYPE_STRING);
     $objPHPExcel->getActiveSheet()->setCellValue('P1', "Γεωγραφικό Μήκος",PHPExcel_Cell_DataType::TYPE_STRING);
     $objPHPExcel->getActiveSheet()->setCellValue('Q1', "Κτηριακή Θέση");
@@ -77,10 +78,11 @@ class UnitsExt {
         $objPHPExcel->getActiveSheet()->setCellValue("H$i", $lab_data["street_address"]);
         $objPHPExcel->getActiveSheet()->setCellValue("I$i", $lab_data["postal_code"],PHPExcel_Cell_DataType::TYPE_STRING);
         $objPHPExcel->getActiveSheet()->setCellValue("J$i", $lab_data["tax_number"],PHPExcel_Cell_DataType::TYPE_STRING);
-        $objPHPExcel->getActiveSheet()->setCellValue("K$i", $lab_data["area_team_number"]);
-        $objPHPExcel->getActiveSheet()->setCellValue("L$i", $lab_data["levels_count"]);
-        $objPHPExcel->getActiveSheet()->setCellValue("M$i", $lab_data["groups_count"]);
-        $objPHPExcel->getActiveSheet()->setCellValue("N$i", $lab_data["students_count"]);
+//        $objPHPExcel->getActiveSheet()->setCellValue("K$i", $lab_data["area_team_number"]);
+//        $objPHPExcel->getActiveSheet()->setCellValue("L$i", $lab_data["levels_count"]);
+//        $objPHPExcel->getActiveSheet()->setCellValue("M$i", $lab_data["groups_count"]);
+//        $objPHPExcel->getActiveSheet()->setCellValue("N$i", $lab_data["students_count"]);
+        $objPHPExcel->getActiveSheet()->setCellValue("N$i", $lab_data["municipality_community"]);
         $objPHPExcel->getActiveSheet()->setCellValue("O$i", $lab_data["latitude"],PHPExcel_Cell_DataType::TYPE_STRING);
         $objPHPExcel->getActiveSheet()->setCellValue("P$i", $lab_data["longitude"],PHPExcel_Cell_DataType::TYPE_STRING);
         $objPHPExcel->getActiveSheet()->setCellValue("Q$i", $lab_data["positioning"]);
@@ -161,15 +163,15 @@ class UnitsExt {
                             "c.name"            => "category",
                             "st.stateId"        => "state_id",
                             "st.name"           => "state",
-                            "u.areaTeamNumber"      => "area_team_number",
+                            //"u.areaTeamNumber"      => "area_team_number",
                             "u.streetAddress"       => "street_address",
                             "u.postalCode"          => "postal_code",
                             "u.faxNumber"           => "fax_number",
                             "u.phoneNumber"         => "phone_number",
                             "u.email"               => "email",
-                            "u.studentsCount"       => "students_count",
-                            "u.groupsCount"         => "groups_count",
-                            "u.levelsCount"         => "levels_count",
+                            //"u.studentsCount"       => "students_count",
+                            //"u.groupsCount"         => "groups_count",
+                            //"u.levelsCount"         => "levels_count",
                             "u.lastUpdate"          => "last_update",
                             "u.taxNumber"           => "tax_number",
                             "u.comments"            => "comments",
