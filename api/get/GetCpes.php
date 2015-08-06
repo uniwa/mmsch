@@ -329,7 +329,7 @@ function GetCpes( $unit ) {
     //temporary close connection with inventory-devel.sch.gr
     //return;
     
-    global  $app, $syncLdapOptions;
+    global  $app;
     $result = array();  
     
     $result["data"] = array();
@@ -338,15 +338,13 @@ function GetCpes( $unit ) {
     $result["method"] = $app->request()->getMethod();
     $params = loadParameters();
 
-    try
-    {
+    try {
 
         //$unit=================================================================
         $fMMID = CRUDUtils::checkIDParam('unit', $params, $unit, 'UnitMMID');
-        $unit = Validator::toArray($fMMID);
         
         //execution=============================================================
-        $curl = curl_init('http://inventory.sch.gr/creports/pub/results.json?id=14&gsn_registry_code='.$unit[0].'&');
+        $curl = curl_init('http://inventory.sch.gr/creports/pub/results.json?id=14&gsn_registry_code='.$fMMID.'&');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3); 
 	$data = curl_exec($curl);
