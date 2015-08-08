@@ -1217,9 +1217,6 @@ function GetUnits(   $mm_id, $registry_no, $source, $name, $special_name, $state
         foreach ($results as $unit)
         {
             
-            $doctrineUnit = $entityManager->getRepository('Units')->find($unit->getMmId());
-            $logEntries = $entityManager->getRepository('Gedmo\Loggable\Entity\LogEntry')->getLogEntries($doctrineUnit);
-
             $data = array(
                             "mm_id"                 => (int)$unit->getMmId(),
                             "registry_no"           => $unit->getRegistryNo(),
@@ -1277,7 +1274,7 @@ function GetUnits(   $mm_id, $registry_no, $source, $name, $special_name, $state
                             "last_sync"         => ($unit->getLastSync() instanceof \DateTime)? $unit->getLastSync()->format('Y-m-d H:i:s') : null,
                             "last_update"       => ($unit->getLastUpdate() instanceof \DateTime)? $unit->getLastUpdate()->format('Y-m-d H:i:s') : null,
                             "comments"          => $unit->getComments(),
-                            "version"                  => count($logEntries)
+                            "version"           => $unit->getVersion()
                         );
             
             if($app->request->userRoles != 'GUEST') {

@@ -4,6 +4,8 @@
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column as Column;
+use Doctrine\ORM\Mapping\Version as Version;
 
 /**
  * Units
@@ -410,6 +412,12 @@ class Units
      * @ORM\OneToMany(targetEntity="UnitWorkers", mappedBy="mm")
      */
     private $unitWorkers;
+    
+    /**
+     * @Column(type="integer")
+     * @Version
+     */
+    protected $version;
 
     public function getMmId() {
         return $this->mmId;
@@ -769,6 +777,14 @@ class Units
 
     public function setUnitWorkers(\UnitWorkers $unitWorkers) {
         $this->unitWorkers = $unitWorkers;
+    }
+    
+    public function getVersion() {
+        return $this->version;
+    }
+
+    public function setVersion($version) {
+        $this->version = $version;
     }
 
 }
