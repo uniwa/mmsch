@@ -65,9 +65,7 @@ $(document).ready(function() {
         		$.ajax( apiUrl + "operation_shifts" ),
         		$.ajax( apiUrl + "special_types" ),
         		$.ajax( apiUrl + "transfer_areas" ),
-        		$.ajax( apiUrl + "legal_characters" ),
-        		$.ajax( apiUrl + "unit_network_subnet_types" ),
-        		$.ajax( apiUrl + "circuit_types" )
+        		$.ajax( apiUrl + "legal_characters" )
         )
         .done(function( Prefectures, 
 				       	Municipalities, 
@@ -83,9 +81,7 @@ $(document).ready(function() {
         				OperationShifts,
         				SpecialTypes,
         				TransferAreas,
-        				LegalCharacters,
-        				SubnetTypes,
-        				CircuitTypes ) {
+        				LegalCharacters ) {
 
 				fillStaticData('Prefectures', Prefectures[0].data);
         		fillStaticData('Municipalities', Municipalities[0].data);
@@ -102,8 +98,6 @@ $(document).ready(function() {
 	        	fillStaticData('SpecialTypes', SpecialTypes[0].data);
 	        	fillStaticData('TransferAreas', TransferAreas[0].data);
 	        	fillStaticData('LegalCharacters', LegalCharacters[0].data);
-	        	fillStaticData('SubnetTypes', SubnetTypes[0].data);
-	        	fillStaticData('CircuitTypes', CircuitTypes[0].data);
         		
         		var strData = JSON.stringify(staticData);
         		$("#txtNoteStaticData").removeClass("hidden");
