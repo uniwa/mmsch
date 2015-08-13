@@ -194,105 +194,50 @@ header("Content-Type: text/html; charset=utf-8");
  *
  */
 
+function DeleteUnitDns( $unit_dns_id ) {
+    
+    global $app,$entityManager;
 
-function DeleteUnitDns(
-    $unit_dns_id
-)
-{
-    global $db;
-
-    $array_sql = array();
-    $filters = array();
     $result = array();
 
-    $result["method"] = __FUNCTION__;
-
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
     $params = loadParameters();
+    $result["parameters"] = $params;
+    
+    try {
+           
+        //$unit_type_id========================================================= 
+        $fUnitDnsId = CRUDUtils::checkIDParam('unit_dns_id', $params, $unit_dns_id, 'UnitDnsID');
 
-    try
-    {
-
-//======================================================================================================================
-//= Check if $unit_dns_id record exists
-//======================================================================================================================
-
-        $param = $unit_dns_id;
-        $table_column_name = 'unit_dns_id';
-
-        if ( Validator::Exists($table_column_name, $params) )
-        {
-            if ( Validator::isNull($param) )
-            {
-                throw new Exception(ExceptionMessages::MissingUnitDnsIDValue. " : ".$param, ExceptionCodes::MissingUnitDnsIDValue);
-            }
-            elseif ( Validator::isArray($param) )
-            {
-                throw new Exception(ExceptionMessages::InvalidUnitDnsIDArray." : ".$param, ExceptionCodes::InvalidUnitDnsIDArray);
-            }
-            elseif ( Validator::isID($param) )
-            {
-                $unit_dns_id = Validator::toID($param);
-
-                $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $unit_dns_id );
-
-                $sql = "SELECT
-                        unit_dns_id,
-                        unit_dns,
-                        unit_ext_dns,
-                        mm_id
-                FROM unit_dns WHERE ".$filters["unit_dns_id"];
-
-                //echo "<br><br>".$sql."<br><br>";
-                $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-                $stmt = $db->query( $sql );
-                $main_row = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                if ( $stmt->rowCount() == 0 )
-                {
-                    throw new Exception(ExceptionMessages::InvalidUnitDnsValue." : ".$unit_dns_id, ExceptionCodes::InvalidUnitDnsValue);
-                }
-
-            }
-            else
-            {
-                throw new Exception(ExceptionMessages::InvalidUnitDnsIDType." : ".$param, ExceptionCodes::InvalidUnitDnsIDType);
-            }
-        }
-        else
-        {
-            throw new Exception(ExceptionMessages::MissingUnitDnsIDParam, ExceptionCodes::MissingUnitDnsIDParam);
-        }
+//controls======================================================================          
         
-//==============================================================================================================
-//= DELETE
-//==============================================================================================================
+        //check duplicates and unique row=======================================        
+        $check = $entityManager->getRepository('UnitDns')->findBy(array( 'unitDnsId' => $fUnitDnsId ));
+        $count= count($check);
+ 
+        if ($count == 1)
+            $UnitDns = $entityManager->find('UnitDns', $fUnitDnsId);
+        else if ($count == 0)
+            throw new Exception(ExceptionMessages::NotFoundDelUnitDnsValue." : ".$fUnitDnsId, ExceptionCodes::NotFoundDelUnitDnsValue);
+        else 
+            throw new Exception(ExceptionMessages::DuplicateDelUnitDnsValue." : ".$fUnitDnsId, ExceptionCodes::DuplicateDelUnitDnsValue);        
 
-        //= DELETE
-        $sql = "DELETE FROM unit_dns WHERE " . implode(", ", $filters);
-        //echo "<br><br>".$sql."<br><br>";
-        $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-        if ( $db->query( $sql ) )
-        {
-            $result["unit_dns_id"] = $unit_dns_id;
-        }
-
+//delete from db================================================================
+        $entityManager->remove($UnitDns);
+        $entityManager->flush($UnitDns);
+           
+//result_messages=============================================================== 
+        $result["unit_dns_id"] = $fUnitDnsId;
         $result["status"] = ExceptionCodes::NoErrors;
-        $result["message"] = ExceptionMessages::NoErrors;
-
-    }
-    catch (Exception $e)
-    {
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".__FUNCTION__."]:".$e->getMessage();
-    }
-
-    if ( Validator::isTrue( $params["debug"] ) )
-    {
-        $result["sql"] = $array_sql;
-    }
-
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    }                
+    
     return $result;
-}
+} 
+
 ?>

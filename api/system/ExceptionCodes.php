@@ -1851,6 +1851,15 @@ class ExceptionCodes
      /** {@see ExceptionMessages::InvalidUnitExtDnsArray} */
     const InvalidUnitExtDnsArray = 500;
     
+    /** {@see ExceptionMessages::DuplicatedUnitDnsUniqueValue} */
+    const DuplicatedUnitDnsUniqueValue = 500;
+    
+    //delete
+        /** {@see ExceptionMessages::DuplicateDelUnitDnsValue} */
+        const DuplicateDelUnitDnsValue = 500; 
+         /** {@see ExceptionMessages::NotFoundDelUnitDnsValue} */
+        const NotFoundDelUnitDnsValue = 500;
+    
     //======================================================================================================================
     // =UnitNetworkSubnetTypes
     //======================================================================================================================

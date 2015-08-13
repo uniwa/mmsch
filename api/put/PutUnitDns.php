@@ -289,265 +289,87 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  */
 
+function PutUnitDns( $unit_dns_id, $unit_dns, $unit_ext_dns, $mm_id ) {
 
-function PutUnitDns(
-    $unit_dns_id, $unit_dns, $unit_ext_dns,
-    $mm_id
-)
-{
-    global $db;
-
-    $array_sql = array();
-    $filters = array();
+    global $app, $entityManager;
     $result = array();
 
-    $result["method"] = __FUNCTION__;
-
+    $result["controller"] = __FUNCTION__;
+    $result["function"] = substr($app->request()->getPathInfo(),1);
+    $result["method"] = $app->request()->getMethod();
     $params = loadParameters();
+    $result["parameters"]  = $params;
 
-    try
-    {
+    try {
 
-//======================================================================================================================
-//= Check if $unit_dns_id record exists
-//======================================================================================================================
+        //$unit_dns_id========================================================== 
+        $fUnitDnsID = CRUDUtils::checkIDParam('unit_dns_id', $params, $unit_dns_id, 'UnitDnsID');
 
-        $param = $unit_dns_id;
-        $table_column_name = 'unit_dns_id';
-
-        if ( Validator::Exists($table_column_name, $params) )
-        {
-            if ( Validator::isNull($param) )
-            {
-                throw new Exception(ExceptionMessages::MissingUnitDnsIDValue. " : ".$param, ExceptionCodes::MissingUnitDnsIDValue);
-            }
-            elseif ( Validator::isArray($param) )
-            {
-                throw new Exception(ExceptionMessages::InvalidUnitDnsIDArray." : ".$param, ExceptionCodes::InvalidUnitDnsIDArray);
-            }
-            elseif ( Validator::isID($param) )
-            {
-                $unit_dns_id = Validator::toID($param);
-
-                $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $unit_dns_id );
-
-                $sql = "SELECT
-                        unit_dns_id,
-                        unit_dns,
-                        unit_ext_dns,
-                        mm_id
-                FROM unit_dns WHERE ".$filters["unit_dns_id"];
-
-                //echo "<br><br>".$sql."<br><br>";
-                $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-                $stmt = $db->query( $sql );
-                $main_row = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                if ( $stmt->rowCount() == 0 )
-                {
-                    throw new Exception(ExceptionMessages::InvalidUnitDnsValue." : ".$unit_dns_id, ExceptionCodes::InvalidUnitDnsValue);
-                }
-
-            }
-            else
-            {
-                throw new Exception(ExceptionMessages::InvalidUnitDnsIDType." : ".$param, ExceptionCodes::InvalidUnitDnsIDType);
-            }
-        }
-        else
-        {
-            throw new Exception(ExceptionMessages::MissingUnitDnsIDParam, ExceptionCodes::MissingUnitDnsIDParam);
+        //init entity for update row============================================
+        $UnitDns = CRUDUtils::findIDParam($fUnitDnsID, 'UnitDns', 'UnitDns');
+        
+        //$unit_dns=============================================================
+        if ( Validator::IsExists('unit_dns') ){
+            CRUDUtils::EntitySetParam($UnitDns, $unit_dns, 'UnitDns', 'unit_dns', $params);
+        } else if ( Validator::IsNull($UnitDns->getUnitDns()) ){
+            throw new Exception(ExceptionMessages::MissingUnitDnsValue, ExceptionCodes::MissingUnitDnsValue);
         }
         
-//======================================================================================================================
-//= Check $unit_dns
-//======================================================================================================================
-
-        $param = $unit_dns;
-        $table_column_name = 'unit_dns';
-
-        if ( Validator::Exists($table_column_name, $params) )
-        {
-            if ( Validator::isNull($param) )
-            {
-                throw new Exception(ExceptionMessages::MissingUnitDnsValue, ExceptionCodes::MissingUnitDnsValue);
-            }
-            elseif ( Validator::isArray($param) )
-            {
-                throw new Exception(ExceptionMessages::InvalidUnitDnsArray." : ".$param, ExceptionCodes::InvalidUnitDnsArray);
-            }
-            elseif ( Validator::isValue($param) )
-            {
-                $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $param );
-            }
-            else
-            {
-                throw new Exception(ExceptionMessages::InvalidUnitDnsType." : ".$param, ExceptionCodes::InvalidUnitDnsType);
-            }
+        //$unit_ext_dns=========================================================
+        if ( Validator::IsExists('unit_ext_dns') ){
+            CRUDUtils::EntitySetParam($UnitDns, $unit_ext_dns, 'UnitExtDns', 'unit_ext_dns', $params);
+        } else if ( Validator::IsNull($UnitDns->getUnitExtDns()) ){
+            throw new Exception(ExceptionMessages::MissingUnitExtDnsValue, ExceptionCodes::MissingUnitExtDnsValue);
         }
-        elseif ( Validator::isNull($main_row[0][ $table_column_name ]) )
-        {
-            throw new Exception(ExceptionMessages::MissingUnitDnsParam, ExceptionCodes::MissingUnitDnsParam);
+
+        //check unit_ext_dns duplicate==========================================      
+        $qb = $entityManager->createQueryBuilder()
+                            ->select('COUNT(ud.unitDnsId) AS fresultName')
+                            ->from('UnitDns', 'ud')
+                            ->where("ud.unitExtDns = :unitExtDns AND ud.unitDnsId != :unitDnsId")
+                            ->setParameter('unitExtDns', $UnitDns->getUnitExtDns())
+                            ->setParameter('unitDnsId', $UnitDns->getUnitDnsId())    
+                            ->getQuery()
+                            ->getSingleResult();
+      
+        if ( $qb["fresultName"] != 0 ) {
+             throw new Exception(ExceptionMessages::DuplicatedUnitExtDnsValue,ExceptionCodes::DuplicatedUnitExtDnsValue);
         }
         
-//======================================================================================================================
-//= Check $unit_ext_dns
-//======================================================================================================================
+        //$mm_id================================================================
+        if ( Validator::IsExists('mm_id') ){
+            CRUDUtils::entitySetAssociation($UnitDns, $mm_id, 'Units', 'mm', 'UnitMMID', $params, 'mm_id', true, false, true);
+        } else if ( Validator::IsNull($UnitDns->getMm()) ){
+            throw new Exception(ExceptionMessages::MissingUnitMMIDValue, ExceptionCodes::MissingUnitMMIDValue);
+        } 
 
-        $param = $unit_ext_dns;
-        $table_column_name = 'unit_ext_dns';
-
-        if ( Validator::Exists($table_column_name, $params) )
-        {
-            if ( Validator::isNull($param) )
-            {
-                throw new Exception(ExceptionMessages::MissingUnitExtDnsValue, ExceptionCodes::MissingUnitExtDnsValue);
-            }
-            elseif ( Validator::isArray($param) )
-            {
-                throw new Exception(ExceptionMessages::InvalidUnitExtDnsArray." : ".$param, ExceptionCodes::InvalidUnitExtDnsArray);
-            }
-            elseif ( Validator::isValue($param) )
-            {
-                $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $param );
-            }
-            else
-            {
-                throw new Exception(ExceptionMessages::InvalidUnitExtDnsType." : ".$param, ExceptionCodes::InvalidUnitExtDnsType);
-            }
-        }
-        elseif ( Validator::isNull($main_row[0][ $table_column_name ]) )
-        {
-            throw new Exception(ExceptionMessages::MissingUnitExtDnsParam, ExceptionCodes::MissingUnitExtDnsParam);
-        }
-        else 
-        {
-            $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $main_row[0][ $table_column_name ] );
+        //check mm_id duplicate=================================================      
+        $qb = $entityManager->createQueryBuilder()
+                            ->select('COUNT(ud.unitDnsId) AS fresultName')
+                            ->from('UnitDns', 'ud')
+                            ->where("ud.mm = :mm AND ud.unitDnsId != :unitDnsId")
+                            ->setParameter('mm', $UnitDns->getMm()->getMmId())
+                            ->setParameter('unitDnsId', $UnitDns->getUnitDnsId())    
+                            ->getQuery()
+                            ->getSingleResult();
+      
+        if ( $qb["fresultName"] != 0 ) {
+             throw new Exception(ExceptionMessages::DuplicatedUnitDnsValue,ExceptionCodes::DuplicatedUnitDnsValue);
         }
         
-//======================================================================================================================
-//= Check for unit_ext_dns uniques
-//======================================================================================================================
+//update to db================================================================== 
+        $entityManager->persist($UnitDns);
+        $entityManager->flush($UnitDns);
 
-        if ( $filters["unit_ext_dns"] )
-        {
-            $sql = "SELECT
-                    unit_dns_id,
-                    unit_ext_dns
-                    FROM unit_dns WHERE ".$filters["unit_ext_dns"]."
-                    AND NOT ".$filters["unit_dns_id"];
+        $result["unit_dns_id"] = $UnitDns->getUnitDnsId();
 
-            //echo "<br><br>".$sql."<br><br>";
-            $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-            $stmt = $db->query( $sql );
-            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            if ( $stmt->rowCount() > 0 )
-            {
-                throw new Exception(ExceptionMessages::DuplicatedUnitExtDnsValue ." : ".$rows[0]["unit_ext_dns"], ExceptionCodes::DuplicatedUnitExtDnsValue);
-            }
-        }  
-
-//======================================================================================================================
-//= Check if $mm_id record exists
-//======================================================================================================================
-
-        $param = $mm_id;
-        $table_column_name = "mm_id";
-        $table_name = "units";
-
-        if ( Validator::Exists($table_column_name, $params) )
-        {
-            if ( Validator::isNull($param) )
-            {
-                throw new Exception(ExceptionMessages::MissingUnitMMIDValue, ExceptionCodes::MissingUnitMMIDValue);
-            }
-            elseif ( Validator::isArray($param) )
-            {
-                throw new Exception(ExceptionMessages::InvalidUnitMMIDArray." : ".$param, ExceptionCodes::InvalidUnitMMIDArray);
-            }
-            elseif (Validator::isID($param) )
-            {
-                $filters[ $table_column_name ] = "$table_column_name = " . $db->quote( $param );
-
-                $sql = "SELECT $table_column_name FROM $table_name WHERE ".$filters[ $table_column_name ];
-                //echo "<br><br>".$sql."<br><br>";
-                $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-                $stmt = $db->query( $sql );
-                $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                if ( $stmt->rowCount() == 0 )
-                {
-                    throw new Exception(ExceptionMessages::InvalidUnitValue." : ".$param, ExceptionCodes::InvalidUnitValue);
-                }
-            }
-            else
-            {
-                throw new Exception(ExceptionMessages::InvalidUnitMMIDType." : ".$param, ExceptionCodes::InvalidUnitMMIDType);
-            }
-        }
-        elseif ( Validator::isNull($main_row[0][ $table_column_name ]) )
-        {
-            throw new Exception(ExceptionMessages::MissingUnitMMIDParam, ExceptionCodes::MissingUnitMMIDParam);
-        }
-        
-//======================================================================================================================
-//= Check for mm_id uniques
-//======================================================================================================================
-
-        if ( $filters["mm_id"] )
-        {
-            $sql = "SELECT
-                    unit_dns_id,
-                    mm_id
-                    FROM unit_dns WHERE ".$filters["mm_id"]."
-                    AND NOT ".$filters["unit_dns_id"];
-
-            //echo "<br><br>".$sql."<br><br>";
-            $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-            $stmt = $db->query( $sql );
-            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            if ( $stmt->rowCount() > 0 )
-            {
-                throw new Exception(ExceptionMessages::DuplicatedUnitDnsValue ." : ".$rows[0]["mm_id"], ExceptionCodes::DuplicatedUnitDnsValue);
-            }
-        }  
-        
-//======================================================================================================================
-//= UPDATE
-//======================================================================================================================
-
-        $sqlWhere = " WHERE ". $filters["unit_dns_id"];
-
-        unset($filters["unit_dns_id"]);
-
-        $sql = "UPDATE unit_dns SET " . implode(", ", $filters) .$sqlWhere;
-        //echo "<br><br>".$sql."<br><br>";
-        $array_sql[] = trim( preg_replace('/\s\s+/', ' ', $sql));
-
-        if ( $db->query( $sql ) )
-        {
-            $result["unit_dns_id"] = $unit_dns_id;
-        }
-
+//result_messages===============================================================      
         $result["status"] = ExceptionCodes::NoErrors;
-        $result["message"] = ExceptionMessages::NoErrors;
-    }
-    catch (Exception $e)
-    {
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
+    } catch (Exception $e) {
         $result["status"] = $e->getCode();
-        $result["message"] = "[".__FUNCTION__."]:".$e->getMessage();
-    }
-
-    if ( Validator::isTrue( $params["debug"] ) )
-    {
-        $result["sql"] = $array_sql;
-    }
+        $result["message"] = "[".$result["method"]."][".$result["function"]."]:".$e->getMessage();
+    }  
 
     return $result;
 }
