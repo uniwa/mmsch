@@ -981,6 +981,8 @@ class ExceptionCodes
         const ReferencesMunicipalityTransferAreaMunicipalities = 500;
         /** {@see ExceptionMessages::ReferencesMunicipalitySchoolCommittees} */ 
         const ReferencesMunicipalitySchoolCommittees = 500;
+        /** {@see ExceptionMessages::ReferencesMunicipalityCommunities} */ 
+        const ReferencesMunicipalityCommunities = 500;
         
 //= MunicipalityCommunities=====================================================
       
@@ -1013,8 +1015,19 @@ class ExceptionCodes
     /** {@see ExceptionMessages::InvalidMunicipalityCommunityNameArray} */ 
     const InvalidMunicipalityCommunityNameArray = 500;
     
+    /** {@see ExceptionMessages::MissingMySchoolIDMunicipalityCommunityParam} */ 
+    const MissingMySchoolIDMunicipalityCommunityParam = 500;
+    /** {@see ExceptionMessages::MissingMySchoolIDMunicipalityCommunityValue} */ 
+    const MissingMySchoolIDMunicipalityCommunityValue = 500;
+    /** {@see ExceptionMessages::InvalidMySchoolIDMunicipalityCommunityType} */ 
+    const InvalidMySchoolIDMunicipalityCommunityType = 500;
+    /** {@see ExceptionMessages::InvalidMySchoolIDMunicipalityCommunityArray} */ 
+    const InvalidMySchoolIDMunicipalityCommunityArray = 500;
+    
     /** {@see ExceptionMessages::DuplicatedMunicipalityCommunityValue} */ 
     const DuplicatedMunicipalityCommunityValue = 500;
+    /** {@see ExceptionMessages::DuplicatedMySchoolIDMunicipalityCommunityValue} */ 
+    const DuplicatedMySchoolIDMunicipalityCommunityValue = 500;
     /** {@see ExceptionMessages::DuplicatedMunicipalityCommunityUniqueValue} */ 
     const DuplicatedMunicipalityCommunityUniqueValue = 500;
     /** {@see ExceptionMessages::UsedMunicipalityCommunityByUnits} */ 

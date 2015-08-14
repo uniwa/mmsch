@@ -719,6 +719,7 @@ function MunicipalityCommunitiesController()
                 $params["municipality"],
                 $params["myschoolMunicipalityCommunityId"]
             );
+            break;
         case MethodTypes::DELETE :
             $result = DeleteMunicipalityCommunities(
                 $params["municipality_community_id"]

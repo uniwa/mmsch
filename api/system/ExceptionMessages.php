@@ -565,7 +565,8 @@ class ExceptionMessages
         const ReferencesMunicipalityUnits = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Units.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnits';      
         const ReferencesMunicipalityTransferAreaMunicipalities = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα TransferAreaMunicipalities.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteTransferAreaMunicipalities';      
         const ReferencesMunicipalitySchoolCommittees = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα SchoolCommittees.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteSchoolCommittees';      
-
+        const ReferencesMunicipalityCommunities = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα MunicipalityCommunities.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteMunicipalityCommunities';      
+        
 //= MunicipalityCommunities=====================================================
       
     const MissingMunicipalityCommunityIDParam = 'Ο Κωδικός της Δημοτικής Ενότητας είναι υποχρεωτικό πεδίο';
@@ -584,7 +585,13 @@ class ExceptionMessages
     const InvalidMunicipalityCommunityNameType = 'Το Όνομα της Δημοτικής Ενότητας πρέπει να είναι αλφαριθμητικό';
     const InvalidMunicipalityCommunityNameArray = 'Το Όνομα της Δημοτικής Ενότητας δεν μπορεί να έχει πολλαπλές τιμές';
     
+    const MissingMySchoolIDMunicipalityCommunityParam = 'Ο Κωδικός MySchool της Δημοτικής Ενότητας είναι υποχρεωτικό πεδίο';
+    const MissingMySchoolIDMunicipalityCommunityValue = 'Ο Κωδικός MySchool της Δημοτικής Ενότητας πρέπει να έχει τιμή';
+    const InvalidMySchoolIDMunicipalityCommunityType = 'Ο Κωδικός MySchool της Δημοτικής Ενότητας πρέπει να είναι αλφαριθμητικό';
+    const InvalidMySchoolIDMunicipalityCommunityArray = 'Ο Κωδικός MySchool της Δημοτικής Ενότητας δεν μπορεί να έχει πολλαπλές τιμές';
+    
     const DuplicatedMunicipalityCommunityValue = 'Η Δημοτική Ενότητα υπάρχει ήδη';
+    const DuplicatedMySchoolIDMunicipalityCommunityValue = 'Ο Κωδικός MySchool της Δημοτικής Ενότητας υπάρχει ήδη';
     const DuplicatedMunicipalityCommunityUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key MunicipalityCommunity';
     const UsedMunicipalityCommunityByUnits = 'Ο Κωδικός της Δημοτικής Ενότητας χρησιμοποιείται από Μονάδες';
     const UsedMunicipalityCommunityByMunicipalities = 'Ο Κωδικός της Δημοτικής Ενότητας χρησιμοποιείται από Δήμους';

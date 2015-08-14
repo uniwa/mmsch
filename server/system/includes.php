@@ -217,6 +217,7 @@ require_once ('../api/post/PostTransferAreas.php');
 require_once ('../api/post/PostUnitTypes.php');
 require_once ('../api/post/PostWorkerPositions.php');
 require_once ('../api/post/PostWorkerSpecializations.php');
+require_once ('../api/post/PostMunicipalityCommunities.php');
 
 require_once ('../api/put/PutCategories.php');
 require_once ('../api/put/PutEduAdmins.php');
@@ -241,6 +242,7 @@ require_once ('../api/put/PutTransferAreas.php');
 require_once ('../api/put/PutUnitTypes.php');
 require_once ('../api/put/PutWorkerPositions.php');
 require_once ('../api/put/PutWorkerSpecializations.php');
+require_once ('../api/put/PutMunicipalityCommunities.php');
 
 
 require_once ('../api/delete/DeleteCategories.php');
@@ -266,6 +268,7 @@ require_once ('../api/delete/DeleteTransferAreas.php');
 require_once ('../api/delete/DeleteUnitTypes.php');
 require_once ('../api/delete/DeleteWorkerPositions.php');
 require_once ('../api/delete/DeleteWorkerSpecializations.php');
+require_once ('../api/delete/DeleteMunicipalityCommunities.php');
 
 require_once ('../api/delete/DeleteExtLog.php');
 
