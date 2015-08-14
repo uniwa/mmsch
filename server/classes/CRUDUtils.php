@@ -169,7 +169,7 @@ class CRUDUtils {
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Value' , ExceptionCodes::'Missing'.$exceptionType.'Value'
      * @throws ExceptionMessages::'Invalid'.$exceptionType.'Type' , ExceptionCodes::'Invalid'.$exceptionType.'Type'
      * @throws ExceptionMessages::'Invalid'.$exceptionType.'Value' , ExceptionCodes::'Invalid'.$exceptionType.'Value'
-     * @throws ExceptionMessages::'Duplicate'.$exceptionType.'UniqueValue' , ExceptionCodes::'Duplicate'.$exceptionType.'UniqueValue'
+     * @throws ExceptionMessages::'Duplicated'.$exceptionType.'UniqueValue' , ExceptionCodes::'Duplicated'.$exceptionType.'UniqueValue'
      * 
      * @return mixed The doctrine entity with set.'$field' or throwException
      * 
@@ -180,7 +180,7 @@ class CRUDUtils {
         $missingValue = 'Missing'.$exceptionType.'Value';
         $invalidType = 'Invalid'.$exceptionType.'Type';
         $invalidValue = 'Invalid'.$exceptionType.'Value';
-        $duplicateValue = 'Duplicate'.$exceptionType.'UniqueValue';
+        $duplicateValue = 'Duplicated'.$exceptionType.'UniqueValue';
 
         if (Validator::Missing($userField, $params) ){
             if (!$required) { return; }
@@ -354,7 +354,7 @@ class CRUDUtils {
      * @param string $exceptionType Short name of input parameter used by ExceptionMessages and ExceptionCodes.
      * 
      * @throws ExceptionMessages::'Invalid'.$exceptionType.'Value' , ExceptionCodes::'Invalid'.$exceptionType.'Value'
-     * @throws ExceptionMessages::'Duplicate'.$exceptionType.'UniqueValue' , ExceptionCodes::'Duplicate'.$exceptionType.'UniqueValue'
+     * @throws ExceptionMessages::'Duplicated'.$exceptionType.'UniqueValue' , ExceptionCodes::'Duplicated'.$exceptionType.'UniqueValue'
      * 
      * @return mixed The doctrine entity of ID or throwException
      * 
@@ -364,7 +364,7 @@ class CRUDUtils {
         global $entityManager;
              
         $invalidValue = 'Invalid'.$exceptionType.'Value';
-        $duplicateValue = 'Duplicate'.$exceptionType.'UniqueValue';
+        $duplicateValue = 'Duplicated'.$exceptionType.'UniqueValue';
  
         $retrievedObject = $entityManager->find($repo, $param);
         
