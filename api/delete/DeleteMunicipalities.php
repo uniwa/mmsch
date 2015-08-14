@@ -47,7 +47,10 @@ function DeleteMunicipalities($municipality_id) {
         if (count($checkReference) != 0) throw new Exception(ExceptionMessages::ReferencesMunicipalityTransferAreaMunicipalities, ExceptionCodes::ReferencesMunicipalityTransferAreaMunicipalities);  
         
         $checkReference = $entityManager->getRepository('SchoolCommittees')->findOneBy(array( 'municipality'  => $fMunicipalityID ));
-        if (count($checkReference) != 0) throw new Exception(ExceptionMessages::ReferencesMunicipalitySchoolCommittees, ExceptionCodes::ReferencesMunicipalitySchoolCommittees);  
+        if (count($checkReference) != 0) throw new Exception(ExceptionMessages::ReferencesMunicipalitySchoolCommittees, ExceptionCodes::ReferencesMunicipalitySchoolCommittees);
+        
+        $checkReference = $entityManager->getRepository('MunicipalityCommunities')->findOneBy(array( 'municipality'  => $fMunicipalityID ));
+        if (count($checkReference) != 0) throw new Exception(ExceptionMessages::ReferencesMunicipalityCommunities, ExceptionCodes::ReferencesMunicipalityCommunities); 
         
 //delete from db================================================================
         $entityManager->remove($Municipalities);
