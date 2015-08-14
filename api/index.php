@@ -1481,6 +1481,11 @@ function WorkersController()
                 $params["source"]
             );
             break;
+        case MethodTypes::DELETE :
+            $result = DeleteWorkers(
+                $params["worker_id"]
+            );
+            break;
     }
 
     PrepareResponse();
@@ -1588,6 +1593,11 @@ function UnitWorkersController()
                 $params["mm_id"],
                 $params["worker"],
                 $params["worker_position"]
+            );
+            break;
+        case MethodTypes::DELETE :
+            $result = DeleteUnitWorkers(
+                $params["unit_worker_id"]
             );
             break;
     }
@@ -1782,6 +1792,11 @@ function UnitsController()
                 in_array ("last_update", $parameters) ? $params["last_update"] : _MISSED_,
                 in_array ("last_sync", $parameters) ? $params["last_sync"] : _MISSED_,
                 in_array ("comments", $parameters) ? $params["comments"] : _MISSED_
+            );
+            break;
+        case MethodTypes::DELETE :
+            $result = DeleteUnits(
+                $params["mm_id"]
             );
             break;
     }

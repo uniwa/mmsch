@@ -146,7 +146,7 @@ private static $Permissions = array(
                                                 'GET' => array('USER', 'ADMIN'),
                                                 'POST' => array('ADMIN'),
                                                 'PUT' => array('ADMIN'),
-                                                'DELETE' => array('ADMIN')
+                                                //'DELETE' => array('ADMIN')
                                              ),
     'transfer_area_municipalities'   => array(
                                                 'GET' => array('USER', 'ADMIN'),
@@ -164,7 +164,7 @@ private static $Permissions = array(
                                                 'GET' => array('USER', 'ADMIN'),
                                                 'POST' => array('ADMIN'),
                                                 'PUT' => array('ADMIN'),
-                                                'DELETE' => array('ADMIN')
+                                                //'DELETE' => array('ADMIN')
                                              ),
     'relations'                      => array(
                                                 'GET' => array('USER', 'ADMIN'),
@@ -182,7 +182,7 @@ private static $Permissions = array(
                                                 'GET' => array('USER', 'ADMIN', 'GUEST'),
                                                 'POST' => array('ADMIN'),
                                                 'PUT' => array('ADMIN'),
-                                                'DELETE' => array('ADMIN')
+                                                //'DELETE' => array('ADMIN')
                                              ),
 //    'levels'        => array(
 //                                        'GET' => array('USER', 'ADMIN'),
@@ -242,9 +242,9 @@ private static $Permissions = array(
     'ldap_entries'                   => array(
                                                 'GET' => array('USER', 'ADMIN')                                   
                                              ),
-//    'units_old' => array(
-//                                        'GET' => array('USER', 'ADMIN', 'GUEST')                                   
-//                                        ) ,
+//    'units_old'                    => array(
+//                                              'GET' => array('USER', 'ADMIN', 'GUEST')                                   
+//                                           ),
     'del_ext_log'                    => array(
                                                 'GET' => array('ADMIN')                                   
                                              ),

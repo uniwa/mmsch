@@ -1757,6 +1757,16 @@ class ExceptionCodes
     /** {@see ExceptionMessages::DuplicatedWorkerIDUniqueValue} */ 
     const DuplicatedWorkerIDUniqueValue = 500;
 
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelWorkerValue} */ 
+        const DuplicateDelWorkerValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelWorkerValue} */ 
+        const NotFoundDelWorkerValue = 500;
+        
+        //references
+        /** {@see ExceptionMessages::ReferencesWorkerUnitWorkers} */ 
+        const ReferencesWorkerUnitWorkers = 500;
+    
 //= Circuits====================================================================
     
     /** {@see ExceptionMessages::MissingCircuitIDParam} */
@@ -2275,6 +2285,26 @@ class ExceptionCodes
     const InvalidGuestUnitValue = 500;
     /** {@see ExceptionMessages::InvalidGuestUnitType} */
     const InvalidGuestUnitType = 500;
+    
+        //delete
+        /** {@see ExceptionMessages::DuplicateDelUnitValue} */
+        const DuplicateDelUnitValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelUnitValue} */
+        const NotFoundDelUnitValue = 500;
+        
+        //references
+        /** {@see ExceptionMessages::ReferencesUnitUnitWorkers} */
+        const ReferencesUnitUnitWorkers = 500;
+        /** {@see ExceptionMessages::ReferencesUnitHostRelations} */
+        const ReferencesUnitHostRelations = 500;
+        /** {@see ExceptionMessages::ReferencesUnitGuestRelations} */
+        const ReferencesUnitGuestRelations = 500;
+        /** {@see ExceptionMessages::ReferencesUnitLevels} */
+        const ReferencesUnitLevels = 500;
+        /** {@see ExceptionMessages::ReferencesUnitGroups} */
+        const ReferencesUnitGroups = 500;
+        /** {@see ExceptionMessages::ReferencesUnitUnitDns} */
+        const ReferencesUnitUnitDns = 500;
 
     //= Connections=============================================================
     /** {@see ExceptionMessages::MissingConnectionIDParam} */
@@ -2338,6 +2368,12 @@ class ExceptionCodes
     /** {@see ExceptionMessages::DuplicatedUnitWorkerUniqueValue} */
     const DuplicatedUnitWorkerUniqueValue = 500;
 
+    //delete
+        /** {@see ExceptionMessages::DuplicateDelUnitWorkerValue} */
+        const DuplicateDelUnitWorkerValue = 500;
+        /** {@see ExceptionMessages::NotFoundDelUnitWorkerValue} */
+        const NotFoundDelUnitWorkerValue = 500;
+        
 //other=========================================================================
     /** {@see ExceptionMessages::MissingMMIdParam} */
     const MissingMMIdParam = 500;

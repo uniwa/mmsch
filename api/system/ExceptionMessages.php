@@ -1022,6 +1022,13 @@ class ExceptionMessages
     const DuplicatedWorkerValue = 'Ο Εργαζόμενος αυτός υπάρχει ήδη';
     const DuplicatedWorkerUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Worker';
     const DuplicatedWorkerIDUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key WorkerID'; //EXTRA only for ID REFERENCE
+    
+        //delete
+        const DuplicateDelWorkerValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο κωδικό του Εργαζομενου'; 
+        const NotFoundDelWorkerValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+        
+        //references
+        const ReferencesWorkerUnitWorkers = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα UnitWorkers.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnitWorkers';      
        
 //= Circuits====================================================================
     
@@ -1325,6 +1332,18 @@ class ExceptionMessages
     const MissingGuestUnitParam = 'Η Guest Μονάδα είναι υποχρεωτικό πεδίο';
     const InvalidGuestUnitValue = 'Η Guest Μονάδα δεν υπάρχει στο λεξικό';
     const InvalidGuestUnitType = 'Η Guest Μονάδα πρέπει να είναι αριθμητική ή αλφαριθμητική';
+    
+        //delete
+        const DuplicateDelUnitValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο κωδικό ΜΜ Μονάδας'; 
+        const NotFoundDelUnitValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+        
+        //references
+        const ReferencesUnitUnitWorkers = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα UnitWorkers.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnitWorkers';      
+        const ReferencesUnitHostRelations = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Relations (HostMM).Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteRelations';      
+        const ReferencesUnitGuestRelations = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Relations (GuestMM).Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteRelations';      
+        const ReferencesUnitLevels = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Levels.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteLevels';      
+        const ReferencesUnitGroups = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα Groups.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteGroups';      
+        const ReferencesUnitUnitDns = 'Δεν είναι δυνατή η διαγραφή της εγγραφής, λόγω συσχετισμού με τον πίνακα UnitDns.Διαγραψτε τις αντίστοιχες εγγραφές με χρήση api request DeleteUnitDns';      
 
     //= Connections=============================================================
     const MissingConnectionIDParam = 'Ο Κωδικός της Διασύνδεσης είναι υποχρεωτικό πεδίο';
@@ -1360,7 +1379,11 @@ class ExceptionMessages
     
     const DuplicatedUnitWorkerValue = 'Η Συσχέτιση Εργαζομένου και Μονάδας υπάρχει ήδη';
     const DuplicatedUnitWorkerUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key UnitWorker';
-   
+    
+    //delete
+        const DuplicateDelUnitWorkerValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο κωδικό της Συσχέτισης Εργαζομενου - Μονάδας'; 
+        const NotFoundDelUnitWorkerValue = 'Δεν βρέθηκε η εγγραφή προς διαγραφή.';
+ 
 //other=========================================================================
 
     const MissingMMIdParam = 'Ο Κωδικός ΜΜ είναι υποχρεωτικό πεδίο';

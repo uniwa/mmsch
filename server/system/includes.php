@@ -269,6 +269,9 @@ require_once ('../api/delete/DeleteUnitTypes.php');
 require_once ('../api/delete/DeleteWorkerPositions.php');
 require_once ('../api/delete/DeleteWorkerSpecializations.php');
 require_once ('../api/delete/DeleteMunicipalityCommunities.php');
+require_once ('../api/delete/DeleteUnitWorkers.php');
+require_once ('../api/delete/DeleteWorkers.php');
+require_once ('../api/delete/DeleteUnits.php');
 
 require_once ('../api/delete/DeleteExtLog.php');
 
