@@ -221,7 +221,7 @@ position: fixed;
 
                                                                         <tr>
                                                                                <td class="detail-term">Google Point</td>
-                                                                               <td class="term-value"><a class="data" href="http://maps.google.com/maps?z=12&q=loc:#=longitude#+#=latitude#"  target="_blank">GooglePoint</a></td>
+                                                                               <td class="term-value"><a class="data" href="http://maps.google.com/maps?z=12&q=loc:#=latitude+#=longitude##"  target="_blank">GooglePoint</a></td>
                                                                         </tr>
 								
 								</tbody>
