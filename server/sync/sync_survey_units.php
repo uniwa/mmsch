@@ -257,6 +257,8 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 units.tax_number as tax_number,
                 tax_offices.name as tax_office,
                 units.creation_fek as creation_fek,
+                units.latitude as latitude,
+                units.longitude as longitude,
                 units.mm_id as mm_id
                 FROM units
                 left join sources on  units.source_id = sources.source_id
@@ -441,6 +443,8 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                     "tax_number"            => trim($unit["SchoolAFM"]),
                     "tax_office"            => $this->a_tax_offices[ $tax_office_id ],
                     "creation_fek"          => trim($unit["SchoolCreationFEK"]),
+                    "latitude"              => trim($unit["Latitude"]),
+                    "longitude"             => trim($unit["Longitude"]),
                 );
 
                 //echo "<pre>"; var_dump( $unit ); echo "</pre>";
