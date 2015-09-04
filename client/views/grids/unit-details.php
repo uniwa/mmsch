@@ -208,6 +208,21 @@ position: fixed;
 										<td class="detail-term">Ταχυδρομικός Κώδικας</td>
 										<td class="term-value">#= postal_code #</td>
 									</tr>
+                                                                
+                                                                        <tr>
+                                                                                <td class="detail-term">Γεωγραφικό Πλάτος</td>
+                                                                                <td class="term-value">#= latitude #</td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                                <td class="detail-term">Γεωγραφικό Μήκος</td>
+                                                                                <td class="term-value">#= longitude #</td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                               <td class="detail-term">Google Point</td>
+                                                                               <td class="term-value"><a class="data" href="http://maps.google.com/maps?z=12&q=loc:#=longitude#+#=latitude#"  target="_blank">GooglePoint</a></td>
+                                                                        </tr>
 								
 								</tbody>
 							</table>
@@ -623,8 +638,7 @@ position: fixed;
 					</div>
 					<?php } ?>
 				<!-- ΔΙΚΤΥΑΚΑ ΣΤΟΙΧΕΙΑ@  -->	
-				
-                
+				                
                 <!-- @ΤΟΠΟΛΟΓΙΚΑ ΣΤΟΙΧΕΙΑ -->
 				<?php if (!$isAnonymous) { ?>
                 <div id="holder-geo-infos" class="detail-section">
@@ -669,7 +683,7 @@ position: fixed;
 									<td class="detail-term">Γεωγραφικό Μήκος</td>
 									<td class="term-value" data-bind="text: unitData.longitude"></td>
 								</tr>
-								
+                                                                
 								<tr class="soft-hide">
 									<td class="detail-term">Κτηριακή Θέση</td>
 									<td class="term-value" data-bind="html: unitData.positioning"></td>
@@ -960,9 +974,8 @@ position: fixed;
 					}
 				);
 		});
-		
-        var viewModel = kendo.observable({
-			
+                     	
+        var viewModel = kendo.observable({                    
 			unitData: null,
 			
 			editedConnection: null,
@@ -1460,8 +1473,6 @@ position: fixed;
 
 		});
 		//END VIEWMODEL DECLARATION 
-		
-		
 		
 		
 
