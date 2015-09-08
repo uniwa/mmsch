@@ -3,7 +3,7 @@
  *
  * @version 1.0.3
  * @author  ΤΕΙ Αθήνας
- * @package PUT
+ * @package DEPRECATED
  */
  
 header("Content-Type: text/html; charset=utf-8");

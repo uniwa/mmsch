@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * @version 2.0
  * @author  ΤΕΙ Αθήνας
  * @package POST
@@ -48,7 +47,7 @@ header("Content-Type: text/html; charset=utf-8");
  * "controller": "PostUnitDns",
  * "function": "unit_dns",
  * "method": "POST",
- * "parameters": { "unit_dns": "","unit_ext_dns": "","mm_id": `` },
+ * "parameters": { "unit_dns": ``,"unit_ext_dns": ``,"mm_id": `` },
  * "unit_dns_id": ``,
  * "status": 200,
  * "message": "[POST][unit_dns]:success"
@@ -176,10 +175,9 @@ function PostUnitDns( $unit_dns, $unit_ext_dns, $mm_id ) {
 //insert to db================================================================== 
         $entityManager->persist($UnitDns);
         $entityManager->flush($UnitDns);
-
-        $result["unit_dns_id"] = $UnitDns->getUnitDnsId();
            
-//result_messages===============================================================      
+//result_messages===============================================================
+        $result["unit_dns_id"] = $UnitDns->getUnitDnsId();
         $result["status"] = ExceptionCodes::NoErrors;
         $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
     } catch (Exception $e) {

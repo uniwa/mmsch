@@ -1,10 +1,8 @@
 <?php
 /**
- *
  * @version 2.0
  * @author  ΤΕΙ Αθήνας
  * @package GET
- * 
  */
  
 header("Content-Type: text/html; charset=utf-8");

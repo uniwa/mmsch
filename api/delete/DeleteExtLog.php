@@ -1,5 +1,15 @@
 <?php
+/**
+ * @version 2.0
+ * @author  ΤΕΙ Αθήνας
+ * @package DEPRECATED
+ */
 
+/**
+ * **Διαγραφή Log Συγχρονισμού**
+ *
+ * 
+ */
 function DeleteExtLog() {
     
     global $entityManager, $app;

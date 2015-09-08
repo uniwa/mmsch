@@ -3,13 +3,13 @@
  *
  * @version 1.0.3
  * @author  ΤΕΙ Αθήνας
- * @package DELETE
+ * @package DEPRECATED
  */
 
 header("Content-Type: text/html; charset=utf-8");
 
 /**
- * <b>Διαγραφή Διασύνδεσης</b>
+ * <b>Διαγραφή Τύπου Κυκλώματος</b>
  *
  *
  * Η συνάρτηση αυτή διαγράφει τις Διασυνδέσεις σύμφωνα με τις παραμέτρους που έγινε η κλήση

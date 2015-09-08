@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * @version 2.0
  * @author  ΤΕΙ Αθήνας
  * @package PUT
@@ -11,7 +10,7 @@ header("Content-Type: text/html; charset=utf-8");
 /** 
  * **Ενημέρωση DNS Μονάδας**
  * 
- * Η συνάρτηση αυτή ενημερώνει DNS Μονάδας σύμφωνα με τις παραμέτρους που έγινε η κλήση.
+ * Η συνάρτηση ενημερώνει DNS Μονάδας σύμφωνα με τις παραμέτρους που έγινε η κλήση.
  * <br>Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο **PUT** και route_api_name = **unit_dns** :
  * <br>https://mm.sch.gr/api/unit_dns
  *
@@ -49,7 +48,7 @@ header("Content-Type: text/html; charset=utf-8");
  * "controller": "PutUnitDns",
  * "function": "unit_dns",
  * "method": "PUT",
- * "parameters": { "unit_dns_id": ``,"unit_dns": "","unit_ext_dns": "","mm_id": `` },
+ * "parameters": { "unit_dns_id": ``,"unit_dns": ``,"unit_ext_dns": ``,"mm_id": `` },
  * "unit_dns_id": ``,
  * "status": 200,
  * "message": "[PUT][unit_dns]:success"
