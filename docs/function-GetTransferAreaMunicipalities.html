@@ -7,7 +7,7 @@
 	<title>Function GetTransferAreaMunicipalities | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?1325412420"></script>
+	<script type="text/javascript" src="elementlist.js?2268174288"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -22,6 +22,8 @@
 			<h3>Packages</h3>
 			<ul>
 				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li><a href="package-DEPRECATED.html">DEPRECATED</a>
 						</li>
 				<li class="active"><a href="package-GET.html">GET</a>
 						</li>
@@ -383,11 +385,11 @@ class="php-keyword2">log</span>(data);
 
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
-	<tr id="$transfer_area">
+	<tr id="$transfer_area_municipality_id">
 		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$transfer_area</var></code></td>
+		<td class="value"><code><var>$transfer_area_municipality_id</var></code></td>
 		<td>
-			 Περιοχή Μετάθεσης<br />
+			$transfer_area Περιοχή Μετάθεσης<br />
 Το Όνομα ή ο Κωδικός της Περιοχής
 Μετάθεσης<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
@@ -422,11 +424,11 @@ mixed{integer|string|array[integer|string]}
 
 		</td>
 	</tr>
-	<tr id="$municipality">
+	<tr id="$transfer_area">
 		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$municipality</var></code></td>
+		<td class="value"><code><var>$transfer_area</var></code></td>
 		<td>
-			 Δήμος<br />
+			$municipality Δήμος<br />
 Το Όνομα ή ο Κωδικός του Δήμου<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
@@ -460,11 +462,11 @@ mixed{integer|string|array[integer|string]}
 
 		</td>
 	</tr>
-	<tr id="$pagesize">
+	<tr id="$municipality">
 		<td class="name"><code>integer</code></td>
-		<td class="value"><code><var>$pagesize</var></code></td>
+		<td class="value"><code><var>$municipality</var></code></td>
 		<td>
-			 Αριθμός Εγγραφών/Σελίδα<br />
+			$pagesize Αριθμός Εγγραφών/Σελίδα<br />
 Ο αριθμός των εγγραφών που θα επιστρέψουν
 ανα σελίδα<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
@@ -480,11 +482,11 @@ mixed{integer|string|array[integer|string]}
 
 		</td>
 	</tr>
-	<tr id="$page">
+	<tr id="$pagesize">
 		<td class="name"><code>integer</code></td>
-		<td class="value"><code><var>$page</var></code></td>
+		<td class="value"><code><var>$pagesize</var></code></td>
 		<td>
-			 Αριθμός Σελίδας<br />
+			$page Αριθμός Σελίδας<br />
 Ο αριθμός της σελίδας με τις <a
 href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 σύμφωμα με τις παραμέτρους<br />
@@ -500,11 +502,11 @@ href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 
 		</td>
 	</tr>
-	<tr id="$orderby">
+	<tr id="$page">
 		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$orderby</var></code></td>
+		<td class="value"><code><var>$page</var></code></td>
 		<td>
-			 Πεδίο Ταξινόμησης<br />
+			$orderby Πεδίο Ταξινόμησης<br />
 Το όνομα του πεδίου με το οποίο γίνεται η
 ταξινόμηση των εγγραφών<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
@@ -521,11 +523,11 @@ href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 
 		</td>
 	</tr>
-	<tr id="$ordertype">
+	<tr id="$orderby">
 		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$ordertype</var></code></td>
+		<td class="value"><code><var>$orderby</var></code></td>
 		<td>
-			 Τύπος Ταξινόμησης<br />
+			$ordertype Τύπος Ταξινόμησης<br />
 Ο Τύπος Ταξινόμησης με τον οποίο γίνεται η
 ταξινόμηση των εγγραφών<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
@@ -541,11 +543,11 @@ href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 
 		</td>
 	</tr>
-	<tr id="$searchtype">
+	<tr id="$ordertype">
 		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$searchtype</var></code></td>
+		<td class="value"><code><var>$ordertype</var></code></td>
 		<td>
-			 Τύπος Αναζήτησης<br />
+			$searchtype Τύπος Αναζήτησης<br />
 Ο Τύπος Αναζήτησης με τον οποίο γίνεται η
 αναζήτηση στο Όνομα (<a
 href="#$transfer_area">$transfer_area</a>) της Περιοχής
@@ -564,6 +566,13 @@ href="#$municipality">$municipality</a>) του Δήμου<br />
 	μπορεί να είναι ένας από τους Tύπους <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code></li>
 </ul>
 
+		</td>
+	</tr>
+	<tr id="$searchtype">
+		<td class="name"><code>mixed</code></td>
+		<td class="value"><code><var>$searchtype</var></code></td>
+		<td>
+			
 		</td>
 	</tr>
 	</table>

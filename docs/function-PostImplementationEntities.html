@@ -7,7 +7,7 @@
 	<title>Function PostImplementationEntities | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?1325412420"></script>
+	<script type="text/javascript" src="elementlist.js?2268174288"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -22,6 +22,8 @@
 			<h3>Packages</h3>
 			<ul>
 				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li><a href="package-DEPRECATED.html">DEPRECATED</a>
 						</li>
 				<li><a href="package-GET.html">GET</a>
 						</li>
@@ -46,17 +48,12 @@
 			<h3>Functions</h3>
 			<ul>
 				<li><a href="function-PostCategories.html">PostCategories</a></li>
-				<li><a href="function-PostCircuits.html">PostCircuits</a></li>
-				<li><a href="function-PostCircuitTypes.html">PostCircuitTypes</a></li>
-				<li><a href="function-PostConnections.html">PostConnections</a></li>
-				<li><a href="function-PostConnectionUnitNetworkSubnets.html">PostConnectionUnitNetworkSubnets</a></li>
 				<li><a href="function-PostEduAdmins.html">PostEduAdmins</a></li>
 				<li><a href="function-PostEducationLevels.html">PostEducationLevels</a></li>
-				<li><a href="function-PostGroups.html">PostGroups</a></li>
 				<li class="active"><a href="function-PostImplementationEntities.html">PostImplementationEntities</a></li>
 				<li><a href="function-PostLegalCharacters.html">PostLegalCharacters</a></li>
-				<li><a href="function-PostLevels.html">PostLevels</a></li>
 				<li><a href="function-PostMunicipalities.html">PostMunicipalities</a></li>
+				<li><a href="function-PostMunicipalityCommunities.html">PostMunicipalityCommunities</a></li>
 				<li><a href="function-PostOperationShifts.html">PostOperationShifts</a></li>
 				<li><a href="function-PostOrientationTypes.html">PostOrientationTypes</a></li>
 				<li><a href="function-PostPrefectures.html">PostPrefectures</a></li>
@@ -70,9 +67,6 @@
 				<li><a href="function-PostTransferAreaMunicipalities.html">PostTransferAreaMunicipalities</a></li>
 				<li><a href="function-PostTransferAreas.html">PostTransferAreas</a></li>
 				<li><a href="function-PostUnitDns.html">PostUnitDns</a></li>
-				<li><a href="function-PostUnitNetworkObjects.html">PostUnitNetworkObjects</a></li>
-				<li><a href="function-PostUnitNetworkSubnets.html">PostUnitNetworkSubnets</a></li>
-				<li><a href="function-PostUnitNetworkSubnetTypes.html">PostUnitNetworkSubnetTypes</a></li>
 				<li><a href="function-PostUnits.html">PostUnits</a></li>
 				<li><a href="function-PostUnitTypes.html">PostUnitTypes</a></li>
 				<li><a href="function-PostUnitWorkers.html">PostUnitWorkers</a></li>
@@ -116,6 +110,128 @@
 	<h1>Function PostImplementationEntities</h1>
 
 
+	<div class="description">
+	
+<p><strong>ΛΕΞΙΚΟ : Καταχώρηση Φορέα
+Υλοποίησης</strong></p>
+
+<p>Η συνάρτηση καταχωρεί Φορέα Υλοποίησης
+σύμφωνα με τις παραμέτρους που έγινε η
+κλήση.<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>POST</strong> και
+route_api_name = <strong>implementation_entities</strong> :<br />
+https://mm.sch.gr/api/implementation_entities</p>
+
+<p><strong><em>Ορισμός Μοναδικών Τιμών
+Παραμέτρων</em></strong><br />
+Παρακάτω ορίζονται οι παραμέτροι που έχουν
+μοναδικές τιμές και πραγματοποιειται
+ελεγχος πριν κάθε καταχώρηση:</p>
+
+<ul>
+	<li><strong>name</strong></li>
+
+	<li><strong>initials</strong></li>
+</ul>
+
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
+
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
+
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
+</ul>
+
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
+
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
+
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
+
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
+
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
+
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
+
+<pre>
+{
+<span class="php-quote">&quot;controller&quot;</span>: <span
+class="php-quote">&quot;PostImplementationEntities&quot;</span>,
+<span
+class="php-quote">&quot;function&quot;</span>: <span
+class="php-quote">&quot;implementation_entities&quot;</span>,
+<span
+class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;POST&quot;</span>,
+<span
+class="php-quote">&quot;parameters&quot;</span>: { <span
+class="php-quote">&quot;name&quot;</span>: ``,<span
+class="php-quote">&quot;initials&quot;</span>: ``,<span
+class="php-quote">&quot;street_address&quot;</span>: ``,<span
+class="php-quote">&quot;postal_code&quot;</span>: ``,
+                <span
+class="php-quote">&quot;email&quot;</span>: ``,<span
+class="php-quote">&quot;phone_number&quot;</span>: ``,<span
+class="php-quote">&quot;domain&quot;</span>: ``,<span
+class="php-quote">&quot;url&quot;</span>: `` },
+<span
+class="php-quote">&quot;implementation_entity_id&quot;</span>: ``,
+<span
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
+<span
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;[POST][implementation_entities]:success&quot;</span>
+}
+</pre>
+
+	</div>
 
 	<div class="info">
 		
@@ -129,64 +245,367 @@
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
 	<tr id="$name">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$name</var></code></td>
 		<td>
-			
+			 Όνομα<br />
+<br />
+Το Όνομα του Φορέα Υλοποίησης<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$initials">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$initials</var></code></td>
 		<td>
-			
+			 Αρχικά Ονόματος<br />
+<br />
+Τα Αρχικά Ονόματος του Φορέα Υλοποίησης<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$street_address">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$street_address</var></code></td>
 		<td>
-			
+			 Διεύθυνση<br />
+<br />
+H Διεύθυνση του Φορέα Υλοποίησης<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$postal_code">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$postal_code</var></code></td>
 		<td>
-			
+			 Ταχυδρομικός Κώδικας<br />
+<br />
+O Ταχυδρομικός Κώδικας του Φορέα
+Υλοποίησης<br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
 		</td>
 	</tr>
 	<tr id="$email">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$email</var></code></td>
 		<td>
-			
+			 Ηλεκτρονικό Ταχυδρομείο<br />
+<br />
+Το Ηλεκτρονικό Ταχυδρομείο του Φορέα
+Υλοποίησης<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$phone_number">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$phone_number</var></code></td>
 		<td>
-			
+			 Τηλεφωνικός Αριθμός<br />
+<br />
+O Τηλεφωνικός Αριθμός του Φορέα
+Υλοποίησης<br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
 		</td>
 	</tr>
 	<tr id="$domain">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$domain</var></code></td>
 		<td>
-			
+			 Domain<br />
+<br />
+Το Domain του Φορέα Υλοποίησης<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$url">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$url</var></code></td>
 		<td>
-			
+			 Διεύθυνση Url<br />
+<br />
+Η Διεύθυνση Url του Φορέα Υλοποίησης<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	</table>
 
+	<table class="summary" id="returns">
+	<caption>Return value summary</caption>
+	<tr>
+		<td class="name"><code>
+			Objects&lt;JSON&gt;
+		</code></td>
+		<td>
+			Επιστρέφει τα παρακάτω JSON objects :<br />
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+array : <b>parameters</b> : Οι παράμετροι που δίνει ο
+χρήστης<br />
+integer : <b>implementation_entity_id</b> : Ο Κωδικός ID του
+Φορέα Υλοποίησης που ενημερώθηκε<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
+		</td>
+	</tr>
+	</table>
 
+	<table class="summary" id="throws">
+	<caption>Thrown exceptions summary</caption>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityNameParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityNameParam">ExceptionMessages::<b>MissingImplementationEntityNameParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityNameParam">ExceptionCodes::<b>MissingImplementationEntityNameParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityNameValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityNameValue">ExceptionMessages::<b>MissingImplementationEntityNameValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityNameValue">ExceptionCodes::<b>MissingImplementationEntityNameValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidImplementationEntityNameType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityNameType">ExceptionMessages::<b>InvalidImplementationEntityNameType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidImplementationEntityNameType">ExceptionCodes::<b>InvalidImplementationEntityNameType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityInitialParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityInitialParam">ExceptionMessages::<b>MissingImplementationEntityInitialParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityInitialParam">ExceptionCodes::<b>MissingImplementationEntityInitialParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityInitialValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityInitialValue">ExceptionMessages::<b>MissingImplementationEntityInitialValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityInitialValue">ExceptionCodes::<b>MissingImplementationEntityInitialValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidImplementationEntityInitialType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityInitialType">ExceptionMessages::<b>InvalidImplementationEntityInitialType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidImplementationEntityInitialType">ExceptionCodes::<b>InvalidImplementationEntityInitialType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityStreetAddressParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityStreetAddressParam">ExceptionMessages::<b>MissingImplementationEntityStreetAddressParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityStreetAddressParam">ExceptionCodes::<b>MissingImplementationEntityStreetAddressParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityStreetAddressValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityStreetAddressValue">ExceptionMessages::<b>MissingImplementationEntityStreetAddressValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityStreetAddressValue">ExceptionCodes::<b>MissingImplementationEntityStreetAddressValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidImplementationEntityStreetAddressType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityStreetAddressType">ExceptionMessages::<b>InvalidImplementationEntityStreetAddressType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidImplementationEntityStreetAddressType">ExceptionCodes::<b>InvalidImplementationEntityStreetAddressType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityPostalCodeParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityPostalCodeParam">ExceptionMessages::<b>MissingImplementationEntityPostalCodeParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityPostalCodeParam">ExceptionCodes::<b>MissingImplementationEntityPostalCodeParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityPostalCodeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityPostalCodeValue">ExceptionMessages::<b>MissingImplementationEntityPostalCodeValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityPostalCodeValue">ExceptionCodes::<b>MissingImplementationEntityPostalCodeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidImplementationEntityPostalCodeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityPostalCodeType">ExceptionMessages::<b>InvalidImplementationEntityPostalCodeType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidImplementationEntityPostalCodeType">ExceptionCodes::<b>InvalidImplementationEntityPostalCodeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityEmailParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityEmailParam">ExceptionMessages::<b>MissingImplementationEntityEmailParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityEmailParam">ExceptionCodes::<b>MissingImplementationEntityEmailParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityEmailValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityEmailValue">ExceptionMessages::<b>MissingImplementationEntityEmailValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityEmailValue">ExceptionCodes::<b>MissingImplementationEntityEmailValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidImplementationEntityEmailType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityEmailType">ExceptionMessages::<b>InvalidImplementationEntityEmailType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidImplementationEntityEmailType">ExceptionCodes::<b>InvalidImplementationEntityEmailType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityPhoneNumberParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityPhoneNumberParam">ExceptionMessages::<b>MissingImplementationEntityPhoneNumberParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityPhoneNumberParam">ExceptionCodes::<b>MissingImplementationEntityPhoneNumberParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityPhoneNumberValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityPhoneNumberValue">ExceptionMessages::<b>MissingImplementationEntityPhoneNumberValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityPhoneNumberValue">ExceptionCodes::<b>MissingImplementationEntityPhoneNumberValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidImplementationEntityPhoneNumberType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityPhoneNumberType">ExceptionMessages::<b>InvalidImplementationEntityPhoneNumberType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidImplementationEntityPhoneNumberType">ExceptionCodes::<b>InvalidImplementationEntityPhoneNumberType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityDomainParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityDomainParam">ExceptionMessages::<b>MissingImplementationEntityDomainParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityDomainParam">ExceptionCodes::<b>MissingImplementationEntityDomainParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityDomainValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityDomainValue">ExceptionMessages::<b>MissingImplementationEntityDomainValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityDomainValue">ExceptionCodes::<b>MissingImplementationEntityDomainValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidImplementationEntityDomainType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityDomainType">ExceptionMessages::<b>InvalidImplementationEntityDomainType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidImplementationEntityDomainType">ExceptionCodes::<b>InvalidImplementationEntityDomainType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityUrlParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityUrlParam">ExceptionMessages::<b>MissingImplementationEntityUrlParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityUrlParam">ExceptionCodes::<b>MissingImplementationEntityUrlParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityUrlValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityUrlValue">ExceptionMessages::<b>MissingImplementationEntityUrlValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityUrlValue">ExceptionCodes::<b>MissingImplementationEntityUrlValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidImplementationEntityUrlType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityUrlType">ExceptionMessages::<b>InvalidImplementationEntityUrlType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidImplementationEntityUrlType">ExceptionCodes::<b>InvalidImplementationEntityUrlType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedImplementationEntityValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedImplementationEntityValue">ExceptionMessages::<b>DuplicatedImplementationEntityValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedImplementationEntityValue">ExceptionCodes::<b>DuplicatedImplementationEntityValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedImplementationEntityInitialsValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedImplementationEntityInitialsValue">ExceptionMessages::<b>DuplicatedImplementationEntityInitialsValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedImplementationEntityInitialsValue">ExceptionCodes::<b>DuplicatedImplementationEntityInitialsValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NoErrors
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
+		</td>
+	</tr>
+	</table>
 
 </div>
 

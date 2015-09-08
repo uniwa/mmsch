@@ -7,7 +7,7 @@
 	<title>Function PutMunicipalities | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?1325412420"></script>
+	<script type="text/javascript" src="elementlist.js?2268174288"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -22,6 +22,8 @@
 			<h3>Packages</h3>
 			<ul>
 				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li><a href="package-DEPRECATED.html">DEPRECATED</a>
 						</li>
 				<li><a href="package-GET.html">GET</a>
 						</li>
@@ -46,17 +48,12 @@
 			<h3>Functions</h3>
 			<ul>
 				<li><a href="function-PutCategories.html">PutCategories</a></li>
-				<li><a href="function-PutCircuits.html">PutCircuits</a></li>
-				<li><a href="function-PutCircuitTypes.html">PutCircuitTypes</a></li>
-				<li><a href="function-PutConnections.html">PutConnections</a></li>
-				<li><a href="function-PutConnectionUnitNetworkSubnets.html">PutConnectionUnitNetworkSubnets</a></li>
 				<li><a href="function-PutEduAdmins.html">PutEduAdmins</a></li>
 				<li><a href="function-PutEducationLevels.html">PutEducationLevels</a></li>
-				<li><a href="function-PutGroups.html">PutGroups</a></li>
 				<li><a href="function-PutImplementationEntities.html">PutImplementationEntities</a></li>
 				<li><a href="function-PutLegalCharacters.html">PutLegalCharacters</a></li>
-				<li><a href="function-PutLevels.html">PutLevels</a></li>
 				<li class="active"><a href="function-PutMunicipalities.html">PutMunicipalities</a></li>
+				<li><a href="function-PutMunicipalityCommunities.html">PutMunicipalityCommunities</a></li>
 				<li><a href="function-PutOperationShifts.html">PutOperationShifts</a></li>
 				<li><a href="function-PutOrientationTypes.html">PutOrientationTypes</a></li>
 				<li><a href="function-PutPrefectures.html">PutPrefectures</a></li>
@@ -70,9 +67,6 @@
 				<li><a href="function-PutTransferAreaMunicipalities.html">PutTransferAreaMunicipalities</a></li>
 				<li><a href="function-PutTransferAreas.html">PutTransferAreas</a></li>
 				<li><a href="function-PutUnitDns.html">PutUnitDns</a></li>
-				<li><a href="function-PutUnitNetworkObjects.html">PutUnitNetworkObjects</a></li>
-				<li><a href="function-PutUnitNetworkSubnets.html">PutUnitNetworkSubnets</a></li>
-				<li><a href="function-PutUnitNetworkSubnetTypes.html">PutUnitNetworkSubnetTypes</a></li>
 				<li><a href="function-PutUnits.html">PutUnits</a></li>
 				<li><a href="function-PutUnitTypes.html">PutUnitTypes</a></li>
 				<li><a href="function-PutUnitWorkers.html">PutUnitWorkers</a></li>
@@ -116,6 +110,120 @@
 	<h1>Function PutMunicipalities</h1>
 
 
+	<div class="description">
+	
+<p><strong>ΛΕΞΙΚΟ : Ενημέρωση Δήμου ΟΤΑ</strong></p>
+
+<p>Η συνάρτηση ενημερώνει Δήμο ΟΤΑ σύμφωνα
+με τις παραμέτρους που έγινε η κλήση.<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>PUT</strong> και
+route_api_name = <strong>municipalities</strong> :<br />
+https://mm.sch.gr/api/municipalities</p>
+
+<p><strong><em>Ορισμός Μοναδικών Τιμών
+Παραμέτρων</em></strong><br />
+Παρακάτω ορίζονται οι παραμέτροι που έχουν
+μοναδικές τιμές και πραγματοποιειται
+ελεγχος πριν κάθε καταχώρηση:</p>
+
+<ul>
+	<li><strong>municipality_id</strong></li>
+
+	<li><strong>name</strong></li>
+</ul>
+
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
+
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
+
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
+</ul>
+
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
+
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
+
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
+
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
+
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
+
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
+
+<pre>
+{
+<span class="php-quote">&quot;controller&quot;</span>: <span
+class="php-quote">&quot;PutMunicipalities&quot;</span>,
+<span
+class="php-quote">&quot;function&quot;</span>: <span
+class="php-quote">&quot;municipalities&quot;</span>,
+<span
+class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;PUT&quot;</span>,
+<span
+class="php-quote">&quot;parameters&quot;</span>: { <span
+class="php-quote">&quot;municipality_id&quot;</span>: ``,<span
+class="php-quote">&quot;name&quot;</span>: ``,<span
+class="php-quote">&quot;prefecture&quot;</span>: `` },
+<span
+class="php-quote">&quot;municipality_id&quot;</span>: ``,
+<span
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
+<span
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;[PUT][municipalities]:success&quot;</span>
+}
+</pre>
+
+	</div>
 
 	<div class="info">
 		
@@ -129,29 +237,243 @@
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
 	<tr id="$municipality_id">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$municipality_id</var></code></td>
 		<td>
-			
+			 ID Δήμου ΟΤΑ<br />
+<br />
+Ο Κωδικός ID του Δήμου ΟΤΑ<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+ID Δήμου ΟΤΑ : <code><a href="function-GetMunicipalities.html">GetMunicipalities()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Δήμου ΟΤΑ<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$name">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$name</var></code></td>
 		<td>
-			
+			 Όνομα<br />
+<br />
+Το Όνομα του Δήμου ΟΤΑ<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$prefecture">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$prefecture</var></code></td>
 		<td>
-			
+			 Όνομα ή ID Περιφερειακής Ενότητας<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Περιφερειακής
+Ενότητας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Όνομα ή ID Περιφερειακής Ενότητας : <code><a href="function-GetPrefectures.html">GetPrefectures()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Περιφερειακής Ενότητας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Περιφερειακής Ενότητας<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	</table>
 
+	<table class="summary" id="returns">
+	<caption>Return value summary</caption>
+	<tr>
+		<td class="name"><code>
+			Objects&lt;JSON&gt;
+		</code></td>
+		<td>
+			Επιστρέφει τα παρακάτω JSON objects :<br />
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+array : <b>parameters</b> : Οι παράμετροι που δίνει ο
+χρήστης<br />
+integer : <b>municipality_id</b> : Ο Κωδικός ID του Δήμου ΟΤΑ
+που ενημερώθηκε<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
+		</td>
+	</tr>
+	</table>
 
+	<table class="summary" id="throws">
+	<caption>Thrown exceptions summary</caption>
+	<tr>
+		<td class="name"><code>
+			MissingMunicipalityIDParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingMunicipalityIDParam">ExceptionMessages::<b>MissingMunicipalityIDParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingMunicipalityIDParam">ExceptionCodes::<b>MissingMunicipalityIDParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingMunicipalityIDValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingMunicipalityIDValue">ExceptionMessages::<b>MissingMunicipalityIDValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingMunicipalityIDValue">ExceptionCodes::<b>MissingMunicipalityIDValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMunicipalityIDArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityIDArray">ExceptionMessages::<b>InvalidMunicipalityIDArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidMunicipalityIDArray">ExceptionCodes::<b>InvalidMunicipalityIDArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMunicipalityIDType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityIDType">ExceptionMessages::<b>InvalidMunicipalityIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidMunicipalityIDType">ExceptionCodes::<b>InvalidMunicipalityIDType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMunicipalityValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityValue">ExceptionMessages::<b>InvalidMunicipalityValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidMunicipalityValue">ExceptionCodes::<b>InvalidMunicipalityValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedMunicipalityUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedMunicipalityUniqueValue">ExceptionMessages::<b>DuplicatedMunicipalityUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedMunicipalityUniqueValue">ExceptionCodes::<b>DuplicatedMunicipalityUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingMunicipalityNameParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingMunicipalityNameParam">ExceptionMessages::<b>MissingMunicipalityNameParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingMunicipalityNameParam">ExceptionCodes::<b>MissingMunicipalityNameParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingMunicipalityNameValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingMunicipalityNameValue">ExceptionMessages::<b>MissingMunicipalityNameValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingMunicipalityNameValue">ExceptionCodes::<b>MissingMunicipalityNameValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMunicipalityNameType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityNameType">ExceptionMessages::<b>InvalidMunicipalityNameType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidMunicipalityNameType">ExceptionCodes::<b>InvalidMunicipalityNameType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingPrefectureParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingPrefectureParam">ExceptionMessages::<b>MissingPrefectureParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingPrefectureParam">ExceptionCodes::<b>MissingPrefectureParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingPrefectureValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingPrefectureValue">ExceptionMessages::<b>MissingPrefectureValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingPrefectureValue">ExceptionCodes::<b>MissingPrefectureValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPrefectureArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPrefectureArray">ExceptionMessages::<b>InvalidPrefectureArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidPrefectureArray">ExceptionCodes::<b>InvalidPrefectureArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPrefectureType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPrefectureType">ExceptionMessages::<b>InvalidPrefectureType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidPrefectureType">ExceptionCodes::<b>InvalidPrefectureType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedPrefectureUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedPrefectureUniqueValue">ExceptionMessages::<b>DuplicatedPrefectureUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedPrefectureUniqueValue">ExceptionCodes::<b>DuplicatedPrefectureUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedMunicipalityValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedMunicipalityValue">ExceptionMessages::<b>DuplicatedMunicipalityValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedMunicipalityValue">ExceptionCodes::<b>DuplicatedMunicipalityValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NoErrors
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
+		</td>
+	</tr>
+	</table>
 
 </div>
 

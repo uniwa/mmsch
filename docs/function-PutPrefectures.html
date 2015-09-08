@@ -7,7 +7,7 @@
 	<title>Function PutPrefectures | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?1325412420"></script>
+	<script type="text/javascript" src="elementlist.js?2268174288"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -22,6 +22,8 @@
 			<h3>Packages</h3>
 			<ul>
 				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li><a href="package-DEPRECATED.html">DEPRECATED</a>
 						</li>
 				<li><a href="package-GET.html">GET</a>
 						</li>
@@ -46,17 +48,12 @@
 			<h3>Functions</h3>
 			<ul>
 				<li><a href="function-PutCategories.html">PutCategories</a></li>
-				<li><a href="function-PutCircuits.html">PutCircuits</a></li>
-				<li><a href="function-PutCircuitTypes.html">PutCircuitTypes</a></li>
-				<li><a href="function-PutConnections.html">PutConnections</a></li>
-				<li><a href="function-PutConnectionUnitNetworkSubnets.html">PutConnectionUnitNetworkSubnets</a></li>
 				<li><a href="function-PutEduAdmins.html">PutEduAdmins</a></li>
 				<li><a href="function-PutEducationLevels.html">PutEducationLevels</a></li>
-				<li><a href="function-PutGroups.html">PutGroups</a></li>
 				<li><a href="function-PutImplementationEntities.html">PutImplementationEntities</a></li>
 				<li><a href="function-PutLegalCharacters.html">PutLegalCharacters</a></li>
-				<li><a href="function-PutLevels.html">PutLevels</a></li>
 				<li><a href="function-PutMunicipalities.html">PutMunicipalities</a></li>
+				<li><a href="function-PutMunicipalityCommunities.html">PutMunicipalityCommunities</a></li>
 				<li><a href="function-PutOperationShifts.html">PutOperationShifts</a></li>
 				<li><a href="function-PutOrientationTypes.html">PutOrientationTypes</a></li>
 				<li class="active"><a href="function-PutPrefectures.html">PutPrefectures</a></li>
@@ -70,9 +67,6 @@
 				<li><a href="function-PutTransferAreaMunicipalities.html">PutTransferAreaMunicipalities</a></li>
 				<li><a href="function-PutTransferAreas.html">PutTransferAreas</a></li>
 				<li><a href="function-PutUnitDns.html">PutUnitDns</a></li>
-				<li><a href="function-PutUnitNetworkObjects.html">PutUnitNetworkObjects</a></li>
-				<li><a href="function-PutUnitNetworkSubnets.html">PutUnitNetworkSubnets</a></li>
-				<li><a href="function-PutUnitNetworkSubnetTypes.html">PutUnitNetworkSubnetTypes</a></li>
 				<li><a href="function-PutUnits.html">PutUnits</a></li>
 				<li><a href="function-PutUnitTypes.html">PutUnitTypes</a></li>
 				<li><a href="function-PutUnitWorkers.html">PutUnitWorkers</a></li>
@@ -116,6 +110,121 @@
 	<h1>Function PutPrefectures</h1>
 
 
+	<div class="description">
+	
+<p><strong>ΛΕΞΙΚΟ : Ενημέρωση Περιφερειακής
+Ενότητας</strong></p>
+
+<p>Η συνάρτηση ενημερώνει Περιφερειακή
+Ενότητα σύμφωνα με τις παραμέτρους που
+έγινε η κλήση.<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>PUT</strong> και
+route_api_name = <strong>prefectures</strong> :<br />
+https://mm.sch.gr/api/prefectures</p>
+
+<p><strong><em>Ορισμός Μοναδικών Τιμών
+Παραμέτρων</em></strong><br />
+Παρακάτω ορίζονται οι παραμέτροι που έχουν
+μοναδικές τιμές και πραγματοποιειται
+ελεγχος πριν κάθε καταχώρηση:</p>
+
+<ul>
+	<li><strong>prefecture_id</strong></li>
+
+	<li><strong>name</strong></li>
+</ul>
+
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
+
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
+
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
+</ul>
+
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
+
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
+
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
+
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
+
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
+
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
+
+<pre>
+{
+<span class="php-quote">&quot;controller&quot;</span>: <span
+class="php-quote">&quot;PutPrefectures&quot;</span>,
+<span
+class="php-quote">&quot;function&quot;</span>: <span
+class="php-quote">&quot;prefectures&quot;</span>,
+<span
+class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;PUT&quot;</span>,
+<span
+class="php-quote">&quot;parameters&quot;</span>: { <span
+class="php-quote">&quot;prefecture_id&quot;</span>: ``,<span
+class="php-quote">&quot;name&quot;</span>: `` },
+<span
+class="php-quote">&quot;prefecture_id&quot;</span>: ``,
+<span
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
+<span
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;[PUT][prefectures]:success&quot;</span>
+}
+</pre>
+
+	</div>
 
 	<div class="info">
 		
@@ -129,22 +238,169 @@
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
 	<tr id="$prefecture_id">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$prefecture_id</var></code></td>
 		<td>
-			
+			 ID Περιφερειακής Ενότητας<br />
+<br />
+Ο Κωδικός ID της Περιφερειακής Ενότητας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+ID Περιφερειακής Ενότητας : <code><a href="function-GetPrefectures.html">GetPrefectures()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Περιφερειακής Ενότητας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$name">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$name</var></code></td>
 		<td>
-			
+			 Όνομα<br />
+<br />
+Το Όνομα της Περιφερειακής Ενότητας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	</table>
 
+	<table class="summary" id="returns">
+	<caption>Return value summary</caption>
+	<tr>
+		<td class="name"><code>
+			Objects&lt;JSON&gt;
+		</code></td>
+		<td>
+			Επιστρέφει τα παρακάτω JSON objects :<br />
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+array : <b>parameters</b> : Οι παράμετροι που δίνει ο
+χρήστης<br />
+integer : <b>prefecture_id</b> : Ο Κωδικός ID της
+Περιφερειακής Ενότητας που ενημερώθηκε<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
+		</td>
+	</tr>
+	</table>
 
+	<table class="summary" id="throws">
+	<caption>Thrown exceptions summary</caption>
+	<tr>
+		<td class="name"><code>
+			MissingPrefectureIDParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingPrefectureIDParam">ExceptionMessages::<b>MissingPrefectureIDParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingPrefectureIDParam">ExceptionCodes::<b>MissingPrefectureIDParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingPrefectureIDValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingPrefectureIDValue">ExceptionMessages::<b>MissingPrefectureIDValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingPrefectureIDValue">ExceptionCodes::<b>MissingPrefectureIDValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPrefectureIDArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPrefectureIDArray">ExceptionMessages::<b>InvalidPrefectureIDArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidPrefectureIDArray">ExceptionCodes::<b>InvalidPrefectureIDArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPrefectureIDType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPrefectureIDType">ExceptionMessages::<b>InvalidPrefectureIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidPrefectureIDType">ExceptionCodes::<b>InvalidPrefectureIDType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPrefectureValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPrefectureValue">ExceptionMessages::<b>InvalidPrefectureValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidPrefectureValue">ExceptionCodes::<b>InvalidPrefectureValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedPrefectureUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedPrefectureUniqueValue">ExceptionMessages::<b>DuplicatedPrefectureUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedPrefectureUniqueValue">ExceptionCodes::<b>DuplicatedPrefectureUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingPrefectureNameParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingPrefectureNameParam">ExceptionMessages::<b>MissingPrefectureNameParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingPrefectureNameParam">ExceptionCodes::<b>MissingPrefectureNameParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingPrefectureNameValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingPrefectureNameValue">ExceptionMessages::<b>MissingPrefectureNameValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingPrefectureNameValue">ExceptionCodes::<b>MissingPrefectureNameValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPrefectureNameType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPrefectureNameType">ExceptionMessages::<b>InvalidPrefectureNameType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidPrefectureNameType">ExceptionCodes::<b>InvalidPrefectureNameType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedPrefectureValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedPrefectureValue">ExceptionMessages::<b>DuplicatedPrefectureValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedPrefectureValue">ExceptionCodes::<b>DuplicatedPrefectureValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NoErrors
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
+		</td>
+	</tr>
+	</table>
 
 </div>
 

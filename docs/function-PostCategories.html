@@ -7,7 +7,7 @@
 	<title>Function PostCategories | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?1325412420"></script>
+	<script type="text/javascript" src="elementlist.js?2268174288"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -22,6 +22,8 @@
 			<h3>Packages</h3>
 			<ul>
 				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li><a href="package-DEPRECATED.html">DEPRECATED</a>
 						</li>
 				<li><a href="package-GET.html">GET</a>
 						</li>
@@ -46,17 +48,12 @@
 			<h3>Functions</h3>
 			<ul>
 				<li class="active"><a href="function-PostCategories.html">PostCategories</a></li>
-				<li><a href="function-PostCircuits.html">PostCircuits</a></li>
-				<li><a href="function-PostCircuitTypes.html">PostCircuitTypes</a></li>
-				<li><a href="function-PostConnections.html">PostConnections</a></li>
-				<li><a href="function-PostConnectionUnitNetworkSubnets.html">PostConnectionUnitNetworkSubnets</a></li>
 				<li><a href="function-PostEduAdmins.html">PostEduAdmins</a></li>
 				<li><a href="function-PostEducationLevels.html">PostEducationLevels</a></li>
-				<li><a href="function-PostGroups.html">PostGroups</a></li>
 				<li><a href="function-PostImplementationEntities.html">PostImplementationEntities</a></li>
 				<li><a href="function-PostLegalCharacters.html">PostLegalCharacters</a></li>
-				<li><a href="function-PostLevels.html">PostLevels</a></li>
 				<li><a href="function-PostMunicipalities.html">PostMunicipalities</a></li>
+				<li><a href="function-PostMunicipalityCommunities.html">PostMunicipalityCommunities</a></li>
 				<li><a href="function-PostOperationShifts.html">PostOperationShifts</a></li>
 				<li><a href="function-PostOrientationTypes.html">PostOrientationTypes</a></li>
 				<li><a href="function-PostPrefectures.html">PostPrefectures</a></li>
@@ -70,9 +67,6 @@
 				<li><a href="function-PostTransferAreaMunicipalities.html">PostTransferAreaMunicipalities</a></li>
 				<li><a href="function-PostTransferAreas.html">PostTransferAreas</a></li>
 				<li><a href="function-PostUnitDns.html">PostUnitDns</a></li>
-				<li><a href="function-PostUnitNetworkObjects.html">PostUnitNetworkObjects</a></li>
-				<li><a href="function-PostUnitNetworkSubnets.html">PostUnitNetworkSubnets</a></li>
-				<li><a href="function-PostUnitNetworkSubnetTypes.html">PostUnitNetworkSubnetTypes</a></li>
 				<li><a href="function-PostUnits.html">PostUnits</a></li>
 				<li><a href="function-PostUnitTypes.html">PostUnitTypes</a></li>
 				<li><a href="function-PostUnitWorkers.html">PostUnitWorkers</a></li>
@@ -118,233 +112,112 @@
 
 	<div class="description">
 	
-<p>Καταχώρηση : Κατηγορίες</p>
+<p><strong>ΛΕΞΙΚΟ : Καταχώρηση Κατηγορίας</strong></p>
 
-<p>Η μέθοδος αυτή χρησιμοποιείται για την
-Καταχώρηση του λεξικού των Κατηγοριών.<br />
-Η κλήση της μπορεί να γίνει μέσω της μεθόδου
-POST στην ηλεκτρονική διεύθυνση:<br />
-<a
-href="https://mm.sch.gr/api/categories">https://mm.sch.gr/api/categories</a><br
-/>
-</p>
+<p>Η συνάρτηση καταχωρεί Κατηγορία σύμφωνα
+με τις παραμέτρους που έγινε η κλήση.<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>POST</strong> και
+route_api_name = <strong>categories</strong> :<br />
+https://mm.sch.gr/api/categories</p>
 
-<div><br />
-</div>
+<p><strong><em>Ορισμός Μοναδικών Τιμών
+Παραμέτρων</em></strong><br />
+Παρακάτω ορίζονται οι παραμέτροι που έχουν
+μοναδικές τιμές και πραγματοποιειται
+ελεγχος πριν κάθε καταχώρηση:</p>
 
-<p><a href="#parameters">Παράμετροι (Πίνακας : Parameters
-summary)</a><br />
-Στον πίνακα αυτό περιγράφονται οι
-παράμετροι που μπορούν να χρισημοποιηθούν
-στη κλήση της μεθόδου<br />
-Όλοι οι παράμετροι είναι προαιρετικοί
-εκτός από αυτές που έχουν χαρακτηριστεί ως
-υποχρεωτικοί<br />
-Οι παράμετροι μπορούν να χρησιμοποιηθούν
-με οποιαδήποτε σειρά</p>
+<ul>
+	<li><strong>name</strong></li>
+</ul>
 
-<div><br />
-</div>
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
 
-<p><a href="#returns">Αποτελέσματα (Πίνακας : Return value
-summary)</a><br />
-Στον πίνακα αυτό περιγράφονται οι
-μεταβλητές που επιστρέφει η μέθοδος<br />
-Όλες οι μεταβλητές επιστρέφονται σε ένα
-πίνακα σε μορφή JSON</p>
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
 
-<div><br />
-</div>
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
 
-<p><a href="#throws">Εξαιρέσεις (Πίνακας : Thrown exceptions
-summary)</a><br />
-Στον πίνακα αυτό εμφανίζεται μια σειρά από
-ιεραρχικούς ελέγχους που γίνονται κατά την
-εκτέλεση της μεθόδου οι οποίοι μπορούν να
-προκαλέσουν την διακοπή της εκτέλεσης της
-επιστρέφοντας το αντίστοιχο Κωδικό και
-Μύνημα Σφάλματος.<br />
-Η περιγραφή όλων των Σφαλμάτων είναι
-διαθέσιμη μέσω του πίνακα Μηνύματα
-Σφαλμάτων <code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code></p>
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
+</ul>
 
-<div><br />
-</div>
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
 
-<p>Παρακάτω εμφανίζεται μια σειρά από
-παραδείγματα κλήσης της μεθόδου με
-διάφορους τρόπους :<br />
-<a href="#cURL">cURL</a> | <a href="#JavaScript">JavaScript</a> | <a
-href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a></p>
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
 
-<div><br />
-</div>
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
 
-<p><a id="cURL"></a>Παράδειγμα κλήσης της μεθόδου με
-<b>cURL</b> (console) :</p>
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
 
-<pre>
-curl -X POST https:<span
-class="php-comment">//mm.sch.gr/api/categories \</span>
-   -H <span
-class="php-quote">&quot;Content-Type: application/json&quot;</span> \
-   -H <span
-class="php-quote">&quot;Accept: application/json&quot;</span> \
-   -u username:password \
-   -d { <span
-class="php-quote">&quot;name&quot;</span> : <span
-class="php-quote">&quot;ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ&quot;</span> }<span
-class="php-quote">'
-</span></pre>
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
 
-<div><br />
-</div>
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
 
-<p><a id="JavaScript"></a>Παράδειγμα κλήσης της
-μεθόδου με <b>JavaScript</b> :</p>
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
+
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
 
 <pre>
-&lt;script&gt;
-   <span
-class="php-keyword1">var</span> params = JSON.stringify({<span
-class="php-quote">&quot;name&quot;</span> : <span
-class="php-quote">&quot;ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ&quot;</span>});
-
-   <span
-class="php-keyword1">var</span> http = <span
-class="php-keyword1">new</span> XMLHttpRequest();
-   http.open(<span
-class="php-quote">&quot;POST&quot;</span>, <span
-class="php-quote">&quot;https://mm.sch.gr/api/categories&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Accept&quot;</span>, <span
-class="php-quote">&quot;application/json&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-type&quot;</span>, <span
-class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-length&quot;</span>, params.length);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Authorization&quot;</span>, <span
-class="php-quote">&quot;Basic &quot;</span> + btoa(<span
-class="php-quote">'username'</span> + <span class="php-quote">':'</span> + <span
-class="php-quote">'password'</span>) );
-
-   http.onreadystatechange = <span
-class="php-keyword1">function</span>()
-   {
-       <span
-class="php-keyword1">if</span>(http.readyState == <span
-class="php-num">4</span> &amp;&amp; http.status == <span
-class="php-num">200</span>)
-       {
-           <span
-class="php-keyword1">var</span> result = JSON.parse(http.responseText);
-           document.write(result.status + <span
-class="php-quote">&quot; : &quot;</span> + result.message);
-       }
-   }
-
-   http.send(params);
-&lt;/script&gt;
+{
+<span class="php-quote">&quot;controller&quot;</span>: <span
+class="php-quote">&quot;PostCategories&quot;</span>,
+<span
+class="php-quote">&quot;function&quot;</span>: <span
+class="php-quote">&quot;categories&quot;</span>,
+<span
+class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;POST&quot;</span>,
+<span
+class="php-quote">&quot;parameters&quot;</span>: { <span
+class="php-quote">&quot;name&quot;</span>: ``},
+<span
+class="php-quote">&quot;category_id&quot;</span>: ``,
+<span
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
+<span
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;[POST][categories]:success&quot;</span>
+}
 </pre>
-
-<div><br />
-</div>
-
-<p><a id="PHP"></a>Παράδειγμα κλήσης της μεθόδου με
-<b>PHP</b> :</p>
-
-<pre>
-<span class="xlang">&lt;?php</span>
-<span
-class="php-keyword2">header</span>(<span
-class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
-
-<span
-class="php-var">$params</span> = <span class="php-keyword1">array</span>(<span
-class="php-quote">&quot;name&quot;</span> =&gt; <span
-class="php-quote">&quot;ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ&quot;</span>);
-
-<span
-class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
-class="php-quote">&quot;https://mm.sch.gr/api/categories&quot;</span>);
-
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_USERPWD, <span
-class="php-quote">&quot;username:password&quot;</span>);
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
-class="php-quote">&quot;POST&quot;</span>);
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_POSTFIELDS, <span
-class="php-keyword2">json_encode</span>( <span
-class="php-var">$params</span> ));
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
-class="php-keyword1">true</span>);
-
-<span class="php-var">$data</span> = <span
-class="php-keyword2">curl_exec</span>(<span class="php-var">$curl</span>);
-<span
-class="php-var">$data</span> = <span
-class="php-keyword2">json_decode</span>(<span
-class="php-var">$data</span>);
-<span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
-class="php-keyword2">var_dump</span>( <span
-class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
-<span
-class="xlang">?&gt;</span>
-</pre>
-
-<div><br />
-</div>
-
-<p><a id="PHP"></a>Παράδειγμα κλήσης της μεθόδου με
-<b>Ajax</b> :</p>
-
-<pre>
-&lt;script&gt;
-   <span class="php-var">$</span>.ajax({
-       type: <span
-class="php-quote">'POST'</span>,
-       url: <span
-class="php-quote">'https://mm.sch.gr/api/categories'</span>,
-       dataType: <span
-class="php-quote">&quot;json&quot;</span>,
-       data: {
-           <span
-class="php-quote">&quot;name&quot;</span> : <span
-class="php-quote">&quot;ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ&quot;</span>
-       },
-       beforeSend: <span
-class="php-keyword1">function</span>(req) {
-           req.setRequestHeader(<span
-class="php-quote">'Authorization'</span>, btoa(<span
-class="php-quote">'username'</span> + <span
-class="php-quote">&quot;:&quot;</span> + <span
-class="php-quote">'password'</span>));
-       },
-       success: <span
-class="php-keyword1">function</span>(data){
-           console.<span
-class="php-keyword2">log</span>(data);
-       }
-   });
-&lt;/script&gt;
-</pre>
-
-<div><br />
-</div>
 
 	</div>
 
@@ -363,11 +236,12 @@ class="php-keyword2">log</span>(data);
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$name</var></code></td>
 		<td>
-			 <b>Όνομα</b><br />
-Το Όνομα της Κατηγορίας<br />
-Η τιμή της παραμέτρου πρέπει να είναι string :
-Αλφαριθμητική<br />
-Το πεδίο είναι υποχρεωτικό
+			 Όνομα<br />
+<br />
+Το Όνομα της Κατηγορίας της Μονάδας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	</table>
@@ -376,26 +250,25 @@ class="php-keyword2">log</span>(data);
 	<caption>Return value summary</caption>
 	<tr>
 		<td class="name"><code>
-			Array&lt;JSON&gt;
+			Objects&lt;JSON&gt;
 		</code></td>
 		<td>
-			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
-:<br />
-
-<ul>
-	<li>string : <b>method</b> : Η μέθοδος κλήσης της
-	συνάρτησης</li>
-
-	<li>integer : <b>status</b> : Ο Κωδικός του
-	αποτελέσματος της κλήσης</li>
-
-	<li>string : <b>message</b> : Μήνυμα περιγραφής του
-	αποτελέσματος της κλήσης</li>
-
-	<li>integer : <b>category_id</b> : Ο Κωδικός της Κατηγορίας
-	που δημιουργήθηκε</li>
-</ul>
-
+			Επιστρέφει τα παρακάτω JSON objects :<br />
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+array : <b>parameters</b> : Οι παράμετροι που δίνει ο
+χρήστης<br />
+integer : <b>category_id</b> : Ο Κωδικός ID της Κατηγορίας
+Μονάδας που δημιουργήθηκε<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
 		</td>
 	</tr>
 	</table>
@@ -404,42 +277,29 @@ class="php-keyword2">log</span>(data);
 	<caption>Thrown exceptions summary</caption>
 	<tr>
 		<td class="name"><code>
-			Unauthorized
+			MissingCategoryNameParam
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#Unauthorized">ExceptionMessages::<b>Unauthorized</b></a></code><br />
-Έλεγχος αν ο χρήστης υπάρχει και έχει
-δικαιώματα να χρησιμοποιείσει τη μέθοδο
+			<code><a href="class-ExceptionMessages.html#MissingCategoryNameParam">ExceptionMessages::<b>MissingCategoryNameParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingCategoryNameParam">ExceptionCodes::<b>MissingCategoryNameParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			MissingNameParam
+			MissingCategoryNameValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingNameParam">ExceptionMessages::<b>MissingNameParam</b></a></code><br />
-Έλεγχος αν η παράμετρος <a href="#$name">$name</a>
-υπάρχει
+			<code><a href="class-ExceptionMessages.html#MissingCategoryNameValue">ExceptionMessages::<b>MissingCategoryNameValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingCategoryNameValue">ExceptionCodes::<b>MissingCategoryNameValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			MissingNameValue
+			InvalidCategoryNameType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingNameValue">ExceptionMessages::<b>MissingNameValue</b></a></code><br />
-Έλεγχος αν η παράμετρος <a href="#$name">$name</a> έχει
-τιμή
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidNameType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidNameType">ExceptionMessages::<b>InvalidNameType</b></a></code><br />
-Έλεγχος αν η παράμετρος <a href="#$name">$name</a>
-είναι Αλφαριθμητική
+			<code><a href="class-ExceptionMessages.html#InvalidCategoryNameType">ExceptionMessages::<b>InvalidCategoryNameType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidCategoryNameType">ExceptionCodes::<b>InvalidCategoryNameType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -448,9 +308,16 @@ class="php-keyword2">log</span>(data);
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#DuplicatedCategoryValue">ExceptionMessages::<b>DuplicatedCategoryValue</b></a></code><br />
-Έλεγχος αν υπάρχει άλλη Κατηγορία με το
-Όνομα της Κατηγορίας που θα δημιουργηθεί
-για να αποφεχθουν οι διπλοεγγραφές
+<code><a href="class-ExceptionCodes.html#DuplicatedCategoryValue">ExceptionCodes::<b>DuplicatedCategoryValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NoErrors
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
 		</td>
 	</tr>
 	</table>

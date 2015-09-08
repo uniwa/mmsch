@@ -7,7 +7,7 @@
 	<title>Function GetCpes | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?1325412420"></script>
+	<script type="text/javascript" src="elementlist.js?2268174288"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -22,6 +22,8 @@
 			<h3>Packages</h3>
 			<ul>
 				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li><a href="package-DEPRECATED.html">DEPRECATED</a>
 						</li>
 				<li class="active"><a href="package-GET.html">GET</a>
 						</li>
@@ -362,11 +364,11 @@ class="php-keyword2">log</span>(data);
 
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
-	<tr id="$cpe">
+	<tr id="$unit">
 		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$cpe</var></code></td>
+		<td class="value"><code><var>$unit</var></code></td>
 		<td>
-			 Cpe<br />
+			$cpe Cpe<br />
 Το Όνομα ή ο Κωδικός του Cpe<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
@@ -398,142 +400,6 @@ mixed{integer|string|array[integer|string]}
 	αυτές τις τιμές</li>
 </ul>
 
-		</td>
-	</tr>
-	<tr id="$unit">
-		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$unit</var></code></td>
-		<td>
-			 Μονάδα<br />
-Το Όνομα ή ο Κωδικός MM της Μονάδας<br />
-Η παράμετρος δεν είναι υποχρεωτική<br />
-Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
-Μονάδες : <code><a href="function-GetUnits.html">GetUnits()</a></code><br />
-Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
-<ul>
-	<li>integer<br />
-	Αριθμητική : Η αναζήτηση γίνεται με τον
-	Κωδικό ΜΜ της Μονάδας<br />
-	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
-	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
-
-	<li>string<br />
-	Αλφαριθμητική : Η αναζήτηση γίνεται με το
-	Όνομα της Μονάδας<br />
-	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
-	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
-
-	<li>array[integer|string]<br />
-	Σύνολο από Αριθμητικές και Αλφαριθμητικές
-	τιμές διαχωρισμένες με κόμμα<br />
-	Η αναζήτηση γίνεται με οποιαδήποτε από
-	αυτές τις τιμές</li>
-</ul>
-
-		</td>
-	</tr>
-	<tr id="$pagesize">
-		<td class="name"><code>integer</code></td>
-		<td class="value"><code><var>$pagesize</var></code></td>
-		<td>
-			 Αριθμός Εγγραφών/Σελίδα<br />
-Ο αριθμός των εγγραφών που θα επιστρέψουν
-ανα σελίδα<br />
-Η παράμετρος δεν είναι υποχρεωτική<br />
-Αν η παράμετρος δεν έχει τιμή τότε θα
-επιστραφούν όλες οι εγγραφές (<code><a href="class-Parameters.html#AllPageSize">Parameters::<b>AllPageSize</b></a></code>)<br />
-Λίστα Παραμέτρων Σελιδοποίησης : <code><a href="class-Parameters.html">Parameters</a></code><br />
-Η τιμή της παραμέτρου μπορεί να είναι : integer
-<ul>
-	<li>integer<br />
-	Αριθμητική : Η τιμή της παραμέτρου πρέπει να
-	είναι μεγαλύτερη από 0</li>
-</ul>
-
-		</td>
-	</tr>
-	<tr id="$page">
-		<td class="name"><code>integer</code></td>
-		<td class="value"><code><var>$page</var></code></td>
-		<td>
-			 Αριθμός Σελίδας<br />
-Ο αριθμός της σελίδας με τις <a
-href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
-σύμφωμα με τις παραμέτρους<br />
-Η παράμετρος δεν είναι υποχρεωτική<br />
-Αν η παράμετρος δεν έχει τιμή τότε θα
-επιστραφεί η πρώτη σελίδα<br />
-Η τιμή της παραμέτρου μπορεί να είναι : integer
-<ul>
-	<li>integer<br />
-	Αριθμητική : Η τιμή της παραμέτρου πρέπει να
-	είναι μεγαλύτερη από 0</li>
-</ul>
-
-		</td>
-	</tr>
-	<tr id="$orderby">
-		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$orderby</var></code></td>
-		<td>
-			 Πεδίο Ταξινόμησης<br />
-Το όνομα του πεδίου με το οποίο γίνεται η
-ταξινόμηση των εγγραφών<br />
-Η παράμετρος δεν είναι υποχρεωτική<br />
-Αν η παράμετρος δεν έχει τιμή τότε η
-ταξινόμηση γίνεται με το Όνομα του Cpe<br />
-Η τιμή της παραμέτρου μπορεί να είναι : string
-<ul>
-	<li>string<br />
-	Αλφαριθμητική : Η τιμή της παραμέτρου
-	μπορεί να είναι οποιοδήποτε πεδίο
-	επιστρέφει η συνάρτηση στον πίνακα data</li>
-</ul>
-
-		</td>
-	</tr>
-	<tr id="$ordertype">
-		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$ordertype</var></code></td>
-		<td>
-			 Τύπος Ταξινόμησης<br />
-Ο Τύπος Ταξινόμησης με τον οποίο γίνεται η
-ταξινόμηση των εγγραφών<br />
-Η παράμετρος δεν είναι υποχρεωτική<br />
-Αν η παράμετρος δεν έχει τιμή τότε η
-ταξινόμηση γίνεται με Αύξουσα Σειρά (<code><a href="class-OrderEnumTypes.html#ASC">OrderEnumTypes::<b>ASC</b></a></code>)<br />
-Λίστα Τύπων Ταξινόμησης : <code><a href="class-OrderEnumTypes.html">OrderEnumTypes</a></code><br />
-Η τιμή της παραμέτρου μπορεί να είναι : string
-<ul>
-	<li>string<br />
-	Αλφαριθμητική : Η τιμή της παραμέτρου
-	μπορεί να είναι ένας από τους Tύπους <code><a href="class-OrderEnumTypes.html">OrderEnumTypes</a></code></li>
-</ul>
- * @param string $searchtype Τύπος Αναζήτησης<br />
-Ο Τύπος Αναζήτησης με τον οποίο γίνεται η
-αναζήτηση στο Όνομα (<a href="#$cpe">$cpe</a>) του Cpe<br />
-Η παράμετρος δεν είναι υποχρεωτική<br />
-Αν η παράμετρος δεν έχει τιμή τότε η
-αναζήτηση στο Όνομα γίνεται με τον Τύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code><br />
-Αν το Όνομα έχει Αριθμητική Τιμή τότε η
-αναζήτηση γίνεται με τον Κωδικό του Cpe με
-Τύπο <code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code><br />
-Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
-Η τιμή της παραμέτρου μπορεί να είναι : string
-<ul>
-	<li>string<br />
-	Αλφαριθμητική : Η τιμή της παραμέτρου
-	μπορεί να είναι ένας από τους Tύπους <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code></li>
-</ul>
-
-		</td>
-	</tr>
-	<tr id="$searchtype">
-		<td class="name"><code>mixed</code></td>
-		<td class="value"><code><var>$searchtype</var></code></td>
-		<td>
-			
 		</td>
 	</tr>
 	</table>

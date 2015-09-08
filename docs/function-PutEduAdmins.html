@@ -7,7 +7,7 @@
 	<title>Function PutEduAdmins | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?1325412420"></script>
+	<script type="text/javascript" src="elementlist.js?2268174288"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -22,6 +22,8 @@
 			<h3>Packages</h3>
 			<ul>
 				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li><a href="package-DEPRECATED.html">DEPRECATED</a>
 						</li>
 				<li><a href="package-GET.html">GET</a>
 						</li>
@@ -46,17 +48,12 @@
 			<h3>Functions</h3>
 			<ul>
 				<li><a href="function-PutCategories.html">PutCategories</a></li>
-				<li><a href="function-PutCircuits.html">PutCircuits</a></li>
-				<li><a href="function-PutCircuitTypes.html">PutCircuitTypes</a></li>
-				<li><a href="function-PutConnections.html">PutConnections</a></li>
-				<li><a href="function-PutConnectionUnitNetworkSubnets.html">PutConnectionUnitNetworkSubnets</a></li>
 				<li class="active"><a href="function-PutEduAdmins.html">PutEduAdmins</a></li>
 				<li><a href="function-PutEducationLevels.html">PutEducationLevels</a></li>
-				<li><a href="function-PutGroups.html">PutGroups</a></li>
 				<li><a href="function-PutImplementationEntities.html">PutImplementationEntities</a></li>
 				<li><a href="function-PutLegalCharacters.html">PutLegalCharacters</a></li>
-				<li><a href="function-PutLevels.html">PutLevels</a></li>
 				<li><a href="function-PutMunicipalities.html">PutMunicipalities</a></li>
+				<li><a href="function-PutMunicipalityCommunities.html">PutMunicipalityCommunities</a></li>
 				<li><a href="function-PutOperationShifts.html">PutOperationShifts</a></li>
 				<li><a href="function-PutOrientationTypes.html">PutOrientationTypes</a></li>
 				<li><a href="function-PutPrefectures.html">PutPrefectures</a></li>
@@ -70,9 +67,6 @@
 				<li><a href="function-PutTransferAreaMunicipalities.html">PutTransferAreaMunicipalities</a></li>
 				<li><a href="function-PutTransferAreas.html">PutTransferAreas</a></li>
 				<li><a href="function-PutUnitDns.html">PutUnitDns</a></li>
-				<li><a href="function-PutUnitNetworkObjects.html">PutUnitNetworkObjects</a></li>
-				<li><a href="function-PutUnitNetworkSubnets.html">PutUnitNetworkSubnets</a></li>
-				<li><a href="function-PutUnitNetworkSubnetTypes.html">PutUnitNetworkSubnetTypes</a></li>
 				<li><a href="function-PutUnits.html">PutUnits</a></li>
 				<li><a href="function-PutUnitTypes.html">PutUnitTypes</a></li>
 				<li><a href="function-PutUnitWorkers.html">PutUnitWorkers</a></li>
@@ -116,6 +110,129 @@
 	<h1>Function PutEduAdmins</h1>
 
 
+	<div class="description">
+	
+<p><strong>ΛΕΞΙΚΟ : Ενημέρωση Διεύθυνσης
+Εκπαίδευσης</strong></p>
+
+<p>Η συνάρτηση ενημερώνει Διεύθυνση
+Εκπαίδευσης σύμφωνα με τις παραμέτρους που
+έγινε η κλήση.<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>PUT</strong> και
+route_api_name = <strong>edu_admins</strong> :<br />
+https://mm.sch.gr/api/edu_admins</p>
+
+<p><strong><em>Ορισμός Μοναδικών Τιμών
+Παραμέτρων</em></strong><br />
+Παρακάτω ορίζονται οι παραμέτροι που έχουν
+μοναδικές τιμές και πραγματοποιειται
+ελεγχος πριν κάθε καταχώρηση:</p>
+
+<ul>
+	<li><strong>edu_admin_id</strong></li>
+
+	<li><strong>name</strong></li>
+
+	<li><strong>registry_no</strong></li>
+</ul>
+
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
+
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
+
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
+</ul>
+
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
+
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
+
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
+
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
+
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
+
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
+
+<pre>
+{
+<span class="php-quote">&quot;controller&quot;</span>: <span
+class="php-quote">&quot;PutEduAdmins&quot;</span>,
+<span
+class="php-quote">&quot;function&quot;</span>: <span
+class="php-quote">&quot;edu_admins&quot;</span>,
+<span
+class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;PUT&quot;</span>,
+<span
+class="php-quote">&quot;parameters&quot;</span>: { <span
+class="php-quote">&quot;edu_admin_id&quot;</span>: ``,<span
+class="php-quote">&quot;name&quot;</span>: ``,<span
+class="php-quote">&quot;registry_no&quot;</span>: ``,<span
+class="php-quote">&quot;region_edu_admin&quot;</span>: ``,
+                <span
+class="php-quote">&quot;implementation_entity&quot;</span>: ``,<span
+class="php-quote">&quot;parent_rdn&quot;</span>: ``,<span
+class="php-quote">&quot;third_level_dns&quot;</span>: `` },
+<span
+class="php-quote">&quot;edu_admin_id&quot;</span>: ``,
+<span
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
+<span
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;[PUT][edu_admins]:success&quot;</span>
+}
+</pre>
+
+	</div>
 
 	<div class="info">
 		
@@ -129,57 +246,435 @@
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
 	<tr id="$edu_admin_id">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$edu_admin_id</var></code></td>
 		<td>
-			
+			 ID Διεύθυνση Εκπαίδευσης<br />
+<br />
+Ο Κωδικός ID της Διεύθυνσης Εκπαίδευσης<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+ID Διεύθυνση Εκπαίδευσης : <code><a href="function-GetEduAdmins.html">GetEduAdmins()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Διεύθυνση Εκπαίδευσης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$name">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$name</var></code></td>
 		<td>
-			
+			 Όνομα<br />
+<br />
+Το Όνομα της Διεύθυνσης Εκπαίδευσης<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$registry_no">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$registry_no</var></code></td>
 		<td>
-			
+			 Κωδικός ΥΠΕΠΘ<br />
+<br />
+Το Όνομα της Κωδικού ΥΠΕΠΘ της Διεύθυνσης
+Εκπαίδευσης<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$region_edu_admin">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$region_edu_admin</var></code></td>
 		<td>
-			
+			 Όνομα ή ID Περιφέρειας<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Περιφέρειας<br />
+Όνομα ή ID Περιφέρειας : <code><a href="function-GetRegionEduAdmins.html">GetRegionEduAdmins()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Περιφέρειας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Περιφέρειας<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$implementation_entity">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$implementation_entity</var></code></td>
 		<td>
-			
+			 Όνομα ή ID Φορέα Υλοποίησης<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Φορέα
+Υλοποίησης<br />
+Όνομα ή ID Φορέα Υλοποίησης : <code><a href="function-GetImplementationEntities.html">GetImplementationEntities()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Φορέα Υλοποίησης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Περιφέρειας<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$parent_rdn">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$parent_rdn</var></code></td>
 		<td>
-			
+			 Parent RDN<br />
+<br />
+Το Parent RDN της Διεύθυνσης Εκπαίδευσης<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$third_level_dns">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$third_level_dns</var></code></td>
 		<td>
-			
+			 Third Level Dns<br />
+<br />
+Το Third Level Dns της Διεύθυνσης Εκπαίδευσης<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	</table>
 
+	<table class="summary" id="returns">
+	<caption>Return value summary</caption>
+	<tr>
+		<td class="name"><code>
+			Objects&lt;JSON&gt;
+		</code></td>
+		<td>
+			Επιστρέφει τα παρακάτω JSON objects :<br />
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+array : <b>parameters</b> : Οι παράμετροι που δίνει ο
+χρήστης<br />
+integer : <b>edu_admin_id</b> : Ο Κωδικός ID της Διεύθυνσης
+Εκπαίδευσης που ενημερώθηκε<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
+		</td>
+	</tr>
+	</table>
 
+	<table class="summary" id="throws">
+	<caption>Thrown exceptions summary</caption>
+	<tr>
+		<td class="name"><code>
+			MissingEduAdminIDParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingEduAdminIDParam">ExceptionMessages::<b>MissingEduAdminIDParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingEduAdminIDParam">ExceptionCodes::<b>MissingEduAdminIDParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingEduAdminIDValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingEduAdminIDValue">ExceptionMessages::<b>MissingEduAdminIDValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingEduAdminIDValue">ExceptionCodes::<b>MissingEduAdminIDValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEduAdminIDArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEduAdminIDArray">ExceptionMessages::<b>InvalidEduAdminIDArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEduAdminIDArray">ExceptionCodes::<b>InvalidEduAdminIDArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEduAdminIDType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEduAdminIDType">ExceptionMessages::<b>InvalidEduAdminIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEduAdminIDType">ExceptionCodes::<b>InvalidEduAdminIDType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEduAdminValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEduAdminValue">ExceptionMessages::<b>InvalidEduAdminValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEduAdminValue">ExceptionCodes::<b>InvalidEduAdminValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedEduAdminUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedEduAdminUniqueValue">ExceptionMessages::<b>DuplicatedEduAdminUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedEduAdminUniqueValue">ExceptionCodes::<b>DuplicatedEduAdminUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingEduAdminNameParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingEduAdminNameParam">ExceptionMessages::<b>MissingEduAdminNameParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingEduAdminNameParam">ExceptionCodes::<b>MissingEduAdminNameParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingEduAdminNameValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingEduAdminNameValue">ExceptionMessages::<b>MissingEduAdminNameValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingEduAdminNameValue">ExceptionCodes::<b>MissingEduAdminNameValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEduAdminNameType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEduAdminNameType">ExceptionMessages::<b>InvalidEduAdminNameType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEduAdminNameType">ExceptionCodes::<b>InvalidEduAdminNameType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingEduAdminCodeParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingEduAdminCodeParam">ExceptionMessages::<b>MissingEduAdminCodeParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingEduAdminCodeParam">ExceptionCodes::<b>MissingEduAdminCodeParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingEduAdminCodeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingEduAdminCodeValue">ExceptionMessages::<b>MissingEduAdminCodeValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingEduAdminCodeValue">ExceptionCodes::<b>MissingEduAdminCodeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEduAdminCodeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEduAdminCodeType">ExceptionMessages::<b>InvalidEduAdminCodeType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEduAdminCodeType">ExceptionCodes::<b>InvalidEduAdminCodeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRegionEduAdminParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRegionEduAdminParam">ExceptionMessages::<b>MissingRegionEduAdminParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRegionEduAdminParam">ExceptionCodes::<b>MissingRegionEduAdminParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRegionEduAdminValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRegionEduAdminValue">ExceptionMessages::<b>MissingRegionEduAdminValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRegionEduAdminValue">ExceptionCodes::<b>MissingRegionEduAdminValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRegionEduAdminArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRegionEduAdminArray">ExceptionMessages::<b>InvalidRegionEduAdminArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRegionEduAdminArray">ExceptionCodes::<b>InvalidRegionEduAdminArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRegionEduAdminType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRegionEduAdminType">ExceptionMessages::<b>InvalidRegionEduAdminType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRegionEduAdminType">ExceptionCodes::<b>InvalidRegionEduAdminType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedRegionEduAdminUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedRegionEduAdminUniqueValue">ExceptionMessages::<b>DuplicatedRegionEduAdminUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedRegionEduAdminUniqueValue">ExceptionCodes::<b>DuplicatedRegionEduAdminUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityParam">ExceptionMessages::<b>MissingImplementationEntityParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityParam">ExceptionCodes::<b>MissingImplementationEntityParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityValue">ExceptionMessages::<b>MissingImplementationEntityValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityValue">ExceptionCodes::<b>MissingImplementationEntityValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidImplementationEntityArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityArray">ExceptionMessages::<b>InvalidImplementationEntityArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidImplementationEntityArray">ExceptionCodes::<b>InvalidImplementationEntityArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidImplementationEntityType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityType">ExceptionMessages::<b>InvalidImplementationEntityType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidImplementationEntityType">ExceptionCodes::<b>InvalidImplementationEntityType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedImplementationEntityUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedImplementationEntityUniqueValue">ExceptionMessages::<b>DuplicatedImplementationEntityUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedImplementationEntityUniqueValue">ExceptionCodes::<b>DuplicatedImplementationEntityUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingEduAdminParentRdnParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingEduAdminParentRdnParam">ExceptionMessages::<b>MissingEduAdminParentRdnParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingEduAdminParentRdnParam">ExceptionCodes::<b>MissingEduAdminParentRdnParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingEduAdminParentRdnValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingEduAdminParentRdnValue">ExceptionMessages::<b>MissingEduAdminParentRdnValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingEduAdminParentRdnValue">ExceptionCodes::<b>MissingEduAdminParentRdnValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEduAdminParentRdnType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEduAdminParentRdnType">ExceptionMessages::<b>InvalidEduAdminParentRdnType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEduAdminParentRdnType">ExceptionCodes::<b>InvalidEduAdminParentRdnType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingEduAdminThirdLevelDnsParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingEduAdminThirdLevelDnsParam">ExceptionMessages::<b>MissingEduAdminThirdLevelDnsParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingEduAdminThirdLevelDnsParam">ExceptionCodes::<b>MissingEduAdminThirdLevelDnsParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingEduAdminThirdLevelDnsValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingEduAdminThirdLevelDnsValue">ExceptionMessages::<b>MissingEduAdminThirdLevelDnsValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingEduAdminThirdLevelDnsValue">ExceptionCodes::<b>MissingEduAdminThirdLevelDnsValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEduAdminThirdLevelDnsType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEduAdminThirdLevelDnsType">ExceptionMessages::<b>InvalidEduAdminThirdLevelDnsType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEduAdminThirdLevelDnsType">ExceptionCodes::<b>InvalidEduAdminThirdLevelDnsType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedEduAdminValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedEduAdminValue">ExceptionMessages::<b>DuplicatedEduAdminValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedEduAdminValue">ExceptionCodes::<b>DuplicatedEduAdminValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedEduAdminCodeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedEduAdminCodeValue">ExceptionMessages::<b>DuplicatedEduAdminCodeValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedEduAdminCodeValue">ExceptionCodes::<b>DuplicatedEduAdminCodeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NoErrors
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
+		</td>
+	</tr>
+	</table>
 
 </div>
 

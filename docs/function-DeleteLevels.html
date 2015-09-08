@@ -7,7 +7,7 @@
 	<title>Function DeleteLevels | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?1325412420"></script>
+	<script type="text/javascript" src="elementlist.js?2268174288"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -22,6 +22,8 @@
 			<h3>Packages</h3>
 			<ul>
 				<li class="active"><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li><a href="package-DEPRECATED.html">DEPRECATED</a>
 						</li>
 				<li><a href="package-GET.html">GET</a>
 						</li>
@@ -46,17 +48,13 @@
 			<h3>Functions</h3>
 			<ul>
 				<li><a href="function-DeleteCategories.html">DeleteCategories</a></li>
-				<li><a href="function-DeleteCircuits.html">DeleteCircuits</a></li>
-				<li><a href="function-DeleteCircuitTypes.html">DeleteCircuitTypes</a></li>
-				<li><a href="function-DeleteConnections.html">DeleteConnections</a></li>
-				<li><a href="function-DeleteConnectionUnitNetworkSubnets.html">DeleteConnectionUnitNetworkSubnets</a></li>
 				<li><a href="function-DeleteEduAdmins.html">DeleteEduAdmins</a></li>
 				<li><a href="function-DeleteEducationLevels.html">DeleteEducationLevels</a></li>
-				<li><a href="function-DeleteGroups.html">DeleteGroups</a></li>
 				<li><a href="function-DeleteImplementationEntities.html">DeleteImplementationEntities</a></li>
 				<li><a href="function-DeleteLegalCharacters.html">DeleteLegalCharacters</a></li>
 				<li class="active"><a href="function-DeleteLevels.html">DeleteLevels</a></li>
 				<li><a href="function-DeleteMunicipalities.html">DeleteMunicipalities</a></li>
+				<li><a href="function-DeleteMunicipalityCommunities.html">DeleteMunicipalityCommunities</a></li>
 				<li><a href="function-DeleteOperationShifts.html">DeleteOperationShifts</a></li>
 				<li><a href="function-DeleteOrientationTypes.html">DeleteOrientationTypes</a></li>
 				<li><a href="function-DeletePrefectures.html">DeletePrefectures</a></li>
@@ -70,11 +68,11 @@
 				<li><a href="function-DeleteTransferAreaMunicipalities.html">DeleteTransferAreaMunicipalities</a></li>
 				<li><a href="function-DeleteTransferAreas.html">DeleteTransferAreas</a></li>
 				<li><a href="function-DeleteUnitDns.html">DeleteUnitDns</a></li>
-				<li><a href="function-DeleteUnitNetworkObjects.html">DeleteUnitNetworkObjects</a></li>
-				<li><a href="function-DeleteUnitNetworkSubnets.html">DeleteUnitNetworkSubnets</a></li>
-				<li><a href="function-DeleteUnitNetworkSubnetTypes.html">DeleteUnitNetworkSubnetTypes</a></li>
+				<li><a href="function-DeleteUnits.html">DeleteUnits</a></li>
 				<li><a href="function-DeleteUnitTypes.html">DeleteUnitTypes</a></li>
+				<li><a href="function-DeleteUnitWorkers.html">DeleteUnitWorkers</a></li>
 				<li><a href="function-DeleteWorkerPositions.html">DeleteWorkerPositions</a></li>
+				<li><a href="function-DeleteWorkers.html">DeleteWorkers</a></li>
 				<li><a href="function-DeleteWorkerSpecializations.html">DeleteWorkerSpecializations</a></li>
 			</ul>
 		</div>
@@ -113,6 +111,106 @@
 	<h1>Function DeleteLevels</h1>
 
 
+	<div class="description">
+	
+<p><strong>ΛΕΞΙΚΟ : Διαγραφή Τάξης</strong></p>
+
+<p>Η συνάρτηση διαγράφει Τάξη σύμφωνα με τις
+παραμέτρους που έγινε η κλήση.<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>DELETE</strong> και
+route_api_name = <strong>levels</strong> :<br />
+https://mm.sch.gr/api/levels</p>
+
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
+
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
+
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
+</ul>
+
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
+
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
+
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
+
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
+
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
+
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
+
+<pre>
+{
+<span class="php-quote">&quot;controller&quot;</span>: <span
+class="php-quote">&quot;DeleteLevels&quot;</span>,
+<span
+class="php-quote">&quot;function&quot;</span>: <span
+class="php-quote">&quot;levels&quot;</span>,
+<span
+class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;DELETE&quot;</span>,
+<span
+class="php-quote">&quot;parameters&quot;</span>: { <span
+class="php-quote">&quot;level_id&quot;</span>: `` },
+<span
+class="php-quote">&quot;level_id&quot;</span>: ``,
+<span
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
+<span
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;[DELETE][level_id]:success&quot;</span>
+}
+</pre>
+
+	</div>
 
 	<div class="info">
 		
@@ -126,15 +224,130 @@
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
 	<tr id="$level_id">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$level_id</var></code></td>
 		<td>
-			
+			 ID Τάξης<br />
+<br />
+Ο Κωδικός ID της Τάξης<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+ID Τάξης : <code><a href="function-GetLevels.html">GetLevels()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Τάξης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	</table>
 
+	<table class="summary" id="returns">
+	<caption>Return value summary</caption>
+	<tr>
+		<td class="name"><code>
+			Objects&lt;JSON&gt;
+		</code></td>
+		<td>
+			Επιστρέφει τα παρακάτω JSON objects :<br />
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+array : <b>parameters</b> : Οι παράμετροι που δίνει ο
+χρήστης<br />
+integer : <b>level_id</b> : Ο Κωδικός ID της Τάξης που
+διαγράφηκε<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
+		</td>
+	</tr>
+	</table>
 
+	<table class="summary" id="throws">
+	<caption>Thrown exceptions summary</caption>
+	<tr>
+		<td class="name"><code>
+			MissingLevelIDParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingLevelIDParam">ExceptionMessages::<b>MissingLevelIDParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingLevelIDParam">ExceptionCodes::<b>MissingLevelIDParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingLevelIDValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingLevelIDValue">ExceptionMessages::<b>MissingLevelIDValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingLevelIDValue">ExceptionCodes::<b>MissingLevelIDValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLevelIDArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLevelIDArray">ExceptionMessages::<b>InvalidLevelIDArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidLevelIDArray">ExceptionCodes::<b>InvalidLevelIDArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLevelIDType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLevelIDType">ExceptionMessages::<b>InvalidLevelIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidLevelIDType">ExceptionCodes::<b>InvalidLevelIDType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NotFoundDelLevelsValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NotFoundDelLevelsValue">ExceptionMessages::<b>NotFoundDelLevelsValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NotFoundDelLevelsValue">ExceptionCodes::<b>NotFoundDelLevelsValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicateDelLevelsValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicateDelLevelsValue">ExceptionMessages::<b>DuplicateDelLevelsValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicateDelLevelsValue">ExceptionCodes::<b>DuplicateDelLevelsValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			ReferencesLevelsGroups
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#ReferencesLevelsGroups">ExceptionMessages::<b>ReferencesLevelsGroups</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#ReferencesLevelsGroups">ExceptionCodes::<b>ReferencesLevelsGroups</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NoErrors
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
+		</td>
+	</tr>
+	</table>
 
 </div>
 

@@ -7,7 +7,7 @@
 	<title>Function PostUnitTypes | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?1325412420"></script>
+	<script type="text/javascript" src="elementlist.js?2268174288"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -22,6 +22,8 @@
 			<h3>Packages</h3>
 			<ul>
 				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li><a href="package-DEPRECATED.html">DEPRECATED</a>
 						</li>
 				<li><a href="package-GET.html">GET</a>
 						</li>
@@ -46,17 +48,12 @@
 			<h3>Functions</h3>
 			<ul>
 				<li><a href="function-PostCategories.html">PostCategories</a></li>
-				<li><a href="function-PostCircuits.html">PostCircuits</a></li>
-				<li><a href="function-PostCircuitTypes.html">PostCircuitTypes</a></li>
-				<li><a href="function-PostConnections.html">PostConnections</a></li>
-				<li><a href="function-PostConnectionUnitNetworkSubnets.html">PostConnectionUnitNetworkSubnets</a></li>
 				<li><a href="function-PostEduAdmins.html">PostEduAdmins</a></li>
 				<li><a href="function-PostEducationLevels.html">PostEducationLevels</a></li>
-				<li><a href="function-PostGroups.html">PostGroups</a></li>
 				<li><a href="function-PostImplementationEntities.html">PostImplementationEntities</a></li>
 				<li><a href="function-PostLegalCharacters.html">PostLegalCharacters</a></li>
-				<li><a href="function-PostLevels.html">PostLevels</a></li>
 				<li><a href="function-PostMunicipalities.html">PostMunicipalities</a></li>
+				<li><a href="function-PostMunicipalityCommunities.html">PostMunicipalityCommunities</a></li>
 				<li><a href="function-PostOperationShifts.html">PostOperationShifts</a></li>
 				<li><a href="function-PostOrientationTypes.html">PostOrientationTypes</a></li>
 				<li><a href="function-PostPrefectures.html">PostPrefectures</a></li>
@@ -70,9 +67,6 @@
 				<li><a href="function-PostTransferAreaMunicipalities.html">PostTransferAreaMunicipalities</a></li>
 				<li><a href="function-PostTransferAreas.html">PostTransferAreas</a></li>
 				<li><a href="function-PostUnitDns.html">PostUnitDns</a></li>
-				<li><a href="function-PostUnitNetworkObjects.html">PostUnitNetworkObjects</a></li>
-				<li><a href="function-PostUnitNetworkSubnets.html">PostUnitNetworkSubnets</a></li>
-				<li><a href="function-PostUnitNetworkSubnetTypes.html">PostUnitNetworkSubnetTypes</a></li>
 				<li><a href="function-PostUnits.html">PostUnits</a></li>
 				<li class="active"><a href="function-PostUnitTypes.html">PostUnitTypes</a></li>
 				<li><a href="function-PostUnitWorkers.html">PostUnitWorkers</a></li>
@@ -116,6 +110,123 @@
 	<h1>Function PostUnitTypes</h1>
 
 
+	<div class="description">
+	
+<p><strong>ΛΕΞΙΚΟ : Καταχώρηση Τύπου
+Μονάδας</strong></p>
+
+<p>Η συνάρτηση καταχωρεί Τύπο Μονάδας
+σύμφωνα με τις παραμέτρους που έγινε η
+κλήση.<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>POST</strong> και
+route_api_name = <strong>unit_types</strong> :<br />
+https://mm.sch.gr/api/unit_types</p>
+
+<p><strong><em>Ορισμός Μοναδικών Τιμών
+Παραμέτρων</em></strong><br />
+Παρακάτω ορίζονται οι παραμέτροι που έχουν
+μοναδικές τιμές και πραγματοποιειται
+ελεγχος πριν κάθε καταχώρηση:</p>
+
+<ul>
+	<li><strong>name</strong></li>
+
+	<li><strong>initials</strong></li>
+</ul>
+
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
+
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
+
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
+</ul>
+
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
+
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
+
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
+
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
+
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
+
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
+
+<pre>
+{
+<span class="php-quote">&quot;controller&quot;</span>: <span
+class="php-quote">&quot;PostUnitTypes&quot;</span>,
+<span
+class="php-quote">&quot;function&quot;</span>: <span
+class="php-quote">&quot;unit_types&quot;</span>,
+<span
+class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;POST&quot;</span>,
+<span
+class="php-quote">&quot;parameters&quot;</span>: { <span
+class="php-quote">&quot;name&quot;</span>: ``,<span
+class="php-quote">&quot;initials&quot;</span>: ``,<span
+class="php-quote">&quot;category&quot;</span>: ``,<span
+class="php-quote">&quot;education_level&quot;</span>: `` },
+<span
+class="php-quote">&quot;unit_type_id&quot;</span>: ``,
+<span
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
+<span
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;[POST][unit_types]:success&quot;</span>
+}
+</pre>
+
+	</div>
 
 	<div class="info">
 		
@@ -129,36 +240,289 @@
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
 	<tr id="$name">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$name</var></code></td>
 		<td>
-			
+			 Όνομα<br />
+<br />
+Το Όνομα του Τύπου Μονάδας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$initials">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$initials</var></code></td>
 		<td>
-			
+			 Αρχικά Ονόματος<br />
+<br />
+Τα Αρχικά Ονόματος του Τύπου Μονάδας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$category">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$category</var></code></td>
 		<td>
-			
+			 Όνομα ή ID Κατηγορίας<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Κατηγορίας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Όνομα ή ID Κατηγορίας : <code><a href="function-GetCategories.html">GetCategories()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Κατηγορίας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Κατηγορίας<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$education_level">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$education_level</var></code></td>
 		<td>
-			
+			 Όνομα ή ID Επίπεδου Εκπαίδευσης<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Επίπεδου
+Εκπαίδευσης<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Όνομα ή ID Επίπεδου Εκπαίδευσης : <code><a href="function-GetEducationLevels.html">GetEducationLevels()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Επίπεδου Εκπαίδευσης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Επίπεδου Εκπαίδευσης<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	</table>
 
+	<table class="summary" id="returns">
+	<caption>Return value summary</caption>
+	<tr>
+		<td class="name"><code>
+			Objects&lt;JSON&gt;
+		</code></td>
+		<td>
+			Επιστρέφει τα παρακάτω JSON objects :<br />
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+array : <b>parameters</b> : Οι παράμετροι που δίνει ο
+χρήστης<br />
+integer : <b>unit_type_id</b> : Ο Κωδικός ID του Τύπου
+Μονάδας που ενημερώθηκε<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
+		</td>
+	</tr>
+	</table>
 
+	<table class="summary" id="throws">
+	<caption>Thrown exceptions summary</caption>
+	<tr>
+		<td class="name"><code>
+			MissingUnitTypeNameParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitTypeNameParam">ExceptionMessages::<b>MissingUnitTypeNameParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitTypeNameParam">ExceptionCodes::<b>MissingUnitTypeNameParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitTypeNameValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitTypeNameValue">ExceptionMessages::<b>MissingUnitTypeNameValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitTypeNameValue">ExceptionCodes::<b>MissingUnitTypeNameValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitTypeNameType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitTypeNameType">ExceptionMessages::<b>InvalidUnitTypeNameType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitTypeNameType">ExceptionCodes::<b>InvalidUnitTypeNameType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitTypeInitialParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitTypeInitialParam">ExceptionMessages::<b>MissingUnitTypeInitialParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitTypeInitialParam">ExceptionCodes::<b>MissingUnitTypeInitialParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitTypeInitialValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitTypeInitialValue">ExceptionMessages::<b>MissingUnitTypeInitialValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitTypeInitialValue">ExceptionCodes::<b>MissingUnitTypeInitialValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitTypeInitialType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitTypeInitialType">ExceptionMessages::<b>InvalidUnitTypeInitialType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitTypeInitialType">ExceptionCodes::<b>InvalidUnitTypeInitialType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingCategoryParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingCategoryParam">ExceptionMessages::<b>MissingCategoryParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingCategoryParam">ExceptionCodes::<b>MissingCategoryParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingCategoryValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingCategoryValue">ExceptionMessages::<b>MissingCategoryValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingCategoryValue">ExceptionCodes::<b>MissingCategoryValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidCategoryArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidCategoryArray">ExceptionMessages::<b>InvalidCategoryArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidCategoryArray">ExceptionCodes::<b>InvalidCategoryArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidCategoryType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidCategoryType">ExceptionMessages::<b>InvalidCategoryType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidCategoryType">ExceptionCodes::<b>InvalidCategoryType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedCategoryUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedCategoryUniqueValue">ExceptionMessages::<b>DuplicatedCategoryUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedCategoryUniqueValue">ExceptionCodes::<b>DuplicatedCategoryUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingEducationLevelParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingEducationLevelParam">ExceptionMessages::<b>MissingEducationLevelParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingEducationLevelParam">ExceptionCodes::<b>MissingEducationLevelParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingEducationLevelValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingEducationLevelValue">ExceptionMessages::<b>MissingEducationLevelValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingEducationLevelValue">ExceptionCodes::<b>MissingEducationLevelValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEducationLevelArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEducationLevelArray">ExceptionMessages::<b>InvalidEducationLevelArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEducationLevelArray">ExceptionCodes::<b>InvalidEducationLevelArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEducationLevelType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEducationLevelType">ExceptionMessages::<b>InvalidEducationLevelType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEducationLevelType">ExceptionCodes::<b>InvalidEducationLevelType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedEducationLevelUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedEducationLevelUniqueValue">ExceptionMessages::<b>DuplicatedEducationLevelUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedEducationLevelUniqueValue">ExceptionCodes::<b>DuplicatedEducationLevelUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedUnitTypeNameValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedUnitTypeNameValue">ExceptionMessages::<b>DuplicatedUnitTypeNameValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedUnitTypeNameValue">ExceptionCodes::<b>DuplicatedUnitTypeNameValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedUnitTypeInitialValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedUnitTypeInitialValue">ExceptionMessages::<b>DuplicatedUnitTypeInitialValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedUnitTypeInitialValue">ExceptionCodes::<b>DuplicatedUnitTypeInitialValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NoErrors
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
+		</td>
+	</tr>
+	</table>
 
 </div>
 

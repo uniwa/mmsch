@@ -7,7 +7,7 @@
 	<title>Function PostUnitDns | mm.sch.gr</title>
 
 	<script type="text/javascript" src="resources/combined.js?3136419060"></script>
-	<script type="text/javascript" src="elementlist.js?1325412420"></script>
+	<script type="text/javascript" src="elementlist.js?2268174288"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -22,6 +22,8 @@
 			<h3>Packages</h3>
 			<ul>
 				<li><a href="package-DELETE.html">DELETE</a>
+						</li>
+				<li><a href="package-DEPRECATED.html">DEPRECATED</a>
 						</li>
 				<li><a href="package-GET.html">GET</a>
 						</li>
@@ -46,17 +48,12 @@
 			<h3>Functions</h3>
 			<ul>
 				<li><a href="function-PostCategories.html">PostCategories</a></li>
-				<li><a href="function-PostCircuits.html">PostCircuits</a></li>
-				<li><a href="function-PostCircuitTypes.html">PostCircuitTypes</a></li>
-				<li><a href="function-PostConnections.html">PostConnections</a></li>
-				<li><a href="function-PostConnectionUnitNetworkSubnets.html">PostConnectionUnitNetworkSubnets</a></li>
 				<li><a href="function-PostEduAdmins.html">PostEduAdmins</a></li>
 				<li><a href="function-PostEducationLevels.html">PostEducationLevels</a></li>
-				<li><a href="function-PostGroups.html">PostGroups</a></li>
 				<li><a href="function-PostImplementationEntities.html">PostImplementationEntities</a></li>
 				<li><a href="function-PostLegalCharacters.html">PostLegalCharacters</a></li>
-				<li><a href="function-PostLevels.html">PostLevels</a></li>
 				<li><a href="function-PostMunicipalities.html">PostMunicipalities</a></li>
+				<li><a href="function-PostMunicipalityCommunities.html">PostMunicipalityCommunities</a></li>
 				<li><a href="function-PostOperationShifts.html">PostOperationShifts</a></li>
 				<li><a href="function-PostOrientationTypes.html">PostOrientationTypes</a></li>
 				<li><a href="function-PostPrefectures.html">PostPrefectures</a></li>
@@ -70,9 +67,6 @@
 				<li><a href="function-PostTransferAreaMunicipalities.html">PostTransferAreaMunicipalities</a></li>
 				<li><a href="function-PostTransferAreas.html">PostTransferAreas</a></li>
 				<li class="active"><a href="function-PostUnitDns.html">PostUnitDns</a></li>
-				<li><a href="function-PostUnitNetworkObjects.html">PostUnitNetworkObjects</a></li>
-				<li><a href="function-PostUnitNetworkSubnets.html">PostUnitNetworkSubnets</a></li>
-				<li><a href="function-PostUnitNetworkSubnetTypes.html">PostUnitNetworkSubnetTypes</a></li>
 				<li><a href="function-PostUnits.html">PostUnits</a></li>
 				<li><a href="function-PostUnitTypes.html">PostUnitTypes</a></li>
 				<li><a href="function-PostUnitWorkers.html">PostUnitWorkers</a></li>
@@ -118,274 +112,116 @@
 
 	<div class="description">
 	
-<p><b>Καταχώρηση DNS Μονάδων</b></p>
+<p><strong>Καταχώρηση DNS Μονάδας</strong></p>
 
-<p>Η συνάρτηση αυτή καταχωρεί DNS Μονάδων
-σύμφωνα με τις παραμέτρους που έγινε η
-κλήση</p>
+<p>Η συνάρτηση καταχωρεί DNS Μονάδας σύμφωνα
+με τις παραμέτρους που έγινε η κλήση.<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>POST</strong> και
+route_api_name = <strong>unit_dns</strong> :<br />
+https://mm.sch.gr/api/unit_dns</p>
 
-<p>Η κλήση μπορεί να γίνει μέσω της παρακάτω
-διεύθυνσης με τη μέθοδο POST :<br />
-<a href="https://mm.sch.gr/api/unit_dns">https://mm.sch.gr/api/unit_dns</a><br
-/>
-<br />
-</p>
-
-<p><br />
-<b>Πίνακας Παραμέτρων</b><br />
-Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
-summary</a> εμφανίζονται όλοι οι παράμετροι με
-τους οποίους μπορεί να γίνει η κλήση της
-συνάρτησης<br />
-Όλοι οι παράμετροι είναι προαιρετικοί
-εκτός από αυτές που έχουν χαρακτηριστεί ως
-υποχρεωτικοί<br />
-Οι παράμετροι μπορούν να χρησιμοποιηθούν
-με οποιαδήποτε σειρά</p>
-<br />
-<b>Ορισμός Μοναδικών Τιμών Παραμέτρων</b><br />
+<p><strong><em>Ορισμός Μοναδικών Τιμών
+Παραμέτρων</em></strong><br />
 Παρακάτω ορίζονται οι παραμέτροι που έχουν
 μοναδικές τιμές και πραγματοποιειται
-ελεγχος:
+ελεγχος πριν κάθε καταχώρηση:</p>
+
 <ul>
-	<li><b>unit_ext_dns</b><br />
-	GetUnitDns με search_type=EXACT &amp; unit_ext_dns="value"</li>
+	<li><strong>unit_ext_dns</strong></li>
+
+	<li><strong>mm_id</strong></li>
 </ul>
-<br />
 
-<p><br />
-<b>Πίνακας Αποτελεσμάτων</b><br />
-Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value
-summary</a> εμφανίζονται οι μεταβλητές που
-επιστρέφει η συνάρτηση<br />
-Όλες οι μεταβλητές επιστρέφονται σε ένα
-πίνακα σε JSON μορφή<br />
-Η μεταβλητή data είναι ο πίνακας με το
-λεξικό<br />
-Η μεταβλητή status καθορίζει αν η εκτέλεση της
-συνάρτησης ήταν επιτυχής (κωδικός 200) ή
-προέκυψε κάποιο σφάλμα</p>
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
 
-<p><br />
-<b>Πίνακας Σφαλμάτων</b><br />
-Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
-summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
-που μπορεί να προκύψουν κατά την κλήση της
-συνάρτησης<br />
-Οι περιγραφές των Σφαλμάτων καθώς και οι
-Κωδικοί τους είναι διαθέσιμες μέσω του
-πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
-και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
-αντίστοιχα</p>
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
 
-<p><br />
-<b>Παραδείγματα Κλήσης</b><br />
-Παρακάτω εμφανίζεται μια σειρά από
-παραδείγματα κλήσης της συνάρτησης με
-διάφορους τρόπους :<br />
-<a href="#cURL">cURL</a> | <a href="#JavaScript">JavaScript</a> | <a
-href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a></p>
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
 
-<div><br />
-</div>
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
+</ul>
 
-<p><a id="cURL"></a>Παράδειγμα κλήσης της
-συνάρτησης με <b>cURL</b> (console) :</p>
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
 
-<pre>
-curl -X POST https:<span
-class="php-comment">//mm.sch.gr/api/unit_dns \</span>
-  -H <span
-class="php-quote">&quot;Content-Type: application/json&quot;</span> \
-  -H <span
-class="php-quote">&quot;Accept: application/json&quot;</span> \
-  -u username:password \
-  -d <span
-class="php-quote">'{&quot;unit_dns&quot; : &quot;&quot;, \
-       &quot;unit_ext_dns&quot; : &quot;&quot;, \
-       &quot;mm_id&quot; :  }'</span>
-</pre>
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
 
-<div><br />
-</div>
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
 
-<p><a id="JavaScript"></a>Παράδειγμα κλήσης της
-συνάρτησης με <b>JavaScript</b> :</p>
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
 
-<pre>
-&lt;script&gt;
-   <span
-class="php-keyword1">var</span> params = JSON.stringify({
-       <span
-class="php-quote">&quot;unit_dns&quot;</span> : <span
-class="php-quote">&quot;&quot;</span>,
-       <span
-class="php-quote">&quot;unit_ext_dns&quot;</span> : <span
-class="php-quote">&quot;&quot;</span>,
-       <span
-class="php-quote">&quot;mm_id&quot;</span> :
-   });
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
 
-   <span
-class="php-keyword1">var</span> http = <span
-class="php-keyword1">new</span> XMLHttpRequest();
-   http.open(<span
-class="php-quote">&quot;POST&quot;</span>, <span
-class="php-quote">&quot;https://mm.sch.gr/api/unit_dns&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Accept&quot;</span>, <span
-class="php-quote">&quot;application/json&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-type&quot;</span>, <span
-class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-length&quot;</span>, params.length);
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
 
-   http.onreadystatechange = <span
-class="php-keyword1">function</span>() {
-       <span
-class="php-keyword1">if</span>(http.readyState == <span
-class="php-num">4</span> &amp;&amp; http.status == <span
-class="php-num">200</span>) {
-           alert(http.responseText);
-       }
-   }
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
 
-   http.send(params);
-&lt;/script&gt;
-</pre>
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
 
-<div><br />
-</div>
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
 
-<p><a id="PHP"></a>Παράδειγμα κλήσης της συνάρτησης
-με <b>PHP</b> :</p>
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
 
-<pre>
-<span class="xlang">&lt;?php</span>
-<span
-class="php-keyword2">header</span>(<span
-class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
 
-<span
-class="php-var">$params</span> = <span
-class="php-keyword1">array</span>(
-       <span
-class="php-quote">&quot;unit_dns&quot;</span> =&gt; <span
-class="php-quote">&quot;&quot;</span>,
-       <span
-class="php-quote">&quot;unit_ext_dns&quot;</span> =&gt; <span
-class="php-quote">&quot;&quot;</span>,
-       <span
-class="php-quote">&quot;mm_id&quot;</span> =&gt;
-);
-
-<span
-class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
-class="php-quote">&quot;https://mm.sch.gr/api/unit_dns&quot;</span>);
-
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_USERPWD, <span
-class="php-quote">&quot;username:password&quot;</span>);
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
-class="php-quote">&quot;POST&quot;</span>);
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_POSTFIELDS, <span
-class="php-keyword2">json_encode</span>( <span
-class="php-var">$params</span> ));
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
-class="php-keyword1">true</span>);
-
-<span class="php-var">$data</span> = <span
-class="php-keyword2">json_decode</span>( <span
-class="php-keyword2">curl_exec</span>(<span
-class="php-var">$curl</span>) );
-<span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
-class="php-keyword2">var_dump</span>( <span
-class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
-<span
-class="xlang">?&gt;</span>
-</pre>
-
-<div><br />
-</div>
-
-<p><a id="Ajax"></a>Παράδειγμα κλήσης της
-συνάρτησης με <b>Ajax</b> :</p>
-
-<pre>
-&lt;script&gt;
-   <span class="php-var">$</span>.ajax({
-       type: <span
-class="php-quote">'POST'</span>,
-       url: <span
-class="php-quote">'https://mm.sch.gr/api/unit_dns'</span>,
-       dataType: <span
-class="php-quote">&quot;json&quot;</span>,
-       data: {
-       <span
-class="php-quote">&quot;unit_dns&quot;</span> : <span
-class="php-quote">&quot;&quot;</span>,
-       <span
-class="php-quote">&quot;unit_ext_dns&quot;</span> : <span
-class="php-quote">&quot;&quot;</span>,
-       <span
-class="php-quote">&quot;mm_id&quot;</span> :
-       },
-       beforeSend: <span
-class="php-keyword1">function</span>(req) {
-           req.setRequestHeader(<span
-class="php-quote">'Authorization'</span>, btoa(<span
-class="php-quote">'username'</span> + <span
-class="php-quote">&quot;:&quot;</span> + <span
-class="php-quote">'password'</span>));
-       },
-       success: <span
-class="php-keyword1">function</span>(data){
-           console.<span
-class="php-keyword2">log</span>(data);
-       }
-   });
-&lt;/script&gt;
-</pre>
-
-<div><br />
-</div>
-
-<p><br />
-<b>Πίνακας Δεδομένων</b><br />
-<a id="data"></a>Παρακάτω εμφανίζεται πίνακας σε
-μορφή JSON :</p>
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
 
 <pre>
 {
-   <span class="php-quote">&quot;method&quot;</span>: <span
+<span class="php-quote">&quot;controller&quot;</span>: <span
 class="php-quote">&quot;PostUnitDns&quot;</span>,
-   <span
-class="php-quote">&quot;unit_dns_id&quot;</span>: <span
-class="php-quote">&quot;&quot;</span>,
-   <span
+<span
+class="php-quote">&quot;function&quot;</span>: <span
+class="php-quote">&quot;unit_dns&quot;</span>,
+<span
+class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;POST&quot;</span>,
+<span
+class="php-quote">&quot;parameters&quot;</span>: { <span
+class="php-quote">&quot;unit_dns&quot;</span>: ``,<span
+class="php-quote">&quot;unit_ext_dns&quot;</span>: ``,<span
+class="php-quote">&quot;mm_id&quot;</span>: `` },
+<span
+class="php-quote">&quot;unit_dns_id&quot;</span>: ``,
+<span
 class="php-quote">&quot;status&quot;</span>: <span
 class="php-num">200</span>,
-   <span
+<span
 class="php-quote">&quot;message&quot;</span>: <span
-class="php-quote">&quot;success&quot;</span>
+class="php-quote">&quot;[POST][unit_dns]:success&quot;</span>
 }
 </pre>
-
-<div><br />
-</div>
 
 	</div>
 
@@ -401,13 +237,39 @@ class="php-quote">&quot;success&quot;</span>
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
 	<tr id="$unit_dns">
-		<td class="name"><code>integer</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$unit_dns</var></code></td>
 		<td>
-			$mm_id Κωδικός ΜΜ Μονάδας<br />
+			 DNS Μονάδας<br />
+<br />
+Το Όνομα του DNS της Μονάδας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+		</td>
+	</tr>
+	<tr id="$unit_ext_dns">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$unit_ext_dns</var></code></td>
+		<td>
+			 ExtDNS Μονάδας<br />
+<br />
+Το ExtDNS της Μονάδας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+		</td>
+	</tr>
+	<tr id="$mm_id">
+		<td class="name"><code>integer</code></td>
+		<td class="value"><code><var>$mm_id</var></code></td>
+		<td>
+			 Κωδικός ΜΜ<br />
+<br />
 Ο Κωδικός ΜΜ της Μονάδας<br />
-Η παράμετρος είναι υποχρεωτική<br />
-Μονάδες : <code><a href="function-GetUnits.html">GetUnits()</a></code><br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+DNS Μονάδας : <code><a href="function-GetUnits.html">GetUnits()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι : integer
 <ul>
 	<li>integer<br />
@@ -419,50 +281,31 @@ class="php-quote">&quot;success&quot;</span>
 
 		</td>
 	</tr>
-	<tr id="$unit_ext_dns">
-		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$unit_ext_dns</var></code></td>
-		<td>
-			$unit_dns DNS Μονάδας<br />
-Το Όνομα του DNS της Μονάδας<br />
-Η παράμετρος είναι υποχρεωτική<br />
-Η τιμή της παραμέτρου μπορεί να είναι : string
-		</td>
-	</tr>
-	<tr id="$mm_id">
-		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$mm_id</var></code></td>
-		<td>
-			$unit_ext_dns ExtDNS Μονάδας<br />
-Το ExtDNS της Μονάδας<br />
-Η παράμετρος είναι υποχρεωτική<br />
-Η τιμή της παραμέτρου μπορεί να είναι : string
-		</td>
-	</tr>
 	</table>
 
 	<table class="summary" id="returns">
 	<caption>Return value summary</caption>
 	<tr>
 		<td class="name"><code>
-			Array&lt;JSON&gt;
+			Objects&lt;JSON&gt;
 		</code></td>
 		<td>
-			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
-:<br />
-
-<ul>
-	<li>sting : <b>method</b> : Το Όνομα της μεθόδου</li>
-
-	<li>integer : <b>status</b> : Ο Κωδικός της κατάστασης</li>
-
-	<li>string : <b>message</b> : Μήνυμα περιγραφής της
-	κατάστασης</li>
-
-	<li>integer : <b>unit_dns_id</b> : Ο Κωδικός του DNS Μονάδας
-	που δημιουργήθηκε</li>
-</ul>
-
+			Επιστρέφει τα παρακάτω JSON objects :<br />
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+array : <b>parameters</b> : Οι παράμετροι που δίνει ο
+χρήστης<br />
+integer : <b>unit_dns_id</b> : Ο Κωδικός ID του DNS Μονάδας
+που δημιουργήθηκε<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
 		</td>
 	</tr>
 	</table>
@@ -471,23 +314,20 @@ class="php-quote">&quot;success&quot;</span>
 	<caption>Thrown exceptions summary</caption>
 	<tr>
 		<td class="name"><code>
-			MissingUnitDnsValue
+			MissingUnitDnsParam
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingUnitDnsValue">ExceptionMessages::<b>MissingUnitDnsValue</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#MissingUnitDnsValue">ExceptionCodes::<b>MissingUnitDnsValue</b></a></code><br />
-Το DNS της Μονάδας πρέπει να έχει τιμή
+			<code><a href="class-ExceptionMessages.html#MissingUnitDnsParam">ExceptionMessages::<b>MissingUnitDnsParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitDnsParam">ExceptionCodes::<b>MissingUnitDnsParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidUnitDnsArray
+			MissingUnitDnsValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidUnitDnsArray">ExceptionMessages::<b>InvalidUnitDnsArray</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidUnitDnsArray">ExceptionCodes::<b>InvalidUnitDnsArray</b></a></code><br />
-Το DNS της Μονάδας δεν μπορεί να έχει
-πολλαπλές τιμές
+			<code><a href="class-ExceptionMessages.html#MissingUnitDnsValue">ExceptionMessages::<b>MissingUnitDnsValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitDnsValue">ExceptionCodes::<b>MissingUnitDnsValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -496,51 +336,7 @@ class="php-quote">&quot;success&quot;</span>
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidUnitDnsType">ExceptionMessages::<b>InvalidUnitDnsType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidUnitDnsType">ExceptionCodes::<b>InvalidUnitDnsType</b></a></code><br />
-Το DNS της Μονάδας πρέπει να είναι αριθμητικό
-ή αλφαριθμητικό
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			MissingUnitDnsParam
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#MissingUnitDnsParam">ExceptionMessages::<b>MissingUnitDnsParam</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#MissingUnitDnsParam">ExceptionCodes::<b>MissingUnitDnsParam</b></a></code><br />
-Το DNS της Μονάδας είναι υποχρεωτικό πεδίο
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			MissingUnitExtDnsValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#MissingUnitExtDnsValue">ExceptionMessages::<b>MissingUnitExtDnsValue</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#MissingUnitExtDnsValue">ExceptionCodes::<b>MissingUnitExtDnsValue</b></a></code><br />
-Το πλήρης DNS της Μονάδας πρέπει να έχει τιμή
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidUnitExtDnsArray
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidUnitExtDnsArray">ExceptionMessages::<b>InvalidUnitExtDnsArray</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidUnitExtDnsArray">ExceptionCodes::<b>InvalidUnitExtDnsArray</b></a></code><br />
-Το πλήρης DNS της Μονάδας δεν μπορεί να έχει
-πολλαπλές τιμές
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidUnitExtDnsType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidUnitExtDnsType">ExceptionMessages::<b>InvalidUnitExtDnsType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidUnitExtDnsType">ExceptionCodes::<b>InvalidUnitExtDnsType</b></a></code><br />
-Το πλήρης DNS της Μονάδας πρέπει να είναι
-αριθμητικό ή αλφαριθμητικό
+<code><a href="class-ExceptionCodes.html#InvalidUnitDnsType">ExceptionCodes::<b>InvalidUnitDnsType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -549,9 +345,25 @@ class="php-quote">&quot;success&quot;</span>
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#MissingUnitExtDnsParam">ExceptionMessages::<b>MissingUnitExtDnsParam</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#MissingUnitExtDnsParam">ExceptionCodes::<b>MissingUnitExtDnsParam</b></a></code><br />
-Το πλήρης DNS της Μονάδας είναι υποχρεωτικό
-πεδίο
+<code><a href="class-ExceptionCodes.html#MissingUnitExtDnsParam">ExceptionCodes::<b>MissingUnitExtDnsParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitExtDnsValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitExtDnsValue">ExceptionMessages::<b>MissingUnitExtDnsValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitExtDnsValue">ExceptionCodes::<b>MissingUnitExtDnsValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitExtDnsType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitExtDnsType">ExceptionMessages::<b>InvalidUnitExtDnsType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitExtDnsType">ExceptionCodes::<b>InvalidUnitExtDnsType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -560,49 +372,7 @@ class="php-quote">&quot;success&quot;</span>
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#DuplicatedUnitExtDnsValue">ExceptionMessages::<b>DuplicatedUnitExtDnsValue</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#DuplicatedUnitExtDnsValue">ExceptionCodes::<b>DuplicatedUnitExtDnsValue</b></a></code><br />
-Το πλήρης DNS της Μονάδας υπάρχει ήδη
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			MissingUnitMMIDValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#MissingUnitMMIDValue">ExceptionMessages::<b>MissingUnitMMIDValue</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#MissingUnitMMIDValue">ExceptionCodes::<b>MissingUnitMMIDValue</b></a></code><br />
-Ο Κωδικός ΜΜ πρέπει να έχει τιμή
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidUnitMMIDArray
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidUnitMMIDArray">ExceptionMessages::<b>InvalidUnitMMIDArray</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidUnitMMIDArray">ExceptionCodes::<b>InvalidUnitMMIDArray</b></a></code><br />
-Ο Κωδικός ΜΜ δεν μπορεί να έχει πολλαπλές
-τιμές
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidUnitValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidUnitValue">ExceptionMessages::<b>InvalidUnitValue</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidUnitValue">ExceptionCodes::<b>InvalidUnitValue</b></a></code><br />
-Η Μονάδα δεν βρέθηκε
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidUnitMMIDType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidUnitMMIDType">ExceptionMessages::<b>InvalidUnitMMIDType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidUnitMMIDType">ExceptionCodes::<b>InvalidUnitMMIDType</b></a></code><br />
-Ο Κωδικός ΜΜ πρέπει να είναι αριθμητικός
+<code><a href="class-ExceptionCodes.html#DuplicatedUnitExtDnsValue">ExceptionCodes::<b>DuplicatedUnitExtDnsValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -611,8 +381,61 @@ class="php-quote">&quot;success&quot;</span>
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#MissingUnitMMIDParam">ExceptionMessages::<b>MissingUnitMMIDParam</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#MissingUnitMMIDParam">ExceptionCodes::<b>MissingUnitMMIDParam</b></a></code><br />
-Ο Κωδικός ΜΜ είναι υποχρεωτικό πεδίο
+<code><a href="class-ExceptionCodes.html#MissingUnitMMIDParam">ExceptionCodes::<b>MissingUnitMMIDParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitMMIDValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitMMIDValue">ExceptionMessages::<b>MissingUnitMMIDValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitMMIDValue">ExceptionCodes::<b>MissingUnitMMIDValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitMMIDType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitMMIDType">ExceptionMessages::<b>InvalidUnitMMIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitMMIDType">ExceptionCodes::<b>InvalidUnitMMIDType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitMMIDArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitMMIDArray">ExceptionMessages::<b>InvalidUnitMMIDArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitMMIDArray">ExceptionCodes::<b>InvalidUnitMMIDArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedUnitMMIDUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedUnitMMIDUniqueValue">ExceptionMessages::<b>DuplicatedUnitMMIDUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedUnitMMIDUniqueValue">ExceptionCodes::<b>DuplicatedUnitMMIDUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedUnitDnsValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedUnitDnsValue">ExceptionMessages::<b>DuplicatedUnitDnsValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedUnitDnsValue">ExceptionCodes::<b>DuplicatedUnitDnsValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NoErrors
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
 		</td>
 	</tr>
 	</table>
