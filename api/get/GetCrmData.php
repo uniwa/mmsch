@@ -8,6 +8,15 @@
  
 header("Content-Type: text/html; charset=utf-8");
 
+/** 
+ * <b>Crm Data</b>
+ * 
+ * @global type $app
+ * @global type $crmOptions
+ * @param type $mm_id
+ * @return string
+ */
+
 function GetCrmData( $mm_id ) {
     
     //temporary close connection with crm.sch.gr

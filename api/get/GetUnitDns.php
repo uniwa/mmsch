@@ -213,7 +213,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    <li>integer : <b>unit_dns_id</b> : Ο Κωδικός ID του DNS Μονάδας</li>
  *    <li>string : <b>unit_dns</b> : Το Όνομα του DNS Μονάδας</li>
  *    <li>string : <b>unit_ext_dns</b> : Το Όνομα του ExtDNS Μονάδας</li>
- *    <li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας (Μονάδες : {@see GetUnits})</li>
+ *    <li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας </li>
  *    <li>string : <b>unit_name</b> : Το Όνομα της Μονάδας</li>
  *    <li>string : <b>special_unit_name</b> : Το Προσωνύμιο της Μονάδας</li>
  *    <li>string : <b>registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της Μονάδας</li>
