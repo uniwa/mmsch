@@ -45,7 +45,7 @@ header("Content-Type: text/html; charset=utf-8");
  * "parameters": { "municipality_community_id": `` },
  * "municipality_community_id": ``,
  * "status": 200,
- * "message": "[DELETE][municipality_community_id]:success"
+ * "message": "[DELETE][municipality_communities]:success"
  * }
  * </code>
  *

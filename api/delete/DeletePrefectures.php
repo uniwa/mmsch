@@ -45,7 +45,7 @@ header("Content-Type: text/html; charset=utf-8");
  * "parameters": { "prefecture_id": `` },
  * "prefecture_id": ``,
  * "status": 200,
- * "message": "[DELETE][prefecture_id]:success"
+ * "message": "[DELETE][prefectures]:success"
  * }
  * </code>
  *

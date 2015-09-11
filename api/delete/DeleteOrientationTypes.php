@@ -45,7 +45,7 @@ header("Content-Type: text/html; charset=utf-8");
  * "parameters": { "orientation_type_id": `` },
  * "orientation_type_id": ``,
  * "status": 200,
- * "message": "[DELETE][orientation_type_id]:success"
+ * "message": "[DELETE][orientation_types]:success"
  * }
  * </code>
  *

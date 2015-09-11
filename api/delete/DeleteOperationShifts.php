@@ -45,7 +45,7 @@ header("Content-Type: text/html; charset=utf-8");
  * "parameters": { "operation_shift_id": `` },
  * "operation_shift_id": ``,
  * "status": 200,
- * "message": "[DELETE][operation_shift_id]:success"
+ * "message": "[DELETE][operation_shifts]:success"
  * }
  * </code>
  *

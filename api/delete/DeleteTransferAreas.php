@@ -45,7 +45,7 @@ header("Content-Type: text/html; charset=utf-8");
  * "parameters": { "transfer_area_id": `` },
  * "transfer_area_id": ``,
  * "status": 200,
- * "message": "[DELETE][transfer_area_id]:success"
+ * "message": "[DELETE][transfer_areas]:success"
  * }
  * </code>
  *

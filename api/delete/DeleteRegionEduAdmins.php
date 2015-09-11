@@ -45,7 +45,7 @@ header("Content-Type: text/html; charset=utf-8");
  * "parameters": { "region_edu_admin_id": `` },
  * "region_edu_admin_id": ``,
  * "status": 200,
- * "message": "[DELETE][region_edu_admin_id]:success"
+ * "message": "[DELETE][region_edu_admins]:success"
  * }
  * </code>
  *

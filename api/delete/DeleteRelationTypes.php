@@ -45,7 +45,7 @@ header("Content-Type: text/html; charset=utf-8");
  * "parameters": { "relation_type_id": `` },
  * "relation_type_id": ``,
  * "status": 200,
- * "message": "[DELETE][relation_type_id]:success"
+ * "message": "[DELETE][relation_types]:success"
  * }
  * </code>
  *

@@ -45,7 +45,7 @@ header("Content-Type: text/html; charset=utf-8");
  * "parameters": { "implementation_entity_id": `` },
  * "implementation_entity_id": ``,
  * "status": 200,
- * "message": "[DELETE][implementation_entity_id]:success"
+ * "message": "[DELETE][implementation_entities]:success"
  * }
  * </code>
  *

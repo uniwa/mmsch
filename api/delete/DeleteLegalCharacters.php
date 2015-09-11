@@ -45,7 +45,7 @@ header("Content-Type: text/html; charset=utf-8");
  * "parameters": { "legal_character_id": `` },
  * "legal_character_id": ``,
  * "status": 200,
- * "message": "[DELETE][legal_character_id]:success"
+ * "message": "[DELETE][legal_characters]:success"
  * }
  * </code>
  *

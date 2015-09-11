@@ -45,7 +45,7 @@ header("Content-Type: text/html; charset=utf-8");
  * "parameters": { "source_id": `` },
  * "source_id": ``,
  * "status": 200,
- * "message": "[DELETE][source_id]:success"
+ * "message": "[DELETE][sources]:success"
  * }
  * </code>
  *

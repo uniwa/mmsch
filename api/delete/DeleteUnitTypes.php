@@ -45,7 +45,7 @@ header("Content-Type: text/html; charset=utf-8");
  * "parameters": { "unit_type_id": `` },
  * "unit_type_id": ``,
  * "status": 200,
- * "message": "[DELETE][unit_type_id]:success"
+ * "message": "[DELETE][unit_types]:success"
  * }
  * </code>
  *

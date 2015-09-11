@@ -45,7 +45,7 @@ header("Content-Type: text/html; charset=utf-8");
  * "parameters": { "worker_specialization_id": `` },
  * "worker_specialization_id": ``,
  * "status": 200,
- * "message": "[DELETE][worker_specialization_id]:success"
+ * "message": "[DELETE][worker_specializations]:success"
  * }
  * </code>
  *

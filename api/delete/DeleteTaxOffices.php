@@ -45,7 +45,7 @@ header("Content-Type: text/html; charset=utf-8");
  * "parameters": { "tax_office_id": `` },
  * "tax_office_id": ``,
  * "status": 200,
- * "message": "[DELETE][tax_office_id]:success"
+ * "message": "[DELETE][tax_offices]:success"
  * }
  * </code>
  *

@@ -45,7 +45,7 @@ header("Content-Type: text/html; charset=utf-8");
  * "parameters": { "category_id": `` },
  * "category_id": ``,
  * "status": 200,
- * "message": "[DELETE][category_id]:success"
+ * "message": "[DELETE][categories]:success"
  * }
  * </code>
  *
