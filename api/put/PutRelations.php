@@ -1,198 +1,278 @@
 <?php
 /**
- *
- * @version 1.0.3
+ * @version 2.0
  * @author  ΤΕΙ Αθήνας
  * @package PUT
- * 
  */
- 
+
 header("Content-Type: text/html; charset=utf-8");
 
-/** 
- * Ενημέρωση : Συσχετίσεις μεταξύ Μονάδων 
- * 
- * 
- * Η κλήση της συνάρτησης αυτής μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο PUT :
- * <br> https://mm.sch.gr/api/relations <br><br>
+/**
+ * **Ενημέρωση Συσχέτισης Μονάδας**
  *
- * 
- * Παράδειγμα κλήσης της μεθόδου με <b>cURL</b> (console) :
- * <code>
- * curl -X PUT https://mm.sch.gr/api/relations \
- *   -H "Content-Type: application/json" \
- *   -H "Accept: application/json" \
- *   -u username:password \
- *   -d '{"relation_id" : "value", \
- *        "host_mm_id" : "value", \
- *        "guest_mm_id" : "value", \
- *        "relation_state" : "value", \
- *        "true_date" : "value", \
- *        "true_fek" : "value", \
- *        "false_date" : "value", \
- *        "false_fek" : "value", \
- *        "relation_type" : "value"}'
- * </code>
- * <br>
- * 
+ * Η συνάρτηση ενημερώνει Συσχέτιση Μονάδας σύμφωνα με τις παραμέτρους που έγινε η κλήση.
+ * <br>Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο **PUT** και route_api_name = **relations** :
+ * <br>https://mm.sch.gr/api/relations
  *
- *  
- * Παράδειγμα κλήσης της μεθόδου με <b>JavaScript</b> :
+ *
+ * ***Ορισμός Μοναδικών Τιμών Παραμέτρων***
+ * <br>Παρακάτω ορίζονται οι παραμέτροι που έχουν μοναδικές τιμές και πραγματοποιειται ελεγχος πριν κάθε καταχώρηση:
+ * * **relation_id**
+ *
+ * ***Πίνακας Παραμέτρων***
+ * * Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters summary</a> εμφανίζονται όλοι οι παράμετροι με τους οποίους μπορεί να γίνει η κλήση της συνάρτησης.
+ * * Όλοι οι παράμετροι είναι προαιρετικοί εκτός από αυτές που έχουν χαρακτηριστεί ως υποχρεωτικοί.
+ * * Οι παράμετροι μπορούν να χρησιμοποιηθούν με οποιαδήποτε σειρά.
+ * 
+ * ***Πίνακας Αποτελεσμάτων***
+ * * Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value summary</a> εμφανίζονται οι μεταβλητές που επιστρέφει η συνάρτηση.
+ * * Όλες οι μεταβλητές επιστρέφονται σε <a href="#model">JSON objects</a>.
+ * * Η μεταβλητή status καθορίζει αν η εκτέλεση της συνάρτησης ήταν επιτυχής (κωδικός 200) ή προέκυψε κάποιο σφάλμα.
+ *
+ * ***Πίνακας Σφαλμάτων***
+ * * Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων που μπορεί να προκύψουν κατά την κλήση της συνάρτησης.
+ * * Οι περιγραφές των Σφαλμάτων καθώς και οι Κωδικοί τους είναι διαθέσιμες μέσω του πίνακα Μηνύματα Σφαλμάτων ({@see ExceptionMessages}) και Κωδικοί Σφαλμάτων ({@see ExceptionCodes}) αντίστοιχα.
+ * 
+ * ***Παραδείγματα Κλήσης***
+ * * Υπάρχουν διαθέσιμα παραδείγματα κλήσης της συνάρτησης με διάφορους τρόπους ({@see ApiRequestExamples}).
+ * 
+ * ***Μηνύματα Authentication/Authorization***
+ * * Υπάρχουν αναλυτικές πληροφορίες για τα μηνύματα Authentication/Authorization ({@see AuthMessages}).
+ *
+ * ***Δεδομένα Επιστροφής***
+ * <br><a id="model"></a>Παρακάτω εμφανίζονται τα αποτελέσματα σε μορφή JSON :
  * <code>
- * <script>
- *    var params = JSON.stringify({
- *        "relation_id" : "value", 
- *        "worker_registry_no" : "value",
- *        "lastname" : "value",
- *        "firstname" : "value",
- *        "fathername" : "value",
- *        "sex" : "value",
- *        "tax_number" : "value",
- *        "worker_specialization" : "value" 
- *    });
- *    
- *    var http = new XMLHttpRequest();
- *    http.open("PUT", "https://mm.sch.gr/api/relations");
- *    http.setRequestHeader("Accept", "application/json");
- *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
- *    http.setRequestHeader("Content-length", params.length);
- *    
- *    http.onreadystatechange = function() {
- *        if(http.readyState == 4 && http.status == 200) {
- *            alert(http.responseText);
- *        }
- *    }
- *    
- *    http.send(params);
- * </script>
+ * {
+ * "controller": "PutRelations",
+ * "function": "relations",
+ * "method": "PUT",
+ * "parameters": {  "relation_id": ``, "host_mm_id": ``, "guest_mm_id": ``, 
+ *                  "relation_state": ``, "true_date": ``, "true_fek": ``, 
+ *                  "false_date": ``, "false_fek": ``, "relation_type": `` },
+ * "relation_id": ``,
+ * "status": 200,
+ * "message": "[PUT][relations]:success"
+ * }
  * </code>
+ * 
+ * 
+ * @param integer $relation_id ID Συσχέτισης Μονάδας
  * <br>
- * 
- * 
- * 
- * Παράδειγμα κλήσης της μεθόδου με <b>PHP</b> :
- * <code>
- * <?php
- * header("Content-Type: text/html; charset=utf-8");
- * 
- * $params = array(
- *        "relation_id" => "value", 
- *        "host_mm_id" : "value",
- *        "guest_mm_id" : "value", 
- *        "relation_state" : "value",
- *        "true_date" : "value",
- *        "true_fek" : "value",
- *        "false_date" : "value",
- *        "false_fek" : "value",
- *        "relation_type" : "value"
- * );
- * 
- * $curl = curl_init("https://mm.sch.gr/api/relations");
- * 
- * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
- * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
- * curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
- * curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode( $params ));
- * curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
- * 
- * $data = json_decode( curl_exec($curl) );
- * echo "<pre>"; var_dump( $data ); echo "</pre>";
- * ?>
- * </code>
- * <br>
- * 
- * 
- *  
- * Παράδειγμα κλήσης της συνάρτησης με <b>Ajax</b> :
- * <code>
- * <script>
- *    $.ajax({
- *        type: 'PUT',
- *        url: 'https://mm.sch.gr/api/relations',
- *        dataType: "json",
- *        data: {
- *            "relation_id" => "value", 
- *            "host_mm_id" => "value", 
- *            "guest_mm_id" => "value", 
- *            "relation_state" => "value", 
- *            "true_date" => "value", 
- *            "true_fek" => "value", 
- *            "false_date" => "value", 
- *            "false_fek" => "value", 
- *            "relation_type" => "value"
- *        },
- *        beforeSend: function(req) {
- *            req.setRequestHeader('Authorization', btoa('username' + ":" + 'password'));
- *        },
- *        success: function(data){
- *            console.log(data);
- *        }
- *    });
- * </script>
- * </code>
- * <br>
- * 
- * 
- *  
- * @param integer $relation_id <b><i>Κωδικός Συσχέτισης</i></b>
- * <br>Ο Κωδικός της Συσχέτισης Μονάδων
- * <br>Το πεδίο είναι υποχρεωτικό
- * 
- * @param integer $host_mm_id <b><i>Κωδικός ΜΜ Host Μονάδας</i></b>
- * <br>Ο Κωδικός ΜΜ της Host Μονάδας
- * <br>Το πεδίο είναι υποχρεωτικό
- * <br>Αναζήτηση Μονάδων {@see GetUnits}
- * 
- * @param integer $guest_mm_id <b><i>Κωδικός ΜΜ Guest Μονάδας</i></b>
- * <br>Ο Κωδικός ΜΜ της Guest Μονάδας
- * <br>Το πεδίο είναι υποχρεωτικό
- * <br>Αναζήτηση Μονάδων {@see GetUnits}
- * 
- * @param boolean $relation_state Ενεργή/Ανενεργή
- * <br>Καθορίζει αν η Συσχέτιση είναι Ενεργή
- * 
- * @param integer $true_date Ημερομηνία Ενεργοποίησης
- * <br>Η Ημερομηνία που η Συσχέτιση έγινε Ενεργή
- * 
- * @param integer $true_fek ΦΕΚ Ενεργοποίησης
- * <br>Το ΦΕΚ όταν η Συσχέτιση έγινε Ενεργή
- * 
- * @param integer $false_date Ημερομηνία Απενεργοποίησης
- * <br>Η Ημερομηνία που η Συσχέτιση έγινε Ανενεργή
- * 
- * @param integer $false_fek ΦΕΚ Απενεργοποίησης
- * <br>Το ΦΕΚ όταν η Συσχέτιση έγινε Ανενεργή
- * 
- * @param mixed $relation_type <b><i>Τύπος Συσχέτισης</b></i>
- * <br>Ο Τύπος Συσχέτισης των Μονάδων
- * <br>Το πεδίο είναι υποχρεωτικό
- * <br>Αν η τιμή της παραμέτρου είναι αριθμητική η αναζήτηση γίνεται με τον κωδικό αλλιώς με την ονομασία
- * <br>Λεξικό : Συσχετίσεις Μονάδων {@see GetRelationTypes}
- * 
- * 
- * 
- * @return Array<JSON> Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία : 
- * <br>
+ * <br>Ο Κωδικός ID της Συσχέτισης Μονάδας
+ * <br>Η παράμετρος είναι ***υποχρεωτική***
+ * <br>ID Συσχέτισης Μονάδας : {@see GetRelations}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer
  * <ul>
- *  <li>sting : <b>method</b> : Το Όνομα της μεθόδου</li>
- *  <li>integer : <b>status</b> : Ο Κωδικός της κατάστασης</li>
- *  <li>string : <b>message</b> : Μήνυμα περιγραφής της κατάστασης </li>
- *  <li>integer : <b>relation_id</b> : Ο Κωδικός της Συσχέτισης</li>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με το Κωδικό ID Συσχέτισης Μονάδας
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
  * </ul>
  * 
- *
+ * @param integer $host_mm_id Κωδικός ΜΜ της Host Μονάδας
+ * <br>
+ * <br>Κωδικός ΜΜ της Host Μονάδας
+ * <br>Η παράμετρος είναι ***υποχρεωτική***
+ * <br>Κωδικός ΜΜ της Host Μονάδας : {@see GetUnits}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με το Κωδικός ΜΜ της Host Μονάδας
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ * </ul>
  * 
+ * @param integer $guest_mm_id Κωδικός ΜΜ της Host Μονάδας
+ * <br>
+ * <br>Ο Κωδικός ΜΜ της Host Μονάδας
+ * <br>Η παράμετρος είναι ***υποχρεωτική***
+ * <br>Κωδικός ΜΜ της Host Μονάδας : {@see GetUnits}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με το Κωδικός ΜΜ της Host Μονάδας
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ * </ul>
+ * 
+ * @param string $relation_state Λειτουργική Κατάσταση Συσχέτισης Μονάδας
+ * <br>
+ * <br>Η Λειτουργική Κατάσταση Συσχέτισης Μονάδας
+ * <br>Η παράμετρος είναι ***υποχρεωτική***
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι μεταξύ 0 ή 1 (Ανενεργή ή Ενεργή) : integer
+ * 
+ * @param date $true_date Ημερομηνία Ενεργοποίησης
+ * <br>
+ * <br>Η Ημερομηνία Ενεργοποίησης Συσχέτισης Μονάδας
+ * <br>Η παράμετρος είναι ***υποχρεωτική***
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : date
+ * 
+ * @param string $true_fek ΦΕΚ Ενεργοποίησης
+ * <br>
+ * <br>Το ΦΕΚ Ενεργοποίησης της Συσχέτισης Μονάδας
+ * <br>Η παράμετρος είναι ***υποχρεωτική***
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
+ * 
+ * @param date false_date Ημερομηνία Απενεργοποίησης
+ * <br>
+ * <br>Η Ημερομηνία Απενεργοποίησης Συσχέτισης Μονάδας
+ * <br>Η παράμετρος είναι ***υποχρεωτική***
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : date
+ * 
+ * @param string $false_fek ΦΕΚ Απενεργοποίησης
+ * <br>
+ * <br>Το ΦΕΚ Απενεργοποίησης της Συσχέτισης Μονάδας
+ * <br>Η παράμετρος είναι ***υποχρεωτική***
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
+ * 
+ * @param integer|string $relation_type Όνομα ή ID Τύπου Συσχέτισης
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID του Τύπου Συσχέτισης
+ * <br>Η παράμετρος είναι ***υποχρεωτική***
+ * <br>Όνομα ή ID Τύπου Συσχέτισης : {@see GetRelationTypes}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer|string
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με το Κωδικό ID Τύπος Συσχέτισης
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα Τύπος Συσχέτισης
+ *       <br>Η αναζήτηση στο Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ * </ul>
+ * 
+ * 
+ * @return Objects<JSON> Επιστρέφει τα παρακάτω JSON objects :
+ * <br>
+ * <br>string : <b>controller</b> : Ο controller που χρησιμοποιείται
+ * <br>string : <b>function</b> : Η συνάρτηση που υλοποιείται από το σύστημα
+ * <br>string : <b>method</b> : Η μέθοδος κλήσης της συνάρτησης
+ * <br>array : <b>parameters</b> : Οι παράμετροι που δίνει ο χρήστης
+ * <br>integer : <b>relation_id</b> : Ο Κωδικός ID της Συσχέτισης Μονάδας που ενημερώθηκε
+ * <br>integer : <b>status</b> : Ο Κωδικός του αποτελέσματος της κλήσης
+ * <br>string : <b>message</b> : Το Μήνυμα του αποτελέσματος της κλήσης
+ *
+ *
+ * @throws MissingRelationIDParam {@see ExceptionMessages::MissingRelationIDParam}
+ * <br>{@see ExceptionCodes::MissingRelationIDParam}
+ *
  * @throws MissingRelationIDValue {@see ExceptionMessages::MissingRelationIDValue}
+ * <br>{@see ExceptionCodes::MissingRelationIDValue}
+ *  
+ * @throws InvalidRelationIDArray {@see ExceptionMessages::InvalidRelationIDArray}
+ * <br>{@see ExceptionCodes::InvalidRelationIDArray}
+ *
  * @throws InvalidRelationIDType {@see ExceptionMessages::InvalidRelationIDType}
+ * <br>{@see ExceptionCodes::InvalidRelationIDType}
+ *
  * @throws InvalidRelationValue {@see ExceptionMessages::InvalidRelationValue}
+ * <br>{@see ExceptionCodes::InvalidRelationValue}
+ *
+ * @throws DuplicatedRelationUniqueValue {@see ExceptionMessages::DuplicatedRelationUniqueValue}
+ * <br>{@see ExceptionCodes::DuplicatedRelationUniqueValue}
+ * 
+ * @throws MissingRelationHostUnitMMIDParam {@see ExceptionMessages::MissingRelationHostUnitMMIDParam}
+ * <br>{@see ExceptionCodes::MissingRelationHostUnitMMIDParam}
+ *
  * @throws MissingRelationHostUnitMMIDValue {@see ExceptionMessages::MissingRelationHostUnitMMIDValue}
+ * <br>{@see ExceptionCodes::MissingRelationHostUnitMMIDValue}
+ *  
+ * @throws InvalidRelationHostUnitMMIDArray {@see ExceptionMessages::InvalidRelationHostUnitMMIDArray}
+ * <br>{@see ExceptionCodes::InvalidRelationHostUnitMMIDArray}
+ *
  * @throws InvalidRelationHostUnitMMIDType {@see ExceptionMessages::InvalidRelationHostUnitMMIDType}
- * @throws InvalidRelationHostUnitMMIDValue {@see ExceptionMessages::InvalidRelationHostUnitMMIDValue}
+ * <br>{@see ExceptionCodes::InvalidRelationHostUnitMMIDType}
+ * 
+ * @throws DuplicatedRelationHostUnitMMIDUniqueValue {@see ExceptionMessages::DuplicatedRelationHostUnitMMIDUniqueValue}
+ * <br>{@see ExceptionCodes::DuplicatedRelationHostUnitMMIDUniqueValue} 
+ * 
+ * @throws MissingRelationGuestUnitMMIDParam {@see ExceptionMessages::MissingRelationGuestUnitMMIDParam}
+ * <br>{@see ExceptionCodes::MissingRelationGuestUnitMMIDParam}
+ *
  * @throws MissingRelationGuestUnitMMIDValue {@see ExceptionMessages::MissingRelationGuestUnitMMIDValue}
+ * <br>{@see ExceptionCodes::MissingRelationGuestUnitMMIDValue}
+ *  
+ * @throws InvalidRelationGuestUnitMMIDArray {@see ExceptionMessages::InvalidRelationGuestUnitMMIDArray}
+ * <br>{@see ExceptionCodes::InvalidRelationGuestUnitMMIDArray}
+ *
  * @throws InvalidRelationGuestUnitMMIDType {@see ExceptionMessages::InvalidRelationGuestUnitMMIDType}
- * @throws InvalidRelationGuestUnitMMIDValue {@see ExceptionMessages::InvalidRelationGuestUnitMMIDValue}
+ * <br>{@see ExceptionCodes::InvalidRelationGuestUnitMMIDType}
+ * 
+ * @throws DuplicatedRelationGuestUnitMMIDUniqueValue {@see ExceptionMessages::DuplicatedRelationGuestUnitMMIDUniqueValue}
+ * <br>{@see ExceptionCodes::DuplicatedRelationGuestUnitMMIDUniqueValue}
+ * 
+ * @throws MissingRelationStateParam {@see ExceptionMessages::MissingRelationStateParam}
+ * <br>{@see ExceptionCodes::MissingRelationStateParam}
+ *
+ * @throws MissingRelationStateValue {@see ExceptionMessages::MissingRelationStateValue}
+ * <br>{@see ExceptionCodes::MissingRelationStateValue}
+ *
+ * @throws InvalidRelationStateType {@see ExceptionMessages::InvalidRelationStateType}
+ * <br>{@see ExceptionCodes::InvalidRelationStateType}
+ * 
+ * @throws MissingRelationTrueDateParam {@see ExceptionMessages::MissingRelationTrueDateParam}
+ * <br>{@see ExceptionCodes::MissingRelationTrueDateParam}
+ *
+ * @throws MissingRelationTrueDateValue {@see ExceptionMessages::MissingRelationTrueDateValue}
+ * <br>{@see ExceptionCodes::MissingRelationTrueDateValue}
+ *
+ * @throws InvalidRelationTrueDateType {@see ExceptionMessages::InvalidRelationTrueDateType}
+ * <br>{@see ExceptionCodes::InvalidRelationTrueDateType}
+ * 
+ * @throws InvalidRelationTrueDateValidType {@see ExceptionMessages::InvalidRelationTrueDateValidType}
+ * <br>{@see ExceptionCodes::InvalidRelationTrueDateValidType}
+ * 
+ * @throws MissingRelationTrueFekParam {@see ExceptionMessages::MissingRelationTrueFekParam}
+ * <br>{@see ExceptionCodes::MissingRelationTrueFekParam}
+ *
+ * @throws MissingRelationTrueFekValue {@see ExceptionMessages::MissingRelationTrueFekValue}
+ * <br>{@see ExceptionCodes::MissingRelationTrueFekValue}
+ *
+ * @throws InvalidRelationTrueFekType {@see ExceptionMessages::InvalidRelationTrueFekType}
+ * <br>{@see ExceptionCodes::InvalidRelationTrueFekType}
+ * 
+ * @throws MissingRelationFalseFekParam {@see ExceptionMessages::MissingRelationFalseFekParam}
+ * <br>{@see ExceptionCodes::MissingRelationFalseFekParam}
+ *
+ * @throws MissingRelationFalseFekValue {@see ExceptionMessages::MissingRelationFalseFekValue}
+ * <br>{@see ExceptionCodes::MissingRelationFalseFekValue}
+ *
+ * @throws InvalidRelationFalseFekType {@see ExceptionMessages::InvalidRelationFalseFekType}
+ * <br>{@see ExceptionCodes::InvalidRelationFalseFekType} 
+ * 
+ * @throws MissingRelationFalseDateParam {@see ExceptionMessages::MissingRelationFalseDateParam}
+ * <br>{@see ExceptionCodes::MissingRelationFalseDateParam}
+ *
+ * @throws MissingRelationFalseDateValue {@see ExceptionMessages::MissingRelationFalseDateValue}
+ * <br>{@see ExceptionCodes::MissingRelationFalseDateValue}
+ *
+ * @throws InvalidRelationFalseDateType {@see ExceptionMessages::InvalidRelationFalseDateType}
+ * <br>{@see ExceptionCodes::InvalidRelationFalseDateType}
+ * 
+ * @throws InvalidRelationFalseDateValidType {@see ExceptionMessages::InvalidRelationFalseDateValidType}
+ * <br>{@see ExceptionCodes::InvalidRelationFalseDateValidType}
+ * 
+ * @throws MissingRelationTypeParam {@see ExceptionMessages::MissingRelationTypeParam}
+ * <br>{@see ExceptionCodes::MissingRelationTypeParam}
+ *
  * @throws MissingRelationTypeValue {@see ExceptionMessages::MissingRelationTypeValue}
- * @throws InvalidRelationTypeValue {@see ExceptionMessages::InvalidRelationTypeValue}
+ * <br>{@see ExceptionCodes::MissingRelationTypeValue}
+ *  
+ * @throws InvalidRelationTypeArray {@see ExceptionMessages::InvalidRelationTypeArray}
+ * <br>{@see ExceptionCodes::InvalidRelationTypeArray}
+ *
+ * @throws InvalidRelationTypeType {@see ExceptionMessages::InvalidRelationTypeType}
+ * <br>{@see ExceptionCodes::InvalidRelationTypeType}
+ * 
+ * @throws DuplicatedRelationTypeUniqueValue {@see ExceptionMessages::DuplicatedRelationTypeUniqueValue}
+ * <br>{@see ExceptionCodes::DuplicatedRelationTypeUniqueValue}
+ * 
+ * @throws DuplicatedRelationValue {@see ExceptionMessages::DuplicatedRelationValue}
+ * <br>{@see ExceptionCodes::DuplicatedRelationValue}
+ * 
+ * @throws NoErrors {@see ExceptionMessages::NoErrors}
+ * <br>{@see ExceptionCodes::NoErrors}
  * 
  * 
  */
@@ -221,14 +301,14 @@ function PutRelations( $relation_id, $host_mm_id, $guest_mm_id, $relation_state,
     //$host_mm_id===============================================================
     if ( Validator::IsExists('host_mm_id') ){
         CRUDUtils::entitySetAssociation($Relation, $host_mm_id, 'Units', 'hostMm', 'RelationHostUnitMMID', $params, 'host_mm_id', true, false, true);
-    } else if ( Validator::IsNull($Relation->getMm()) ){
+    } else if ( Validator::IsNull($Relation->getHostMm()) ){
         throw new Exception(ExceptionMessages::MissingRelationHostUnitMMIDValue, ExceptionCodes::MissingRelationHostUnitMMIDValue);
     } 
     
     //$guest_mm_id==============================================================
     if ( Validator::IsExists('guest_mm_id') ){
         CRUDUtils::entitySetAssociation($Relation, $guest_mm_id, 'Units', 'guestMm', 'RelationGuestUnitMMID', $params, 'guest_mm_id', true, false, true);
-    } else if ( Validator::IsNull($Relation->getMm()) ){
+    } else if ( Validator::IsNull($Relation->getGuestMm()) ){
         throw new Exception(ExceptionMessages::MissingRelationGuestUnitMMIDValue, ExceptionCodes::MissingRelationGuestUnitMMIDValue);
     } 
     
@@ -238,42 +318,42 @@ function PutRelations( $relation_id, $host_mm_id, $guest_mm_id, $relation_state,
             CRUDUtils::entitySetParam($Relation, $relation_state, 'RelationState', 'relation_state' , $params , true, false, true);
         else
             throw new Exception(ExceptionMessages::InvalidRelationStateType, ExceptionCodes::InvalidRelationStateType);
-    } else if ( Validator::IsNull($Relation->getMm()) ){
+    } else if ( Validator::IsNull($Relation->getRelationState()) ){
         throw new Exception(ExceptionMessages::MissingRelationStateValue, ExceptionCodes::MissingRelationStateValue);
     } 
     
     //$true_date================================================================  
     if ( Validator::IsExists('true_date') ){
         CRUDUtils::entitySetDate($Relation, $true_date, 'RelationTrueDate', 'true_date' , $params);
-    } else if ( Validator::IsNull($Relation->getMm()) ){
+    } else if ( Validator::IsNull($Relation->getTrueDate()) ){
         throw new Exception(ExceptionMessages::MissingRelationTrueDateValue, ExceptionCodes::MissingRelationTrueDateValue);
     } 
     
     //$true_fek=================================================================
     if ( Validator::IsExists('true_fek') ){
         CRUDUtils::entitySetParam($Relation, $true_fek, 'RelationTrueFek', 'true_fek' , $params);
-    } else if ( Validator::IsNull($Relation->getMm()) ){
+    } else if ( Validator::IsNull($Relation->getTrueFek()) ){
         throw new Exception(ExceptionMessages::MissingRelationTrueFekValue, ExceptionCodes::MissingRelationTrueFekValue);
     } 
     
     //$false_fek================================================================
     if ( Validator::IsExists('false_fek') ){
         CRUDUtils::entitySetParam($Relation, $false_fek, 'RelationFalseFek', 'false_fek' , $params);
-    } else if ( Validator::IsNull($Relation->getMm()) ){
+    } else if ( Validator::IsNull($Relation->getFalseFek()) ){
         throw new Exception(ExceptionMessages::MissingRelationFalseFekValue, ExceptionCodes::MissingRelationFalseFekValue);
     } 
     
     //$false_date===============================================================
     if ( Validator::IsExists('false_date') ){
         CRUDUtils::entitySetDate($Relation, $false_date, 'RelationFalseDate', 'false_date' , $params);
-    } else if ( Validator::IsNull($Relation->getMm()) ){
+    } else if ( Validator::IsNull($Relation->getFalseDate()) ){
         throw new Exception(ExceptionMessages::MissingRelationFalseDateValue, ExceptionCodes::MissingRelationFalseDateValue);
     } 
     
     //$relation_type============================================================
     if ( Validator::IsExists('relation_type') ){
         CRUDUtils::entitySetAssociation($Relation, $relation_type, 'RelationTypes', 'relationType', 'RelationType', $params, 'relation_type');
-    } else if ( Validator::IsNull($Relation->getMm()) ){
+    } else if ( Validator::IsNull($Relation->getRelationType()) ){
         throw new Exception(ExceptionMessages::MissingRelationTypeValue, ExceptionCodes::MissingRelationTypeValue);
     } 
 
@@ -298,10 +378,9 @@ function PutRelations( $relation_id, $host_mm_id, $guest_mm_id, $relation_state,
 //update to db================================================================== 
         $entityManager->persist($Relation);
         $entityManager->flush($Relation);
-
-        $result["relation_id"] = $Relation->getRelationId();
-           
+         
 //result_messages===============================================================      
+        $result["relation_id"] = $Relation->getRelationId();
         $result["status"] = ExceptionCodes::NoErrors;
         $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
     } catch (Exception $e) {
@@ -311,4 +390,5 @@ function PutRelations( $relation_id, $host_mm_id, $guest_mm_id, $relation_state,
         
     return $result;
 }
+
 ?>

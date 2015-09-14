@@ -1377,8 +1377,8 @@ class ExceptionCodes
     
     /** {@see ExceptionMessages::DuplicatedRelationTypeValue} */  
     const DuplicatedRelationTypeValue = 500;
-    /** {@see ExceptionMessages::DuplicateRelationTypeUniqueValue} */     
-    const DuplicateRelationTypeUniqueValue = 500;
+    /** {@see ExceptionMessages::DuplicatedRelationTypeUniqueValue} */     
+    const DuplicatedRelationTypeUniqueValue = 500;
     /** {@see ExceptionMessages::UsedRelationTypeByRelations} */  
     const UsedRelationTypeByRelations = 500;
     
@@ -2516,6 +2516,10 @@ class ExceptionCodes
     const DuplicatedRelationValue = 500;
     /** {@see ExceptionMessages::DuplicatedRelationUniqueValue} */
     const DuplicatedRelationUniqueValue = 500;
+    /** {@see ExceptionMessages::DuplicatedRelationHostUnitMMIDUniqueValue} */
+    const DuplicatedRelationHostUnitMMIDUniqueValue = 500;
+    /** {@see ExceptionMessages::DuplicatedRelationGuestUnitMMIDUniqueValue} */
+    const DuplicatedRelationGuestUnitMMIDUniqueValue = 500;
   
         //delete
         /** {@see ExceptionMessages::DuplicateDelRelationValue} */

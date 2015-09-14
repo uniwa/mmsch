@@ -1449,6 +1449,8 @@ class ExceptionMessages
     
     const DuplicatedRelationValue = 'Η Συσχέτιση Μονάδων υπάρχει ήδη';
     const DuplicatedRelationUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Relation';
+    const DuplicatedRelationHostUnitMMIDUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Host Units';
+    const DuplicatedRelationGuestUnitMMIDUniqueValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή primary key Guest Units';
     
         //delete
         const DuplicateDelRelationValue = 'Ενημερώστε τον διαχειριστή! Βρέθηκε διπλοεγγραφή με ίδιο Κωδικό Συσχέτισης Μονάδων'; 

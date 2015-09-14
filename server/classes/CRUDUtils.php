@@ -277,6 +277,7 @@ class CRUDUtils {
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Param' , ExceptionCodes::'Missing'.$exceptionType.'Param'
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Value' , ExceptionCodes::'Missing'.$exceptionType.'Value'
      * @throws ExceptionMessages::'Invalid'.$exceptionType.'Type' , ExceptionCodes::'Invalid'.$exceptionType.'Type'
+     * @throws ExceptionMessages::'Invalid'.$exceptionType.'ValidType' , ExceptionCodes::'Invalid'.$exceptionType.'ValidType'
      * 
      * @return mixed The doctrine entity with set.'$field' or throwException
      * 

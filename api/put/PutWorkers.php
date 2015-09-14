@@ -1,200 +1,254 @@
 <?php
 /**
- *
- * @version 1.0.3
+ * @version 2.0
  * @author  ΤΕΙ Αθήνας
  * @package PUT
- * 
  */
  
 header("Content-Type: text/html; charset=utf-8");
 
 /** 
- * Ενημέρωση : Εργαζόμενοι
- * 
- * 
- * Η κλήση της συνάρτησης αυτής μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο PUT :
- * <br> https://mm.sch.gr/api/workers <br><br>
+ * **Ενημέρωση Στοιχείων Εργαζόμενου**
  *
+ * Η συνάρτηση ενημερώνει Στοιχεία Εργαζόμενου σύμφωνα με τις παραμέτρους που έγινε η κλήση.
+ * <br>Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο **PUT** και route_api_name = **workers** :
+ * <br>https://mm.sch.gr/api/workers
+ *
+ *
+ * ***Ορισμός Μοναδικών Τιμών Παραμέτρων***
+ * <br>Παρακάτω ορίζονται οι παραμέτροι που έχουν μοναδικές τιμές και πραγματοποιειται ελεγχος πριν κάθε καταχώρηση:
+ * * **worker_id**
+ * * **registry_no**
+ *
+ * ***Πίνακας Παραμέτρων***
+ * * Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters summary</a> εμφανίζονται όλοι οι παράμετροι με τους οποίους μπορεί να γίνει η κλήση της συνάρτησης.
+ * * Όλοι οι παράμετροι είναι προαιρετικοί εκτός από αυτές που έχουν χαρακτηριστεί ως υποχρεωτικοί.
+ * * Οι παράμετροι μπορούν να χρησιμοποιηθούν με οποιαδήποτε σειρά.
  * 
- * Παράδειγμα κλήσης της μεθόδου με <b>cURL</b> (console) :
+ * ***Πίνακας Αποτελεσμάτων***
+ * * Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value summary</a> εμφανίζονται οι μεταβλητές που επιστρέφει η συνάρτηση.
+ * * Όλες οι μεταβλητές επιστρέφονται σε <a href="#model">JSON objects</a>.
+ * * Η μεταβλητή status καθορίζει αν η εκτέλεση της συνάρτησης ήταν επιτυχής (κωδικός 200) ή προέκυψε κάποιο σφάλμα.
+ *
+ * ***Πίνακας Σφαλμάτων***
+ * * Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων που μπορεί να προκύψουν κατά την κλήση της συνάρτησης.
+ * * Οι περιγραφές των Σφαλμάτων καθώς και οι Κωδικοί τους είναι διαθέσιμες μέσω του πίνακα Μηνύματα Σφαλμάτων ({@see ExceptionMessages}) και Κωδικοί Σφαλμάτων ({@see ExceptionCodes}) αντίστοιχα.
+ * 
+ * ***Παραδείγματα Κλήσης***
+ * * Υπάρχουν διαθέσιμα παραδείγματα κλήσης της συνάρτησης με διάφορους τρόπους ({@see ApiRequestExamples}).
+ * 
+ * ***Μηνύματα Authentication/Authorization***
+ * * Υπάρχουν αναλυτικές πληροφορίες για τα μηνύματα Authentication/Authorization ({@see AuthMessages}).
+ *
+ * ***Δεδομένα Επιστροφής***
+ * <br><a id="model"></a>Παρακάτω εμφανίζονται τα αποτελέσματα σε μορφή JSON :
  * <code>
- * curl -X PUT https://mm.sch.gr/api/workers \
- *   -H "Content-Type: application/json" \
- *   -H "Accept: application/json" \
- *   -u username:password \
- *   -d '{"worker_id" : "value", \
- *        "worker_registry_no" : "value", \
- *        "lastname" : "value", \
- *        "firstname" : "value", \
- *        "fathername" : "value", \
- *        "sex" : "value", \
- *        "tax_number" : "value", \
- *        "worker_specialization" : "value", \
- *        "source" : "value" }'
+ * {
+ * "controller": "PutWorkers",
+ * "function": "workers",
+ * "method": "PUT",
+ * "parameters": {  "worker_id": ``, "registry_no": ``, "lastname": ``, 
+ *                  "firstname": ``, "fathername": ``, "sex": ``, 
+ *                  "tax_number": ``, "worker_specialization": ``, "source": `` },
+ * "worker_id": ``,
+ * "status": 200,
+ * "message": "[PUT][workers]:success"
+ * }
  * </code>
+ * 
+ * 
+ * @param integer $worker_id ID Εργαζόμενου
  * <br>
- * 
- * 
- * 
- * Παράδειγμα κλήσης της μεθόδου με <b>JavaScript</b> :
- * <code>
- * <script>
- *    var params = JSON.stringify({ "worker_id" : "value",
- *                                  "worker_registry_no" : "value",
- *                                  "lastname" : "value",
- *                                  "firstname" : "value",
- *                                  "fathername" : "value", 
- *                                  "sex" : "value",
- *                                  "tax_number" : "value",
- *                                  "worker_specialization" : "value",
- *                                  "source" : "value" });
- *    
- *    var http = new XMLHttpRequest();
- *    http.open("PUT", "https://mm.sch.gr/api/workers");
- *    http.setRequestHeader("Accept", "application/json");
- *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
- *    http.setRequestHeader("Content-length", params.length);
- *    
- *    http.onreadystatechange = function() {
- *        if(http.readyState == 4 && http.status == 200) {
- *            alert(http.responseText);
- *        }
- *    }
- *    
- *    http.send(params);
- * </script>
- * </code>
+ * <br>Ο Κωδικός ID του Εργαζόμενου
+ * <br>Η παράμετρος είναι ***υποχρεωτική***
+ * <br>ID Εργαζόμενου : {@see GetWorkers}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με το Κωδικό ID του Εργαζόμενου
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ * </ul>
+ *
+ * @param date $registry_no Αριθμός Μητρώου
  * <br>
- * 
- * 
- * 
- * Παράδειγμα κλήσης της μεθόδου με <b>PHP</b> :
- * <code>
- * <?php
- * header("Content-Type: text/html; charset=utf-8");
- * 
- * $params = array(
- *      "worker_id" => "value", 
- *      "worker_registry_no" => "value", 
- *      "lastname" => "value", 
- *      "firstname" => "value", 
- *      "fathername" => "value", 
- *      "sex" => "value", 
- *      "tax_number" => "value",
- *      "worker_specialization" => "value",
- *      "source" : "value" );
- * 
- * $curl = curl_init("https://mm.sch.gr/api/workers");
- * 
- * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
- * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
- * curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
- * curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode( $params ));
- * curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
- * 
- * $data = json_decode( curl_exec($curl) );
- * echo "<pre>"; var_dump( $data ); echo "</pre>";
- * ?>
- * </code>
- * <br>
- * 
- * 
- *  
- * Παράδειγμα κλήσης της συνάρτησης με <b>Ajax</b> :
- * <code>
- * <script>
- *    $.ajax({
- *        type: 'PUT',
- *        url: 'https://mm.sch.gr/api/workers',
- *        dataType: "json",
- *        data: {
- *            "worker_id" : "value",
- *            "worker_registry_no" : "value",
- *            "lastname" : "value",
- *            "firstname" : "value",
- *            "fathername" : "value",
- *            "sex" : "value",
- *            "tax_number" : "value",
- *            "worker_specialization" : "value"
- *            "source" : "value"
- *        },
- *        beforeSend: function(req) {
- *            req.setRequestHeader('Authorization', btoa('username' + ":" + 'password'));
- *        },
- *        success: function(data){
- *            console.log(data);
- *        }
- *    });
- * </script>
- * </code>
- * <br>
- * 
- * 
- *  
- * @param integer $worker_id Κωδικός Εργαζόμενου
- * <br>Ο Κωδικός του Εργαζόμενου
- * 
- * @param string $worker_registry_no Αριθμός Μητρώου
  * <br>Ο Αριθμός Μητρώου του Εργαζόμενου
- * 
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
+ *
  * @param string $lastname Επώνυμο
+ * <br>
  * <br>Το Επώνυμο του Εργαζόμενου
- * 
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
+ *
  * @param string $firstname Όνομα
+ * <br>
  * <br>Το Όνομα του Εργαζόμενου
- * 
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
+ *
  * @param string $fathername Πατρώνυμο
+ * <br>
  * <br>Το Πατρώνυμο του Εργαζόμενου
- * 
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
+ *
  * @param string $sex Φύλο
+ * <br>
  * <br>Το Φύλο του Εργαζόμενου
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
  * 
  * @param string $tax_number Αριθμός Φορολογικού Μητρώου
- * <br>Ο Αριθμός Φορολογικού Μητρώου του Εργαζόμενου
- * 
- * @param mixed $worker_specialization Ειδικότητα
- * <br>Η Ειδικότητα του Εργαζομένου 
- * <br>Το πεδίο είναι υποχρεωτικό
- * <br>Λεξικό : Ειδικότητες Εργαζομένων {@see GetWorkerSpecializations})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $source Πρωτογενής Πηγή
- * <br>Η Πρωτογενής Πηγή του Εργαζόμενου
- * <br>Το πεδίο είναι υποχρεωτικό
- * <br>Λεξικό : Πρωτογενείς Πηγές Εργαζομενων {@see GetSources})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * 
- * @return Array<JSON> Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία : 
  * <br>
+ * <br>Ο Αριθμός Φορολογικού Μητρώου του Εργαζόμενου
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
+ *
+ * @param integer|string $worker_specialization Όνομα ή ID Ειδικότητας
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID της Ειδικότητας Εργαζόμενου
+ * <br>Όνομα ή ID Ειδικότητας Εργαζόμενου : {@see GetWorkerSpecializations}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer|string
  * <ul>
- *  <li>sting : <b>method</b> : Το Όνομα της μεθόδου</li>
- *  <li>integer : <b>status</b> : Ο Κωδικός της κατάστασης</li>
- *  <li>string : <b>message</b> : Μήνυμα περιγραφής της κατάστασης </li>
- *  <li>integer : <b>worker_id</b> : Ο Κωδικός του Εργαζόμενου</li>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με το Κωδικό ID Ειδικότητας Εργαζόμενου
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα Ειδικότητας Εργαζόμενου
+ *       <br>Η αναζήτηση στο Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ * </ul>
+ *
+ * @param integer|string $source Όνομα ή ID Πρωτογενής Πηγή
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID της Πρωτογενής Πηγής
+ * <br>Η παράμετρος είναι ***υποχρεωτική***
+ * <br>Όνομα ή ID Ειδικότητας Εργαζόμενου : {@see GetSources}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer|string
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με το Κωδικό ID Πρωτογενής Πηγής
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα Πρωτογενής Πηγής
+ *       <br>Η αναζήτηση στο Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
  * </ul>
  * 
- *
  * 
- * @throws MissingWorkerValue {@see ExceptionMessages::MissingWorkerValue}
- * @throws InvalidWorkerType {@see ExceptionMessages::InvalidWorkerType}
+ * @return Objects<JSON> Επιστρέφει τα παρακάτω JSON objects :
+ * <br>
+ * <br>string : <b>controller</b> : Ο controller που χρησιμοποιείται
+ * <br>string : <b>function</b> : Η συνάρτηση που υλοποιείται από το σύστημα
+ * <br>string : <b>method</b> : Η μέθοδος κλήσης της συνάρτησης
+ * <br>array : <b>parameters</b> : Οι παράμετροι που δίνει ο χρήστης
+ * <br>integer : <b>worker_id</b> : Ο Κωδικός ID του Εργαζόμενου που ενημερώθηκε
+ * <br>integer : <b>status</b> : Ο Κωδικός του αποτελέσματος της κλήσης
+ * <br>string : <b>message</b> : Το Μήνυμα του αποτελέσματος της κλήσης
+ * 
+ * 
+ * @throws MissingWorkerIDParam {@see ExceptionMessages::MissingWorkerIDParam}
+ * <br>{@see ExceptionCodes::MissingWorkerIDParam}
+ *
+ * @throws MissingWorkerIDValue {@see ExceptionMessages::MissingWorkerIDValue}
+ * <br>{@see ExceptionCodes::MissingWorkerIDValue}
+ *  
+ * @throws InvalidWorkerIDArray {@see ExceptionMessages::InvalidWorkerIDArray}
+ * <br>{@see ExceptionCodes::InvalidWorkerIDArray}
+ *
+ * @throws InvalidWorkerIDType {@see ExceptionMessages::InvalidWorkerIDType}
+ * <br>{@see ExceptionCodes::InvalidWorkerIDType}
+ *
  * @throws InvalidWorkerValue {@see ExceptionMessages::InvalidWorkerValue}
+ * <br>{@see ExceptionCodes::InvalidWorkerValue}
+ *
+ * @throws DuplicatedWorkerUniqueValue {@see ExceptionMessages::DuplicatedWorkerUniqueValue}
+ * <br>{@see ExceptionCodes::DuplicatedWorkerUniqueValue}
+ * 
+ * @throws MissingWorkerRegistryNoParam {@see ExceptionMessages::MissingWorkerRegistryNoParam}
+ * <br>{@see ExceptionCodes::MissingWorkerRegistryNoParam}
+ *
  * @throws MissingWorkerRegistryNoValue {@see ExceptionMessages::MissingWorkerRegistryNoValue}
+ * <br>{@see ExceptionCodes::MissingWorkerRegistryNoValue}
+ *
+ * @throws InvalidWorkerRegistryNoType {@see ExceptionMessages::InvalidWorkerRegistryNoType}
+ * <br>{@see ExceptionCodes::InvalidWorkerRegistryNoType}
+ *
+ * @throws MissingWorkerLastnameParam {@see ExceptionMessages::MissingWorkerLastnameParam}
+ * <br>{@see ExceptionCodes::MissingWorkerLastnameParam}
+ *
  * @throws MissingWorkerLastnameValue {@see ExceptionMessages::MissingWorkerLastnameValue}
+ * <br>{@see ExceptionCodes::MissingWorkerLastnameValue}
+ *
+ * @throws InvalidWorkerLastnameType {@see ExceptionMessages::InvalidWorkerLastnameType}
+ * <br>{@see ExceptionCodes::InvalidWorkerLastnameType}
+ *
+ * @throws MissingWorkerFirstnameParam {@see ExceptionMessages::MissingWorkerFirstnameParam}
+ * <br>{@see ExceptionCodes::MissingWorkerFirstnameParam}
+ *
  * @throws MissingWorkerFirstnameValue {@see ExceptionMessages::MissingWorkerFirstnameValue}
- * @throws InvalidWorkerSpecializationValue {@see ExceptionMessages::InvalidWorkerSpecializationValue}
- * @throws InvalidSourceValue {@see ExceptionMessages::InvalidSourceValue}
+ * <br>{@see ExceptionCodes::MissingWorkerFirstnameValue}
+ *
+ * @throws InvalidWorkerFirstnameType {@see ExceptionMessages::InvalidWorkerFirstnameType}
+ * <br>{@see ExceptionCodes::InvalidWorkerFirstnameType}
+ * 
+ * @throws MissingWorkerFathernameParam {@see ExceptionMessages::MissingWorkerFathernameParam}
+ * <br>{@see ExceptionCodes::MissingWorkerFathernameParam}
+ *
+ * @throws MissingWorkerFathernameValue {@see ExceptionMessages::MissingWorkerFathernameValue}
+ * <br>{@see ExceptionCodes::MissingWorkerFathernameValue}
+ *
+ * @throws InvalidWorkerFathernameType {@see ExceptionMessages::InvalidWorkerFathernameType}
+ * <br>{@see ExceptionCodes::InvalidWorkerFathernameType}
+ * 
+ * @throws MissingWorkerSexParam {@see ExceptionMessages::MissingWorkerSexParam}
+ * <br>{@see ExceptionCodes::MissingWorkerSexParam}
+ *
+ * @throws MissingWorkerSexValue {@see ExceptionMessages::MissingWorkerSexValue}
+ * <br>{@see ExceptionCodes::MissingWorkerSexValue}
+ *
+ * @throws InvalidWorkerSexType {@see ExceptionMessages::InvalidWorkerSexType}
+ * <br>{@see ExceptionCodes::InvalidWorkerSexType}
+ * 
+ * @throws MissingWorkerTaxNumberParam {@see ExceptionMessages::MissingWorkerTaxNumberParam}
+ * <br>{@see ExceptionCodes::MissingWorkerTaxNumberParam}
+ *
+ * @throws MissingWorkerTaxNumberValue {@see ExceptionMessages::MissingWorkerTaxNumberValue}
+ * <br>{@see ExceptionCodes::MissingWorkerTaxNumberValue}
+ *
+ * @throws InvalidWorkerTaxNumberType {@see ExceptionMessages::InvalidWorkerTaxNumberType}
+ * <br>{@see ExceptionCodes::InvalidWorkerTaxNumberType}
+ *
+ * @throws MissingWorkerSpecializationParam {@see ExceptionMessages::MissingWorkerSpecializationParam}
+ * <br>{@see ExceptionCodes::MissingWorkerSpecializationParam}
+ *
+ * @throws MissingWorkerSpecializationValue {@see ExceptionMessages::MissingWorkerSpecializationValue}
+ * <br>{@see ExceptionCodes::MissingWorkerSpecializationValue}
+ *  
+ * @throws InvalidWorkerSpecializationArray {@see ExceptionMessages::InvalidWorkerSpecializationArray}
+ * <br>{@see ExceptionCodes::InvalidWorkerSpecializationArray}
+ *
+ * @throws InvalidWorkerSpecializationType {@see ExceptionMessages::InvalidWorkerSpecializationType}
+ * <br>{@see ExceptionCodes::InvalidWorkerSpecializationType}
+ * 
+ * @throws DuplicatedWorkerSpecializationUniqueValue {@see ExceptionMessages::DuplicatedWorkerSpecializationUniqueValue}
+ * <br>{@see ExceptionCodes::DuplicatedWorkerSpecializationUniqueValue} 
+ * 
+ * @throws MissingSourceParam {@see ExceptionMessages::MissingSourceParam}
+ * <br>{@see ExceptionCodes::MissingSourceParam}
+ *
+ * @throws MissingSourceValue {@see ExceptionMessages::MissingSourceValue}
+ * <br>{@see ExceptionCodes::MissingSourceValue}
+ *  
+ * @throws InvalidSourceArray {@see ExceptionMessages::InvalidSourceArray}
+ * <br>{@see ExceptionCodes::InvalidSourceArray}
+ *
+ * @throws InvalidSourceType {@see ExceptionMessages::InvalidSourceType}
+ * <br>{@see ExceptionCodes::InvalidSourceType}
+ * 
+ * @throws DuplicatedSourceUniqueValue {@see ExceptionMessages::DuplicatedSourceUniqueValue}
+ * <br>{@see ExceptionCodes::DuplicatedSourceUniqueValue}
+ * 
+ * @throws NoErrors {@see ExceptionMessages::NoErrors}
+ * <br>{@see ExceptionCodes::NoErrors}
  * 
  * 
  */
@@ -250,10 +304,9 @@ function PutWorkers( $worker_id, $registry_no, $lastname, $firstname, $fathernam
 //update to db==================================================================
            $entityManager->persist($Worker);
            $entityManager->flush($Worker);
-       
-            $result["worker_id"] = $Worker->getWorkerId();
             
-//result_messages===============================================================      
+//result_messages===============================================================
+        $result["worker_id"] = $Worker->getWorkerId();
         $result["status"] = ExceptionCodes::NoErrors;
         $result["message"] = "[".$result["method"]."][".$result["function"]."]:".ExceptionMessages::NoErrors;
     } catch (Exception $e) {
@@ -263,4 +316,5 @@ function PutWorkers( $worker_id, $registry_no, $lastname, $firstname, $fathernam
 
     return $result;
 }
+
 ?>
