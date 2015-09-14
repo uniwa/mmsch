@@ -347,9 +347,9 @@ function EduAdminsController()
                 $params["third_level_dns"],
                 $params["pagesize"],
                 $params["page"],
-                $params["searchtype"],
+                $params["orderby"],
                 $params["ordertype"],
-                $params["orderby"]              
+                $params["searchtype"]
             );
             break;
         case MethodTypes::POST :

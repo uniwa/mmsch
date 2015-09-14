@@ -213,7 +213,7 @@ header("Content-Type: text/html; charset=utf-8");
  *    <li>integer : <b>unit_dns_id</b> : Ο Κωδικός ID του DNS Μονάδας</li>
  *    <li>string : <b>unit_dns</b> : Το Όνομα του DNS Μονάδας</li>
  *    <li>string : <b>unit_ext_dns</b> : Το Όνομα του ExtDNS Μονάδας</li>
- *    <li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας (Μονάδες : {@see GetUnits})</li>
+ *    <li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας </li>
  *    <li>string : <b>unit_name</b> : Το Όνομα της Μονάδας</li>
  *    <li>string : <b>special_unit_name</b> : Το Προσωνύμιο της Μονάδας</li>
  *    <li>string : <b>registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της Μονάδας</li>
@@ -294,22 +294,22 @@ function GetUnitDns( $unit_dns, $unit_dns_extra, $unit_ext_dns, $unit,
       
 //$unit_dns=====================================================================
         if (Validator::Exists('unit_dns', $params)){
-                CRUDUtils::setFilter($qb, $unit_dns, "ud", "unitDnsId", "unitDns", "null,id,value", ExceptionMessages::InvalidUnitDnsIDType, ExceptionCodes::InvalidUnitDnsIDType);
+            CRUDUtils::setFilter($qb, $unit_dns, "ud", "unitDnsId", "unitDns", "id,value", ExceptionMessages::InvalidUnitDnsIDType, ExceptionCodes::InvalidUnitDnsIDType);
         }
         
 //$unit_dns_extra===============================================================
-   if (Validator::Exists('unit_dns_extra', $params)){
-       CRUDUtils::setSearchFilter($qb, $unit_dns_extra, "ud", "unitDns", $searchtype, ExceptionMessages::InvalidUnitDnsType, ExceptionCodes::InvalidUnitDnsType);    
-   }
+        if (Validator::Exists('unit_dns_extra', $params)){
+            CRUDUtils::setSearchFilter($qb, $unit_dns_extra, "ud", "unitDns", $searchtype, ExceptionMessages::InvalidUnitDnsType, ExceptionCodes::InvalidUnitDnsType);    
+        }
    
 //$unit_ext_dns=================================================================
-   if (Validator::Exists('unit_ext_dns', $params)){
-       CRUDUtils::setSearchFilter($qb, $unit_ext_dns, "ud", "unitExtDns", $searchtype, ExceptionMessages::InvalidUnitExtDnsType, ExceptionCodes::InvalidUnitExtDnsType);    
-   }
+        if (Validator::Exists('unit_ext_dns', $params)){
+            CRUDUtils::setSearchFilter($qb, $unit_ext_dns, "ud", "unitExtDns", $searchtype, ExceptionMessages::InvalidUnitExtDnsType, ExceptionCodes::InvalidUnitExtDnsType);    
+        }
 
 //$unit=========================================================================
         if (Validator::Exists('unit', $params)){
-                CRUDUtils::setFilter($qb, $unit, "u", "mmId", "name", "null,id,value", ExceptionMessages::InvalidUnitType, ExceptionCodes::InvalidUnitType);
+            CRUDUtils::setFilter($qb, $unit, "u", "mmId", "name", "id,value", ExceptionMessages::InvalidUnitType, ExceptionCodes::InvalidUnitType);
         }
 
 //execution=====================================================================
@@ -337,7 +337,7 @@ function GetUnitDns( $unit_dns, $unit_dns_extra, $unit_ext_dns, $unit,
                                         "unit_name"            => $row->getMm()->getName(),
                                         "special_unit_name"    => $row->getMm()->getSpecialName(),
                                         "registry_no"          => $row->getMm()->getRegistryNo()
-                          );
+                                    );
             
             $count++;
 

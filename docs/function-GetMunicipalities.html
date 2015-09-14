@@ -49,21 +49,15 @@
 			<ul>
 				<li><a href="function-CheckRequiredValues.html">CheckRequiredValues</a></li>
 				<li><a href="function-GetCategories.html">GetCategories</a></li>
-				<li><a href="function-GetCircuits.html">GetCircuits</a></li>
-				<li><a href="function-GetCircuitTypes.html">GetCircuitTypes</a></li>
-				<li><a href="function-GetConnections.html">GetConnections</a></li>
-				<li><a href="function-GetConnectionUnitNetworkSubnets.html">GetConnectionUnitNetworkSubnets</a></li>
 				<li><a href="function-GetCpes.html">GetCpes</a></li>
 				<li><a href="function-GetCrmData.html">GetCrmData</a></li>
 				<li><a href="function-GetEduAdmins.html">GetEduAdmins</a></li>
 				<li><a href="function-GetEducationLevels.html">GetEducationLevels</a></li>
 				<li><a href="function-GetExtLogEntries.html">GetExtLogEntries</a></li>
-				<li><a href="function-GetGroups.html">GetGroups</a></li>
 				<li><a href="function-GetImplementationEntities.html">GetImplementationEntities</a></li>
 				<li><a href="function-GetLdapEntries.html">GetLdapEntries</a></li>
 				<li><a href="function-GetLdaps.html">GetLdaps</a></li>
 				<li><a href="function-GetLegalCharacters.html">GetLegalCharacters</a></li>
-				<li><a href="function-GetLevels.html">GetLevels</a></li>
 				<li class="active"><a href="function-GetMunicipalities.html">GetMunicipalities</a></li>
 				<li><a href="function-GetMunicipalityCommunities.html">GetMunicipalityCommunities</a></li>
 				<li><a href="function-GetOperationShifts.html">GetOperationShifts</a></li>
@@ -80,11 +74,7 @@
 				<li><a href="function-GetTransferAreaMunicipalities.html">GetTransferAreaMunicipalities</a></li>
 				<li><a href="function-GetTransferAreas.html">GetTransferAreas</a></li>
 				<li><a href="function-GetUnitDns.html">GetUnitDns</a></li>
-				<li><a href="function-GetUnitNetworkObjects.html">GetUnitNetworkObjects</a></li>
-				<li><a href="function-GetUnitNetworkSubnets.html">GetUnitNetworkSubnets</a></li>
-				<li><a href="function-GetUnitNetworkSubnetTypes.html">GetUnitNetworkSubnetTypes</a></li>
 				<li><a href="function-GetUnits.html">GetUnits</a></li>
-				<li><a href="function-GetUnitsOld.html">GetUnitsOld</a></li>
 				<li><a href="function-GetUnitTypes.html">GetUnitTypes</a></li>
 				<li><a href="function-GetUnitWorkers.html">GetUnitWorkers</a></li>
 				<li><a href="function-GetWorkerPositions.html">GetWorkerPositions</a></li>
@@ -130,318 +120,204 @@
 
 	<div class="description">
 	
-<p><b>Λεξικό : Δήμοι</b></p>
+<p><strong>ΛΕΞΙΚΟ : Δήμοι ΟΤΑ</strong></p>
 
-<p>Η συνάρτηση αυτή επιστρέφει όλους τους
-Δήμους σύμφωνα με τις παραμέτρους που έγινε
-η κλήση</p>
+<p>Η συνάρτηση αυτή επιστρέφει Δήμους ΟΤΑ
+σύμφωνα με τις παραμέτρους που έγινε η
+κλήση.<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>GET</strong> και
+route_api_name = <strong>municipalities</strong> :<br />
+https://mm.sch.gr/api/municipalities</p>
 
-<p>Η κλήση μπορεί να γίνει μέσω της παρακάτω
-διεύθυνσης με τη μέθοδο GET :<br />
-<a
-href="https://mm.sch.gr/api/municipalities">https://mm.sch.gr/api/municipalities</a></p>
+<p><strong><em>Ορισμός Τύπου και Πεδίου
+Ταξινόμησης Αποτελεσμάτων</em></strong></p>
 
-<p>Τα αποτελέσματα είναι ταξινομημένα ως
-προς το Όνομα του Δήμου<br />
-Μέσω των παραμέτρων Πεδίο Ταξινόμησης (<a
-href="#$orderby">$orderby</a>) και Τύπος Ταξινόμησης (<a
-href="#$ordertype">$ordertype</a>) μπορεί να καθοριστεί το
-πεδίο και η σειρά ταξινόμησης</p>
+<ul>
+	<li>Μέσω των παραμέτρων Πεδίο Ταξινόμησης (<a
+	href="#$orderby">$orderby</a>) και Τύπος Ταξινόμησης (<a
+	href="#$ordertype">$ordertype</a>) μπορεί να καθοριστεί το
+	πεδίο και η σειρά ταξινόμησης.</li>
 
-<p><br />
-<b>Πίνακας Παραμέτρων</b><br />
-Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
-summary</a> εμφανίζονται όλοι οι παράμετροι με
-τους οποίους μπορεί να γίνει η κλήση της
-συνάρτησης<br />
-Όλοι οι παράμετροι είναι προαιρετικοί
-εκτός από αυτές που έχουν χαρακτηριστεί ως
-υποχρεωτικοί<br />
-Οι παράμετροι μπορούν να χρησιμοποιηθούν
-με οποιαδήποτε σειρά<br />
-Οι παράμετροι μπορούν να πάρουν τιμή "NULL"
-για να αναζητήσουν τις κενές εγγραφές στα
-αντίστοιχα πεδία</p>
+	<li>Προκαθορισμένη τιμή πεδίου ταξινόμησης
+	είναι η αύξουσα σειρά <strong>ASC</strong>.</li>
 
-<p><br />
-<b>Πίνακας Αποτελεσμάτων</b><br />
-Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value
-summary</a> εμφανίζονται οι μεταβλητές που
-επιστρέφει η συνάρτηση<br />
-Όλες οι μεταβλητές επιστρέφονται σε ένα
-πίνακα σε JSON μορφή<br />
-Η μεταβλητή data είναι ο πίνακας με το
-λεξικό<br />
-Η μεταβλητή status καθορίζει αν η εκτέλεση της
-συνάρτησης ήταν επιτυχής (κωδικός 200) ή
-προέκυψε κάποιο σφάλμα</p>
+	<li>Προκαθορισμένη τιμή τύπου ταξινόμησης
+	είναι το <strong>Όνομα</strong>.</li>
+</ul>
 
-<p><br />
-<b>Πίνακας Σφαλμάτων</b><br />
-Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
-summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
-που μπορεί να προκύψουν κατά την κλήση της
-συνάρτησης<br />
-Οι περιγραφές των Σφαλμάτων καθώς και οι
-Κωδικοί τους είναι διαθέσιμες μέσω του
-πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
-και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
-αντίστοιχα</p>
+<p><strong><em>Ορισμός Αριθμού Σελίδας και
+Εγγραφών/Σελίδα της Επιστροφής
+Αποτελεσμάτων</em></strong></p>
 
-<p><br />
-<b>Παραδείγματα Κλήσης</b><br />
-Παρακάτω εμφανίζεται μια σειρά από
-παραδείγματα κλήσης της συνάρτησης με
-διάφορους τρόπους :<br />
-<a href="#cURL">cURL</a> | <a href="#JavaScript">JavaScript</a> | <a
-href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a></p>
+<ul>
+	<li>Μέσω των παραμέτρων Αριθμός Σελίδας (<a
+	href="#$page">$page</a>) και Αριθμός Εγγραφών/Σελίδα (<a
+	href="#$pagesize">$pagesize</a>) μπορεί να καθοριστεί ο
+	αριθμός Σελίδας και Εγγραφών/Σελίδα της
+	επιστροφής αποτελεσμάτων.</li>
 
-<div><br />
-</div>
+	<li>Ο προκαθορισμένος αριθμός
+	Εγγραφών/Σελίδα που επιστρέφονται ανά
+	κλήση είναι <strong>0</strong>.</li>
 
-<p><a id="cURL"></a>Παράδειγμα κλήσης της
-συνάρτησης με <b>cURL</b> (console) :</p>
+	<li>Ο προκαθορισμένος αριθμός Σελίδας που
+	επιστρέφεται ανά κλήση είναι <strong>1</strong>.</li>
+</ul>
 
-<pre>
-curl -X GET https:<span
-class="php-comment">//mm.sch.gr/api/ \</span>
-   -H <span
-class="php-quote">&quot;Content-Type: application/json&quot;</span> \
-   -H <span
-class="php-quote">&quot;Accept: application/json&quot;</span> \
-   -u username:password \
-   -d <span
-class="php-quote">'{&quot;prefecture&quot;: &quot;ΑΤΤΙΚΗΣ&quot;}'</span>
-</pre>
+<p><strong><em>Ορισμός Τύπου Αναζήτησης
+Αποτελεσμάτων</em></strong></p>
 
-<div><br />
-</div>
+<ul>
+	<li>Μέσω των παραμέτρων Τύπου Αναζήτησης (<a
+	href="#$searchtype">$searchtype</a>) μπορεί να καθοριστεί
+	μπορεί να καθοριστεί ο τρόπος με τον οποίο
+	θα αναζητηθεί η τιμή της παραμέτρου στο DNS
+	της Μονάδας.</li>
 
-<p><a id="JavaScript"></a>Παράδειγμα κλήσης της
-συνάρτησης με <b>JavaScript</b> :</p>
+	<li>Ισχύει για όσες παραμέτρους το
+	υποστηρίζουν το συνδυασμό με την παράμετρο
+	searchtype.</li>
 
-<pre>
-&lt;script&gt;
-   <span
-class="php-keyword1">var</span> params = JSON.stringify({ <span
-class="php-quote">&quot;prefecture&quot;</span>: <span
-class="php-quote">&quot;ΑΤΤΙΚΗΣ&quot;</span> });
+	<li>Προκαθορισμένη τιμή τύπου αναζήτησης
+	είναι <strong>CONTAINALL</strong>.</li>
+</ul>
 
-   <span
-class="php-keyword1">var</span> http = <span
-class="php-keyword1">new</span> XMLHttpRequest();
-   http.open(<span
-class="php-quote">&quot;GET&quot;</span>, <span
-class="php-quote">&quot;https://mm.sch.gr/api/municipalities&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Accept&quot;</span>, <span
-class="php-quote">&quot;application/json&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-type&quot;</span>, <span
-class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-length&quot;</span>, params.length);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Authorization&quot;</span>, <span
-class="php-quote">&quot;Basic &quot;</span> + btoa(<span
-class="php-quote">'username'</span> + <span class="php-quote">':'</span> + <span
-class="php-quote">'password'</span>) );
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
 
-   http.onreadystatechange = <span
-class="php-keyword1">function</span>()
-   {
-       <span
-class="php-keyword1">if</span>(http.readyState == <span
-class="php-num">4</span> &amp;&amp; http.status == <span
-class="php-num">200</span>)
-       {
-           <span
-class="php-keyword1">var</span> result = JSON.parse(http.responseText);
-           document.write(result.status + <span
-class="php-quote">&quot; : &quot;</span> + result.message + <span
-class="php-quote">&quot; : &quot;</span> + result.data);
-       }
-   }
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
 
-   http.send(params);
-&lt;/script&gt;
-</pre>
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
 
-<div><br />
-</div>
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
 
-<p><a id="PHP"></a>Παράδειγμα κλήσης της συνάρτησης
-με <b>PHP</b> :</p>
+	<li>Οι παράμετροι οι οποίοι έχουν το
+	χαρακτηριστικό (Συνδυάζεται με την
+	παράμετρο searchtype) σημαίνει ότι η
+	συγκεκριμένη παράμετρος συνδυάζεται με την
+	παράμετρο searchtype.</li>
 
-<pre>
-<span class="xlang">&lt;?php</span>
-<span
-class="php-keyword2">header</span>(<span
-class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
+	<li>Οι παράμετροι μπορούν να πάρουν τιμή "NULL"
+	για να αναζητήσουν τις κενές εγγραφές στα
+	αντίστοιχα πεδία</li>
+</ul>
 
-<span
-class="php-var">$params</span> = <span class="php-keyword1">array</span>(<span
-class="php-quote">&quot;prefecture&quot;</span> =&gt; <span
-class="php-quote">&quot;ΑΤΤΙΚΗΣ&quot;</span>);
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
 
-<span
-class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
-class="php-quote">&quot;https://mm.sch.gr/api/municipalities&quot;</span>);
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
 
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_USERPWD, <span
-class="php-quote">&quot;username:password&quot;</span>);
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
-class="php-quote">&quot;GET&quot;</span>);
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_POSTFIELDS, <span
-class="php-keyword2">json_encode</span>( <span
-class="php-var">$params</span> ));
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
-class="php-keyword1">true</span>);
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
 
-<span class="php-var">$data</span> = <span
-class="php-keyword2">curl_exec</span>(<span class="php-var">$curl</span>);
-<span
-class="php-var">$data</span> = <span
-class="php-keyword2">json_decode</span>(<span
-class="php-var">$data</span>);
-<span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
-class="php-keyword2">var_dump</span>( <span
-class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
-<span
-class="xlang">?&gt;</span>
-</pre>
+	<li>Η μεταβλητή <a href="#data">data</a> είναι ο πίνακας
+	με τα δεδομένα.</li>
 
-<div><br />
-</div>
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
 
-<p><a id="Ajax"></a>Παράδειγμα κλήσης της
-συνάρτησης με <b>Ajax</b> :</p>
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
+
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
+
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Προκαθορισμένων
+Παραμέτρων</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Προκαθορισμένων Παραμέτρων (<code><a href="class-StandarParamsMessages.html">StandarParamsMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
 
 <pre>
-&lt;script&gt;
-   <span class="php-var">$</span>.ajax({
-       type: <span
-class="php-quote">'GET'</span>,
-       url: <span
-class="php-quote">'https://mm.sch.gr/api/municipalities'</span>,
-       dataType: <span
-class="php-quote">&quot;json&quot;</span>,
-       beforeSend: <span
-class="php-keyword1">function</span>(req) {
-           req.setRequestHeader(<span
-class="php-quote">'Authorization'</span>, btoa(<span
-class="php-quote">'username'</span> + <span
-class="php-quote">&quot;:&quot;</span> + <span
-class="php-quote">'password'</span>));
-       },
-       success: <span
-class="php-keyword1">function</span>(data){
-           console.<span
-class="php-keyword2">log</span>(data);
-       }
-   });
-&lt;/script&gt;
+{
+ <span class="php-quote">&quot;data&quot;</span>: [{}],
+ <span
+class="php-quote">&quot;controller&quot;</span>: <span
+class="php-quote">&quot;GetMunicipalities&quot;</span>,
+ <span
+class="php-quote">&quot;function&quot;</span>: <span
+class="php-quote">&quot;municipalities&quot;</span>,
+ <span
+class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;GET&quot;</span>,
+ <span
+class="php-quote">&quot;total&quot;</span>: ``,
+ <span
+class="php-quote">&quot;count&quot;</span>: ``,
+ <span
+class="php-quote">&quot;pagination&quot;</span>: { <span
+class="php-quote">&quot;page&quot;</span>: <span class="php-num">1</span>, <span
+class="php-quote">&quot;maxPage&quot;</span>: <span
+class="php-num">1</span>, <span
+class="php-quote">&quot;pagesize&quot;</span>: <span
+class="php-num">0</span>},
+ <span
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
+ <span
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;[GET][municipalities]:success&quot;</span>
+}
 </pre>
 
-<div><br />
-</div>
-
-<p><br />
-<b>Πίνακας Δεδομένων</b><br />
+<p><strong><em>Πίνακας Δεδομένων</em></strong><br />
 <a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα
-του λεξικού σε μορφή JSON :</p>
+από τον πίνακα data με τα αποτελέσματα σε
+μορφή JSON :</p>
 
 <pre>
-{<span
-class="php-quote">&quot;data&quot;</span>:[
-        {
-                <span
-class="php-quote">&quot;municipality_id&quot;</span>: <span
-class="php-num">140</span>,
-                <span
-class="php-quote">&quot;municipality&quot;</span>: <span
-class="php-quote">&quot;ΑΓΑΘΟΝΗΣΙΟΥ&quot;</span>,
-                <span
-class="php-quote">&quot;prefecture_id&quot;</span>: <span
-class="php-num">5</span>,
-                <span
-class="php-quote">&quot;prefecture&quot;</span>: <span
-class="php-quote">&quot;ΔΩΔΕΚΑΝΗΣΟΥ&quot;</span>
-        },
-        {
-                <span
-class="php-quote">&quot;municipality_id&quot;</span>: <span
-class="php-num">116</span>,
-                <span
-class="php-quote">&quot;municipality&quot;</span>: <span
-class="php-quote">&quot;ΑΓΙΑΣ&quot;</span>,
-                <span
-class="php-quote">&quot;prefecture_id&quot;</span>: <span
-class="php-num">15</span>,
-                <span
-class="php-quote">&quot;prefecture&quot;</span>: <span
-class="php-quote">&quot;ΛΑΡΙΣΑΣ&quot;</span>
-        },
-        {
-                <span
-class="php-quote">&quot;municipality_id&quot;</span>: <span
-class="php-num">15</span>,
-                <span
-class="php-quote">&quot;municipality&quot;</span>: <span
-class="php-quote">&quot;ΑΓΙΑΣ ΒΑΡΒΑΡΑΣ&quot;</span>,
-                <span
-class="php-quote">&quot;prefecture_id&quot;</span>: <span
-class="php-num">3</span>,
-                <span
-class="php-quote">&quot;prefecture&quot;</span>: <span
-class="php-quote">&quot;ΑΤΤΙΚΗΣ&quot;</span>
-        },
-        {
-                <span
-class="php-quote">&quot;municipality_id&quot;</span>: <span
-class="php-num">32</span>,
-                <span
-class="php-quote">&quot;municipality&quot;</span>: <span
-class="php-quote">&quot;ΑΓΙΑΣ ΠΑΡΑΣΚΕΥΗΣ&quot;</span>,
-                <span
-class="php-quote">&quot;prefecture_id&quot;</span>: <span
-class="php-num">3</span>,
-                <span
-class="php-quote">&quot;prefecture&quot;</span>: <span
-class="php-quote">&quot;ΑΤΤΙΚΗΣ&quot;</span>
-        },
-        {
-                <span
-class="php-quote">&quot;municipality_id&quot;</span>: <span
-class="php-num">271</span>,
-                <span
-class="php-quote">&quot;municipality&quot;</span>: <span
-class="php-quote">&quot;ΑΓΙΟΥ ΒΑΣΙΛΕΙΟΥ&quot;</span>,
-                <span
-class="php-quote">&quot;prefecture_id&quot;</span>: <span
-class="php-num">49</span>,
-                <span
-class="php-quote">&quot;prefecture&quot;</span>: <span
-class="php-quote">&quot;ΡΕΘΥΜΝΟΥ&quot;</span>
-        }
-]}
+{<span class="php-quote">&quot;data&quot;</span>: [{
+             <span
+class="php-quote">&quot;municipality_id&quot;</span>: ``,
+        <span
+class="php-quote">&quot;municipality&quot;</span>: ``,
+        <span
+class="php-quote">&quot;prefecture_id&quot;</span>: ``,
+        <span
+class="php-quote">&quot;prefecture&quot;</span>: ``
+         }]
+}
 </pre>
-
-<div><br />
-</div>
 
 	</div>
 
@@ -460,33 +336,26 @@ class="php-quote">&quot;ΡΕΘΥΜΝΟΥ&quot;</span>
 		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$municipality</var></code></td>
 		<td>
-			 Δήμος<br />
-Το Όνομα ή ο Κωδικός του Δήμου<br />
-Η παράμετρος δεν είναι υποχρεωτική<br />
-Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
+			 Δήμος ΟΤΑ<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Δήμου ΟΤΑ<br />
 Η τιμή της παραμέτρου μπορεί να είναι :
 mixed{integer|string|array[integer|string]}
 <ul>
 	<li>integer<br />
 	Αριθμητική : Η αναζήτηση γίνεται με τον
-	Κωδικό του Δήμου<br />
+	Κωδικό ID του Δήμου ΟΤΑ<br />
 	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
 	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
 	<li>string<br />
-	Αλφαριθμητική : Η αναζήτηση γίνεται με
-	Όνομα του Δήμου<br />
-	Με την χρήση της παραμέτρου Τύπος
-	Αναζήτησης (<a href="#$searchtype">$searchtype</a>) μπορεί να
-	καθοριστεί ο τρόπος με τον οποίο θα
-	αναζητηθεί η τιμή της παραμέτρου στο Όνομα
-	του Δήμου<br />
-	Αν η παράμετρος δεν έχει τιμή τότε η
-	αναζήτηση στο Όνομα του Δήμου γίνεται με
-	τον Tύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code></li>
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα του Δήμου ΟΤΑ<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
 	<li>array[integer|string]<br />
-	Σύνολο από Αριθμητικές και Αλφαριθμητικές
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές
 	τιμές διαχωρισμένες με κόμμα<br />
 	Η αναζήτηση γίνεται με οποιαδήποτε από
 	αυτές τις τιμές</li>
@@ -498,29 +367,33 @@ mixed{integer|string|array[integer|string]}
 		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$prefecture</var></code></td>
 		<td>
-			 Νομός<br />
-Το Όνομα ή ο Κωδικός του Νομού<br />
-Η παράμετρος δεν είναι υποχρεωτική<br />
-Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
+			 Περιφερειακή Ενότητα<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Περιφερειακή
+Ενότητα<br />
 Λεξικό : <code><a href="function-GetPrefectures.html">GetPrefectures()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{integer|string|null|array[integer|string|null]}
 <ul>
 	<li>integer<br />
 	Αριθμητική : Η αναζήτηση γίνεται με τον
-	Κωδικό του Νομού<br />
+	Κωδικό ID της Περιφερειακής Ενότητα<br />
 	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
 	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
 	<li>string<br />
 	Αλφαριθμητική : Η αναζήτηση γίνεται με το
-	Όνομα του Νομού<br />
-	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	Όνομα της Περιφερειακής Ενότητα<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
 	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[integer|string]<br />
-	Σύνολο από Αριθμητικές και Αλφαριθμητικές
-	τιμές διαχωρισμένες με κόμμα<br />
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
 	Η αναζήτηση γίνεται με οποιαδήποτε από
 	αυτές τις τιμές</li>
 </ul>
@@ -532,11 +405,13 @@ mixed{integer|string|array[integer|string]}
 		<td class="value"><code><var>$pagesize</var></code></td>
 		<td>
 			 Αριθμός Εγγραφών/Σελίδα<br />
+<br />
 Ο αριθμός των εγγραφών που θα επιστρέψουν
 ανα σελίδα<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε θα
-επιστραφούν όλες οι εγγραφές (<code><a href="class-Parameters.html#AllPageSize">Parameters::<b>AllPageSize</b></a></code>)<br />
+επιστραφούν όλες οι προκαθορισμένες
+εγγραφές (<code><a href="class-Parameters.html#DefaultPageSize">Parameters::<b>DefaultPageSize</b></a></code>)<br />
 Λίστα Παραμέτρων Σελιδοποίησης : <code><a href="class-Parameters.html">Parameters</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι : integer
 <ul>
@@ -552,12 +427,14 @@ mixed{integer|string|array[integer|string]}
 		<td class="value"><code><var>$page</var></code></td>
 		<td>
 			 Αριθμός Σελίδας<br />
+<br />
 Ο αριθμός της σελίδας με τις <a
 href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 σύμφωμα με τις παραμέτρους<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε θα
 επιστραφεί η πρώτη σελίδα<br />
+Λίστα Παραμέτρων Σελίδας : <code><a href="class-Parameters.html">Parameters</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι : integer
 <ul>
 	<li>integer<br />
@@ -572,17 +449,18 @@ href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 		<td class="value"><code><var>$orderby</var></code></td>
 		<td>
 			 Πεδίο Ταξινόμησης<br />
+<br />
 Το όνομα του πεδίου με το οποίο γίνεται η
 ταξινόμηση των εγγραφών<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε η
-ταξινόμηση γίνεται με το Όνομα του Δήμου<br />
+ταξινόμηση γίνεται με το <strong>Όνομα</strong><br />
 Η τιμή της παραμέτρου μπορεί να είναι : string
 <ul>
 	<li>string<br />
 	Αλφαριθμητική : Η τιμή της παραμέτρου
-	μπορεί να είναι οποιοδήποτε πεδίο
-	επιστρέφει η συνάρτηση στον πίνακα data</li>
+	μπορεί να είναι οποιοδήποτε όνομα πεδίου
+	επιστρέφεται στον πίνακα data</li>
 </ul>
 
 		</td>
@@ -592,7 +470,8 @@ href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 		<td class="value"><code><var>$ordertype</var></code></td>
 		<td>
 			 Τύπος Ταξινόμησης<br />
-Ο Τύπος Ταξινόμησης με τον οποίο γίνεται η
+<br />
+Ο τύπος ταξινόμησης με τον οποίο γίνεται η
 ταξινόμηση των εγγραφών<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε η
@@ -612,16 +491,15 @@ href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 		<td class="value"><code><var>$searchtype</var></code></td>
 		<td>
 			 Τύπος Αναζήτησης<br />
+<br />
 Ο Τύπος Αναζήτησης με τον οποίο γίνεται η
-αναζήτηση στο Όνομα (<a
-href="#$municipality">$municipality</a>) του Δήμου<br />
+αναζήτηση στα πεδία
+<ul></ul>
+<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε η
-αναζήτηση στη Όνομα του Δήμου με τον Τύπο
-<code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code><br />
-Αν το Όνομα έχει Αριθμητική Τιμή τότε η
-αναζήτηση γίνεται με τον Κωδικό του Δήμου
-με Τύπο <code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code><br />
+αναζήτηση στα πεδία αυτά γίνεται με τον
+Τύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code><br />
 Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι : string
 <ul>
@@ -638,36 +516,53 @@ href="#$municipality">$municipality</a>) του Δήμου<br />
 	<caption>Return value summary</caption>
 	<tr>
 		<td class="name"><code>
-			Array&lt;JSON&gt;
+			Objects&lt;JSON&gt;
 		</code></td>
 		<td>
-			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
-:<br />
+			Επιστρέφει τα παρακάτω JSON objects :<br />
 <br />
-string : <b>method</b> : Η μέθοδος κλήσης της
-συνάρτησης<br />
-integer : <b>status</b> : Ο Κωδικός <code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code> του
-αποτελέσματος της κλήσης<br />
-string : <b>message</b> : Το Μήνυμα <code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code> του
-αποτελέσματος της κλήσης<br />
-integer : <b>count</b> : Το πλήθος των εγγραφών της
-κλήσης σύμφωνα με τις παραμέτρους
-σελιδοποίησης<br />
-integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς
-τις παραμέτρους σελιδοποίησης<br />
-array : <b>data</b> : Ο Πίνακας με το λεξικό
+array : <b>data</b> : Ο Πίνακας με τα δεδομένα
 <ul>
-	<li>integer : <b>municipality_id</b> : Ο Κωδικός του Δήμου</li>
+	<li>integer : <b>municipality_id</b> : Ο Κωδικός ID του
+	Δήμου</li>
 
 	<li>string : <b>municipality</b> : Το Όνομα του Δήμου</li>
 
-	<li>integer : <b>prefecture_id</b> : Ο Κωδικός του Νομού του
-	Δήμου</li>
+	<li>integer : <b>prefecture_id</b> : Ο Κωδικός ID της
+	Περιφερειακής Ενότητας του Δήμου</li>
 
-	<li>string : <b>prefecture</b> : Ο Νομός του Δήμου (Λεξικό :
-	<code><a href="function-GetPrefectures.html">GetPrefectures()</a></code>)</li>
+	<li>string : <b>prefecture</b> : Το Όνομα της
+	Περιφερειακής Ενότητας του Δήμου</li>
 </ul>
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς
+τις παραμέτρους σελιδοποίησης<br />
+integer : <b>count</b> : Το πλήθος των εγγραφών της
+κλήσης σύμφωνα με τις παραμέτρους
+σελιδοποίησης<br />
+array : <b>pagination</b> : Οι παράμετροι σελιδοποίησης
+των εγγραφών της κλήσης
+<ul>
+	<li>integer : <b>page</b> : Ο αριθμός της σελίδας των
+	αποτελεσμάτων</li>
 
+	<li>integer : <b>maxPage</b> : Ο μέγιστος αριθμός της
+	σελίδας των αποτελεσμάτων</li>
+
+	<li>integer : <b>pagesize</b> : Ο αριθμός των εγγραφών
+	προς επιστροφή</li>
+</ul>
+<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
 		</td>
 	</tr>
 	</table>
@@ -676,110 +571,11 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 	<caption>Thrown exceptions summary</caption>
 	<tr>
 		<td class="name"><code>
-			InvalidSearchType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidSearchType">ExceptionMessages::<b>InvalidSearchType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidSearchType">ExceptionCodes::<b>InvalidSearchType</b></a></code><br />
-Ο Τύπος Αναζήτησης είναι λάθος
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			MissingPageValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#MissingPageValue">ExceptionMessages::<b>MissingPageValue</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#MissingPageValue">ExceptionCodes::<b>MissingPageValue</b></a></code><br />
-Ο Αριθμός Σελίδας πρέπει να έχει τιμή
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageArray
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageArray">ExceptionMessages::<b>InvalidPageArray</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidPageArray">ExceptionCodes::<b>InvalidPageArray</b></a></code><br />
-Ο Αριθμός Σελίδας δεν μπορεί να έχει
-πολλαπλές τιμές
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageNumber
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageNumber">ExceptionMessages::<b>InvalidPageNumber</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidPageNumber">ExceptionCodes::<b>InvalidPageNumber</b></a></code><br />
-Ο Αριθμός Σελίδας πρέπει να είναι
-μεγαλύτερος από 0
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageType">ExceptionMessages::<b>InvalidPageType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidPageType">ExceptionCodes::<b>InvalidPageType</b></a></code><br />
-Ο Αριθμός Σελίδας πρέπει να είναι
-αριθμητικός
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			MissingPageSizeValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#MissingPageSizeValue">ExceptionMessages::<b>MissingPageSizeValue</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#MissingPageSizeValue">ExceptionCodes::<b>MissingPageSizeValue</b></a></code><br />
-Ο Αριθμός Εγγραφών/Σελίδα πρέπει να έχει
-τιμή
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageSizeArray
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageSizeArray">ExceptionMessages::<b>InvalidPageSizeArray</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidPageSizeArray">ExceptionCodes::<b>InvalidPageSizeArray</b></a></code><br />
-Ο Αριθμός Εγγραφών/Σελίδα δεν μπορεί να
-έχει πολλαπλές τιμές
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageSizeNumber
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageSizeNumber">ExceptionMessages::<b>InvalidPageSizeNumber</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidPageSizeNumber">ExceptionCodes::<b>InvalidPageSizeNumber</b></a></code><br />
-Ο Αριθμός Εγγραφών/Σελίδα πρέπει να είναι
-από 0 έως 500
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageSizeType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageSizeType">ExceptionMessages::<b>InvalidPageSizeType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidPageSizeType">ExceptionCodes::<b>InvalidPageSizeType</b></a></code><br />
-Ο Αριθμός Εγγραφών/Σελίδα πρέπει να είναι
-αριθμητικός
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
 			InvalidMunicipalityType
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityType">ExceptionMessages::<b>InvalidMunicipalityType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidMunicipalityType">ExceptionCodes::<b>InvalidMunicipalityType</b></a></code><br />
-Ο Δήμος πρέπει να είναι αριθμητικός ή
-αλφαριθμητικός
+<code><a href="class-ExceptionCodes.html#InvalidMunicipalityType">ExceptionCodes::<b>InvalidMunicipalityType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -788,30 +584,16 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidPrefectureType">ExceptionMessages::<b>InvalidPrefectureType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidPrefectureType">ExceptionCodes::<b>InvalidPrefectureType</b></a></code><br />
-Ο Νομός πρέπει να είναι αριθμητικός ή
-αλφαριθμητικός
+<code><a href="class-ExceptionCodes.html#InvalidPrefectureType">ExceptionCodes::<b>InvalidPrefectureType</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidOrderType
+			NoErrors
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidOrderType">ExceptionMessages::<b>InvalidOrderType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidOrderType">ExceptionCodes::<b>InvalidOrderType</b></a></code><br />
-Ο Τύπος Ταξινόμησης πρέπει να είναι ASC ή DESC
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidOrderBy
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidOrderBy">ExceptionMessages::<b>InvalidOrderBy</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidOrderBy">ExceptionCodes::<b>InvalidOrderBy</b></a></code><br />
-Το Πεδίο Ταξινόμησης πρέπει να είναι κάποιο
-από τα πεδία που επιστρέφει η συνάρτηση
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
 		</td>
 	</tr>
 	</table>
