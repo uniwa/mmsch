@@ -84,7 +84,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <br>string : <b>function</b> : Η συνάρτηση που υλοποιείται από το σύστημα
  * <br>string : <b>method</b> : Η μέθοδος κλήσης της συνάρτησης
  * <br>array : <b>parameters</b> : Οι παράμετροι που δίνει ο χρήστης
- * <br>integer : <b>municipality_id</b> : Ο Κωδικός ID του Δήμου ΟΤΑ που ενημερώθηκε
+ * <br>integer : <b>municipality_id</b> : Ο Κωδικός ID του Δήμου ΟΤΑ που δημιουργήθηκε
  * <br>integer : <b>status</b> : Ο Κωδικός του αποτελέσματος της κλήσης
  * <br>string : <b>message</b> : Το Μήνυμα του αποτελέσματος της κλήσης
  *
