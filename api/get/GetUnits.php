@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * @version 2.0
  * @author  ΤΕΙ Αθήνας
  * @package GET
@@ -9,802 +8,1063 @@
 header("Content-Type: text/html; charset=utf-8");
 
 /** 
- * <b>Μονάδες</b>
+ * **Μονάδες**
  * 
+ * Η συνάρτηση αυτή επιστρέφει Μονάδες σύμφωνα με τις παραμέτρους που έγινε η κλήση.
+ * <br>Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο **GET** και route_api_name = **units** :
+ * <br>https://mm.sch.gr/api/units
+ *
+ *
+ * ***Ορισμός Τύπου και Πεδίου Ταξινόμησης Αποτελεσμάτων***
+ * * Μέσω των παραμέτρων Πεδίο Ταξινόμησης (<a href="#$orderby">$orderby</a>) και Τύπος Ταξινόμησης (<a href="#$ordertype">$ordertype</a>) μπορεί να καθοριστεί το πεδίο και η σειρά ταξινόμησης.
+ * * Προκαθορισμένη τιμή πεδίου ταξινόμησης είναι η αύξουσα σειρά **ASC**.
+ * * Προκαθορισμένη τιμή τύπου ταξινόμησης είναι το **Όνομα Μονάδας**.  
  * 
+ * ***Ορισμός Τύπου Εξαγωγής Δεδομένων***
+ * * Μέσω του παραμέτρου Τύπος Εξαγωγής Δεδομένων (<a href="#$export">$export</a>) μπορεί να καθοριστεί ο τύπος εξαγωγής δεδομένων.
+ * * Προκαθορισμένη τιμή Τύπου Εξαγωγής Δεδομένων είναι **JSON**.
+ * * Όταν ο Τύπος Επιστροφής Εξαγωγής έχει τιμή XLSX ή CSV τότε η τιμή του pagesize αυτόματα από το σύστημα είναι 1000 και δεν μπορεί να αλλάξει.
+ * * Σε κάθε περιπτωση που η τιμή του count είναι 1000 για την επιστροφή όλων δεδομένων, πρέπει να υλοποιηθεί κληση του ιδίου api request με
+ *  αυξημένη κατα 1 την τιμή του page καθε φορά. Επίσης είναι διακριτό το μέγεθος της σελιδοποίησης από τις τιμές του pagination.
  *
- * Η συνάρτηση αυτή επιστρέφει όλες τις Μονάδες σύμφωνα με τις παραμέτρους που έγινε η κλήση
- *
- *
- * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
- * <br> https://mm.sch.gr/api/units
- *
- *
- * Τα αποτελέσματα είναι ταξινομημένα ως προς το Όνομα της Μονάδας
- * <br>Μέσω των παραμέτρων Πεδίο Ταξινόμησης (<a href="#$orderby">$orderby</a>) και Τύπος Ταξινόμησης (<a href="#$ordertype">$ordertype</a>)
- * μπορεί να καθοριστεί το πεδίο και η σειρά ταξινόμησης
- *
- * Τα αποτελέσματα μπορούν να επιστραφούν με διαφορετικού Τύπους Εξαγωγής Δεδομένων.
- * <br>Μέσω των παραμέτρων Τύπος Εξαγωγής Δεδομένων (<a href="#$export">$export</a>) μπορεί να καθοριστεί ο τύπος εξαγωγής δεδομένων.
- * <br>Ο προκαθορισμένος Τύπος Εξαγωγής Δεδομένων είναι JSON
- * <br>Όταν ο Τύπος Επιστροφής Εξαγωγής έχει τιμή XLSX ή CSV τότε η τιμή του pagesize αυτόματα από το σύστημα είναι 1000 και δεν μπορεί να αλλάξει.
- * <br>Σε κάθε περιπτωση που η τιμή του count είναι 1000 για την επιστροφή όλων δεδομένων, πρέπει να υλοποιηθεί κληση του ιδίου api request με 
- * αυξημένη κατα 1 την τιμή του page καθε φορά. Επίσης είναι διακριτό το μέγεθος της σελιδοποίησης από τις τιμές του pagination.
+ * ***Ορισμός Αριθμού Σελίδας και Εγγραφών/Σελίδα της Επιστροφής Αποτελεσμάτων***
+ * * Μέσω των παραμέτρων Αριθμός Σελίδας (<a href="#$page">$page</a>) και Αριθμός Εγγραφών/Σελίδα (<a href="#$pagesize">$pagesize</a>) μπορεί να καθοριστεί ο αριθμός Σελίδας και Εγγραφών/Σελίδα της επιστροφής αποτελεσμάτων.
+ * * Ο προκαθορισμένος αριθμός Εγγραφών/Σελίδα που επιστρέφονται ανά κλήση είναι **200**. 
+ * * Ο προκαθορισμένος αριθμός Σελίδας που επιστρέφεται ανά κλήση είναι **1**. 
  * 
- * <br><b>Πίνακας Παραμέτρων</b>
- * <br>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters summary</a> εμφανίζονται όλοι οι παράμετροι με τους οποίους
- * μπορεί να γίνει η κλήση της συνάρτησης
- * <br>Όλοι οι παράμετροι είναι προαιρετικοί εκτός από αυτές που έχουν χαρακτηριστεί ως υποχρεωτικοί
- * <br>Οι παράμετροι μπορούν να χρησιμοποιηθούν με οποιαδήποτε σειρά
- * <br>Οι παράμετροι μπορούν να πάρουν τιμή "NULL" για να αναζητήσουν τις κενές εγγραφές στα αντίστοιχα πεδία
- *
- *
- * <br><b>Πίνακας Αποτελεσμάτων</b>
- * <br>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value summary</a> εμφανίζονται οι μεταβλητές που επιστρέφει η συνάρτηση
- * <br>Όλες οι μεταβλητές επιστρέφονται σε ένα πίνακα σε JSON μορφή
- * <br>Η μεταβλητή data είναι ο πίνακας με το λεξικό
- * <br>Η μεταβλητή status καθορίζει αν η εκτέλεση της συνάρτησης ήταν επιτυχής (κωδικός 200) ή προέκυψε κάποιο σφάλμα
- *
- *
- * <br><b>Πίνακας Σφαλμάτων</b>
- * <br>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων που μπορεί
- * να προκύψουν κατά την κλήση της συνάρτησης
- * <br>Οι περιγραφές των Σφαλμάτων καθώς και οι Κωδικοί τους είναι διαθέσιμες μέσω του πίνακα
- * Μηνύματα Σφαλμάτων ({@see ExceptionMessages}) και Κωδικοί Σφαλμάτων ({@see ExceptionCodes}) αντίστοιχα
- *
- *
- * <br><b>Παραδείγματα Κλήσης</b>
- * <br>Παρακάτω εμφανίζεται μια σειρά από παραδείγματα κλήσης της συνάρτησης με διάφορους τρόπους :
- * <br><a href="#cURL">cURL</a> | <a href="#JavaScript">JavaScript</a> | <a href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a>
- *
- * <br>
- *
+ * ***Ορισμός Τύπου Αναζήτησης Αποτελεσμάτων***
+ * * Μέσω των παραμέτρων Τύπου Αναζήτησης (<a href="#$searchtype">$searchtype</a>) μπορεί να καθοριστεί μπορεί να καθοριστεί ο τρόπος με τον οποίο θα αναζητηθεί η τιμή της παραμέτρου στο DNS της Μονάδας.
+ * * Ισχύει για όσες παραμέτρους το υποστηρίζουν το συνδυασμό με την παράμετρο searchtype.
+ * * Προκαθορισμένη τιμή τύπου αναζήτησης είναι **CONTAINALL**.
  * 
- * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
+ * ***Πίνακας Παραμέτρων***
+ * * Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters summary</a> εμφανίζονται όλοι οι παράμετροι με τους οποίους μπορεί να γίνει η κλήση της συνάρτησης.
+ * * Όλοι οι παράμετροι είναι προαιρετικοί εκτός από αυτές που έχουν χαρακτηριστεί ως υποχρεωτικοί.
+ * * Οι παράμετροι μπορούν να χρησιμοποιηθούν με οποιαδήποτε σειρά.
+ * * Οι παράμετροι οι οποίοι έχουν το χαρακτηριστικό (Συνδυάζεται με την παράμετρο searchtype) σημαίνει ότι η συγκεκριμένη παράμετρος συνδυάζεται με την παράμετρο searchtype.
+ * * Οι παράμετροι μπορούν να πάρουν τιμή "NULL" για να αναζητήσουν τις κενές εγγραφές στα αντίστοιχα πεδία
+ *
+ * ***Πίνακας Αποτελεσμάτων***
+ * * Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value summary</a> εμφανίζονται οι μεταβλητές που επιστρέφει η συνάρτηση.
+ * * Όλες οι μεταβλητές επιστρέφονται σε <a href="#model">JSON objects</a>.
+ * * Η μεταβλητή <a href="#data">data</a> είναι ο πίνακας με τα δεδομένα.
+ * * Η μεταβλητή status καθορίζει αν η εκτέλεση της συνάρτησης ήταν επιτυχής (κωδικός 200) ή προέκυψε κάποιο σφάλμα.
+ * 
+ * ***Πίνακας Σφαλμάτων***
+ * * Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων που μπορεί να προκύψουν κατά την κλήση της συνάρτησης.
+ * * Οι περιγραφές των Σφαλμάτων καθώς και οι Κωδικοί τους είναι διαθέσιμες μέσω του πίνακα Μηνύματα Σφαλμάτων ({@see ExceptionMessages}) και Κωδικοί Σφαλμάτων ({@see ExceptionCodes}) αντίστοιχα.
+ * 
+ * ***Παραδείγματα Κλήσης***
+ * * Υπάρχουν διαθέσιμα παραδείγματα κλήσης της συνάρτησης με διάφορους τρόπους ({@see ApiRequestExamples}).
+ * 
+ * ***Μηνύματα Authentication/Authorization***
+ * * Υπάρχουν αναλυτικές πληροφορίες για τα μηνύματα Authentication/Authorization ({@see AuthMessages}).
+ * 
+ * ***Μηνύματα Προκαθορισμένων Παραμέτρων***
+ * * Υπάρχουν αναλυτικές πληροφορίες για τα μηνύματα Προκαθορισμένων Παραμέτρων ({@see StandarParamsMessages}).
+ *
+  * ***Δεδομένα Επιστροφής***
+ * <br><a id="model"></a>Παρακάτω εμφανίζονται τα αποτελέσματα σε μορφή JSON :
  * <code>
- * curl -X GET https://mm.sch.gr/api/units \
- *   -H "Content-Type: application/json" \
- *   -H "Accept: application/json" \
- *   -u username:password \
- *   -d '{"state": "ΕΝΕΡΓΗ", "prefecture": "ΑΤΤΙΚΗΣ"}' 
- * </code>
- * <br>
- * 
- * 
- * 
- * <a id="JavaScript"></a>Παράδειγμα κλήσης της συνάρτησης με <b>JavaScript</b> :
- * <code>
- * <script>
- *    var params = JSON.stringify({ "state": "ΕΝΕΡΓΗ", "prefecture": "ΑΤΤΙΚΗΣ" });
- *    
- *    var http = new XMLHttpRequest();
- *    http.open("GET", "https://mm.sch.gr/api/units");
- *    http.setRequestHeader("Accept", "application/json");
- *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
- *    http.setRequestHeader("Content-length", params.length);
- *    
- *    http.onreadystatechange = function() {
- *        if(http.readyState == 4 && http.status == 200) {
- *            alert(http.responseText);
- *        }
- *    }
- *    
- *    http.send(params);
- * </script>
- * </code>
- * <br>
- * 
- * 
- * 
- * <a id="PHP"></a>Παράδειγμα κλήσης της συνάρτησης με <b>PHP</b> :
- * <code>
- * <?php
- * header("Content-Type: text/html; charset=utf-8");
- * 
- * $params = array("state" => "ΕΝΕΡΓΗ", "prefecture" => "ΑΤΤΙΚΗΣ");
- * 
- * $curl = curl_init("https://mm.sch.gr/api/units");
- * 
- * curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
- * curl_setopt($curl, CURLOPT_USERPWD, "username:password");
- * curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
- * curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode( $params ));
- * curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
- * 
- * $data = json_decode( curl_exec($curl) );
- * echo "<pre>"; var_dump( $data ); echo "</pre>";
- * ?>
- * </code>
- * <br>
- * 
- * 
- * 
- * <a id="Ajax"></a>Παράδειγμα κλήσης της συνάρτησης με <b>Ajax</b> :
- * <code>
- * <script>
- *    $.ajax({
- *        type: 'GET',
- *        url: 'https://mm.sch.gr/api/units',
- *        dataType: "json",
- *        data: {
- *          "state": "ΕΝΕΡΓΗ", 
- *          "prefecture": "ΑΤΤΙΚΗΣ"
- *        },
- *        beforeSend: function(req) {
- *            req.setRequestHeader('Authorization', btoa('username' + ":" + 'password'));
- *        },
- *        success: function(data){
- *            console.log(data);
- *        }
- *    });
- * </script>
- * </code>
- * <br>
- * 
- * 
- * 
- * <a id="data"></a>Παρακάτω εμφανίζεται το λεξικό σε μορφή JSON :
- * <code>
- * {"data":[
- *  {
- *    "mm_id": 1002553,
- *    "registry_no": "9050097",
- *    "name": "100ο ΟΛΟΗΜΕΡΟ ΔΗΜΟΤΙΚΟ ΣΧΟΛΕΙΟ ΑΘΗΝΩΝ",
- *    "special_name": null,
- *    "source_id": 1,
- *    "source": "SURVEY",
- *    "category_id": 1,
- *    "category": "ΣΧΟΛΙΚΕΣ ΜΟΝΑΔΕΣ",
- *    "state_id": 1,
- *    "state": "ΕΝΕΡΓΗ",
- *    "area_team_number": 1,
- *    "street_address": "ΠΥΡΡΑΣ 15",
- *    "postal_code": "11745",
- *    "fax_number": "2109335509",
- *    "phone_number": "2109335509",
- *    "email": "mail@100dim-athin.att.sch.gr",
- *    "students_count": 166,
- *    "groups_count": 9,
- *    "levels_count": 6,
- *    "tax_number": "090291213",
- *    "region_edu_admin_id": 3,
- *    "region_edu_admin": "ΑΤΤΙΚΗΣ",
- *    "edu_admin_id": 28,
- *    "edu_admin": "ΔΙΕΥΘΥΝΣΗ Π.Ε. Α΄ ΑΘΗΝΑΣ",
- *    "transfer_area_id": 27,
- *    "transfer_area": "Α΄ Αθηνών (Π.Ε.)",
- *    "prefecture_id": 3,
- *    "prefecture": "ΑΤΤΙΚΗΣ",
- *    "municipality_id": 5,
- *    "municipality": "ΑΘΗΝΑΙΩΝ",
- *    "municipality_community_id": 61,
- *    "municipality_community": "ΑΘΗΝΑΙΩΝ",
- *    "education_level_id": 1,
- *    "education_level": "ΠΡΩΤΟΒΑΘΜΙΑ",
- *    "unit_type_id": 2,
- *    "unit_type": "ΔΗΜΟΤΙΚΟ",
- *    "orientation_type_id": null,
- *    "orientation_type": null,
- *    "operation_shift_id": 3,
- *    "operation_shift": "ΟΛΟΗΜΕΡΟ",
- *    "legal_character_id": 1,
- *    "legal_character": "ΔΗΜΟΣΙΟ",
- *    "implementation_entity_id": 3,
- *    "implementation_entity": "ΕΘΝΙΚΟ & ΚΑΠΟΔΙΣΤΡΙΑΚΟ ΠΑΝ\/ΜΙΟ ΑΘΗΝΩΝ",
- *    "implementation_entity_initials": "Ε.Κ.Π.Α.",
- *    "tax_office_id": 4,
- *    "tax_office": "ΑΘΗΝΩΝ ΙΗ",
- *    "special_type_id": null,
- *    "special_type": null,
- *    "latitude": null,
- *    "longitude": null,
- *    "positioning": null,
- *    "creation_fek": null,
- *    "last_sync": "2013-11-11 22:37:52",
- *    "last_update": "2013-10-02 09:51:58",
- *    "comments": null,
- *    "version": 20,
- *    "levels": [
- *      {
- *        "level_id": 3061,
- *        "name": "Α",
- *        "groups_count": 2,
- *        "students_count": 38,
- *        "groups": [
- *          {
- *            "group_id": 6773,
- *            "name": "Α1",
- *            "students_count": 20
- *          },
- *          {
- *            "group_id": 6774,
- *            "name": "Α2",
- *            "students_count": 18
- *          }
- *        ]
- *      },
- *      {
- *        "level_id": 3062,
- *        "name": "Β",
- *        "groups_count": 2,
- *        "students_count": 29,
- *        "groups": [
- *          {
- *            "group_id": 6775,
- *            "name": "Β1",
- *            "students_count": 14
- *          },
- *          {
- *            "group_id": 6776,
- *            "name": "Β2",
- *            "students_count": 15
- *          }
- *        ]
- *      },
- *      {
- *        "level_id": 3063,
- *        "name": "Γ",
- *        "groups_count": 1,
- *        "students_count": 24,
- *        "groups": [
- *          {
- *            "group_id": 6777,
- *            "name": "Γ1",
- *            "students_count": 24
- *          }
- *        ]
- *      },
- *      {
- *        "level_id": 3064,
- *        "name": "Δ",
- *        "groups_count": 1,
- *        "students_count": 16,
- *        "groups": [
- *          {
- *            "group_id": 6778,
- *            "name": "Δ1",
- *            "students_count": 16
- *          }
- *        ]
- *      },
- *      {
- *        "level_id": 3065,
- *        "name": "Ε",
- *        "groups_count": 2,
- *        "students_count": 32,
- *        "groups": [
- *          {
- *            "group_id": 6779,
- *            "name": "Ε1",
- *            "students_count": 16
- *          },
- *          {
- *            "group_id": 6780,
- *            "name": "Ε2",
- *            "students_count": 16
- *          }
- *        ]
- *      },
- *      {
- *        "level_id": 3066,
- *        "name": "ΣΤ",
- *        "groups_count": 2,
- *        "students_count": 32,
- *        "groups": [
- *          {
- *            "group_id": 6781,
- *            "name": "ΣΤ1",
- *            "students_count": 16
- *          },
- *          {
- *            "group_id": 6782,
- *            "name": "ΣΤ2",
- *            "students_count": 16
- *          }
- *        ]
- *      }
- *    ],
- *    "host_relations": [],
- *    "guest_relations": [],
- *    "workers": [
- *      {
- *        "unit_worker_id": 973,
- *        "worker_id": 946,
- *        "registry_no": "538069",
- *        "tax_number": "018831123",
- *        "lastname": "ΣΑΡΔΕΛΗ",
- *        "firstname": "ΛΑΜΠΡΙΝΗ",
- *        "fathername": "ΒΑΣΙΛΕΙΟΣ",
- *        "fullname": "ΣΑΡΔΕΛΗ ΛΑΜΠΡΙΝΗ",
- *        "sex": "Γ",
- *        "worker_specialization_id": null,
- *        "worker_specialization": null,
- *        "worker_position_id": 1,
- *        "worker_position": "ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ",
- *        "worker_source_id" : "0",
- *        "worker_source" : "null"
- *      }
- *    ],
- *    "unit_dns": [
- *      {
- *        "unit_dns_id": 7140,
- *        "unit_dns": "100dim-athin",
- *        "ext_dns": null
- *      }
- *    ],
+ * {
+ *  "data": [{}],
+ *  "controller": "GetUnits",
+ *  "function": "units",
+ *  "method": "GET",
+ *  "total": ``,
+ *  "count": ``,
+ *  "pagination": { "page": 1, "maxPage": 1, "pagesize": 200},
+ *  "status": 200,
+ *  "message": "[GET][units]:success"
  * }
- * ]}
  * </code>
- * <br>
+ *
+ * ***Πίνακας Δεδομένων***
+ * <br><a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα από τον πίνακα data με τα αποτελέσματα σε μορφή JSON :
+ * <code>
+ * {"data": [{
+ *              "mm_id": ``,
+ *              "registry_no": ``,
+ *              "name": ``,
+ *              "special_name": ``,
+ *              "source_id": ``,
+ *              "source": ``,
+ *              "category_id": ``,
+ *              "category": ``,
+ *              "state_id": ``,
+ *              "state": ``,
+ *              "street_address": ``,
+ *              "postal_code": ``,
+ *              "fax_number": ``,
+ *              "phone_number": ``,
+ *              "email": ``,
+ *              "tax_number": ``,
+ *              "region_edu_admin_id": ``,
+ *              "region_edu_admin": ``,
+ *              "edu_admin_id": ``,
+ *              "edu_admin": ``,
+ *              "transfer_area_id": ``,
+ *              "transfer_area": ``,
+ *              "prefecture_id": ``,
+ *              "prefecture": ``,
+ *              "municipality_id": ``,
+ *              "municipality": ``,
+ *              "municipality_community_id": ``,
+ *              "municipality_community": ``,
+ *              "education_level_id": ``,
+ *              "education_level": ``,
+ *              "unit_type_id": ``,
+ *              "unit_type": ``,
+ *              "orientation_type_id": ``,
+ *              "orientation_type": ``,
+ *              "operation_shift_id": ``,
+ *              "operation_shift": ``,
+ *              "legal_character_id": ``,
+ *              "legal_character": ``,
+ *              "implementation_entity_id": ``,
+ *              "implementation_entity": ``,
+ *              "implementation_entity_initials": ``,
+ *              "tax_office_id": ``,
+ *              "tax_office": ``,
+ *              "special_type_id": ``,
+ *              "special_type": ``,
+ *              "latitude": ``,
+ *              "longitude": ``,
+ *              "positioning": ``,
+ *              "creation_fek": ``,
+ *              "last_sync": ``,
+ *              "last_update": ``,
+ *              "comments": ``,
+ *              "version": ``,
+ *              "host_relations": [{
+ *                                  "relation_id": ``,
+ *                                  "guest_mm_id": ``,
+ *                                  "guest_registry_no": ``,
+ *                                  "guest_name": ``,
+ *                                  "guest_special_name": ``,
+ *                                  "relation_state": ``,
+ *                                  "true_date": ``,
+ *                                  "true_fek": ``,
+ *                                  "false_date": ``,
+ *                                  "false_fek": ``,
+ *                                  "relation_type_id": ``,
+ *                                  "relation_type": ``
+ *                                }],
+ *              "guest_relations": [{
+ *                                  "relation_id": ``,
+ *                                  "host_mm_id": ``,
+ *                                  "host_registry_no": ``,
+ *                                  "host_name": ``,
+ *                                  "host_special_name": ``,
+ *                                  "relation_state": ``,
+ *                                  "true_date": ``,
+ *                                  "true_fek": ``,
+ *                                  "false_date": ``,
+ *                                  "false_fek": ``,
+ *                                  "relation_type_id": ``,
+ *                                  "relation_type": ``
+ *                                 }],
+ *              "workers": [{
+ *                          "unit_worker_id": ``,
+ *                          "worker_id": ``,
+ *                          "registry_no": ``,
+ *                          "tax_number": ``,
+ *                          "lastname": ``,
+ *                          "firstname": ``,
+ *                          "fathername": ``,
+ *                          "fullname": ``,
+ *                          "sex": ``,
+ *                          "worker_specialization_id": ``,
+ *                          "worker_specialization": ``,
+ *                          "worker_position_id": ``,
+ *                          "worker_position": ``,
+ *                          "worker_source_id": ``,
+ *                          "worker_source": ``
+ *                         }],
+ *              "unit_dns": [{
+ *                            "unit_dns_id": ``,
+ *                            "unit_dns": ``,
+ *                            "unit_ext_dns": ``
+ *                          }]
+ *      }]
+ *  }
+ * </code> 
  * 
- *  
+ *
+
  * @param integer $mm_id Κωδικός ΜΜ Μονάδας
+ * <br>
  * <br>Ο Κωδικός ΜΜ της Μονάδας
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer|array[integer]
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>array[integer] : Σύνολο από Αριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- *
- *  
- * @param mixed $registry_no Κωδικός ΥΠΕΠΘ
- * <br>Ο Κωδικός ΥΠΕΠΘ της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό ΥΠΕΠΘ)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το Κωδικό ΥΠΕΠΘ)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $source Πρωτογενής Πηγή
- * <br>Η Πρωτογενής Πηγή της Μονάδας (Λεξικό : {@see GetSources})
- * <br>Λεξικό : Πρωτογενείς Πηγές Μονάδων {@see GetSources})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param string $name Ονομασία
- * <br>Το Όνομα της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param string $special_name Ειδική Ονομασία 
- * <br>Το Προσωνύμιο της Μονάδας 
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το προσωνύμιο)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $state Κατάσταση
- * <br>Η Κατάσταση της Μονάδας (Λεξικό : {@see GetStates})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $region_edu_admin Περιφέρεια
- * <br>Η Περιφέρεια της Μονάδας (Λεξικό : {@see GetRegionEduAdmins})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $edu_admin Διεύθυνση Εκπαίδευσης
- * <br>Η Διεύθυνση Εκπαίδευσης της Μονάδας (Λεξικό : {@see GetEduAdmins})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $implementation_entity Φοράς Υλοποίησης
- * <br>Ο Φοράς Υλοποίησης της μονάδας (Λεξικό : {@see GetImplementationEntities})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $transfer_area Περιοχή Μετάθεσης
- * <br>Η Περιοχή Μετάθεσης της Μονάδας (Λεξικό : {@see GetTransferAreas})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $prefecture Νομός
- * <br>Ο Νομός της Μονάδας (Λεξικό : {@see GetPrefectures})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $municipality Δήμος ΟΤΑ
- * <br>Ο Δήμος ΟΤΑ της Μονάδας (Λεξικό : {@see GetMunicipalities})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $municipality_community Δημοτική Ενότητα
- * <br>Η Δημοτική Ενότητα της Μονάδας (Λεξικό : {@see GetMunicipalityCommunities})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $education_level Βαθμίδα
- * <br>Το Επίπεδο Εκπαίδευσης της μονάδας (Λεξικό : {@see GetEducationLevels})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param string $phone_number Τηλέφωνο Επικοινωνίας
- * <br>Το Τηλέφωνο Επικοινωνίας της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το τηλέφωνο επικοινωνίας)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param string $email Ηλεκτρονική Αλληλογραφία
- * <br>Η Ηλεκτρονική Αλληλογραφία της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με την ηλεκτρονική αλληλογραφία)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param string $fax_number Αριθμός FAX 
- * <br>Ο Αριθμός Τηλεομοιοτυπίας (φαξ) της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με τον αριθμός FAX)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param string $street_address Οδός, Αριθμός  
- * <br>Η Διεύθυνση (Οδός και Αριθμός) της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με την διεύθυνση)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param integer $postal_code Ταχυδρομικός Κώδικας
- * <br>Ο Ταχυδρομικός Κώδικας της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με τον ταχυδρομικό κώδικα)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param string $tax_number Αριθμός Φορολογικού Μητρώου
- * <br>Ο Αριθμός Φορολογικού Μητρώου της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με τον αριθμός φορολογικού μητρώου)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $tax_office Δ.Ο.Υ.
- * <br>Η Δ.Ο.Υ. της Μονάδας (Λεξικό : {@see GetTaxOffices})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $area_team_number Ομάδα Σχολείων
- * <br>Η Ομάδα Σχολείων της Μονάδας (1η έως 40η)
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με την ομάδα σχολείων)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με την ομάδα σχολείων)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $category Κατηγορία
- * <br>Η Κατηγορία της Μονάδας (Λεξικό : {@see GetCategories})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $unit_type Τύπος Μονάδας
- * <br>Ο Τύπος της Μονάδας (Λεξικό : {@see GetUnitTypes})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $operation_shift Ωράριο Λειτουργίας 
- * <br>Το Ωράριο Λειτουργίας της Μονάδας (Λεξικό : {@see GetOperationShifts})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $legal_character Νομικός Χαρακτήρας
- * <br>Ο Νομικός Χαρακτήρας της Μονάδας (Λεξικό : {@see GetLegalCharacters})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $orientation_type Προσανατολισμός
- * <br>Ο Προσανατολισμός της Μονάδας (Λεξικό : {@see GetOrientationTypes})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param mixed $special_type Ειδικός Χαρακτηρισμός
- * <br>Καθορίζει αν η Μονάδα έχει Ειδικό Χαρακτηρισμό (Λεξικό : {@see GetSpecialTypes})
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[integer|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param integer $levels_count Πλήθος Τάξεων
- * <br>Το Πλήθος των Τάξεων της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|array[integer]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με το πλήθος τάξεων)</li>
- *       <li>array[integer] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- *
- * @param integer $groups_count Πλήθος Τμημάτων
- * <br>Το Πλήθος των Τμημάτων της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|array[integer]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με το πλήθος τμημάτων)</li>
- *       <li>array[integer] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param integer $students_count Πλήθος Μαθητών
- * <br>Το Πλήθος των Μαθητών της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|array[integer|string]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με το πλήθος μαθητών)</li>
- *       <li>array[integer] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param string $latitude Γεωγραφικό Πλάτος
- * <br>Το Γεωγραφικό Πλάτος της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το γεωγραφικό πλάτος)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param string $longitude Γεωγραφικό Μήκος
- * <br>Το Γεωγραφικό Μήκος της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το γεωγραφικό μήκος)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param string $positioning Κτηριακή Θέση 
- * <br>Η Κτηριακή Θέση της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με την κτηριακή θέση )</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param string $creation_fek Φ.Ε.Κ. (Δημιουργίας) 
- * <br>Το Φ.Ε.Κ. (Δημιουργίας) της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα Φ.Ε.Κ. Δημιουργίας )</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param midex $last_update Ημερομηνία Τελευταίας Ενημέρωσης
- * <br>Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{datetime|string|array[datetime|string]}
- *    <ul>
- *       <li>datetime : Ημερομηνία (Η αναζήτηση γίνεται με την ημερομηνία τελευταίας ενημέρωσης)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με την ημερομηνία τελευταίας ενημέρωσης)</li>
- *       <li>array[datetime|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param midex $last_sync Ημερομηνία Τελευταίου Συγχρονισμού
- * <br>Η Ημερομηνία Τελευταίου Συγχρονισμού της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{datetime|string|array[datetime|string]}
- *    <ul>
- *       <li>datetime : Ημερομηνία (Η αναζήτηση γίνεται με την ημερομηνία τελευταίου συγχρονισμού)</li>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με την ημερομηνία τελευταίου συγχρονισμού)</li>
- *       <li>array[datetime|string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param string $comments Παρατηρήσεις - Σχόλια
- * <br>Παρατηρήσεις - Σχόλια της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param integer $pagesize Αριθμός Εγγραφών/Σελίδα
- * <br>Ο αριθμός των εγγραφών που θα επιστρέψουν ανα σελίδα
- * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Αν η παράμετρος δεν έχει τιμή τότε θα επιστραφούν όλες οι εγγραφές ({@see Parameters::AllPageSize})
- * <br>Λίστα Παραμέτρων Σελιδοποίησης : {@see Parameters}
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer
  * <ul>
  *    <li>integer
- *       <br>Αριθμητική : Η τιμή της παραμέτρου πρέπει να είναι μεγαλύτερη από 0
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ΜΜ της Μονάδας
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>array[integer]
+ *       <br>Σύνολο από Αριθμητικές τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
  *    </li>
  * </ul>
  *
+ * @param mixed $registry_no Κωδικός ΥΠΕΠΘ
+ * <br>
+ * <br>O Κωδικός ΥΠΕΠΘ της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|null|array[string|null]}
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Κωδικό ΥΠΕΠΘ της Μονάδας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $source Πρωτογενής Πηγή
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID της Πρωτογενής Πηγής της Μονάδας
+ * <br>Λεξικό : {@see GetSources}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID της Πρωτογενής Πηγής
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Πρωτογενής Πηγής
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param string $name Ονομασία
+ * <br>
+ * <br>Η Ονομασία της Μονάδας
+ * <br>Συνδυάζεται με την παράμετρο searchtype
+ * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string|array[string]
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με την Ονομασία της Μονάδας
+ *       <br>Αν η παράμετρος Τύπος Αναζήτησης δεν έχει τιμή τότε η αναζήτηση στον Όνομα γίνεται με τον Tύπο {@see SearchEnumTypes::ContainAll}
+ *    </li>
+ *    <li>array[string]
+ *       <br>Σύνολο από Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param string $special_name Προσωνύμιο
+ * <br>
+ * <br>Το Προσωνύμιο της Μονάδας
+ * <br>Συνδυάζεται με την παράμετρο searchtype
+ * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string|array[string]
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Προσωνύμιο της Μονάδας
+ *       <br>Αν η παράμετρος Τύπος Αναζήτησης δεν έχει τιμή τότε η αναζήτηση στον Προσωνύμιο γίνεται με τον Tύπο {@see SearchEnumTypes::ContainAll}
+ *    </li>
+ *    <li>array[string]
+ *       <br>Σύνολο από Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $state Λειτουργική Καταστάση
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID της Λειτουργικής Καταστάσης της Μονάδας 
+ * <br>Λεξικό : {@see GetStates}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID της Λειτουργικής Καταστάσης
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Λειτουργικής Καταστάσης
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $region_edu_admin Περιφέρεια
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID της Περιφέρειας της Μονάδας 
+ * <br>Λεξικό : {@see GetRegionEduAdmins}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID της Περιφέρειας
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Περιφέρειας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $edu_admin Διεύθυνση Εκπαίδευσης
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID της Διευθύνσης Εκπαίδευσης της Μονάδας 
+ * <br>Λεξικό : {@see GetEduAdmins}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID της Διευθύνσης Εκπαίδευσης
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Διευθύνσης Εκπαίδευσης
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $implementation_entity Φορέας Υλοποίησης 
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID του Φορέα Υλοποίησης της Μονάδας 
+ * <br>Λεξικό : {@see GetImplementationEntities}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID του Φορέα Υλοποίησης
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα του Φορέα Υλοποίησης
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+  * @param mixed $transfer_area Περιοχή Μετάθεσης 
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID της Περιοχής Μετάθεσης της Μονάδας 
+ * <br>Λεξικό : {@see GetTransferAreas}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID της Περιοχής Μετάθεσης
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Περιοχής Μετάθεσης
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $prefecture Περιφερειακή Ενότητα
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID της Περιφερειακή Ενότητα της Μονάδας 
+ * <br>Λεξικό : {@see GetPrefectures}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID της Περιφερειακής Ενότητα
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Περιφερειακής Ενότητα
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $municipality Δήμος ΟΤΑ 
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID του Δήμου ΟΤΑ της Μονάδας 
+ * <br>Λεξικό : {@see GetMunicipalities}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID του Δήμου ΟΤΑ
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα του Δήμου ΟΤΑ
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $municipality_community Δημοτική Ενότητα
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID της Δημοτικής Ενότητας της Μονάδας 
+ * <br>Λεξικό : {@see GetMunicipalityCommunities}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID της Δημοτικής Ενότητας
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Δημοτικής Ενότητας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $education_level Βαθμίδα Εκπαίδευσης
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID της Βαθμίδας Εκπαίδευσης της Μονάδας 
+ * <br>Λεξικό : {@see GetEducationLevels}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID της Βαθμίδας Εκπαίδευσης
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Βαθμίδας Εκπαίδευσης
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param string $phone_number Τηλέφωνο Επικοινωνίας
+ * <br>
+ * <br>Το Τηλέφωνο Επικοινωνίας της Μονάδας
+ * <br>Συνδυάζεται με την παράμετρο searchtype
+ * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string|array[string]
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Τηλέφωνο Επικοινωνίας της Μονάδας
+ *       <br>Αν η παράμετρος Τύπος Αναζήτησης δεν έχει τιμή τότε η αναζήτηση στον Προσωνύμιο γίνεται με τον Tύπο {@see SearchEnumTypes::ContainAll}
+ *    </li>
+ *    <li>array[string]
+ *       <br>Σύνολο από Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $email Ηλεκτρονική Αλληλογραφία
+ * <br>
+ * <br>Η Ηλεκτρονική Αλληλογραφία της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|null|array[string|null]}
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με την Ηλεκτρονική Αλληλογραφία της Μονάδας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $fax_number Αριθμός Τηλεομοιοτυπίας (FAX) 
+ * <br>
+ * <br>O Αριθμός Τηλεομοιοτυπίας (FAX) της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|null|array[string|null]}
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με τον Αριθμό Τηλεομοιοτυπίας (FAX) της Μονάδας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param string $street_address Διεύθυνση (Οδός,Αριθμός) 
+ * <br>
+ * <br>Η Διεύθυνση (Οδός,Αριθμός) της Μονάδας
+ * <br>Συνδυάζεται με την παράμετρο searchtype
+ * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string|array[string]
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με την Διεύθυνση (Οδός,Αριθμός) της Μονάδας
+ *       <br>Αν η παράμετρος Τύπος Αναζήτησης δεν έχει τιμή τότε η αναζήτηση στον Προσωνύμιο γίνεται με τον Tύπο {@see SearchEnumTypes::ContainAll}
+ *    </li>
+ *    <li>array[string]
+ *       <br>Σύνολο από Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $postal_code Ταχυδρομικός Κώδικας
+ * <br>
+ * <br>O Ταχυδρομικός Κώδικας της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|null|array[string|null]}
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με τον Ταχυδρομικό Κώδικα της Μονάδας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $tax_number Αριθμός Φορολογικού Μητρώου (Α.Φ.Μ.)
+ * <br>
+ * <br>O Αριθμός Φορολογικού Μητρώου (Α.Φ.Μ.) της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|null|array[string|null]}
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με τον Αριθμό Φορολογικού Μητρώου (Α.Φ.Μ.) της Μονάδας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $tax_office Δ.Ο.Υ (Εφορία)
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID της Δ.Ο.Υ (Εφορία) της Μονάδας 
+ * <br>Λεξικό : {@see GetTaxOffices}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID της Δ.Ο.Υ (Εφορία)
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Δ.Ο.Υ (Εφορία)
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $area_team_number Ομάδα Σχολείων
+ * <br>
+ * <br>Η Ομάδα Σχολείων της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|null|array[string|null]}
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με την Ομάδα Σχολείων της Μονάδας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $category Κατηγορία
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID της Κατηγορίας της Μονάδας 
+ * <br>Λεξικό : {@see GetCategories}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID της Κατηγορίας
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα της Κατηγορίας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $unit_type Τύπος Μονάδας
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID του Τύπου Μονάδας 
+ * <br>Λεξικό : {@see GetUnitTypes}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID του Τύπου Μονάδας
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα του Τύπου Μονάδας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $operation_shift Ωράριο Λειτουργίας
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID του Ωράριου Λειτουργίας της Μονάδας 
+ * <br>Λεξικό : {@see GetOperationShifts}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID του Ωράριου Λειτουργίας
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα του Ωράριου Λειτουργίας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+  * @param mixed $legal_character Νομικός Χαρακτήρας
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID του Νομικού Χαρακτήρα της Μονάδας 
+ * <br>Λεξικό : {@see GetLegalCharacters}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID του Νομικού Χαρακτήρα
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα του Νομικού Χαρακτήρα
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $orientation_type Προσανατολισμός
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID του Προσανατολισμού της Μονάδας 
+ * <br>Λεξικό : {@see GetOrientationTypes}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID του Προσανατολισμού
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα του Προσανατολισμού
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $special_type Ειδικός Χαρακτηρισμός
+ * <br>
+ * <br>Το Όνομα ή ο Κωδικός ID του Ειδικού Χαρακτηρισμού της Μονάδας 
+ * <br>Λεξικό : {@see GetSpecialTypes}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|string|null|array[integer|string|null]}
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ID του Ειδικού Χαρακτηρισμού
+ *       <br>Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα του Ειδικού Χαρακτηρισμού
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $levels_count Πλήθος Τάξεων
+ * <br>
+ * <br>Το Πλήθος των Τάξεων της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|null|array[string|null]}
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Πλήθος των Τάξεων της Μονάδας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ *
+ * @param mixed $groups_count Πλήθος Τμημάτων
+ * <br>
+ * <br>Το Πλήθος των Τμημάτων της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|null|array[string|null]}
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Πλήθος των Τμημάτων της Μονάδας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ *
+ * @param mixed $students_count Πλήθος Μαθητών
+ * <br>
+ * <br>Το Πλήθος των Μαθητών της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|null|array[string|null]}
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Πλήθος των Μαθητών της Μονάδας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $latitude Γεωγραφικό Πλάτος
+ * <br>
+ * <br>Το Γεωγραφικό Πλάτος της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|null|array[string|null]}
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Γεωγραφικό Πλάτος της Μονάδας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $longitude Γεωγραφικό Μήκος
+ * <br>
+ * <br>Το Γεωγραφικό Μήκος της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|null|array[string|null]}
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Γεωγραφικό Μήκος της Μονάδας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $positioning Κτηριακή Θέση 
+ * <br>
+ * <br>Η Κτηριακή Θέση της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|null|array[string|null]}
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με την Κτηριακή Θέση της Μονάδας
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param string $creation_fek Φ.Ε.Κ. (Δημιουργίας) 
+ * <br>
+ * <br>Το Φ.Ε.Κ. (Δημιουργίας) της Μονάδας
+ * <br>Συνδυάζεται με την παράμετρο searchtype
+ * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string|array[string]
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Φ.Ε.Κ. (Δημιουργίας) της Μονάδας
+ *       <br>Αν η παράμετρος Τύπος Αναζήτησης δεν έχει τιμή τότε η αναζήτηση στον Προσωνύμιο γίνεται με τον Tύπο {@see SearchEnumTypes::ContainAll}
+ *    </li>
+ *    <li>array[string]
+ *       <br>Σύνολο από Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param string $last_update Ημερομηνία Τελευταίας Ενημέρωσης 
+ * <br>
+ * <br>Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας
+ * <br>Συνδυάζεται με την παράμετρο searchtype
+ * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string|array[string]
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με την Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας
+ *       <br>Αν η παράμετρος Τύπος Αναζήτησης δεν έχει τιμή τότε η αναζήτηση στον Προσωνύμιο γίνεται με τον Tύπο {@see SearchEnumTypes::ContainAll}
+ *    </li>
+ *    <li>array[string]
+ *       <br>Σύνολο από Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param string $last_sync Ημερομηνία Τελευταίου Συγχρονισμού 
+ * <br>
+ * <br>Η Ημερομηνία Τελευταίου Συγχρονισμού της Μονάδας
+ * <br>Συνδυάζεται με την παράμετρο searchtype
+ * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string|array[string]
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με την Ημερομηνία Τελευταίου Συγχρονισμού της Μονάδας
+ *       <br>Αν η παράμετρος Τύπος Αναζήτησης δεν έχει τιμή τότε η αναζήτηση στον Προσωνύμιο γίνεται με τον Tύπο {@see SearchEnumTypes::ContainAll}
+ *    </li>
+ *    <li>array[string]
+ *       <br>Σύνολο από Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param string $comments Παρατηρήσεις-Σχόλια
+ * <br>
+ * <br>Παρατηρήσεις-Σχόλια της Μονάδας
+ * <br>Συνδυάζεται με την παράμετρο searchtype
+ * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string|array[string]
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με Παρατηρήσεις-Σχόλια της Μονάδας
+ *       <br>Αν η παράμετρος Τύπος Αναζήτησης δεν έχει τιμή τότε η αναζήτηση στον Προσωνύμιο γίνεται με τον Tύπο {@see SearchEnumTypes::ContainAll}
+ *    </li>
+ *    <li>array[string]
+ *       <br>Σύνολο από Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * 
+ * @param integer $pagesize Αριθμός Εγγραφών/Σελίδα
+ * <br>
+ * <br>Ο αριθμός των εγγραφών που θα επιστρέψουν ανα σελίδα
+ * <br>Η παράμετρος δεν είναι υποχρεωτική
+ * <br>Αν η παράμετρος δεν έχει τιμή τότε θα επιστραφούν όλες οι προκαθορισμένες εγγραφές ({@see Parameters::DefaultPageSize})
+ * <br>Λίστα Παραμέτρων Σελιδοποίησης : {@see Parameters}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer
+ * <ul><li>integer<br>Αριθμητική : Η τιμή της παραμέτρου πρέπει να είναι μεγαλύτερη από 0</li></ul>
+ *
  * @param integer $page Αριθμός Σελίδας
+ * <br>
  * <br>Ο αριθμός της σελίδας με τις <a href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν σύμφωμα με τις παραμέτρους
  * <br>Η παράμετρος δεν είναι υποχρεωτική
  * <br>Αν η παράμετρος δεν έχει τιμή τότε θα επιστραφεί η πρώτη σελίδα
+ * <br>Λίστα Παραμέτρων Σελίδας : {@see Parameters}
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer
- * <ul>
- *    <li>integer
- *       <br>Αριθμητική : Η τιμή της παραμέτρου πρέπει να είναι μεγαλύτερη από 0
- *    </li>
- * </ul>
- * 
+ * <ul><li>integer<br>Αριθμητική : Η τιμή της παραμέτρου πρέπει να είναι μεγαλύτερη από 0</li></ul>
+ *
  * @param string $orderby Πεδίο Ταξινόμησης
+ * <br>
  * <br>Το όνομα του πεδίου με το οποίο γίνεται η ταξινόμηση των εγγραφών
  * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Αν η παράμετρος δεν έχει τιμή τότε η ταξινόμηση γίνεται με το Όνομα της Μονάδας
+ * <br>Αν η παράμετρος δεν έχει τιμή τότε η ταξινόμηση γίνεται με το **Όνομα Μονάδας**
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- * <ul>
- *    <li>string
- *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι οποιοδήποτε πεδίο επιστρέφει η συνάρτηση στον πίνακα data
- *    </li>
- * </ul>
- * 
+ * <ul><li>string<br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι οποιοδήποτε όνομα πεδίου επιστρέφεται στον πίνακα data</li></ul>
+ *
  * @param string $ordertype Τύπος Ταξινόμησης
- * <br>Ο Τύπος Ταξινόμησης με τον οποίο γίνεται η ταξινόμηση των εγγραφών
+ * <br>
+ * <br>Ο τύπος ταξινόμησης με τον οποίο γίνεται η ταξινόμηση των εγγραφών
  * <br>Η παράμετρος δεν είναι υποχρεωτική
  * <br>Αν η παράμετρος δεν έχει τιμή τότε η ταξινόμηση γίνεται με Αύξουσα Σειρά ({@see OrderEnumTypes::ASC})
  * <br>Λίστα Τύπων Ταξινόμησης : {@see OrderEnumTypes}
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- * <ul>
- *    <li>string
- *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see OrderEnumTypes}
- *    </li>
- * </ul>
- * 
+ * <ul><li>string<br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see OrderEnumTypes}</li></ul>
+ *
  * @param string $searchtype Τύπος Αναζήτησης
- * <br>Ο Τύπος Αναζήτησης με τον οποίο γίνεται η αναζήτηση στον όνομα (<a href="#$name">$name</a>) της Μονάδας
+ * <br>
+ * <br>Ο Τύπος Αναζήτησης με τον οποίο γίνεται η αναζήτηση στα πεδία 
+ * <ul>
+ * <li>Όνομασία Μονάδας (<a href="#$name">$name</a>)</li>
+ * <li>Προσωνύμιο Μονάδας (<a href="#$special_name">$special_name</a>)</li>
+ * <li>Τηλεφωνικός Αριθμός Μονάδας (<a href="#$phone_number">$phone_number</a>)</li>
+ * <li>Διεύθυνση (Οδός,Αριθμός) Μονάδας (<a href="#$street_address">$street_address</a>)</li>
+ * <li>Φ.Ε.Κ. (Δημιουργίας) Μονάδας (<a href="#$creation_fek">$creation_fek</a>)</li>
+ * <li>Ημερομηνία Τελευταίας Ενημέρωσης (<a href="#$last_update">$last_update</a>)</li>
+ * <li>Ημερομηνία Τελευταίου Συγχρονισμού (<a href="#$last_sync">$last_sync</a>)</li>
+ * <li>Παρατηρήσεις-Σχόλια Μονάδας (<a href="#$comments">$comments</a>)</li>
+ * </ul>
  * <br>Η παράμετρος δεν είναι υποχρεωτική
  * <br>Αν η παράμετρος δεν έχει τιμή τότε η αναζήτηση στα πεδία αυτά γίνεται με τον Τύπο {@see SearchEnumTypes::ContainAll}
  * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- * <ul>
- *    <li>string
- *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see SearchEnumTypes}
- *    </li>
- * </ul>
+ * <ul><li>string<br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see SearchEnumTypes}</li></ul>
  * 
  * @param string $export Τύπος Εξαγωγής Δεδομένων
+ * <br>
  * <br>Ο Τύπος Εξαγωγής Δεδομένων με τον οποίο θα γίνει η εξαγωγή σε συγκεκριμένη μορφή τών δεδομένων
  * <br>Η παράμετρος δεν είναι υποχρεωτική
  * <br>Αν η παράμετρος δεν έχει τιμή τότε η εξαγωγή δεδομένων γίνεται με τον Τύπο {@see ExportDataEnumTypes::JSON}
  * <br>Λίστα Τύπων Εξαγωγής Δεδομένων : {@see ExportDataEnumTypes}
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- * <ul>
- *    <li>string
- *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see ExportDataEnumTypes}
- *    </li>
- * </ul>
+ * <ul><li>string<br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see ExportDataEnumTypes}</li></ul>
+ *
  * 
- * 
- * 
- * @return Array<JSON> Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία : 
+ * @return Objects<JSON> Επιστρέφει τα παρακάτω JSON objects :
  * <br>
- * <ul>
- *  <li>string : <b>controller</b> : Ο controller που χρησιμοποιείται</li>
- *  <li>string : <b>function</b> : Η συνάρτηση που υλοποιείται από το σύστημα</li>
- *  <li>string : <b>method</b> : Η μέθοδος κλήσης της συνάρτησης</li>
- *  <li>integer : <b>status</b> : Ο Κωδικός {@see ExceptionCodes} του αποτελέσματος της κλήσης</li>
- *  <li>string : <b>message</b> : Το Μήνυμα {@see ExceptionMessages} του αποτελέσματος της κλήσης</li>
- *  <li>integer : <b>count</b> : Το πλήθος των εγγραφών της κλήσης σύμφωνα με τις παραμέτρους σελιδοποίησης</li>
- *  <li>integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς τις παραμέτρους σελιδοποίησης</li>
- *  <li>array : <b>pagination</b> : Οι παράμετροι σελιδοποίησης των εγγραφών της κλήσης
- *      <ul>
- *          <li>integer : <b>page</b> : Ο αριθμός της σελίδας των αποτελεσμάτων</li>
- *          <li>integer : <b>maxPage</b> : Ο μέγιστος αριθμός της σελίδας των αποτελεσμάτων</li>
- *          <li>integer : <b>pagesize</b> : Ο αριθμός των εγγραφών προς επιστροφή</li>
- *      </ul>
- * </li>
- *  <li>array : <b>data</b> : Ο Πίνακας με το λεξικό
- *    <ul>
- *      <li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
+ * <br>array : <b>data</b> : Ο Πίνακας με τα δεδομένα
+ *  <ul>
+ * 
+ *      <li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ</li>
  *      <li>string : <b>registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της Μονάδας</li>
- *      <li>integer : <b>source_id</b> : Ο Κωδικός της Πρωτογενής Πηγή της Μονάδας (Λεξικό : {@see GetSources})</li>
- *      <li>string : <b>source</b> : Η Πρωτογενής Πηγή της Μονάδας (Λεξικό : {@see GetSources})</li>
  *      <li>string : <b>name</b> : Το Όνομα της Μονάδας</li>
  *      <li>string : <b>special_name</b> : Το Προσωνύμιο της Μονάδας</li>
- *      <li>integer : <b>state_id</b> : Ο Κωδικός της Κατάστασης της Μονάδας (Λεξικό : {@see GetStates})</li>
- *      <li>string : <b>state</b> : Η Κατάσταση της Μονάδας (Λεξικό : {@see GetStates})</li>
- *      <li>integer : <b>region_edu_admin_id</b> : Ο Κωδικός της Περιφέρειας της Μονάδας (Λεξικό : {@see GetRegionEduAdmins})</li>
- *      <li>string : <b>region_edu_admin</b> : Η Περιφέρεια της Μονάδας (Λεξικό : {@see GetRegionEduAdmins})</li>
- *      <li>integer : <b>edu_admin_id</b> : Ο Κωδικός της Διεύθυνσης Εκπαίδευσης της Μονάδας (Λεξικό : {@see GetEduAdmins})</li>
- *      <li>string : <b>edu_admin</b> : Η Διεύθυνση Εκπαίδευσης της Μονάδας (Λεξικό : {@see GetEduAdmins})</li>
- *      <li>integer : <b>implementation_entity_id</b> : Ο Κωδικός της Φορεάς Υλοποίησης της μονάδας (Λεξικό : {@see GetImplementationEntities})</li>
- *      <li>string : <b>implementation_entity</b> : Ο Φοράς Υλοποίησης της μονάδας (Λεξικό : {@see GetImplementationEntities})</li>
- *      <li>string : <b>implementation_entity_initials</b> : Τα αρχικά του Φοράς Υλοποίησης της μονάδας (Λεξικό : {@see GetImplementationEntities})</li>
- *      <li>integer : <b>transfer_area_id</b> : Ο Κωδικός της Περιοχής Μετάθεσης της Μονάδας (Λεξικό : {@see GetTransferAreas})</li>
- *      <li>string : <b>transfer_area</b> : Η Περιοχή Μετάθεσης της Μονάδας (Λεξικό : {@see GetTransferAreas})</li>
- *      <li>integer : <b>prefecture_id</b> : Ο Κωδικός του Νομού της Μονάδας (Λεξικό : {@see GetPrefectures})</li>
- *      <li>string : <b>prefecture</b> : Ο Νομός της Μονάδας (Λεξικό : {@see GetPrefectures})</li>
- *      <li>integer : <b>municipality_id</b> : Ο Κωδικός του Δήμου ΟΤΑ της Μονάδας (Λεξικό : {@see GetMunicipalities})</li>
- *      <li>string : <b>municipality</b> : Ο Δήμος ΟΤΑ της Μονάδας (Λεξικό : {@see GetMunicipalities})</li>
- *      <li>integer : <b>municipality_community_id</b> : Η Δημοτική Ενότητα της Μονάδας (Λεξικό : {@see GetMunicipalityCommunities})</li>
- *      <li>string : <b>municipality_community</b> : Η Δημοτική Ενότητα της Μονάδας (Λεξικό : {@see GetMunicipalityCommunities})</li>
- *      <li>integer : <b>education_level_id</b> : Ο Κωδικός του Επιπέδου Εκπαίδευσης της μονάδας (Λεξικό : {@see GetEducationLevels})</li>
- *      <li>string : <b>education_level</b> : Το Επίπεδο Εκπαίδευσης της μονάδας (Λεξικό : {@see GetEducationLevels})</li>
- *      <li>string : <b>phone_number</b> : Το Τηλέφωνο Επικοινωνίας της Μονάδας</li>
- *      <li>string : <b>email</b> : Η Ηλεκτρονική Αλληλογραφία της Μονάδας</li>
- *      <li>string : <b>fax_number</b> : Ο Αριθμός Τηλεομοιοτυπίας (φαξ) της Μονάδας</li>
+ *      <li>integer : <b>source_id</b> : Ο Κωδικός ID της Πρωτογενής Πηγής της Μονάδας</li>
+ *      <li>string : <b>source</b> :Το Όνομα της Πρωτογενής Πηγής της Μονάδας</li>
+ *      <li>integer : <b>category_id</b> : Ο Κωδικός ID της Κατηγορίας της Μονάδας</li>
+ *      <li>string : <b>category</b> : Το Όνομα της Κατηγορίας της Μονάδας</li>
+ *      <li>integer : <b>state_id</b> : Ο Κωδικός ID της Λειτουργικής Κατάστασης της Μονάδας</li>
+ *      <li>string : <b>state</b> : Το Όνομα της Λειτουργικής Κατάστασης της Μονάδας</li>
  *      <li>string : <b>street_address</b> : Η Διεύθυνση (Οδός και Αριθμός) της Μονάδας</li>
  *      <li>string : <b>postal_code</b> : Ο Ταχυδρομικός Κώδικας της Μονάδας</li>
- *      <li>string : <b>tax_number</b> : Ο Αριθμός Φορολογικού Μητρώου της Μονάδας</li>
- *      <li>integer : <b>tax_office_id</b> : Ο Κωδικός της Δ.Ο.Υ. της Μονάδας (Λεξικό : {@see GetTaxOffices})</li>
- *      <li>string : <b>tax_office</b> : Η Δ.Ο.Υ. της Μονάδας (Λεξικό : {@see GetTaxOffices})</li>
- *      <li>integer : <b>area_team_number</b> : Η Ομάδα Σχολείων της Μονάδας (1η έως 40η)</li>
- *      <li>integer : <b>category_id</b> : Ο Κωδικός της Κατηγορίας της Μονάδας (Λεξικό : Κατηγορίες {@see GetCategories})</li>
- *      <li>string : <b>category</b> : Η Κατηγορία της Μονάδας (Λεξικό : Κατηγορίες {@see GetCategories})</li>
- *      <li>integer : <b>unit_type_id</b> : Ο Κωδικός του Τύπου της Μονάδας (Λεξικό : Τύποι Μονάδων {@see GetUnitTypes})</li>
- *      <li>string : <b>unit_type</b> : Ο Τύπος της Μονάδας (Λεξικό : Τύποι Μονάδων {@see GetUnitTypes})</li>
- *      <li>integer : <b>operation_shift_id</b> : Ο Κωδικός του Ωραρίου Λειτουργίας της Μονάδας (Λεξικό : {@see GetOperationShifts})</li>
- *      <li>string : <b>operation_shift</b> : Το Ωράριο Λειτουργίας της Μονάδας (Λεξικό : {@see GetOperationShifts})</li>
- *      <li>integer : <b>legal_character_id</b> : Ο Κωδικός του Νομικου Χαρακτήρα της Μονάδας (Λεξικό : {@see GetLegalCharacters})</li>
- *      <li>string : <b>legal_character</b> : Ο Νομικός Χαρακτήρας της Μονάδας (Λεξικό : {@see GetLegalCharacters})</li>
- *      <li>integer : <b>orientation_type_id</b> : Ο Κωδικός του Προσανατολισμού της Μονάδας (Λεξικό : {@see GetOrientationTypes})</li>
- *      <li>string : <b>orientation_type</b> : Ο Προσανατολισμός της Μονάδας (Λεξικό : {@see GetOrientationTypes})</li>
- *      <li>integer : <b>special_type_id</b> : Ο Κωδικός του Ειδικού Χαρακτηρισμού της Μονάδας (Λεξικό : {@see GetSpecialTypes})</li>
- *      <li>string : <b>special_type</b> : Ο Ειδικός Χαρακτηρισμός της Μονάδας (Λεξικό : {@see GetSpecialTypes})</li>
- *      <li>integer : <b>levels_count</b> : Το Πλήθος των Τάξεων της Μονάδας</li>
- *      <li>integer : <b>groups_count</b> : Το Πλήθος των Τμημάτων της Μονάδας</li>
- *      <li>integer : <b>students_count</b> : Το Πλήθος των Μαθητών της Μονάδας</li>
+ *      <li>string : <b>fax_number</b> : Ο Αριθμός Τηλεομοιοτυπίας (φαξ) της Μονάδας</li>
+ *      <li>string : <b>phone_number</b> : Το Τηλέφωνο Επικοινωνίας της Μονάδας</li>
+ *      <li>string : <b>email</b> : Η Ηλεκτρονική Αλληλογραφία της Μονάδας</li>
+ *      <li>string : <b>tax_number</b> : Ο Αριθμός Φορολογικού Μητρώου της Μονάδας</li> 
+ *      <li>integer : <b>region_edu_admin_id</b> : Ο Κωδικός ID της Περιφέρειας της Μονάδας</li>
+ *      <li>string : <b>region_edu_admin</b> : Το Όνομα της Περιφέρειας της Μονάδας</li>
+ *      <li>integer : <b>edu_admin_id</b> : Ο Κωδικός ID της Διεύθυνσης Εκπαίδευσης της Μονάδας</li>
+ *      <li>string : <b>edu_admin</b> : Το Όνομα της Διεύθυνσης Εκπαίδευσης της Μονάδας</li>
+ *      <li>integer : <b>transfer_area_id</b> : Ο Κωδικός ID της Περιοχής Μετάθεσης της Μονάδας</li>
+ *      <li>string : <b>transfer_area</b> : Το Όνομα της Περιοχής Μετάθεσης της Μονάδας</li>
+ *      <li>integer : <b>prefecture_id</b> : Ο Κωδικός ID της Περιφερειακής Ενότητας της Μονάδας</li>
+ *      <li>string : <b>prefecture</b> : Το Όνομα της Περιφερειακής Ενότητας της Μονάδας</li>
+ *      <li>integer : <b>municipality_id</b> : Ο Κωδικός ID του Δήμου ΟΤΑ της Μονάδας</li>
+ *      <li>string : <b>municipality</b> : Το Όνομα του Δήμου ΟΤΑ της Μονάδας</li>
+ *      <li>integer : <b>municipality_community_id</b> : Ο Κωδικός ID της Δημοτικής Ενότητα της Μονάδας</li>
+ *      <li>string : <b>municipality_community</b> : Το Όνομα της Δημοτικής Ενότητα της Μονάδας</li>
+ *      <li>integer : <b>education_level_id</b> : Ο Κωδικός ID του Επιπέδου Εκπαίδευσης της μονάδας</li>
+ *      <li>string : <b>education_level</b> : Το Όνομα του Επίπεδου Εκπαίδευσης της μονάδας</li>
+ *      <li>integer : <b>unit_type_id</b> : Ο Κωδικός ID του Τύπου της Μονάδας</li>
+ *      <li>string : <b>unit_type</b> : Το Όνομα του Τύπου της Μονάδας</li>
+ *      <li>integer : <b>operation_shift_id</b> : Ο Κωδικός ID του Ωραρίου Λειτουργίας της Μονάδας</li>
+ *      <li>string : <b>operation_shift</b> : Το Όνομα του Ωραρίου Λειτουργίας της Μονάδας</li>
+ *      <li>integer : <b>legal_character_id</b> : Ο Κωδικός ID του Νομικου Χαρακτήρα της Μονάδας</li>
+ *      <li>string : <b>legal_character</b> : Το Όνομα του Νομικού Χαρακτήρα της Μονάδας</li>
+ *      <li>integer : <b>orientation_type_id</b> : Ο Κωδικός ID του Προσανατολισμού της Μονάδας</li>
+ *      <li>string : <b>orientation_type</b> : Το Όνομα του Προσανατολισμός της Μονάδας</li>
+ *      <li>integer : <b>implementation_entity_id</b> : Ο Κωδικός ID του Φορέα Υλοποίησης της Μονάδας</li>
+ *      <li>string : <b>implementation_entity</b> : Το Όνομα του Φορέα Υλοποίησης της Μονάδας</li>
+ *      <li>string : <b>implementation_entity_initials</b> : Τα αρχικά του Φορέα Υλοποίησης της Μονάδας</li>
+ *      <li>integer : <b>tax_office_id</b> : Ο Κωδικός ID της Δ.Ο.Υ. της Μονάδας</li>
+ *      <li>string : <b>tax_office</b> : Το Όνομα της Δ.Ο.Υ. της Μονάδας</li>
+ *      <li>integer : <b>special_type_id</b> : Ο Κωδικός ID του Ειδικού Χαρακτηρισμού της Μονάδας</li>
+ *      <li>string : <b>special_type</b> : Το Όνομα του Ειδικού Χαρακτηρισμού της Μονάδας</li> 
  *      <li>string : <b>latitude</b> : Το Γεωγραφικό Πλάτος της Μονάδας</li>
  *      <li>string : <b>longitude</b> : Το Γεωγραφικό Μήκος της Μονάδας</li>
  *      <li>string : <b>positioning</b> : Η Κτηριακή Θέση της Μονάδας</li>
@@ -813,59 +1073,47 @@ header("Content-Type: text/html; charset=utf-8");
  *      <li>datetime : <b>last_sync</b> : Η Ημερομηνία Τελευταίου Συγχρονισμού της Μονάδας</li>
  *      <li>string : <b>comments</b> : Παρατηρήσεις - Σχόλια της Μονάδας<br><br></li>
  *      <li>string : <b>version</b> : H version συγχρονισμού των δεδομένων της Μονάδας<br><br></li>
- * 
- *      <li>array : <b>levels</b> : Πίνακας Τάξεων (Λεξικό : {@see GetLevels})
- *          <ul>
- *              <li>integer : <b>level_id</b> : Ο Κωδικός της Τάξης</li>
- *              <li>string : <b>name</b> : Το όνομα της Τάξης</li>
- *              <li>integer : <b>groups_count</b> : Το Πλήθος των Τμημάτων της Τάξης</li>
- *              <li>integer : <b>studens_count</b> : Το Πλήθος των Μαθητών της Τάξης</li>
- * 
- *              <li>array : <b>groups</b> : Πίνακας Τμημάτων (Λεξικό : {@see GetGroups})
- *                  <ul>
- *                      <li>integer : <b>group_id</b> : Ο Κωδικός του Τμήματος</li>
- *                      <li>string : <b>name</b> : Το όνομα του Τμήματος</li>
- *                      <li>integer : <b>studens_count</b> : Το Πλήθος των Μαθητών του Τμήματος</li>
- *                  </ul>
- *              </li>
- *          </ul>
- *          <br>
- *      </li>
- * 
+ *  
  *      <li>array : <b>host_relations</b> : Πίνακας Host Συσχετίσεων Μονάδων (Λεξικό : {@see GetRelations})
  *          <ul>
- *              <li>integer : <b>relation_id</b> : Ο Κωδικός της Συσχέτισης</li>
- *              <li>integer : <b>host_mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
- *              <li>integer : <b>guest_mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
+ *              <li>integer : <b>relation_id</b> : Ο Κωδικός ID της Συσχέτισης</li>
+ *              <li>integer : <b>guest_mm_id</b> : Ο Κωδικός ΜΜ της Guest Μονάδας</li>
+ *              <li>string : <b>guest_registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της Guest Μονάδας</li>
+ *              <li>string : <b>guest_name</b> : Το Όνομα της Guest Μονάδας</li>
+ *              <li>string : <b>guest_special_name</b> : Το Προσωνύμιο της Guest Μονάδας</li>
  *              <li>boolean : <b>relation_state</b> : Καθορίζει αν η Συσχέτιση είναι Ενεργή</li>
  *              <li>date : <b>true_date</b> : Η Ημερομηνία που η Συσχέτιση έγινε Ενεργή</li>
  *              <li>string : <b>true_fek</b> : Το ΦΕΚ όταν η Συσχέτιση έγινε Ενεργή</li>
  *              <li>date : <b>false_date</b> : Η Ημερομηνία που η Συσχέτιση έγινε Ανενεργή</li>
  *              <li>string : <b>false_fek</b> : Το ΦΕΚ όταν η Συσχέτιση έγινε Ανενεργή</li>
- *              <li>string : <b>relation_type</b> : Ο Τύπος Συσχέτισης των Μονάδων (Λεξικό : {@see GetRelationTypes})</li>
+ *              <li>integer : <b>relation_type_id</b> : Ο Κωδικός ID του Τύπου Συσχέτισης των Μονάδων</li>
+ *              <li>string : <b>relation_type</b> : Το Όνομα του Τύπου Συσχέτισης των Μονάδων</li>
  *          </ul>
  *          <br>
  *      </li>
  * 
  *      <li>array : <b>guest_relations</b> : Πίνακας Guest Συσχετίσεων Μονάδων (Λεξικό : {@see GetRelations})
  *          <ul>
- *              <li>integer : <b>relation_id</b> : Ο Κωδικός της Συσχέτισης</li>
- *              <li>integer : <b>host_mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
- *              <li>integer : <b>guest_mm_id</b> : Ο Κωδικός ΜΜ της Μονάδας</li>
+ *              <li>integer : <b>relation_id</b> : Ο Κωδικός ID της Συσχέτισης</li>
+ *              <li>integer : <b>host_mm_id</b> : Ο Κωδικός ΜΜ της Host Μονάδας</li>
+ *              <li>string : <b>host_registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της Host Μονάδας</li>
+ *              <li>string : <b>host_name</b> : Το Όνομα της Host Μονάδας</li>
+ *              <li>string : <b>host_special_name</b> : Το Προσωνύμιο της Host Μονάδας</li>
  *              <li>boolean : <b>relation_state</b> : Καθορίζει αν η Συσχέτιση είναι Ενεργή</li>
  *              <li>date : <b>true_date</b> : Η Ημερομηνία που η Συσχέτιση έγινε Ενεργή</li>
  *              <li>string : <b>true_fek</b> : Το ΦΕΚ όταν η Συσχέτιση έγινε Ενεργή</li>
  *              <li>date : <b>false_date</b> : Η Ημερομηνία που η Συσχέτιση έγινε Ανενεργή</li>
  *              <li>string : <b>false_fek</b> : Το ΦΕΚ όταν η Συσχέτιση έγινε Ανενεργή</li>
- *              <li>string : <b>relation_type</b> : Ο Τύπος Συσχέτισης των Μονάδων (Λεξικό : {@see GetRelationTypes})</li>
+ *              <li>integer : <b>relation_type_id</b> : Ο Κωδικός ID του Τύπου Συσχέτισης των Μονάδων</li>
+ *              <li>string : <b>relation_type</b> : Το Όνομα του Τύπου Συσχέτισης των Μονάδων</li>
  *          </ul>
  *          <br>
  *      </li>
  * 
- *      <li>array : <b>workers</b> : Πίνακας Εργαζομένων (Λεξικό : {@see GetUnitWorkers})
+ *      <li>array : <b>workers</b> : Πίνακας Συσχετίσεων Μονάδων με Εργαζομένους (Λεξικό : {@see GetUnitWorkers})
  *          <ul>
- *              <li>integer : <b>unit_worker_id</b> : Το πρωτεύον κλειδί του πίνακα αντιστοίχησης Εργαζομένων-Θέση Ευθύνης</li>
- *              <li>integer : <b>worker_id</b> : Ο Κωδικός του Εργαζόμενου</li>
+ *              <li>integer : <b>unit_worker_id</b> : Ο Κωδικός ID της Συσχετίσης Μονάδας με Εργαζόμενο</li>
+ *              <li>integer : <b>worker_id</b> : Ο Κωδικός ID του Εργαζόμενου</li>
  *              <li>string : <b>registry_no</b> : Ο Αριθμός Μητρώου του Εργαζόμενου</li>
  *              <li>string : <b>tax_number</b> : Ο Αριθμός Φορολογικού Μητρώου του Εργαζόμενου</li>
  *              <li>string : <b>lastname</b> : Το Επώνυμο του Εργαζόμενου</li>
@@ -873,89 +1121,166 @@ header("Content-Type: text/html; charset=utf-8");
  *              <li>string : <b>fathername</b> : Το Πατρώνυμο του Εργαζόμενου</li>
  *              <li>string : <b>fullname</b> : Το Ονοματεπώνυμο του Εργαζόμενου</li>
  *              <li>string : <b>sex</b> : Το Φύλο του Εργαζόμενου</li>
- *              <li>string : <b>worker_specialization_id</b> : Ο Κωδικός της Ειδικότητα του Εργαζομένου</li> 
- *              <li>string : <b>worker_specialization</b> : Η Ειδικότητα του Εργαζομένου (Λεξικό : {@see GetWorkerSpecializations})</li>
- *              <li>string : <b>worker_position_id</b> : Ο Κωδικός της Θέση Εργασίας του Εργαζομένου</li>
- *              <li>string : <b>worker_position</b> : Η Θέση Εργασίας του Εργαζομένου (Λεξικό : {@see GetWorkerPositions})</li>
- *              <li>integer : <b>worker_source_id</b> : Ο Κωδικός της Πρωτογενής Πηγής του Εργαζομένου</li>
- *              <li>string : <b>worker_source</b> : Η Πρωτογενής Πηγή του Εργαζομένου (Λεξικό : {@see GetSources})</li>
+ *              <li>string : <b>worker_specialization_id</b> : Ο Κωδικός ID της Ειδικότητας του Εργαζομένου</li> 
+ *              <li>string : <b>worker_specialization</b> : Το Όνομα της Ειδικότητας του Εργαζομένου</li>
+ *              <li>string : <b>worker_position_id</b> : Ο Κωδικός ID της Θέσης Εργασίας του Εργαζομένου</li>
+ *              <li>string : <b>worker_position</b> : Το Όνομα της Θέσης Εργασίας του Εργαζομένου</li>
+ *              <li>integer : <b>worker_source_id</b> : Ο Κωδικός ID της Πρωτογενής Πηγής του Εργαζομένου</li>
+ *              <li>string : <b>worker_source</b> : Το Όνομα της Πρωτογενής Πηγή του Εργαζομένου</li>
  *          </ul>
  *          <br>
  *      </li>
  * 
  *      <li>array : <b>unit_dns</b> : Πίνακας DNS Στοιχείων Μονάδας (Λεξικό : {@see GetUnitDns})
  *          <ul>GetUnitDns
- *              <li>integer : <b>unit_dns_id</b> : Ο Κωδικός του DNS Μονάδας</li>
+ *              <li>integer : <b>unit_dns_id</b> : Ο Κωδικός ID του DNS Μονάδας</li>
  *              <li>string : <b>unit_dns</b> : Το Όνομα του DNS Μονάδας</li>
  *              <li>string : <b>unit_ext_dns</b> : Το Όνομα του ExtDNS Μονάδας</li>
  *          </ul>
  *          <br>
  *      </li>
  * 
- *    </ul>
- *   </li>
- * </ul>
- *
+ *  </ul>
+ * <br>string : <b>controller</b> : Ο controller που χρησιμοποιείται
+ * <br>string : <b>function</b> : Η συνάρτηση που υλοποιείται από το σύστημα
+ * <br>string : <b>method</b> : Η μέθοδος κλήσης της συνάρτησης
+ * <br>integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς τις παραμέτρους σελιδοποίησης
+ * <br>integer : <b>count</b> : Το πλήθος των εγγραφών της κλήσης σύμφωνα με τις παραμέτρους σελιδοποίησης
+ * <br>array : <b>pagination</b> : Οι παράμετροι σελιδοποίησης των εγγραφών της κλήσης
+ *  <ul>
+ *      <li>integer : <b>page</b> : Ο αριθμός της σελίδας των αποτελεσμάτων</li>
+ *      <li>integer : <b>maxPage</b> : Ο μέγιστος αριθμός της σελίδας των αποτελεσμάτων</li>
+ *      <li>integer : <b>pagesize</b> :  Ο αριθμός των εγγραφών προς επιστροφή</li>
+ *  </ul>
+ * <br>integer : <b>status</b> : Ο Κωδικός του αποτελέσματος της κλήσης
+ * <br>string : <b>message</b> : Το Μήνυμα του αποτελέσματος της κλήσης
+ * 
  * 
  * @throws InvalidUnitMMIDType {@see ExceptionMessages::InvalidUnitMMIDType}
+ * <br>{@see ExceptionCodes::InvalidUnitMMIDType}
+ * 
  * @throws InvalidUnitRegistryNoType {@see ExceptionMessages::InvalidUnitRegistryNoType}
- * @throws InvalidSourceType {@see ExceptionMessages::InvalidSourceType}
+ * <br>{@see ExceptionCodes::InvalidUnitRegistryNoType}
+ * 
  * @throws InvalidUnitNameType {@see ExceptionMessages::InvalidUnitNameType}
+ * <br>{@see ExceptionCodes::InvalidUnitNameType}
+ * 
  * @throws InvalidUnitSpecialNameType {@see ExceptionMessages::InvalidUnitSpecialNameType}
- * @throws InvalidStateType {@see ExceptionMessages::InvalidStateType}
- * @throws InvalidRegionEduAdminType {@see ExceptionMessages::InvalidRegionEduAdminType}
- * @throws InvalidEduAdminType {@see ExceptionMessages::InvalidEduAdminType}
- * @throws InvalidImplementationEntityType {@see ExceptionMessages::InvalidImplementationEntityType}
- * @throws InvalidTransferAreaType {@see ExceptionMessages::InvalidTransferAreaType}
- * @throws InvalidPrefectureType {@see ExceptionMessages::InvalidPrefectureType}
- * @throws InvalidMunicipalityType {@see ExceptionMessages::InvalidMunicipalityType}
- * @throws InvalidMunicipalityCommunityType {@see ExceptionMessages::InvalidMunicipalityCommunityType}
- * @throws InvalidEducationLevelType {@see ExceptionMessages::InvalidEducationLevelType}
+ * <br>{@see ExceptionCodes::InvalidUnitSpecialNameType}
+ * 
  * @throws InvalidUnitPhoneNumberType {@see ExceptionMessages::InvalidUnitPhoneNumberType}
+ * <br>{@see ExceptionCodes::InvalidUnitPhoneNumberType}
+ * 
  * @throws InvalidUnitEmailType {@see ExceptionMessages::InvalidUnitEmailType}
+ * <br>{@see ExceptionCodes::InvalidUnitEmailType}
+ * 
  * @throws InvalidUnitFaxNumberType {@see ExceptionMessages::InvalidUnitFaxNumberType}
+ * <br>{@see ExceptionCodes::InvalidUnitFaxNumberType}
+ * 
  * @throws InvalidUnitStreetAddressType {@see ExceptionMessages::InvalidUnitStreetAddressType}
+ * <br>{@see ExceptionCodes::InvalidUnitStreetAddressType}
+ * 
  * @throws InvalidUnitPostalCodeType {@see ExceptionMessages::InvalidUnitPostalCodeType}
+ * <br>{@see ExceptionCodes::InvalidUnitPostalCodeType}
+ * 
  * @throws InvalidUnitTaxNumberType {@see ExceptionMessages::InvalidUnitTaxNumberType}
- * @throws InvalidTaxOfficeType {@see ExceptionMessages::InvalidTaxOfficeType}
+ * <br>{@see ExceptionCodes::InvalidUnitTaxNumberType}
+ * 
  * @throws InvalidUnitAreaTeamNumberType {@see ExceptionMessages::InvalidUnitAreaTeamNumberType}
- * @throws InvalidCategoryType {@see ExceptionMessages::InvalidCategoryType}
- * @throws InvalidUnitTypeType {@see ExceptionMessages::InvalidUnitTypeType}
- * @throws InvalidOperationShiftType {@see ExceptionMessages::InvalidOperationShiftType}
- * @throws InvalidLegalCharacterType {@see ExceptionMessages::InvalidLegalCharacterType}
- * @throws InvalidOrientationTypeType {@see ExceptionMessages::InvalidOrientationTypeType}
- * @throws InvalidSpecialTypeType {@see ExceptionMessages::InvalidSpecialTypeType}
+ * <br>{@see ExceptionCodes::InvalidUnitAreaTeamNumberType}
+ * 
  * @throws InvalidUnitLevelsCountType {@see ExceptionMessages::InvalidUnitLevelsCountType}
+ * <br>{@see ExceptionCodes::InvalidUnitLevelsCountType}
+ * 
  * @throws InvalidUnitGroupsCountType {@see ExceptionMessages::InvalidUnitGroupsCountType}
+ * <br>{@see ExceptionCodes::InvalidUnitGroupsCountType}
+ * 
  * @throws InvalidUnitStudentsCountType {@see ExceptionMessages::InvalidUnitStudentsCountType}
+ * <br>{@see ExceptionCodes::InvalidUnitStudentsCountType}
+ * 
  * @throws InvalidUnitLatitudeType {@see ExceptionMessages::InvalidUnitLatitudeType}
+ * <br>{@see ExceptionCodes::InvalidUnitLatitudeType}
+ * 
  * @throws InvalidUnitLongitudeType {@see ExceptionMessages::InvalidUnitLongitudeType}
+ * <br>{@see ExceptionCodes::InvalidUnitLongitudeType}
+ *  
  * @throws InvalidUnitPositioningType {@see ExceptionMessages::InvalidUnitPositioningType}
- * @throws InvalidUnitFekType {@see ExceptionMessages::InvalidUnitFekType}
+ * <br>{@see ExceptionCodes::InvalidUnitPositioningType}
+ * 
+ * @throws InvalidUnitCreationFekType {@see ExceptionMessages::InvalidUnitCreationFekType}
+ * <br>{@see ExceptionCodes::InvalidUnitCreationFekType}
+ * 
  * @throws InvalidUnitLastUpdateType {@see ExceptionMessages::InvalidUnitLastUpdateType}
+ * <br>{@see ExceptionCodes::InvalidUnitLastUpdateType}
+ * 
  * @throws InvalidUnitLastSyncType {@see ExceptionMessages::InvalidUnitLastSyncType}
+ * <br>{@see ExceptionCodes::InvalidUnitLastSyncType}
+ * 
  * @throws InvalidUnitCommentsType {@see ExceptionMessages::InvalidUnitCommentsType}
- * @throws MissingPageValue {@see ExceptionMessages::MissingPageValue}
- * @throws InvalidPageArray {@see ExceptionMessages::InvalidPageArray}
- * @throws InvalidPageNumber {@see ExceptionMessages::InvalidPageNumber}
- * @throws InvalidPageType {@see ExceptionMessages::InvalidPageType}
- * @throws MissingPageSizeValue {@see ExceptionMessages::MissingPageSizeValue}
- * @throws InvalidPageSizeArray {@see ExceptionMessages::InvalidPageSizeArray}
- * @throws InvalidPageSizeNumber {@see ExceptionMessages::InvalidPageSizeNumber}
- * @throws InvalidPageSizeType {@see ExceptionMessages::InvalidPageSizeType}
- * @throws InvalidOrderBy {@see ExceptionMessages::InvalidOrderBy}
- * @throws InvalidOrderType {@see ExceptionMessages::InvalidOrderType}
- * @throws InvalidSearchType {@see ExceptionMessages::InvalidSearchType}
- * @throws InvalidExportType {@see ExceptionMessages::InvalidExportType}
+ * <br>{@see ExceptionCodes::InvalidUnitCommentsType}
+ * 
+ * @throws InvalidSourceType {@see ExceptionMessages::InvalidSourceType}
+ * <br>{@see ExceptionCodes::InvalidSourceType}
+ * 
+ * @throws InvalidStateType {@see ExceptionMessages::InvalidStateType}
+ * <br>{@see ExceptionCodes::InvalidStateType}
+ * 
+ * @throws InvalidRegionEduAdminType {@see ExceptionMessages::InvalidRegionEduAdminType}
+ * <br>{@see ExceptionCodes::InvalidRegionEduAdminType}
+ * 
+ * @throws InvalidEduAdminType {@see ExceptionMessages::InvalidEduAdminType}
+ * <br>{@see ExceptionCodes::InvalidEduAdminType}
+ * 
+ * @throws InvalidImplementationEntityType {@see ExceptionMessages::InvalidImplementationEntityType}
+ * <br>{@see ExceptionCodes::InvalidImplementationEntityType}
+ *
+ * @throws InvalidTransferAreaType {@see ExceptionMessages::InvalidTransferAreaType}
+ * <br>{@see ExceptionCodes::InvalidTransferAreaType}
+ * 
+ * @throws InvalidPrefectureType {@see ExceptionMessages::InvalidPrefectureType}
+ * <br>{@see ExceptionCodes::InvalidPrefectureType}
+ * 
+ * @throws InvalidMunicipalityType {@see ExceptionMessages::InvalidMunicipalityType}
+ * <br>{@see ExceptionCodes::InvalidMunicipalityType}
+ * 
+ * @throws InvalidMunicipalityCommunityType {@see ExceptionMessages::InvalidMunicipalityCommunityType}
+ * <br>{@see ExceptionCodes::InvalidMunicipalityCommunityType}
+ * 
+ * @throws InvalidEducationLevelType {@see ExceptionMessages::InvalidEducationLevelType}
+ * <br>{@see ExceptionCodes::InvalidEducationLevelType}
+ * 
+ * @throws InvalidTaxOfficeType {@see ExceptionMessages::InvalidTaxOfficeType}
+ * <br>{@see ExceptionCodes::InvalidTaxOfficeType}
+ *
+ * @throws InvalidCategoryType {@see ExceptionMessages::InvalidCategoryType}
+ * <br>{@see ExceptionCodes::InvalidCategoryType}
+ * 
+ * @throws InvalidUnitTypeType {@see ExceptionMessages::InvalidUnitTypeType}
+ * <br>{@see ExceptionCodes::InvalidUnitTypeType}
+ * 
+ * @throws InvalidOperationShiftType {@see ExceptionMessages::InvalidOperationShiftType}
+ * <br>{@see ExceptionCodes::InvalidOperationShiftType}
+ * 
+ * @throws InvalidLegalCharacterType {@see ExceptionMessages::InvalidLegalCharacterType}
+ * <br>{@see ExceptionCodes::InvalidLegalCharacterType}
+ * 
+ * @throws InvalidOrientationTypeType {@see ExceptionMessages::InvalidOrientationTypeType}
+ * <br>{@see ExceptionCodes::InvalidOrientationTypeType}
+ * 
+ * @throws InvalidSpecialTypeType {@see ExceptionMessages::InvalidSpecialTypeType}
+ * <br>{@see ExceptionCodes::InvalidSpecialTypeType}
+ *  
+ * @throws NoErrors {@see ExceptionMessages::NoErrors}
+ * <br>{@see ExceptionCodes::NoErrors}
  * 
  * 
  */
 
-function GetUnits(   $mm_id, $registry_no, $source, $name, $special_name, $state, $region_edu_admin, $edu_admin, $implementation_entity,
-                        $transfer_area, $prefecture, $municipality, $municipality_community, $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code,
-                        $tax_number, $tax_office, $area_team_number, $category, $unit_type, $operation_shift, $legal_character, $orientation_type,
-                        $special_type, $levels_count, $groups_count, $students_count, $latitude, $longitude, $positioning, $creation_fek, $last_update, $last_sync, $comments,
-                        $pagesize, $page, $orderby, $ordertype, $searchtype, $export ) 
+function GetUnits(  $mm_id, $registry_no, $source, $name, $special_name, $state, $region_edu_admin, $edu_admin, $implementation_entity,
+                    $transfer_area, $prefecture, $municipality, $municipality_community, $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code,
+                    $tax_number, $tax_office, $area_team_number, $category, $unit_type, $operation_shift, $legal_character, $orientation_type,
+                    $special_type, $levels_count, $groups_count, $students_count, $latitude, $longitude, $positioning, $creation_fek, $last_update, $last_sync, $comments,
+                    $pagesize, $page, $orderby, $ordertype, $searchtype, $export ) 
 {
   
     global $entityManager, $app , $Options;
