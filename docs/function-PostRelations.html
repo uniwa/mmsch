@@ -112,238 +112,118 @@
 
 	<div class="description">
 	
-<p>Καταχώρηση : Συσχετίσεις μεταξύ Μονάδων</p>
+<p><strong>Καταχώρηση Συσχέτισης Μονάδας</strong></p>
 
-<p>Η κλήση της συνάρτησης αυτής μπορεί να
-γίνει μέσω της παρακάτω διεύθυνσης με τη
-μέθοδο POST :<br />
-<a href="https://mm.sch.gr/api/relations">https://mm.sch.gr/api/relations</a><br
-/>
-<br />
-</p>
+<p>Η συνάρτηση καταχωρεί Συσχέτιση Μονάδας
+σύμφωνα με τις παραμέτρους που έγινε η
+κλήση.<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>PUT</strong> και
+route_api_name = <strong>relations</strong> :<br />
+https://mm.sch.gr/api/relations</p>
 
-<p>Παράδειγμα κλήσης της μεθόδου με <b>cURL</b>
-(console) :</p>
+<p><strong><em>Ορισμός Μοναδικών Τιμών
+Παραμέτρων</em></strong><br />
+Παρακάτω ορίζονται οι παραμέτροι που έχουν
+μοναδικές τιμές και πραγματοποιειται
+ελεγχος πριν κάθε καταχώρηση:</p>
 
-<pre>
-curl -X POST https:<span
-class="php-comment">//mm.sch.gr/api/relations \</span>
-  -H <span
-class="php-quote">&quot;Content-Type: application/json&quot;</span> \
-  -H <span
-class="php-quote">&quot;Accept: application/json&quot;</span> \
-  -u username:password \
-  -d <span
-class="php-quote">'{&quot;host_mm_id&quot; : &quot;value&quot;, \
-       &quot;guest_mm_id&quot; : &quot;value&quot;, \
-       &quot;relation_state&quot; : &quot;value&quot;, \
-       &quot;true_date&quot; : &quot;value&quot;, \
-       &quot;true_fek&quot; : &quot;value&quot;, \
-       &quot;false_date&quot; : &quot;value&quot;, \
-       &quot;false_fek&quot; : &quot;value&quot;, \
-       &quot;relation_type&quot; : &quot;value&quot;}'</span>
-</pre>
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
 
-<div><br />
-</div>
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
 
-<p>Παράδειγμα κλήσης της μεθόδου με
-<b>JavaScript</b> :</p>
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
 
-<pre>
-&lt;script&gt;
-   <span
-class="php-keyword1">var</span> params = JSON.stringify({
-       <span
-class="php-quote">&quot;worker_registry_no&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-       <span
-class="php-quote">&quot;lastname&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-       <span
-class="php-quote">&quot;firstname&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-       <span
-class="php-quote">&quot;fathername&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-       <span
-class="php-quote">&quot;sex&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-       <span
-class="php-quote">&quot;tax_number&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-       <span
-class="php-quote">&quot;worker_specialization&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>
-   });
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
+</ul>
 
-   <span
-class="php-keyword1">var</span> http = <span
-class="php-keyword1">new</span> XMLHttpRequest();
-   http.open(<span
-class="php-quote">&quot;POST&quot;</span>, <span
-class="php-quote">&quot;https://mm.sch.gr/api/relations&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Accept&quot;</span>, <span
-class="php-quote">&quot;application/json&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-type&quot;</span>, <span
-class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-length&quot;</span>, params.length);
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
 
-   http.onreadystatechange = <span
-class="php-keyword1">function</span>() {
-       <span
-class="php-keyword1">if</span>(http.readyState == <span
-class="php-num">4</span> &amp;&amp; http.status == <span
-class="php-num">200</span>) {
-           alert(http.responseText);
-       }
-   }
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
 
-   http.send(params);
-&lt;/script&gt;
-</pre>
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
 
-<div><br />
-</div>
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
 
-<p>Παράδειγμα κλήσης της μεθόδου με <b>PHP</b> :</p>
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
+
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
+
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
 
 <pre>
-<span class="xlang">&lt;?php</span>
+{
+<span class="php-quote">&quot;controller&quot;</span>: <span
+class="php-quote">&quot;PostRelations&quot;</span>,
 <span
-class="php-keyword2">header</span>(<span
-class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
-
+class="php-quote">&quot;function&quot;</span>: <span
+class="php-quote">&quot;relations&quot;</span>,
 <span
-class="php-var">$params</span> = <span
-class="php-keyword1">array</span>(
-       <span
-class="php-quote">&quot;host_mm_id&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-       <span
-class="php-quote">&quot;guest_mm_id&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-       <span
-class="php-quote">&quot;relation_state&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-       <span
-class="php-quote">&quot;true_date&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-       <span
-class="php-quote">&quot;true_fek&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-       <span
-class="php-quote">&quot;false_date&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-       <span
-class="php-quote">&quot;false_fek&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-       <span
-class="php-quote">&quot;relation_type&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>
-);
-
+class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;POST&quot;</span>,
 <span
-class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
-class="php-quote">&quot;https://mm.sch.gr/api/relations&quot;</span>);
-
+class="php-quote">&quot;parameters&quot;</span>: {  <span
+class="php-quote">&quot;host_mm_id&quot;</span>: ``, <span
+class="php-quote">&quot;guest_mm_id&quot;</span>: ``,
+                 <span
+class="php-quote">&quot;relation_state&quot;</span>: ``, <span
+class="php-quote">&quot;true_date&quot;</span>: ``, <span
+class="php-quote">&quot;true_fek&quot;</span>: ``,
+                 <span
+class="php-quote">&quot;false_date&quot;</span>: ``, <span
+class="php-quote">&quot;false_fek&quot;</span>: ``, <span
+class="php-quote">&quot;relation_type&quot;</span>: `` },
 <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+class="php-quote">&quot;relation_id&quot;</span>: ``,
 <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_USERPWD, <span
-class="php-quote">&quot;username:password&quot;</span>);
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
 <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
-class="php-quote">&quot;POST&quot;</span>);
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_POSTFIELDS, <span
-class="php-keyword2">json_encode</span>( <span
-class="php-var">$params</span> ));
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
-class="php-keyword1">true</span>);
-
-<span class="php-var">$data</span> = <span
-class="php-keyword2">json_decode</span>( <span
-class="php-keyword2">curl_exec</span>(<span
-class="php-var">$curl</span>) );
-<span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
-class="php-keyword2">var_dump</span>( <span
-class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
-<span
-class="xlang">?&gt;</span>
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;[POST][relations]:success&quot;</span>
+}
 </pre>
-
-<div><br />
-</div>
-
-<p>Παράδειγμα κλήσης της συνάρτησης με
-<b>Ajax</b> :</p>
-
-<pre>
-&lt;script&gt;
-   <span class="php-var">$</span>.ajax({
-       type: <span
-class="php-quote">'POST'</span>,
-       url: <span
-class="php-quote">'https://mm.sch.gr/api/relations'</span>,
-       dataType: <span
-class="php-quote">&quot;json&quot;</span>,
-       data: {
-           <span
-class="php-quote">&quot;host_mm_id&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;guest_mm_id&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;relation_state&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;true_date&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;true_fek&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;false_date&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;false_fek&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;relation_type&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>
-       },
-       beforeSend: <span
-class="php-keyword1">function</span>(req) {
-           req.setRequestHeader(<span
-class="php-quote">'Authorization'</span>, btoa(<span
-class="php-quote">'username'</span> + <span
-class="php-quote">&quot;:&quot;</span> + <span
-class="php-quote">'password'</span>));
-       },
-       success: <span
-class="php-keyword1">function</span>(data){
-           console.<span
-class="php-keyword2">log</span>(data);
-       }
-   });
-&lt;/script&gt;
-</pre>
-
-<div><br />
-</div>
 
 	</div>
 
@@ -362,73 +242,138 @@ class="php-keyword2">log</span>(data);
 		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$host_mm_id</var></code></td>
 		<td>
-			 <b><i>Κωδικός ΜΜ Host Μονάδας</i></b><br />
-Ο Κωδικός ΜΜ της Host Μονάδας<br />
-Το πεδίο είναι υποχρεωτικό<br />
-Αναζήτηση Μονάδων <code><a href="function-GetUnits.html">GetUnits()</a></code>
+			 Κωδικός ΜΜ της Host Μονάδας<br />
+<br />
+Κωδικός ΜΜ της Host Μονάδας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Κωδικός ΜΜ της Host Μονάδας : <code><a href="function-GetUnits.html">GetUnits()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικός ΜΜ της Host Μονάδας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$guest_mm_id">
 		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$guest_mm_id</var></code></td>
 		<td>
-			 <b><i>Κωδικός ΜΜ Guest Μονάδας</i></b><br />
-Ο Κωδικός ΜΜ της Guest Μονάδας<br />
-Το πεδίο είναι υποχρεωτικό<br />
-Αναζήτηση Μονάδων <code><a href="function-GetUnits.html">GetUnits()</a></code>
+			 Κωδικός ΜΜ της Host Μονάδας<br />
+<br />
+Ο Κωδικός ΜΜ της Host Μονάδας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Κωδικός ΜΜ της Host Μονάδας : <code><a href="function-GetUnits.html">GetUnits()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικός ΜΜ της Host Μονάδας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$relation_state">
-		<td class="name"><code>boolean</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$relation_state</var></code></td>
 		<td>
-			 Ενεργή/Ανενεργή<br />
-Καθορίζει αν η Συσχέτιση είναι Ενεργή
+			 Λειτουργική Κατάσταση Συσχέτισης
+Μονάδας<br />
+<br />
+Η Λειτουργική Κατάσταση Συσχέτισης
+Μονάδας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι
+μεταξύ 0 ή 1 (Ανενεργή ή Ενεργή) : integer
 		</td>
 	</tr>
 	<tr id="$true_date">
-		<td class="name"><code>integer</code></td>
+		<td class="name"><code>date</code></td>
 		<td class="value"><code><var>$true_date</var></code></td>
 		<td>
 			 Ημερομηνία Ενεργοποίησης<br />
-Η Ημερομηνία που η Συσχέτιση έγινε Ενεργή
+<br />
+Η Ημερομηνία Ενεργοποίησης Συσχέτισης
+Μονάδας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : date
 		</td>
 	</tr>
 	<tr id="$true_fek">
-		<td class="name"><code>integer</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$true_fek</var></code></td>
 		<td>
 			 ΦΕΚ Ενεργοποίησης<br />
-Το ΦΕΚ όταν η Συσχέτιση έγινε Ενεργή
+<br />
+Το ΦΕΚ Ενεργοποίησης της Συσχέτισης
+Μονάδας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$false_date">
-		<td class="name"><code>integer</code></td>
+		<td class="name"><code>date</code></td>
 		<td class="value"><code><var>$false_date</var></code></td>
 		<td>
-			 Ημερομηνία Απενεργοποίησης<br />
-Η Ημερομηνία που η Συσχέτιση έγινε Ανενεργή
+			false_date Ημερομηνία Απενεργοποίησης<br />
+<br />
+Η Ημερομηνία Απενεργοποίησης Συσχέτισης
+Μονάδας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : date
 		</td>
 	</tr>
 	<tr id="$false_fek">
-		<td class="name"><code>integer</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$false_fek</var></code></td>
 		<td>
 			 ΦΕΚ Απενεργοποίησης<br />
-Το ΦΕΚ όταν η Συσχέτιση έγινε Ανενεργή
+<br />
+Το ΦΕΚ Απενεργοποίησης της Συσχέτισης
+Μονάδας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$relation_type">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$relation_type</var></code></td>
 		<td>
-			 <b><i>Τύπος Συσχέτισης</i></b><i></i><br />
-Ο Τύπος Συσχέτισης των Μονάδων<br />
-Το πεδίο είναι υποχρεωτικό<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία<br />
-Λεξικό : Συσχετίσεις Μονάδων <code><a href="function-GetRelationTypes.html">GetRelationTypes()</a></code>
+			 Όνομα ή ID Τύπου Συσχέτισης<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Τύπου
+Συσχέτισης<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Όνομα ή ID Τύπου Συσχέτισης : <code><a href="function-GetRelationTypes.html">GetRelationTypes()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Τύπος Συσχέτισης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Τύπος Συσχέτισης<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	</table>
@@ -437,24 +382,25 @@ class="php-keyword2">log</span>(data);
 	<caption>Return value summary</caption>
 	<tr>
 		<td class="name"><code>
-			Array&lt;JSON&gt;
+			Objects&lt;JSON&gt;
 		</code></td>
 		<td>
-			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
-:<br />
-
-<ul>
-	<li>sting : <b>method</b> : Το Όνομα της μεθόδου</li>
-
-	<li>integer : <b>status</b> : Ο Κωδικός της κατάστασης</li>
-
-	<li>string : <b>message</b> : Μήνυμα περιγραφής της
-	κατάστασης</li>
-
-	<li>integer : <b>relation_id</b> : Ο Κωδικός του
-	Συσχέτισης</li>
-</ul>
-
+			Επιστρέφει τα παρακάτω JSON objects :<br />
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+array : <b>parameters</b> : Οι παράμετροι που δίνει ο
+χρήστης<br />
+integer : <b>relation_id</b> : Ο Κωδικός ID της Συσχέτισης
+Μονάδας που δημιουργήθηκε<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
 		</td>
 	</tr>
 	</table>
@@ -463,10 +409,29 @@ class="php-keyword2">log</span>(data);
 	<caption>Thrown exceptions summary</caption>
 	<tr>
 		<td class="name"><code>
+			MissingRelationHostUnitMMIDParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRelationHostUnitMMIDParam">ExceptionMessages::<b>MissingRelationHostUnitMMIDParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRelationHostUnitMMIDParam">ExceptionCodes::<b>MissingRelationHostUnitMMIDParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
 			MissingRelationHostUnitMMIDValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingRelationHostUnitMMIDValue">ExceptionMessages::<b>MissingRelationHostUnitMMIDValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingRelationHostUnitMMIDValue">ExceptionMessages::<b>MissingRelationHostUnitMMIDValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRelationHostUnitMMIDValue">ExceptionCodes::<b>MissingRelationHostUnitMMIDValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRelationHostUnitMMIDArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRelationHostUnitMMIDArray">ExceptionMessages::<b>InvalidRelationHostUnitMMIDArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRelationHostUnitMMIDArray">ExceptionCodes::<b>InvalidRelationHostUnitMMIDArray</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -474,15 +439,26 @@ class="php-keyword2">log</span>(data);
 			InvalidRelationHostUnitMMIDType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidRelationHostUnitMMIDType">ExceptionMessages::<b>InvalidRelationHostUnitMMIDType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidRelationHostUnitMMIDType">ExceptionMessages::<b>InvalidRelationHostUnitMMIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRelationHostUnitMMIDType">ExceptionCodes::<b>InvalidRelationHostUnitMMIDType</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidRelationHostUnitMMIDValue
+			DuplicatedRelationHostUnitMMIDUniqueValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidRelationHostUnitMMIDValue">ExceptionMessages::<b>InvalidRelationHostUnitMMIDValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#DuplicatedRelationHostUnitMMIDUniqueValue">ExceptionMessages::<b>DuplicatedRelationHostUnitMMIDUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedRelationHostUnitMMIDUniqueValue">ExceptionCodes::<b>DuplicatedRelationHostUnitMMIDUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRelationGuestUnitMMIDParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRelationGuestUnitMMIDParam">ExceptionMessages::<b>MissingRelationGuestUnitMMIDParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRelationGuestUnitMMIDParam">ExceptionCodes::<b>MissingRelationGuestUnitMMIDParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -490,7 +466,17 @@ class="php-keyword2">log</span>(data);
 			MissingRelationGuestUnitMMIDValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingRelationGuestUnitMMIDValue">ExceptionMessages::<b>MissingRelationGuestUnitMMIDValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingRelationGuestUnitMMIDValue">ExceptionMessages::<b>MissingRelationGuestUnitMMIDValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRelationGuestUnitMMIDValue">ExceptionCodes::<b>MissingRelationGuestUnitMMIDValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRelationGuestUnitMMIDArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRelationGuestUnitMMIDArray">ExceptionMessages::<b>InvalidRelationGuestUnitMMIDArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRelationGuestUnitMMIDArray">ExceptionCodes::<b>InvalidRelationGuestUnitMMIDArray</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -498,15 +484,179 @@ class="php-keyword2">log</span>(data);
 			InvalidRelationGuestUnitMMIDType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidRelationGuestUnitMMIDType">ExceptionMessages::<b>InvalidRelationGuestUnitMMIDType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidRelationGuestUnitMMIDType">ExceptionMessages::<b>InvalidRelationGuestUnitMMIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRelationGuestUnitMMIDType">ExceptionCodes::<b>InvalidRelationGuestUnitMMIDType</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidRelationGuestUnitMMIDValue
+			DuplicatedRelationGuestUnitMMIDUniqueValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidRelationGuestUnitMMIDValue">ExceptionMessages::<b>InvalidRelationGuestUnitMMIDValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#DuplicatedRelationGuestUnitMMIDUniqueValue">ExceptionMessages::<b>DuplicatedRelationGuestUnitMMIDUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedRelationGuestUnitMMIDUniqueValue">ExceptionCodes::<b>DuplicatedRelationGuestUnitMMIDUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRelationStateParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRelationStateParam">ExceptionMessages::<b>MissingRelationStateParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRelationStateParam">ExceptionCodes::<b>MissingRelationStateParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRelationStateValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRelationStateValue">ExceptionMessages::<b>MissingRelationStateValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRelationStateValue">ExceptionCodes::<b>MissingRelationStateValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRelationStateType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRelationStateType">ExceptionMessages::<b>InvalidRelationStateType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRelationStateType">ExceptionCodes::<b>InvalidRelationStateType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRelationTrueDateParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRelationTrueDateParam">ExceptionMessages::<b>MissingRelationTrueDateParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRelationTrueDateParam">ExceptionCodes::<b>MissingRelationTrueDateParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRelationTrueDateValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRelationTrueDateValue">ExceptionMessages::<b>MissingRelationTrueDateValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRelationTrueDateValue">ExceptionCodes::<b>MissingRelationTrueDateValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRelationTrueDateType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRelationTrueDateType">ExceptionMessages::<b>InvalidRelationTrueDateType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRelationTrueDateType">ExceptionCodes::<b>InvalidRelationTrueDateType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRelationTrueDateValidType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRelationTrueDateValidType">ExceptionMessages::<b>InvalidRelationTrueDateValidType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRelationTrueDateValidType">ExceptionCodes::<b>InvalidRelationTrueDateValidType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRelationTrueFekParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRelationTrueFekParam">ExceptionMessages::<b>MissingRelationTrueFekParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRelationTrueFekParam">ExceptionCodes::<b>MissingRelationTrueFekParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRelationTrueFekValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRelationTrueFekValue">ExceptionMessages::<b>MissingRelationTrueFekValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRelationTrueFekValue">ExceptionCodes::<b>MissingRelationTrueFekValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRelationTrueFekType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRelationTrueFekType">ExceptionMessages::<b>InvalidRelationTrueFekType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRelationTrueFekType">ExceptionCodes::<b>InvalidRelationTrueFekType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRelationFalseFekParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRelationFalseFekParam">ExceptionMessages::<b>MissingRelationFalseFekParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRelationFalseFekParam">ExceptionCodes::<b>MissingRelationFalseFekParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRelationFalseFekValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRelationFalseFekValue">ExceptionMessages::<b>MissingRelationFalseFekValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRelationFalseFekValue">ExceptionCodes::<b>MissingRelationFalseFekValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRelationFalseFekType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRelationFalseFekType">ExceptionMessages::<b>InvalidRelationFalseFekType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRelationFalseFekType">ExceptionCodes::<b>InvalidRelationFalseFekType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRelationFalseDateParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRelationFalseDateParam">ExceptionMessages::<b>MissingRelationFalseDateParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRelationFalseDateParam">ExceptionCodes::<b>MissingRelationFalseDateParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRelationFalseDateValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRelationFalseDateValue">ExceptionMessages::<b>MissingRelationFalseDateValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRelationFalseDateValue">ExceptionCodes::<b>MissingRelationFalseDateValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRelationFalseDateType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRelationFalseDateType">ExceptionMessages::<b>InvalidRelationFalseDateType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRelationFalseDateType">ExceptionCodes::<b>InvalidRelationFalseDateType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRelationFalseDateValidType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRelationFalseDateValidType">ExceptionMessages::<b>InvalidRelationFalseDateValidType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRelationFalseDateValidType">ExceptionCodes::<b>InvalidRelationFalseDateValidType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRelationTypeParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRelationTypeParam">ExceptionMessages::<b>MissingRelationTypeParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRelationTypeParam">ExceptionCodes::<b>MissingRelationTypeParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -514,15 +664,35 @@ class="php-keyword2">log</span>(data);
 			MissingRelationTypeValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingRelationTypeValue">ExceptionMessages::<b>MissingRelationTypeValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingRelationTypeValue">ExceptionMessages::<b>MissingRelationTypeValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRelationTypeValue">ExceptionCodes::<b>MissingRelationTypeValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidRelationTypeValue
+			InvalidRelationTypeArray
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidRelationTypeValue">ExceptionMessages::<b>InvalidRelationTypeValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidRelationTypeArray">ExceptionMessages::<b>InvalidRelationTypeArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRelationTypeArray">ExceptionCodes::<b>InvalidRelationTypeArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRelationTypeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRelationTypeType">ExceptionMessages::<b>InvalidRelationTypeType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRelationTypeType">ExceptionCodes::<b>InvalidRelationTypeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedRelationTypeUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedRelationTypeUniqueValue">ExceptionMessages::<b>DuplicatedRelationTypeUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedRelationTypeUniqueValue">ExceptionCodes::<b>DuplicatedRelationTypeUniqueValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -530,7 +700,17 @@ class="php-keyword2">log</span>(data);
 			DuplicatedRelationValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#DuplicatedRelationValue">ExceptionMessages::<b>DuplicatedRelationValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#DuplicatedRelationValue">ExceptionMessages::<b>DuplicatedRelationValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedRelationValue">ExceptionCodes::<b>DuplicatedRelationValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NoErrors
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
 		</td>
 	</tr>
 	</table>

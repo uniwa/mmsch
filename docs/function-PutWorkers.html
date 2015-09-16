@@ -112,247 +112,126 @@
 
 	<div class="description">
 	
-<p>Ενημέρωση : Εργαζόμενοι</p>
+<p><strong>Ενημέρωση Στοιχείων
+Εργαζόμενου</strong></p>
 
-<p>Η κλήση της συνάρτησης αυτής μπορεί να
-γίνει μέσω της παρακάτω διεύθυνσης με τη
-μέθοδο PUT :<br />
-<a href="https://mm.sch.gr/api/workers">https://mm.sch.gr/api/workers</a><br />
-<br />
-</p>
+<p>Η συνάρτηση ενημερώνει Στοιχεία
+Εργαζόμενου σύμφωνα με τις παραμέτρους που
+έγινε η κλήση.<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>PUT</strong> και
+route_api_name = <strong>workers</strong> :<br />
+https://mm.sch.gr/api/workers</p>
 
-<p>Παράδειγμα κλήσης της μεθόδου με <b>cURL</b>
-(console) :</p>
+<p><strong><em>Ορισμός Μοναδικών Τιμών
+Παραμέτρων</em></strong><br />
+Παρακάτω ορίζονται οι παραμέτροι που έχουν
+μοναδικές τιμές και πραγματοποιειται
+ελεγχος πριν κάθε καταχώρηση:</p>
 
-<pre>
-curl -X PUT https:<span
-class="php-comment">//mm.sch.gr/api/workers \</span>
-  -H <span
-class="php-quote">&quot;Content-Type: application/json&quot;</span> \
-  -H <span
-class="php-quote">&quot;Accept: application/json&quot;</span> \
-  -u username:password \
-  -d <span
-class="php-quote">'{&quot;worker_id&quot; : &quot;value&quot;, \
-       &quot;worker_registry_no&quot; : &quot;value&quot;, \
-       &quot;lastname&quot; : &quot;value&quot;, \
-       &quot;firstname&quot; : &quot;value&quot;, \
-       &quot;fathername&quot; : &quot;value&quot;, \
-       &quot;sex&quot; : &quot;value&quot;, \
-       &quot;tax_number&quot; : &quot;value&quot;, \
-       &quot;worker_specialization&quot; : &quot;value&quot;, \
-       &quot;source&quot; : &quot;value&quot; }'</span>
-</pre>
+<ul>
+	<li><strong>worker_id</strong></li>
 
-<div><br />
-</div>
+	<li><strong>registry_no</strong></li>
+</ul>
 
-<p>Παράδειγμα κλήσης της μεθόδου με
-<b>JavaScript</b> :</p>
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
 
-<pre>
-&lt;script&gt;
-   <span
-class="php-keyword1">var</span> params = JSON.stringify({ <span
-class="php-quote">&quot;worker_id&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-                                 <span
-class="php-quote">&quot;worker_registry_no&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-                                 <span
-class="php-quote">&quot;lastname&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-                                 <span
-class="php-quote">&quot;firstname&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-                                 <span
-class="php-quote">&quot;fathername&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-                                 <span
-class="php-quote">&quot;sex&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-                                 <span
-class="php-quote">&quot;tax_number&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-                                 <span
-class="php-quote">&quot;worker_specialization&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-                                 <span
-class="php-quote">&quot;source&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span> });
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
 
-   <span
-class="php-keyword1">var</span> http = <span
-class="php-keyword1">new</span> XMLHttpRequest();
-   http.open(<span
-class="php-quote">&quot;PUT&quot;</span>, <span
-class="php-quote">&quot;https://mm.sch.gr/api/workers&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Accept&quot;</span>, <span
-class="php-quote">&quot;application/json&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-type&quot;</span>, <span
-class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-length&quot;</span>, params.length);
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
 
-   http.onreadystatechange = <span
-class="php-keyword1">function</span>() {
-       <span
-class="php-keyword1">if</span>(http.readyState == <span
-class="php-num">4</span> &amp;&amp; http.status == <span
-class="php-num">200</span>) {
-           alert(http.responseText);
-       }
-   }
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
+</ul>
 
-   http.send(params);
-&lt;/script&gt;
-</pre>
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
 
-<div><br />
-</div>
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
 
-<p>Παράδειγμα κλήσης της μεθόδου με <b>PHP</b> :</p>
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
+
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
+
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
+
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
+
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
 
 <pre>
-<span class="xlang">&lt;?php</span>
+{
+<span class="php-quote">&quot;controller&quot;</span>: <span
+class="php-quote">&quot;PutWorkers&quot;</span>,
 <span
-class="php-keyword2">header</span>(<span
-class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
-
+class="php-quote">&quot;function&quot;</span>: <span
+class="php-quote">&quot;workers&quot;</span>,
 <span
-class="php-var">$params</span> = <span
-class="php-keyword1">array</span>(
-     <span
-class="php-quote">&quot;worker_id&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-     <span
-class="php-quote">&quot;worker_registry_no&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-     <span
-class="php-quote">&quot;lastname&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-     <span
-class="php-quote">&quot;firstname&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-     <span
-class="php-quote">&quot;fathername&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-     <span
-class="php-quote">&quot;sex&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-     <span
-class="php-quote">&quot;tax_number&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-     <span
-class="php-quote">&quot;worker_specialization&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-     <span
-class="php-quote">&quot;source&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span> );
-
+class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;PUT&quot;</span>,
 <span
-class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
-class="php-quote">&quot;https://mm.sch.gr/api/workers&quot;</span>);
-
+class="php-quote">&quot;parameters&quot;</span>: {  <span
+class="php-quote">&quot;worker_id&quot;</span>: ``, <span
+class="php-quote">&quot;registry_no&quot;</span>: ``, <span
+class="php-quote">&quot;lastname&quot;</span>: ``,
+                 <span
+class="php-quote">&quot;firstname&quot;</span>: ``, <span
+class="php-quote">&quot;fathername&quot;</span>: ``, <span
+class="php-quote">&quot;sex&quot;</span>: ``,
+                 <span
+class="php-quote">&quot;tax_number&quot;</span>: ``, <span
+class="php-quote">&quot;worker_specialization&quot;</span>: ``, <span
+class="php-quote">&quot;source&quot;</span>: `` },
 <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+class="php-quote">&quot;worker_id&quot;</span>: ``,
 <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_USERPWD, <span
-class="php-quote">&quot;username:password&quot;</span>);
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
 <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
-class="php-quote">&quot;PUT&quot;</span>);
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_POSTFIELDS, <span
-class="php-keyword2">json_encode</span>( <span
-class="php-var">$params</span> ));
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
-class="php-keyword1">true</span>);
-
-<span class="php-var">$data</span> = <span
-class="php-keyword2">json_decode</span>( <span
-class="php-keyword2">curl_exec</span>(<span
-class="php-var">$curl</span>) );
-<span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
-class="php-keyword2">var_dump</span>( <span
-class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
-<span
-class="xlang">?&gt;</span>
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;[PUT][workers]:success&quot;</span>
+}
 </pre>
-
-<div><br />
-</div>
-
-<p>Παράδειγμα κλήσης της συνάρτησης με
-<b>Ajax</b> :</p>
-
-<pre>
-&lt;script&gt;
-   <span class="php-var">$</span>.ajax({
-       type: <span
-class="php-quote">'PUT'</span>,
-       url: <span
-class="php-quote">'https://mm.sch.gr/api/workers'</span>,
-       dataType: <span
-class="php-quote">&quot;json&quot;</span>,
-       data: {
-           <span
-class="php-quote">&quot;worker_id&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;worker_registry_no&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;lastname&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;firstname&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;fathername&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;sex&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;tax_number&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;worker_specialization&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>
-           <span
-class="php-quote">&quot;source&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>
-       },
-       beforeSend: <span
-class="php-keyword1">function</span>(req) {
-           req.setRequestHeader(<span
-class="php-quote">'Authorization'</span>, btoa(<span
-class="php-quote">'username'</span> + <span
-class="php-quote">&quot;:&quot;</span> + <span
-class="php-quote">'password'</span>));
-       },
-       success: <span
-class="php-keyword1">function</span>(data){
-           console.<span
-class="php-keyword2">log</span>(data);
-       }
-   });
-&lt;/script&gt;
-</pre>
-
-<div><br />
-</div>
 
 	</div>
 
@@ -371,16 +250,31 @@ class="php-keyword2">log</span>(data);
 		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$worker_id</var></code></td>
 		<td>
-			 Κωδικός Εργαζόμενου<br />
-Ο Κωδικός του Εργαζόμενου
+			 ID Εργαζόμενου<br />
+<br />
+Ο Κωδικός ID του Εργαζόμενου<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+ID Εργαζόμενου : <code><a href="function-GetWorkers.html">GetWorkers()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID του Εργαζόμενου<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$registry_no">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>date</code></td>
 		<td class="value"><code><var>$registry_no</var></code></td>
 		<td>
-			$worker_registry_no Αριθμός Μητρώου<br />
-Ο Αριθμός Μητρώου του Εργαζόμενου
+			 Αριθμός Μητρώου<br />
+<br />
+Ο Αριθμός Μητρώου του Εργαζόμενου<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$lastname">
@@ -388,7 +282,9 @@ class="php-keyword2">log</span>(data);
 		<td class="value"><code><var>$lastname</var></code></td>
 		<td>
 			 Επώνυμο<br />
-Το Επώνυμο του Εργαζόμενου
+<br />
+Το Επώνυμο του Εργαζόμενου<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$firstname">
@@ -396,7 +292,9 @@ class="php-keyword2">log</span>(data);
 		<td class="value"><code><var>$firstname</var></code></td>
 		<td>
 			 Όνομα<br />
-Το Όνομα του Εργαζόμενου
+<br />
+Το Όνομα του Εργαζόμενου<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$fathername">
@@ -404,7 +302,9 @@ class="php-keyword2">log</span>(data);
 		<td class="value"><code><var>$fathername</var></code></td>
 		<td>
 			 Πατρώνυμο<br />
-Το Πατρώνυμο του Εργαζόμενου
+<br />
+Το Πατρώνυμο του Εργαζόμενου<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$sex">
@@ -412,7 +312,9 @@ class="php-keyword2">log</span>(data);
 		<td class="value"><code><var>$sex</var></code></td>
 		<td>
 			 Φύλο<br />
-Το Φύλο του Εργαζόμενου
+<br />
+Το Φύλο του Εργαζόμενου<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$tax_number">
@@ -420,54 +322,64 @@ class="php-keyword2">log</span>(data);
 		<td class="value"><code><var>$tax_number</var></code></td>
 		<td>
 			 Αριθμός Φορολογικού Μητρώου<br />
+<br />
 Ο Αριθμός Φορολογικού Μητρώου του
-Εργαζόμενου
+Εργαζόμενου<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$worker_specialization">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$worker_specialization</var></code></td>
 		<td>
-			 Ειδικότητα<br />
-Η Ειδικότητα του Εργαζομένου<br />
-Το πεδίο είναι υποχρεωτικό<br />
-Λεξικό : Ειδικότητες Εργαζομένων <code><a href="function-GetWorkerSpecializations.html">GetWorkerSpecializations()</a></code>)<br />
+			 Όνομα ή ID Ειδικότητας<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Ειδικότητας
+Εργαζόμενου<br />
+Όνομα ή ID Ειδικότητας Εργαζόμενου : <code><a href="function-GetWorkerSpecializations.html">GetWorkerSpecializations()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+integer|string
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Ειδικότητας Εργαζόμενου<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
-
-	<li>array[string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Ειδικότητας Εργαζόμενου<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 </ul>
 
 		</td>
 	</tr>
 	<tr id="$source">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$source</var></code></td>
 		<td>
-			 Πρωτογενής Πηγή<br />
-Η Πρωτογενής Πηγή του Εργαζόμενου<br />
-Το πεδίο είναι υποχρεωτικό<br />
-Λεξικό : Πρωτογενείς Πηγές Εργαζομενων <code><a href="function-GetSources.html">GetSources()</a></code>)<br />
+			 Όνομα ή ID Πρωτογενής Πηγή<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Πρωτογενής
+Πηγής<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Όνομα ή ID Ειδικότητας Εργαζόμενου : <code><a href="function-GetSources.html">GetSources()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+integer|string
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Πρωτογενής Πηγής<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
-
-	<li>array[string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Πρωτογενής Πηγής<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 </ul>
 
 		</td>
@@ -478,24 +390,25 @@ mixed{integer|string|array[integer|string]}
 	<caption>Return value summary</caption>
 	<tr>
 		<td class="name"><code>
-			Array&lt;JSON&gt;
+			Objects&lt;JSON&gt;
 		</code></td>
 		<td>
-			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
-:<br />
-
-<ul>
-	<li>sting : <b>method</b> : Το Όνομα της μεθόδου</li>
-
-	<li>integer : <b>status</b> : Ο Κωδικός της κατάστασης</li>
-
-	<li>string : <b>message</b> : Μήνυμα περιγραφής της
-	κατάστασης</li>
-
-	<li>integer : <b>worker_id</b> : Ο Κωδικός του
-	Εργαζόμενου</li>
-</ul>
-
+			Επιστρέφει τα παρακάτω JSON objects :<br />
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+array : <b>parameters</b> : Οι παράμετροι που δίνει ο
+χρήστης<br />
+integer : <b>worker_id</b> : Ο Κωδικός ID του Εργαζόμενου
+που ενημερώθηκε<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
 		</td>
 	</tr>
 	</table>
@@ -504,18 +417,38 @@ mixed{integer|string|array[integer|string]}
 	<caption>Thrown exceptions summary</caption>
 	<tr>
 		<td class="name"><code>
-			MissingWorkerValue
+			MissingWorkerIDParam
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingWorkerValue">ExceptionMessages::<b>MissingWorkerValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerIDParam">ExceptionMessages::<b>MissingWorkerIDParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingWorkerIDParam">ExceptionCodes::<b>MissingWorkerIDParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidWorkerType
+			MissingWorkerIDValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidWorkerType">ExceptionMessages::<b>InvalidWorkerType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerIDValue">ExceptionMessages::<b>MissingWorkerIDValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingWorkerIDValue">ExceptionCodes::<b>MissingWorkerIDValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidWorkerIDArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerIDArray">ExceptionMessages::<b>InvalidWorkerIDArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidWorkerIDArray">ExceptionCodes::<b>InvalidWorkerIDArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidWorkerIDType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerIDType">ExceptionMessages::<b>InvalidWorkerIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidWorkerIDType">ExceptionCodes::<b>InvalidWorkerIDType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -523,7 +456,26 @@ mixed{integer|string|array[integer|string]}
 			InvalidWorkerValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidWorkerValue">ExceptionMessages::<b>InvalidWorkerValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerValue">ExceptionMessages::<b>InvalidWorkerValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidWorkerValue">ExceptionCodes::<b>InvalidWorkerValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedWorkerUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedWorkerUniqueValue">ExceptionMessages::<b>DuplicatedWorkerUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedWorkerUniqueValue">ExceptionCodes::<b>DuplicatedWorkerUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingWorkerRegistryNoParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerRegistryNoParam">ExceptionMessages::<b>MissingWorkerRegistryNoParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingWorkerRegistryNoParam">ExceptionCodes::<b>MissingWorkerRegistryNoParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -531,7 +483,26 @@ mixed{integer|string|array[integer|string]}
 			MissingWorkerRegistryNoValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingWorkerRegistryNoValue">ExceptionMessages::<b>MissingWorkerRegistryNoValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerRegistryNoValue">ExceptionMessages::<b>MissingWorkerRegistryNoValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingWorkerRegistryNoValue">ExceptionCodes::<b>MissingWorkerRegistryNoValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidWorkerRegistryNoType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerRegistryNoType">ExceptionMessages::<b>InvalidWorkerRegistryNoType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidWorkerRegistryNoType">ExceptionCodes::<b>InvalidWorkerRegistryNoType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingWorkerLastnameParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerLastnameParam">ExceptionMessages::<b>MissingWorkerLastnameParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingWorkerLastnameParam">ExceptionCodes::<b>MissingWorkerLastnameParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -539,7 +510,26 @@ mixed{integer|string|array[integer|string]}
 			MissingWorkerLastnameValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingWorkerLastnameValue">ExceptionMessages::<b>MissingWorkerLastnameValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerLastnameValue">ExceptionMessages::<b>MissingWorkerLastnameValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingWorkerLastnameValue">ExceptionCodes::<b>MissingWorkerLastnameValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidWorkerLastnameType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerLastnameType">ExceptionMessages::<b>InvalidWorkerLastnameType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidWorkerLastnameType">ExceptionCodes::<b>InvalidWorkerLastnameType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingWorkerFirstnameParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerFirstnameParam">ExceptionMessages::<b>MissingWorkerFirstnameParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingWorkerFirstnameParam">ExceptionCodes::<b>MissingWorkerFirstnameParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -547,23 +537,197 @@ mixed{integer|string|array[integer|string]}
 			MissingWorkerFirstnameValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingWorkerFirstnameValue">ExceptionMessages::<b>MissingWorkerFirstnameValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerFirstnameValue">ExceptionMessages::<b>MissingWorkerFirstnameValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingWorkerFirstnameValue">ExceptionCodes::<b>MissingWorkerFirstnameValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidWorkerSpecializationValue
+			InvalidWorkerFirstnameType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidWorkerSpecializationValue">ExceptionMessages::<b>InvalidWorkerSpecializationValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerFirstnameType">ExceptionMessages::<b>InvalidWorkerFirstnameType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidWorkerFirstnameType">ExceptionCodes::<b>InvalidWorkerFirstnameType</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidSourceValue
+			MissingWorkerFathernameParam
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidSourceValue">ExceptionMessages::<b>InvalidSourceValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerFathernameParam">ExceptionMessages::<b>MissingWorkerFathernameParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingWorkerFathernameParam">ExceptionCodes::<b>MissingWorkerFathernameParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingWorkerFathernameValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerFathernameValue">ExceptionMessages::<b>MissingWorkerFathernameValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingWorkerFathernameValue">ExceptionCodes::<b>MissingWorkerFathernameValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidWorkerFathernameType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerFathernameType">ExceptionMessages::<b>InvalidWorkerFathernameType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidWorkerFathernameType">ExceptionCodes::<b>InvalidWorkerFathernameType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingWorkerSexParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerSexParam">ExceptionMessages::<b>MissingWorkerSexParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingWorkerSexParam">ExceptionCodes::<b>MissingWorkerSexParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingWorkerSexValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerSexValue">ExceptionMessages::<b>MissingWorkerSexValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingWorkerSexValue">ExceptionCodes::<b>MissingWorkerSexValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidWorkerSexType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerSexType">ExceptionMessages::<b>InvalidWorkerSexType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidWorkerSexType">ExceptionCodes::<b>InvalidWorkerSexType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingWorkerTaxNumberParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerTaxNumberParam">ExceptionMessages::<b>MissingWorkerTaxNumberParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingWorkerTaxNumberParam">ExceptionCodes::<b>MissingWorkerTaxNumberParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingWorkerTaxNumberValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerTaxNumberValue">ExceptionMessages::<b>MissingWorkerTaxNumberValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingWorkerTaxNumberValue">ExceptionCodes::<b>MissingWorkerTaxNumberValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidWorkerTaxNumberType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerTaxNumberType">ExceptionMessages::<b>InvalidWorkerTaxNumberType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidWorkerTaxNumberType">ExceptionCodes::<b>InvalidWorkerTaxNumberType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingWorkerSpecializationParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerSpecializationParam">ExceptionMessages::<b>MissingWorkerSpecializationParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingWorkerSpecializationParam">ExceptionCodes::<b>MissingWorkerSpecializationParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingWorkerSpecializationValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingWorkerSpecializationValue">ExceptionMessages::<b>MissingWorkerSpecializationValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingWorkerSpecializationValue">ExceptionCodes::<b>MissingWorkerSpecializationValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidWorkerSpecializationArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerSpecializationArray">ExceptionMessages::<b>InvalidWorkerSpecializationArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidWorkerSpecializationArray">ExceptionCodes::<b>InvalidWorkerSpecializationArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidWorkerSpecializationType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidWorkerSpecializationType">ExceptionMessages::<b>InvalidWorkerSpecializationType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidWorkerSpecializationType">ExceptionCodes::<b>InvalidWorkerSpecializationType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedWorkerSpecializationUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedWorkerSpecializationUniqueValue">ExceptionMessages::<b>DuplicatedWorkerSpecializationUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedWorkerSpecializationUniqueValue">ExceptionCodes::<b>DuplicatedWorkerSpecializationUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingSourceParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingSourceParam">ExceptionMessages::<b>MissingSourceParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingSourceParam">ExceptionCodes::<b>MissingSourceParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingSourceValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingSourceValue">ExceptionMessages::<b>MissingSourceValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingSourceValue">ExceptionCodes::<b>MissingSourceValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSourceArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSourceArray">ExceptionMessages::<b>InvalidSourceArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidSourceArray">ExceptionCodes::<b>InvalidSourceArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSourceType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSourceType">ExceptionMessages::<b>InvalidSourceType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidSourceType">ExceptionCodes::<b>InvalidSourceType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedSourceUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedSourceUniqueValue">ExceptionMessages::<b>DuplicatedSourceUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedSourceUniqueValue">ExceptionCodes::<b>DuplicatedSourceUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NoErrors
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
 		</td>
 	</tr>
 	</table>

@@ -120,7 +120,189 @@
 
 	<div class="description">
 	
-<p><b>Crm Data</b></p>
+<p><strong>Αναζήτηση CRM DATA</strong></p>
+
+<p>Η συνάρτηση αυτή επιστρέφει CRM DATA , μέσω
+web-service από το CRM, σύμφωνα με τις παραμέτρους
+που έγινε η κλήση<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>GET</strong> και
+route_api_name = <strong>crm_data</strong> :<br />
+https://mm.sch.gr/api/crm_data</p>
+
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
+
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
+
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
+
+	<li>Οι παράμετροι οι οποίοι έχουν το
+	χαρακτηριστικό (Συνδυάζεται με την
+	παράμετρο searchtype) σημαίνει ότι η
+	συγκεκριμένη παράμετρος συνδυάζεται με την
+	παράμετρο searchtype.</li>
+
+	<li>Οι παράμετροι μπορούν να πάρουν τιμή "NULL"
+	για να αναζητήσουν τις κενές εγγραφές στα
+	αντίστοιχα πεδία</li>
+</ul>
+
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
+
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
+
+	<li>Η μεταβλητή <a href="#data">data</a> είναι ο πίνακας
+	με τα δεδομένα.</li>
+
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
+
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
+
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
+
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
+
+<pre>
+{
+ <span class="php-quote">&quot;data&quot;</span>: [{}],
+ <span
+class="php-quote">&quot;controller&quot;</span>: <span
+class="php-quote">&quot;GetCrmData&quot;</span>,
+ <span
+class="php-quote">&quot;function&quot;</span>: <span
+class="php-quote">&quot;crm_data&quot;</span>,
+ <span
+class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;GET&quot;</span>,
+ <span
+class="php-quote">&quot;total&quot;</span>: ``,
+ <span
+class="php-quote">&quot;count&quot;</span>: ``,
+ <span
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
+ <span
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;[GET][crm_data]:success&quot;</span>
+}
+</pre>
+
+<p><strong><em>Πίνακας Δεδομένων</em></strong><br />
+<a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα
+από τον πίνακα data με τα αποτελέσματα σε
+μορφή JSON :</p>
+
+<pre>
+{  <span class="php-quote">&quot;data&quot;</span>: {
+  <span
+class="php-quote">&quot;mmId&quot;</span>: ``,
+  <span
+class="php-quote">&quot;circuits&quot;</span>: [{
+                  <span
+class="php-quote">&quot;id&quot;</span>: ``,
+                  <span
+class="php-quote">&quot;linenumber&quot;</span>: ``,
+                  <span
+class="php-quote">&quot;type&quot;</span>: ``,
+                  <span
+class="php-quote">&quot;owner&quot;</span>: ``,
+                  <span
+class="php-quote">&quot;services&quot;</span>: [{
+                                  <span
+class="php-quote">&quot;id&quot;</span>: ``,
+                                  <span
+class="php-quote">&quot;type&quot;</span>: ``,
+                                  <span
+class="php-quote">&quot;owner&quot;</span>: ``,
+                                  <span
+class="php-quote">&quot;bandwidth&quot;</span>: ``
+                              }]
+              }],
+  <span
+class="php-quote">&quot;subnets&quot;</span>: [ {<span
+class="php-quote">&quot;id&quot;</span>: ``,
+                <span
+class="php-quote">&quot;type&quot;</span>: <span
+class="php-quote">&quot;LAN&quot;</span>,
+                <span
+class="php-quote">&quot;network&quot;</span>: ``},
+               {<span
+class="php-quote">&quot;id&quot;</span>: ``,
+                <span
+class="php-quote">&quot;type&quot;</span>: <span
+class="php-quote">&quot;ROUTER&quot;</span>,
+                <span
+class="php-quote">&quot;network&quot;</span>: ``},
+               {<span
+class="php-quote">&quot;id&quot;</span>: ``,
+                <span
+class="php-quote">&quot;type&quot;</span>: <span
+class="php-quote">&quot;NAT&quot;</span>,
+                <span
+class="php-quote">&quot;network&quot;</span>: ``}
+             ],
+  <span
+class="php-quote">&quot;connections&quot;</span>: [{
+                      <span
+class="php-quote">&quot;id&quot;</span>: ``,
+                      <span
+class="php-quote">&quot;name&quot;</span>: ``,
+                      <span
+class="php-quote">&quot;subnets&quot;</span>: [``,``,``],
+                      <span
+class="php-quote">&quot;circuits&quot;</span>: [``],
+                      <span
+class="php-quote">&quot;devices&quot;</span>: [],
+                      <span
+class="php-quote">&quot;ldapEntries&quot;</span>: []
+                  }]
+}
+</pre>
 
 	</div>
 
@@ -136,10 +318,27 @@
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
 	<tr id="$mm_id">
-		<td class="name"><code>type</code></td>
+		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$mm_id</var></code></td>
 		<td>
-			
+			 Μονάδα<br />
+Ο Κωδικός MM της Μονάδας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ΜΜ της Μονάδας,<br />
+	Μπορεί να δωθέι oλοκληρος ο Κωδικός ΜΜ.<br />
+	Η αναζήτηση στο CRM γίνεται στις εγγραφές που
+	περιέχουν ακριβώς την τιμή του $unit.<br />
+	Σε περίπτωση που δεν βρεθεί μονάδα με το
+	κωδικό $mm_id που δώθηκα επό τον χρήστη
+	επιστρέφεται &lt;code&gt; { "data": { "message": "Page not found." }
+	} &lt;/code&gt;</li>
+</ul>
+
 		</td>
 	</tr>
 	</table>
@@ -148,14 +347,104 @@
 	<caption>Return value summary</caption>
 	<tr>
 		<td class="name"><code>
-			string
+			Objects&lt;JSON&gt;
 		</code></td>
 		<td>
-			
+			Επιστρέφει τα παρακάτω JSON objects :<br />
+<br />
+array : <b>data</b> : Ο Πίνακας με τα δεδομένα
+<ul>
+	<li>integer : <b>cpe_id</b> : Ο Κωδικός ID Κτηματολογίου
+	του CPE</li>
+
+	<li>string : <b>cpe</b> : Το Όνομα του CPE</li>
+
+	<li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ</li>
+
+	<li>string : <b>unit_name</b> : Το Όνομα της Μονάδας του
+	CPE</li>
+
+	<li>string : <b>registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της
+	Μονάδας του CPE</li>
+
+	<li>string : <b>item_name</b> : Το Όνομα του CPE</li>
+
+	<li>string : <b>manufacturer</b> : Το Κατασκευαστής του
+	CPE</li>
+
+	<li>string : <b>location</b> : Η Τοποθεσία του CPE</li>
+
+	<li>string : <b>serial_number</b> : Ο Σειριακός Κωδικός του
+	CPE</li>
+</ul>
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς
+τις παραμέτρους σελιδοποίησης<br />
+integer : <b>count</b> : Το πλήθος των εγγραφών της
+κλήσης σύμφωνα με τις παραμέτρους
+σελιδοποίησης<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
 		</td>
 	</tr>
 	</table>
 
+	<table class="summary" id="throws">
+	<caption>Thrown exceptions summary</caption>
+	<tr>
+		<td class="name"><code>
+			MissingUnitMMIDParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitMMIDParam">ExceptionMessages::<b>MissingUnitMMIDParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitMMIDParam">ExceptionCodes::<b>MissingUnitMMIDParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitMMIDValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitMMIDValue">ExceptionMessages::<b>MissingUnitMMIDValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitMMIDValue">ExceptionCodes::<b>MissingUnitMMIDValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitMMIDArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitMMIDArray">ExceptionMessages::<b>InvalidUnitMMIDArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitMMIDArray">ExceptionCodes::<b>InvalidUnitMMIDArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitMMIDType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitMMIDType">ExceptionMessages::<b>InvalidUnitMMIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitMMIDType">ExceptionCodes::<b>InvalidUnitMMIDType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NoErrors
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
+		</td>
+	</tr>
+	</table>
 
 </div>
 

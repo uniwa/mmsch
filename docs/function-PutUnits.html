@@ -112,217 +112,158 @@
 
 	<div class="description">
 	
-<p>Ενημέρωση : Μονάδας</p>
+<p><strong>Ενημέρωση Μονάδας</strong></p>
 
-<p>Η κλήση της συνάρτησης αυτής μπορεί να
-γίνει μέσω της παρακάτω διεύθυνσης με τη
-μέθοδο PUT :<br />
-<a href="https://mm.sch.gr/api/units">https://mm.sch.gr/api/units</a><br />
-<br />
-</p>
+<p>Η συνάρτηση ενημερώνει Μονάδα σύμφωνα με
+τις παραμέτρους που έγινε η κλήση.<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>PUT</strong> και
+route_api_name = <strong>units</strong> :<br />
+https://mm.sch.gr/api/units</p>
 
-<p>Παράδειγμα κλήσης της μεθόδου με <b>cURL</b>
-(console) :</p>
+<p><strong><em>Ορισμός Μοναδικών Τιμών
+Παραμέτρων</em></strong><br />
+Παρακάτω ορίζονται οι παραμέτροι που έχουν
+μοναδικές τιμές και πραγματοποιειται
+ελεγχος πριν κάθε καταχώρηση:</p>
 
-<pre>
-curl -X PUT https:<span
-class="php-comment">//mm.sch.gr/api/units \</span>
-  -H <span
-class="php-quote">&quot;Content-Type: application/json&quot;</span> \
-  -H <span
-class="php-quote">&quot;Accept: application/json&quot;</span> \
-  -u username:password \
-  -d <span
-class="php-quote">'{&quot;mm_id&quot; : &quot;value&quot;, \
-       &quot;registry_no&quot; : &quot;value&quot;, \
-       &quot;source&quot; : &quot;value&quot;, \
-       &quot;name&quot; : &quot;value&quot;, \
-       &quot;category&quot; : &quot;value&quot;, \
-       &quot;state&quot; : &quot;value&quot;, ...... }'</span>
-</pre>
+<ul>
+	<li><strong>mm_id</strong></li>
+</ul>
 
-<div><br />
-</div>
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
 
-<p>Παράδειγμα κλήσης της μεθόδου με
-<b>JavaScript</b> :</p>
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
 
-<pre>
-&lt;script&gt;
-   <span
-class="php-keyword1">var</span> params = JSON.stringify({ <span
-class="php-quote">&quot;mm_id&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-                                 <span
-class="php-quote">&quot;registry_no&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-                                 <span
-class="php-quote">&quot;source&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-                                 <span
-class="php-quote">&quot;name&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-                                 <span
-class="php-quote">&quot;category&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-                                 <span
-class="php-quote">&quot;state&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>, ...... });
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
 
-   <span
-class="php-keyword1">var</span> http = <span
-class="php-keyword1">new</span> XMLHttpRequest();
-   http.open(<span
-class="php-quote">&quot;PUT&quot;</span>, <span
-class="php-quote">&quot;https://mm.sch.gr/api/units&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Accept&quot;</span>, <span
-class="php-quote">&quot;application/json&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-type&quot;</span>, <span
-class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-length&quot;</span>, params.length);
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
+</ul>
 
-   http.onreadystatechange = <span
-class="php-keyword1">function</span>() {
-       <span
-class="php-keyword1">if</span>(http.readyState == <span
-class="php-num">4</span> &amp;&amp; http.status == <span
-class="php-num">200</span>) {
-           alert(http.responseText);
-       }
-   }
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
 
-   http.send(params);
-&lt;/script&gt;
-</pre>
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
 
-<div><br />
-</div>
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
 
-<p>Παράδειγμα κλήσης της μεθόδου με <b>PHP</b> :</p>
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
+
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
+
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
+
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
 
 <pre>
-<span class="xlang">&lt;?php</span>
+{
+<span class="php-quote">&quot;controller&quot;</span>: <span
+class="php-quote">&quot;PutUnits&quot;</span>,
 <span
-class="php-keyword2">header</span>(<span
-class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
-
+class="php-quote">&quot;function&quot;</span>: <span
+class="php-quote">&quot;units&quot;</span>,
 <span
-class="php-var">$params</span> = <span
-class="php-keyword1">array</span>(
-     <span
-class="php-quote">&quot;mm_id&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-     <span
-class="php-quote">&quot;registry_no&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-     <span
-class="php-quote">&quot;source&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-     <span
-class="php-quote">&quot;name&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-     <span
-class="php-quote">&quot;category&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>,
-     <span
-class="php-quote">&quot;state&quot;</span> =&gt; <span
-class="php-quote">&quot;value&quot;</span>, ...... );
-
+class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;PUT&quot;</span>,
 <span
-class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
-class="php-quote">&quot;https://mm.sch.gr/api/units&quot;</span>);
-
+class="php-quote">&quot;parameters&quot;</span>: {  <span
+class="php-quote">&quot;mm_id&quot;</span>: ``, <span
+class="php-quote">&quot;registry_no&quot;</span>: ``, <span
+class="php-quote">&quot;source&quot;</span>: ``, <span
+class="php-quote">&quot;name&quot;</span>: ``, <span
+class="php-quote">&quot;special_name&quot;</span>: ``,
+                 <span
+class="php-quote">&quot;state&quot;</span>: ``, <span
+class="php-quote">&quot;region_edu_admin&quot;</span>: ``, <span
+class="php-quote">&quot;edu_admin&quot;</span>: ``, <span
+class="php-quote">&quot;implementation_entity&quot;</span>: ``,
+                 <span
+class="php-quote">&quot;transfer_area&quot;</span>: ``, <span
+class="php-quote">&quot;prefecture&quot;</span>: ``, <span
+class="php-quote">&quot;municipality&quot;</span>: ``, <span
+class="php-quote">&quot;municipality_community&quot;</span>: ``,
+                 <span
+class="php-quote">&quot;education_level&quot;</span>: ``, <span
+class="php-quote">&quot;phone_number&quot;</span>: ``, <span
+class="php-quote">&quot;email&quot;</span>: ``, <span
+class="php-quote">&quot;fax_number&quot;</span>: ``,
+                 <span
+class="php-quote">&quot;street_address&quot;</span>: ``, <span
+class="php-quote">&quot;postal_code&quot;</span>: ``, <span
+class="php-quote">&quot;tax_number&quot;</span>: ``, <span
+class="php-quote">&quot;tax_office&quot;</span>: ``,
+                 <span
+class="php-quote">&quot;area_team_number&quot;</span>: ``, <span
+class="php-quote">&quot;category&quot;</span>: ``, <span
+class="php-quote">&quot;unit_type&quot;</span>: ``, <span
+class="php-quote">&quot;operation_shift&quot;</span>: ``,
+                 <span
+class="php-quote">&quot;legal_character&quot;</span>: ``, <span
+class="php-quote">&quot;orientation_type&quot;</span>: ``, <span
+class="php-quote">&quot;special_type&quot;</span>: ``,
+                 <span
+class="php-quote">&quot;levels_count&quot;</span>: ``, <span
+class="php-quote">&quot;groups_count&quot;</span>: ``, <span
+class="php-quote">&quot;students_count&quot;</span>: ``, <span
+class="php-quote">&quot;latitude&quot;</span>: ``,
+                 <span
+class="php-quote">&quot;longitude&quot;</span>: ``, <span
+class="php-quote">&quot;positioning&quot;</span>: ``, <span
+class="php-quote">&quot;creation_fek&quot;</span>: ``, <span
+class="php-quote">&quot;last_update&quot;</span>: ``,
+                 <span
+class="php-quote">&quot;last_sync&quot;</span>: ``, <span
+class="php-quote">&quot;comments&quot;</span>: `` },
 <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+class="php-quote">&quot;mm_id&quot;</span>: ``,
 <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_USERPWD, <span
-class="php-quote">&quot;username:password&quot;</span>);
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
 <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
-class="php-quote">&quot;PUT&quot;</span>);
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_POSTFIELDS, <span
-class="php-keyword2">json_encode</span>( <span
-class="php-var">$params</span> ));
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
-class="php-keyword1">true</span>);
-
-<span class="php-var">$data</span> = <span
-class="php-keyword2">json_decode</span>( <span
-class="php-keyword2">curl_exec</span>(<span
-class="php-var">$curl</span>) );
-<span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
-class="php-keyword2">var_dump</span>( <span
-class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
-<span
-class="xlang">?&gt;</span>
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;[PUT][units]:success&quot;</span>
+}
 </pre>
-
-<div><br />
-</div>
-
-<p>Παράδειγμα κλήσης της συνάρτησης με
-<b>Ajax</b> :</p>
-
-<pre>
-&lt;script&gt;
-   <span class="php-var">$</span>.ajax({
-       type: <span
-class="php-quote">'PUT'</span>,
-       url: <span
-class="php-quote">'https://mm.sch.gr/api/units'</span>,
-       dataType: <span
-class="php-quote">&quot;json&quot;</span>,
-       data: {
-           <span
-class="php-quote">&quot;mm_id&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;registry_no&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;source&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;name&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;category&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>,
-           <span
-class="php-quote">&quot;state&quot;</span> : <span
-class="php-quote">&quot;value&quot;</span>, ......
-       },
-       beforeSend: <span
-class="php-keyword1">function</span>(req) {
-           req.setRequestHeader(<span
-class="php-quote">'Authorization'</span>, btoa(<span
-class="php-quote">'username'</span> + <span
-class="php-quote">&quot;:&quot;</span> + <span
-class="php-quote">'password'</span>));
-       },
-       success: <span
-class="php-keyword1">function</span>(data){
-           console.<span
-class="php-keyword2">log</span>(data);
-       }
-   });
-&lt;/script&gt;
-</pre>
-
-<div><br />
-</div>
 
 	</div>
 
@@ -342,8 +283,20 @@ class="php-keyword2">log</span>(data);
 		<td class="value"><code><var>$mm_id</var></code></td>
 		<td>
 			 Κωδικός ΜΜ<br />
-Ο Κωδικός ΜΜ της Μονάδας<br />
-Το πεδίο είναι υποχρεωτικό
+<br />
+Ο Κωδικός ΜΜ<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Κωδικός ΜΜ : <code><a href="function-GetUnits.html">GetUnits()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικός ΜΜ<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$registry_no">
@@ -351,20 +304,38 @@ class="php-keyword2">log</span>(data);
 		<td class="value"><code><var>$registry_no</var></code></td>
 		<td>
 			 Κωδικός ΥΠΕΠΘ<br />
+<br />
 Ο Κωδικός ΥΠΕΠΘ της Μονάδας<br />
-Το πεδίο είναι υποχρεωτικό
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$source">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$source</var></code></td>
 		<td>
-			 Πρωτογενής Πηγή<br />
-Η Πρωτογενής Πηγή της Μονάδας (Λεξικό : <code><a href="function-GetSources.html">GetSources()</a></code>)<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία<br />
-Το πεδίο είναι υποχρεωτικό
+			 Όνομα ή ID Πρωτογενής Πηγή<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Πρωτογενής
+Πηγής<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Όνομα ή ID Ειδικότητας Εργαζόμενου : <code><a href="function-GetSources.html">GetSources()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Πρωτογενής Πηγής<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Πρωτογενής Πηγής<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$name">
@@ -372,200 +343,355 @@ class="php-keyword2">log</span>(data);
 		<td class="value"><code><var>$name</var></code></td>
 		<td>
 			 Ονομασία<br />
+<br />
 Το Όνομα της Μονάδας<br />
-Το πεδίο είναι υποχρεωτικό
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$special_name">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$special_name</var></code></td>
 		<td>
-			$category Κατηγορία<br />
-Η Κατηγορία της Μονάδας (Λεξικό : <code><a href="function-GetCategories.html">GetCategories()</a></code>)<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία<br />
-Το πεδίο είναι υποχρεωτικό
+			 Ειδική Ονομασία<br />
+<br />
+Το Προσωνύμιο της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$state">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$state</var></code></td>
 		<td>
-			 Κατάσταση<br />
-Η Κατάσταση της Μονάδας (Λεξικό : <code><a href="function-GetStates.html">GetStates()</a></code>)<br
-/>
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία<br />
-Το πεδίο είναι υποχρεωτικό
+			 Όνομα ή ID Λειτουργικής Καταστάσης<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Λειτουργικής
+Καταστάσης<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Όνομα ή ID Λειτουργικής Καταστάσης : <code><a href="function-GetStates.html">GetStates()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID της Λειτουργικής Καταστάσης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα της Λειτουργικής Καταστάσης<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$region_edu_admin">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$region_edu_admin</var></code></td>
 		<td>
-			$education_level Βαθμίδα<br />
-Το Επίπεδο Εκπαίδευσης της μονάδας (Λεξικό :
-<code><a href="function-GetEducationLevels.html">GetEducationLevels()</a></code>)<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία<br />
-Το πεδίο είναι υποχρεωτικό
+			 Όνομα ή ID Περιφέρειας<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Περιφέρειας<br />
+Όνομα ή ID Περιφέρειας : <code><a href="function-GetRegionEduAdmins.html">GetRegionEduAdmins()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Περιφέρειας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Περιφέρειας<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$edu_admin">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$edu_admin</var></code></td>
 		<td>
-			$special_name Ειδική Ονομασία<br />
-Το Προσωνύμιο της Μονάδας
+			 Όνομα ή ID Διεύθυνσης Εκπαίδευσης<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Διεύθυνσης
+Εκπαίδευσης<br />
+Όνομα ή ID Διεύθυνσης Εκπαίδευσης : <code><a href="function-GetEduAdmins.html">GetEduAdmins()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Διεύθυνσης Εκπαίδευσης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Διεύθυνσης Εκπαίδευσης<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$implementation_entity">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$implementation_entity</var></code></td>
 		<td>
-			$region_edu_admin Περιφέρεια<br />
-Η Περιφέρεια της Μονάδας (Λεξικό : <code><a href="function-GetRegionEduAdmins.html">GetRegionEduAdmins()</a></code>)<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία
+			 Όνομα ή ID Φορέα Υλοποίησης<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Φορέα
+Υλοποίησης<br />
+Όνομα ή ID Φορέα Υλοποίησης : <code><a href="function-GetImplementationEntities.html">GetImplementationEntities()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Φορέα Υλοποίησης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Περιφέρειας<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$transfer_area">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$transfer_area</var></code></td>
 		<td>
-			$edu_admin Διεύθυνση Εκπαίδευσης<br />
-Η Διεύθυνση Εκπαίδευσης της Μονάδας (Λεξικό
-: <code><a href="function-GetEduAdmins.html">GetEduAdmins()</a></code>)<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία
+			 Όνομα ή ID Περιοχής Μετάθεσης<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Περιοχής
+Μετάθεσης<br />
+Όνομα ή ID Περιοχής Μετάθεσης : <code><a href="function-GetTransferAreas.html">GetTransferAreas()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Περιοχής Μετάθεσης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Περιοχής Μετάθεσης<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$prefecture">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$prefecture</var></code></td>
 		<td>
-			$implementation_entity Φοράς Υλοποίησης<br />
-Ο Φοράς Υλοποίησης της μονάδας (Λεξικό : <code><a href="function-GetImplementationEntities.html">GetImplementationEntities()</a></code>)<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία
+			 Όνομα ή ID Περιφερειακής Ενότητας<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Περιφερειακής
+Ενότητας<br />
+Όνομα ή ID Περιφερειακής Ενότητας : <code><a href="function-GetPrefectures.html">GetPrefectures()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Περιφερειακής Ενότητας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Περιφερειακής Ενότητας<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$municipality">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$municipality</var></code></td>
 		<td>
-			$transfer_area Περιοχή Μετάθεσης<br />
-Η Περιοχή Μετάθεσης της Μονάδας (Λεξικό : <code><a href="function-GetTransferAreas.html">GetTransferAreas()</a></code>)<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία
+			 Όνομα ή ID Δήμου ΟΤΑ<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Δήμου ΟΤΑ<br />
+Όνομα ή ID Δήμου ΟΤΑ : <code><a href="function-GetMunicipalities.html">GetMunicipalities()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Δήμου ΟΤΑ<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Δήμου ΟΤΑ<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$municipality_community">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$municipality_community</var></code></td>
 		<td>
-			$municipality Δήμος ΟΤΑ<br />
-Ο Δήμος ΟΤΑ της Μονάδας (Λεξικό : <code><a href="function-GetMunicipalities.html">GetMunicipalities()</a></code>)<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία
+			 Όνομα ή ID Δημοτικής Ενότητας<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Δημοτικής
+Ενότητας<br />
+Όνομα ή ID Δήμου ΟΤΑ : <code><a href="function-GetMunicipalityCommunities.html">GetMunicipalityCommunities()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Δημοτικής Ενότητας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Δημοτικής Ενότητας<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$education_level">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$education_level</var></code></td>
 		<td>
-			$municipality_community Δημοτική Ενότητα<br />
-Η Δημοτική Ενότητα της Μονάδας (Λεξικό : <code><a href="function-GetMunicipalityCommunities.html">GetMunicipalityCommunities()</a></code>)<br />
-Η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία
+			 Όνομα ή ID Επίπεδου Εκπαίδευσης<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Επίπεδου
+Εκπαίδευσης<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Όνομα ή ID Επίπεδου Εκπαίδευσης : <code><a href="function-GetEducationLevels.html">GetEducationLevels()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Επίπεδου Εκπαίδευσης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Επίπεδου Εκπαίδευσης<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$phone_number">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$phone_number</var></code></td>
 		<td>
-			$prefecture Νομός<br />
-Ο Νομός της Μονάδας (Λεξικό : <code><a href="function-GetPrefectures.html">GetPrefectures()</a></code>)<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία
+			 Τηλέφωνο Επικοινωνίας<br />
+<br />
+Το Τηλέφωνο Επικοινωνίας της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
 		</td>
 	</tr>
 	<tr id="$email">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$email</var></code></td>
 		<td>
-			$unit_type Τύπος Μονάδας<br />
-Ο Τύπος της Μονάδας (Λεξικό : <code><a href="function-GetUnitTypes.html">GetUnitTypes()</a></code>)<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία<br />
-Το πεδίο είναι υποχρεωτικό
+			 Ηλεκτρονική Αλληλογραφία<br />
+<br />
+Η Ηλεκτρονική Αλληλογραφία της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$fax_number">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$fax_number</var></code></td>
 		<td>
-			$operation_shift Ωράριο Λειτουργίας<br />
-Το Ωράριο Λειτουργίας της Μονάδας (Λεξικό :
-<code><a href="function-GetOperationShifts.html">GetOperationShifts()</a></code>)<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία
+			 Αριθμός FAX<br />
+<br />
+Ο Αριθμός Τηλεομοιοτυπίας (φαξ) της
+Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$street_address">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$street_address</var></code></td>
 		<td>
-			$legal_character Νομικός Χαρακτήρας<br />
-Ο Νομικός Χαρακτήρας της Μονάδας (Λεξικό :
-<code><a href="function-GetLegalCharacters.html">GetLegalCharacters()</a></code>)<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία
+			 Οδός, Αριθμός<br />
+<br />
+Η Διεύθυνση (Οδός και Αριθμός) της Μονάδας<br
+/>
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$postal_code">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$postal_code</var></code></td>
 		<td>
-			$orientation_type Προσανατολισμός<br />
-Ο Σχολικός Προσανατολισμός της Μονάδας
-(Λεξικό : <code><a href="function-GetOrientationTypes.html">GetOrientationTypes()</a></code>)<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία
+			 Ταχυδρομικός Κώδικας<br />
+<br />
+Ο Ταχυδρομικός Κώδικας της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
 		</td>
 	</tr>
 	<tr id="$tax_number">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$tax_number</var></code></td>
 		<td>
-			$special_type Ειδικός Χαρακτηρισμός<br />
-Καθορίζει αν η Μονάδα έχει Ειδικό
-Χαρακτηρισμό (Λεξικό : <code><a href="function-GetSpecialTypes.html">GetSpecialTypes()</a></code>)<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία
+			 Αριθμός Φορολογικού Μητρώου<br />
+<br />
+Ο Αριθμός Φορολογικού Μητρώου της Μονάδας<br
+/>
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$tax_office">
-		<td class="name"><code>integer</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$tax_office</var></code></td>
 		<td>
-			$postal_code Ταχυδρομικός Κώδικας<br />
-Ο Ταχυδρομικός Κώδικας της Μονάδας
+			 Όνομα ή ID Δ.Ο.Υ (Εφορίας)<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Δ.Ο.Υ (Εφορίας)<br />
+Όνομα ή ID Δ.Ο.Υ (Εφορίας) : <code><a href="function-GetTaxOffices.html">GetTaxOffices()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Δ.Ο.Υ (Εφορίας)<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Δ.Ο.Υ (Εφορίας)<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$area_team_number">
@@ -573,139 +699,277 @@ class="php-keyword2">log</span>(data);
 		<td class="value"><code><var>$area_team_number</var></code></td>
 		<td>
 			 Ομάδα Σχολείων<br />
-Η Ομάδα Σχολείων της Μονάδας (1η έως 40η)
+<br />
+Η Ομάδα Σχολείων της Μονάδας (1η έως 40η)<br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
 		</td>
 	</tr>
 	<tr id="$category">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$category</var></code></td>
 		<td>
-			$email Ηλεκτρονική Αλληλογραφία<br />
-Η Ηλεκτρονική Αλληλογραφία της Μονάδας
+			 Όνομα ή ID Κατηγορίας<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Κατηγορίας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Όνομα ή ID Κατηγορίας : <code><a href="function-GetCategories.html">GetCategories()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Κατηγορίας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Κατηγορίας<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$unit_type">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$unit_type</var></code></td>
 		<td>
-			$fax_number Αριθμός FAX<br />
-Ο Αριθμός Τηλεομοιοτυπίας (φαξ) της Μονάδας
+			 Όνομα ή ID Τύπου Μονάδας<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Τύπου Μονάδας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
+Όνομα ή ID Τύπου Μονάδας : <code><a href="function-GetUnitTypes.html">GetUnitTypes()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID του Τύπου Μονάδας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα του Τύπου Μονάδας<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$operation_shift">
-		<td class="name"><code>integer</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$operation_shift</var></code></td>
 		<td>
-			$levels_count Πλήθος Τάξεων<br />
-Το Πλήθος των Τάξεων της Μονάδας
+			 Όνομα ή ID Ωράριου Λειτουργίας<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Ωράριου
+Λειτουργίας<br />
+Όνομα ή ID Ωράριου Λειτουργίας : <code><a href="function-GetOperationShifts.html">GetOperationShifts()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Ωράριου Λειτουργίας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Ωράριου Λειτουργίας<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$legal_character">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$legal_character</var></code></td>
 		<td>
-			$street_address Οδός, Αριθμός<br />
-Η Διεύθυνση (Οδός και Αριθμός) της Μονάδας
+			 Όνομα ή ID Νομικού Χαρακτήρα Μονάδας<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Νομικού Χαρακτήρα
+Μονάδας<br />
+Όνομα ή ID Νομικού Χαρακτήρα Μονάδας : <code><a href="function-GetLegalCharacters.html">GetLegalCharacters()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Νομικού Χαρακτήρα Μονάδας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Νομικού Χαρακτήρα Μονάδας<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$orientation_type">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$orientation_type</var></code></td>
 		<td>
-			$phone_number Τηλέφωνο Επικοινωνίας<br />
-Το Τηλέφωνο Επικοινωνίας της Μονάδας
+			 Όνομα ή ID Προσανατολισμού<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Προσανατολισμού<br
+/>
+Όνομα ή ID Προσανατολισμού : <code><a href="function-GetOrientationTypes.html">GetOrientationTypes()</a></code><br
+/>
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Προσανατολισμού<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Προσανατολισμού<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$special_type">
-		<td class="name"><code>integer</code></td>
+		<td class="name"><code>integer|string</code></td>
 		<td class="value"><code><var>$special_type</var></code></td>
 		<td>
-			$students_sum Πλήθος Μαθητών<br />
-Το Πλήθος των Μαθητών της Μονάδας
+			 Όνομα ή ID Ειδικού Τύπου Μονάδας<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Ειδικού Τύπου
+Μονάδας<br />
+Όνομα ή ID Ειδικού Τύπου Μονάδας : <code><a href="function-GetSpecialTypes.html">GetSpecialTypes()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+integer|string
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ID Ειδικού Τύπου Μονάδας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Ειδικού Τύπου Μονάδας<br />
+	Η αναζήτηση στο Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$levels_count">
 		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$levels_count</var></code></td>
 		<td>
-			$groups_count Πλήθος Τμημάτων<br />
-Το Πλήθος των Τμημάτων της Μονάδας
+			 Πλήθος Τάξεω<br />
+<br />
+Το Πλήθος των Τάξεων της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$groups_count">
-		<td class="name"><code>datetime</code></td>
+		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$groups_count</var></code></td>
 		<td>
-			$last_update Ημερομηνία Τελευταίας Ενημέρωσης<br
-/>
-Η Ημερομηνία Τελευταίας Ενημέρωσης την
-Μονάδας
+			 Πλήθος Τμημάτων<br />
+<br />
+Το Πλήθος των Τμημάτων της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
 		</td>
 	</tr>
 	<tr id="$students_count">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$students_count</var></code></td>
 		<td>
-			$tax_number Αριθμός Φορολογικού Μητρώου<br />
-Ο Αριθμός Φορολογικού Μητρώου της Μονάδας
+			 Πλήθος Μαθητών<br />
+<br />
+Το Πλήθος των Μαθητών της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
 		</td>
 	</tr>
 	<tr id="$latitude">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$latitude</var></code></td>
 		<td>
-			$tax_office Δ.Ο.Υ.<br />
-Η Δ.Ο.Υ. της Μονάδας<br />
-Αν η τιμή της παραμέτρου είναι αριθμητική η
-αναζήτηση γίνεται με τον κωδικό αλλιώς με
-την ονομασία
+			 Γεωγραφικό Πλάτος<br />
+<br />
+Το Γεωγραφικό Πλάτος της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$longitude">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$longitude</var></code></td>
 		<td>
-			$comments Παρατηρήσεις / Σχόλια<br />
-Παρατηρήσεις / Σχόλια σχετικά με τη Μονάδα
+			 Γεωγραφικό Μήκος<br />
+<br />
+Το Γεωγραφικό Μήκος της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$positioning">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$positioning</var></code></td>
 		<td>
-			$latitude Γεωγραφικό Πλάτος<br />
-Το Γεωγραφικό Πλάτος της Μονάδας
+			 Κτηριακή Θέση<br />
+<br />
+Η Κτηριακή Θέση της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$creation_fek">
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$creation_fek</var></code></td>
 		<td>
-			$longitude Γεωγραφικό Μήκος<br />
-Το Γεωγραφικό Μήκος της Μονάδας
+			 Φ.Ε.Κ.<br />
+<br />
+Το Φ.Ε.Κ. (Δημιουργίας) της Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	<tr id="$last_update">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>datetime</code></td>
 		<td class="value"><code><var>$last_update</var></code></td>
 		<td>
-			$positioning Κτηριακή Θέση<br />
-Η Κτηριακή Θέση της Μονάδας
+			 Ημερομηνία Τελευταίας Ενημέρωσης<br />
+<br />
+Η Ημερομηνία Τελευταίας Ενημέρωσης την
+Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι : datetime
 		</td>
 	</tr>
 	<tr id="$last_sync">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>datetime</code></td>
 		<td class="value"><code><var>$last_sync</var></code></td>
 		<td>
-			$creation_fek Φ.Ε.Κ.<br />
-Το Φ.Ε.Κ. (Δημιουργίας) της Μονάδας
+			 Ημερομηνία Τελευταίας Συγχρονισμού<br />
+<br />
+Η Ημερομηνία Τελευταίας Συγχρονισμού την
+Μονάδας<br />
+Η τιμή της παραμέτρου μπορεί να είναι : datetime
 		</td>
 	</tr>
 	<tr id="$comments">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$comments</var></code></td>
 		<td>
-			
+			 Παρατηρήσεις / Σχόλια<br />
+<br />
+Παρατηρήσεις / Σχόλια σχετικά με τη Μονάδα<br
+/>
+Η τιμή της παραμέτρου μπορεί να είναι : string
 		</td>
 	</tr>
 	</table>
@@ -714,23 +978,25 @@ class="php-keyword2">log</span>(data);
 	<caption>Return value summary</caption>
 	<tr>
 		<td class="name"><code>
-			Array&lt;JSON&gt;
+			Objects&lt;JSON&gt;
 		</code></td>
 		<td>
-			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
-:<br />
-
-<ul>
-	<li>sting : <b>method</b> : Το Όνομα της μεθόδου</li>
-
-	<li>integer : <b>status</b> : Ο Κωδικός της κατάστασης</li>
-
-	<li>string : <b>message</b> : Μήνυμα περιγραφής της
-	κατάστασης</li>
-
-	<li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ της μονάδας</li>
-</ul>
-
+			Επιστρέφει τα παρακάτω JSON objects :<br />
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+array : <b>parameters</b> : Οι παράμετροι που δίνει ο
+χρήστης<br />
+integer : <b>mm_id</b> : Ο Κωδικός ID της Μονάδας που
+ενημερώθηκε<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
 		</td>
 	</tr>
 	</table>
@@ -739,98 +1005,65 @@ class="php-keyword2">log</span>(data);
 	<caption>Thrown exceptions summary</caption>
 	<tr>
 		<td class="name"><code>
-			MissingMMIdValue
+			MissingUnitMMIDParam
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingMMIdValue">ExceptionMessages::<b>MissingMMIdValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingUnitMMIDParam">ExceptionMessages::<b>MissingUnitMMIDParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitMMIDParam">ExceptionCodes::<b>MissingUnitMMIDParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidMMIdType
+			MissingUnitMMIDValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidMMIdType">ExceptionMessages::<b>InvalidMMIdType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingUnitMMIDValue">ExceptionMessages::<b>MissingUnitMMIDValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitMMIDValue">ExceptionCodes::<b>MissingUnitMMIDValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidMMIdValue
+			InvalidUnitMMIDArray
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidMMIdValue">ExceptionMessages::<b>InvalidMMIdValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitMMIDArray">ExceptionMessages::<b>InvalidUnitMMIDArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitMMIDArray">ExceptionCodes::<b>InvalidUnitMMIDArray</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			MissingUnitNameValue
+			InvalidUnitMMIDType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingUnitNameValue">ExceptionMessages::<b>MissingUnitNameValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitMMIDType">ExceptionMessages::<b>InvalidUnitMMIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitMMIDType">ExceptionCodes::<b>InvalidUnitMMIDType</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			MissingCategoryValue
+			InvalidUnitValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingCategoryValue">ExceptionMessages::<b>MissingCategoryValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitValue">ExceptionMessages::<b>InvalidUnitValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitValue">ExceptionCodes::<b>InvalidUnitValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidCategoryValue
+			DuplicatedUnitUniqueValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidCategoryValue">ExceptionMessages::<b>InvalidCategoryValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#DuplicatedUnitUniqueValue">ExceptionMessages::<b>DuplicatedUnitUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedUnitUniqueValue">ExceptionCodes::<b>DuplicatedUnitUniqueValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			MissingStateValue
+			MissingUnitRegistryNoParam
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingStateValue">ExceptionMessages::<b>MissingStateValue</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidStateValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidStateValue">ExceptionMessages::<b>InvalidStateValue</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			MissingSourceValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#MissingSourceValue">ExceptionMessages::<b>MissingSourceValue</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidSourceValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidSourceValue">ExceptionMessages::<b>InvalidSourceValue</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			MissingUnitTypeValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#MissingUnitTypeValue">ExceptionMessages::<b>MissingUnitTypeValue</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidUnitTypeValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidUnitTypeValue">ExceptionMessages::<b>InvalidUnitTypeValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingUnitRegistryNoParam">ExceptionMessages::<b>MissingUnitRegistryNoParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitRegistryNoParam">ExceptionCodes::<b>MissingUnitRegistryNoParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -838,7 +1071,485 @@ class="php-keyword2">log</span>(data);
 			MissingUnitRegistryNoValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingUnitRegistryNoValue">ExceptionMessages::<b>MissingUnitRegistryNoValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingUnitRegistryNoValue">ExceptionMessages::<b>MissingUnitRegistryNoValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitRegistryNoValue">ExceptionCodes::<b>MissingUnitRegistryNoValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitRegistryNoType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitRegistryNoType">ExceptionMessages::<b>InvalidUnitRegistryNoType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitRegistryNoType">ExceptionCodes::<b>InvalidUnitRegistryNoType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingSourceParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingSourceParam">ExceptionMessages::<b>MissingSourceParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingSourceParam">ExceptionCodes::<b>MissingSourceParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingSourceValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingSourceValue">ExceptionMessages::<b>MissingSourceValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingSourceValue">ExceptionCodes::<b>MissingSourceValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSourceArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSourceArray">ExceptionMessages::<b>InvalidSourceArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidSourceArray">ExceptionCodes::<b>InvalidSourceArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSourceType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSourceType">ExceptionMessages::<b>InvalidSourceType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidSourceType">ExceptionCodes::<b>InvalidSourceType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedSourceUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedSourceUniqueValue">ExceptionMessages::<b>DuplicatedSourceUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedSourceUniqueValue">ExceptionCodes::<b>DuplicatedSourceUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitNameParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitNameParam">ExceptionMessages::<b>MissingUnitNameParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitNameParam">ExceptionCodes::<b>MissingUnitNameParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitNameValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitNameValue">ExceptionMessages::<b>MissingUnitNameValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitNameValue">ExceptionCodes::<b>MissingUnitNameValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitNameType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNameType">ExceptionMessages::<b>InvalidUnitNameType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNameType">ExceptionCodes::<b>InvalidUnitNameType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitSpecialNameParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitSpecialNameParam">ExceptionMessages::<b>MissingUnitSpecialNameParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitSpecialNameParam">ExceptionCodes::<b>MissingUnitSpecialNameParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitSpecialNameValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitSpecialNameValue">ExceptionMessages::<b>MissingUnitSpecialNameValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitSpecialNameValue">ExceptionCodes::<b>MissingUnitSpecialNameValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitSpecialNameType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitSpecialNameType">ExceptionMessages::<b>InvalidUnitSpecialNameType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitSpecialNameType">ExceptionCodes::<b>InvalidUnitSpecialNameType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingStateParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingSourceParam">ExceptionMessages::<b>MissingSourceParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingSourceParam">ExceptionCodes::<b>MissingSourceParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingStateValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingSourceValue">ExceptionMessages::<b>MissingSourceValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingSourceValue">ExceptionCodes::<b>MissingSourceValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidStateArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSourceArray">ExceptionMessages::<b>InvalidSourceArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidSourceArray">ExceptionCodes::<b>InvalidSourceArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidStateType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSourceType">ExceptionMessages::<b>InvalidSourceType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidSourceType">ExceptionCodes::<b>InvalidSourceType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedStateUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedSourceUniqueValue">ExceptionMessages::<b>DuplicatedSourceUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedSourceUniqueValue">ExceptionCodes::<b>DuplicatedSourceUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRegionEduAdminParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRegionEduAdminParam">ExceptionMessages::<b>MissingRegionEduAdminParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRegionEduAdminParam">ExceptionCodes::<b>MissingRegionEduAdminParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingRegionEduAdminValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingRegionEduAdminValue">ExceptionMessages::<b>MissingRegionEduAdminValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingRegionEduAdminValue">ExceptionCodes::<b>MissingRegionEduAdminValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRegionEduAdminArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRegionEduAdminArray">ExceptionMessages::<b>InvalidRegionEduAdminArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRegionEduAdminArray">ExceptionCodes::<b>InvalidRegionEduAdminArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRegionEduAdminType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRegionEduAdminType">ExceptionMessages::<b>InvalidRegionEduAdminType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRegionEduAdminType">ExceptionCodes::<b>InvalidRegionEduAdminType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedRegionEduAdminUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedRegionEduAdminUniqueValue">ExceptionMessages::<b>DuplicatedRegionEduAdminUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedRegionEduAdminUniqueValue">ExceptionCodes::<b>DuplicatedRegionEduAdminUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingEduAdminParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingEduAdminParam">ExceptionMessages::<b>MissingEduAdminParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingEduAdminParam">ExceptionCodes::<b>MissingEduAdminParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingEduAdminValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingEduAdminValue">ExceptionMessages::<b>MissingEduAdminValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingEduAdminValue">ExceptionCodes::<b>MissingEduAdminValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEduAdminArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEduAdminArray">ExceptionMessages::<b>InvalidEduAdminArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEduAdminArray">ExceptionCodes::<b>InvalidEduAdminArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEduAdminType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEduAdminType">ExceptionMessages::<b>InvalidEduAdminType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEduAdminType">ExceptionCodes::<b>InvalidEduAdminType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedEduAdminUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedEduAdminUniqueValue">ExceptionMessages::<b>DuplicatedEduAdminUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedEduAdminUniqueValue">ExceptionCodes::<b>DuplicatedEduAdminUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityParam">ExceptionMessages::<b>MissingImplementationEntityParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityParam">ExceptionCodes::<b>MissingImplementationEntityParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingImplementationEntityValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingImplementationEntityValue">ExceptionMessages::<b>MissingImplementationEntityValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingImplementationEntityValue">ExceptionCodes::<b>MissingImplementationEntityValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidImplementationEntityArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityArray">ExceptionMessages::<b>InvalidImplementationEntityArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidImplementationEntityArray">ExceptionCodes::<b>InvalidImplementationEntityArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidImplementationEntityType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityType">ExceptionMessages::<b>InvalidImplementationEntityType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidImplementationEntityType">ExceptionCodes::<b>InvalidImplementationEntityType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedImplementationEntityUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedImplementationEntityUniqueValue">ExceptionMessages::<b>DuplicatedImplementationEntityUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedImplementationEntityUniqueValue">ExceptionCodes::<b>DuplicatedImplementationEntityUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingTransferAreaParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingTransferAreaParam">ExceptionMessages::<b>MissingTransferAreaParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingTransferAreaParam">ExceptionCodes::<b>MissingTransferAreaParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingTransferAreaValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingTransferAreaValue">ExceptionMessages::<b>MissingTransferAreaValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingTransferAreaValue">ExceptionCodes::<b>MissingTransferAreaValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidTransferAreaArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidTransferAreaArray">ExceptionMessages::<b>InvalidTransferAreaArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidTransferAreaArray">ExceptionCodes::<b>InvalidTransferAreaArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidTransferAreaType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidTransferAreaType">ExceptionMessages::<b>InvalidTransferAreaType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidTransferAreaType">ExceptionCodes::<b>InvalidTransferAreaType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedTransferAreaUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedTransferAreaUniqueValue">ExceptionMessages::<b>DuplicatedTransferAreaUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedTransferAreaUniqueValue">ExceptionCodes::<b>DuplicatedTransferAreaUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingPrefectureParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingPrefectureParam">ExceptionMessages::<b>MissingPrefectureParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingPrefectureParam">ExceptionCodes::<b>MissingPrefectureParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingPrefectureValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingPrefectureValue">ExceptionMessages::<b>MissingPrefectureValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingPrefectureValue">ExceptionCodes::<b>MissingPrefectureValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPrefectureArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPrefectureArray">ExceptionMessages::<b>InvalidPrefectureArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidPrefectureArray">ExceptionCodes::<b>InvalidPrefectureArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPrefectureType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPrefectureType">ExceptionMessages::<b>InvalidPrefectureType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidPrefectureType">ExceptionCodes::<b>InvalidPrefectureType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedPrefectureUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedPrefectureUniqueValue">ExceptionMessages::<b>DuplicatedPrefectureUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedPrefectureUniqueValue">ExceptionCodes::<b>DuplicatedPrefectureUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingMunicipalityParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingMunicipalityParam">ExceptionMessages::<b>MissingMunicipalityParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingMunicipalityParam">ExceptionCodes::<b>MissingMunicipalityParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingMunicipalityValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingMunicipalityValue">ExceptionMessages::<b>MissingMunicipalityValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingMunicipalityValue">ExceptionCodes::<b>MissingMunicipalityValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMunicipalityArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityArray">ExceptionMessages::<b>InvalidMunicipalityArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidMunicipalityArray">ExceptionCodes::<b>InvalidMunicipalityArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMunicipalityType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityType">ExceptionMessages::<b>InvalidMunicipalityType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidMunicipalityType">ExceptionCodes::<b>InvalidMunicipalityType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedMunicipalityUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedMunicipalityUniqueValue">ExceptionMessages::<b>DuplicatedMunicipalityUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedMunicipalityUniqueValue">ExceptionCodes::<b>DuplicatedMunicipalityUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingMunicipalityCommunityParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingMunicipalityCommunityParam">ExceptionMessages::<b>MissingMunicipalityCommunityParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingMunicipalityCommunityParam">ExceptionCodes::<b>MissingMunicipalityCommunityParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingMunicipalityCommunityValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingMunicipalityCommunityValue">ExceptionMessages::<b>MissingMunicipalityCommunityValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingMunicipalityCommunityValue">ExceptionCodes::<b>MissingMunicipalityCommunityValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMunicipalityCommunityArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityCommunityArray">ExceptionMessages::<b>InvalidMunicipalityCommunityArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidMunicipalityCommunityArray">ExceptionCodes::<b>InvalidMunicipalityCommunityArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMunicipalityCommunityType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityCommunityType">ExceptionMessages::<b>InvalidMunicipalityCommunityType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidMunicipalityCommunityType">ExceptionCodes::<b>InvalidMunicipalityCommunityType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedMunicipalityCommunityUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedMunicipalityCommunityUniqueValue">ExceptionMessages::<b>DuplicatedMunicipalityCommunityUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedMunicipalityCommunityUniqueValue">ExceptionCodes::<b>DuplicatedMunicipalityCommunityUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingEducationLevelParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingEducationLevelParam">ExceptionMessages::<b>MissingEducationLevelParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingEducationLevelParam">ExceptionCodes::<b>MissingEducationLevelParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -846,111 +1557,719 @@ class="php-keyword2">log</span>(data);
 			MissingEducationLevelValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingEducationLevelValue">ExceptionMessages::<b>MissingEducationLevelValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingEducationLevelValue">ExceptionMessages::<b>MissingEducationLevelValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingEducationLevelValue">ExceptionCodes::<b>MissingEducationLevelValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidEducationLevelValue
+			InvalidEducationLevelArray
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidEducationLevelValue">ExceptionMessages::<b>InvalidEducationLevelValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidEducationLevelArray">ExceptionMessages::<b>InvalidEducationLevelArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEducationLevelArray">ExceptionCodes::<b>InvalidEducationLevelArray</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidRegionEduAdminValue
+			InvalidEducationLevelType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidRegionEduAdminValue">ExceptionMessages::<b>InvalidRegionEduAdminValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidEducationLevelType">ExceptionMessages::<b>InvalidEducationLevelType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEducationLevelType">ExceptionCodes::<b>InvalidEducationLevelType</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidEduAdminValue
+			DuplicatedEducationLevelUniqueValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidEduAdminValue">ExceptionMessages::<b>InvalidEduAdminValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#DuplicatedEducationLevelUniqueValue">ExceptionMessages::<b>DuplicatedEducationLevelUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedEducationLevelUniqueValue">ExceptionCodes::<b>DuplicatedEducationLevelUniqueValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidImplementationEntityValue
+			MissingUnitPhoneNumberParam
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityValue">ExceptionMessages::<b>InvalidImplementationEntityValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingUnitPhoneNumberParam">ExceptionMessages::<b>MissingUnitPhoneNumberParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitPhoneNumberParam">ExceptionCodes::<b>MissingUnitPhoneNumberParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidTransferAreaValue
+			MissingUnitPhoneNumberValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidTransferAreaValue">ExceptionMessages::<b>InvalidTransferAreaValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingUnitPhoneNumberValue">ExceptionMessages::<b>MissingUnitPhoneNumberValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitPhoneNumberValue">ExceptionCodes::<b>MissingUnitPhoneNumberValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidMunicipalityValue
+			InvalidUnitPhoneNumberType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityValue">ExceptionMessages::<b>InvalidMunicipalityValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitPhoneNumberType">ExceptionMessages::<b>InvalidUnitPhoneNumberType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitPhoneNumberType">ExceptionCodes::<b>InvalidUnitPhoneNumberType</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidMunicipalityCommunityValue
+			MissingUnitEmailParam
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityCommunityValue">ExceptionMessages::<b>InvalidMunicipalityCommunityValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingUnitEmailParam">ExceptionMessages::<b>MissingUnitEmailParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitEmailParam">ExceptionCodes::<b>MissingUnitEmailParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidPrefectureValue
+			MissingUnitEmailValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPrefectureValue">ExceptionMessages::<b>InvalidPrefectureValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingUnitEmailValue">ExceptionMessages::<b>MissingUnitEmailValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitEmailValue">ExceptionCodes::<b>MissingUnitEmailValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidOperationShiftValue
+			InvalidUnitEmailType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidOperationShiftValue">ExceptionMessages::<b>InvalidOperationShiftValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitEmailType">ExceptionMessages::<b>InvalidUnitEmailType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitEmailType">ExceptionCodes::<b>InvalidUnitEmailType</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidLegalCharacterValue
+			MissingUnitFaxNumberParam
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidLegalCharacterValue">ExceptionMessages::<b>InvalidLegalCharacterValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingUnitFaxNumberParam">ExceptionMessages::<b>MissingUnitFaxNumberParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitFaxNumberParam">ExceptionCodes::<b>MissingUnitFaxNumberParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidOrientationTypeValue
+			MissingUnitFaxNumberValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidOrientationTypeValue">ExceptionMessages::<b>InvalidOrientationTypeValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingUnitFaxNumberValue">ExceptionMessages::<b>MissingUnitFaxNumberValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitFaxNumberValue">ExceptionCodes::<b>MissingUnitFaxNumberValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidSpecialTypeValue
+			InvalidUnitFaxNumberType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidSpecialTypeValue">ExceptionMessages::<b>InvalidSpecialTypeValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitFaxNumberType">ExceptionMessages::<b>InvalidUnitFaxNumberType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitFaxNumberType">ExceptionCodes::<b>InvalidUnitFaxNumberType</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidTaxOfficeValue
+			MissingUnitStreetAddressParam
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidTaxOfficeValue">ExceptionMessages::<b>InvalidTaxOfficeValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingUnitStreetAddressParam">ExceptionMessages::<b>MissingUnitStreetAddressParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitStreetAddressParam">ExceptionCodes::<b>MissingUnitStreetAddressParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitStreetAddressValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitStreetAddressValue">ExceptionMessages::<b>MissingUnitStreetAddressValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitStreetAddressValue">ExceptionCodes::<b>MissingUnitStreetAddressValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitStreetAddressType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitStreetAddressType">ExceptionMessages::<b>InvalidUnitStreetAddressType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitStreetAddressType">ExceptionCodes::<b>InvalidUnitStreetAddressType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitPostalCodeParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitPostalCodeParam">ExceptionMessages::<b>MissingUnitPostalCodeParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitPostalCodeParam">ExceptionCodes::<b>MissingUnitPostalCodeParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitPostalCodeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitPostalCodeValue">ExceptionMessages::<b>MissingUnitPostalCodeValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitPostalCodeValue">ExceptionCodes::<b>MissingUnitPostalCodeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitPostalCodeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitPostalCodeType">ExceptionMessages::<b>InvalidUnitPostalCodeType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitPostalCodeType">ExceptionCodes::<b>InvalidUnitPostalCodeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitTaxNumberParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitTaxNumberParam">ExceptionMessages::<b>MissingUnitTaxNumberParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitTaxNumberParam">ExceptionCodes::<b>MissingUnitTaxNumberParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitTaxNumberValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitTaxNumberValue">ExceptionMessages::<b>MissingUnitTaxNumberValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitTaxNumberValue">ExceptionCodes::<b>MissingUnitTaxNumberValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitTaxNumberType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitTaxNumberType">ExceptionMessages::<b>InvalidUnitTaxNumberType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitTaxNumberType">ExceptionCodes::<b>InvalidUnitTaxNumberType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingTaxOfficeParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingTaxOfficeParam">ExceptionMessages::<b>MissingTaxOfficeParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingTaxOfficeParam">ExceptionCodes::<b>MissingTaxOfficeParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingTaxOfficeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingTaxOfficeValue">ExceptionMessages::<b>MissingTaxOfficeValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingTaxOfficeValue">ExceptionCodes::<b>MissingTaxOfficeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidTaxOfficeArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidTaxOfficeArray">ExceptionMessages::<b>InvalidTaxOfficeArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidTaxOfficeArray">ExceptionCodes::<b>InvalidTaxOfficeArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidTaxOfficeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidTaxOfficeType">ExceptionMessages::<b>InvalidTaxOfficeType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidTaxOfficeType">ExceptionCodes::<b>InvalidTaxOfficeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedTaxOfficeUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedTaxOfficeUniqueValue">ExceptionMessages::<b>DuplicatedTaxOfficeUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedTaxOfficeUniqueValue">ExceptionCodes::<b>DuplicatedTaxOfficeUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitAreaTeamNumberParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitAreaTeamNumberParam">ExceptionMessages::<b>MissingUnitAreaTeamNumberParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitAreaTeamNumberParam">ExceptionCodes::<b>MissingUnitAreaTeamNumberParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitAreaTeamNumberValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitAreaTeamNumberValue">ExceptionMessages::<b>MissingUnitAreaTeamNumberValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitAreaTeamNumberValue">ExceptionCodes::<b>MissingUnitAreaTeamNumberValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitAreaTeamNumberType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitAreaTeamNumberType">ExceptionMessages::<b>InvalidUnitAreaTeamNumberType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitAreaTeamNumberType">ExceptionCodes::<b>InvalidUnitAreaTeamNumberType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingCategoryParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingCategoryParam">ExceptionMessages::<b>MissingCategoryParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingCategoryParam">ExceptionCodes::<b>MissingCategoryParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingCategoryValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingCategoryValue">ExceptionMessages::<b>MissingCategoryValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingCategoryValue">ExceptionCodes::<b>MissingCategoryValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidCategoryArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidCategoryArray">ExceptionMessages::<b>InvalidCategoryArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidCategoryArray">ExceptionCodes::<b>InvalidCategoryArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidCategoryType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidCategoryType">ExceptionMessages::<b>InvalidCategoryType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidCategoryType">ExceptionCodes::<b>InvalidCategoryType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedCategoryUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedCategoryUniqueValue">ExceptionMessages::<b>DuplicatedCategoryUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedCategoryUniqueValue">ExceptionCodes::<b>DuplicatedCategoryUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitTypeParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitTypeParam">ExceptionMessages::<b>MissingUnitTypeParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitTypeParam">ExceptionCodes::<b>MissingUnitTypeParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitTypeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitTypeValue">ExceptionMessages::<b>MissingUnitTypeValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitTypeValue">ExceptionCodes::<b>MissingUnitTypeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitTypeArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitTypeArray">ExceptionMessages::<b>InvalidUnitTypeArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitTypeArray">ExceptionCodes::<b>InvalidUnitTypeArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitTypeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitTypeType">ExceptionMessages::<b>InvalidUnitTypeType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitTypeType">ExceptionCodes::<b>InvalidUnitTypeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedUnitTypeUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedUnitTypeUniqueValue">ExceptionMessages::<b>DuplicatedUnitTypeUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedUnitTypeUniqueValue">ExceptionCodes::<b>DuplicatedUnitTypeUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingOperationShiftParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingOperationShiftParam">ExceptionMessages::<b>MissingOperationShiftParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingOperationShiftParam">ExceptionCodes::<b>MissingOperationShiftParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingOperationShiftValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingOperationShiftValue">ExceptionMessages::<b>MissingOperationShiftValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingOperationShiftValue">ExceptionCodes::<b>MissingOperationShiftValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOperationShiftArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOperationShiftArray">ExceptionMessages::<b>InvalidOperationShiftArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidOperationShiftArray">ExceptionCodes::<b>InvalidOperationShiftArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOperationShiftType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOperationShiftType">ExceptionMessages::<b>InvalidOperationShiftType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidOperationShiftType">ExceptionCodes::<b>InvalidOperationShiftType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedOperationShiftUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedOperationShiftUniqueValue">ExceptionMessages::<b>DuplicatedOperationShiftUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedOperationShiftUniqueValue">ExceptionCodes::<b>DuplicatedOperationShiftUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingLegalCharacterParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingLegalCharacterParam">ExceptionMessages::<b>MissingLegalCharacterParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingLegalCharacterParam">ExceptionCodes::<b>MissingLegalCharacterParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingLegalCharacterValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingLegalCharacterValue">ExceptionMessages::<b>MissingLegalCharacterValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingLegalCharacterValue">ExceptionCodes::<b>MissingLegalCharacterValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLegalCharacterArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLegalCharacterArray">ExceptionMessages::<b>InvalidLegalCharacterArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidLegalCharacterArray">ExceptionCodes::<b>InvalidLegalCharacterArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLegalCharacterType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLegalCharacterType">ExceptionMessages::<b>InvalidLegalCharacterType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidLegalCharacterType">ExceptionCodes::<b>InvalidLegalCharacterType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedLegalCharacterUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedLegalCharacterUniqueValue">ExceptionMessages::<b>DuplicatedLegalCharacterUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedLegalCharacterUniqueValue">ExceptionCodes::<b>DuplicatedLegalCharacterUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingOrientationTypeParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingOrientationTypeParam">ExceptionMessages::<b>MissingOrientationTypeParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingOrientationTypeParam">ExceptionCodes::<b>MissingOrientationTypeParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingOrientationTypeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingOrientationTypeValue">ExceptionMessages::<b>MissingOrientationTypeValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingOrientationTypeValue">ExceptionCodes::<b>MissingOrientationTypeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOrientationTypeArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOrientationTypeArray">ExceptionMessages::<b>InvalidOrientationTypeArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidOrientationTypeArray">ExceptionCodes::<b>InvalidOrientationTypeArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOrientationTypeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOrientationTypeType">ExceptionMessages::<b>InvalidOrientationTypeType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidOrientationTypeType">ExceptionCodes::<b>InvalidOrientationTypeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedOrientationTypeUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedOrientationTypeUniqueValue">ExceptionMessages::<b>DuplicatedOrientationTypeUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedOrientationTypeUniqueValue">ExceptionCodes::<b>DuplicatedOrientationTypeUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingSpecialTypeParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingSpecialTypeParam">ExceptionMessages::<b>MissingSpecialTypeParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingSpecialTypeParam">ExceptionCodes::<b>MissingSpecialTypeParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingSpecialTypeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingSpecialTypeValue">ExceptionMessages::<b>MissingSpecialTypeValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingSpecialTypeValue">ExceptionCodes::<b>MissingSpecialTypeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSpecialTypeArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSpecialTypeArray">ExceptionMessages::<b>InvalidSpecialTypeArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidSpecialTypeArray">ExceptionCodes::<b>InvalidSpecialTypeArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSpecialTypeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSpecialTypeType">ExceptionMessages::<b>InvalidSpecialTypeType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidSpecialTypeType">ExceptionCodes::<b>InvalidSpecialTypeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			DuplicatedSpecialTypeUniqueValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#DuplicatedSpecialTypeUniqueValue">ExceptionMessages::<b>DuplicatedSpecialTypeUniqueValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#DuplicatedSpecialTypeUniqueValue">ExceptionCodes::<b>DuplicatedSpecialTypeUniqueValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitLevelsCountParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitLevelsCountParam">ExceptionMessages::<b>MissingUnitLevelsCountParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitLevelsCountParam">ExceptionCodes::<b>MissingUnitLevelsCountParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitLevelsCountValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitLevelsCountValue">ExceptionMessages::<b>MissingUnitLevelsCountValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitLevelsCountValue">ExceptionCodes::<b>MissingUnitLevelsCountValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitLevelsCountType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitLevelsCountType">ExceptionMessages::<b>InvalidUnitLevelsCountType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitLevelsCountType">ExceptionCodes::<b>InvalidUnitLevelsCountType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitGroupsCountParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitGroupsCountParam">ExceptionMessages::<b>MissingUnitGroupsCountParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitGroupsCountParam">ExceptionCodes::<b>MissingUnitGroupsCountParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitGroupsCountValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitGroupsCountValue">ExceptionMessages::<b>MissingUnitGroupsCountValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitGroupsCountValue">ExceptionCodes::<b>MissingUnitGroupsCountValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitGroupsCountType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitGroupsCountType">ExceptionMessages::<b>InvalidUnitGroupsCountType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitGroupsCountType">ExceptionCodes::<b>InvalidUnitGroupsCountType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitStudentsCountParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitStudentsCountParam">ExceptionMessages::<b>MissingUnitStudentsCountParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitStudentsCountParam">ExceptionCodes::<b>MissingUnitStudentsCountParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitStudentsCountValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitStudentsCountValue">ExceptionMessages::<b>MissingUnitStudentsCountValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitStudentsCountValue">ExceptionCodes::<b>MissingUnitStudentsCountValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitStudentsCountType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitStudentsCountType">ExceptionMessages::<b>InvalidUnitStudentsCountType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitStudentsCountType">ExceptionCodes::<b>InvalidUnitStudentsCountType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitLatitudeParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitLatitudeParam">ExceptionMessages::<b>MissingUnitLatitudeParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitLatitudeParam">ExceptionCodes::<b>MissingUnitLatitudeParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitLatitudeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitLatitudeValue">ExceptionMessages::<b>MissingUnitLatitudeValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitLatitudeValue">ExceptionCodes::<b>MissingUnitLatitudeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitLatitudeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitLatitudeType">ExceptionMessages::<b>InvalidUnitLatitudeType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitLatitudeType">ExceptionCodes::<b>InvalidUnitLatitudeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitLongitudeParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitLongitudeParam">ExceptionMessages::<b>MissingUnitLongitudeParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitLongitudeParam">ExceptionCodes::<b>MissingUnitLongitudeParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitLongitudeValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitLongitudeValue">ExceptionMessages::<b>MissingUnitLongitudeValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitLongitudeValue">ExceptionCodes::<b>MissingUnitLongitudeValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitLongitudeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitLongitudeType">ExceptionMessages::<b>InvalidUnitLongitudeType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitLongitudeType">ExceptionCodes::<b>InvalidUnitLongitudeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitPositioningParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitPositioningParam">ExceptionMessages::<b>MissingUnitPositioningParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitPositioningParam">ExceptionCodes::<b>MissingUnitPositioningParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitPositioningValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitPositioningValue">ExceptionMessages::<b>MissingUnitPositioningValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitPositioningValue">ExceptionCodes::<b>MissingUnitPositioningValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitPositioningType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitPositioningType">ExceptionMessages::<b>InvalidUnitPositioningType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitPositioningType">ExceptionCodes::<b>InvalidUnitPositioningType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitCreationFekParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitCreationFekParam">ExceptionMessages::<b>MissingUnitCreationFekParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitCreationFekParam">ExceptionCodes::<b>MissingUnitCreationFekParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitCreationFekValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitCreationFekValue">ExceptionMessages::<b>MissingUnitCreationFekValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitCreationFekValue">ExceptionCodes::<b>MissingUnitCreationFekValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -958,7 +2277,107 @@ class="php-keyword2">log</span>(data);
 			InvalidUnitCreationFekType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidUnitCreationFekType">ExceptionMessages::<b>InvalidUnitCreationFekType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitCreationFekType">ExceptionMessages::<b>InvalidUnitCreationFekType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitCreationFekType">ExceptionCodes::<b>InvalidUnitCreationFekType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitLastUpdateParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitLastUpdateParam">ExceptionMessages::<b>MissingUnitLastUpdateParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitLastUpdateParam">ExceptionCodes::<b>MissingUnitLastUpdateParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitLastUpdateValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitLastUpdateValue">ExceptionMessages::<b>MissingUnitLastUpdateValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitLastUpdateValue">ExceptionCodes::<b>MissingUnitLastUpdateValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitLastUpdateType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitLastUpdateType">ExceptionMessages::<b>InvalidUnitLastUpdateType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitLastUpdateType">ExceptionCodes::<b>InvalidUnitLastUpdateType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitLastSyncParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitLastSyncParam">ExceptionMessages::<b>MissingUnitLastSyncParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitLastSyncParam">ExceptionCodes::<b>MissingUnitLastSyncParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitLastSyncValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitLastSyncValue">ExceptionMessages::<b>MissingUnitLastSyncValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitLastSyncValue">ExceptionCodes::<b>MissingUnitLastSyncValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitLastSyncType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitLastSyncType">ExceptionMessages::<b>InvalidUnitLastSyncType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitLastSyncType">ExceptionCodes::<b>InvalidUnitLastSyncType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitCommentsParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitCommentsParam">ExceptionMessages::<b>MissingUnitCommentsParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitCommentsParam">ExceptionCodes::<b>MissingUnitCommentsParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitCommentsValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitCommentsValue">ExceptionMessages::<b>MissingUnitCommentsValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitCommentsValue">ExceptionCodes::<b>MissingUnitCommentsValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitCommentsType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitCommentsType">ExceptionMessages::<b>InvalidUnitCommentsType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitCommentsType">ExceptionCodes::<b>InvalidUnitCommentsType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NoErrors
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NoErrorsUpdateUnit
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NoErrorsUpdateUnit">ExceptionMessages::<b>NoErrorsUpdateUnit</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrorsUpdateUnit">ExceptionCodes::<b>NoErrorsUpdateUnit</b></a></code>
 		</td>
 	</tr>
 	</table>
