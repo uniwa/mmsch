@@ -3,14 +3,6 @@ require_once ('config.php');
 require_once ('system/connection.php');
 require_once ('system/functions.php');
 
-require_once ('libs/db2php/Db2PhpEntity.class.php');
-require_once ('libs/db2php/Db2PhpEntityBase.class.php');
-require_once ('libs/db2php/Db2PhpEntityModificationTracking.class.php');
-require_once ('libs/db2php/DFCInterface.class.php');
-require_once ('libs/db2php/DFC.class.php');
-require_once ('libs/db2php/DFCAggregate.class.php');
-require_once ('libs/db2php/DSC.class.php');
-
 // Doctrine & Entities autoloading
 require_once ('libs/doctrine/bootstrap.php');
 spl_autoload_register(function($class) {
@@ -36,14 +28,9 @@ require_once ('../api/system/ExceptionMessages.php');
 require_once ('../api/system/Parameters.php');
 require_once ('classes/Pagination.php');
 
-require_once ('classes/sync/SyncEduAdmins.class.php');
-require_once ('classes/sync/SyncTransferAreas.class.php');
-
 require_once ('classes/Validator.php');
 require_once ('classes/CRUDUtils.php');
 require_once ('classes/Filters.php');
-
-require_once ('classes/extends/SyncLogsExt.class.php');
 
 require_once ('classes/UnitsExt.php');
 
@@ -137,40 +124,6 @@ require_once ('../api/get/GetLdapEntries.php');
 require_once ('../api/get/GetUnitsOld.php');
 
 
-//require_once ('classes/extends/IpMasksExt.class.php');
-//require_once ('classes/extends/AddrspaceTypesExt.class.php');
-//require_once ('classes/extends/AddrspacesExt.class.php');
-//require_once ('classes/extends/PrefecturesExt.class.php');
-//require_once ('classes/extends/CategoriesExt.class.php');
-//require_once ('classes/extends/EduAdminsExt.class.php');
-//require_once ('classes/extends/EducationLevelsExt.class.php');
-//require_once ('classes/extends/ImplementationEntitiesExt.class.php');
-//require_once ('classes/extends/LegalCharactersExt.class.php');
-//require_once ('classes/extends/MunicipalitiesExt.class.php');
-//require_once ('classes/extends/OperationShiftsExt.class.php');
-//require_once ('classes/extends/OrientationTypesExt.class.php');
-//require_once ('classes/extends/RegionEduAdminsExt.class.php');
-//require_once ('classes/extends/SourcesExt.class.php');
-//require_once ('classes/extends/SpecialTypesExt.class.php');
-//require_once ('classes/extends/StatesExt.class.php');
-//require_once ('classes/extends/TaxOfficesExt.class.php');
-//require_once ('classes/extends/TransferAreasExt.class.php');
-//require_once ('classes/extends/UnitsExt.class.php');
-//require_once ('classes/extends/UnitTypesExt.class.php');
-//require_once ('classes/extends/WorkerPositionsExt.class.php');
-//require_once ('classes/extends/WorkerSpecializationsExt.class.php');
-//require_once ('classes/extends/WorkersExt.class.php');
-//require_once ('classes/extends/LevelsExt.class.php');
-//require_once ('classes/extends/GroupsExt.class.php');
-//require_once ('classes/extends/RelationsExt.class.php');
-//require_once ('classes/extends/RelationTypesExt.class.php');
-//require_once ('classes/extends/UnitWorkersExt.class.php');
-//require_once ('classes/extends/WorkerPositionsExt.class.php');
-//require_once ('classes/extends/WorkerSpecializationsExt.class.php');
-//require_once ('classes/extends/UnitIpDnsExt.class.php');
-//require_once ('classes/extends/ConnectivityTypesExt.class.php');
-//require_once ('classes/extends/CpesExt.class.php');
-//require_once ('classes/extends/CircuitsExt.class.php');
 
 require_once ('../api/post/PostUnits.php');
 require_once ('../api/post/PostWorkers.php');
