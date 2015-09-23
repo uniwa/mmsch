@@ -1,17 +1,16 @@
 <?php
 /**
- *
  * @version 2.0
  * @author  ΤΕΙ Αθήνας
- * @package System
+ * @package SYSTEM
  */
 
 header("Content-Type: text/html; charset=utf-8");
 
 /**
- * Παραδείγματα Κλήσης
+ * **Παραδείγματα Κλήσης**
  * 
- * <br>Παρακάτω εμφανίζεται μια σειρά από παραδείγματα κλήσης της συνάρτησης με διάφορους τρόπους :
+ * Παρακάτω εμφανίζεται μια σειρά από παραδείγματα κλήσης της συνάρτησης με διάφορους τρόπους :
  * <br><a href="#cURL">cURL</a> | <a href="#JavaScript">JavaScript</a> | <a href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a>
  * 
  * <a id="cURL"></a>Παράδειγμα κλήσης της μεθόδου με <b>cURL</b> (console) :
@@ -116,6 +115,9 @@ header("Content-Type: text/html; charset=utf-8");
  * </script>
  * </code>
  * <br>
+ * 
  */
+
 class ApiRequestExamples {}
+
 ?>

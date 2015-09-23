@@ -31,7 +31,7 @@
 						</li>
 				<li><a href="package-PUT.html">PUT</a>
 						</li>
-				<li class="active"><a href="package-System.html">System</a>
+				<li class="active"><a href="package-SYSTEM.html">SYSTEM</a>
 						</li>
 			</ul>
 		</div>
@@ -79,7 +79,7 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="package-System.html" title="Summary of System"><span>Package</span></a>
+				<a href="package-SYSTEM.html" title="Summary of SYSTEM"><span>Package</span></a>
 			</li>
 			<li class="active">
 <span>Class</span>			</li>
@@ -96,23 +96,50 @@
 
 	<div class="description">
 	
-<p>Πίνακας Μηνυμάτων Authentication/Authorization</p>
+<p><strong>Πίνακας Μηνυμάτων
+Authentication/Authorization</strong></p>
 
 <p>Στον Πίνακα Μηνυμάτων Authentication/Authorization
 εμφανίζονται τα Μηνύματα που μπορεί να
 προκύψουν κατά την διαδικασίας
 Authentication/Authorization της συνάρτησης.</p>
 
-<ul>
-	<li>'Ο χρήστης δεν έχει συγκεριμενα
-	δικαιώματα πρόσβασης'<br />
-	<code><a href="class-ExceptionMessages.html#UserNoPermissions">ExceptionMessages::<b>UserNoPermissions</b></a></code> , <code><a href="class-ExceptionCodes.html#UserNoPermissions">ExceptionCodes::<b>UserNoPermissions</b></a></code><br />
-	Είναι μνμ το οποιο μπορεί</li>
+<p><strong><em>'Ο χρήστης δεν έχει συγκεριμενα
+δικαιώματα πρόσβασης'</em></strong><br />
+<code><a href="class-ExceptionMessages.html#UserNoPermissions">ExceptionMessages::<b>UserNoPermissions</b></a></code> , <code><a href="class-ExceptionCodes.html#UserNoPermissions">ExceptionCodes::<b>UserNoPermissions</b></a></code><br />
+Το μήνυμα εμφανίζεται στην περίπτωση που ο
+χρήστης δεν έχει δικαίωμα πρόσβασης σε
+συγκεκριμένη Function(route api name) με συγκεκριμένη
+Method(GET,POST,PUT,DELETE).</p>
 
-	<li>UserAccesDenied <code><a href="class-ExceptionMessages.html#UserAccesDenied">ExceptionMessages::<b>UserAccesDenied</b></a></code> , <code><a href="class-ExceptionCodes.html#UserAccesDenied">ExceptionCodes::<b>UserAccesDenied</b></a></code></li>
+<p><strong><em>'Ο χρήστης δεν έχει
+πρόσβαση'</em></strong><br />
+<code><a href="class-ExceptionMessages.html#UserAccesDenied">ExceptionMessages::<b>UserAccesDenied</b></a></code> , <code><a href="class-ExceptionCodes.html#UserAccesDenied">ExceptionCodes::<b>UserAccesDenied</b></a></code><br />
+Το μήνυμα εμφανίζεται στην περίπτωση που
+έχουν βρεθεί πολλαπλοι χρήστες με το ίδιο
+username στον ldap server και δεν επιτρέπεται η
+πρόσβαση.</p>
 
-	<li>Unauthorized <code><a href="class-ExceptionMessages.html#Unauthorized">ExceptionMessages::<b>Unauthorized</b></a></code> , <code><a href="class-ExceptionCodes.html#Unauthorized">ExceptionCodes::<b>Unauthorized</b></a></code></li>
-</ul>
+<p><strong><em>'HTTP Error 401 Unauthorized'</em></strong><br />
+<code><a href="class-ExceptionMessages.html#Unauthorized">ExceptionMessages::<b>Unauthorized</b></a></code> , <code><a href="class-ExceptionCodes.html#Unauthorized">ExceptionCodes::<b>Unauthorized</b></a></code><br
+/>
+Το μήνυμα εμφανίζεται στην περίπτωση που
+δεν έχει γίνει προσθήκη του route api name στον
+πίνακα $Permissions της κλάσης UserRoles.</p>
+
+<p><strong><em>'Η Μέθοδος δεν βρέθηκε'</em></strong><br />
+<code><a href="class-ExceptionMessages.html#MethodNotFound">ExceptionMessages::<b>MethodNotFound</b></a></code> , <code><a href="class-ExceptionCodes.html#MethodNotFound">ExceptionCodes::<b>MethodNotFound</b></a></code><br />
+Το μήνυμα εμφανίζεται στην περίπτωση που η
+Μέθοδος(GET,POST,PUT,DELETE) δεν υπάρχει.</p>
+
+<p><strong><em>'Η Function δεν βρέθηκε'</em></strong><br />
+<code><a href="class-ExceptionMessages.html#FunctionNotFound">ExceptionMessages::<b>FunctionNotFound</b></a></code> , <code><a href="class-ExceptionCodes.html#FunctionNotFound">ExceptionCodes::<b>FunctionNotFound</b></a></code><br />
+Το μήνυμα εμφανίζεται στην περίπτωση που η
+Function(route api name) δεν υπάρχει.</p>
+
+<p><strong><em>'Invalid credentials'</em></strong><br />
+Το μήνυμα εμφανίζεται στην περίπτωση που ο
+χρήστης δώσει λάθος στοιχεία πρόσβασης.</p>
 
 	</div>
 
@@ -128,7 +155,7 @@ Authentication/Authorization της συνάρτησης.</p>
 		
 		
 		
-		<b>Package:</b> <a href="package-System.html">System</a><br />
+		<b>Package:</b> <a href="package-SYSTEM.html">SYSTEM</a><br />
 
 				<b>Author:</b>
 				ΤΕΙ Αθήνας<br />

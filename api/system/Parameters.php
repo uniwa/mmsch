@@ -1,19 +1,16 @@
 <?php
-
 /**
- *
- * @version 1.0.3
+ * @version 2.0
  * @author  ΤΕΙ Αθήνας
- * @package System
+ * @package SYSTEM
  */
 
 header("Content-Type: text/html; charset=utf-8");
 
 /** 
- * Παράμετροι Συστήματος
+ * **Παράμετροι Συστήματος**
  * 
  * Παρακάτω εμφανίζονται όλες οι τιμές των παραμέτρων του Συστήματος
- * 
  * 
  */
 

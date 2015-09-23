@@ -1,18 +1,16 @@
 <?php
-
 /**
- *
- * @version 1.0.3
+ * @version 2.0
  * @author  ΤΕΙ Αθήνας
- * @package System
+ * @package SYSTEM
  */
 
 header("Content-Type: text/html; charset=utf-8");
 
 /** 
- * Κωδικοί Σφαλμάτων
+ * **Κωδικοί Σφαλμάτων**
  * 
- * Παρακάτω εμφανίζονται οι Κωδικοί Σφαλμάτων που διαχειρίζετε η {@see CustomException}
+ * Παρακάτω εμφανίζονται οι Κωδικοί Σφαλμάτων.
  *
  * Δείτε τα Μηνύματα Σφαλμάτων που αντιστοιχούν στους παρακάτω Κωδικούς {@see ExceptionMessages}
  *  
@@ -27,8 +25,6 @@ class ExceptionCodes
     /** {@see ExceptionMessages::NoErrorsUpdateUnit} */
     const NoErrorsUpdateUnit = 200;
 
-
-
     /** {@see ExceptionMessages::Unauthorized} */
     const Unauthorized = 401;
     /** {@see ExceptionMessages::UserAccesDenied} */
@@ -36,12 +32,10 @@ class ExceptionCodes
     /** {@see ExceptionMessages::UserNoPermissions} */
     const UserNoPermissions = 401;
 
-
-
     /** {@see ExceptionMessages::MethodNotFound} */
     const MethodNotFound = 500;
-
-
+    /** {@see ExceptionMessages::FunctionNotFound} */
+    const FunctionNotFound = 500;
 
     /** {@see ExceptionMessages::MissingPageValue} */
     const MissingPageValue = 500;
@@ -51,8 +45,6 @@ class ExceptionCodes
     const InvalidPageType = 500;
     /** {@see ExceptionMessages::InvalidPageArray} */
     const InvalidPageArray = 500;
-
-
 
     /** {@see ExceptionMessages::MissingPageSizeValue} */
     const MissingPageSizeValue = 500;
@@ -69,8 +61,6 @@ class ExceptionCodes
     const InvalidMaxPageNumber = 500;
     /** {@see ExceptionMessages::InvalidMaxPageNumber} */  
     const InvalidMaxLdapPageNumber = 500;
-
-
 
     /** {@see ExceptionMessages::InvalidSearchType} */
     const InvalidSearchType = 500;
@@ -124,8 +114,6 @@ class ExceptionCodes
     const InvalidNameType = 500;
     /** {@see ExceptionMessages::InvalidNameArray} */
     const InvalidNameArray = 500;
-
-
     
     //= GetLdaps
     /** {@see ExceptionMessages::MissingUnitID} */
@@ -149,9 +137,6 @@ class ExceptionCodes
     /** {@see ExceptionMessages::DuplicatedSchoolCommitteeValue} */
     const DuplicatedSchoolCommitteeValue = 500;
 
-
-
-
     //= GetUnitDns
    /** {@see ExceptionMessages::InvalidUnitDNSType} */
     const InvalidUnitDNSType = 500;
@@ -159,7 +144,6 @@ class ExceptionCodes
     const InvalidExtUnitDnsType = 500;
    /** {@see ExceptionMessages::InvalidUnitUIDType} */
     const InvalidUnitUIDType = 500;
-
 
     //= GetAddrspaceTypes
     /** {@see ExceptionMessages::MissingAddrspaceTypeIDParam} */
@@ -180,13 +164,7 @@ class ExceptionCodes
     const InvalidAddrspaceTypeType = 500;
     /** {@see ExceptionMessages::DuplicatedAddrspaceTypeValue} */
     const DuplicatedAddrspaceTypeValue = 500;
-    
-
-
-
-
-
-
+ 
     //= GetIpMasks
     /** {@see ExceptionMessages::MissingIpMaskIDParam} */
     const MissingIpMaskIDParam = 500;
@@ -227,9 +205,6 @@ class ExceptionCodes
     /** {@see ExceptionMessages::DuplicatedAddrspaceValue} */
     const DuplicatedAddrspaceValue = 500;
 
-
-
-
     //= GetCpes
     /** {@see ExceptionMessages::MissingCpeIDParam} */
     const MissingCpeIDParam = 500;
@@ -249,8 +224,6 @@ class ExceptionCodes
     const InvalidCpeType = 500;
     /** {@see ExceptionMessages::DuplicatedCpeValue} */
     const DuplicatedCpeValue = 500;
-
-
 
     //= GetLdaps
     /** {@see ExceptionMessages::MissingLdapIDParam} */
@@ -272,18 +245,6 @@ class ExceptionCodes
     /** {@see ExceptionMessages::DuplicatedLdapValue} */
     const DuplicatedLdapValue = 500;
  
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-
-    
 //= TaxOffices==================================================================
     
     /** {@see ExceptionMessages::MissingTaxOfficeIDParam} */
@@ -2537,4 +2498,5 @@ class ExceptionCodes
     const NotFoundLdapEntryDnAttributeValue = 500;
 
 }
+
 ?>

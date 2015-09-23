@@ -1,15 +1,14 @@
 <?php
 /**
- *
- * @version 1.0.3
+ * @version 2.0
  * @author  ΤΕΙ Αθήνας
- * @package System
+ * @package SYSTEM
  */
 
 header("Content-Type: text/html; charset=utf-8");
 require_once('classes/ExportDataTypes.php');
 /**
- * Τύποι Εξαγωγής Δεδομένων
+ * **Τύποι Εξαγωγής Δεδομένων**
  *
  * Παρακάτω εμφανίζονται οι Τύποι Εξαγωγής Δεδομένων οι οποίοι χρησιμοποιούνται για την Εξαγωγή Δεδομένων σε συγκεκριμένo format των αποτελεσμάτων μιας συνάρτησης.
  *
@@ -55,4 +54,5 @@ class ExportDataEnumTypes extends ExportDataTypes
     const PHP_ARRAY = "PHP_ARRAY";
     
 }
+
 ?>

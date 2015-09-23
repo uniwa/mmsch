@@ -1,20 +1,18 @@
 <?php
 /**
- *
- * @version 1.0.3
+ * @version 2.0
  * @author  ΤΕΙ Αθήνας
- * @package System
+ * @package SYSTEM
  */
 
 header("Content-Type: text/html; charset=utf-8");
 
 /**
- * Τύποι Αναζήτησης
+ * **Τύποι Αναζήτησης**
  *
  * Παρακάτω εμφανίζονται οι Τύποι Αναζήτησης οι οποίοι χρισιμοποιούνται για την αναζήτηση στα λεξικά.
  *
  */
-
 
 class SearchEnumTypes extends SearchTypes
 {
@@ -73,3 +71,5 @@ class SearchEnumTypes extends SearchTypes
     const EndWith = "ENDWITH";
 
 }
+
+?>

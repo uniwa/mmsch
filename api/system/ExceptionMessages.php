@@ -1,18 +1,16 @@
 <?php
-
 /**
- *
- * @version 1.0.3
+ * @version 2.0
  * @author  ΤΕΙ Αθήνας
- * @package System
+ * @package SYSTEM
  */
 
 header("Content-Type: text/html; charset=utf-8");
 
 /** 
- * Μηνύματα Σφαλμάτων
+ * **Μηνύματα Σφαλμάτων**
  * 
- * Παρακάτω εμφανίζονται τα Μηνύματα Σφαλμάτων που διαχειρίζετε η {@see CustomException}
+ * Παρακάτω εμφανίζονται τα Μηνύματα Σφαλμάτων.
  * 
  * Δείτε τους Κωδικούς που αντιστοιχούν στα παρακάτω Μηνύματα Σφαλμάτων {@see ExceptionCodes}
  * 
@@ -28,7 +26,8 @@ class ExceptionMessages
     const UserAccesDenied = 'Ο χρήστης δεν έχει πρόσβαση';
     const UserNoPermissions = 'Ο χρήστης δεν έχει συγκεριμενα δικαιώματα πρόσβασης';
     
-    const MethodNotFound = 'Η Μέθοδος δεν βρέθηκε';
+    const MethodNotFound = 'Η Μέθοδος(GET,POST,PUT,DELETE) δεν βρέθηκε';
+    const FunctionNotFound = 'Η Function(route api name) δεν βρέθηκε';
     
     const MissingPageValue = 'Ο Αριθμός Σελίδας πρέπει να έχει τιμή';
     const InvalidPageNumber = 'Ο Αριθμός Σελίδας πρέπει να είναι μεγαλύτερος από 0';
@@ -43,7 +42,6 @@ class ExceptionMessages
 
     const InvalidMaxPageNumber = 'Ο Αριθμός Σελίδας έιναι μεγαλύτερος από την μέγιστη τιμή της σελιδοποίησης. Μέγιστη τιμή σελιδοποίησης = ';
     const InvalidMaxLdapPageNumber = 'Το πλήθος των Μονάδων είναι μεγαλύτερο από την επιτρεπόμενη μέγιστη τιμή.';
-
 
     const InvalidSearchType = 'Ο Τύπος Αναζήτησης είναι λάθος';
     const InvalidOrderType = 'Ο Τύπος Ταξινόμησης πρέπει να είναι ASC ή DESC';
@@ -74,8 +72,6 @@ class ExceptionMessages
     const InvalidNameType = 'Το Όνομα πρέπει να είναι αλφαριθμητικό';
     const InvalidNameArray = 'Το Όνομα δεν μπορεί να έχει πολλαπλές τιμές';
 
-
-
     //= GetSchoolCommittees
     const MissingSchoolCommitteeIDParam = 'Ο Κωδικός της Σχολική Επιτροπής είναι υποχρεωτικό πεδίο';
     const MissingSchoolCommitteeIDValue = 'Ο Κωδικός της Σχολική Επιτροπής πρέπει να έχει τιμή';
@@ -90,13 +86,6 @@ class ExceptionMessages
     //= GetLdaps
     const MissingUnitID = 'Ο Κωδικός του Μονάδας είναι υποχρεωτικό πεδίο';
 
-    //= GetUnitDns
-//    const InvalidUnitDNSType = 'Το DNS πρέπει να είναι αριθμητικό ή αλφαριθμητικό';
-//    const InvalidExtUnitDnsType = 'Το ExtDNS πρέπει να είναι αλφαριθμητικό';
-//    const InvalidUnitUIDType = 'Το UID πρέπει να είναι αλφαριθμητικό';
-
-
-
     //= GetAddrspaceTypes
     const MissingAddrspaceTypeIDParam = 'Ο Κωδικός του Τύπου της Διευθυνσιοδότησης είναι υποχρεωτικό πεδίο';
     const MissingAddrspaceTypeIDValue = 'Ο Κωδικός του Τύπου της Διευθυνσιοδότησης πρέπει να έχει τιμή';
@@ -107,8 +96,6 @@ class ExceptionMessages
     const InvalidAddrspaceTypeValue = 'Ο Τύπος της Διευθυνσιοδότησης δεν υπάρχει στο λεξικό';
     const InvalidAddrspaceTypeType = 'Ο Τύπος της Διευθυνσιοδότησης πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const DuplicatedAddrspaceTypeValue = 'Ο Τύπος της Διευθυνσιοδότησης υπάρχει ήδη';
-
-
     
     //= GetIpMasks
     const MissingIpMaskIDParam = 'Ο Κωδικός της Μάσκας Δικτύου είναι υποχρεωτικό πεδίο';
@@ -120,7 +107,6 @@ class ExceptionMessages
     const InvalidIpMaskValue = 'Η Μάσκα Δικτύου δεν υπάρχει στο λεξικό';
     const InvalidIpMaskType = 'Η Μάσκα Δικτύου πρέπει να είναι αριθμητική ή αλφαριθμητική';
     const DuplicatedIpMaskValue = 'Η Μάσκα Δικτύου ($ip_mask) υπάρχει ήδη';
-
 
     //= GetAddrspaces
     const MissingAddrspaceIDParam = 'Ο Κωδικός της Διευθυνσιοδότησης είναι υποχρεωτικό πεδίο';
@@ -154,9 +140,6 @@ class ExceptionMessages
     const InvalidLdapValue = 'Ο Ldap Λογαριασμός δεν υπάρχει στο λεξικό';
     const InvalidLdapType = 'Ο Ldap Λογαριασμός πρέπει να είναι αριθμητικός ή αλφαριθμητικός';
     const DuplicatedLdapValue = 'Ο Ldap Λογαριασμός υπάρχει ήδη';
-
-
-   
 
 //= TaxOffices==================================================================
     
