@@ -9,9 +9,9 @@ header("Content-Type: text/html; charset=utf-8");
 
 
 /** 
- * **Αναζήτηση CRM DATA**
+ * **Αναζήτηση CRM Δικτυακά Στοιχεία Μονάδας**
  *
- * Η συνάρτηση αυτή επιστρέφει CRM DATA , μέσω web-service από το CRM, σύμφωνα με τις παραμέτρους που έγινε η κλήση
+ * Η συνάρτηση αυτή επιστρέφει CRM Δικτυακά Στοιχεία Μονάδας , μέσω web-service από το CRM, σύμφωνα με τις παραμέτρους που έγινε η κλήση
  * <br>Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο **GET** και route_api_name = **crm_data** :
  * <br>https://mm.sch.gr/api/crm_data
  *
@@ -47,8 +47,6 @@ header("Content-Type: text/html; charset=utf-8");
  *  "controller": "GetCrmData",
  *  "function": "crm_data",
  *  "method": "GET",
- *  "total": ``,
- *  "count": ``,
  *  "status": 200,
  *  "message": "[GET][crm_data]:success"
  * }
@@ -84,8 +82,8 @@ header("Content-Type: text/html; charset=utf-8");
  *   "connections": [{
  *                       "id": ``,
  *                       "name": ``,
- *                       "subnets": [``,``,``],
- *                       "circuits": [``],
+ *                       "subnets": [],
+ *                       "circuits": [],
  *                       "devices": [],
  *                       "ldapEntries": []
  *                   }]
@@ -101,37 +99,67 @@ header("Content-Type: text/html; charset=utf-8");
  *       <li>integer
  *          <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ΜΜ της Μονάδας,
  *          <br>Μπορεί να δωθέι oλοκληρος ο Κωδικός ΜΜ.
- *          <br>Η αναζήτηση στο CRM γίνεται στις εγγραφές που περιέχουν ακριβώς την τιμή του $unit.
- *          <br>Σε περίπτωση που δεν βρεθεί μονάδα με το κωδικό $mm_id που δώθηκα επό τον χρήστη επιστρέφεται 
- *              <code>
+ *          <br>Η αναζήτηση στο CRM γίνεται στις εγγραφές που περιέχουν ακριβώς την τιμή του $mm_id και επιστρέφει τα δικτυακα στοιχεία της μονάδας
+ *               1. Κυκλώματα
+ *               2. Υποδίκτυα
+ *               3. Συνδέσεις
+ *          <br>Σε περίπτωση που δεν βρεθεί μονάδα με το κωδικό $mm_id που δώθηκε από τον χρήστη επιστρέφεται 
  *              { "data": {
  *                          "message": "Page not found."
  *                        }
  *              }
- *              </code>
  *       </li>
  *    </ul>
- * 
+ *
  *
  * @return Objects<JSON> Επιστρέφει τα παρακάτω JSON objects :
  * <br>
  * <br>array : <b>data</b> : Ο Πίνακας με τα δεδομένα
  *  <ul>
- *    <li>integer : <b>cpe_id</b> : Ο Κωδικός ID Κτηματολογίου του CPE</li>
- *    <li>string : <b>cpe</b> : Το Όνομα του CPE</li>
- *    <li>integer : <b>mm_id</b> : Ο Κωδικός ΜΜ</li>
- *    <li>string : <b>unit_name</b> : Το Όνομα της Μονάδας του CPE</li>
- *    <li>string : <b>registry_no</b> : Ο Κωδικός ΥΠΕΠΘ της Μονάδας του CPE</li>
- *    <li>string : <b>item_name</b> : Το Όνομα του CPE</li>
- *    <li>string : <b>manufacturer</b> : Το Κατασκευαστής του CPE</li>
- *    <li>string : <b>location</b> : Η Τοποθεσία του CPE</li>
- *    <li>string : <b>serial_number</b> : Ο Σειριακός Κωδικός του CPE</li>
+ *    <li>integer : <b>mmId</b> : Ο Κωδικός ΜΜ</li>
+ * 
+ *    <li>array : <b>circuits</b> : Κυκλώματα Μονάδας
+ *          <ul>
+ *              <li>integer : <b>id</b> : Ο Κωδικός ID του Κυκλώματος</li>
+ *              <li>integer : <b>linenumber</b> : Το Αριθμός Γραμμής του Κυκλώματος</li>
+ *              <li>string : <b>type</b> : Ο Τύπος του Κυκλώματος</li>
+ *              <li>string : <b>owner</b> : Ο Πάροχος του Κυκλώματος</li>
+ *          
+ *                        <li>array : <b>services</b> : Υπηρεσίες Κυκλώματος
+ *                        <ul>
+ *                              <li>integer : <b>id</b> : Ο Κωδικός ID του Κυκλώματος</li>
+ *                              <li>string : <b>type</b> : Ο Τύπος του Κυκλώματος</li>
+ *                              <li>string : <b>owner</b> : Ο Πάροχος του Κυκλώματος</li>
+ *                              <li>string : <b>bandwidth</b> : Το Bandwidth του Κυκλώματος</li>
+ *                        </ul>
+ *                        </li>
+ *
+ *          </ul>
+ *    </li>
+ * 
+ *    <li>array : <b>subnets</b> : Υποδίκτυα Μονάδας
+ *          <ul>
+ *              <li>integer : <b>id</b> : Ο Κωδικός ID του Υποδίκτυου</li>
+ *              <li>string : <b>type</b> : Ο Τύπος του Υποδίκτυου</li>
+ *              <li>string : <b>network</b> : Το Δίκτυο του Υποδίκτυου</li>
+ *          </ul>
+ *    </li>
+ *
+ *    <li>array : <b>connections</b> : Συνδέσεις Μονάδας
+ *          <ul>
+ *              <li>integer : <b>id</b> : Ο Κωδικός ID της Σύνδεσης</li>
+ *              <li>string : <b>name</b> : Το Όνομα της Σύνδεσης</li>
+ *              <li>array : <b>subnets</b> : Υποδίκτυα Μονάδας
+ *              <li>array : <b>circuits</b> : Κυκλώματα Μονάδας
+ *              <li>array : <b>devices</b> : Δικτυακές Συσκευές Μονάδας
+ *              <li>array : <b>ldapEntries</b> : Ldap Λογαριασμοί Μονάδας
+ *          </ul>
+ *    </li>
+ * 
  *  </ul>
  * <br>string : <b>controller</b> : Ο controller που χρησιμοποιείται
  * <br>string : <b>function</b> : Η συνάρτηση που υλοποιείται από το σύστημα
  * <br>string : <b>method</b> : Η μέθοδος κλήσης της συνάρτησης
- * <br>integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς τις παραμέτρους σελιδοποίησης
- * <br>integer : <b>count</b> : Το πλήθος των εγγραφών της κλήσης σύμφωνα με τις παραμέτρους σελιδοποίησης
  * <br>integer : <b>status</b> : Ο Κωδικός του αποτελέσματος της κλήσης
  * <br>string : <b>message</b> : Το Μήνυμα του αποτελέσματος της κλήσης
  * 
@@ -151,7 +179,6 @@ header("Content-Type: text/html; charset=utf-8");
  * @throws NoErrors {@see ExceptionMessages::NoErrors}
  * <br>{@see ExceptionCodes::NoErrors}
  * 
- *
  */
 
 function GetCrmData( $mm_id ) {

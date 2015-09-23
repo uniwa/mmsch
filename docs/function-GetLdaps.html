@@ -120,300 +120,142 @@
 
 	<div class="description">
 	
-<p><b>Ldap Attributes</b></p>
+<p><strong>Αναζήτηση Ldap Attributes</strong></p>
 
-<p>Η συνάρτηση αυτή επιστρέφει Ldap attributes
-μονάδων σύμφωνα με τις παραμέτρους που
-έγινε η κλήση</p>
+<p>Η συνάρτηση αυτή επιστρέφει Ldap Attributes ,
+μέσω web-service από το Ldap Server, σύμφωνα με τις
+παραμέτρους που έγινε η κλήση<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>GET</strong> και
+route_api_name = <strong>ldaps</strong> :<br />
+https://mm.sch.gr/api/ldaps</p>
 
-<p>Η κλήση μπορεί να γίνει μέσω της παρακάτω
-διεύθυνσης με τη μέθοδο GET :<br />
-<a href="https://mm.sch.gr/api/ldaps">https://mm.sch.gr/api/ldaps</a></p>
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
 
-<p><br />
-<b>Πίνακας Παραμέτρων</b><br />
-Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
-summary</a> εμφανίζονται όλοι οι παράμετροι με
-τους οποίους μπορεί να γίνει η κλήση της
-συνάρτησης<br />
-Όλοι οι παράμετροι είναι προαιρετικοί
-εκτός από αυτές που έχουν χαρακτηριστεί ως
-υποχρεωτικοί<br />
-Οι παράμετροι μπορούν να χρησιμοποιηθούν
-με οποιαδήποτε σειρά</p>
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
 
-<p><br />
-<b>Πίνακας Αποτελεσμάτων</b><br />
-Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value
-summary</a> εμφανίζονται οι μεταβλητές που
-επιστρέφει η συνάρτηση<br />
-Όλες οι μεταβλητές επιστρέφονται σε ένα
-πίνακα σε JSON μορφή<br />
-Η μεταβλητή data είναι ο πίνακας με το
-λεξικό<br />
-Η μεταβλητή status καθορίζει αν η εκτέλεση της
-συνάρτησης ήταν επιτυχής (κωδικός 200) ή
-προέκυψε κάποιο σφάλμα</p>
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
 
-<p><br />
-<b>Πίνακας Σφαλμάτων</b><br />
-Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
-summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
-που μπορεί να προκύψουν κατά την κλήση της
-συνάρτησης<br />
-Οι περιγραφές των Σφαλμάτων καθώς και οι
-Κωδικοί τους είναι διαθέσιμες μέσω του
-πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
-και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
-αντίστοιχα</p>
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
 
-<p><br />
-<b>Παραδείγματα Κλήσης</b><br />
-Παρακάτω εμφανίζεται μια σειρά από
-παραδείγματα κλήσης της συνάρτησης με
-διάφορους τρόπους :<br />
-<a href="#cURL">cURL</a> | <a href="#JavaScript">JavaScript</a> | <a
-href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a></p>
+	<li>Οι παράμετροι οι οποίοι έχουν το
+	χαρακτηριστικό (Συνδυάζεται με την
+	παράμετρο searchtype) σημαίνει ότι η
+	συγκεκριμένη παράμετρος συνδυάζεται με την
+	παράμετρο searchtype.</li>
 
-<div><br />
-</div>
+	<li>Οι παράμετροι μπορούν να πάρουν τιμή "NULL"
+	για να αναζητήσουν τις κενές εγγραφές στα
+	αντίστοιχα πεδία</li>
+</ul>
 
-<p><a id="cURL"></a>Παράδειγμα κλήσης της
-συνάρτησης με <b>cURL</b> (console) :</p>
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
 
-<pre>
-curl -X GET https:<span
-class="php-comment">//mm.sch.gr/api/ldaps \</span>
-   -H <span
-class="php-quote">&quot;Content-Type: application/json&quot;</span> \
-   -H <span
-class="php-quote">&quot;Accept: application/json&quot;</span> \
-   -u username:password
-</pre>
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
 
-<div><br />
-</div>
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
 
-<p><a id="JavaScript"></a>Παράδειγμα κλήσης της
-συνάρτησης με <b>JavaScript</b> :</p>
+	<li>Η μεταβλητή <a href="#data">data</a> είναι ο πίνακας
+	με τα δεδομένα.</li>
 
-<pre>
-&lt;script&gt;
-   <span class="php-keyword1">var</span> http = <span
-class="php-keyword1">new</span> XMLHttpRequest();
-   http.open(<span
-class="php-quote">&quot;GET&quot;</span>, <span
-class="php-quote">&quot;https://mm.sch.gr/api/ldaps&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Accept&quot;</span>, <span
-class="php-quote">&quot;application/json&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-type&quot;</span>, <span
-class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Authorization&quot;</span>, <span
-class="php-quote">&quot;Basic &quot;</span> + btoa(<span
-class="php-quote">'username'</span> + <span class="php-quote">':'</span> + <span
-class="php-quote">'password'</span>) );
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
 
-   http.onreadystatechange = <span
-class="php-keyword1">function</span>()
-   {
-       <span
-class="php-keyword1">if</span>(http.readyState == <span
-class="php-num">4</span> &amp;&amp; http.status == <span
-class="php-num">200</span>)
-       {
-           <span
-class="php-keyword1">var</span> result = JSON.parse(http.responseText);
-           document.write(result.status + <span
-class="php-quote">&quot; : &quot;</span> + result.message + <span
-class="php-quote">&quot; : &quot;</span> + result.data);
-       }
-   }
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
 
-   http.send(params);
-&lt;/script&gt;
-</pre>
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
 
-<div><br />
-</div>
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
 
-<p><a id="PHP"></a>Παράδειγμα κλήσης της συνάρτησης
-με <b>PHP</b> :</p>
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
 
-<pre>
-<span class="xlang">&lt;?php</span>
-   <span
-class="php-keyword2">header</span>(<span
-class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
 
-   <span
-class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
-class="php-quote">&quot;https://mm.sch.gr/api/ldaps&quot;</span>);
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
 
-   <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-   <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_USERPWD, <span
-class="php-quote">&quot;username:password&quot;</span>);
-   <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
-class="php-quote">&quot;GET&quot;</span>);
-   <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
-class="php-keyword1">true</span>);
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
 
-   <span
-class="php-var">$data</span> = <span class="php-keyword2">curl_exec</span>(<span
-class="php-var">$curl</span>);
-   <span class="php-var">$data</span> = <span
-class="php-keyword2">json_decode</span>(<span
-class="php-var">$data</span>);
-   <span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
-class="php-keyword2">var_dump</span>( <span
-class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
-<span
-class="xlang">?&gt;</span>
-</pre>
-
-<div><br />
-</div>
-
-<p><a id="Ajax"></a>Παράδειγμα κλήσης της
-συνάρτησης με <b>Ajax</b> :</p>
-
-<pre>
-&lt;script&gt;
-   <span class="php-var">$</span>.ajax({
-       type: <span
-class="php-quote">'GET'</span>,
-       url: <span
-class="php-quote">'https://mm.sch.gr/api/ldaps'</span>,
-       dataType: <span
-class="php-quote">&quot;json&quot;</span>,
-       beforeSend: <span
-class="php-keyword1">function</span>(req) {
-           req.setRequestHeader(<span
-class="php-quote">'Authorization'</span>, btoa(<span
-class="php-quote">'username'</span> + <span
-class="php-quote">&quot;:&quot;</span> + <span
-class="php-quote">'password'</span>));
-       },
-       success: <span
-class="php-keyword1">function</span>(data){
-           console.<span
-class="php-keyword2">log</span>(data);
-       }
-   });
-&lt;/script&gt;
-</pre>
-
-<div><br />
-</div>
-
-<p><br />
-<b>Πίνακας Δεδομένων</b><br />
-<a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα
-του λεξικού σε μορφή JSON :</p>
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
 
 <pre>
 {
-<span class="php-quote">&quot;data&quot;</span>: [
-  {
-    <span
-class="php-quote">&quot;accountstatus&quot;</span>: [
-      <span
-class="php-quote">&quot;ΕΝΕΡΓΗ&quot;</span>
-    ],
-    <span
-class="php-quote">&quot;description&quot;</span>: [
-      <span
-class="php-quote">&quot;10ο ΓΥΜΝΑΣΙΟ ΙΛΙΟΥ&quot;</span>
-    ],
-    <span
-class="php-quote">&quot;dn&quot;</span>: <span
-class="php-quote">&quot;ou=10gym-iliou,ou=att-g,ou=units,dc=sch,dc=gr&quot;</span>,
-    <span
-class="php-quote">&quot;gsnregistrycode&quot;</span>: [
-      <span
-class="php-quote">&quot;1000169&quot;</span>
-    ],
-    <span
-class="php-quote">&quot;gsnunitcode&quot;</span>: [
-      <span
-class="php-quote">&quot;0501659&quot;</span>
-    ],
-    <span
-class="php-quote">&quot;ou&quot;</span>: [
-      <span
-class="php-quote">&quot;10gym-iliou&quot;</span>
-    ]
-  },
-  {
-    <span
-class="php-quote">&quot;accountstatus&quot;</span>: [
-      <span
-class="php-quote">&quot;ΕΝΕΡΓΗ&quot;</span>
-    ],
-    <span
-class="php-quote">&quot;description&quot;</span>: [
-      <span
-class="php-quote">&quot;10ο ΓΥΜΝΑΣΙΟ ΠΕΡΙΣΤΕΡΙΟΥ&quot;</span>
-    ],
-    <span
-class="php-quote">&quot;dn&quot;</span>: <span
-class="php-quote">&quot;ou=10gym-perist,ou=att-g,ou=units,dc=sch,dc=gr&quot;</span>,
-    <span
-class="php-quote">&quot;gsnregistrycode&quot;</span>: [
-      <span
-class="php-quote">&quot;1011718&quot;</span>
-    ],
-    <span
-class="php-quote">&quot;gsnunitcode&quot;</span>: [
-      <span
-class="php-quote">&quot;0501727&quot;</span>
-    ],
-    <span
-class="php-quote">&quot;ou&quot;</span>: [
-      <span
-class="php-quote">&quot;10gym-perist&quot;</span>
-    ]
-  }
-],
-<span
+ <span class="php-quote">&quot;data&quot;</span>: [{}],
+ <span
 class="php-quote">&quot;controller&quot;</span>: <span
 class="php-quote">&quot;GetLdaps&quot;</span>,
-<span
+ <span
 class="php-quote">&quot;function&quot;</span>: <span
-class="php-quote">&quot;ldaps&quot;</span>,
-<span
+class="php-quote">&quot;ldap&quot;</span>,
+ <span
 class="php-quote">&quot;method&quot;</span>: <span
 class="php-quote">&quot;GET&quot;</span>,
-<span
-class="php-quote">&quot;total_by_user&quot;</span>: <span
-class="php-num">2</span>,
-<span
-class="php-quote">&quot;total_by_ldap&quot;</span>: <span
-class="php-num">2</span>,
-<span
-class="php-quote">&quot;not_foundby_ldap&quot;</span>: [],
-<span
+ <span
+class="php-quote">&quot;total_by_user&quot;</span>: ``,
+ <span
+class="php-quote">&quot;total_by_ldap&quot;</span>: ``,
+ <span
+class="php-quote">&quot;not_foundby_ldap&quot;</span>:``,
+ <span
 class="php-quote">&quot;status&quot;</span>: <span
 class="php-num">200</span>,
-<span
+ <span
 class="php-quote">&quot;message&quot;</span>: <span
-class="php-quote">&quot;success&quot;</span>
+class="php-quote">&quot;[GET][ldap]:success&quot;</span>
+}
 </pre>
 
-<div><br />
-</div>
+<p><strong><em>Πίνακας Δεδομένων</em></strong><br />
+<a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα
+από τον πίνακα data με τα αποτελέσματα σε
+μορφή JSON :</p>
+
+<pre>
+{  <span class="php-quote">&quot;data&quot;</span>: {
+    <span
+class="php-quote">&quot;accountstatus&quot;</span>: [``],
+    <span
+class="php-quote">&quot;description&quot;</span>: [``],
+    <span
+class="php-quote">&quot;dn&quot;</span>: ``,
+    <span
+class="php-quote">&quot;gsnregistrycode&quot;</span>: [``],
+    <span
+class="php-quote">&quot;gsnunitcode&quot;</span>: [``],
+    <span
+class="php-quote">&quot;ou&quot;</span>: [``]
+   }
+}
+</pre>
 
 	</div>
 
@@ -432,16 +274,20 @@ class="php-quote">&quot;success&quot;</span>
 		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$mm_id</var></code></td>
 		<td>
-			 Κωδικός ΜΜ Μονάδας<br />
-Ο Κωδικός ΜΜ της Μονάδας<br />
+			 Μονάδα<br />
+<br />
+Ο Κωδικός MM της Μονάδας<br />
+Η παράμετρος είναι
+<strong><em>υποχρεωτική</em></strong><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
 integer|array[integer]
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
-
-	<li>array[integer] : Σύνολο από Αριθμητικές τιμές
-	διαχωρισμένες με κόμμα</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ΜΜ της Μονάδας.<br />
+	Σε περίπτωση που δεν βρεθεί μονάδα με το
+	κωδικό $mm_id που δώθηκε από τον χρήστη
+	επιστρέφεται { "data": { not_foundby_ldap": [``] } }</li>
 </ul>
 
 		</td>
@@ -452,28 +298,12 @@ integer|array[integer]
 	<caption>Return value summary</caption>
 	<tr>
 		<td class="name"><code>
-			Array&lt;JSON&gt;
+			Objects&lt;JSON&gt;
 		</code></td>
 		<td>
-			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
-:<br />
+			Επιστρέφει τα παρακάτω JSON objects :<br />
 <br />
-string : <b>controller</b> : O controller της συνάρτησης<br />
-string : <b>function</b> : H ονομασία κλήσης της
-συνάρτησης<br />
-string : <b>method</b> : Η μέθοδος κλήσης της
-συνάρτησης<br />
-integer : <b>status</b> : Ο Κωδικός <code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code> του
-αποτελέσματος της κλήσης<br />
-string : <b>message</b> : Το Μήνυμα <code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code> του
-αποτελέσματος της κλήσης<br />
-integer : <b>total_by_user</b> : Το πλήθος των μονάδων που
-καταχώρησε ο χρήστης<br />
-integer : <b>total_by_ldap</b> : Το πλήθος των μονάδων που
-βρέθηκαν στον ldap<br />
-array : <b>not_foundby_ldap</b> : Οι κωδικοί ΜΜ των Μονάδων
-που δεν βρέθηκαν στον ldap<br />
-array : <b>data</b> : Ο Πίνακας με τα αποτελέσματα
+array : <b>data</b> : Ο Πίνακας με τα δεδομένα
 <ul>
 	<li>string : <b>accountstatus</b> : Η λειτουργική Κατάσταση
 	της Μονάδας</li>
@@ -490,7 +320,23 @@ array : <b>data</b> : Ο Πίνακας με τα αποτελέσματα
 
 	<li>string : <b>ou</b> : Το ldap ou της Μονάδας</li>
 </ul>
-
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+integer : <b>total_by_user</b> : Το πλήθος των Μονάδων που
+καταχώρησε ο χρήστης προς αναζήτηση<br />
+integer : <b>total_by_ldap</b> : Το πλήθος των Μονάδων που
+βρέθηκαν στον Ldap Server<br />
+integer : <b>not_foundby_ldap</b> : Οι Μονάδες που δεν
+βρέθηκαν στον Ldap Server<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
 		</td>
 	</tr>
 	</table>
@@ -499,11 +345,47 @@ array : <b>data</b> : Ο Πίνακας με τα αποτελέσματα
 	<caption>Thrown exceptions summary</caption>
 	<tr>
 		<td class="name"><code>
+			MissingUnitMMIDParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitMMIDParam">ExceptionMessages::<b>MissingUnitMMIDParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitMMIDParam">ExceptionCodes::<b>MissingUnitMMIDParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingUnitMMIDValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingUnitMMIDValue">ExceptionMessages::<b>MissingUnitMMIDValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingUnitMMIDValue">ExceptionCodes::<b>MissingUnitMMIDValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitMMIDArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitMMIDArray">ExceptionMessages::<b>InvalidUnitMMIDArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitMMIDArray">ExceptionCodes::<b>InvalidUnitMMIDArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
 			InvalidMaxLdapPageNumber
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidMaxLdapPageNumber">ExceptionMessages::<b>InvalidMaxLdapPageNumber</b></a></code><br />
 <code><a href="class-ExceptionCodes.html#InvalidMaxLdapPageNumber">ExceptionCodes::<b>InvalidMaxLdapPageNumber</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NoErrors
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
 		</td>
 	</tr>
 	</table>

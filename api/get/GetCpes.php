@@ -57,7 +57,7 @@ header("Content-Type: text/html; charset=utf-8");
  * <br><a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα από τον πίνακα data με τα αποτελέσματα σε μορφή JSON :
  * <code>
  * {"data": [{
- *              "cpe_id": 
+ *              "cpe_id":``. 
  *              "cpe": ``,
  *              "mm_id": ``,
  *              "unit_name": ``,
@@ -80,6 +80,11 @@ header("Content-Type: text/html; charset=utf-8");
  *          <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ΜΜ της Μονάδας,
  *          <br>Μπορεί να δωθέι μέρος ή ολοκληρος ο Κωδικός ΜΜ.
  *          <br>Η αναζήτηση στο Κτηματολόγιο γίνεται στις εγγραφές που περιέχουν την τιμή του $unit.
+ *          <br>Η πρόσβαση στο σύνολο των δεδομένων, μπορεί να γίνει από τον παρακάτω σύνδεσμο:
+ *              http://inventory.sch.gr/creports/pub/results.html?id=14&gsn_registry_code=&
+ *          <br>Υπάρχει η δυνατότητα έκδοσης αποτελεσμάτων σε csv και json, αλλάζοντας την κατάληξη html, όπως παρακάτω:
+ *              http://inventory.sch.gr/creports/pub/results.csv?id=14&gsn_registry_code=&  
+ *              http://inventory.sch.gr/creports/pub/results.json?id=14&gsn_registry_code=&
  *       </li>
  *    </ul>
  * 
@@ -121,7 +126,6 @@ header("Content-Type: text/html; charset=utf-8");
  * 
  * @throws NoErrors {@see ExceptionMessages::NoErrors}
  * <br>{@see ExceptionCodes::NoErrors}
- * 
  *
  */
 

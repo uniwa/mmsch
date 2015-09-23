@@ -120,445 +120,214 @@
 
 	<div class="description">
 	
-<p><b>Log Συγχρονισμού</b></p>
+<p><strong>Αναζήτηση Log Συγχρονισμού</strong></p>
 
-<p>Η συνάρτηση αυτή επιστρέφει όλα τα Log
+<p>Η συνάρτηση αυτή επιστρέφει Log
 Συγχρονισμού σύμφωνα με τις παραμέτρους
-που έγινε η κλήση</p>
+που έγινε η κλήση.<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>GET</strong> και
+route_api_name = <strong>ext_log_entries</strong> :<br />
+https://mm.sch.gr/api/ext_log_entries</p>
 
-<p>Η κλήση μπορεί να γίνει μέσω της παρακάτω
-διεύθυνσης με τη μέθοδο GET :<br />
-<a
-href="https://mm.sch.gr/api/ext_log_entries">https://mm.sch.gr/api/ext_log_entries</a></p>
+<p><strong><em>Ορισμός Τύπου και Πεδίου
+Ταξινόμησης Αποτελεσμάτων</em></strong></p>
 
-<p>Τα αποτελέσματα είναι ταξινομημένα ως
-προς τον Κωδικό του Log Συγχρονισμού<br />
-Μέσω των παραμέτρων Πεδίο Ταξινόμησης (<a
-href="#$orderby">$orderby</a>) και Τύπος Ταξινόμησης (<a
-href="#$ordertype">$ordertype</a>) μπορεί να καθοριστεί το
-πεδίο και η σειρά ταξινόμησης</p>
+<ul>
+	<li>Μέσω των παραμέτρων Πεδίο Ταξινόμησης (<a
+	href="#$orderby">$orderby</a>) και Τύπος Ταξινόμησης (<a
+	href="#$ordertype">$ordertype</a>) μπορεί να καθοριστεί το
+	πεδίο και η σειρά ταξινόμησης.</li>
 
-<p><br />
-<b>Πίνακας Παραμέτρων</b><br />
-Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
-summary</a> εμφανίζονται όλοι οι παράμετροι με
-τους οποίους μπορεί να γίνει η κλήση της
-συνάρτησης<br />
-Όλοι οι παράμετροι είναι προαιρετικοί
-εκτός από αυτές που έχουν χαρακτηριστεί ως
-υποχρεωτικοί<br />
-Οι παράμετροι μπορούν να χρησιμοποιηθούν
-με οποιαδήποτε σειρά<br />
-Οι παράμετροι μπορούν να πάρουν τιμή "NULL"
-για να αναζητήσουν τις κενές εγγραφές στα
-αντίστοιχα πεδία</p>
+	<li>Προκαθορισμένη τιμή πεδίου ταξινόμησης
+	είναι η αύξουσα σειρά <strong>ASC</strong>.</li>
 
-<p><br />
-<b>Πίνακας Αποτελεσμάτων</b><br />
-Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value
-summary</a> εμφανίζονται οι μεταβλητές που
-επιστρέφει η συνάρτηση<br />
-Όλες οι μεταβλητές επιστρέφονται σε ένα
-πίνακα σε JSON μορφή<br />
-Η μεταβλητή data είναι ο πίνακας με το
-λεξικό<br />
-Η μεταβλητή status καθορίζει αν η εκτέλεση της
-συνάρτησης ήταν επιτυχής (κωδικός 200) ή
-προέκυψε κάποιο σφάλμα</p>
+	<li>Προκαθορισμένη τιμή τύπου ταξινόμησης
+	είναι το <strong>ID του Log Συγχρονισμού</strong>.</li>
+</ul>
 
-<p><br />
-<b>Πίνακας Σφαλμάτων</b><br />
-Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
-summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
-που μπορεί να προκύψουν κατά την κλήση της
-συνάρτησης<br />
-Οι περιγραφές των Σφαλμάτων καθώς και οι
-Κωδικοί τους είναι διαθέσιμες μέσω του
-πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
-και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
-αντίστοιχα</p>
+<p><strong><em>Ορισμός Αριθμού Σελίδας και
+Εγγραφών/Σελίδα της Επιστροφής
+Αποτελεσμάτων</em></strong></p>
 
-<p><br />
-<b>Παραδείγματα Κλήσης</b><br />
-Παρακάτω εμφανίζεται μια σειρά από
-παραδείγματα κλήσης της συνάρτησης με
-διάφορους τρόπους :<br />
-<a href="#cURL">cURL</a> | <a href="#JavaScript">JavaScript</a> | <a
-href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a></p>
+<ul>
+	<li>Μέσω των παραμέτρων Αριθμός Σελίδας (<a
+	href="#$page">$page</a>) και Αριθμός Εγγραφών/Σελίδα (<a
+	href="#$pagesize">$pagesize</a>) μπορεί να καθοριστεί ο
+	αριθμός Σελίδας και Εγγραφών/Σελίδα της
+	επιστροφής αποτελεσμάτων.</li>
 
-<div><br />
-</div>
+	<li>Ο προκαθορισμένος αριθμός
+	Εγγραφών/Σελίδα που επιστρέφονται ανά
+	κλήση είναι <strong>0</strong>.</li>
 
-<p><a id="cURL"></a>Παράδειγμα κλήσης της
-συνάρτησης με <b>cURL</b> (console) :</p>
+	<li>Ο προκαθορισμένος αριθμός Σελίδας που
+	επιστρέφεται ανά κλήση είναι <strong>1</strong>.</li>
+</ul>
 
-<pre>
-curl -X GET https:<span
-class="php-comment">//mm.sch.gr/api/ext_log_entries \</span>
-   -H <span
-class="php-quote">&quot;Content-Type: application/json&quot;</span> \
-   -H <span
-class="php-quote">&quot;Accept: application/json&quot;</span> \
-   -u username:password \
-   -d <span
-class="php-quote">'{&quot;object_id&quot;: &quot;1000002&quot;}'</span>
-</pre>
+<p><strong><em>Ορισμός Τύπου Αναζήτησης
+Αποτελεσμάτων</em></strong></p>
 
-<div><br />
-</div>
+<ul>
+	<li>Μέσω των παραμέτρων Τύπου Αναζήτησης (<a
+	href="#$searchtype">$searchtype</a>) μπορεί να καθοριστεί
+	μπορεί να καθοριστεί ο τρόπος με τον οποίο
+	θα αναζητηθεί η τιμή της παραμέτρου στο DNS
+	της Μονάδας.</li>
 
-<p><a id="JavaScript"></a>Παράδειγμα κλήσης της
-συνάρτησης με <b>JavaScript</b> :</p>
+	<li>Ισχύει για όσες παραμέτρους το
+	υποστηρίζουν το συνδυασμό με την παράμετρο
+	searchtype.</li>
 
-<pre>
-&lt;script&gt;
-   <span
-class="php-keyword1">var</span> params = JSON.stringify({ <span
-class="php-quote">&quot;object_id&quot;</span>: <span
-class="php-quote">&quot;1000002&quot;</span> });
+	<li>Προκαθορισμένη τιμή τύπου αναζήτησης
+	είναι <strong>CONTAINALL</strong>.</li>
+</ul>
 
-   <span
-class="php-keyword1">var</span> http = <span
-class="php-keyword1">new</span> XMLHttpRequest();
-   http.open(<span
-class="php-quote">&quot;GET&quot;</span>, <span
-class="php-quote">&quot;https://mm.sch.gr/api/ext_log_entries&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Accept&quot;</span>, <span
-class="php-quote">&quot;application/json&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-type&quot;</span>, <span
-class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Authorization&quot;</span>, <span
-class="php-quote">&quot;Basic &quot;</span> + btoa(<span
-class="php-quote">'username'</span> + <span class="php-quote">':'</span> + <span
-class="php-quote">'password'</span>) );
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
 
-   http.onreadystatechange = <span
-class="php-keyword1">function</span>()
-   {
-       <span
-class="php-keyword1">if</span>(http.readyState == <span
-class="php-num">4</span> &amp;&amp; http.status == <span
-class="php-num">200</span>)
-       {
-           <span
-class="php-keyword1">var</span> result = JSON.parse(http.responseText);
-           document.write(result.status + <span
-class="php-quote">&quot; : &quot;</span> + result.message + <span
-class="php-quote">&quot; : &quot;</span> + result.data);
-       }
-   }
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
 
-   http.send(params);
-&lt;/script&gt;
-</pre>
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
 
-<div><br />
-</div>
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
 
-<p><a id="PHP"></a>Παράδειγμα κλήσης της συνάρτησης
-με <b>PHP</b> :</p>
+	<li>Οι παράμετροι οι οποίοι έχουν το
+	χαρακτηριστικό (Συνδυάζεται με την
+	παράμετρο searchtype) σημαίνει ότι η
+	συγκεκριμένη παράμετρος συνδυάζεται με την
+	παράμετρο searchtype.</li>
 
-<pre>
-<span class="xlang">&lt;?php</span>
-   <span
-class="php-keyword2">header</span>(<span
-class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
+	<li>Οι παράμετροι μπορούν να πάρουν τιμή "NULL"
+	για να αναζητήσουν τις κενές εγγραφές στα
+	αντίστοιχα πεδία</li>
+</ul>
 
-   <span
-class="php-var">$params</span> = <span class="php-keyword1">array</span>(<span
-class="php-quote">&quot;object_id&quot;</span> =&gt; <span
-class="php-quote">&quot;1000002&quot;</span>);
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
 
-   <span
-class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
-class="php-quote">&quot;https://mm.sch.gr/api/ext_log_entries&quot;</span>);
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
 
-   <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-   <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_USERPWD, <span
-class="php-quote">&quot;username:password&quot;</span>);
-   <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
-class="php-quote">&quot;GET&quot;</span>);
-   <span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
-class="php-keyword1">true</span>);
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
 
-   <span
-class="php-var">$data</span> = <span class="php-keyword2">curl_exec</span>(<span
-class="php-var">$curl</span>);
-   <span class="php-var">$data</span> = <span
-class="php-keyword2">json_decode</span>(<span
-class="php-var">$data</span>);
-   <span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
-class="php-keyword2">var_dump</span>( <span
-class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
-<span
-class="xlang">?&gt;</span>
-</pre>
+	<li>Η μεταβλητή <a href="#data">data</a> είναι ο πίνακας
+	με τα δεδομένα.</li>
 
-<div><br />
-</div>
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
 
-<p><a id="Ajax"></a>Παράδειγμα κλήσης της
-συνάρτησης με <b>Ajax</b> :</p>
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
+
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
+
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Προκαθορισμένων
+Παραμέτρων</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Προκαθορισμένων Παραμέτρων (<code><a href="class-StandarParamsMessages.html">StandarParamsMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
 
 <pre>
-&lt;script&gt;
-   <span class="php-var">$</span>.ajax({
-       type: <span
-class="php-quote">'GET'</span>,
-       url: <span
-class="php-quote">'https://mm.sch.gr/api/ext_log_entries'</span>,
-       dataType: <span
-class="php-quote">&quot;json&quot;</span>,
-       data:{<span
-class="php-quote">'object_id'</span>: <span
-class="php-quote">'1000002'</span>},
-       beforeSend: <span
-class="php-keyword1">function</span>(req) {
-           req.setRequestHeader(<span
-class="php-quote">'Authorization'</span>, btoa(<span
-class="php-quote">'username'</span> + <span
-class="php-quote">&quot;:&quot;</span> + <span
-class="php-quote">'password'</span>));
-       },
-       success: <span
-class="php-keyword1">function</span>(data){
-           console.<span
-class="php-keyword2">log</span>(data);
-       }
-   });
-&lt;/script&gt;
+{
+ <span class="php-quote">&quot;data&quot;</span>: [{}],
+ <span
+class="php-quote">&quot;controller&quot;</span>: <span
+class="php-quote">&quot;GetExtLogEntries&quot;</span>,
+ <span
+class="php-quote">&quot;function&quot;</span>: <span
+class="php-quote">&quot;ext_log_entries&quot;</span>,
+ <span
+class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;GET&quot;</span>,
+ <span
+class="php-quote">&quot;total&quot;</span>: ``,
+ <span
+class="php-quote">&quot;count&quot;</span>: ``,
+ <span
+class="php-quote">&quot;pagination&quot;</span>: { <span
+class="php-quote">&quot;page&quot;</span>: <span class="php-num">1</span>, <span
+class="php-quote">&quot;maxPage&quot;</span>: <span
+class="php-num">1</span>, <span
+class="php-quote">&quot;pagesize&quot;</span>: <span
+class="php-num">200</span>},
+ <span
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
+ <span
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;[GET][ext_log_entries]:success&quot;</span>
+}
 </pre>
 
-<div><br />
-</div>
-
-<p><br />
-<b>Πίνακας Δεδομένων</b><br />
+<p><strong><em>Πίνακας Δεδομένων</em></strong><br />
 <a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα
-του λεξικού σε μορφή JSON :</p>
+από τον πίνακα data με τα αποτελέσματα σε
+μορφή JSON :</p>
 
 <pre>
-{<span
-class="php-quote">&quot;data&quot;</span>:[
-         {
+{<span class="php-quote">&quot;data&quot;</span>: [{
              <span
-class="php-quote">&quot;id&quot;</span>: <span
-class="php-num">91305</span>,
+class="php-quote">&quot;id&quot;</span>: ``,
              <span
-class="php-quote">&quot;action&quot;</span>: <span
-class="php-quote">&quot;update&quot;</span>,
+class="php-quote">&quot;action&quot;</span>: ``,
              <span
-class="php-quote">&quot;logged_at&quot;</span>: <span
-class="php-quote">&quot;2014-07-01 12:06:30&quot;</span>,
+class="php-quote">&quot;logged_at&quot;</span>: ``,
              <span
-class="php-quote">&quot;object_id&quot;</span>: <span
-class="php-quote">&quot;1000002&quot;</span>,
+class="php-quote">&quot;object_id&quot;</span>: ``,
              <span
-class="php-quote">&quot;object_class&quot;</span>: <span
-class="php-quote">&quot;Units&quot;</span>,
+class="php-quote">&quot;object_class&quot;</span>: ``,
              <span
-class="php-quote">&quot;version&quot;</span>: <span
-class="php-num">1</span>,
+class="php-quote">&quot;version&quot;</span>: ``,
              <span
-class="php-quote">&quot;data&quot;</span>: <span
-class="php-quote">&quot;a:6:{s:4:&quot;</span>name<span
-class="php-quote">&quot;;s:74:&quot;</span>eschool-Νηπιαγωγείο - <span
-class="php-num">2</span>ο ΝΗΠΙΑΓΩΓΕΙΟ ΚΑΤΟΧΗΣ<span
-class="php-quote">&quot;;s:13:&quot;</span>studentsCount<span
-class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
-class="php-quote">&quot;;
-                      s:11:&quot;</span>groupsCount<span
-class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
-class="php-quote">&quot;;s:11:&quot;</span>levelsCount<span
-class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
-class="php-quote">&quot;;s:10:&quot;</span>lastUpdate<span
-class="php-quote">&quot;;
-                      O:8:&quot;</span>DateTime<span
-class="php-quote">&quot;:3:{s:4:&quot;</span><span
-class="php-keyword2">date</span><span
-class="php-quote">&quot;;s:19:&quot;</span><span
-class="php-num">2013</span>-<span class="php-num">11</span>-<span
-class="php-num">25</span> <span class="php-num">14</span>:<span
-class="php-num">50</span>:<span class="php-num">29</span><span
-class="php-quote">&quot;;s:13:&quot;</span>timezone_type<span
-class="php-quote">&quot;;
-                      i:3;s:8:&quot;</span>timezone<span
-class="php-quote">&quot;;s:13:&quot;</span>Europe/Athens<span
-class="php-quote">&quot;;}s:6:&quot;</span>source<span
-class="php-quote">&quot;;a:1:{s:8:&quot;</span>sourceId<span
-class="php-quote">&quot;;i:5;}}&quot;</span>,
+class="php-quote">&quot;data&quot;</span>: ``,
              <span
-class="php-quote">&quot;username&quot;</span>: <span
-class="php-quote">&quot;admin&quot;</span>,
+class="php-quote">&quot;username&quot;</span>: ``,
              <span
-class="php-quote">&quot;ip&quot;</span>: <span
-class="php-keyword1">null</span>
-          },
-          {
-              <span
-class="php-quote">&quot;id&quot;</span>: <span
-class="php-num">111032</span>,
-              <span
-class="php-quote">&quot;action&quot;</span>: <span
-class="php-quote">&quot;update&quot;</span>,
-              <span
-class="php-quote">&quot;logged_at&quot;</span>: <span
-class="php-quote">&quot;2014-07-01 15:20:34&quot;</span>,
-              <span
-class="php-quote">&quot;object_id&quot;</span>: <span
-class="php-quote">&quot;1000002&quot;</span>,
-              <span
-class="php-quote">&quot;object_class&quot;</span>: <span
-class="php-quote">&quot;Units&quot;</span>,
-              <span
-class="php-quote">&quot;version&quot;</span>: <span
-class="php-num">2</span>,
-              <span
-class="php-quote">&quot;data&quot;</span>: <span
-class="php-quote">&quot;a:4:{s:13:&quot;</span>studentsCount<span
-class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
-class="php-quote">&quot;;s:11:&quot;</span>groupsCount<span
-class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
-class="php-quote">&quot;;s:11:&quot;</span>levelsCount<span
-class="php-quote">&quot;;
-                       s:1:&quot;</span><span
-class="php-num">0</span><span
-class="php-quote">&quot;;s:10:&quot;</span>lastUpdate<span
-class="php-quote">&quot;;O:8:&quot;</span>DateTime<span
-class="php-quote">&quot;:3:{s:4:&quot;</span><span
-class="php-keyword2">date</span><span
-class="php-quote">&quot;;s:19:&quot;</span><span
-class="php-num">2013</span>-<span class="php-num">11</span>-<span
-class="php-num">25</span> <span class="php-num">14</span>:<span
-class="php-num">50</span>:<span class="php-num">29</span><span
-class="php-quote">&quot;;
-                       s:13:&quot;</span>timezone_type<span
-class="php-quote">&quot;;i:3;s:8:&quot;</span>timezone<span
-class="php-quote">&quot;;s:13:&quot;</span>Europe/Athens<span
-class="php-quote">&quot;;}}&quot;</span>,
-              <span
-class="php-quote">&quot;username&quot;</span>: <span
-class="php-quote">&quot;admin&quot;</span>,
-              <span
-class="php-quote">&quot;ip&quot;</span>: <span
-class="php-keyword1">null</span>
-        },
-          {
-              <span
-class="php-quote">&quot;id&quot;</span>: <span
-class="php-num">117200</span>,
-              <span
-class="php-quote">&quot;action&quot;</span>: <span
-class="php-quote">&quot;update&quot;</span>,
-              <span
-class="php-quote">&quot;logged_at&quot;</span>: <span
-class="php-quote">&quot;2014-07-01 16:09:45&quot;</span>,
-              <span
-class="php-quote">&quot;object_id&quot;</span>: <span
-class="php-quote">&quot;1000002&quot;</span>,
-              <span
-class="php-quote">&quot;object_class&quot;</span>: <span
-class="php-quote">&quot;Units&quot;</span>,
-              <span
-class="php-quote">&quot;version&quot;</span>: <span
-class="php-num">3</span>,
-              <span
-class="php-quote">&quot;data&quot;</span>: <span
-class="php-quote">&quot;a:4:{s:13:&quot;</span>studentsCount<span
-class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
-class="php-quote">&quot;;s:11:&quot;</span>groupsCount<span
-class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
-class="php-quote">&quot;;s:11:&quot;</span>levelsCount<span
-class="php-quote">&quot;;
-                            s:1:&quot;</span><span
-class="php-num">0</span><span
-class="php-quote">&quot;;s:10:&quot;</span>lastUpdate<span
-class="php-quote">&quot;;O:8:&quot;</span>DateTime<span
-class="php-quote">&quot;:3:{s:4:&quot;</span><span
-class="php-keyword2">date</span><span
-class="php-quote">&quot;;s:19:&quot;</span><span
-class="php-num">2013</span>-<span class="php-num">11</span>-<span
-class="php-num">25</span> <span class="php-num">14</span>:<span
-class="php-num">50</span>:<span class="php-num">29</span><span
-class="php-quote">&quot;;
-                            s:13:&quot;</span>timezone_type<span
-class="php-quote">&quot;;i:3;s:8:&quot;</span>timezone<span
-class="php-quote">&quot;;s:13:&quot;</span>Europe/Athens<span
-class="php-quote">&quot;;}}&quot;</span>,
-              <span
-class="php-quote">&quot;username&quot;</span>: <span
-class="php-quote">&quot;admin&quot;</span>,
-              <span
-class="php-quote">&quot;ip&quot;</span>: <span
-class="php-keyword1">null</span>
-           },
-          {
-              <span
-class="php-quote">&quot;id&quot;</span>: <span
-class="php-num">138565</span>,
-              <span
-class="php-quote">&quot;action&quot;</span>: <span
-class="php-quote">&quot;update&quot;</span>,
-              <span
-class="php-quote">&quot;logged_at&quot;</span>: <span
-class="php-quote">&quot;2014-07-01 19:17:18&quot;</span>,
-              <span
-class="php-quote">&quot;object_id&quot;</span>: <span
-class="php-quote">&quot;1000002&quot;</span>,
-              <span
-class="php-quote">&quot;object_class&quot;</span>: <span
-class="php-quote">&quot;Units&quot;</span>,
-              <span
-class="php-quote">&quot;version&quot;</span>: <span
-class="php-num">4</span>,
-              <span
-class="php-quote">&quot;data&quot;</span>: <span
-class="php-quote">&quot;a:4:{s:13:&quot;</span>studentsCount<span
-class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
-class="php-quote">&quot;;s:11:&quot;</span>groupsCount<span
-class="php-quote">&quot;;s:1:&quot;</span><span class="php-num">0</span><span
-class="php-quote">&quot;;s:11:&quot;</span>levelsCount<span
-class="php-quote">&quot;;
-                            s:1:&quot;</span><span
-class="php-num">0</span><span
-class="php-quote">&quot;;s:10:&quot;</span>lastUpdate<span
-class="php-quote">&quot;;O:8:&quot;</span>DateTime<span
-class="php-quote">&quot;:3:{s:4:&quot;</span><span
-class="php-keyword2">date</span><span
-class="php-quote">&quot;;s:19:&quot;</span><span
-class="php-num">2013</span>-<span class="php-num">11</span>-<span
-class="php-num">25</span> <span class="php-num">14</span>:<span
-class="php-num">50</span>:<span class="php-num">29</span><span
-class="php-quote">&quot;;
-                            s:13:&quot;</span>timezone_type<span
-class="php-quote">&quot;;i:3;s:8:&quot;</span>timezone<span
-class="php-quote">&quot;;s:13:&quot;</span>Europe/Athens<span
-class="php-quote">&quot;;}}&quot;</span>,
-              <span
-class="php-quote">&quot;username&quot;</span>: <span
-class="php-quote">&quot;admin&quot;</span>,
-              <span
-class="php-quote">&quot;ip&quot;</span>: <span
-class="php-keyword1">null</span>
-        }
-]}
+class="php-quote">&quot;ip&quot;</span>: ``
+         }]
+}
 </pre>
-
-<div><br />
-</div>
 
 	</div>
 
@@ -577,35 +346,47 @@ class="php-keyword1">null</span>
 		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$id</var></code></td>
 		<td>
-			 Κωδικός Log Συγχρονισμού<br />
-Ο Κωδικός του Log Συγχρονισμού<br />
+			 ID Log Συγχρονισμού<br />
+<br />
+Ο Κωδικός ID Log Συγχρονισμού<br />
 Η τιμή της παραμέτρου μπορεί να είναι :
 integer|array[integer]
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με ID Log
+	Συγχρονισμού</li>
 
-	<li>array[integer] : Σύνολο από Αριθμητικές τιμές
-	διαχωρισμένες με κόμμα</li>
+	<li>array[integer]<br />
+	Σύνολο από Αριθμητικές τιμές διαχωρισμένες
+	με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
 	</tr>
 	<tr id="$action">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$action</var></code></td>
 		<td>
 			 Ενέργεια Συγχρονισμού<br />
+<br />
 Η Ενέργεια του Log Συγχρονισμού<br />
 Η τιμή της παραμέτρου μπορεί να είναι :
 mixed{string|array[string]}
 <ul>
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το λεκτικό ενέργειας(update|create|delete))</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	λεκτικό Ενέργειας του Log Συγχρονισμού
+	(update|create|delete))<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>array[integer|string]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές
+	τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -615,16 +396,31 @@ mixed{string|array[string]}
 		<td class="value"><code><var>$logged_at</var></code></td>
 		<td>
 			 Ημερομηνία Log Συγχρονισμου<br />
+<br />
 Η Ημερομηνία του Log Συγχρονισμου<br />
+Συνδυάζεται με την παράμετρο datesearchtype<br />
+Λίστα Τύπων Αναζήτησης Ημερομηνίας : (<a
+href="#$datesearchtype">$datesearchtype</a>)<br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{string|array[string]}
+string|null|array[string|null]
 <ul>
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με την ημερομηνία)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με την
+	Ημερομηνία του Log Συγχρονισμου<br />
+	Αν η παράμετρος Τύπος Αναζήτησης
+	Ημερομηνίας δεν έχει τιμή τότε η αναζήτηση
+	στην Ημερομηνία Log Συγχρονισμου γίνεται με
+	τον Tύπο {exact}</li>
 
-	<li>array[string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[string|null]<br />
+	Σύνολο από Αλφαριθμητικές ή Null τιμές
+	διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -633,35 +429,46 @@ mixed{string|array[string]}
 		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$object_id</var></code></td>
 		<td>
-			 Κωδικός Μονάδας<br />
-Ο Κωδικός Μονάδας του Log Συγχρονισμου<br />
+			 Κωδικός ΜΜ<br />
+<br />
+Ο Κωδικός ΜΜ του Log Συγχρονισμου<br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|array[integer]}
+integer|array[integer]
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό μονάδας)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ΜΜ του Log Συγχρονισμου</li>
 
-	<li>array[integer] : Σύνολο από Αριθμητικές τιμές
-	διαχωρισμένες με κόμμα</li>
+	<li>array[integer]<br />
+	Σύνολο από Αριθμητικές τιμές διαχωρισμένες
+	με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
 	</tr>
 	<tr id="$object_class">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$object_class</var></code></td>
 		<td>
 			 Όνομα Πίνακα<br />
+<br />
 Το Όνομα Πίνακα του Log Συγχρονισμου<br />
 Η τιμή της παραμέτρου μπορεί να είναι :
 mixed{string|array[string]}
 <ul>
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα πίνακα που συγχρονίζεται)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα Πίνακα του Log Συγχρονισμου<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>array[integer|string]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές
+	τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -671,54 +478,78 @@ mixed{string|array[string]}
 		<td class="value"><code><var>$version</var></code></td>
 		<td>
 			 Έκδοση<br />
+<br />
 Η Έκδοση του Log Συγχρονισμού<br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|array[integer]}
+integer|array[integer]
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον αριθμό έκδοσης συγχρονισμού)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	αριθμό Έκδοσης του Log Συγχρονισμού</li>
 
-	<li>array[integer] : Σύνολο από Αριθμητικές τιμές
-	διαχωρισμένες με κόμμα</li>
+	<li>array[integer]<br />
+	Σύνολο από Αριθμητικές τιμές διαχωρισμένες
+	με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
 	</tr>
 	<tr id="$username">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$username</var></code></td>
 		<td>
 			 Όνομα Χρήστη<br />
+<br />
 Το Όνομα του Χρήστη του Log Συγχρονισμού<br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{string|array[string]}
+mixed{string|null|array[string|null]}
 <ul>
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα χρήστη)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα του Χρήστη του Log Συγχρονισμού<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
 	</tr>
 	<tr id="$ip">
-		<td class="name"><code>string</code></td>
+		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$ip</var></code></td>
 		<td>
 			 IP Xρήστη<br />
+<br />
 Η IP του Xρήστη του Log Συγχρονισμού<br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{string|array[string]}
+mixed{string|null|array[string|null]}
 <ul>
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με την IP του χρήστη που έκανε ενέργεια
-	συγχρονισμού)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με την IP
+	του Xρήστη του Log Συγχρονισμού<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -728,11 +559,13 @@ mixed{string|array[string]}
 		<td class="value"><code><var>$pagesize</var></code></td>
 		<td>
 			 Αριθμός Εγγραφών/Σελίδα<br />
+<br />
 Ο αριθμός των εγγραφών που θα επιστρέψουν
 ανα σελίδα<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε θα
-επιστραφούν όλες οι εγγραφές (<code><a href="class-Parameters.html#AllPageSize">Parameters::<b>AllPageSize</b></a></code>)<br />
+επιστραφούν όλες οι προκαθορισμένες
+εγγραφές (<code><a href="class-Parameters.html#DefaultPageSize">Parameters::<b>DefaultPageSize</b></a></code>)<br />
 Λίστα Παραμέτρων Σελιδοποίησης : <code><a href="class-Parameters.html">Parameters</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι : integer
 <ul>
@@ -748,12 +581,14 @@ mixed{string|array[string]}
 		<td class="value"><code><var>$page</var></code></td>
 		<td>
 			 Αριθμός Σελίδας<br />
+<br />
 Ο αριθμός της σελίδας με τις <a
 href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 σύμφωμα με τις παραμέτρους<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε θα
 επιστραφεί η πρώτη σελίδα<br />
+Λίστα Παραμέτρων Σελίδας : <code><a href="class-Parameters.html">Parameters</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι : integer
 <ul>
 	<li>integer<br />
@@ -768,18 +603,19 @@ href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 		<td class="value"><code><var>$orderby</var></code></td>
 		<td>
 			 Πεδίο Ταξινόμησης<br />
+<br />
 Το όνομα του πεδίου με το οποίο γίνεται η
 ταξινόμηση των εγγραφών<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε η
-ταξινόμηση γίνεται με τον Κωδικό ΜΜ της
-Μονάδας<br />
+ταξινόμηση γίνεται με το <strong>ID του Log
+Συγχρονισμού</strong><br />
 Η τιμή της παραμέτρου μπορεί να είναι : string
 <ul>
 	<li>string<br />
 	Αλφαριθμητική : Η τιμή της παραμέτρου
-	μπορεί να είναι οποιοδήποτε πεδίο
-	επιστρέφει η συνάρτηση στον πίνακα data</li>
+	μπορεί να είναι οποιοδήποτε όνομα πεδίου
+	επιστρέφεται στον πίνακα data</li>
 </ul>
 
 		</td>
@@ -789,7 +625,8 @@ href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 		<td class="value"><code><var>$ordertype</var></code></td>
 		<td>
 			 Τύπος Ταξινόμησης<br />
-Ο Τύπος Ταξινόμησης με τον οποίο γίνεται η
+<br />
+Ο τύπος ταξινόμησης με τον οποίο γίνεται η
 ταξινόμηση των εγγραφών<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε η
@@ -809,10 +646,11 @@ href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν
 		<td class="value"><code><var>$searchtype</var></code></td>
 		<td>
 			 Τύπος Αναζήτησης<br />
+<br />
 Ο Τύπος Αναζήτησης με τον οποίο γίνεται η
-αναζήτηση στον Αριθμό (<a
-href="#$phone_number">$phone_number</a>) του
-Τηλεπικοινωνιακού Κυκλώματος<br />
+αναζήτηση στα πεδία
+<ul></ul>
+<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε η
 αναζήτηση στα πεδία αυτά γίνεται με τον
@@ -832,19 +670,25 @@ href="#$phone_number">$phone_number</a>) του
 		<td class="value"><code><var>$datesearchtype</var></code></td>
 		<td>
 			 Τύπος Αναζήτησης Ημερομηνίας<br />
-Ο Τύπος Αναζήτησης με τον οποίο γίνεται η
-αναζήτηση στην Ημερομηνία (<a
-href="#$logged_at">$logged_at</a>) του Log Συγχρονισμού<br />
+<br />
+Ο Τύπος Αναζήτησης Ημερομηνίας με τον οποίο
+γίνεται η αναζήτηση στα πεδία
+<ul>
+	<li>Ημερομηνία Log Συγχρονισμου(<a
+	href="#$logged_at">$logged_at</a>)</li>
+</ul>
+<br />
 Η παράμετρος δεν είναι υποχρεωτική<br />
 Αν η παράμετρος δεν έχει τιμή τότε η
 αναζήτηση στα πεδία αυτά γίνεται με τον
-Τύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code><br />
+Τύπο {exact}<br />
+Λίστα Τύπων Αναζήτησης : {contain|greater|lower}<br />
 Η τιμή της παραμέτρου μπορεί να είναι : string
 <ul>
 	<li>string<br />
 	Αλφαριθμητική : Η τιμή της παραμέτρου
-	μπορεί να είναι ένας από τους Tύπους update |
-	create | delete</li>
+	μπορεί να είναι ένας από τους Tύπους
+	{contain|greater|lower}</li>
 </ul>
 
 		</td>
@@ -855,35 +699,23 @@ href="#$logged_at">$logged_at</a>) του Log Συγχρονισμού<br />
 	<caption>Return value summary</caption>
 	<tr>
 		<td class="name"><code>
-			Array&lt;JSON&gt;
+			Objects&lt;JSON&gt;
 		</code></td>
 		<td>
-			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
-:<br />
+			Επιστρέφει τα παρακάτω JSON objects :<br />
 <br />
-string : <b>method</b> : Η μέθοδος κλήσης της
-συνάρτησης<br />
-integer : <b>status</b> : Ο Κωδικός <code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code> του
-αποτελέσματος της κλήσης<br />
-string : <b>message</b> : Το Μήνυμα <code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code> του
-αποτελέσματος της κλήσης<br />
-integer : <b>count</b> : Το πλήθος των εγγραφών της
-κλήσης σύμφωνα με τις παραμέτρους
-σελιδοποίησης<br />
-integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς
-τις παραμέτρους σελιδοποίησης<br />
-array : <b>data</b> : Ο Πίνακας με το λεξικό
+array : <b>data</b> : Ο Πίνακας με τα δεδομένα
 <ul>
-	<li>integer : <b>id</b> : Ο Κωδικός του Log
+	<li>integer : <b>id</b> : Ο Κωδικός ID του Log
 	Συγχρονισμού</li>
 
 	<li>string : <b>action</b> : Η Ενέργεια του Log
 	Συγχρονισμού</li>
 
-	<li>boolean : <b>logged_at</b> : Η Ημερομηνία του Log
+	<li>datetime : <b>logged_at</b> : Η Ημερομηνία του Log
 	Συγχρονισμού</li>
 
-	<li>string : <b>object_id</b> : Ο Κωδικός Μονάδας του Log
+	<li>integer : <b>object_id</b> : Ο Κωδικός ΜΜ του Log
 	Συγχρονισμού</li>
 
 	<li>string : <b>object_class</b> : Το Όνομα Πίνακα του Log
@@ -901,7 +733,35 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 	<li>string : <b>ip</b> : Η IP του Xρήστη του Log
 	Συγχρονισμού</li>
 </ul>
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς
+τις παραμέτρους σελιδοποίησης<br />
+integer : <b>count</b> : Το πλήθος των εγγραφών της
+κλήσης σύμφωνα με τις παραμέτρους
+σελιδοποίησης<br />
+array : <b>pagination</b> : Οι παράμετροι σελιδοποίησης
+των εγγραφών της κλήσης
+<ul>
+	<li>integer : <b>page</b> : Ο αριθμός της σελίδας των
+	αποτελεσμάτων</li>
 
+	<li>integer : <b>maxPage</b> : Ο μέγιστος αριθμός της
+	σελίδας των αποτελεσμάτων</li>
+
+	<li>integer : <b>pagesize</b> : Ο αριθμός των εγγραφών
+	προς επιστροφή</li>
+</ul>
+<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
 		</td>
 	</tr>
 	</table>
@@ -910,110 +770,11 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 	<caption>Thrown exceptions summary</caption>
 	<tr>
 		<td class="name"><code>
-			InvalidSearchType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidSearchType">ExceptionMessages::<b>InvalidSearchType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidSearchType">ExceptionCodes::<b>InvalidSearchType</b></a></code><br />
-Ο Τύπος Αναζήτησης είναι λάθος
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			MissingPageValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#MissingPageValue">ExceptionMessages::<b>MissingPageValue</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#MissingPageValue">ExceptionCodes::<b>MissingPageValue</b></a></code><br />
-Ο Αριθμός Σελίδας πρέπει να έχει τιμή
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageArray
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageArray">ExceptionMessages::<b>InvalidPageArray</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidPageArray">ExceptionCodes::<b>InvalidPageArray</b></a></code><br />
-Ο Αριθμός Σελίδας δεν μπορεί να έχει
-πολλαπλές τιμές
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageNumber
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageNumber">ExceptionMessages::<b>InvalidPageNumber</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidPageNumber">ExceptionCodes::<b>InvalidPageNumber</b></a></code><br />
-Ο Αριθμός Σελίδας πρέπει να είναι
-μεγαλύτερος από 0
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageType">ExceptionMessages::<b>InvalidPageType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidPageType">ExceptionCodes::<b>InvalidPageType</b></a></code><br />
-Ο Αριθμός Σελίδας πρέπει να είναι
-αριθμητικός
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			MissingPageSizeValue
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#MissingPageSizeValue">ExceptionMessages::<b>MissingPageSizeValue</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#MissingPageSizeValue">ExceptionCodes::<b>MissingPageSizeValue</b></a></code><br />
-Ο Αριθμός Εγγραφών/Σελίδα πρέπει να έχει
-τιμή
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageSizeArray
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageSizeArray">ExceptionMessages::<b>InvalidPageSizeArray</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidPageSizeArray">ExceptionCodes::<b>InvalidPageSizeArray</b></a></code><br />
-Ο Αριθμός Εγγραφών/Σελίδα δεν μπορεί να
-έχει πολλαπλές τιμές
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageSizeNumber
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageSizeNumber">ExceptionMessages::<b>InvalidPageSizeNumber</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidPageSizeNumber">ExceptionCodes::<b>InvalidPageSizeNumber</b></a></code><br />
-Ο Αριθμός Εγγραφών/Σελίδα πρέπει να είναι
-από 0 έως 500
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidPageSizeType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPageSizeType">ExceptionMessages::<b>InvalidPageSizeType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidPageSizeType">ExceptionCodes::<b>InvalidPageSizeType</b></a></code><br />
-Ο Αριθμός Εγγραφών/Σελίδα πρέπει να είναι
-αριθμητικός
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
 			InvalidExtLogEntryIDType
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidExtLogEntryIDType">ExceptionMessages::<b>InvalidExtLogEntryIDType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryIDType">ExceptionCodes::<b>InvalidExtLogEntryIDType</b></a></code><br />
-Ο Κωδικός του Log Συγχρονισμού πρέπει να
-είναι αριθμητικός
+<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryIDType">ExceptionCodes::<b>InvalidExtLogEntryIDType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1022,9 +783,7 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidExtLogEntryActionType">ExceptionMessages::<b>InvalidExtLogEntryActionType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryActionType">ExceptionCodes::<b>InvalidExtLogEntryActionType</b></a></code><br />
-Η Ενέργεια του Log Συγχρονισμού πρέπει να
-είναι update,insert,create,delete
+<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryActionType">ExceptionCodes::<b>InvalidExtLogEntryActionType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1033,9 +792,7 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidExtLogEntryLoggedAtType">ExceptionMessages::<b>InvalidExtLogEntryLoggedAtType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryLoggedAtType">ExceptionCodes::<b>InvalidExtLogEntryLoggedAtType</b></a></code><br />
-Η Ημερομηνία του Log Συγχρονισμού πρέπει να
-είναι Ημερομηνία (dd/mm/yyyy)
+<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryLoggedAtType">ExceptionCodes::<b>InvalidExtLogEntryLoggedAtType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1044,9 +801,7 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidExtLogEntryObjectIdType">ExceptionMessages::<b>InvalidExtLogEntryObjectIdType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryObjectIdType">ExceptionCodes::<b>InvalidExtLogEntryObjectIdType</b></a></code><br />
-Ο Κωδικός Μονάδας του Log Συγχρονισμού
-πρέπει να είναι αριθμητικός
+<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryObjectIdType">ExceptionCodes::<b>InvalidExtLogEntryObjectIdType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1055,9 +810,7 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidExtLogEntryObjectClassType">ExceptionMessages::<b>InvalidExtLogEntryObjectClassType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryObjectClassType">ExceptionCodes::<b>InvalidExtLogEntryObjectClassType</b></a></code><br />
-Το Όνομα Πίνακα του Log Συγχρονισμού πρέπει
-να είναι αλφαριθμητικός
+<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryObjectClassType">ExceptionCodes::<b>InvalidExtLogEntryObjectClassType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1066,9 +819,7 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidExtLogEntryVersionType">ExceptionMessages::<b>InvalidExtLogEntryVersionType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryVersionType">ExceptionCodes::<b>InvalidExtLogEntryVersionType</b></a></code><br />
-Η Έκδοση του Log Συγχρονισμού πρέπει να
-αριθμητική
+<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryVersionType">ExceptionCodes::<b>InvalidExtLogEntryVersionType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1077,9 +828,7 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidExtLogEntryUsernameType">ExceptionMessages::<b>InvalidExtLogEntryUsernameType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryUsernameType">ExceptionCodes::<b>InvalidExtLogEntryUsernameType</b></a></code><br />
-Το Όνομα του Χρήστη του Log Συγχρονισμού
-πρέπει να είναι αλφαριθμητικά
+<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryUsernameType">ExceptionCodes::<b>InvalidExtLogEntryUsernameType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1088,30 +837,16 @@ array : <b>data</b> : Ο Πίνακας με το λεξικό
 		</code></td>
 		<td>
 			<code><a href="class-ExceptionMessages.html#InvalidExtLogEntryIpType">ExceptionMessages::<b>InvalidExtLogEntryIpType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryIpType">ExceptionCodes::<b>InvalidExtLogEntryIpType</b></a></code><br />
-Η IP του Xρήστη του Log Συγχρονισμού πρέπει να
-είναι αλφαριθμητικά
+<code><a href="class-ExceptionCodes.html#InvalidExtLogEntryIpType">ExceptionCodes::<b>InvalidExtLogEntryIpType</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidOrderType
+			NoErrors
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidOrderType">ExceptionMessages::<b>InvalidOrderType</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidOrderType">ExceptionCodes::<b>InvalidOrderType</b></a></code><br />
-Ο Τύπος Ταξινόμησης πρέπει να είναι ASC ή DESC
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
-			InvalidOrderBy
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidOrderBy">ExceptionMessages::<b>InvalidOrderBy</b></a></code><br />
-<code><a href="class-ExceptionCodes.html#InvalidOrderBy">ExceptionCodes::<b>InvalidOrderBy</b></a></code><br />
-Το Πεδίο Ταξινόμησης πρέπει να είναι κάποιο
-από τα πεδία που επιστρέφει η συνάρτηση
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
 		</td>
 	</tr>
 	</table>

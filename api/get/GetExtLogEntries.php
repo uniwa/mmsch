@@ -1,7 +1,6 @@
 <?php
 /**
- *
- * @version 1.0.3
+ * @version 2.0
  * @author  ΤΕΙ Αθήνας
  * @package GET
  */
@@ -9,429 +8,328 @@
 header("Content-Type: text/html; charset=utf-8");
 
 /** 
- * <b>Log Συγχρονισμού</b>
+ * **Αναζήτηση Log Συγχρονισμού**
  * 
+ * Η συνάρτηση αυτή επιστρέφει Log Συγχρονισμού σύμφωνα με τις παραμέτρους που έγινε η κλήση.
+ * <br>Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο **GET** και route_api_name = **ext_log_entries** :
+ * <br>https://mm.sch.gr/api/ext_log_entries
+ *
+ *
+ * ***Ορισμός Τύπου και Πεδίου Ταξινόμησης Αποτελεσμάτων***
+ * * Μέσω των παραμέτρων Πεδίο Ταξινόμησης (<a href="#$orderby">$orderby</a>) και Τύπος Ταξινόμησης (<a href="#$ordertype">$ordertype</a>) μπορεί να καθοριστεί το πεδίο και η σειρά ταξινόμησης.
+ * * Προκαθορισμένη τιμή πεδίου ταξινόμησης είναι η αύξουσα σειρά **ASC**.
+ * * Προκαθορισμένη τιμή τύπου ταξινόμησης είναι το **ID του Log Συγχρονισμού**.  
+ *
+ * ***Ορισμός Αριθμού Σελίδας και Εγγραφών/Σελίδα της Επιστροφής Αποτελεσμάτων***
+ * * Μέσω των παραμέτρων Αριθμός Σελίδας (<a href="#$page">$page</a>) και Αριθμός Εγγραφών/Σελίδα (<a href="#$pagesize">$pagesize</a>) μπορεί να καθοριστεί ο αριθμός Σελίδας και Εγγραφών/Σελίδα της επιστροφής αποτελεσμάτων.
+ * * Ο προκαθορισμένος αριθμός Εγγραφών/Σελίδα που επιστρέφονται ανά κλήση είναι **0**. 
+ * * Ο προκαθορισμένος αριθμός Σελίδας που επιστρέφεται ανά κλήση είναι **1**. 
  * 
+ * ***Ορισμός Τύπου Αναζήτησης Αποτελεσμάτων***
+ * * Μέσω των παραμέτρων Τύπου Αναζήτησης (<a href="#$searchtype">$searchtype</a>) μπορεί να καθοριστεί μπορεί να καθοριστεί ο τρόπος με τον οποίο θα αναζητηθεί η τιμή της παραμέτρου στο DNS της Μονάδας.
+ * * Ισχύει για όσες παραμέτρους το υποστηρίζουν το συνδυασμό με την παράμετρο searchtype.
+ * * Προκαθορισμένη τιμή τύπου αναζήτησης είναι **CONTAINALL**.
  * 
- * Η συνάρτηση αυτή επιστρέφει όλα τα Log Συγχρονισμού σύμφωνα με τις παραμέτρους που έγινε η κλήση
+ * ***Πίνακας Παραμέτρων***
+ * * Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters summary</a> εμφανίζονται όλοι οι παράμετροι με τους οποίους μπορεί να γίνει η κλήση της συνάρτησης.
+ * * Όλοι οι παράμετροι είναι προαιρετικοί εκτός από αυτές που έχουν χαρακτηριστεί ως υποχρεωτικοί.
+ * * Οι παράμετροι μπορούν να χρησιμοποιηθούν με οποιαδήποτε σειρά.
+ * * Οι παράμετροι οι οποίοι έχουν το χαρακτηριστικό (Συνδυάζεται με την παράμετρο searchtype) σημαίνει ότι η συγκεκριμένη παράμετρος συνδυάζεται με την παράμετρο searchtype.
+ * * Οι παράμετροι μπορούν να πάρουν τιμή "NULL" για να αναζητήσουν τις κενές εγγραφές στα αντίστοιχα πεδία
  *
- *
- * Η κλήση μπορεί να γίνει μέσω της παρακάτω διεύθυνσης με τη μέθοδο GET :
- * <br> https://mm.sch.gr/api/ext_log_entries
- *
- *
- * Τα αποτελέσματα είναι ταξινομημένα ως προς τον Κωδικό του Log Συγχρονισμού
- * <br>Μέσω των παραμέτρων Πεδίο Ταξινόμησης (<a href="#$orderby">$orderby</a>) και Τύπος Ταξινόμησης (<a href="#$ordertype">$ordertype</a>)
- * μπορεί να καθοριστεί το πεδίο και η σειρά ταξινόμησης
- *
- *
- * <br><b>Πίνακας Παραμέτρων</b>
- * <br>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters summary</a> εμφανίζονται όλοι οι παράμετροι με τους οποίους
- * μπορεί να γίνει η κλήση της συνάρτησης
- * <br>Όλοι οι παράμετροι είναι προαιρετικοί εκτός από αυτές που έχουν χαρακτηριστεί ως υποχρεωτικοί
- * <br>Οι παράμετροι μπορούν να χρησιμοποιηθούν με οποιαδήποτε σειρά
- * <br>Οι παράμετροι μπορούν να πάρουν τιμή "NULL" για να αναζητήσουν τις κενές εγγραφές στα αντίστοιχα πεδία
- *
- *
- * <br><b>Πίνακας Αποτελεσμάτων</b>
- * <br>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value summary</a> εμφανίζονται οι μεταβλητές που επιστρέφει η συνάρτηση
- * <br>Όλες οι μεταβλητές επιστρέφονται σε ένα πίνακα σε JSON μορφή
- * <br>Η μεταβλητή data είναι ο πίνακας με το λεξικό
- * <br>Η μεταβλητή status καθορίζει αν η εκτέλεση της συνάρτησης ήταν επιτυχής (κωδικός 200) ή προέκυψε κάποιο σφάλμα
- *
- *
- * <br><b>Πίνακας Σφαλμάτων</b>
- * <br>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων που μπορεί
- * να προκύψουν κατά την κλήση της συνάρτησης
- * <br>Οι περιγραφές των Σφαλμάτων καθώς και οι Κωδικοί τους είναι διαθέσιμες μέσω του πίνακα
- * Μηνύματα Σφαλμάτων ({@see ExceptionMessages}) και Κωδικοί Σφαλμάτων ({@see ExceptionCodes}) αντίστοιχα
- *
- *
- * <br><b>Παραδείγματα Κλήσης</b>
- * <br>Παρακάτω εμφανίζεται μια σειρά από παραδείγματα κλήσης της συνάρτησης με διάφορους τρόπους :
- * <br><a href="#cURL">cURL</a> | <a href="#JavaScript">JavaScript</a> | <a href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a>
- *
- * <br>
- *
- * <a id="cURL"></a>Παράδειγμα κλήσης της συνάρτησης με <b>cURL</b> (console) :
+ * ***Πίνακας Αποτελεσμάτων***
+ * * Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value summary</a> εμφανίζονται οι μεταβλητές που επιστρέφει η συνάρτηση.
+ * * Όλες οι μεταβλητές επιστρέφονται σε <a href="#model">JSON objects</a>.
+ * * Η μεταβλητή <a href="#data">data</a> είναι ο πίνακας με τα δεδομένα.
+ * * Η μεταβλητή status καθορίζει αν η εκτέλεση της συνάρτησης ήταν επιτυχής (κωδικός 200) ή προέκυψε κάποιο σφάλμα.
+ * 
+ * ***Πίνακας Σφαλμάτων***
+ * * Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων που μπορεί να προκύψουν κατά την κλήση της συνάρτησης.
+ * * Οι περιγραφές των Σφαλμάτων καθώς και οι Κωδικοί τους είναι διαθέσιμες μέσω του πίνακα Μηνύματα Σφαλμάτων ({@see ExceptionMessages}) και Κωδικοί Σφαλμάτων ({@see ExceptionCodes}) αντίστοιχα.
+ * 
+ * ***Παραδείγματα Κλήσης***
+ * * Υπάρχουν διαθέσιμα παραδείγματα κλήσης της συνάρτησης με διάφορους τρόπους ({@see ApiRequestExamples}).
+ * 
+ * ***Μηνύματα Authentication/Authorization***
+ * * Υπάρχουν αναλυτικές πληροφορίες για τα μηνύματα Authentication/Authorization ({@see AuthMessages}).
+ * 
+ * ***Μηνύματα Προκαθορισμένων Παραμέτρων***
+ * * Υπάρχουν αναλυτικές πληροφορίες για τα μηνύματα Προκαθορισμένων Παραμέτρων ({@see StandarParamsMessages}).
+ * 
+ * ***Δεδομένα Επιστροφής***
+ * <br><a id="model"></a>Παρακάτω εμφανίζονται τα αποτελέσματα σε μορφή JSON :
  * <code>
- *    curl -X GET https://mm.sch.gr/api/ext_log_entries \
- *       -H "Content-Type: application/json" \
- *       -H "Accept: application/json" \
- *       -u username:password \
- *       -d '{"object_id": "1000002"}'
+ * {
+ *  "data": [{}],
+ *  "controller": "GetExtLogEntries",
+ *  "function": "ext_log_entries",
+ *  "method": "GET",
+ *  "total": ``,
+ *  "count": ``,
+ *  "pagination": { "page": 1, "maxPage": 1, "pagesize": 200},
+ *  "status": 200,
+ *  "message": "[GET][ext_log_entries]:success"
+ * }
  * </code>
- * <br>
- * 
- * 
- * 
- * <a id="JavaScript"></a>Παράδειγμα κλήσης της συνάρτησης με <b>JavaScript</b> :
- * <code>
- * <script>
- *    var params = JSON.stringify({ "object_id": "1000002" });
- * 
- *    var http = new XMLHttpRequest();
- *    http.open("GET", "https://mm.sch.gr/api/ext_log_entries");
- *    http.setRequestHeader("Accept", "application/json");
- *    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
- *    http.setRequestHeader("Authorization", "Basic " + btoa('username' + ':' + 'password') );
- *     
- *    http.onreadystatechange = function() 
- *    {
- *        if(http.readyState == 4 && http.status == 200) 
- *        {
- *            var result = JSON.parse(http.responseText);
- *            document.write(result.status + " : " + result.message + " : " + result.data);
- *        }
- *    }
- *    
- *    http.send(params);
- * </script>
- * </code>
- * <br>
  *
- * 
- * 
- * <a id="PHP"></a>Παράδειγμα κλήσης της συνάρτησης με <b>PHP</b> :
+ * ***Πίνακας Δεδομένων***
+ * <br><a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα από τον πίνακα data με τα αποτελέσματα σε μορφή JSON :
  * <code>
- * <?php
- *    header("Content-Type: text/html; charset=utf-8");
- * 
- *    $params = array("object_id" => "1000002");
- * 
- *    $curl = curl_init("https://mm.sch.gr/api/ext_log_entries");
- * 
- *    curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
- *    curl_setopt($curl, CURLOPT_USERPWD, "username:password");
- *    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
- *    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
- * 
- *    $data = curl_exec($curl);
- *    $data = json_decode($data);
- *    echo "<pre>"; var_dump( $data ); echo "</pre>";
- * ?>
+ * {"data": [{
+ *              "id": ``,
+ *              "action": ``,
+ *              "logged_at": ``,
+ *              "object_id": ``,
+ *              "object_class": ``,
+ *              "version": ``,
+ *              "data": ``,
+ *              "username": ``,
+ *              "ip": ``
+ *          }]
+ * }
  * </code>
+ * 
+ *  
+ * @param integer $id ID Log Συγχρονισμού
  * <br>
- * 
- * 
- * 
- * <a id="Ajax"></a>Παράδειγμα κλήσης της συνάρτησης με <b>Ajax</b> :
- * <code>
- * <script>
- *    $.ajax({
- *        type: 'GET',
- *        url: 'https://mm.sch.gr/api/ext_log_entries',
- *        dataType: "json",
- *        data:{'object_id': '1000002'},
- *        beforeSend: function(req) {
- *            req.setRequestHeader('Authorization', btoa('username' + ":" + 'password'));
- *        },
- *        success: function(data){
- *            console.log(data);
- *        }
- *    });
- * </script>
- * </code>
- * <br>
- * 
- * 
- * 
- * <br><b>Πίνακας Δεδομένων</b>
- * <br><a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα του λεξικού σε μορφή JSON :
- * <code>
- * {"data":[
- *          {
- *              "id": 91305,
- *              "action": "update",
- *              "logged_at": "2014-07-01 12:06:30",
- *              "object_id": "1000002",
- *              "object_class": "Units",
- *              "version": 1,
- *              "data": "a:6:{s:4:"name";s:74:"eschool-Νηπιαγωγείο - 2ο ΝΗΠΙΑΓΩΓΕΙΟ ΚΑΤΟΧΗΣ";s:13:"studentsCount";s:1:"0";
- *                       s:11:"groupsCount";s:1:"0";s:11:"levelsCount";s:1:"0";s:10:"lastUpdate";
- *                       O:8:"DateTime":3:{s:4:"date";s:19:"2013-11-25 14:50:29";s:13:"timezone_type";
- *                       i:3;s:8:"timezone";s:13:"Europe/Athens";}s:6:"source";a:1:{s:8:"sourceId";i:5;}}",
- *              "username": "admin",
- *              "ip": null
- *           },
- *           {
- *               "id": 111032,
- *               "action": "update",
- *               "logged_at": "2014-07-01 15:20:34",
- *               "object_id": "1000002",
- *               "object_class": "Units",
- *               "version": 2,
- *               "data": "a:4:{s:13:"studentsCount";s:1:"0";s:11:"groupsCount";s:1:"0";s:11:"levelsCount";
- *                        s:1:"0";s:10:"lastUpdate";O:8:"DateTime":3:{s:4:"date";s:19:"2013-11-25 14:50:29";
- *                        s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Athens";}}",
- *               "username": "admin",
- *               "ip": null
- *         },
- *           {
- *               "id": 117200,
- *               "action": "update",
- *               "logged_at": "2014-07-01 16:09:45",
- *               "object_id": "1000002",
- *               "object_class": "Units",
- *               "version": 3,
- *               "data": "a:4:{s:13:"studentsCount";s:1:"0";s:11:"groupsCount";s:1:"0";s:11:"levelsCount";
- *                             s:1:"0";s:10:"lastUpdate";O:8:"DateTime":3:{s:4:"date";s:19:"2013-11-25 14:50:29";
- *                             s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Athens";}}",
- *               "username": "admin",
- *               "ip": null
- *            },
- *           {
- *               "id": 138565,
- *               "action": "update",
- *               "logged_at": "2014-07-01 19:17:18",
- *               "object_id": "1000002",
- *               "object_class": "Units",
- *               "version": 4,
- *               "data": "a:4:{s:13:"studentsCount";s:1:"0";s:11:"groupsCount";s:1:"0";s:11:"levelsCount";
- *                             s:1:"0";s:10:"lastUpdate";O:8:"DateTime":3:{s:4:"date";s:19:"2013-11-25 14:50:29";
- *                             s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Athens";}}",
- *               "username": "admin",
- *               "ip": null
- *         }
- * ]}
- * </code>
- * <br>
- * 
- * @param integer $id Κωδικός Log Συγχρονισμού
- * <br>Ο Κωδικός του Log Συγχρονισμού
+ * <br>Ο Κωδικός ID Log Συγχρονισμού
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer|array[integer]
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό)</li>
- *       <li>array[integer] : Σύνολο από Αριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param string $action Ενέργεια Συγχρονισμού
- * <br>Η Ενέργεια του Log Συγχρονισμού
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το λεκτικό ενέργειας(update|create|delete))</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- *
- * @param string $logged_at Ημερομηνία Log Συγχρονισμου
- * <br>Η Ημερομηνία του Log Συγχρονισμου
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με την ημερομηνία)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param integer $object_id Κωδικός Μονάδας
- * <br>Ο Κωδικός Μονάδας του Log Συγχρονισμου
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|array[integer]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον κωδικό μονάδας)</li>
- *       <li>array[integer] : Σύνολο από Αριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param string $object_class Όνομα Πίνακα
- * <br>Το Όνομα Πίνακα του Log Συγχρονισμου
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα πίνακα που συγχρονίζεται)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param integer $version Έκδοση
- * <br>Η Έκδοση του Log Συγχρονισμού
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{integer|array[integer]}
- *    <ul>
- *       <li>integer : Αριθμητική (Η αναζήτηση γίνεται με τον αριθμό έκδοσης συγχρονισμού)</li>
- *       <li>array[integer] : Σύνολο από Αριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param string $username Όνομα Χρήστη
- * <br>Το Όνομα του Χρήστη του Log Συγχρονισμού
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με το όνομα χρήστη)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param string $ip IP Xρήστη
- * <br>Η IP του Xρήστη του Log Συγχρονισμού
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
- *    <ul>
- *       <li>string : Αλφαριθμητική (Η αναζήτηση γίνεται με την IP του χρήστη που έκανε ενέργεια συγχρονισμού)</li>
- *       <li>array[string] : Σύνολο από Αριθμητικές και Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα</li>
- *    </ul>
- * 
- * @param integer $pagesize Αριθμός Εγγραφών/Σελίδα
- * <br>Ο αριθμός των εγγραφών που θα επιστρέψουν ανα σελίδα
- * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Αν η παράμετρος δεν έχει τιμή τότε θα επιστραφούν όλες οι εγγραφές ({@see Parameters::AllPageSize})
- * <br>Λίστα Παραμέτρων Σελιδοποίησης : {@see Parameters}
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer
  * <ul>
  *    <li>integer
- *       <br>Αριθμητική : Η τιμή της παραμέτρου πρέπει να είναι μεγαλύτερη από 0
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με ID Log Συγχρονισμού
+ *    </li>
+ *    <li>array[integer]
+ *       <br>Σύνολο από Αριθμητικές τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
  *    </li>
  * </ul>
- *
+ * 
+ * @param mixed $action Ενέργεια Συγχρονισμού
+ * <br>
+ * <br>Η Ενέργεια του Log Συγχρονισμού
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το λεκτικό Ενέργειας του Log Συγχρονισμού (update|create|delete))
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>array[integer|string]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param string $logged_at Ημερομηνία Log Συγχρονισμου
+ * <br>
+ * <br>Η Ημερομηνία του Log Συγχρονισμου
+ * <br>Συνδυάζεται με την παράμετρο datesearchtype
+ * <br>Λίστα Τύπων Αναζήτησης Ημερομηνίας : (<a href="#$datesearchtype">$datesearchtype</a>)
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string|null|array[string|null]
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με την Ημερομηνία του Log Συγχρονισμου
+ *       <br>Αν η παράμετρος Τύπος Αναζήτησης Ημερομηνίας δεν έχει τιμή τότε η αναζήτηση στην Ημερομηνία Log Συγχρονισμου γίνεται με τον Tύπο {exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[string|null]
+ *       <br>Σύνολο από Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param integer $object_id Κωδικός ΜΜ
+ * <br>
+ * <br>Ο Κωδικός ΜΜ του Log Συγχρονισμου
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer|array[integer]
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον Κωδικό ΜΜ του Log Συγχρονισμου
+ *    </li>
+ *    <li>array[integer]
+ *       <br>Σύνολο από Αριθμητικές τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $object_class Όνομα Πίνακα
+ * <br>
+ * <br>Το Όνομα Πίνακα του Log Συγχρονισμου
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|array[string]}
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα Πίνακα του Log Συγχρονισμου
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>array[integer|string]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param integer $version Έκδοση
+ * <br>
+ * <br>Η Έκδοση του Log Συγχρονισμού
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer|array[integer]
+ * <ul>
+ *    <li>integer
+ *       <br>Αριθμητική : Η αναζήτηση γίνεται με τον αριθμό Έκδοσης του Log Συγχρονισμού
+ *    </li>
+ *    <li>array[integer]
+ *       <br>Σύνολο από Αριθμητικές τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul>
+ * 
+ * @param mixed $username Όνομα Χρήστη
+ * <br>
+ * <br>Το Όνομα του Χρήστη του Log Συγχρονισμού
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|null|array[string|null]}
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Όνομα του Χρήστη του Log Συγχρονισμού
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul> 
+ * 
+ * @param mixed $ip IP Xρήστη
+ * <br>
+ * <br>Η IP του Xρήστη του Log Συγχρονισμού
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|null|array[string|null]}
+ * <ul>
+ *    <li>string
+ *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με την IP του Xρήστη του Log Συγχρονισμού
+ *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
+ *    </li>
+ *    <li>null
+ *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
+ *    </li>
+ *    <li>array[integer|string|null]
+ *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
+ *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
+ *    </li>
+ * </ul> 
+ * 
+ * 
+ * @param integer $pagesize Αριθμός Εγγραφών/Σελίδα
+ * <br>
+ * <br>Ο αριθμός των εγγραφών που θα επιστρέψουν ανα σελίδα
+ * <br>Η παράμετρος δεν είναι υποχρεωτική
+ * <br>Αν η παράμετρος δεν έχει τιμή τότε θα επιστραφούν όλες οι προκαθορισμένες εγγραφές ({@see Parameters::DefaultPageSize})
+ * <br>Λίστα Παραμέτρων Σελιδοποίησης : {@see Parameters}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer
+ * <ul><li>integer<br>Αριθμητική : Η τιμή της παραμέτρου πρέπει να είναι μεγαλύτερη από 0</li></ul>
  *
  * @param integer $page Αριθμός Σελίδας
+ * <br>
  * <br>Ο αριθμός της σελίδας με τις <a href="#$pagesize">$pagesize</a> εγγραφές που βρέθηκαν σύμφωμα με τις παραμέτρους
  * <br>Η παράμετρος δεν είναι υποχρεωτική
  * <br>Αν η παράμετρος δεν έχει τιμή τότε θα επιστραφεί η πρώτη σελίδα
+ * <br>Λίστα Παραμέτρων Σελίδας : {@see Parameters}
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : integer
- * <ul>
- *    <li>integer
- *       <br>Αριθμητική : Η τιμή της παραμέτρου πρέπει να είναι μεγαλύτερη από 0
- *    </li>
- * </ul>
- *
+ * <ul><li>integer<br>Αριθμητική : Η τιμή της παραμέτρου πρέπει να είναι μεγαλύτερη από 0</li></ul>
  *
  * @param string $orderby Πεδίο Ταξινόμησης
+ * <br>
  * <br>Το όνομα του πεδίου με το οποίο γίνεται η ταξινόμηση των εγγραφών
  * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Αν η παράμετρος δεν έχει τιμή τότε η ταξινόμηση γίνεται με τον Κωδικό ΜΜ της Μονάδας
+ * <br>Αν η παράμετρος δεν έχει τιμή τότε η ταξινόμηση γίνεται με το **ID του Log Συγχρονισμού**
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- * <ul>
- *    <li>string
- *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι οποιοδήποτε πεδίο επιστρέφει η συνάρτηση στον πίνακα data
- *    </li>
- * </ul>
- *
+ * <ul><li>string<br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι οποιοδήποτε όνομα πεδίου επιστρέφεται στον πίνακα data</li></ul>
  *
  * @param string $ordertype Τύπος Ταξινόμησης
- * <br>Ο Τύπος Ταξινόμησης με τον οποίο γίνεται η ταξινόμηση των εγγραφών
+ * <br>
+ * <br>Ο τύπος ταξινόμησης με τον οποίο γίνεται η ταξινόμηση των εγγραφών
  * <br>Η παράμετρος δεν είναι υποχρεωτική
  * <br>Αν η παράμετρος δεν έχει τιμή τότε η ταξινόμηση γίνεται με Αύξουσα Σειρά ({@see OrderEnumTypes::ASC})
  * <br>Λίστα Τύπων Ταξινόμησης : {@see OrderEnumTypes}
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- * <ul>
- *    <li>string
- *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see OrderEnumTypes}
- *    </li>
- * </ul>
- *
+ * <ul><li>string<br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see OrderEnumTypes}</li></ul>
  *
  * @param string $searchtype Τύπος Αναζήτησης
- * <br>Ο Τύπος Αναζήτησης με τον οποίο γίνεται η αναζήτηση στον Αριθμό (<a href="#$phone_number">$phone_number</a>) του Τηλεπικοινωνιακού Κυκλώματος
+ * <br>
+ * <br>Ο Τύπος Αναζήτησης με τον οποίο γίνεται η αναζήτηση στα πεδία 
+ * <ul></ul>
  * <br>Η παράμετρος δεν είναι υποχρεωτική
  * <br>Αν η παράμετρος δεν έχει τιμή τότε η αναζήτηση στα πεδία αυτά γίνεται με τον Τύπο {@see SearchEnumTypes::ContainAll}
  * <br>Λίστα Τύπων Αναζήτησης : {@see SearchEnumTypes}
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- * <ul>
- *    <li>string
- *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see SearchEnumTypes}
- *    </li>
- * </ul>
+ * <ul><li>string<br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {@see SearchEnumTypes}</li></ul>
  * 
  * @param string $datesearchtype Τύπος Αναζήτησης Ημερομηνίας
- * <br>Ο Τύπος Αναζήτησης με τον οποίο γίνεται η αναζήτηση στην Ημερομηνία (<a href="#$logged_at">$logged_at</a>) του Log Συγχρονισμού
- * <br>Η παράμετρος δεν είναι υποχρεωτική
- * <br>Αν η παράμετρος δεν έχει τιμή τότε η αναζήτηση στα πεδία αυτά γίνεται με τον Τύπο {@see SearchEnumTypes::ContainAll}
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- * <ul>
- *    <li>string
- *       <br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους update | create | delete
- *    </li>
- * </ul>
- * 
- *
-@return Array<JSON> Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία :
  * <br>
- * <br>string : <b>method</b> : Η μέθοδος κλήσης της συνάρτησης
- * <br>integer : <b>status</b> : Ο Κωδικός {@see ExceptionCodes} του αποτελέσματος της κλήσης
- * <br>string : <b>message</b> : Το Μήνυμα {@see ExceptionMessages} του αποτελέσματος της κλήσης
- * <br>integer : <b>count</b> : Το πλήθος των εγγραφών της κλήσης σύμφωνα με τις παραμέτρους σελιδοποίησης
- * <br>integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς τις παραμέτρους σελιδοποίησης
- * <br>array : <b>data</b> : Ο Πίνακας με το λεξικό
- * <ul>
- *    <li>integer : <b>id</b> : Ο Κωδικός του Log Συγχρονισμού </li>
+ * <br>Ο Τύπος Αναζήτησης Ημερομηνίας με τον οποίο γίνεται η αναζήτηση στα πεδία 
+ * <ul><li>Ημερομηνία Log Συγχρονισμου(<a href="#$logged_at">$logged_at</a>)</li></ul>
+ * <br>Η παράμετρος δεν είναι υποχρεωτική
+ * <br>Αν η παράμετρος δεν έχει τιμή τότε η αναζήτηση στα πεδία αυτά γίνεται με τον Τύπο {exact}
+ * <br>Λίστα Τύπων Αναζήτησης : {contain|greater|lower}
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
+ * <ul><li>string<br>Αλφαριθμητική : Η τιμή της παραμέτρου μπορεί να είναι ένας από τους Tύπους {contain|greater|lower}</li></ul> 
+ * 
+ * 
+ * @return Objects<JSON> Επιστρέφει τα παρακάτω JSON objects :
+ * <br>
+ * <br>array : <b>data</b> : Ο Πίνακας με τα δεδομένα
+ *  <ul>
+ *    <li>integer : <b>id</b> : Ο Κωδικός ID του Log Συγχρονισμού </li>
  *    <li>string : <b>action</b> : Η Ενέργεια του Log Συγχρονισμού</li>
- *    <li>boolean : <b>logged_at</b> : Η Ημερομηνία του Log Συγχρονισμού</li>
- *    <li>string : <b>object_id</b> : Ο Κωδικός Μονάδας του Log Συγχρονισμού</li>
+ *    <li>datetime : <b>logged_at</b> : Η Ημερομηνία του Log Συγχρονισμού</li>
+ *    <li>integer : <b>object_id</b> : Ο Κωδικός ΜΜ του Log Συγχρονισμού</li>
  *    <li>string : <b>object_class</b> : Το Όνομα Πίνακα του Log Συγχρονισμού</li>
  *    <li>integer : <b>version</b> : Η Έκδοση του Log Συγχρονισμού</li>
  *    <li>string : <b>data</b> : Τα Δεδομένα του Log Συγχρονισμού</li>
  *    <li>string : <b>username</b> : Το Όνομα του Χρήστη του Log Συγχρονισμού</li>
  *    <li>string : <b>ip</b> : Η IP του Xρήστη του Log Συγχρονισμού</li>
- * </ul>
+ *  </ul>
+ * <br>string : <b>controller</b> : Ο controller που χρησιμοποιείται
+ * <br>string : <b>function</b> : Η συνάρτηση που υλοποιείται από το σύστημα
+ * <br>string : <b>method</b> : Η μέθοδος κλήσης της συνάρτησης
+ * <br>integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς τις παραμέτρους σελιδοποίησης
+ * <br>integer : <b>count</b> : Το πλήθος των εγγραφών της κλήσης σύμφωνα με τις παραμέτρους σελιδοποίησης
+ * <br>array : <b>pagination</b> : Οι παράμετροι σελιδοποίησης των εγγραφών της κλήσης
+ *  <ul>
+ *      <li>integer : <b>page</b> : Ο αριθμός της σελίδας των αποτελεσμάτων</li>
+ *      <li>integer : <b>maxPage</b> : Ο μέγιστος αριθμός της σελίδας των αποτελεσμάτων</li>
+ *      <li>integer : <b>pagesize</b> :  Ο αριθμός των εγγραφών προς επιστροφή</li>
+ *  </ul>
+ * <br>integer : <b>status</b> : Ο Κωδικός του αποτελέσματος της κλήσης
+ * <br>string : <b>message</b> : Το Μήνυμα του αποτελέσματος της κλήσης
  *
  * 
- * 
- *  @throws InvalidSearchType {@see ExceptionMessages::InvalidSearchType}
- * <br>{@see ExceptionCodes::InvalidSearchType}
- * <br>Ο Τύπος Αναζήτησης είναι λάθος
- *
- * @throws MissingPageValue {@see ExceptionMessages::MissingPageValue}
- * <br>{@see ExceptionCodes::MissingPageValue}
- * <br>Ο Αριθμός Σελίδας πρέπει να έχει τιμή
- *
- * @throws InvalidPageArray {@see ExceptionMessages::InvalidPageArray}
- * <br>{@see ExceptionCodes::InvalidPageArray}
- * <br>Ο Αριθμός Σελίδας δεν μπορεί να έχει πολλαπλές τιμές
- *
- * @throws InvalidPageNumber {@see ExceptionMessages::InvalidPageNumber}
- * <br>{@see ExceptionCodes::InvalidPageNumber}
- * <br>Ο Αριθμός Σελίδας πρέπει να είναι μεγαλύτερος από 0
- *
- * @throws InvalidPageType {@see ExceptionMessages::InvalidPageType}
- * <br>{@see ExceptionCodes::InvalidPageType}
- * <br>Ο Αριθμός Σελίδας πρέπει να είναι αριθμητικός
- *
- * @throws MissingPageSizeValue {@see ExceptionMessages::MissingPageSizeValue}
- * <br>{@see ExceptionCodes::MissingPageSizeValue}
- * <br>Ο Αριθμός Εγγραφών/Σελίδα πρέπει να έχει τιμή
- *
- * @throws InvalidPageSizeArray {@see ExceptionMessages::InvalidPageSizeArray}
- * <br>{@see ExceptionCodes::InvalidPageSizeArray}
- * <br>Ο Αριθμός Εγγραφών/Σελίδα δεν μπορεί να έχει πολλαπλές τιμές
- *
- * @throws InvalidPageSizeNumber {@see ExceptionMessages::InvalidPageSizeNumber}
- * <br>{@see ExceptionCodes::InvalidPageSizeNumber}
- * <br>Ο Αριθμός Εγγραφών/Σελίδα πρέπει να είναι από 0 έως 500
- *
- * @throws InvalidPageSizeType {@see ExceptionMessages::InvalidPageSizeType}
- * <br>{@see ExceptionCodes::InvalidPageSizeType}
- * <br>Ο Αριθμός Εγγραφών/Σελίδα πρέπει να είναι αριθμητικός
- *
  * @throws InvalidExtLogEntryIDType {@see ExceptionMessages::InvalidExtLogEntryIDType}
  * <br>{@see ExceptionCodes::InvalidExtLogEntryIDType}
- * <br>Ο Κωδικός του Log Συγχρονισμού πρέπει να είναι αριθμητικός
  *
  * @throws InvalidExtLogEntryActionType {@see ExceptionMessages::InvalidExtLogEntryActionType}
  * <br>{@see ExceptionCodes::InvalidExtLogEntryActionType}
- * <br>Η Ενέργεια του Log Συγχρονισμού πρέπει να είναι update,insert,create,delete
- *
+ *  
  * @throws InvalidExtLogEntryLoggedAtType {@see ExceptionMessages::InvalidExtLogEntryLoggedAtType}
  * <br>{@see ExceptionCodes::InvalidExtLogEntryLoggedAtType}
- * <br>Η Ημερομηνία του Log Συγχρονισμού πρέπει να είναι Ημερομηνία (dd/mm/yyyy)
  *
  * @throws InvalidExtLogEntryObjectIdType {@see ExceptionMessages::InvalidExtLogEntryObjectIdType}
  * <br>{@see ExceptionCodes::InvalidExtLogEntryObjectIdType}
- * <br>Ο Κωδικός Μονάδας του Log Συγχρονισμού πρέπει να είναι αριθμητικός
- *
+ * 
  * @throws InvalidExtLogEntryObjectClassType {@see ExceptionMessages::InvalidExtLogEntryObjectClassType}
  * <br>{@see ExceptionCodes::InvalidExtLogEntryObjectClassType}
- * <br>Το Όνομα Πίνακα του Log Συγχρονισμού πρέπει να είναι αλφαριθμητικός
  *
  * @throws InvalidExtLogEntryVersionType {@see ExceptionMessages::InvalidExtLogEntryVersionType}
  * <br>{@see ExceptionCodes::InvalidExtLogEntryVersionType}
- * <br>Η Έκδοση του Log Συγχρονισμού πρέπει να αριθμητική
- * 
+ *  
  * @throws InvalidExtLogEntryUsernameType {@see ExceptionMessages::InvalidExtLogEntryUsernameType}
  * <br>{@see ExceptionCodes::InvalidExtLogEntryUsernameType}
- * <br>Το Όνομα του Χρήστη του Log Συγχρονισμού πρέπει να είναι αλφαριθμητικά
- * 
+ *
  * @throws InvalidExtLogEntryIpType {@see ExceptionMessages::InvalidExtLogEntryIpType}
  * <br>{@see ExceptionCodes::InvalidExtLogEntryIpType}
- * <br>Η IP του Xρήστη του Log Συγχρονισμού πρέπει να είναι αλφαριθμητικά
  * 
- * @throws InvalidOrderType {@see ExceptionMessages::InvalidOrderType}
- * <br>{@see ExceptionCodes::InvalidOrderType}
- * <br>Ο Τύπος Ταξινόμησης πρέπει να είναι ASC ή DESC
- *
- * @throws InvalidOrderBy {@see ExceptionMessages::InvalidOrderBy}
- * <br>{@see ExceptionCodes::InvalidOrderBy}
- * <br>Το Πεδίο Ταξινόμησης πρέπει να είναι κάποιο από τα πεδία που επιστρέφει η συνάρτηση
+ * @throws NoErrors {@see ExceptionMessages::NoErrors}
+ * <br>{@see ExceptionCodes::NoErrors}
  *
  */
 
@@ -480,12 +378,12 @@ function GetExtLogEntries( $id, $action, $logged_at, $object_id, $object_class, 
        
 //$id===========================================================================
         if (Validator::Exists('id', $params)){
-                CRUDUtils::setFilter($qb, $id, "el", "id", "id", "null,id", ExceptionMessages::InvalidExtLogEntryIDType, ExceptionCodes::InvalidExtLogEntryIDType);
+                CRUDUtils::setFilter($qb, $id, "el", "id", "id", "id", ExceptionMessages::InvalidExtLogEntryIDType, ExceptionCodes::InvalidExtLogEntryIDType);
         }
 
 //$action=======================================================================
         if (Validator::Exists('action', $params)){
-                CRUDUtils::setFilter($qb, $action, "el", "action", "action", "null,value", ExceptionMessages::InvalidExtLogEntryActionType, ExceptionCodes::InvalidExtLogEntryActionType);
+                CRUDUtils::setFilter($qb, $action, "el", "action", "action", "value", ExceptionMessages::InvalidExtLogEntryActionType, ExceptionCodes::InvalidExtLogEntryActionType);
         }
         
 //$logged_at====================================================================
@@ -518,17 +416,17 @@ function GetExtLogEntries( $id, $action, $logged_at, $object_id, $object_class, 
 
 //$object_id====================================================================
         if (Validator::Exists('object_id', $params)){
-                CRUDUtils::setFilter($qb, $object_id, "el", "objectId", "objectId", "null,id", ExceptionMessages::InvalidExtLogEntryObjectIdType, ExceptionCodes::InvalidExtLogEntryObjectIdType);
+                CRUDUtils::setFilter($qb, $object_id, "el", "objectId", "objectId", "id", ExceptionMessages::InvalidExtLogEntryObjectIdType, ExceptionCodes::InvalidExtLogEntryObjectIdType);
         }
 
 //$object_class=================================================================
         if (Validator::Exists('object_class', $params)){
-                CRUDUtils::setFilter($qb, $object_class, "el", "objectClass", "objectClass", "null,value", ExceptionMessages::InvalidExtLogEntryObjectClassType, ExceptionCodes::InvalidExtLogEntryObjectClassType);
+                CRUDUtils::setFilter($qb, $object_class, "el", "objectClass", "objectClass", "value", ExceptionMessages::InvalidExtLogEntryObjectClassType, ExceptionCodes::InvalidExtLogEntryObjectClassType);
         }
 
 //$version======================================================================
         if (Validator::Exists('version', $params)){
-                CRUDUtils::setFilter($qb, $version, "el", "version", "version", "null,id", ExceptionMessages::InvalidExtLogEntryVersionType, ExceptionCodes::InvalidExtLogEntryVersionType);
+                CRUDUtils::setFilter($qb, $version, "el", "version", "version", "id", ExceptionMessages::InvalidExtLogEntryVersionType, ExceptionCodes::InvalidExtLogEntryVersionType);
         }
         
 //$username===========================================================================

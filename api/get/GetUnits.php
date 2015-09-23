@@ -191,7 +191,6 @@ header("Content-Type: text/html; charset=utf-8");
  * </code> 
  * 
  *
-
  * @param integer $mm_id Κωδικός ΜΜ Μονάδας
  * <br>
  * <br>Ο Κωδικός ΜΜ της Μονάδας
@@ -1132,7 +1131,7 @@ header("Content-Type: text/html; charset=utf-8");
  *      </li>
  * 
  *      <li>array : <b>unit_dns</b> : Πίνακας DNS Στοιχείων Μονάδας (Λεξικό : {@see GetUnitDns})
- *          <ul>GetUnitDns
+ *          <ul>
  *              <li>integer : <b>unit_dns_id</b> : Ο Κωδικός ID του DNS Μονάδας</li>
  *              <li>string : <b>unit_dns</b> : Το Όνομα του DNS Μονάδας</li>
  *              <li>string : <b>unit_ext_dns</b> : Το Όνομα του ExtDNS Μονάδας</li>

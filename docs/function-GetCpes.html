@@ -240,7 +240,7 @@ class="php-quote">&quot;[GET][cpes]:success&quot;</span>
 <pre>
 {<span class="php-quote">&quot;data&quot;</span>: [{
              <span
-class="php-quote">&quot;cpe_id&quot;</span>:
+class="php-quote">&quot;cpe_id&quot;</span>:``.
              <span
 class="php-quote">&quot;cpe&quot;</span>: ``,
              <span
@@ -290,7 +290,17 @@ class="php-quote">&quot;serial_number&quot;</span>: ``
 	Μπορεί να δωθέι μέρος ή ολοκληρος ο Κωδικός
 	ΜΜ.<br />
 	Η αναζήτηση στο Κτηματολόγιο γίνεται στις
-	εγγραφές που περιέχουν την τιμή του $unit.</li>
+	εγγραφές που περιέχουν την τιμή του $unit.<br />
+	Η πρόσβαση στο σύνολο των δεδομένων, μπορεί
+	να γίνει από τον παρακάτω σύνδεσμο: <a
+	href="http://inventory.sch.gr/creports/pub/results.html?id=14&amp;gsn_registry_code=">http://inventory.sch.gr/creports/pub/results.html?id=14&gsn_registry_code=</a>&amp;<br
+	/>
+	Υπάρχει η δυνατότητα έκδοσης αποτελεσμάτων
+	σε csv και json, αλλάζοντας την κατάληξη html,
+	όπως παρακάτω: <a
+	href="http://inventory.sch.gr/creports/pub/results.csv?id=14&amp;gsn_registry_code=">http://inventory.sch.gr/creports/pub/results.csv?id=14&gsn_registry_code=</a>&amp;
+	<a
+	href="http://inventory.sch.gr/creports/pub/results.json?id=14&amp;gsn_registry_code=">http://inventory.sch.gr/creports/pub/results.json?id=14&gsn_registry_code=</a>&amp;</li>
 </ul>
 
 		</td>

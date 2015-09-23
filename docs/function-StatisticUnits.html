@@ -120,24 +120,32 @@
 
 	<div class="description">
 	
-<p><b>Στατιστικά Μονάδων</b></p>
+<p><strong>Στατιστικά Μονάδων</strong></p>
 
 <p>Η συνάρτηση αυτή επιστρέφει Στατιστικά
-Μονάδων σύμφωνα με τις παραμέτρους που
-έγινε η κλήση</p>
+Μονάδων, σύμφωνα με τις παραμέτρους που
+έγινε η κλήση<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>GET</strong> και
+route_api_name = <strong>statistic_units</strong> :<br />
+https://mm.sch.gr/api/statistic_units</p>
 
-<p>Η κλήση μπορεί να γίνει μέσω της παρακάτω
-διεύθυνσης με τη μέθοδο GET :<br />
-<a
-href="https://mm.sch.gr/api/statistic_units">https://mm.sch.gr/api/statistic_units</a></p>
-<br />
-<b>Πίνακας Axis</b><br />
-Στον Πίνακα Axis περιέχονται τα ονόματα των
-παραμέτρων με βαη τα οποίο ο χρήστης μπορέι
-δημιουργήσει δισδιαστατο πίνακα
-αποτελεσματων με άξονες x,y γαι την προβολή
-στατιστικων αποτελεσμάτων.<br />
-Αποδεκτές τιμές
+<p><strong><em>Πίνακας Axis</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Axis περιέχονται τα ονόματα των
+	παραμέτρων με τα οποία ο χρήστης μπορεί
+	δημιουργήσει</li>
+</ul>
+
+<p>δισδιαστατο πίνακα αποτελεσματων με
+άξονες x,y για την προβολή στατιστικων
+αποτελεσμάτων.</p>
+
+<ul>
+	<li>Αποδεκτές τιμές</li>
+</ul>
+
 <ul>
 	<li>"source"</li>
 
@@ -170,329 +178,140 @@ href="https://mm.sch.gr/api/statistic_units">https://mm.sch.gr/api/statistic_uni
 	<li>"special_type"</li>
 </ul>
 
-<p><br />
-<b>Πίνακας Παραμέτρων</b><br />
-Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
-summary</a> εμφανίζονται όλοι οι παράμετροι με
-τους οποίους μπορεί να γίνει η κλήση της
-συνάρτησης<br />
-Όλοι οι παράμετροι είναι προαιρετικοί
-εκτός από αυτές που έχουν χαρακτηριστεί ως
-υποχρεωτικοί<br />
-Οι παράμετροι μπορούν να χρησιμοποιηθούν
-με οποιαδήποτε σειρά<br />
-Οι παράμετροι μπορούν να πάρουν τιμή "NULL"
-για να αναζητήσουν τις κενές εγγραφές στα
-αντίστοιχα πεδία</p>
+<p><strong><em>Ορισμός Τύπου Αναζήτησης
+Αποτελεσμάτων</em></strong></p>
 
-<p><br />
-<b>Πίνακας Αποτελεσμάτων</b><br />
-Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return value
-summary</a> εμφανίζονται οι μεταβλητές που
-επιστρέφει η συνάρτηση<br />
-Όλες οι μεταβλητές επιστρέφονται σε ένα
-πίνακα σε JSON μορφή<br />
-Η μεταβλητή status καθορίζει αν η εκτέλεση της
-συνάρτησης ήταν επιτυχής (κωδικός 200) ή
-προέκυψε κάποιο σφάλμα</p>
+<ul>
+	<li>Μέσω των παραμέτρων Τύπου Αναζήτησης (<a
+	href="#$searchtype">$searchtype</a>) μπορεί να καθοριστεί
+	μπορεί να καθοριστεί ο τρόπος με τον οποίο
+	θα αναζητηθεί η τιμή της παραμέτρου στο DNS
+	της Μονάδας.</li>
 
-<p><br />
-<b>Πίνακας Σφαλμάτων</b><br />
-Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
-summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
-που μπορεί να προκύψουν κατά την κλήση της
-συνάρτησης<br />
-Οι περιγραφές των Σφαλμάτων καθώς και οι
-Κωδικοί τους είναι διαθέσιμες μέσω του
-πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
-και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
-αντίστοιχα</p>
+	<li>Ισχύει για όσες παραμέτρους το
+	υποστηρίζουν το συνδυασμό με την παράμετρο
+	searchtype.</li>
 
-<p><br />
-<b>Παραδείγματα Κλήσης</b><br />
-Παρακάτω εμφανίζεται μια σειρά από
-παραδείγματα κλήσης της συνάρτησης με
-διάφορους τρόπους :<br />
-<a href="#cURL">cURL</a> | <a href="#JavaScript">JavaScript</a> | <a
-href="#PHP">PHP</a> | <a href="#Ajax">Ajax</a></p>
+	<li>Προκαθορισμένη τιμή τύπου αναζήτησης
+	είναι <strong>CONTAINALL</strong>.</li>
+</ul>
 
-<div><br />
-</div>
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
 
-<p><a id="cURL"></a>Παράδειγμα κλήσης της
-συνάρτησης με <b>cURL</b> (console) :</p>
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
 
-<pre>
-curl -X GET https:<span
-class="php-comment">//mm.sch.gr/api/statistic_units \</span>
-  -H <span
-class="php-quote">&quot;Content-Type: application/json&quot;</span> \
-  -H <span
-class="php-quote">&quot;Accept: application/json&quot;</span> \
-  -u username:password \
-  -d <span
-class="php-quote">'{&quot;state&quot;: &quot;1&quot;, &quot;municipality&quot;: &quot;1&quot;, &quot;x_axis&quot;:&quot;unit_type&quot;, &quot;y_axis&quot;:&quot;edu_admin&quot;}'</span>
-</pre>
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
 
-<div><br />
-</div>
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
 
-<p><a id="JavaScript"></a>Παράδειγμα κλήσης της
-συνάρτησης με <b>JavaScript</b> :</p>
+	<li>Οι παράμετροι οι οποίοι έχουν το
+	χαρακτηριστικό (Συνδυάζεται με την
+	παράμετρο searchtype) σημαίνει ότι η
+	συγκεκριμένη παράμετρος συνδυάζεται με την
+	παράμετρο searchtype.</li>
 
-<pre>
-&lt;script&gt;
-   <span
-class="php-keyword1">var</span> params = JSON.stringify({ <span
-class="php-quote">&quot;state&quot;</span>: <span
-class="php-quote">&quot;1&quot;</span>, <span
-class="php-quote">&quot;municipality&quot;</span>: <span
-class="php-quote">&quot;1&quot;</span>, <span
-class="php-quote">&quot;x_axis&quot;</span>:<span
-class="php-quote">&quot;unit_type&quot;</span>, <span
-class="php-quote">&quot;y_axis&quot;</span>:<span
-class="php-quote">&quot;edu_admin&quot;</span> });
+	<li>Οι παράμετροι μπορούν να πάρουν τιμή "NULL"
+	για να αναζητήσουν τις κενές εγγραφές στα
+	αντίστοιχα πεδία</li>
+</ul>
 
-   <span
-class="php-keyword1">var</span> http = <span
-class="php-keyword1">new</span> XMLHttpRequest();
-   http.open(<span
-class="php-quote">&quot;GET&quot;</span>, <span
-class="php-quote">&quot;https://mm.sch.gr/api/statistic_units&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Accept&quot;</span>, <span
-class="php-quote">&quot;application/json&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-type&quot;</span>, <span
-class="php-quote">&quot;application/json; charset=utf-8&quot;</span>);
-   http.setRequestHeader(<span
-class="php-quote">&quot;Content-length&quot;</span>, params.length);
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
 
-   http.onreadystatechange = <span
-class="php-keyword1">function</span>() {
-       <span
-class="php-keyword1">if</span>(http.readyState == <span
-class="php-num">4</span> &amp;&amp; http.status == <span
-class="php-num">200</span>) {
-           alert(http.responseText);
-       }
-   }
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
 
-   http.send(params);
-&lt;/script&gt;
-</pre>
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
 
-<div><br />
-</div>
+	<li>Η μεταβλητή <a href="#data">data</a> είναι ο πίνακας
+	με τα δεδομένα.</li>
 
-<p><a id="PHP"></a>Παράδειγμα κλήσης της συνάρτησης
-με <b>PHP</b> :</p>
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
+
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
+
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
+
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
 
 <pre>
-<span class="xlang">&lt;?php</span>
-<span
-class="php-keyword2">header</span>(<span
-class="php-quote">&quot;Content-Type: text/html; charset=utf-8&quot;</span>);
-
-<span
-class="php-var">$params</span> = <span class="php-keyword1">array</span>(<span
-class="php-quote">&quot;state&quot;</span> =&gt; <span
-class="php-quote">&quot;1&quot;</span>, <span
-class="php-quote">&quot;municipality&quot;</span> =&gt; <span
-class="php-quote">&quot;1&quot;</span>, <span
-class="php-quote">&quot;x_axis&quot;</span> =&gt; <span
-class="php-quote">&quot;unit_type&quot;</span>,<span
-class="php-quote">&quot;y_axis&quot;</span> =&gt; <span
-class="php-quote">&quot;edu_admin&quot;</span> );
-
-<span
-class="php-var">$curl</span> = <span class="php-keyword2">curl_init</span>(<span
-class="php-quote">&quot;https://mm.sch.gr/api/statistic_units&quot;</span>);
-
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_USERPWD, <span
-class="php-quote">&quot;username:password&quot;</span>);
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_CUSTOMREQUEST, <span
-class="php-quote">&quot;GET&quot;</span>);
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_POSTFIELDS, <span
-class="php-keyword2">json_encode</span>( <span
-class="php-var">$params</span> ));
-<span
-class="php-keyword2">curl_setopt</span>(<span
-class="php-var">$curl</span>, CURLOPT_RETURNTRANSFER, <span
-class="php-keyword1">true</span>);
-
-<span class="php-var">$data</span> = <span
-class="php-keyword2">json_decode</span>( <span
-class="php-keyword2">curl_exec</span>(<span
-class="php-var">$curl</span>) );
-<span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;pre&gt;&quot;</span>; <span
-class="php-keyword2">var_dump</span>( <span
-class="php-var">$data</span> ); <span class="php-keyword1">echo</span> <span
-class="php-quote">&quot;&lt;/pre&gt;&quot;</span>;
-<span
-class="xlang">?&gt;</span>
-</pre>
-
-<div><br />
-</div>
-
-<p><a id="Ajax"></a>Παράδειγμα κλήσης της
-συνάρτησης με <b>Ajax</b> :</p>
-
-<pre>
-&lt;script&gt;
-   <span class="php-var">$</span>.ajax({
-       type: <span
-class="php-quote">'GET'</span>,
-       url: <span
-class="php-quote">'https://mm.sch.gr/api/statistic_units'</span>,
-       dataType: <span
-class="php-quote">&quot;json&quot;</span>,
-       data: {
-         <span
-class="php-quote">&quot;state&quot;</span>: <span
-class="php-quote">&quot;1&quot;</span>,
-         <span
-class="php-quote">&quot;municipality&quot;</span>: <span
-class="php-quote">&quot;1&quot;</span>
-         <span
-class="php-quote">&quot;x_axis&quot;</span>:<span
-class="php-quote">&quot;unit_type&quot;</span>,
-         <span
-class="php-quote">&quot;y_axis&quot;</span>:<span
-class="php-quote">&quot;edu_admin&quot;</span>
-       },
-       beforeSend: <span
-class="php-keyword1">function</span>(req) {
-           req.setRequestHeader(<span
-class="php-quote">'Authorization'</span>, btoa(<span
-class="php-quote">'username'</span> + <span
-class="php-quote">&quot;:&quot;</span> + <span
-class="php-quote">'password'</span>));
-       },
-       success: <span
-class="php-keyword1">function</span>(data){
-           console.<span
-class="php-keyword2">log</span>(data);
-       }
-   });
-&lt;/script&gt;
-</pre>
-
-<div><br />
-</div>
-
-<p><a id="data"></a>Παρακάτω εμφανίζεται το
-αποτέλεσμα σε μορφή JSON :</p>
-
-<pre>
-
 {
-<span class="php-quote">&quot;method&quot;</span>:<span
+ <span class="php-quote">&quot;results&quot;</span>: [{}],
+ <span
+class="php-quote">&quot;controller&quot;</span>: <span
 class="php-quote">&quot;StatisticUnits&quot;</span>,
-<span
-class="php-quote">&quot;filters&quot;</span>:[<span
-class="php-quote">&quot;(states.state_id = '1')&quot;</span>,<span
-class="php-quote">&quot;(municipalities.municipality_id = '1')&quot;</span>],
-      {
-          <span
-class="php-quote">&quot;unit_type_name&quot;</span>: <span
-class="php-quote">&quot;ΓΕΝΙΚΟ ΛΥΚΕΙΟ&quot;</span>,
-          <span
-class="php-quote">&quot;edu_admin_name&quot;</span>: <span
-class="php-quote">&quot;ΔΙΕΥΘΥΝΣΗ Δ.Ε. ΑΙΤΩΛ/ΝΙΑΣ&quot;</span>,
-          <span
-class="php-quote">&quot;total_units&quot;</span>: <span
-class="php-quote">&quot;5&quot;</span>
-      },
-      {
-          <span
-class="php-quote">&quot;unit_type_name&quot;</span>: <span
-class="php-quote">&quot;ΓΥΜΝΑΣΙΟ&quot;</span>,
-          <span
-class="php-quote">&quot;edu_admin_name&quot;</span>: <span
-class="php-quote">&quot;ΔΙΕΥΘΥΝΣΗ Δ.Ε. ΑΙΤΩΛ/ΝΙΑΣ&quot;</span>,
-          <span
-class="php-quote">&quot;total_units&quot;</span>: <span
-class="php-quote">&quot;8&quot;</span>
-      },
-      {
-          <span
-class="php-quote">&quot;unit_type_name&quot;</span>: <span
-class="php-quote">&quot;ΔΗΜΟΤΙΚΟ&quot;</span>,
-          <span
-class="php-quote">&quot;edu_admin_name&quot;</span>: <span
-class="php-quote">&quot;ΔΙΕΥΘΥΝΣΗ Π.Ε. ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ&quot;</span>,
-         <span
-class="php-quote">&quot;total_units&quot;</span>: <span
-class="php-quote">&quot;27&quot;</span>
-      },
-      {
-          <span
-class="php-quote">&quot;unit_type_name&quot;</span>: <span
-class="php-quote">&quot;ΕΠΑΓΓΕΛΜΑΤΙΚΗ ΣΧΟΛΗ&quot;</span>,
-          <span
-class="php-quote">&quot;edu_admin_name&quot;</span>: <span
-class="php-quote">&quot;ΔΙΕΥΘΥΝΣΗ Δ.Ε. ΑΙΤΩΛ/ΝΙΑΣ&quot;</span>,
-          <span
-class="php-quote">&quot;total_units&quot;</span>: <span
-class="php-quote">&quot;1&quot;</span>
-      },
-      {
-          <span
-class="php-quote">&quot;unit_type_name&quot;</span>: <span
-class="php-quote">&quot;ΕΠΑΓΓΕΛΜΑΤΙΚΟ ΛΥΚΕΙΟ&quot;</span>,
-          <span
-class="php-quote">&quot;edu_admin_name&quot;</span>: <span
-class="php-quote">&quot;ΔΙΕΥΘΥΝΣΗ Δ.Ε. ΑΙΤΩΛ/ΝΙΑΣ&quot;</span>,
-          <span
-class="php-quote">&quot;total_units&quot;</span>: <span
-class="php-quote">&quot;2&quot;</span>
-      },
-      {
-          <span
-class="php-quote">&quot;unit_type_name&quot;</span>: <span
-class="php-quote">&quot;ΕΡΓΑΣΤΗΡΙΑΚΟ ΚΕΝΤΡΟ&quot;</span>,
-          <span
-class="php-quote">&quot;edu_admin_name&quot;</span>: <span
-class="php-quote">&quot;ΔΙΕΥΘΥΝΣΗ Δ.Ε. ΑΙΤΩΛ/ΝΙΑΣ&quot;</span>,
-          <span
-class="php-quote">&quot;total_units&quot;</span>: <span
-class="php-quote">&quot;1&quot;</span>
-      },
-      {
-          <span
-class="php-quote">&quot;unit_type_name&quot;</span>: <span
-class="php-quote">&quot;ΝΗΠΙΑΓΩΓΕΙΟ&quot;</span>,
-          <span
-class="php-quote">&quot;edu_admin_name&quot;</span>: <span
-class="php-quote">&quot;ΔΙΕΥΘΥΝΣΗ Π.Ε. ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ&quot;</span>,
-          <span
-class="php-quote">&quot;total_units&quot;</span>: <span
-class="php-quote">&quot;25&quot;</span>
-      }
-  ],
-  <span
+ <span
+class="php-quote">&quot;function&quot;</span>: <span
+class="php-quote">&quot;statistic_units&quot;</span>,
+ <span
+class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;GET&quot;</span>,
+ <span
+class="php-quote">&quot;filters&quot;</span>: ``,
+ <span
 class="php-quote">&quot;status&quot;</span>: <span
 class="php-num">200</span>,
-  <span
+ <span
 class="php-quote">&quot;message&quot;</span>: <span
-class="php-quote">&quot;success&quot;</span>
+class="php-quote">&quot;[GET][statistic_units]:success&quot;</span>
 }
 </pre>
 
-<div><br />
-</div>
+<p><strong><em>Πίνακας Δεδομένων</em></strong><br />
+<a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα
+από τον πίνακα results με τα αποτελέσματα σε
+μορφή JSON :</p>
+
+<pre>
+{<span class="php-quote">&quot;results&quot;</span>: [{
+ <span
+class="php-quote">&quot;x_axis_name&quot;</span>:``,
+ <span
+class="php-quote">&quot;y_axis_name&quot;</span>:``,
+ <span
+class="php-quote">&quot;total_units&quot;</span>:``
+ }]
+}
+</pre>
 
 	</div>
 
@@ -508,39 +327,35 @@ class="php-quote">&quot;success&quot;</span>
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
 	<tr id="$x_axis">
-		<td class="name"><code>integer</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$x_axis</var></code></td>
 		<td>
 			 Άξονας x του πίνακα<br />
-Η παράμετρος μπορέι να είναι οποιαδήποτε
-τιμή από τον πίνακα axis<br />
-Η τιμή της παραμέτρου μπορεί να είναι :
-integer|array[integer]
+<br />
+Η παράμετρος μπορεί να είναι οποιαδήποτε
+τιμή από τον πίνακα Axis <a href="#axis">Axis</a><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
-
-	<li>array[integer] : Σύνολο από Αριθμητικές τιμές
-	διαχωρισμένες με κόμμα</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	όνομα της παραμέτρου</li>
 </ul>
 
 		</td>
 	</tr>
 	<tr id="$y_axis">
-		<td class="name"><code>integer</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$y_axis</var></code></td>
 		<td>
 			 Άξονας y του πίνακα<br />
-Η παράμετρος μπορέι να είναι οποιαδήποτε
-τιμή από τον πίνακα axis<br />
-Η τιμή της παραμέτρου μπορεί να είναι :
-integer|array[integer]
+<br />
+Η παράμετρος μπορεί να είναι οποιαδήποτε
+τιμή από τον πίνακα Axis <a href="#axis">Axis</a><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
-
-	<li>array[integer] : Σύνολο από Αριθμητικές τιμές
-	διαχωρισμένες με κόμμα</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	όνομα της παραμέτρου</li>
 </ul>
 
 		</td>
@@ -550,15 +365,15 @@ integer|array[integer]
 		<td class="value"><code><var>$mm_id</var></code></td>
 		<td>
 			 Κωδικός ΜΜ Μονάδας<br />
+<br />
 Ο Κωδικός ΜΜ της Μονάδας<br />
-Η τιμή της παραμέτρου μπορεί να είναι :
-integer|array[integer]
+Η τιμή της παραμέτρου μπορεί να είναι : integer
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
-
-	<li>array[integer] : Σύνολο από Αριθμητικές τιμές
-	διαχωρισμένες με κόμμα</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ΜΜ της Μονάδας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 </ul>
 
 		</td>
@@ -568,19 +383,26 @@ integer|array[integer]
 		<td class="value"><code><var>$registry_no</var></code></td>
 		<td>
 			 Κωδικός ΥΠΕΠΘ<br />
-Ο Κωδικός ΥΠΕΠΘ της Μονάδας<br />
+<br />
+O Κωδικός ΥΠΕΠΘ της Μονάδας<br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{string|null|array[string|null]}
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό ΥΠΕΠΘ)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Κωδικό ΥΠΕΠΘ της Μονάδας<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το Κωδικό ΥΠΕΠΘ)</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
 
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -590,20 +412,34 @@ mixed{integer|string|array[integer|string]}
 		<td class="value"><code><var>$source</var></code></td>
 		<td>
 			 Πρωτογενής Πηγή<br />
-Η Πρωτογενής Πηγή της Μονάδας (Λεξικό : <code><a href="function-GetSources.html">GetSources()</a></code>)<br />
-Λεξικό : Πρωτογενείς Πηγές Μονάδων <code><a href="function-GetSources.html">GetSources()</a></code>)<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Πρωτογενής Πηγής
+της Μονάδας<br />
+Λεξικό : <code><a href="function-GetSources.html">GetSources()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{integer|string|null|array[integer|string|null]}
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID της Πρωτογενής Πηγής<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα της Πρωτογενής Πηγής<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -613,16 +449,25 @@ mixed{integer|string|array[integer|string]}
 		<td class="value"><code><var>$name</var></code></td>
 		<td>
 			 Ονομασία<br />
-Το Όνομα της Μονάδας<br />
+<br />
+Η Ονομασία της Μονάδας<br />
+Συνδυάζεται με την παράμετρο searchtype<br />
+Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{string|array[string]}
+string|array[string]
 <ul>
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με την
+	Ονομασία της Μονάδας<br />
+	Αν η παράμετρος Τύπος Αναζήτησης δεν έχει
+	τιμή τότε η αναζήτηση στον Όνομα γίνεται με
+	τον Tύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code></li>
 
-	<li>array[string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>array[string]<br />
+	Σύνολο από Αλφαριθμητικές τιμές
+	διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -631,17 +476,26 @@ mixed{string|array[string]}
 		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$special_name</var></code></td>
 		<td>
-			 Ειδική Ονομασία<br />
+			 Προσωνύμιο<br />
+<br />
 Το Προσωνύμιο της Μονάδας<br />
+Συνδυάζεται με την παράμετρο searchtype<br />
+Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{string|array[string]}
+string|array[string]
 <ul>
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το προσωνύμιο)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Προσωνύμιο της Μονάδας<br />
+	Αν η παράμετρος Τύπος Αναζήτησης δεν έχει
+	τιμή τότε η αναζήτηση στον Προσωνύμιο
+	γίνεται με τον Tύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code></li>
 
-	<li>array[string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>array[string]<br />
+	Σύνολο από Αλφαριθμητικές τιμές
+	διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -650,21 +504,35 @@ mixed{string|array[string]}
 		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$state</var></code></td>
 		<td>
-			 Κατάσταση<br />
-Η Κατάσταση της Μονάδας (Λεξικό : <code><a href="function-GetStates.html">GetStates()</a></code>)<br
-/>
+			 Λειτουργική Καταστάση<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Λειτουργικής
+Καταστάσης της Μονάδας<br />
+Λεξικό : <code><a href="function-GetStates.html">GetStates()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{integer|string|null|array[integer|string|null]}
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID της Λειτουργικής Καταστάσης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα της Λειτουργικής Καταστάσης<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -674,19 +542,34 @@ mixed{integer|string|array[integer|string]}
 		<td class="value"><code><var>$region_edu_admin</var></code></td>
 		<td>
 			 Περιφέρεια<br />
-Η Περιφέρεια της Μονάδας (Λεξικό : <code><a href="function-GetRegionEduAdmins.html">GetRegionEduAdmins()</a></code>)<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Περιφέρειας της
+Μονάδας<br />
+Λεξικό : <code><a href="function-GetRegionEduAdmins.html">GetRegionEduAdmins()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{integer|string|null|array[integer|string|null]}
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID της Περιφέρειας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα της Περιφέρειας<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -696,20 +579,34 @@ mixed{integer|string|array[integer|string]}
 		<td class="value"><code><var>$edu_admin</var></code></td>
 		<td>
 			 Διεύθυνση Εκπαίδευσης<br />
-Η Διεύθυνση Εκπαίδευσης της Μονάδας (Λεξικό
-: <code><a href="function-GetEduAdmins.html">GetEduAdmins()</a></code>)<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Διευθύνσης
+Εκπαίδευσης της Μονάδας<br />
+Λεξικό : <code><a href="function-GetEduAdmins.html">GetEduAdmins()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{integer|string|null|array[integer|string|null]}
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID της Διευθύνσης Εκπαίδευσης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα της Διευθύνσης Εκπαίδευσης<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -718,20 +615,35 @@ mixed{integer|string|array[integer|string]}
 		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$implementation_entity</var></code></td>
 		<td>
-			 Φοράς Υλοποίησης<br />
-Ο Φοράς Υλοποίησης της μονάδας (Λεξικό : <code><a href="function-GetImplementationEntities.html">GetImplementationEntities()</a></code>)<br />
+			 Φορέας Υλοποίησης<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Φορέα Υλοποίησης
+της Μονάδας<br />
+Λεξικό : <code><a href="function-GetImplementationEntities.html">GetImplementationEntities()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{integer|string|null|array[integer|string|null]}
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID του Φορέα Υλοποίησης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα του Φορέα Υλοποίησης<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -741,19 +653,34 @@ mixed{integer|string|array[integer|string]}
 		<td class="value"><code><var>$transfer_area</var></code></td>
 		<td>
 			 Περιοχή Μετάθεσης<br />
-Η Περιοχή Μετάθεσης της Μονάδας (Λεξικό : <code><a href="function-GetTransferAreas.html">GetTransferAreas()</a></code>)<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Περιοχής
+Μετάθεσης της Μονάδας<br />
+Λεξικό : <code><a href="function-GetTransferAreas.html">GetTransferAreas()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{integer|string|null|array[integer|string|null]}
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID της Περιοχής Μετάθεσης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα της Περιοχής Μετάθεσης<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -762,20 +689,35 @@ mixed{integer|string|array[integer|string]}
 		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$prefecture</var></code></td>
 		<td>
-			 Νομός<br />
-Ο Νομός της Μονάδας (Λεξικό : <code><a href="function-GetPrefectures.html">GetPrefectures()</a></code>)<br />
+			 Περιφερειακή Ενότητα<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Περιφερειακή
+Ενότητα της Μονάδας<br />
+Λεξικό : <code><a href="function-GetPrefectures.html">GetPrefectures()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{integer|string|null|array[integer|string|null]}
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID της Περιφερειακής Ενότητα<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα της Περιφερειακής Ενότητα<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -785,19 +727,34 @@ mixed{integer|string|array[integer|string]}
 		<td class="value"><code><var>$municipality</var></code></td>
 		<td>
 			 Δήμος ΟΤΑ<br />
-Ο Δήμος ΟΤΑ της Μονάδας (Λεξικό : <code><a href="function-GetMunicipalities.html">GetMunicipalities()</a></code>)<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Δήμου ΟΤΑ της
+Μονάδας<br />
+Λεξικό : <code><a href="function-GetMunicipalities.html">GetMunicipalities()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{integer|string|null|array[integer|string|null]}
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID του Δήμου ΟΤΑ<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα του Δήμου ΟΤΑ<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -806,21 +763,35 @@ mixed{integer|string|array[integer|string]}
 		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$education_level</var></code></td>
 		<td>
-			 Βαθμίδα<br />
-Το Επίπεδο Εκπαίδευσης της μονάδας (Λεξικό :
-<code><a href="function-GetEducationLevels.html">GetEducationLevels()</a></code>)<br />
+			 Βαθμίδα Εκπαίδευσης<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Βαθμίδας
+Εκπαίδευσης της Μονάδας<br />
+Λεξικό : <code><a href="function-GetEducationLevels.html">GetEducationLevels()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{integer|string|null|array[integer|string|null]}
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID της Βαθμίδας Εκπαίδευσης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα της Βαθμίδας Εκπαίδευσης<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -830,19 +801,34 @@ mixed{integer|string|array[integer|string]}
 		<td class="value"><code><var>$category</var></code></td>
 		<td>
 			 Κατηγορία<br />
-Η Κατηγορία της Μονάδας (Λεξικό : <code><a href="function-GetCategories.html">GetCategories()</a></code>)<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Κατηγορίας της
+Μονάδας<br />
+Λεξικό : <code><a href="function-GetCategories.html">GetCategories()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{integer|string|null|array[integer|string|null]}
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID της Κατηγορίας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα της Κατηγορίας<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -852,19 +838,33 @@ mixed{integer|string|array[integer|string]}
 		<td class="value"><code><var>$unit_type</var></code></td>
 		<td>
 			 Τύπος Μονάδας<br />
-Ο Τύπος της Μονάδας (Λεξικό : <code><a href="function-GetUnitTypes.html">GetUnitTypes()</a></code>)<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Τύπου Μονάδας<br />
+Λεξικό : <code><a href="function-GetUnitTypes.html">GetUnitTypes()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{integer|string|null|array[integer|string|null]}
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID του Τύπου Μονάδας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα του Τύπου Μονάδας<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -874,20 +874,34 @@ mixed{integer|string|array[integer|string]}
 		<td class="value"><code><var>$operation_shift</var></code></td>
 		<td>
 			 Ωράριο Λειτουργίας<br />
-Το Ωράριο Λειτουργίας της Μονάδας (Λεξικό :
-<code><a href="function-GetOperationShifts.html">GetOperationShifts()</a></code>)<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Ωράριου
+Λειτουργίας της Μονάδας<br />
+Λεξικό : <code><a href="function-GetOperationShifts.html">GetOperationShifts()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{integer|string|null|array[integer|string|null]}
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID του Ωράριου Λειτουργίας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα του Ωράριου Λειτουργίας<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -897,20 +911,34 @@ mixed{integer|string|array[integer|string]}
 		<td class="value"><code><var>$legal_character</var></code></td>
 		<td>
 			 Νομικός Χαρακτήρας<br />
-Ο Νομικός Χαρακτήρας της Μονάδας (Λεξικό :
-<code><a href="function-GetLegalCharacters.html">GetLegalCharacters()</a></code>)<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Νομικού Χαρακτήρα
+της Μονάδας<br />
+Λεξικό : <code><a href="function-GetLegalCharacters.html">GetLegalCharacters()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{integer|string|null|array[integer|string|null]}
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID του Νομικού Χαρακτήρα<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα του Νομικού Χαρακτήρα<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -920,19 +948,34 @@ mixed{integer|string|array[integer|string]}
 		<td class="value"><code><var>$orientation_type</var></code></td>
 		<td>
 			 Προσανατολισμός<br />
-Ο Προσανατολισμός της Μονάδας (Λεξικό : <code><a href="function-GetOrientationTypes.html">GetOrientationTypes()</a></code>)<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Προσανατολισμού
+της Μονάδας<br />
+Λεξικό : <code><a href="function-GetOrientationTypes.html">GetOrientationTypes()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{integer|string|null|array[integer|string|null]}
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID του Προσανατολισμού<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα του Προσανατολισμού<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
@@ -942,29 +985,65 @@ mixed{integer|string|array[integer|string]}
 		<td class="value"><code><var>$special_type</var></code></td>
 		<td>
 			 Ειδικός Χαρακτηρισμός<br />
-Καθορίζει αν η Μονάδα έχει Ειδικό
-Χαρακτηρισμό (Λεξικό : <code><a href="function-GetSpecialTypes.html">GetSpecialTypes()</a></code>)<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Ειδικού
+Χαρακτηρισμού της Μονάδας<br />
+Λεξικό : <code><a href="function-GetSpecialTypes.html">GetSpecialTypes()</a></code><br />
 Η τιμή της παραμέτρου μπορεί να είναι :
-mixed{integer|string|array[integer|string]}
+mixed{integer|string|null|array[integer|string|null]}
 <ul>
-	<li>integer : Αριθμητική (Η αναζήτηση γίνεται με
-	τον κωδικό)</li>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID του Ειδικού Χαρακτηρισμού<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>string : Αλφαριθμητική (Η αναζήτηση γίνεται
-	με το όνομα)</li>
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα του Ειδικού Χαρακτηρισμού<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
 
-	<li>array[integer|string] : Σύνολο από Αριθμητικές και
-	Αλφαριθμητικές τιμές διαχωρισμένες με
-	κόμμα</li>
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
 </ul>
 
 		</td>
 	</tr>
 	<tr id="$searchtype">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$searchtype</var></code></td>
 		<td>
-			
+			 Τύπος Αναζήτησης<br />
+<br />
+Ο Τύπος Αναζήτησης με τον οποίο γίνεται η
+αναζήτηση στα πεδία
+<ul>
+	<li>Όνομα Μονάδας (<a href="#$name">$name</a>)</li>
+
+	<li>Προσωνύμιο Μονάδας (<a
+	href="#$special_name">$special_name</a>)</li>
+</ul>
+<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε η
+αναζήτηση στα πεδία αυτά γίνεται με τον
+Τύπο <code><a href="class-SearchEnumTypes.html#ContainAll">SearchEnumTypes::<b>ContainAll</b></a></code><br />
+Λίστα Τύπων Αναζήτησης : <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+<ul>
+	<li>string<br />
+	Αλφαριθμητική : Η τιμή της παραμέτρου
+	μπορεί να είναι ένας από τους Tύπους <code><a href="class-SearchEnumTypes.html">SearchEnumTypes</a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	</table>
@@ -973,17 +1052,12 @@ mixed{integer|string|array[integer|string]}
 	<caption>Return value summary</caption>
 	<tr>
 		<td class="name"><code>
-			Array&lt;JSON&gt;
+			Objects&lt;JSON&gt;
 		</code></td>
 		<td>
-			Επιστρέφει ένα πίνακα σε JSON μορφή με πεδία
-:<br />
-string : <b>method</b> : Η μέθοδος κλήσης της
-συνάρτησης integer : <b>status</b> : Ο Κωδικός <code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code> του αποτελέσματος της κλήσης string :
-<b>message</b> : Το Μήνυμα <code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code> του
-αποτελέσματος της κλήσης integer : <b>filters</b> : Το
-φίλτρα που έχουν προστεθεί array : <b>result</b> : Το
-αποτελέσματα των στατιστικών.
+			Επιστρέφει τα παρακάτω JSON objects :<br />
+<br />
+array : <b>results</b> : Ο Πίνακας με τα αποτελέσματα
 <ul>
 	<li>string : <b>'x_axis'_name</b> : Το Όνομα του x άξονα</li>
 
@@ -992,7 +1066,19 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 	<li>integer : <b>total_units</b> : Το πλήθος του συνδιασμού
 	x,y</li>
 </ul>
-
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+string : <b>filters</b> : Τα φίλτρα που καταχώρησε ο
+χρήστης<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
 		</td>
 	</tr>
 	</table>
@@ -1001,18 +1087,11 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 	<caption>Thrown exceptions summary</caption>
 	<tr>
 		<td class="name"><code>
-			InvalidSearchType
-		</code></td>
-		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidSearchType">ExceptionMessages::<b>InvalidSearchType</b></a></code>
-		</td>
-	</tr>
-	<tr>
-		<td class="name"><code>
 			InvalidXAxisArray
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidXAxisArray">ExceptionMessages::<b>InvalidXAxisArray</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidXAxisArray">ExceptionMessages::<b>InvalidXAxisArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidXAxisArray">ExceptionCodes::<b>InvalidXAxisArray</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1020,7 +1099,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			MissingXAxisValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingXAxisValue">ExceptionMessages::<b>MissingXAxisValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingXAxisValue">ExceptionMessages::<b>MissingXAxisValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingXAxisValue">ExceptionCodes::<b>MissingXAxisValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1028,7 +1108,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidXAxis
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidXAxis">ExceptionMessages::<b>InvalidXAxis</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidXAxis">ExceptionMessages::<b>InvalidXAxis</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidXAxis">ExceptionCodes::<b>InvalidXAxis</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1036,7 +1117,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidXAxisType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidXAxisType">ExceptionMessages::<b>InvalidXAxisType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidXAxisType">ExceptionMessages::<b>InvalidXAxisType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidXAxisType">ExceptionCodes::<b>InvalidXAxisType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1044,7 +1126,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			MissingXAxisParam
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingXAxisParam">ExceptionMessages::<b>MissingXAxisParam</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingXAxisParam">ExceptionMessages::<b>MissingXAxisParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingXAxisParam">ExceptionCodes::<b>MissingXAxisParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1052,7 +1135,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidYAxisArray
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidYAxisArray">ExceptionMessages::<b>InvalidYAxisArray</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidYAxisArray">ExceptionMessages::<b>InvalidYAxisArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidYAxisArray">ExceptionCodes::<b>InvalidYAxisArray</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1060,7 +1144,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			MissingYAxisValue
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingYAxisValue">ExceptionMessages::<b>MissingYAxisValue</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingYAxisValue">ExceptionMessages::<b>MissingYAxisValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingYAxisValue">ExceptionCodes::<b>MissingYAxisValue</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1068,7 +1153,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidYAxis
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidYAxis">ExceptionMessages::<b>InvalidYAxis</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidYAxis">ExceptionMessages::<b>InvalidYAxis</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidYAxis">ExceptionCodes::<b>InvalidYAxis</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1076,7 +1162,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidYAxisType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidYAxisType">ExceptionMessages::<b>InvalidYAxisType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidYAxisType">ExceptionMessages::<b>InvalidYAxisType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidYAxisType">ExceptionCodes::<b>InvalidYAxisType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1084,7 +1171,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			MissingYAxisParam
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#MissingYAxisParam">ExceptionMessages::<b>MissingYAxisParam</b></a></code>
+			<code><a href="class-ExceptionMessages.html#MissingYAxisParam">ExceptionMessages::<b>MissingYAxisParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingYAxisParam">ExceptionCodes::<b>MissingYAxisParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1092,7 +1180,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidUnitMMIDType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidUnitMMIDType">ExceptionMessages::<b>InvalidUnitMMIDType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitMMIDType">ExceptionMessages::<b>InvalidUnitMMIDType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitMMIDType">ExceptionCodes::<b>InvalidUnitMMIDType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1100,23 +1189,26 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidUnitRegistryNoType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidUnitRegistryNoType">ExceptionMessages::<b>InvalidUnitRegistryNoType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitRegistryNoType">ExceptionMessages::<b>InvalidUnitRegistryNoType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitRegistryNoType">ExceptionCodes::<b>InvalidUnitRegistryNoType</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidNameType
+			InvalidUnitNameType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidNameType">ExceptionMessages::<b>InvalidNameType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitNameType">ExceptionMessages::<b>InvalidUnitNameType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitNameType">ExceptionCodes::<b>InvalidUnitNameType</b></a></code>
 		</td>
 	</tr>
 	<tr>
 		<td class="name"><code>
-			InvalidSpecialNameType
+			InvalidUnitSpecialNameType
 		</code></td>
 		<td>
-			ExceptionMessages::InvalidSpecialNameType
+			<code><a href="class-ExceptionMessages.html#InvalidUnitSpecialNameType">ExceptionMessages::<b>InvalidUnitSpecialNameType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitSpecialNameType">ExceptionCodes::<b>InvalidUnitSpecialNameType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1124,7 +1216,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidSourceType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidSourceType">ExceptionMessages::<b>InvalidSourceType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidSourceType">ExceptionMessages::<b>InvalidSourceType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidSourceType">ExceptionCodes::<b>InvalidSourceType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1132,7 +1225,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidStateType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidStateType">ExceptionMessages::<b>InvalidStateType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidStateType">ExceptionMessages::<b>InvalidStateType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingYAxisParam">ExceptionCodes::<b>MissingYAxisParam</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1140,7 +1234,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidRegionEduAdminType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidRegionEduAdminType">ExceptionMessages::<b>InvalidRegionEduAdminType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidRegionEduAdminType">ExceptionMessages::<b>InvalidRegionEduAdminType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRegionEduAdminType">ExceptionCodes::<b>InvalidRegionEduAdminType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1148,7 +1243,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidEduAdminType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidEduAdminType">ExceptionMessages::<b>InvalidEduAdminType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidEduAdminType">ExceptionMessages::<b>InvalidEduAdminType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEduAdminType">ExceptionCodes::<b>InvalidEduAdminType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1156,7 +1252,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidImplementationEntityType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityType">ExceptionMessages::<b>InvalidImplementationEntityType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityType">ExceptionMessages::<b>InvalidImplementationEntityType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidImplementationEntityType">ExceptionCodes::<b>InvalidImplementationEntityType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1164,7 +1261,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidTransferAreaType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidTransferAreaType">ExceptionMessages::<b>InvalidTransferAreaType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidTransferAreaType">ExceptionMessages::<b>InvalidTransferAreaType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidTransferAreaType">ExceptionCodes::<b>InvalidTransferAreaType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1172,7 +1270,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidPrefectureType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidPrefectureType">ExceptionMessages::<b>InvalidPrefectureType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidPrefectureType">ExceptionMessages::<b>InvalidPrefectureType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidPrefectureType">ExceptionCodes::<b>InvalidPrefectureType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1180,7 +1279,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidMunicipalityType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityType">ExceptionMessages::<b>InvalidMunicipalityType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityType">ExceptionMessages::<b>InvalidMunicipalityType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidMunicipalityType">ExceptionCodes::<b>InvalidMunicipalityType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1188,7 +1288,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidEducationLevelType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidEducationLevelType">ExceptionMessages::<b>InvalidEducationLevelType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidEducationLevelType">ExceptionMessages::<b>InvalidEducationLevelType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEducationLevelType">ExceptionCodes::<b>InvalidEducationLevelType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1196,7 +1297,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidCategoryType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidCategoryType">ExceptionMessages::<b>InvalidCategoryType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidCategoryType">ExceptionMessages::<b>InvalidCategoryType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidCategoryType">ExceptionCodes::<b>InvalidCategoryType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1204,7 +1306,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidUnitTypeType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidUnitTypeType">ExceptionMessages::<b>InvalidUnitTypeType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitTypeType">ExceptionMessages::<b>InvalidUnitTypeType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitTypeType">ExceptionCodes::<b>InvalidUnitTypeType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1212,7 +1315,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidOperationShiftType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidOperationShiftType">ExceptionMessages::<b>InvalidOperationShiftType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidOperationShiftType">ExceptionMessages::<b>InvalidOperationShiftType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidOperationShiftType">ExceptionCodes::<b>InvalidOperationShiftType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1220,7 +1324,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidLegalCharacterType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidLegalCharacterType">ExceptionMessages::<b>InvalidLegalCharacterType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidLegalCharacterType">ExceptionMessages::<b>InvalidLegalCharacterType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidLegalCharacterType">ExceptionCodes::<b>InvalidLegalCharacterType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1228,7 +1333,8 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidOrientationTypeType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidOrientationTypeType">ExceptionMessages::<b>InvalidOrientationTypeType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidOrientationTypeType">ExceptionMessages::<b>InvalidOrientationTypeType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidOrientationTypeType">ExceptionCodes::<b>InvalidOrientationTypeType</b></a></code>
 		</td>
 	</tr>
 	<tr>
@@ -1236,7 +1342,17 @@ string : <b>method</b> : Η μέθοδος κλήσης της
 			InvalidSpecialTypeType
 		</code></td>
 		<td>
-			<code><a href="class-ExceptionMessages.html#InvalidSpecialTypeType">ExceptionMessages::<b>InvalidSpecialTypeType</b></a></code>
+			<code><a href="class-ExceptionMessages.html#InvalidSpecialTypeType">ExceptionMessages::<b>InvalidSpecialTypeType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidSpecialTypeType">ExceptionCodes::<b>InvalidSpecialTypeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NoErrors
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
 		</td>
 	</tr>
 	</table>

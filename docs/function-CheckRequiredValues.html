@@ -120,16 +120,141 @@
 
 	<div class="description">
 	
-<p>Συνάρτηση εύρεσης κενών τιμών σε
-"υποχρεωτικά" πεδία μονάδων.</p>
+<p><strong>Εύρεση Κενών Τιμών σε Μονάδες</strong></p>
 
-<p>Η συνάρτηση καλείται με την GET
-/api/check_required_values Δέχεται τις παρακάτω
-παραμέτρους:<br />
-1) Επιλογή διαδικασίας (Η οποία μπορεί να
-δεχτεί αριθμητικές τιμές από το 1-10 και κάθε
-μία αντιστοιχεί σε συγκεκριμένο ερώτημα
-στην β.δ.) "selection" -&gt;<br />
+<p>Η συνάρτηση αυτή επιστρέφει τις Μονάδες
+με κενές τιμές σε "υποχρεωτικά" πεδία των
+στοιχείων τους, σύμφωνα με τις παραμέτρους
+που έγινε η κλήση<br />
+Η κλήση μπορεί να γίνει μέσω της παρακάτω
+διεύθυνσης με τη μέθοδο <strong>GET</strong> και
+route_api_name = <strong>check_required_values</strong> :<br />
+https://mm.sch.gr/api/check_required_values</p>
+
+<p><strong><em>Πίνακας Παραμέτρων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Παραμέτρων <a href="#parameters">Parameters
+	summary</a> εμφανίζονται όλοι οι παράμετροι με
+	τους οποίους μπορεί να γίνει η κλήση της
+	συνάρτησης.</li>
+
+	<li>Όλοι οι παράμετροι είναι προαιρετικοί
+	εκτός από αυτές που έχουν χαρακτηριστεί ως
+	υποχρεωτικοί.</li>
+
+	<li>Οι παράμετροι μπορούν να χρησιμοποιηθούν
+	με οποιαδήποτε σειρά.</li>
+
+	<li>Οι παράμετροι οι οποίοι έχουν το
+	χαρακτηριστικό (Συνδυάζεται με την
+	παράμετρο searchtype) σημαίνει ότι η
+	συγκεκριμένη παράμετρος συνδυάζεται με την
+	παράμετρο searchtype.</li>
+
+	<li>Οι παράμετροι μπορούν να πάρουν τιμή "NULL"
+	για να αναζητήσουν τις κενές εγγραφές στα
+	αντίστοιχα πεδία</li>
+</ul>
+
+<p><strong><em>Πίνακας Αποτελεσμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Αποτελεσμάτων <a href="#returns">Return
+	value summary</a> εμφανίζονται οι μεταβλητές που
+	επιστρέφει η συνάρτηση.</li>
+
+	<li>Όλες οι μεταβλητές επιστρέφονται σε <a
+	href="#model">JSON objects</a>.</li>
+
+	<li>Η μεταβλητή <a href="#data">data</a> είναι ο πίνακας
+	με τα δεδομένα.</li>
+
+	<li>Η μεταβλητή status καθορίζει αν η εκτέλεση
+	της συνάρτησης ήταν επιτυχής (κωδικός 200) ή
+	προέκυψε κάποιο σφάλμα.</li>
+</ul>
+
+<p><strong><em>Πίνακας Σφαλμάτων</em></strong></p>
+
+<ul>
+	<li>Στον Πίνακα Σφαλμάτων <a href="#throws">Thrown exceptions
+	summary</a> εμφανίζονται τα Μηνύματα Σφαλμάτων
+	που μπορεί να προκύψουν κατά την κλήση της
+	συνάρτησης.</li>
+
+	<li>Οι περιγραφές των Σφαλμάτων καθώς και οι
+	Κωδικοί τους είναι διαθέσιμες μέσω του
+	πίνακα Μηνύματα Σφαλμάτων (<code><a href="class-ExceptionMessages.html">ExceptionMessages</a></code>)
+	και Κωδικοί Σφαλμάτων (<code><a href="class-ExceptionCodes.html">ExceptionCodes</a></code>)
+	αντίστοιχα.</li>
+</ul>
+
+<p><strong><em>Παραδείγματα Κλήσης</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν διαθέσιμα παραδείγματα κλήσης
+	της συνάρτησης με διάφορους τρόπους (<code><a href="class-ApiRequestExamples.html">ApiRequestExamples</a></code>).</li>
+</ul>
+
+<p><strong><em>Μηνύματα Authentication/Authorization</em></strong></p>
+
+<ul>
+	<li>Υπάρχουν αναλυτικές πληροφορίες για τα
+	μηνύματα Authentication/Authorization (<code><a href="class-AuthMessages.html">AuthMessages</a></code>).</li>
+</ul>
+
+<p><strong><em>Δεδομένα Επιστροφής</em></strong><br />
+<a id="model"></a>Παρακάτω εμφανίζονται τα
+αποτελέσματα σε μορφή JSON :</p>
+
+<pre>
+{
+ <span class="php-quote">&quot;results&quot;</span>: [{}],
+ <span
+class="php-quote">&quot;controller&quot;</span>: <span
+class="php-quote">&quot;CheckRequiredValues&quot;</span>,
+ <span
+class="php-quote">&quot;function&quot;</span>: <span
+class="php-quote">&quot;check_required_values&quot;</span>,
+ <span
+class="php-quote">&quot;method&quot;</span>: <span
+class="php-quote">&quot;GET&quot;</span>,
+ <span
+class="php-quote">&quot;total&quot;</span>: ``,
+ <span
+class="php-quote">&quot;status&quot;</span>: <span
+class="php-num">200</span>,
+ <span
+class="php-quote">&quot;message&quot;</span>: <span
+class="php-quote">&quot;[GET][check_required_values]:success&quot;</span>
+}
+</pre>
+
+<p><strong><em>Πίνακας Δεδομένων</em></strong><br />
+<a id="data"></a>Παρακάτω εμφανίζεται ένα δείγμα
+από τον πίνακα data με τα αποτελέσματα σε
+μορφή JSON :</p>
+
+<pre>
+{<span class="php-quote">&quot;data&quot;</span>: [{
+ <span
+class="php-quote">&quot;mm_id&quot;</span>:``,
+ <span
+class="php-quote">&quot;registry_no&quot;</span>:``,
+ <span
+class="php-quote">&quot;name&quot;</span>:``
+ }]
+}
+</pre>
+
+<p><strong><em>INFOS : Δέχεται τις παρακάτω
+παραμέτρους:</em></strong><br />
+<strong>1) Επιλογή διαδικασίας (Η οποία μπορεί
+να δεχτεί αριθμητικές τιμές από το 1-10 και
+κάθε μία αντιστοιχεί σε συγκεκριμένο
+ερώτημα στην β.δ.)</strong><br />
+"selection" -&gt;<br />
 1 : null region_edu_admin (χωρίς περιφέρεια)<br />
 2 : null edu_admin (χωρίς διεύθυνση εκπαίδευσης)<br />
 3 : null transfer_area (χωρίς περιοχή μετάθεσης)<br />
@@ -140,35 +265,24 @@
 8 : null implementation_entity (χωρίς φορέα υλοποίησης)<br
 />
 9 : null unit_type (χωρίς τύπο μονάδας)<br />
-10 : null category (χωρίς κατηγορία)</p>
-
-<p>2) Φίλτρα αναζήτησης (μπορούν προστεθούν
-επιπλέον φίλτρα αναζήτησης σε κάθε επιλογή
-διαδικασίας για πιο αναλυτικά
-αποτελέσματα)<br />
+10 : null category (χωρίς κατηγορία)<br />
+<strong>2) Φίλτρα αναζήτησης (μπορούν
+προστεθούν επιπλέον φίλτρα αναζήτησης σε
+κάθε επιλογή διαδικασίας για πιο αναλυτικά
+αποτελέσματα)</strong><br />
 "category" -&gt; Κατηγορία Μονάδων<br />
 "unit_type" -&gt; Τύποι Μονάδων<br />
 "state" -&gt; Λειτουργική Κατάσταση Μονάδων<br />
-"source" -&gt; Πρωτογενής Πηγή Μονάδων</p>
-
-<p>3) Τύπος εξαγωγής δεδομένων "export" -&gt;
-Υποστηρίζεται η εξαγωγή δεδομένων σε format JSON
-και PHP_ARRAY, με χρήση της αντίστοιχης τιμής.</p>
-
-<p>4) Επιστροφή περισσότερων αποτελεσμάτων
+"source" -&gt; Πρωτογενής Πηγή Μονάδων<br />
+<strong>3) Τύπος εξαγωγής δεδομένων</strong><br />
+"export" -&gt; Υποστηρίζεται η εξαγωγή δεδομένων
+σε format JSON και PHP_ARRAY, με χρήση της αντίστοιχης
+τιμής.<br />
+<strong>4) Επιστροφή περισσότερων
+αποτελεσμάτων</strong><br />
 "all_data" -&gt; Επιστρέφει εκτός από τον συνολικό
 αριθμό μονάδων και όνομα μονάδας, κωδικο
 ΥΠΑΙΠΘ, κωδικό MM</p>
-
-<p>Επιστροφή αποτελεσμάτων<br />
-[total] : το σύνολο το αποτελεσμάτων<br />
-[data] : επιστρέφεται στην περίπτωση της
-επιλογής παραμέτρου $all_data και περιέχει arrays
-με name,mm_id,registry_no<br />
-[count] : επιστρέφεται στην περίπτωση της
-επιλογής παραμέτρου $all_data και αποτελεί το
-σύνολο το αποτελεσμάτων (πρέπει να έιναι
-ίδιο με την τιμή του [total])</p>
 
 	</div>
 
@@ -184,57 +298,437 @@
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
 	<tr id="$selection">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>integer</code></td>
 		<td class="value"><code><var>$selection</var></code></td>
 		<td>
-			
+			 Επιλογή Διαδικασίας<br />
+<br />
+Επιλογή διαδικασίας<br />
+Η τιμή της παραμέτρου μπορεί να είναι : integer
+<ul>
+	<li>integer<br />
+	Αριθμητική :Η Επιλογή Διαδικασίας μπορεί να
+	είναι αριθμητική μεταξύ των 1-10</li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$all_data">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>boolean</code></td>
 		<td class="value"><code><var>$all_data</var></code></td>
 		<td>
-			
+			 Περισσοότερα Αποτελέσματα<br />
+<br />
+Επιλογή για επιστροφή περισσότερων
+αποτελεσμάτων<br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+boolean(true)
+<ul>
+	<li>boolean<br />
+	Boolean : Είναι αποδεκτή μόνο η τιμή true για
+	επιστροφή αποτελεσμάτων</li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$category">
 		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$category</var></code></td>
 		<td>
-			
+			 Κατηγορία<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Κατηγορίας της
+Μονάδας<br />
+Λεξικό : <code><a href="function-GetCategories.html">GetCategories()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|null|array[integer|string|null]}
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID της Κατηγορίας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα της Κατηγορίας<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$unit_type">
 		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$unit_type</var></code></td>
 		<td>
-			
+			 Τύπος Μονάδας<br />
+<br />
+Το Όνομα ή ο Κωδικός ID του Τύπου Μονάδας<br />
+Λεξικό : <code><a href="function-GetUnitTypes.html">GetUnitTypes()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|null|array[integer|string|null]}
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID του Τύπου Μονάδας<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα του Τύπου Μονάδας<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$state">
 		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$state</var></code></td>
 		<td>
-			
+			 Λειτουργική Καταστάση<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Λειτουργικής
+Καταστάσης της Μονάδας<br />
+Λεξικό : <code><a href="function-GetStates.html">GetStates()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|null|array[integer|string|null]}
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID της Λειτουργικής Καταστάσης<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα της Λειτουργικής Καταστάσης<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$source">
 		<td class="name"><code>mixed</code></td>
 		<td class="value"><code><var>$source</var></code></td>
 		<td>
-			
+			 Πρωτογενής Πηγή<br />
+<br />
+Το Όνομα ή ο Κωδικός ID της Πρωτογενής Πηγής
+της Μονάδας<br />
+Λεξικό : <code><a href="function-GetSources.html">GetSources()</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι :
+mixed{integer|string|null|array[integer|string|null]}
+<ul>
+	<li>integer<br />
+	Αριθμητική : Η αναζήτηση γίνεται με τον
+	Κωδικό ID της Πρωτογενής Πηγής<br />
+	Η αναζήτηση στον Κωδικό γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>string<br />
+	Αλφαριθμητική : Η αναζήτηση γίνεται με το
+	Όνομα της Πρωτογενής Πηγής<br />
+	Η αναζήτηση στον Όνομα γίνεται με τον Τύπο
+	<code><a href="class-SearchEnumTypes.html#Exact">SearchEnumTypes::<b>Exact</b></a></code></li>
+
+	<li>null<br />
+	Null : Η αναζήτηση γίνεται με την επιλογή κενή
+	τιμής</li>
+
+	<li>array[integer|string|null]<br />
+	Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή
+	Null τιμές διαχωρισμένες με κόμμα<br />
+	Η αναζήτηση γίνεται με οποιαδήποτε από
+	αυτές τις τιμές</li>
+</ul>
+
 		</td>
 	</tr>
 	<tr id="$export">
-		<td class="name"><code>mixed</code></td>
+		<td class="name"><code>string</code></td>
 		<td class="value"><code><var>$export</var></code></td>
 		<td>
-			
+			 Τύπος Εξαγωγής Δεδομένων<br />
+<br />
+Ο Τύπος Εξαγωγής Δεδομένων με τον οποίο θα
+γίνει η εξαγωγή σε συγκεκριμένη μορφή τών
+δεδομένων<br />
+Η παράμετρος δεν είναι υποχρεωτική<br />
+Αν η παράμετρος δεν έχει τιμή τότε η εξαγωγή
+δεδομένων γίνεται με τον Τύπο <code><a href="class-ExportDataEnumTypes.html#JSON">ExportDataEnumTypes::<b>JSON</b></a></code><br />
+Λίστα Τύπων Εξαγωγής Δεδομένων : <code><a href="class-ExportDataEnumTypes.html">ExportDataEnumTypes</a></code><br />
+Η τιμή της παραμέτρου μπορεί να είναι : string
+<ul>
+	<li>string<br />
+	Αλφαριθμητική : Η τιμή της παραμέτρου
+	μπορεί να είναι ένας από τους Tύπους <code><a href="class-ExportDataEnumTypes.html">ExportDataEnumTypes</a></code></li>
+</ul>
+
 		</td>
 	</tr>
 	</table>
 
+	<table class="summary" id="returns">
+	<caption>Return value summary</caption>
+	<tr>
+		<td class="name"><code>
+			Objects&lt;JSON&gt;
+		</code></td>
+		<td>
+			Επιστρέφει τα παρακάτω JSON objects :<br />
+<br />
+array : <b>data</b> : Ο Πίνακας με τα αποτελέσματα
+<ul>
+	<li>string : <b>mm_id</b> : Ο Κωδικός ΜΜ</li>
 
+	<li>string : <b>registry_no</b> : Ο κωδικός ΥΠΕΠΘ της
+	Μονάδας</li>
+
+	<li>integer : <b>name</b> : Το Όνομα της Μονάδας</li>
+</ul>
+<br />
+string : <b>controller</b> : Ο controller που
+χρησιμοποιείται<br />
+string : <b>function</b> : Η συνάρτηση που υλοποιείται
+από το σύστημα<br />
+string : <b>method</b> : Η μέθοδος κλήσης της
+συνάρτησης<br />
+integer : <b>total</b> : Το πλήθος των εγγραφών χωρίς
+τις παραμέτρους σελιδοποίησης<br />
+integer : <b>status</b> : Ο Κωδικός του αποτελέσματος
+της κλήσης<br />
+string : <b>message</b> : Το Μήνυμα του αποτελέσματος
+της κλήσης
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary" id="throws">
+	<caption>Thrown exceptions summary</caption>
+	<tr>
+		<td class="name"><code>
+			InvalidCategoryType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidCategoryType">ExceptionMessages::<b>InvalidCategoryType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidCategoryType">ExceptionCodes::<b>InvalidCategoryType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitTypeType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitTypeType">ExceptionMessages::<b>InvalidUnitTypeType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitTypeType">ExceptionCodes::<b>InvalidUnitTypeType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidStateType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidStateType">ExceptionMessages::<b>InvalidStateType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidStateType">ExceptionCodes::<b>InvalidStateType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSourceType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSourceType">ExceptionMessages::<b>InvalidSourceType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidSourceType">ExceptionCodes::<b>InvalidSourceType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingSelectionCheckRequiredParam
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingSelectionCheckRequiredParam">ExceptionMessages::<b>MissingSelectionCheckRequiredParam</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingSelectionCheckRequiredParam">ExceptionCodes::<b>MissingSelectionCheckRequiredParam</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			MissingSelectionCheckRequiredValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#MissingSelectionCheckRequiredValue">ExceptionMessages::<b>MissingSelectionCheckRequiredValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#MissingSelectionCheckRequiredValue">ExceptionCodes::<b>MissingSelectionCheckRequiredValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSelectionCheckRequiredArray
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSelectionCheckRequiredArray">ExceptionMessages::<b>InvalidSelectionCheckRequiredArray</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidSelectionCheckRequiredArray">ExceptionCodes::<b>InvalidSelectionCheckRequiredArray</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidRegionEduAdminType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidRegionEduAdminType">ExceptionMessages::<b>InvalidRegionEduAdminType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidRegionEduAdminType">ExceptionCodes::<b>InvalidRegionEduAdminType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidEduAdminType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidEduAdminType">ExceptionMessages::<b>InvalidEduAdminType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidEduAdminType">ExceptionCodes::<b>InvalidEduAdminType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidTransferAreaType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidTransferAreaType">ExceptionMessages::<b>InvalidTransferAreaType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidTransferAreaType">ExceptionCodes::<b>InvalidTransferAreaType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidPrefectureType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidPrefectureType">ExceptionMessages::<b>InvalidPrefectureType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidPrefectureType">ExceptionCodes::<b>InvalidPrefectureType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidMunicipalityType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidMunicipalityType">ExceptionMessages::<b>InvalidMunicipalityType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidMunicipalityType">ExceptionCodes::<b>InvalidMunicipalityType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidOperationShiftType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidOperationShiftType">ExceptionMessages::<b>InvalidOperationShiftType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidOperationShiftType">ExceptionCodes::<b>InvalidOperationShiftType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidLegalCharacterType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidLegalCharacterType">ExceptionMessages::<b>InvalidLegalCharacterType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidLegalCharacterType">ExceptionCodes::<b>InvalidLegalCharacterType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidImplementationEntityType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidImplementationEntityType">ExceptionMessages::<b>InvalidImplementationEntityType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidImplementationEntityType">ExceptionCodes::<b>InvalidImplementationEntityType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidUnitType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidUnitType">ExceptionMessages::<b>InvalidUnitType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidUnitType">ExceptionCodes::<b>InvalidUnitType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidCategoryType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidCategoryType">ExceptionMessages::<b>InvalidCategoryType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidCategoryType">ExceptionCodes::<b>InvalidCategoryType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSelectionCheckRequiredValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSelectionCheckRequiredValue">ExceptionMessages::<b>InvalidSelectionCheckRequiredValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidSelectionCheckRequiredValue">ExceptionCodes::<b>InvalidSelectionCheckRequiredValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidSelectionCheckRequiredType
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidSelectionCheckRequiredType">ExceptionMessages::<b>InvalidSelectionCheckRequiredType</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidSelectionCheckRequiredType">ExceptionCodes::<b>InvalidSelectionCheckRequiredType</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			InvalidAllDataSelectionCheckRequiredValue
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#InvalidAllDataSelectionCheckRequiredValue">ExceptionMessages::<b>InvalidAllDataSelectionCheckRequiredValue</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#InvalidAllDataSelectionCheckRequiredValue">ExceptionCodes::<b>InvalidAllDataSelectionCheckRequiredValue</b></a></code>
+		</td>
+	</tr>
+	<tr>
+		<td class="name"><code>
+			NoErrors
+		</code></td>
+		<td>
+			<code><a href="class-ExceptionMessages.html#NoErrors">ExceptionMessages::<b>NoErrors</b></a></code><br />
+<code><a href="class-ExceptionCodes.html#NoErrors">ExceptionCodes::<b>NoErrors</b></a></code>
+		</td>
+	</tr>
+	</table>
 
 </div>
 
