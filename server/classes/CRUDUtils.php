@@ -1,56 +1,44 @@
 <?php
-class CRUDUtils {
-//    public static function entitySetAssociationOld(&$entity, $param, $repo, $field, $exceptionType, $required = true) {
-//        global $entityManager;
-//        $missingParam = 'Missing'.$exceptionType.'Param';
-//        $missingValue = 'Missing'.$exceptionType.'Value';
-//        $invalidType = 'Invalid'.$exceptionType.'Type';
-//        $invalidValue = 'Invalid'.$exceptionType.'Value';
-//
-//        if ( $param === _MISSED_ ) {
-//            if(!$required) { return; }
-//            throw new Exception(constant('ExceptionMessages::'.$missingParam), constant('ExceptionCodes::'.$missingParam));
-//        } else if ( Validator::IsNull($param) ) {
-//            if(!$required) { return; }
-//            throw new Exception(constant('ExceptionMessages::'.$missingValue), constant('ExceptionCodes::'.$missingValue));
-//        } else if ( Validator::IsID($param) )
-//            $retrievedObject = $entityManager->getRepository($repo)->find(Validator::ToID($param));
-//        else if ( Validator::IsValue($param) )
-//            $retrievedObject = $entityManager->getRepository($repo)->findOneBy(array('name' => Validator::ToValue($param)));
-//        else
-//            throw new Exception(constant('ExceptionMessages::'.$invalidType), constant('ExceptionCodes::'.$invalidType));
-//
-//        if ( !isset($retrievedObject) )
-//            throw new Exception(constant('ExceptionMessages::'.$invalidValue), constant('ExceptionCodes::'.$invalidValue));
-//        else
-//        {
-//            $method = 'set'.ucfirst($field);
-//            $entity->$method($retrievedObject);
-//        }
-//    }
-//
-//    public static function entitySetParamOld(&$entity, $param, $exceptionType, $field) {
-//        if ( $param === _MISSED_ )
-//        { } //throw new Exception(ExceptionMessages::MissingNameParam, ExceptionCodes::MissingNameParam);
-//        else if ( Validator::IsNull($param) )
-//        { } //throw new Exception(ExceptionMessages::MissingNameValue, ExceptionCodes::MissingNameValue);}
-//        else if ( Validator::IsValue($param) )
-//        {
-//            $method = 'set'.self::to_camel_case($field, true);
-//            $entity->$method(Validator::ToValue($param));
-//        }
-//        else
-//            throw new Exception($exceptionType." : ".$param, $exceptionType);
-//    }
+/**
+ * @version 2.0
+ * @author  ΤΕΙ Αθήνας
+ * @package CLASSES
+ */
 
+class CRUDUtils {
+
+    /**
+     * It converted string like “to_camel_case” into Camel Case: “ToCamelCase”.
+     * 
+     *  @param string String to converted
+     *  @param boolean True if want to capitalise first character or false if not
+     * 
+     *  @return string Camel Case string
+     */
     private static function to_camel_case($str, $capitalise_first_char = false) {
         if($capitalise_first_char) {
-        $str[0] = strtoupper($str[0]);
+            $str[0] = strtoupper($str[0]);
         }
+        
         $func = create_function('$c', 'return strtoupper($c[1]);');
         return preg_replace_callback('/_([a-z])/', $func, $str);
     }
     
+    /**
+     * Set doctrine query builder with filters
+     * 
+     * @param DoctrineQueryBuilder $qb The doctrine query builder.
+     * @param array $filter_param Values of input parameter by user.
+     * @param string $table_name The database table name is used. 
+     * @param string $table_column_id The primary id field name is used. 
+     * @param string $table_column_name The name of column field is used.  
+     * @param array $filter_validators The names of filters by user. Allowed names are : null, id, value, numeric, date, greater, lower, contain, startWith, endWith, boolean.
+     * @param string $ex_message Exception name message.
+     * @param string $ex_code Exception code message. 
+     *
+     * @return mixed The doctrine query builder with filters or throwException
+     * @throws ExceptionMessages::$ex_message , ExceptionCodes::$ex_code
+     */ 
     public static function setFilter ($qb, $filter_param, $table_name, $table_column_id, $table_column_name, $filter_validators, $ex_message, $ex_code) {
      global $db;
 
@@ -91,6 +79,20 @@ class CRUDUtils {
                             
     }  
     
+    /**
+     * Set doctrine query builder with search filters
+     * 
+     * @param DoctrineQueryBuilder $qb The doctrine query builder.
+     * @param array $filter_param Values of input parameter by user.
+     * @param string $table_name The database table name is used. 
+     * @param string $table_column_name The name of column field is used.  
+     * @param string $searchtype The name of search filters bu user.Allowed search filters exact, contain, containall, containany, startwith, endwith .
+     * @param string $ex_message Exception name message.
+     * @param string $ex_code Exception code message. 
+     *
+     * @return mixed The doctrine query builder with search filters or throwException
+     * @throws ExceptionMessages::$ex_message , ExceptionCodes::$ex_code 
+     */ 
     public static function setSearchFilter ($qb, $filter_param, $table_name, $table_column_name, $searchtype, $ex_message, $ex_code) {
         global $db;
             
@@ -165,14 +167,12 @@ class CRUDUtils {
      * @param boolean $is_nullable Set true if parameter can be null or false if not. Default value is false.
      * @param boolean $only_id Set true if want to check parameter only for id value. Default value is false.
      * 
+     * @return mixed The doctrine entity with set.'$field' or throwException
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Param' , ExceptionCodes::'Missing'.$exceptionType.'Param'
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Value' , ExceptionCodes::'Missing'.$exceptionType.'Value'
      * @throws ExceptionMessages::'Invalid'.$exceptionType.'Type' , ExceptionCodes::'Invalid'.$exceptionType.'Type'
      * @throws ExceptionMessages::'Invalid'.$exceptionType.'Value' , ExceptionCodes::'Invalid'.$exceptionType.'Value'
      * @throws ExceptionMessages::'Duplicated'.$exceptionType.'UniqueValue' , ExceptionCodes::'Duplicated'.$exceptionType.'UniqueValue'
-     * 
-     * @return mixed The doctrine entity with set.'$field' or throwException
-     * 
      */
     public static function entitySetAssociation(&$entity, $param, $repo, $doctrineField, $exceptionType, $params, $userField, $required = true, $is_nullable = false, $only_id = false ) {
         global $entityManager;
@@ -224,12 +224,10 @@ class CRUDUtils {
      * @param boolean $is_nullable Set true if parameter can be null or false if not. Default value is false.
      * @param boolean $only_numeric Set true if want to check parameter only for numeric value. Default value is false.
      *
+     * @return mixed The doctrine entity with set.'$field' or throwException
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Param' , ExceptionCodes::'Missing'.$exceptionType.'Param'
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Value' , ExceptionCodes::'Missing'.$exceptionType.'Value'
      * @throws ExceptionMessages::'Invalid'.$exceptionType.'Type' , ExceptionCodes::'Invalid'.$exceptionType.'Type'
-     * 
-     * @return mixed The doctrine entity with set.'$field' or throwException
-     * 
      */ 
     public static function entitySetParam(&$entity, $param, $exceptionType, $field, $params, $required = true, $is_nullable = false, $only_numeric = false ) {
         
@@ -274,13 +272,11 @@ class CRUDUtils {
      * @param boolean $is_nullable Set true if parameter can be null or false if not. Default value is false.
      * @param boolean $dateFormat Set date format. Default value is 'Y-m-d H:i:s'.
      *
+     * @return mixed The doctrine entity with set.'$field' or throwException
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Param' , ExceptionCodes::'Missing'.$exceptionType.'Param'
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Value' , ExceptionCodes::'Missing'.$exceptionType.'Value'
      * @throws ExceptionMessages::'Invalid'.$exceptionType.'Type' , ExceptionCodes::'Invalid'.$exceptionType.'Type'
      * @throws ExceptionMessages::'Invalid'.$exceptionType.'ValidType' , ExceptionCodes::'Invalid'.$exceptionType.'ValidType'
-     * 
-     * @return mixed The doctrine entity with set.'$field' or throwException
-     * 
      */ 
     public static function entitySetDate(&$entity, $param, $exceptionType, $field, $params, $required = true, $is_nullable = false, $dateFormat = 'Y-m-d H:i:s' ) {
         
@@ -319,13 +315,11 @@ class CRUDUtils {
      * @param integer $param Value of input parameter by user.
      * @param string $exceptionType Short name of input parameter used by ExceptionMessages and ExceptionCodes.
      * 
+     * @return mixed ID integer format or throwException
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Param' , ExceptionCodes::'Missing'.$exceptionType.'Param'
      * @throws ExceptionMessages::'Missing'.$exceptionType.'Value' , ExceptionCodes::'Missing'.$exceptionType.'Value'
      * @throws ExceptionMessages::'Invalid'.$exceptionType.'Type' , ExceptionCodes::'Invalid'.$exceptionType.'Type'
      * @throws ExceptionMessages::'Invalid'.$exceptionType.'Array' , ExceptionCodes::'Invalid'.$exceptionType.'Array'
-     * 
-     * @return mixed ID integer format or throwException
-     * 
      */
     public static function checkIDParam($field, $params, $param, $exceptionType ){
 
@@ -354,11 +348,9 @@ class CRUDUtils {
      * @param string $repo Dotrine Entity class.
      * @param string $exceptionType Short name of input parameter used by ExceptionMessages and ExceptionCodes.
      * 
+     * @return mixed The doctrine entity of ID or throwException
      * @throws ExceptionMessages::'Invalid'.$exceptionType.'Value' , ExceptionCodes::'Invalid'.$exceptionType.'Value'
      * @throws ExceptionMessages::'Duplicated'.$exceptionType.'UniqueValue' , ExceptionCodes::'Duplicated'.$exceptionType.'UniqueValue'
-     * 
-     * @return mixed The doctrine entity of ID or throwException
-     * 
      */
     public static function findIDParam ($param, $repo, $exceptionType){        
         
@@ -378,4 +370,5 @@ class CRUDUtils {
     }
     
 }
+
 ?>

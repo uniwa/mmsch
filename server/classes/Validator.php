@@ -1,7 +1,7 @@
 <?php
 
-class Validator
-{
+class Validator {
+    
     protected static $trueValues = array('1', 'on', 'true', 't', 'yes', 'y');
     protected static $falseValues = array('0', 'off', 'false', 'f', 'no', 'n');
 
@@ -47,7 +47,6 @@ class Validator
     public static function Missing($param, $params) {
         return ! self::Exists($param, $params);
     }
-
 
     /**
      * 
@@ -643,4 +642,5 @@ class Validator
     }
 
 }
+
 ?>

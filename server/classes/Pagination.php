@@ -1,7 +1,17 @@
 <?php
-class Pagination
-{
+
+class Pagination {
     
+    /**
+     * Get the maximum page number of results
+     * 
+     * @param int $total Results total number
+     * @param int $page Results page number set by user
+     * @param int $pagesize Results pagesize number set by user
+     * 
+     * @return int Maximum page number of results
+     * @throws Exception(ExceptionMessages::InvalidMaxPageNumber , ExceptionCodes::InvalidMaxPageNumber)
+     */
     public static function getMaxPage($total, $page, $pagesize)
     {
         if ($pagesize > 0 && $total > 0 ) {
@@ -18,6 +28,18 @@ class Pagination
         
     }
     
+    /**
+     * Get the page number of results
+     * 
+     * @param int $page Results page number set by user.Default value is page number `1`.
+     * @param array $params Contain all input parameter by user.
+     * 
+     * @return int Page number of results
+     * @throws Exception(ExceptionMessages::MissingPageValue , ExceptionCodes::MissingPageValue)
+     * @throws Exception(ExceptionMessages::InvalidPageArray , ExceptionCodes::InvalidPageArray)
+     * @throws Exception(ExceptionMessages::InvalidPageType , ExceptionCodes::InvalidPageType)
+     * @throws Exception(ExceptionMessages::InvalidPageNumber , ExceptionCodes::InvalidPageNumber)
+     */
     public static function getPage($page, $params) {
         
            if ( Validator::Missing('page', $params) )
@@ -36,6 +58,20 @@ class Pagination
         return $page;
     }
     
+    /**
+     * Get the pagesize number of results
+     * 
+     * @param int $pagesize Results pagesize number set by user.Default value is pagesize number `200`.
+     * @param array $params Contain all input parameter by user.
+     * @param boolean $useAllPageSize Return all results without restriction of the pagesize number.Default value is `false`.
+     * 
+     * @return int Pagesize number of results
+     * @throws Exception(ExceptionMessages::MissingPageSizeValue , ExceptionCodes::MissingPageSizeValue)
+     * @throws Exception(ExceptionMessages::InvalidPageSizeArray , ExceptionCodes::InvalidPageSizeArray)
+     * @throws Exception(ExceptionMessages::InvalidPageSizeType , ExceptionCodes::InvalidPageSizeType)
+     * @throws Exception(ExceptionMessages::MissingPageSizeNegativeValue , ExceptionCodes::MissingPageSizeNegativeValue)
+     * @throws Exception(ExceptionMessages::InvalidPageSizeNumber , ExceptionCodes::InvalidPageSizeNumber)
+     */
     public static function getPageSize($pagesize, $params, $useAllPageSize = false) { 
         
         if ( Validator::Missing('pagesize', $params) )
@@ -57,4 +93,5 @@ class Pagination
     }
     
 }
+
 ?>

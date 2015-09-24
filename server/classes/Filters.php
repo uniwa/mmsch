@@ -1,7 +1,17 @@
 <?php
 
 class Filters {
-        public static function getSearchType($searchtype, $params) {
+    
+    /**
+     * Set SearchType filter
+     * 
+     * @param string $searchtype The name of SearchType filter. Default value is `containall`.
+     * @param array $params Contain all input parameter by user.
+     * 
+     * @return string The name of SearchType filter
+     * @throws ExceptionMessages::'InvalidSearchType' , ExceptionCodes::'InvalidSearchType'
+     */
+    public static function getSearchType($searchtype, $params) {
          
         if ( Validator::Missing('searchtype', $params) )
             $searchtype = SearchEnumTypes::ContainAll ;
@@ -13,6 +23,15 @@ class Filters {
         return $searchtype;
     }
        
+    /**
+     * Set OrderType filter
+     * 
+     * @param string $ordertype The name of OrderType filter. Default value is `ASC`.
+     * @param array $params Contain all input parameter by user.
+     * 
+     * @return string The name of OrderType filter
+     * @throws ExceptionMessages::'InvalidOrderType' , ExceptionCodes::'InvalidOrderType'
+     */
     public static function getOrderType($ordertype, $params) {
          
         if ( Validator::Missing('ordertype', $params) )
@@ -25,6 +44,15 @@ class Filters {
         return $ordertype;
     }
     
+    /**
+     * Set ExportType filter
+     * 
+     * @param string $export The name of ExportType filter. Default value is `JSON`.
+     * @param array $params Contain all input parameter by user.
+     * 
+     * @return string The name of ExportType filter
+     * @throws ExceptionMessages::'InvalidExportType' , ExceptionCodes::'InvalidExportType'
+     */
     public static function getExportType($export, $params) {
         
         if ( Validator::Missing('export', $params) )
@@ -37,4 +65,5 @@ class Filters {
         return $export;
     }
 }
+
 ?>
