@@ -2,8 +2,17 @@
 
 header("Content-Type: text/html; charset=utf-8");
 
-
-
+/**
+ * Send mail with user parameters
+ * 
+ * @param string $To The email recipient 
+ * @param string $Cc The email notification to
+ * @param string $From The email sender
+ * @param string $Subject The email subject
+ * @param string $Message The email message
+ * 
+ * @return type Mail system command with user parameters
+ */
 function SendMail($To, $Cc, $From, $Subject, $Message)
 {    
     $Headers = "From: ".($From ? $From : 'mmsch@teiath.gr'). "\r\n" .
@@ -39,7 +48,13 @@ function getRunningPid($processName) {
     return $pid;
 }
 	
-        
+/**
+ * Api request
+ * 
+ * @param type $api_url The api_route_name
+ * 
+ * @return array Results by api request
+ */        
 function loadData($api_url)
 {
     global $Options;
@@ -260,7 +275,6 @@ function load_implementation_entities(&$a_implementation_entities, &$o_implement
     }
 }
 
-
 function load_categories(&$a_categories, &$o_categories)
 {
     $a_categories = array();
@@ -274,48 +288,44 @@ function load_categories(&$a_categories, &$o_categories)
 }
 
 
+//function isJson($string) {
+//  json_decode($string);
+//  return (json_last_error() == JSON_ERROR_NONE);
+//}
 
+//function EmptyStringOnNull($arg)
+//{
+//    if (is_null($arg)) {
+//        $arg = "";
+//    }
+//    
+//    return $arg;
+//}
 
+//function IsNullOrEmptyString($question){
+//    return (!isset($question) || trim($question)==='');
+//}
 
+//function getIDFromValuesArray($value, $array)
+//{
+//    foreach ($array as $id => $arr)
+//    {
+//        if ($arr["Name"] == $value)
+//        {
+//            return $id;
+//        }
+//    }
+//    
+//    return false;
+//}
 
-
-
-
-
-
-
-
-function isJson($string) {
-  json_decode($string);
-  return (json_last_error() == JSON_ERROR_NONE);
-}
-
-function EmptyStringOnNull($arg)
-{
-    if (is_null($arg)) {
-        $arg = "";
-    }
-    
-    return $arg;
-}
-
-function IsNullOrEmptyString($question){
-    return (!isset($question) || trim($question)==='');
-}
-
-function getIDFromValuesArray($value, $array)
-{
-    foreach ($array as $id => $arr)
-    {
-        if ($arr["Name"] == $value)
-        {
-            return $id;
-        }
-    }
-    
-    return false;
-}
-
+/**
+ * Set system time to human time format
+ * 
+ * @param datetime $time System time 
+ * 
+ * @return string The time to human format
+ */
 function humanTiming($time)
 {
     $value = "";
@@ -341,40 +351,40 @@ function humanTiming($time)
     return $value;
 }
 
-function getPage($page, $params) {
-    if ( Validator::Missing('page', $params) )
-        $page = 1;
-    else if ( Validator::isNull($page) )
-        throw new Exception(ExceptionMessages::MissingPageValue, ExceptionCodes::MissingPageValue);
-    elseif ( Validator::isArray($page) )
-        throw new Exception(ExceptionMessages::InvalidPageArray, ExceptionCodes::InvalidPageArray);
-    elseif (Validator::isLowerThan($page, 0, true) )
-        throw new Exception(ExceptionMessages::InvalidPageNumber, ExceptionCodes::InvalidPageNumber);
-    elseif (!Validator::isGreaterThan($page, 0) )
-        throw new Exception(ExceptionMessages::InvalidPageType, ExceptionCodes::InvalidPageType);
-    else
-        return Validator::toInteger($page);
+//function getPage($page, $params) {
+//    if ( Validator::Missing('page', $params) )
+//        $page = 1;
+//    else if ( Validator::isNull($page) )
+//        throw new Exception(ExceptionMessages::MissingPageValue, ExceptionCodes::MissingPageValue);
+//    elseif ( Validator::isArray($page) )
+//        throw new Exception(ExceptionMessages::InvalidPageArray, ExceptionCodes::InvalidPageArray);
+//    elseif (Validator::isLowerThan($page, 0, true) )
+//        throw new Exception(ExceptionMessages::InvalidPageNumber, ExceptionCodes::InvalidPageNumber);
+//    elseif (!Validator::isGreaterThan($page, 0) )
+//        throw new Exception(ExceptionMessages::InvalidPageType, ExceptionCodes::InvalidPageType);
+//    else
+//        return Validator::toInteger($page);
+//
+//    return $page;
+//}
 
-    return $page;
-}
-
-function getPageSize($pagesize, $params, $useAllPageSize = false) {
-    if ( Validator::Missing('pagesize', $params) )
-        $pagesize = $useAllPageSize == true ? Parameters::AllPageSize : Parameters::DefaultPageSize;
-    else if ( Validator::isEqualTo($pagesize, 0) )
-        $pagesize = Parameters::AllPageSize;
-    else if ( Validator::isNull($pagesize) )
-        throw new Exception(ExceptionMessages::MissingPageSizeValue, ExceptionCodes::MissingPageSizeValue);
-    elseif ( Validator::isArray($pagesize) )
-        throw new Exception(ExceptionMessages::InvalidPageSizeArray, ExceptionCodes::InvalidPageSizeArray);
-    elseif ( (Validator::isLowerThan($pagesize, 0) ) )
-        throw new Exception(ExceptionMessages::InvalidPageSizeNumber, ExceptionCodes::InvalidPageSizeNumber);
-    elseif (!Validator::isGreaterThan($pagesize, 0) )
-        throw new Exception(ExceptionMessages::InvalidPageSizeType, ExceptionCodes::InvalidPageSizeType);
-    else
-        $pagesize = Validator::toInteger($pagesize);
-    
-    return $pagesize;
-}
+//function getPageSize($pagesize, $params, $useAllPageSize = false) {
+//    if ( Validator::Missing('pagesize', $params) )
+//        $pagesize = $useAllPageSize == true ? Parameters::AllPageSize : Parameters::DefaultPageSize;
+//    else if ( Validator::isEqualTo($pagesize, 0) )
+//        $pagesize = Parameters::AllPageSize;
+//    else if ( Validator::isNull($pagesize) )
+//        throw new Exception(ExceptionMessages::MissingPageSizeValue, ExceptionCodes::MissingPageSizeValue);
+//    elseif ( Validator::isArray($pagesize) )
+//        throw new Exception(ExceptionMessages::InvalidPageSizeArray, ExceptionCodes::InvalidPageSizeArray);
+//    elseif ( (Validator::isLowerThan($pagesize, 0) ) )
+//        throw new Exception(ExceptionMessages::InvalidPageSizeNumber, ExceptionCodes::InvalidPageSizeNumber);
+//    elseif (!Validator::isGreaterThan($pagesize, 0) )
+//        throw new Exception(ExceptionMessages::InvalidPageSizeType, ExceptionCodes::InvalidPageSizeType);
+//    else
+//        $pagesize = Validator::toInteger($pagesize);
+//    
+//    return $pagesize;
+//}
      
 ?>
