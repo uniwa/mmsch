@@ -345,7 +345,224 @@ $(document).ready(function() {
 	}
 	
 	mmschApp.modules['main'].initMain();
+
+	/*		
+	$('#sidemenu .ddd').mmenu({
+		classes: "mm-white"
+	});
+	*/
 	
+	/*
+	var grid_pane = $('.splitter-holder-inner div#left-pane:first');
+	var preview_pane = $('.splitter-holder-inner div#right-pane:first');
+	
+	var $mainSectionPane = $('#main-splitter-inner section:first');
+	var $sideMenuNav = $('#main-splitter-inner nav:first');
+	*/
+			
+	bindStaticData(function(){
+
+		//$(".nav-tree-prefectures")
+		
+		$.each(hDataPrefAndMun, function(idx_pref, val_pref){
+			
+			var prefecture = val_pref;
+			var municipality_collection = prefecture.items;
+
+			$("ul#nav-prefectures").append("<li id='pref_" + prefecture.prefecture_id   + "'> <a href='index.php?page=units&prefecture="+prefecture.prefecture_id+"' id='btn-"+ prefecture.prefecture_id + "' > " + prefecture.prefecture + " <span class='fa arrow'></span></a><ul id='submenu"+prefecture.prefecture_id+"' class='nav nav-third-level'></ul></li>");
+
+			$.each(municipality_collection, function(idx_mun, val_mun){
+
+				var municipality = val_mun;
+				
+				$("#pref_" + prefecture.prefecture_id + " > ul").append("<li><a href='index.php?page=units&prefecture="+prefecture.prefecture_id+"&municipality="+municipality.municipality_id+"'>" + municipality.municipality + "</a></li>");
+			});
+			
+		});
+
+		$.each(hDataRegionAndEdu, function(idx_reg, val_reg){
+			
+			var region = val_reg;
+			var edu_collection = region.items;
+
+			$("ul#nav-regions").append("<li id='region_" + region.region_edu_admin_id   + "'> <a href='index.php?page=units&region_edu_admin="+region.region_edu_admin_id+"' id='btn-"+ region.region_edu_admin_id + "' > " + region.region_edu_admin + " <span class='fa arrow'></span></a><ul id='submenu" + region.region_edu_admin_id + "' class='nav nav-third-level'></ul></li>");
+
+			$.each(edu_collection, function(idx_edu, val_edu){
+
+				var edu = val_edu;
+				
+				$("#region_" + region.region_edu_admin_id + " > ul").append("<li><a href='index.php?page=units&region_edu_admin="+region.region_edu_admin_id+"&edu_admin="+edu.edu_admin_id+"'>" + edu.edu_admin + "</a></li>");
+			});
+			
+		});
+
+
+		
+
+		$("ul#navigation").metisMenu({toggle: false});
+
+
+		return;
+		
+		$(".nav-tree-prefectures").kendoTreeView({
+			dataSource: hDataPrefAndMun,
+            dataTextField: [ "prefecture", "municipality" ],
+            animation:false,
+            select : function(e){
+				
+                var node = $(".nav-tree-prefectures").data("kendoTreeView").dataItem(e.node);
+
+                var cfgFilter = $("#grid-units").data('kendoGrid').dataSource.filter();
+				var filters = null;
+
+				if (typeof cfgFilter == "undefined"){
+					filters = [];
+				}
+				else {
+					filters = cfgFilter.filters;
+				}
+
+				removeFromCollection(filters, "field", "region_edu_admin");
+				removeFromCollection(filters, "field", "edu_admin");
+				
+
+				/*SET UP prefecture*/
+				var idxFilterPrefecture = lookup(filters, "prefecture", "field");
+
+				if (idxFilterPrefecture > -1){
+					filters[idxFilterPrefecture].value = node.prefecture_id || "";
+				}	
+				else {
+					filters.push({'field': 'prefecture', 'value': node.prefecture_id || ""});
+				}
+				/**/
+
+				/*SET UP municipality*/
+				var idxFilterMunicipality = lookup(filters, "municipality", "field");
+
+				if (idxFilterMunicipality > -1){
+					filters[idxFilterMunicipality].value = node.municipality_id || "";
+				}	
+				else {
+					filters.push({'field': 'municipality', 'value': node.municipality_id || ""});
+				}
+				/**/
+
+				filters.push({'field': 'state', 'value': 1});
+                
+                $('#grid-units').data('kendoGrid').options.inSearching = true;
+                $("#grid-units").data("kendoGrid").dataSource.filter(filters);
+                
+				
+            }
+		});
+		
+		$(".nav-tree-regions").kendoTreeView({
+			dataSource: hDataRegionAndEdu,
+            dataTextField: [ "region_edu_admin", "edu_admin" ],
+            animation:false,
+            select : function(e){
+				
+                var node = $(".nav-tree-regions").data("kendoTreeView").dataItem(e.node);
+
+                var cfgFilter = $("#grid-units").data('kendoGrid').dataSource.filter();
+				var filters = null;
+
+				if (typeof cfgFilter == "undefined"){
+					filters = [];
+				}
+				else {
+					filters = cfgFilter.filters;
+				} 
+
+				removeFromCollection(filters, "field", "prefecture");
+				removeFromCollection(filters, "field", "municipality");
+				
+				/*SET UP region_edu_admin*/
+				var idxFilterRegionEduAdmin = lookup(filters, "region_edu_admin", "field");
+
+				if (idxFilterRegionEduAdmin > -1){
+					filters[idxFilterRegionEduAdmin].value = node.region_edu_admin_id || "";
+				}	
+				else {
+					filters.push({'field': 'region_edu_admin', 'value': node.region_edu_admin_id || ""});
+				}
+				/**/
+				
+				/*SET UP edu_admin*/
+				var idxFilterEduAdmin = lookup(filters, "edu_admin", "field");
+
+				if (idxFilterEduAdmin > -1){
+					filters[idxFilterEduAdmin].value = node.edu_admin_id || "";
+				}	
+				else {
+					filters.push({'field': 'edu_admin', 'value': node.edu_admin_id || ""});
+				}
+				/**/
+
+				filters.push({'field': 'state', 'value': 1});
+                
+                $('#grid-units').data('kendoGrid').options.inSearching = true;
+                $("#grid-units").data("kendoGrid").dataSource.filter(filters);
+                
+                /*
+                var dsSrcParams = [];
+                
+                dsSrcParams.push({'field': 'region_edu_admin', 'value': node.region_edu_admin_id || ""});
+                dsSrcParams.push({'field': 'edu_admin', 'value': node.edu_admin_id || ""});
+                
+                dsSrcParams.push({'field': 'state', 'value': 1});
+                
+                $('#grid-units').data('kendoGrid').options.inSearching = true;
+                $("#grid-units").data("kendoGrid").dataSource.filter(dsSrcParams);
+				*/
+            }
+		});
+	});
+
+	/*
+	$('body').on("click", "#sidemenu button.navigation-control", function(e){
+		
+		//var r = ($sideMenuNav.width()-40)*1;
+		
+		if ($sideMenuNav.hasClass("pinned")){
+			
+			$sideMenuNav.removeClass("pinned").addClass("unpinned");
+			
+			var r = ($sideMenuNav.width()-40)*-1;
+
+			$sideMenuNav.css({"right":"auto", "left": r + "px" });
+			$mainSectionPane.css({"width":"auto", "left": "40px"});
+			
+			$sideMenuNav.on("mouseenter",function(e){
+  
+
+				mmschApp.modules['main']._onMouseEnterUnpinnedSidemenu(e);				
+			});
+			
+			$('#main-splitter-inner .k-splitbar:first').hide();
+		
+			$sideMenuNav.on("mouseleave",function(e){
+				
+				mmschApp.modules['main']._onMouseLeaveUnpinnedSidemenu(e);				
+			});
+		}
+		else if ( $sideMenuNav.hasClass("unpinned") ){
+						
+			$('#main-splitter-inner .k-splitbar:first').show();
+
+			$sideMenuNav.removeClass("unpinned").addClass("pinned");
+			$sideMenuNav.css({"z-index":"0"});
+			
+			$sideMenuNav.unbind("mouseenter");
+			$sideMenuNav.unbind("mouseleave");
+		}
+		var ks = $('#main-splitter-inner').data('kendoSplitter');
+			ks.expand('.k-pane:first');
+			ks.expand('.k-pane:last');
+
+	});
+	*/
 	
 	var viewModel = kendo.observable({
 		
@@ -353,14 +570,83 @@ $(document).ready(function() {
 			
 			console.log('index-_resizeMainSplitter');
 
+			/*
+			if ( $sideMenuNav.hasClass("unpinned") ){
 			
+				var r = ($sideMenuNav.width()-40)*-1;
+				$mainSectionPane.css({"width":"auto", "left": "40px"});
+				$sideMenuNav.css({"right":"auto", "left": r + "px" });
+				
+				if ($('.splitter-holder-inner').length > 0){
+					var ks = $('.splitter-holder-inner').data('kendoSplitter');
+					ks.expand('.k-pane:first');
+				}
+			}
+			*/
 			resizeGrid("grid-units");
 		}
 	});
 
 	kendo.bind("body", viewModel);
 
+	/*
+	if ( $sideMenuNav.hasClass("unpinned") ){
+		var r = ($sideMenuNav.width()-40)*-1;
+		$mainSectionPane.css({"width":"auto", "left": "40px"});
+		$sideMenuNav.css({"right":"auto", "left": r + "px" });
+		
+		if ($('.splitter-holder-inner').length > 0){
+			var ks = $('.splitter-holder-inner').data('kendoSplitter');
+			ks.expand('.k-pane:first');
+		}
+
+		$sideMenuNav.on("mouseenter",function(e){
+			
+			mmschApp.modules['main']._onMouseEnterUnpinnedSidemenu(e);
+		});
+
+		$sideMenuNav.on("mouseleave",function(e){
+			
+			mmschApp.modules['main']._onMouseLeaveUnpinnedSidemenu(e);
+		});
+	}
+	*/
+	//$(".splitter-holder-inner").data('kendoSplitter').trigger('resize');
 	
+	
+	
+	$("nav#sidemenu li.load-page > a").on('click', function(e){
+
+		e.preventDefault();
+		
+		$('#page-content-inner .main-pane').remove();
+		
+		if ($('#myModal').length>0){
+			
+			destroyDDL();
+		}
+		
+				
+		$('#page-content-inner').load( $(this).attr("href") , function(e){
+			resizeGrid('.mmsch-grid');
+		});
+		
+	});
+
+	if (mm_id == "") {
+		/*
+		$('#page-content-inner').load( "client/views/grids/my-units.php?is_anonymous=" + g_isAnonymous  , function(e){
+			resizeGrid('.mmsch-grid');
+		});
+		*/
+	} else {
+		/*
+		$( "#page-content-inner" ).load( "client/views/grids/unit-card.php?mm_id=" + mm_id + "&is_anonymous=" + g_isAnonymous, function(){
+
+		});
+		*/
+	}
+
 	// Build logout link
 	$("#lnkLogout").attr("href", "main.php?logout=true");
 
@@ -613,11 +899,177 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 	
 
 
-	
+	<!-- 	
+	<div id="header" class="k-state-selected" style="color:#333333; font-size:14px; padding:0px 14px 0 14px; font-family:'Open Sans', 'Segoe UI', verdana, Arial, Helvetica, Sans-Serif;">
+		
+		<div class="pull-left">
+			<span style="font-size:16px;font-weight:bold"><img src="client/img/schgr.jpg" style="width:70px;" class="img-rounded" alt="Πανελλήνιο Σχολικό Δίκτυο" /></span> 
+		</div>
+		
+		<div class="pull-left">
+			<span style="font-size:16px;font-weight:bold; text-shadow: 1px 1px 2px #111111; color: #fff;">&nbsp;Πανελλήνιο Σχολικό Δίκτυο -</span> 
+		</div>
+		
+		<div class="pull-left">
+			<span style="font-size:16px;font-weight:bold; text-shadow: 1px 1px 2px #111111; color: #fff;">&nbsp;Μητρώο Μονάδων <sub class="label label-danger">ΒΕΤΑ Version</sub></span> 
+		</div>
+		
+		<div class="pull-right">
+			<span style="font-size:16px;font-weight:bold; text-shadow: 1px 1px 2px #111111; color: #fff;">&nbsp;&nbsp;&nbsp;&nbsp;ΤΕΙ ΑΘΗΝΑΣ&nbsp;&nbsp;</span> 
+		</div>
+		
+		 
+		 
+		<div class="pull-right">
+		<div class="btn-group">
+  			<button type="button" class="k-button dropdown-toggle" data-toggle="dropdown">
+    			<i class="fa fa-user fa-1x"></i>&nbsp;&nbsp;<span id="vUsername"></span>&nbsp;&nbsp;<span class="caret"></span>
+    		</button>
+  			<ul class="dropdown-menu" role="menu">
+    			<li><a href="/hlp/user_guide_frontend_ver3.pdf" target="_blank"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
+    			<?php if ($isFY) : ?>
+    			<li><a href="/client/stats/statistic.php?implementation_entity=<?php echo $FY; ?>" target="_blank"><i class="fa fa-bar-chart fa-1x"></i>&nbsp;&nbsp;Στατιστικα</a></li>
+    			<?php endif; ?>
+    			<li><a href="#" id="btnSelectTheme"><i class="fa fa-eye fa-1x"></i>&nbsp;&nbsp;Εμφάνιση</a></li>
+    			<li><a href="/docs/package-GET.html" target="_blank"><i class="fa fa-code fa-1x"></i>&nbsp;&nbsp;Οδηγός API</a></li>
+    			<li><a href="http://helpdesk.sch.gr/?category_id=9508" target="_blank"><i class="fa fa-support fa-1x"></i>&nbsp;&nbsp;Αναφορά Σφαλμάτων</a></li>
+    			<li class="divider"></li>
+    			<li><a href="#" id="lnkLogout"><i class="fa fa-sign-out fa-1x"></i>&nbsp;&nbsp;Αποσύνδεση</a></li>
+  			</ul>
+		</div>	
+		</div> 
+		
+	</div>
+
+	 -->
 		
 	<!-- Page container -->
  	<div class="page-container gray-bg">
  		
+ 		<!-- Sidebar -->
+		<div class="sidebar">
+			<div class="sidebar-content">
+			
+			
+			
+			
+			
+			
+							<ul id="navigation" class="nav">
+									<li>
+										<a href="index.php?page=units&is_anonymous=<?php echo $isAnonymous; ?>">
+											<i class="fa fa-diamond"></i>
+											<span class="nav-label">Μονάδες</span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<i class="fa fa-globe"></i>
+											<span class="nav-label">Περιφερειακές ενότητες/Δήμοι</span>
+											<span class="fa arrow"></span>
+										</a>
+										
+										<ul id="nav-prefectures" class="nav nav-second-level">
+											<!-- 
+											<li>
+												<span>
+													<div class="nav-tree-prefectures" style="overflow:hidden"></div>
+												</span>
+											</li>
+											 -->
+										</ul>
+									</li>
+									<li>
+										<a href="#">
+											<i class="fa fa-globe"></i>
+											<span class="nav-label">Περιφέρειες/ Διευθύνσεις</span>
+											<span class="fa arrow"></span>
+										</a>
+										<ul id="nav-regions" class="nav nav-second-level">
+											<!-- 
+											<li>
+												<span>
+													<div class="nav-tree-regions" ></div>
+												</span>
+											</li>
+											 -->
+										</ul>
+									</li>
+									<?php if (!$isAnonymous) : ?>
+									<li>
+										<a href="#">
+											<i class="fa fa-desktop"></i>
+											<span class="nav-label">Διαχείριση</span>
+											<span class="fa arrow"></span>
+										</a>
+										<ul class="nav nav-second-level">
+											<?php if ($isFY && $FY == "teiath") : ?>
+											<li><a href="client/views/whatsnew.php">What's new!</a></li>
+											<li><a href="client/views/sync_static_data.php">Get Static Data</a></li>
+											<?php endif; ?>
+											
+											
+											<li>
+												<a href="#">Λεξικά<span class="fa arrow"></span></a>
+												<ul class="nav nav-third-level">
+													<li><a href="client/views/grids/categories.php">Κατηγορίες</a></li>
+													<li><a href="client/views/grids/unit-types.php">Τύποι Μονάδων</a></li>
+													<li><a href="client/views/grids/education-levels.php">Επίπεδα Εκπαίδευσης</a></li>
+													<li><a href="client/views/grids/region-edu-admins.php">Περιφέρειες</a></li>
+													<li><a href="client/views/grids/edu-admins.php">Διευθύνσεις Εκπαίδευσης</a></li>
+													<li><a href="client/views/grids/transfer-areas.php">Περιοχές Μετάθεσης</a></li>
+													<li><a href="client/views/grids/implementation-entities.php">Φορείς Υλοποίησης</a></li>
+													<li><a href="client/views/grids/legal-characters.php">Νομικοί Χαρακτήρες</a></li>
+													<li><a href="client/views/grids/tax-offices.php">Εφορίες</a></li>
+													<li><a href="client/views/grids/municipalities.php">Δήμοι ΟΤΑ</a></li>
+													<li><a href="client/views/grids/special-types.php">Ειδικοί Τύποι</a></li>
+													<li><a href="client/views/grids/states.php">Καταστάσεις</a></li>
+													<li><a href="client/views/grids/worker-specializations.php">Κατηγορίες Εργαζομένων</a></li>
+													<li><a href="client/views/grids/worker-positions.php">Θέσεις Εργαζομένων</a></li>
+												</ul>
+											</li>
+											
+											<li>
+												<a href="client/views/grids/cpes.php">Εξοπλισμός</a>
+											</li>
+											
+											
+											<!-- 
+											<li class="load-page"><a href="client/views/grids/workers.php">Εργαζόμενοι</a></li>
+											 -->
+										</ul>
+									</li>
+									<?php endif; ?>
+								</ul>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</div>
+		</div>
+		<!-- /Sidebar -->
+		
 		<!-- Page content -->
 	 	<div id="page-content">
 	 	
@@ -627,10 +1079,19 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 				<div class="navbar navbar-inverse" role="navigation">
 					
 					<div class="navbar-header">
-						
-						<a class="navbar-brand" href=""><img src="../img/sch_logo.png" alt="Πανελλήνιο Σχολικό Δίκτυο"></a>
+						<!--
+						<a class="navbar-brand" href="#"><img src="" alt="Πανελλήνιο Σχολικό Δίκτυο"></a>
 						 
+						<a class="sidebar-toggle"><i class="glyphicon glyphicon-align-justify"></i></a>
+						-->
 						
+						<a hred="#" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-icons">
+							<i class="fa fa-th"></i>
+						</a>
+						
+						<a id="navbar-minimalize" class="btn btn-primary " href="#">
+							<i class="fa fa-bars"></i> 
+						</a>
 						 
 					</div>
 					

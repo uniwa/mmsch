@@ -1,6 +1,8 @@
 <?php 
-$isAnonymous = @ $_GET['is_anonymous'];
+//$isAnonymous = @ $_GET['is_anonymous'];
 $mm_id = $_GET['mm_id'];
+
+//echo $isAnonymous;
 
 require_once("_header.php");
 ?>

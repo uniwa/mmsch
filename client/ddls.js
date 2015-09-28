@@ -673,6 +673,7 @@ if (typeof $("#src_implementationEntity").data('kendoMultiSelect') != "object"){
         });
         }
 		
+        /*
         if (typeof $("#src_subnetType").data('kendoMultiSelect') != "object"){
 		$("#src_subnetType").kendoMultiSelect({
 			animation: false,
@@ -694,7 +695,7 @@ if (typeof $("#src_implementationEntity").data('kendoMultiSelect') != "object"){
             }
         });
         }
-
+        */
 		
         if (typeof $("#src_circuitType").data('kendoMultiSelect') != "object"){
 		$("#src_circuitType").kendoMultiSelect({

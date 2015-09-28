@@ -97,42 +97,10 @@ position: fixed;
        	
        	<div class="item-header">
        		
-       		<h1 style=""><strong data-bind="text: unitData.name"></strong>&nbsp;<a href="index.php?page=units&action=view&mm_id=<?php echo $_GET['mm_id']; ?>" target="_blank" class="k-button" id="loadUnitCard"><i class="glyphicon glyphicon-new-window"></i></a></h1>
+       		<h1 style=""><strong data-bind="text: unitData.name"></strong>&nbsp;<a href="index.php?page=units&action=view&mm_id=<?php echo $_GET['mm_id']; ?>&auth=<?php echo $isAnonymous == 1?0:1; ?>" target="_blank" class="k-button" id="loadUnitCard"><i class="glyphicon glyphicon-new-window"></i></a></h1>
        		
        	</div>
        	
-		<div id="sidebar" class="k-widget">
-			<!-- 
-			<nav class="navbar navbar-default" role="navigation">
-				
-				<ul id="info-panelbar-<?php echo $_GET['mm_id']; ?>" class="nav navbar-nav">
-	        	
-					<li><a href="#holder-general-infos" data-toggle="tooltip" title="Γενικά στοιχεία"><i class="fa fa-info"></i></a></li>
-					<li><a href="#holder-contact-infos" data-toggle="tooltip" title="Στοιχεία Επικοινωνίας"><i class="fa fa-phone"></i></a></li>
-					
-					<?php if (!$isAnonymous) { ?>
-					<li><a href="#holder-workers-infos" data-toggle="tooltip" title="Εργαζόμενοι"><i class="fa fa-user"></i></a></li>
-					<li class="dropdown">
-						<a id="dLabel" href="#holder-net-infos" data-toggle="tooltip" title="Δικτυακά Στοιχεία" ><i class="fa fa-link"></i></a>
-						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-							<li><a href="#holder-set-ips" tabindex="-1">Set IPs</a></li>
-							<li><a href="#holder-circuits" tabindex="-1">Κυκλώματα</a></li>
-							<li><a href="#holder-cpes" tabindex="-1">CPEs</a></li>
-							<li><a href="#holder-uids" tabindex="-1">UIDs</a></li>
-						</ul>
-					</li>
-	    		
-					<li><a href="#holder-geo-infos" data-toggle="tooltip" title="Τοπολογικά Στοιχεία"><i class="fa fa-map-marker"></i></a></li>
-					<li><a href="#holder-manage-infos" data-toggle="tooltip" title="Διοικητικά Στοιχεία"><i class="fa fa-building-o"></i></a></li>
-					<li><a href="#holder-transitions-infos" data-toggle="tooltip" title="Μεταβάσεις"><i class="fa fa-random"></i></a></li>
-	    			<?php } ?>
-				</ul>
-				
-			</nav>
-			 -->
-		</div>
-        
-		
 		
         <div id="mycontent" class="tab-content " style="width:auto; position:relative;">
 			
@@ -141,30 +109,32 @@ position: fixed;
 				<div class="detail-section-tab">
 					<div class="detail-section-tab-content" data-bind="source: unitData" data-template="tpl-general-info"></div>
 						<script type="text/x-kendo-tmpl" id="tpl-general-info">
+						<div class="table-responsive">
 						<table class="table borderless">
 							<tbody>
 								<tr>
-									<td class="detail-term">Κωδικός ΜΜ</td>
+									<td class="detail-term col-xs-3">Κωδικός ΜΜ</td>
 									<td class="term-value">#= mm_id #</td>
 								</tr>
 								<tr>
-									<td class="detail-term">Κωδικός ΥΠΕΠΘ</td>
+									<td class="detail-term col-xs-3">Κωδικός ΥΠΕΠΘ</td>
 									<td class="term-value">#= registry_no #</td>
 								</tr>
 								# if (edu_admin != null) { #
 								<tr>    
-									<td class="detail-term">Διεύθυνση εκπαίδευσης</td>
+									<td class="detail-term col-xs-3">Διεύθυνση εκπαίδευσης</td>
 									<td class="term-value">#= edu_admin.replace("ΔΙΕΥΘΥΝΣΗ","") #</td>
 								</tr>
 								# } #
 								# if (implementation_entity_id != null) { #
 								<tr>
-									<td class="detail-term">Φορέας Υλοποίησης</td>
+									<td class="detail-term col-xs-3">Φορέας Υλοποίησης</td>
 									<td class="term-value"><a href="##" class="k-button btnShowImplementationEntityInfo" data-implementation_entity_id="#= implementation_entity_id #">#= implementation_entity_initials #</a></td>
 								</tr>
 								# } #
 							</tbody>
 						</table>
+						</div>
 						</script>
 					
 				</div>
@@ -176,58 +146,60 @@ position: fixed;
 						<div class="detail-section-tab-content" data-bind="source: unitData" data-template="tpl-contact-info"></div>
 						
 							<script type="text/x-kendo-tmpl" id="tpl-contact-info">
+							<div class="table-responsive">
 							<table class="table borderless">
 								<tbody>
 
 									# if (special_name != null) { #
 									<tr>
-										<td class="detail-term">Προσωνύμιο</td>
+										<td class="detail-term col-xs-3">Προσωνύμιο</td>
 										<td class="term-value">#= special_name #</td>
 									</tr>
 									# } #
 								
 									<tr>
-										<td class="detail-term">Τηλέφωνο Επικοινωνίας</td>
+										<td class="detail-term col-xs-3">Τηλέφωνο Επικοινωνίας</td>
 										<td class="term-value">#= phone_number #</td>
 									</tr>
 								
 									<tr>
-										<td class="detail-term">Αριθμός FAX</td>
+										<td class="detail-term col-xs-3">Αριθμός FAX</td>
 										<td class="term-value">#= fax_number #</td>
 									</tr>
 									
 									<tr>
-										<td class="detail-term">Ηλεκτρονική Αλληλογραφία</td>
+										<td class="detail-term col-xs-3">Ηλεκτρονική Αλληλογραφία</td>
 										<td class="term-value">#= email #</td>
 									</tr>
 									
 									<tr>							
-										<td class="detail-term">Οδός, Αριθμός</td>
+										<td class="detail-term col-xs-3">Οδός, Αριθμός</td>
 										<td class="term-value">#= street_address #</td>
 									</tr>
 								
 									<tr>
-										<td class="detail-term">Ταχυδρομικός Κώδικας</td>
+										<td class="detail-term col-xs-3">Ταχυδρομικός Κώδικας</td>
 										<td class="term-value">#= postal_code #</td>
 									</tr>
                                                                 
                                                                         <tr>
-                                                                                <td class="detail-term">Γεωγραφικό Πλάτος</td>
+                                                                                <td class="detail-term col-xs-3">Γεωγραφικό Πλάτος</td>
                                                                                 <td class="term-value">#= latitude #</td>
                                                                         </tr>
 
                                                                         <tr>
-                                                                                <td class="detail-term">Γεωγραφικό Μήκος</td>
+                                                                                <td class="detail-term col-xs-3">Γεωγραφικό Μήκος</td>
                                                                                 <td class="term-value">#= longitude #</td>
                                                                         </tr>
 
                                                                         <tr>
-                                                                               <td class="detail-term">Google Point</td>
+                                                                               <td class="detail-term col-xs-3">Google Point</td>
                                                                                <td class="term-value"><a class="data" href="http://maps.google.com/maps?z=12&q=loc:#=latitude#+#=longitude#" target="_blank">GooglePoint</a></td>
                                                                         </tr>
 								
 								</tbody>
 							</table>
+							</div>
 							</script>
 						
 					</div>
@@ -241,7 +213,7 @@ position: fixed;
 							<div class="data-table" id="unit-<?php echo $_GET['mm_id']; ?>-workers" data-bind="source: unitData.workers" data-template="tpl-workers-list"></div>
 					
 							<script type="text/x-kendo-tmpl" id="tpl-workers-list">
-								<div class="mmsch-list-item">
+								<div class="mmsch-list-item table-responsive">
 								<table class="table borderless">
 									<tbody>
 
@@ -295,15 +267,17 @@ position: fixed;
 								<div class="data-table" id="unit-<?php echo $_GET['mm_id']; ?>-dns" data-bind="source: unitData.unit_dns" data-template="tpl-dns-list"></div>
 							
 								<script type="text/x-kendo-tmpl" id="tpl-dns-list">
+									<div class="table-responsive">
 									<table class="table borderless">
 										<tbody>								
 											<tr>
-												<td class="detail-term"><b>DNS Μονάδας</b></td>
+												<td class="detail-term col-xs-3"><b>DNS Μονάδας</b></td>
 												<td class="term-value">#= unit_dns #</td>
 											</tr>
 											
 										</tbody>
 									</table>
+									</div>
 								</script>
 							</div>
 						</div> 
@@ -648,46 +622,46 @@ position: fixed;
 					<div class="detail-section-header"><h3 class="k-widget">Τοπολογικά Στοιχεία</h3></div>
 					<div class="detail-section-tab">
 						<div class="detail-section-tab-content">
-						
+						<div class="table-responsive">
 						<table class="table borderless">
 							<tbody>
 								<tr>
-									<td class="detail-term">Περιφερειακή ενότητα</td>
+									<td class="detail-term col-xs-3">Περιφερειακή ενότητα</td>
 									<td class="term-value" data-bind="text: unitData.prefecture"></td>
 								</tr>
 
 								<tr>
-									<td class="detail-term">Δημοτική Ενότητα</td>
+									<td class="detail-term col-xs-3">Δημοτική Ενότητα</td>
 									<td class="term-value" data-bind="text: unitData.municipality_community"></td>
 								</tr>
 								
 								<tr>
-									<td class="detail-term">Δήμος ΟΤΑ</td>
+									<td class="detail-term col-xs-3">Δήμος ΟΤΑ</td>
 									<td class="term-value" data-bind="text: unitData.municipality"></td>
 								</tr>
 								
 								<tr>
-									<td class="detail-term">Οδός, Αριθμός</td>
+									<td class="detail-term col-xs-3">Οδός, Αριθμός</td>
 									<td class="term-value" data-bind="text: unitData.street_address"></td>
 								</tr>
 								
 								<tr>
-									<td class="detail-term">Ταχυδρομικός Κώδικας</td>
+									<td class="detail-term col-xs-3">Ταχυδρομικός Κώδικας</td>
 									<td class="term-value" data-bind="text: unitData.postal_code"></td>
 								</tr>
 								
 								<tr class="soft-hide">
-									<td class="detail-term">Γεωγραφικό Πλάτος</td>
+									<td class="detail-term col-xs-3">Γεωγραφικό Πλάτος</td>
 									<td class="term-value" data-bind="text: unitData.latitude"></td>
 								</tr>
 								
 								<tr class="soft-hide">
-									<td class="detail-term">Γεωγραφικό Μήκος</td>
+									<td class="detail-term col-xs-3">Γεωγραφικό Μήκος</td>
 									<td class="term-value" data-bind="text: unitData.longitude"></td>
 								</tr>
                                                                 
 								<tr class="soft-hide">
-									<td class="detail-term">Κτηριακή Θέση</td>
+									<td class="detail-term col-xs-3">Κτηριακή Θέση</td>
 									<td class="term-value" data-bind="html: unitData.positioning"></td>
 								</tr>
 								
@@ -696,6 +670,7 @@ position: fixed;
 								<tr><td colspan="2" class="detail-term"><a href="##" class="btn btn-xs btn-link btnToggleRows" style="padding:0px !important;">Εμφάνιση όλων των στοιχείων</a></td></tr>
 							</tfoot>
 						</table>
+						</div>
 						</div>
 					</div>
                 </div>
@@ -708,26 +683,28 @@ position: fixed;
 					<div class="detail-section-header"><h3 class="k-widget">Διοικητικά Στοιχεία</h3></div>
 					<div class="detail-section-tab">
 						<div class="detail-section-tab">
+							<div class="table-responsive">
 							<table class="table borderless">
 								<tbody>
 									
 									<tr>
-										<td class="detail-term">Περιφέρεια</td>
+										<td class="detail-term col-xs-3">Περιφέρεια</td>
 										<td class="term-value" data-bind="text: unitData.region_edu_admin"></td>
 									</tr>
 									
 									<tr>	
-										<td class="detail-term">Περιοχή Μετάθεσης</td>
+										<td class="detail-term col-xs-3">Περιοχή Μετάθεσης</td>
 										<td class="term-value" data-bind="text: unitData.transfer_area"></td>
 									</tr>
 									
 									<tr>	
-										<td class="detail-term">Φορέας Υλοποίησης</td>
+										<td class="detail-term col-xs-3">Φορέας Υλοποίησης</td>
 										<td class="term-value" data-bind="text: unitData.implementation_entity_initials"></td>
 									</tr>
 									
 								</tbody>
 							</table>
+							</div>
 						</div>
 					</div>
                 </div>
@@ -756,16 +733,16 @@ position: fixed;
 									# var hasNameBefore = false; #
 									# var hasStateBefore = false; #
 
-									<div class="mmsch-list-item">							
+									<div class="mmsch-list-item table-responsive">							
 									<table class="table borderless" >
 										
 										<tbody>
 
-											<tr><td class="detail-term term-head" colspan="2">Αλλαγή: ${i}</td></tr>
+											<tr><td class="detail-term term-head col-xs-3" colspan="2">Αλλαγή: ${i}</td></tr>
 
 											# if (typeof log["lastUpdate"]["date"] != "undefined") { #
 											<tr> 
-												<td class="detail-term">Τελευταία ενημέρωση</td> 
+												<td class="detail-term col-xs-3">Τελευταία ενημέρωση</td> 
 												<td class="term-value"> ${log["lastUpdate"]["date"]} </td>
 											</tr>
 											# } #
@@ -781,7 +758,7 @@ position: fixed;
 												# } #
 
 											<tr> 
-												<td class="detail-term">Ονομασία</td> 
+												<td class="detail-term col-xs-3">Ονομασία</td> 
 												<td class="term-value">
 												# if (hasNameBefore) { # 
 												<b>ΑΠΟ:</b> ${beforeName} <br/><br/>
@@ -815,7 +792,7 @@ position: fixed;
 												# } #
 
 											<tr> 
-												<td class="detail-term">Κατάσταση</td> 
+												<td class="detail-term col-xs-3">Κατάσταση</td> 
 												<td class="term-value"> 
 												# if (hasStateBefore) { # 
 												<b>ΑΠΟ:</b> ${strBeforeState} <br/>
@@ -853,6 +830,7 @@ position: fixed;
         
 	//kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), true);
 	//function hello(d){ console.log(d); return "ds";}
+	kendo.ui.progress($('.unit-panel-details'), true);
 	
     $(document).ready(function() {
 	
@@ -867,12 +845,8 @@ position: fixed;
 			
 			wnd_implementation_entity_info.destroy();
 
-			$(window).off('resize', resizeTabContent );
 			
-			//$("body").off("click", "button.editConnection");
-			//$("body").off("click", "button.deleteConnection");
 			
-			//$('#btnSaveConnection').click(function() { return false; });
 		});
 		
 		$("#unit-" + mm_id + "-preview").on("click", "button.editConnection", function(e){
@@ -946,14 +920,7 @@ position: fixed;
 		});
 		
 
-		/*
-		$("#unit-" + mm_id + "-preview").on("click", "#loadUnitCard", function(e){
-			e.preventDefault();
-			$( "#bodyInner" ).load( "client/views/grids/unit-card.php?mm_id=" + mm_id, function(){
-
-			});
-		});
-		*/
+		
 
 		if ($("#loadUnitCard").closest("#mod-unit-card").length){
 			$("#loadUnitCard").hide();
@@ -968,16 +935,10 @@ position: fixed;
 			e.preventDefault();
 			
 			
-			$(".tab-content")
-				.scrollTo(
-					$(".tab-content").find($(this).attr('href')), 
-					{
-						duration: 150
-					}
-				);
+			
 		});
                      	
-        var viewModel = kendo.observable({                    
+        var viewModel = kendo.observable({                
 			unitData: null,
 			
 			editedConnection: null,
@@ -1071,22 +1032,7 @@ position: fixed;
 				$('.netinfos-overview').toggle();
 			},
 			
-			editConnection: function(e){
-				
-			},
-
-			saveConnection: function(e){
-				
-			},
-
-			deleteConnection: function(e){
-
-			},
 			
-			renderRadioNetworkSubnet: function(e){
-
-			
-			},
 
 			isSubnetInConnectionSubnets: function(currentSubnetID){
 
@@ -1118,20 +1064,6 @@ position: fixed;
 				
 			},
 			
-			renderRadioCircuit: function(e){
-				
-				
-			},
-			
-			renderRadioCpe: function(e){
-
-				
-				
-			},
-			
-			renderRadioLdap: function(e){
-				
-			},
 			
 			grdBoundListener: function(e){
 				
@@ -1158,319 +1090,13 @@ position: fixed;
 
 			},
 			
-			grdNetworksChangeListener: function(e){
-				/*
-				var self = this;
-				
-				var grd = e.sender;
-								
-				var selectedRow = grd.dataItem(grd.select());
-				
-				if (selectedRow != null){
-				
-					if (selectedRow.is_connected ){
-						
-						if(self.get("editedConnection")==null || (self.get("editedConnection")!=null && selectedRow.unit_network_subnet_id != self.get("editedConnection").network_element_id ))
-						{
-							e.preventDefault();
-							grd.select().removeClass('k-state-selected');
-						}
-						else if (self.get("editedConnection")!=null && selectedRow.unit_network_subnet_id == self.get("editedConnection").network_element_id ){
-							var radio = grd.select().find("input[type='checkbox']");
-							radio.prop("checked", true);
-						}
+			
 
-					} else {
-						var radio = grd.select().find("input[type='checkbox']");					
-						radio.prop("checked", true);
-					}
-				}
-				*/
-			},
-			
-			grdCircuitsChangeListener: function(e){
-				
-			},
-			
-			grdCpesChangeListener: function(e){
-				
-			},
-			
-			grdLdapsChangeListener: function(e){
-				
-			},
-
-			refreshGrds: function(){
+			refreshGrds: function() {
 				$("#grd-network-elements").data("kendoGrid").refresh();
 				$("#grd-circuits").data("kendoGrid").refresh();
 				$("#grd-cpes").data("kendoGrid").refresh();
 				$("#grd-ldaps").data("kendoGrid").refresh();
-			},
-
-
-			handlerFetchUnit : function(){
-
-				console.log("read unit");
-				
-				var self = this;
-				var unitSource = self.unitSource;
-
-				//(self.unitSource).data()[0].circuits = null;
-				
-				//var self = this.unitSource;
-
-				registry_no = (self.unitSource).data()[0].registry_no;
-
-				
-	            var populateUnitDetails = function() {
-	            	
-	            		console.log("-->populate details");
-
-	            		console.log(self);
-
-	            		//self.set("unitData",self.v);
-
-	            		try{
-	            			kendo.bind($("#unit-" + mm_id + "-preview"), self);
-	                		//kendo.bind($("#wnd_create_connection_" + mm_id).parent(), self);
-	            		}
-	            		catch(ex){
-		            		//do nothing. Just for GUI not crash
-	            		}
-
-		                // Hide create/edit/delete connection buttons if the user is not FY or not responsible for the unit
-		                if(typeof user.l == 'undefined' || user.l.split(',').indexOf('ou=partners') == -1 || typeof g_impEnt[0] == 'undefined' || typeof unitSource.data()[0] == 'undefined' || g_impEnt[0].implementation_entity_id != unitSource.data()[0].implementation_entity_id) {
-	    	                console.log("user is not fy. hiding connection buttons");
-	        	            $('#unit-'+mm_id+'-preview').find('#btnCreateConnection').parent().hide();
-	            	        $('#unit-'+mm_id+'-preview').find('.detail-section-tab-content[data-template="tmpl-connection-list"] .detail-term.term-head > button').hide();
-						}
-
-						resizeTabContent();
-	            	
-
-						kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
-
-						console.log("populate details-->");
-				};
-
-				
-				
-				<?php if (!$isAnonymous) { ?>
-				$.ajax({
-						type: "GET",
-						url: apiUrl + "ext_log_entries", 
-						data: {'object_id': mm_id},
-	                    dataType: "json", 
-
-	                    success: function(resp){
-
-	                    	console.log("-->Request ext_log_entries");
-
-	                    	var logs = new Array();
-
-	                    	
-	                    	if (resp.status != 401){
-	                    	
-								var curr_dataItem = {"data": {"lastUpdate": {"date": ""}}};                    	
-	
-		                    	$.each(resp.data, function(i, item){
-	
-		                    		if (typeof item.data["lastUpdate"] == "undefined") {
-		                    			return;
-		                    		}
-	
-		                    		if (item.data.lastUpdate === null){
-		                    			return; 
-		                    		}
-									
-		                        	if (!equal(curr_dataItem.data.lastUpdate.date, item.data.lastUpdate.date) ){
-	
-		                        		if (item.data.hasOwnProperty("state") || item.data.hasOwnProperty("name")) {
-		                            		logs.push(item);
-		                            		curr_dataItem = item;
-		                            	}
-		                        	}
-		                    	});
-	                    	}
-
-	                    	unitSource.data()[0]['logs'] = logs;
-	                    	//console.log(viewModel);
-	                    	//self.data()[0]['logs'] = resp.data;
-
-	                    	$.ajax({
-								type: "GET",
-								url: apiUrl + "cpes",
-								data: {'unit': mm_id},
-	                			dataType: "json",
-				                success: function(resp){
-
-				                	var cpes = new Array();
-				                	
-					                try {
-
-					                	if (resp.status != 401){
-					                		cpes = resp.data;
-					                	}
-					                	else {
-						                	//console.log(resp.message);
-					                	}
-															                	
-	            			        	unitSource.data()[0]['cpes'] = cpes;
-					                }
-					                catch(ex){
-						                console.log(ex);
-					                }
-					                finally {
-					                	populateUnitDetails();
-						            }
-	                			},
-	                			beforeSend: function(xhr){
-	        						xhr.setRequestHeader(
-	        							'Authorization',
-	        							make_base_auth (user.backendAuthorizationHash)
-	        						);
-	        					}
-							});
-						},
-						beforeSend: function(xhr){
-							xhr.setRequestHeader(
-								'Authorization',
-								make_base_auth (user.backendAuthorizationHash)
-							);
-						}
-					});
-
-					<?php } else { ?>
-						populateUnitDetails();
-					<?php } ?>
-
-
-					<?php if (!$isAnonymous) { ?>
-					
-					$.ajax({
-						type: "GET",
-						url: apiUrl + "crm_data", 
-						data: {'mm_id': mm_id},
-	                    dataType: "json", 
-
-	                    success: function(resp){
-		                    
-	                    	console.log("-->Request crm_data");
-
-	                    	var circuits = new Array();
-	                    	var subnets = new Array();
-	                    	var connections = new Array();
-
-	                    	 try {
-
-				                	if (resp.status != 401){
-				                		circuits = resp.data.circuits;
-				                		subnets = resp.data.subnets;
-				                		connections = resp.data.connections;
-
-				                		console.log("<---");
-				                		console.log(circuits);
-				                		console.log("--->");
-				                	}
-				                	else {
-					                	//console.log(resp.message);
-				                	}
-
-				                	/*
-				                	$.each(circuits, function(idxCircuit, circuit){
-
-				                		circuit["is_connected"] = false;
-				                		
-				                		$.each(connections, function(idxConnection, connection){
-
-				                			if ($.inArray( circuit.id, connection.circuits)){
-					                			circuit["is_connected"] = true;
-					                			return false;		
-				                			}
-					                	});
-					                	
-				                	});
-				                	*/
-														                	
-				                	unitSource.data()[0]['circuits'] = circuits;
-
-			                    	unitSource.data()[0]['subnets'] = subnets;
-
-			                    	unitSource.data()[0]['connections'] = connections;
-			                    	
-				             }
-				             catch(ex){
-					                console.log(ex);
-				             }
-				             finally {
-				             	populateUnitDetails();
-					         }
-
-	                    	console.log("Request crm_data-->");
-	                    },
-            			beforeSend: function(xhr){
-    						xhr.setRequestHeader(
-    							'Authorization',
-    							make_base_auth (user.backendAuthorizationHash)
-    						);
-    					}
-	                    
-	                });
-					
-					<?php } else { ?>
-						populateUnitDetails();
-					<?php } ?>
-					
-
-
-					<?php if (!$isAnonymous) { ?>
-					
-					$.ajax({
-						type: "GET",
-						url: apiUrl + "ldap_entries", 
-						data: {'mm_id': mm_id},
-	                    dataType: "json", 
-
-	                    success: function(resp){
-		                    
-	                    	console.log("-->Request ldaps");
-
-	                    	var ldaps = new Array();
-
-	                    	 try {
-				                	if (resp.status != 401){
-				                		ldaps = resp.data;
-				                	}
-				                	else {
-					                	//console.log(resp.message);
-				                	}
-						                	
-				                	unitSource.data()[0]['ldaps'] = ldaps;
-                                                        
-				             }
-				             catch(ex){
-					                console.log(ex);
-				             }
-				             finally {
-				             	populateUnitDetails();
-					         }
-
-	                    	console.log("Request ldaps-->");
-	                    },
-            			beforeSend: function(xhr){
-    						xhr.setRequestHeader(
-    							'Authorization',
-    							make_base_auth (user.backendAuthorizationHash)
-    						);
-    					}
-	                    
-	                });
-					
-					<?php } else { ?>
-						populateUnitDetails();
-					<?php } ?>
-					
-						
 			}
 
 		});
@@ -1479,212 +1105,243 @@ position: fixed;
 		
 
 				
-		//console.log(viewModel);
-		//kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
-	    //kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
-
+		
 		viewModel.unitSource.fetch(function(){
 
-			viewModel.handlerFetchUnit();
-			/*
-			console.log("read unit");
-			
-			var self = viewModel.unitSource;
 
-			registry_no = self.data()[0].registry_no;
+			registry_no = (viewModel.unitSource).data()[0].registry_no;
 
-            var populateUnitDetails = function() {
-            	kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
-                kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
-
-                // Hide create/edit/delete connection buttons if the user is not FY or not responsible for the unit
-                if(typeof user.l == 'undefined' || user.l.split(',').indexOf('ou=partners') == -1 || typeof g_impEnt[0] == 'undefined' || typeof self.data()[0] == 'undefined' || g_impEnt[0].implementation_entity_id != self.data()[0].implementation_entity_id) {
-                    console.log("user is not fy. hiding connection buttons");
-                    $('#unit-'+mm_id+'-preview').find('#btnCreateConnection').parent().hide();
-                    $('#unit-'+mm_id+'-preview').find('.detail-section-tab-content[data-template="tmpl-connection-list"] .detail-term.term-head > button').hide();
-				}
-
-				resizeTabContent();
-
-				kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), false);
-			};
-
-			<?php //if (!$isAnonymous) { ?>
-			$.ajax({
-					type: "GET",
-					url: apiUrl + "ext_log_entries", 
-					data: {'object_id': mm_id},
-                    dataType: "json", 
-
-                    success: function(resp){
-
-                    	
-                    	var logs = new Array();
-						var curr_dataItem = {"data": {"lastUpdate": {"date": ""}}};                    	
-
-                    	$.each(resp.data, function(i, item){
-
-                    		if (typeof item.data["lastUpdate"] == "undefined") {
-                    			return;
-                    		}
-
-                    		if (item.data.lastUpdate === null){
-                    			return; 
-                    		}
-							
-                        	if (!equal(curr_dataItem.data.lastUpdate.date, item.data.lastUpdate.date) ){
-
-                        		if (item.data.hasOwnProperty("state") || item.data.hasOwnProperty("name")) {
-                            		logs.push(item);
-                            		curr_dataItem = item;
-                            	}
-                        	}
-                    	});
-                    	
-
-                    	self.data()[0]['logs'] = logs;
-                    	//console.log(viewModel);
-                    	//self.data()[0]['logs'] = resp.data;
-
-                    	$.ajax({
-							type: "GET",
-							url: apiUrl + "cpes",
-							data: {'unit': mm_id},
-                			dataType: "json",
-			                success: function(resp){
-
-				                try {
-            			        	var cpes = resp.data;
-                    				self.data()[0]['cpes'] = cpes;
-				                }
-				                catch(ex){
-					                console.log(ex);
-				                }
-				                finally {
-				                	populateUnitDetails();
-					            }
-                			},
-                			beforeSend: function(xhr){
-        						xhr.setRequestHeader(
-        							'Authorization',
-        							make_base_auth (user.backendAuthorizationHash)
-        						);
-        					}
-						});
-					},
-					beforeSend: function(xhr){
-						xhr.setRequestHeader(
-							'Authorization',
-							make_base_auth (user.backendAuthorizationHash)
-						);
-					}
-				});
-
-				<?php //} else { ?>
-					populateUnitDetails();
-				<?php //} ?>
-			*/			
-			
-			/*
-			kendo.bind($("#unit-" + mm_id + "-preview"), viewModel);
-			kendo.bind($("#wnd_create_connection_" + mm_id).parent(), viewModel);
-
-                        // Hide create/edit/delete connection buttons if the user is not FY or not responsible for the unit
-                        if(typeof user.l == 'undefined' || user.l.split(',').indexOf('ou=partners') == -1 || g_impEnt[0].implementation_entity_id != this.data()[0].implementation_entity_id) {
-                            console.log("user is not fy. hiding connection buttons");
-                            $('#unit-'+mm_id+'-preview').find('#btnCreateConnection').parent().hide();
-                            $('#unit-'+mm_id+'-preview').find('.detail-section-tab-content[data-template="tmpl-connection-list"] .detail-term.term-head > button').hide();
-                        }
-
-			resizeTabContent();
-			*/
-		});
+			var requests = [];
 
 
-		/*
-		$("body").on("click","#btnSaveConnection", function(e){
-			viewModel.saveConnection(e);
-		});
-		*/
-		
-		
-        var gridUnitTransitions = $("#unit-" + mm_id + "-transitions").kendoGrid({
-            dataSource: new kendo.data.DataSource({
-                data: []
-            }),
-            scrollable: false,
-            autoBind: false,
-            sortable: true,
-            resizable: true,
-            pageable: false,
-            columns: [
-                {
-                    field: "transition_id",
-                    title: "Κωδικός",
-                    hidden: true
-                },
-                {
-                    field: "fek",
-                    title: "Αριθμός ΦΕΚ"
-                },
-                {
-                    field: "transition_date",
-                    title: "Ημερομηνία της Μετάβασης"
-                },
-                {
-                    field: "from_state",
-                    title: "Αρχική Κατάσταση"
-                },
-                {
-                    field: "to_state",
-                    title: "Τελική Κατάσταση"
-                },
-                {}
-            ]
+			<?php if (!$isAnonymous) { ?>
+			requests.push(get_ext_log_entries(mm_id, viewModel));
+			requests.push(get_cpes(mm_id, viewModel));
+			requests.push(get_crm_data(mm_id, viewModel));
+			requests.push(get_ldap_entries(mm_id, viewModel));
+			<?php } ?>
+			 
+			$.when.apply(undefined, requests).done(function(results){
 
-        }).data('kendoGrid');
 
-		//resizeTabContent();
-		if ($('.splitter-holder-inner').length){
-			var s = $('.splitter-holder-inner').data('kendoSplitter');
-			s.bind('layoutChange', function(){
-				resizeTabContent();
+				console.log("-->populate details");
+	
+	         	try{
+	         		kendo.bind($("#unit-" + mm_id + "-preview"), viewModel.unitSource);
+	         	}
+	         	catch(ex){
+		            
+	         	}
+	
+		       	
+	         	kendo.ui.progress($('.unit-panel-details'), false);
+	
+				console.log("populate details-->");
+				 
 			});
-		}
-		else {
-			$(window).on('resize', resizeTabContent );
-		}
+			
+		});
 
-		$("body").kendoTooltip({ filter: "*[title]" });
+
+		
+		
+		
+      
+		
     });
 	
-function resizeTabContent(){
-	
-	var $summaryPane = $('.summary-pane'),
-		h,i,		
-		$tabContent= $summaryPane.find(".tab-content:first");	
-		g= $(".preview-pane-toggle-button");				
-		
-		if($tabContent.length===0){return}					
-		
-		h = $tabContent.offset().top;				
-		
-		i = $('#body').outerHeight() + $('#body').offset().top - h - (g.outerHeight());			
-		
-		$tabContent.height(i);
-		
-		//fix last section's height 		
-		
-		$("#mycontent").scrollTop($("#mycontent").get(0).scrollHeight);
-		var d = $("#mycontent > div.detail-section:last").position().top;
-		if (d>0){
-			$("#mycontent > div.detail-section:last").height("+=" + d);
-		}
-		$("#mycontent").scrollTop(0);
-		
-		//$('#mycontent').scrollspy({ target: '#sidebar' });
-		$('#mycontent').scrollspy({ target: '#sidebar', offset:5 })
-}
+
+    var get_ext_log_entries = function(mm_id, viewModel) {
+
+
+    	return $.ajax({
+			type: "GET",
+			url: apiUrl + "ext_log_entries", 
+			data: {'object_id': mm_id},
+            dataType: "json", 
+
+            success: function(resp){
+
+            	console.log("-->Request ext_log_entries");
+
+            	var logs = new Array();
+
+            	
+            	if (resp.status != 401){
+            	
+					var curr_dataItem = {"data": {"lastUpdate": {"date": ""}}};                    	
+
+                	$.each(resp.data, function(i, item){
+
+                		if (typeof item.data["lastUpdate"] == "undefined") {
+                			return;
+                		}
+
+                		if (item.data.lastUpdate === null){
+                			return; 
+                		}
+						
+                    	if (!equal(curr_dataItem.data.lastUpdate.date, item.data.lastUpdate.date) ){
+
+                    		if (item.data.hasOwnProperty("state") || item.data.hasOwnProperty("name")) {
+                        		logs.push(item);
+                        		curr_dataItem = item;
+                        	}
+                    	}
+                	});
+            	}
+
+            	viewModel.unitSource.data()[0]['logs'] = logs;
+			},
+			beforeSend: function(xhr){
+				xhr.setRequestHeader(
+					'Authorization',
+					make_base_auth (user.backendAuthorizationHash)
+				);
+			}
+		});
+        
+    };
+
+
+    var get_cpes = function(mm_id, viewModel) {
+
+    	return $.ajax({
+			type: "GET",
+			url: apiUrl + "cpes",
+			data: {'unit': mm_id},
+			dataType: "json",
+            success: function(resp){
+
+            	var cpes = new Array();
+            	
+                try {
+
+                	if (resp.status != 401){
+                		cpes = resp.data;
+                	}
+                	else {
+	                	//console.log(resp.message);
+                	}
+										                	
+                	viewModel.unitSource.data()[0]['cpes'] = cpes;
+                }
+                catch(ex){
+	                console.log(ex);
+                }
+                finally {
+
+	            }
+			},
+			beforeSend: function(xhr){
+				xhr.setRequestHeader(
+					'Authorization',
+					make_base_auth (user.backendAuthorizationHash)
+				);
+			}
+		});
+    };
+
+    var get_crm_data = function(mm_id, viewModel) {
+
+    	return $.ajax({
+			type: "GET",
+			url: apiUrl + "crm_data", 
+			data: {'mm_id': mm_id},
+            dataType: "json", 
+
+            success: function(resp){
+                
+            	console.log("-->Request crm_data");
+
+            	var circuits = new Array();
+            	var subnets = new Array();
+            	var connections = new Array();
+
+            	 try {
+
+	                	if (resp.status != 401){
+	                		circuits = resp.data.circuits;
+	                		subnets = resp.data.subnets;
+	                		connections = resp.data.connections;
+	                	}
+	                	else {
+		                	//console.log(resp.message);
+	                	}
+
+	                	
+											                	
+	                	viewModel.unitSource.data()[0]['circuits'] = circuits;
+
+	                	viewModel.unitSource.data()[0]['subnets'] = subnets;
+
+	                	viewModel.unitSource.data()[0]['connections'] = connections;
+                    	
+	             }
+	             catch(ex){
+		                console.log(ex);
+	             }
+	             finally {
+
+		         }
+
+            	console.log("Request crm_data-->");
+            },
+			beforeSend: function(xhr){
+				xhr.setRequestHeader(
+					'Authorization',
+					make_base_auth (user.backendAuthorizationHash)
+				);
+			}
+            
+        });
+    };
+
+
+    var get_ldap_entries = function(mm_id, viewModel) {
+
+    	return $.ajax({
+			type: "GET",
+			url: apiUrl + "ldap_entries", 
+			data: {'mm_id': mm_id},
+            dataType: "json", 
+
+            success: function(resp){
+                
+            	console.log("-->Request ldaps");
+
+            	var ldaps = new Array();
+
+            	 try {
+	                	if (resp.status != 401){
+	                		ldaps = resp.data;
+	                	}
+	                	else {
+		                	//console.log(resp.message);
+	                	}
+			                	
+	                	viewModel.unitSource.data()[0]['ldaps'] = ldaps;
+                                            
+	             }
+	             catch(ex){
+		                console.log(ex);
+	             }
+	             finally {
+
+		         }
+
+            	console.log("Request ldaps-->");
+            },
+			beforeSend: function(xhr){
+				xhr.setRequestHeader(
+					'Authorization',
+					make_base_auth (user.backendAuthorizationHash)
+				);
+			}
+            
+        });
+        
+    };
     
    
 
