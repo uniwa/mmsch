@@ -299,40 +299,11 @@ var homePageModule = {
 		
 	},
 	_onMouseEnterUnpinnedSidemenu:function(e){
-		/*
-		var self = this;
-			
-		if(self._hoverSidemenuTimeout){
-			window.clearTimeout(self._hoverSidemenuTimeout);
-		}
-
-		self._hoverSidemenuTimeout=window.setTimeout(function(){
-			
-			if ( self.$sideMenu.hasClass("unpinned") ){
-				self.$sideMenu.css({"right":"auto", "left":"0px", "z-index":"1"});    
-			}
-
-			self._hoverSidemenuTimeout=null;
-					
-		},800);
-		*/
+		
 	},
 
 	_onMouseLeaveUnpinnedSidemenu:function(e){
-		/*
-		var self = this;
 		
-		$target = $(e.target);
-		
-		if ( self.$sideMenu.hasClass("unpinned") ){
-				
-			window.clearTimeout(self._hoverSidemenuTimeout);
-			self._hoverSidemenuTimeout=null;
-		
-			var r = (self.$sideMenu.width()-40)*-1;
-			self.$sideMenu.css({"right":"auto", "left": r + "px"});
-		}
-		*/
 	}
 };
 
@@ -593,7 +564,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 
 </head>
 
-<body>
+<body class="gray-bg">
 
 	<div id="dlgWndSelectTheme" class="" style="">
 		<center>
@@ -628,8 +599,12 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 					
 					<div class="navbar-header">
 						
-						<a class="navbar-brand" href=""><img src="../img/sch_logo.png" alt="Πανελλήνιο Σχολικό Δίκτυο"></a>
+						<a class="navbar-brand" href=""><img class="img-rounded" src="../client/img/schgr.jpg" alt="Πανελλήνιο Σχολικό Δίκτυο" style="width:80px; margin-top:-10px;"></a>
 						 
+						<a hred="#" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-icons">
+							<i class="fa fa-th"></i>
+						</a>
+						
 						
 						 
 					</div>

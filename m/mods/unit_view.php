@@ -485,7 +485,7 @@ position: fixed;
 														
 								<script id="tmpl-circuit-list" type="text/x-kendo-template">
 								# if (circuits != null && circuits.length > 0) { #
-									<div class="mmsch-list-item container-fluid">
+									<div class="mmsch-list-item container-fluid table-responsive">
 									<table class="table table-bordered">
 									
 									
