@@ -379,7 +379,7 @@ require_once("_header.php");
 					
 					<div class="row">
 					
-						<div class=" col-xs-12 col-sm-7" id="unit-list-wrapper">
+						<div class=" col-sm-12 col-md-7" id="unit-list-wrapper">
 							
 							<div class="mmsch-box">
 							
@@ -473,16 +473,16 @@ require_once("_header.php");
 					
 					
 					
-					<div style="" class="col-xs-12 col-sm-5 modalable " id="unit-details-wrapper" role="dialog">
+					<div style="" class="hidden-sm col-md-5 modalable modal" id="unit-details-wrapper" role="dialog">
 						<div class="mmsch-box">
 						
 							<div class="mmsch-box-title">
 								<h5>Πληροφορίες Μονάδας</h5>
 								<div class="mmsch-box-tools">
 										
-										<a class="collapse-link">
-											<i class="fa fa-chevron-up"></i>
-										</a>
+										<a class=" close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i></a>
+										
+										<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 									</div>
 							</div>
 							
@@ -547,57 +547,13 @@ require_once("_header.php");
 
 						
 						
-						toggleSearchBoxModal: function(action){
-
-							$('#dlgWndSearchBy').data("kendoWindow").open();
-							
-							
-						},
 						
-						evtKeyupCallback : function(e){
-								
-								var self = this;
-								
-								var tag = e.target.tagName.toLowerCase();
-								
-								if (e.which == 83 && (tag != 'input' && tag != 'textarea') ){
-									
-									console.log("show search box");
-									/*
-									if ($('#dlgWndSearchBy').not(":visible")){
-										$('#dlgWndSearchBy').show();
-										resetPopPosition();
-									}
-									*/
-									self.toggleSearchBoxModal('show');
-								}
-								else if (e.which == 27 ){
-
-									console.log("close search box");
-									/*
-									if ($('#dlgWndSearchBy').is(":visible")){
-										$('#dlgWndSearchBy').hide();
-									}
-									*/
-									self.toggleSearchBoxModal('hide');
-
-									$("#dlgWndSearchBy").data("kendoWindow").close();
-									$("#frmGridUnitsSelectColms").data("kendoWindow").close();
-								}
-						},
-						
-						_onWindowKeyUp: function(e){
-							var self = this;
-							
-							//$(window).on('keyup', self.evtKeyupCallback);
-							$(window).on('keyup', $.proxy(self.evtKeyupCallback, self));
-						},
 						
 						_destroy: function(){
 							
 							var self = this;
 							
-							$(window).off('keyup', $.proxy(self.evtKeyupCallback, self));
+							//$(window).off('keyup', $.proxy(self.evtKeyupCallback, self));
 
 							
 						}
@@ -638,7 +594,7 @@ require_once("_header.php");
 							console.log("remove");
 						});
 						
-						mmschApp.modules['units']._onWindowKeyUp();
+						//mmschApp.modules['units']._onWindowKeyUp();
 
 						
 
@@ -878,7 +834,11 @@ require_once("_header.php");
 					        
 					        }),
 					        columns:[
-					                 {
+					                 	{
+					                 		width: "1%",
+					                 		template: '<a class="btn btn-default btn-sm btnViewModalUnit"><i class="fa fa-folder"></i>&nbsp;View</a>' 
+					                 	},	
+					                 	{
 							                field: "mm_id",
 							                title: "Κωδικός ΜΜ",
 											width: "80px",
@@ -1013,7 +973,7 @@ require_once("_header.php");
 					        selectable: false,
 					        columnMenu: true,
 					        //editable: "inline",
-					        selectedRow: null,
+					        //selectedRow: null,
 					        inSearching: true
 					    }).data('kendoGrid');
 
@@ -1071,6 +1031,9 @@ require_once("_header.php");
 									gridUnits.hideColumn(field);
 								}
 							});
+
+							$("#grid-units table[role='grid']").css({'width':''});
+							
 						});
 						// end - choose grid columns
 						
@@ -1078,6 +1041,8 @@ require_once("_header.php");
 
 						$("body").on("click", "#grid-units table[role='grid'] tbody tr[role='row']", function(e){
 
+							return;
+							
 							if (gridUnits.selectedRow != null){
 								var lastSelection = gridUnits.selectedRow;
 								var row = gridUnits.element.find("tbody>tr[data-uid=" + lastSelection.uid + "]");
@@ -1103,6 +1068,38 @@ require_once("_header.php");
 							});
 
 							
+						});
+
+						$("body").on("click", ".btnViewModalUnit", function(e) {
+
+						    var row = $(this).closest("tr");
+
+						    var item = gridUnits.dataItem(row);
+
+						    var mm_id = item.mm_id;
+
+						    $( "#unit-preview-pane" ).empty();
+						    $( "#unit-preview-pane" ).load( "mods/unit_view.php?mm_id=" + mm_id + "&is_anonymous=" + <?php echo $isAnonymous; ?> , function(){
+							});
+							
+
+						    var $unit_details_wrapper =  $('#unit-details-wrapper');
+
+						    if (!$unit_details_wrapper.is(':visible'))
+						    {
+						    	$unit_details_wrapper.removeClass("hidden-sm");
+						    	$unit_details_wrapper.addClass('modal');
+							     
+						    	$unit_details_wrapper.modal('show');
+	
+						    	$unit_details_wrapper.on('hidden.bs.modal', function (e) {
+							    	
+						    		$unit_details_wrapper.removeClass('modal');
+						    		$unit_details_wrapper.addClass("hidden-sm");
+						    		$unit_details_wrapper.removeAttr("style");
+							    	
+							    });
+						    }
 						});
 
 											

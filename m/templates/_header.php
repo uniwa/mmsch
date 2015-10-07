@@ -65,7 +65,9 @@ if (isset($user["l"])){
 <html>
 <head>
 <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <meta name="keywords" content="">
 <meta name="description" content="">
 
@@ -342,106 +344,6 @@ $(document).ready(function() {
 		$("#vUsername").html("<strong>" + user.uid + "</strong>");
 	}
 
-	$("#themelistView").kendoListView({
-		selectable: true,
-        dataSource: [
-        	{
-            	themeName: "Default",
-            	skin: "default",
-            	color1:"#ef6f1c",
-            	color2:"#e24b17",
-            	color3:"#5a4b43"
-            },
-            {
-            	themeName: "Silver",
-            	skin: "silver",
-            	color1:"#298bc8",
-            	color2:"#515967",
-            	color3:"#eaeaec"
-            },
-            {
-            	themeName: "Metro",
-            	skin: "metro",
-            	color1:"#8ebc00",
-            	color2:"#787878",
-            	color3:"#fff"
-            },
-            {
-            	themeName: "Uniform",
-            	skin: "uniform",
-            	color1:"#666",
-            	color2:"#ccc",
-            	color3:"#fff"
-            },
-            {
-            	themeName: "Blue Opal",
-            	skin: "blueopal",
-            	color1:"#076186",
-            	color2:"#7ed3f6",
-            	color3:"#94c0d2"
-            },
-            {
-            	themeName: "Bootstrap",
-            	skin: "bootstrap",
-            	color1:"#3276b1",
-            	color2:"#67afe9",
-            	color3:"#fff"
-            },
-            {
-            	themeName: "Black",
-            	skin: "black",
-            	color1:"#0167cc",
-            	color2:"#4698e9",
-            	color3:"#272727"
-            },
-            {
-            	themeName: "Metro Black",
-            	skin: "metroblack",
-            	color1:"#00aba9",
-            	color2:"#0e0e0e",
-            	color3:"#565656"
-            },
-            {
-            	themeName: "High Contrast",
-            	skin: "highcontrast",
-            	color1:"#b11e9c",
-            	color2:"#880275",
-            	color3:"#1b141a"
-            },
-            {
-            	themeName: "Moonlight",
-            	skin: "moonlight",
-            	color1:"#ee9f05",
-            	color2:"#40444f",
-            	color3:"#212a33"
-            }
-        ],
-        template: kendo.template($("#themeItemTmpl").html()),
-        change: function(){
-
-        	var data = this.dataSource.view();
-        	
-            var selectedSkin = $.map(this.select(), function(item) {
-                return data[$(item).index()].skin;
-            });
-
-            changeTheme(selectedSkin);
-        }
-    });
-
-	
-	$("#dlgWndSelectTheme").kendoWindow({
-		title: "Επιλογή Theme",
-		visible: false,
-		animation: false,
-		modal: true,
-		width: "30%"
-	});
-
-	$("body").on("click","#btnSelectTheme", function(){
-		$("#dlgWndSelectTheme").data("kendoWindow").center().open();
-	});
-
 }); // end of
 
 
@@ -600,6 +502,8 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 					<div class="navbar-header">
 						
 						<a class="navbar-brand" href=""><img class="img-rounded" src="../client/img/schgr.jpg" alt="Πανελλήνιο Σχολικό Δίκτυο" style="width:80px; margin-top:-10px;"></a>
+						
+						<a class="navbar-brand" href="#">Πανελλήνιο Σχολικό Δίκτυο</a>
 						 
 						<a hred="#" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-icons">
 							<i class="fa fa-th"></i>

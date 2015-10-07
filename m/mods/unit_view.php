@@ -93,7 +93,7 @@ position: fixed;
 	</script>
 	
 	
-    <div class="k-content accordion-wrapper" style="padding:10px;">
+    
        	
        	<div class="item-header">
        		
@@ -821,7 +821,7 @@ position: fixed;
 				<!-- ΣΤΟΙΧΕΙΑ ΜΕΤΑΒΑΣΕΩΝ@ -->
 			
     	</div>
-    </div>
+    
 
 </div>
 
@@ -830,7 +830,7 @@ position: fixed;
         
 	//kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), true);
 	//function hello(d){ console.log(d); return "ds";}
-	kendo.ui.progress($('.unit-panel-details'), true);
+	kendo.ui.progress($('.unit-panel-details #mycontent:first'), true);
 	
     $(document).ready(function() {
 	
@@ -1134,7 +1134,7 @@ position: fixed;
 	         	}
 	
 		       	
-	         	kendo.ui.progress($('.unit-panel-details'), false);
+	         	kendo.ui.progress($('.unit-panel-details #mycontent:first'), false);
 	
 				console.log("populate details-->");
 				 
