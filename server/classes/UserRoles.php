@@ -164,7 +164,7 @@ class UserRoles {
                                                     'GET' => array('USER', 'ADMIN'),
                                                     'POST' => array('ADMIN'),
                                                     'PUT' => array('ADMIN'),
-                                                    //'DELETE' => array('ADMIN')
+                                                    'DELETE' => array('ADMIN')
                                                  ),
         'relations'                      => array(
                                                     'GET' => array('USER', 'ADMIN'),
