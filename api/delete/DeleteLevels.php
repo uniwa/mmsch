@@ -2,7 +2,7 @@
 /**
  * @version 2.0
  * @author  ΤΕΙ Αθήνας
- * @package DELETE
+ * @package DEPRECATED
  */
 
 header("Content-Type: text/html; charset=utf-8");
