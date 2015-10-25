@@ -10,13 +10,13 @@ require_once("_header.php");
 
 <div id="" class=" col-xs-12" style="">
 		
-		<div class="breadcrumb-line clearfix">
+		<div class="breadcrumb-line clearfix k-block">
 				
 				<div class="breadcrumb">
 					<div class="form-group">
 					<div class="row">
 					<div class="col-xs-12 col-sm-12">
-					<input type="text" placeholder="Γρήγορη αναζήτηση" class="k-input col-xs-12" />
+					<input type="text" placeholder="Γρήγορη αναζήτηση" id="txtQuickSearch" class="k-input col-xs-12" />
 					</div>
 					</div>
 					</div>
@@ -372,7 +372,7 @@ require_once("_header.php");
 					
 					<div class="row">
 						<div class="col-xs-12">
-							<div class="grid-units-filters alert alert-success clearfix" style="font-size:8pt;"></div>
+							<div class="grid-units-filters clearfix k-widget" style="font-size:8pt;"></div>
 						</div>
 					</div>	
 					
@@ -381,9 +381,9 @@ require_once("_header.php");
 					
 						<div class=" col-sm-12 col-md-7" id="unit-list-wrapper">
 							
-							<div class="mmsch-box">
+							<div class="mmsch-box k-widget">
 							
-								<div class="mmsch-box-title">
+								<div class="mmsch-box-title k-header clearfix">
 									<h5>Λίστα Μονάδων</h5>
 									<div class="mmsch-box-tools">
 										<a class="collapse-link">
@@ -392,7 +392,7 @@ require_once("_header.php");
 									</div>
 								</div>
 							
-								<div class="mmsch-box-content clearfix">
+								<div class="mmsch-box-content k-content clearfix">
 							
                            <div class="mmsch-grid"  id="grid-units">
                            
@@ -474,9 +474,9 @@ require_once("_header.php");
 					
 					
 					<div style="" class="hidden-sm col-md-5 modalable modal" id="unit-details-wrapper" role="dialog">
-						<div class="mmsch-box">
+						<div class="mmsch-box k-widget">
 						
-							<div class="mmsch-box-title">
+							<div class="mmsch-box-title k-header clearfix">
 								<h5>Πληροφορίες Μονάδας</h5>
 								<div class="mmsch-box-tools">
 										
@@ -486,7 +486,7 @@ require_once("_header.php");
 									</div>
 							</div>
 							
-							<div class="mmsch-box-content">
+							<div class="mmsch-box-content k-content">
 								<div id="unit-preview-pane" >
 								</div>
 							</div>
@@ -836,7 +836,7 @@ require_once("_header.php");
 					        columns:[
 					                 	{
 					                 		width: "1%",
-					                 		template: '<a class="btn btn-default btn-sm btnViewModalUnit"><i class="fa fa-folder"></i>&nbsp;View</a>' 
+					                 		template: '<a class="btn btn-default btn-sm k-button btnViewModalUnit"><i class="fa fa-folder"></i>&nbsp;View</a>' 
 					                 	},	
 					                 	{
 							                field: "mm_id",

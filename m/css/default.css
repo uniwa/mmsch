@@ -6,7 +6,7 @@ body *
     
     font-family: Arial;
     font-size: 8pt;
-    
+    border-radius:0px !important;
     
     /*box-shadow: none !important;*/
     
@@ -14,6 +14,11 @@ body *
 
 a {
 	text-decoration: none !important;
+	color: inherit;
+}
+
+.navbar-toggle .icon-bar {
+	background-color: #fff !important;
 }
 
 .navbar-inverse {
@@ -67,10 +72,14 @@ h5 {
 
 
 
-
+.grid-units-filters {
+	border : 1px solid inherit;	
+	margin-bottom: 20px;
+    padding: 15px;
+}
 
 .gray-bg {
-    background-color: #f3f3f4;
+    /*background-color: #f3f3f4;*/
 }
 
 
@@ -86,6 +95,7 @@ h5 {
 }
 
 .mmsch-box {
+	/*
     clear: both;
     margin-bottom: 25px;
     margin-top: 0;
@@ -94,6 +104,8 @@ h5 {
     border-image: none;
     border-style: solid solid none;
     border-width: 4px 0 0;
+    */
+    margin-bottom: 25px;
 }
 
 .modal.in .mmsch-box {
@@ -102,20 +114,24 @@ h5 {
 
 
 .mmsch-box-title {
+    /*
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
     background-color: #ffffff;
+    */
     /*
     border-color: #e7eaec;
     border-image: none;
     border-style: solid solid none;
     border-width: 4px 0 0;
     */
+    /*
     color: inherit;
     margin-bottom: 0;
     min-height: 48px;
+    */
     padding: 14px 15px 7px;
 }
 
@@ -141,7 +157,7 @@ h5 {
 }
 
 .mmsch-box-title .mmsch-box-tools a {
-    color: #c4c4c4;
+    /*color: #c4c4c4;*/
     cursor: pointer;
     margin-left: 8px;
     
@@ -154,7 +170,7 @@ h5 {
 
 
 .mmsch-box-content {
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
     border-color: #e7eaec;
     border-image: none;
     border-style: solid solid none;
@@ -260,13 +276,19 @@ body.mini-navbar .nav-label {
   right:0;
   bottom:0;
   	
-  border-top: 1px solid #ddd;
-  padding: 12px 0;
+  
+  padding: 12px;
   text-align: center;
   font-size: 11px;
+  margin-top:20px;
+  
+  /*
+  border-top: 1px solid #ddd;
   color: #777;
   background-color: #fff;
-  margin-top:20px;
+  */
+  
+  
 }
 
 
@@ -323,14 +345,17 @@ body.mini-navbar .sidebar {
 
 
 .breadcrumb-line {
+	/*
     background-color: #fcfcfc;
     border: 1px solid #e5e5e5;
-    margin: 0 0 35px;
+    */
+    margin: 0 0 20px;
     position: relative;
 }
 
 .breadcrumb-buttons > li > a {
-    color: #444;
+    /*color: #444;*/
+    color: inherit;
     display: block;
     font-weight: 600;
     padding: 9px 14px 10px;
@@ -368,7 +393,7 @@ ul.nav {
 
 	list-style: outside none none;
 	padding: 0;
-	border-bottom: 1px solid #49565d;
+	/*border-bottom: 1px solid #49565d;*/
 	/*
     margin: 0 0 35px;
     
@@ -376,7 +401,7 @@ ul.nav {
 }
 
 ul.nav > li {
-	border-top: 1px solid #49565d;
+	/*border-top: 1px solid #49565d;*/
     /*
         
      position: relative;
@@ -389,11 +414,18 @@ ul.nav li.active  a  i {
 }
 
 ul.nav > li > a {
+	/*
 	display: block;
 	padding: 14px 20px 14px 25px;
-	color: rgba(255, 255, 255, 0.9) !important;
+	
+	color: inherit;
 	font-weight:600;
+	*/
+	
+	border : none !important;
+	
 	/*border-left: 3px solid transparent;*/
+	/*color: rgba(255, 255, 255, 0.9) !important;*/
 }
 
 ul.nav > li > a > i {
@@ -549,6 +581,8 @@ screen size <= 992
     float: none;
     position: static;
     border: 0;
+    
+    border: none !important;
   }
   .navbar-nav > li:first-child {
     border-left: 0;
@@ -724,7 +758,8 @@ screen size >= 992
 
 
 .breadcrumb {
-    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    /*background: rgba(0, 0, 0, 0) none repeat scroll 0 0;*/
+    background-color: inherit !important;
     border-radius: 0;
     float: left;
     margin: 0;
@@ -776,7 +811,7 @@ screen size >= 992
 	}
 	
 	.breadcrumb {
-    	background-color: #fcfcfc;
+    	/*background-color: #fcfcfc;*/
     	border: 1px solid #e5e5e5;
     	float: none;
     	padding-right: 40px;
@@ -802,7 +837,7 @@ screen size >= 992
 
   .breadcrumb-buttons {
     margin-top: -1px;
-    background-color: #fff;
+    /*background-color: #fff;*/
     width: 100%;
     border: 1px solid #ddd;
     z-index: 2;

@@ -1,7 +1,7 @@
 </div>
 	 	
 	 		<!-- Footer -->
-	        <div class="footer clearfix">
+	        <div class="footer clearfix k-widget k-state-selected">
 		        <div class="pull-left">ΤΕΙ ΑΘΗΝΑΣ </div>
 	        	<div class="pull-right icons-group">
 	        		<a href="#"><i class="icon-screen2"></i></a>
