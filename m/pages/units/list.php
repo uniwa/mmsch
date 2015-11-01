@@ -835,10 +835,6 @@ require_once("_header.php");
 					        }),
 					        columns:[
 					                 	{
-					                 		width: "1%",
-					                 		template: '<a class="btn btn-default btn-sm k-button btnViewModalUnit"><i class="fa fa-folder"></i>&nbsp;View</a>' 
-					                 	},	
-					                 	{
 							                field: "mm_id",
 							                title: "Κωδικός ΜΜ",
 											width: "80px",
@@ -1036,12 +1032,13 @@ require_once("_header.php");
 							
 						});
 						// end - choose grid columns
-						
-						
+												
 
 						$("body").on("click", "#grid-units table[role='grid'] tbody tr[role='row']", function(e){
 
-							return;
+							/**
+							 * selectedRow is custom property for keeping track the currently selected rows
+							 */
 							
 							if (gridUnits.selectedRow != null){
 								var lastSelection = gridUnits.selectedRow;
@@ -1056,27 +1053,8 @@ require_once("_header.php");
 							var dataItem = gridUnits.dataItem(this);
 							$(this).addClass("k-state-selected");
 							gridUnits.selectedRow = dataItem;
-							kendo.ui.progress($('.splitter-holder-inner .k-pane:last'), true);
-
-							console.log(dataItem.mm_id);
-
 							
-							
-								
-
-							$( "#unit-preview-pane" ).load( "mods/unit_view.php?mm_id=" + dataItem.mm_id + "&is_anonymous=" + <?php echo $isAnonymous; ?> , function(){
-							});
-
-							
-						});
-
-						$("body").on("click", ".btnViewModalUnit", function(e) {
-
-						    var row = $(this).closest("tr");
-
-						    var item = gridUnits.dataItem(row);
-
-						    var mm_id = item.mm_id;
+						    var mm_id = dataItem.mm_id;
 
 						    $( "#unit-preview-pane" ).empty();
 						    $( "#unit-preview-pane" ).load( "mods/unit_view.php?mm_id=" + mm_id + "&is_anonymous=" + <?php echo $isAnonymous; ?> , function(){
@@ -1100,8 +1078,9 @@ require_once("_header.php");
 							    	
 							    });
 						    }
-						});
 
+							
+						});
 											
 						$("#txtQuickSearch").keydown(function(e) {
 							if (e.keyCode == 13) {
