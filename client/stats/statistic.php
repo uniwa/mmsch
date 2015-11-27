@@ -109,7 +109,10 @@ $convert_fy = array(
                                             {"unit_type_id": 36,"name": "ΙΝΣΤΙΤΟΥΤΟ ΕΠΑΓΓΕΛΜΑΤΙΚΗΣ ΚΑΤΑΡΤΙΣΗΣ","initials": "ΙΕΚ","category_id": 1,"education_level_id": 3},
                                             {"unit_type_id": 37,"name": "ΣΧΟΛΗ ΕΠΑΓΓΕΛΜΑΤΙΚΗΣ ΚΑΤΑΡΤΙΣΗΣ","initials": "ΣΕΚ","category_id": 7,"education_level_id": 3},
                                             {"unit_type_id": 38,"name": "ΣΧΟΛΕΙΟ ΔΕΥΤΕΡΗΣ ΕΥΚΑΙΡΙΑΣ","initials": "ΣΔΕ","category_id": 1,"education_level_id": 2},
-                                            {"unit_type_id": 39,"name": "HELPDESK ΦΟΡΕΩΝ ΥΛΟΠΟΙΗΣΗΣ ΤΟΥ ΠΣΔ","initials": "ΦΥ","category_id": 3,"education_level_id": 4}
+                                            {"unit_type_id": 39,"name": "HELPDESK ΦΟΡΕΩΝ ΥΛΟΠΟΙΗΣΗΣ ΤΟΥ ΠΣΔ","initials": "ΦΥ","category_id": 3,"education_level_id": 4},
+                                            {"unit_type_id": 40,"name": "ΟΜΟΣΠΟΝΔΙΑ","initials": "ΟΜ","category_id": 7,"education_level_id": 4},
+                                            {"unit_type_id": 41,"name": "ΕΛΜΕ","initials": "ΕΛΜΕ","category_id": 7,"education_level_id": 4},
+                                            {"unit_type_id": 42,"name": "ΜΟΝΑΔΕΣ ΑΛΛΩΝ ΥΠΟΥΡΓΕΙΩΝ","initials": "ΜΑΥΠ","category_id": 7,"education_level_id": 4}
                                         ];
                        var edu_admins = [];
                        
