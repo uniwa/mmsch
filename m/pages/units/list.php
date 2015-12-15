@@ -473,14 +473,12 @@ require_once("_header.php");
 					
 					
 					
-					<div style="" class="hidden-sm col-md-5 modalable modal" id="unit-details-wrapper" role="dialog">
+					<div style="" class="col-sm-12 col-md-5 modalables smodal" id="unit-details-wrapper" role="dialog">
 						<div class="mmsch-box k-widget">
 						
 							<div class="mmsch-box-title k-header clearfix">
 								<h5>Πληροφορίες Μονάδας</h5>
 								<div class="mmsch-box-tools">
-										
-										<a class=" close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i></a>
 										
 										<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 									</div>

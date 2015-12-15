@@ -7,10 +7,10 @@ $mm_id = $_GET['mm_id'];
 require_once("_header.php");
 ?>
 <div class="row">
-	<div style="" class="col-xs-12  modalable " id="unit-details-wrapper" role="">
-						<div class="mmsch-box">
+	<div style="" class="col-xs-12  modalabled " id="unit-details-wrapper" role="">
+						<div class="mmsch-box k-widget">
 						
-							<div class="mmsch-box-title">
+							<div class="mmsch-box-title k-header clearfix">
 								<h5>Πληροφορίες Μονάδας</h5>
 								<div class="mmsch-box-tools">
 										

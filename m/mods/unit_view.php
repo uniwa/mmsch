@@ -14,7 +14,26 @@ position: fixed;
 <div id="unit-<?php echo $_GET['mm_id']; ?>-preview"  
 	style="height: 100%;" 
 	class="unit-panel-details form-horizontal">
-	
+
+	<div id="modal_implementation_entity_info" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header mmsch-box-title k-header clearfix">
+					<a class="close" data-dismiss="modal"
+						aria-label="Close">
+						<i class="fa fa-remove"></i>
+					</a>
+					<h5 class="modal-title">Φορέας Υλοποίησης</h5>
+				</div>
+				<div class="modal-body">
+					
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
 	<div id="wnd_implementation_entity_info"></div>
 	
 	<script id="tmpl_implementation_entity_info" type="text/x-kendo-tmpl">
@@ -834,7 +853,7 @@ position: fixed;
 	
     $(document).ready(function() {
 	
-    	var wnd_implementation_entity_info;
+    	//var wnd_implementation_entity_info;
         
         var mm_id = "<?php echo $_GET['mm_id']; ?>";
         var registry_no = "";
@@ -843,7 +862,7 @@ position: fixed;
 		$("#unit-" + mm_id + "-preview").on("destroyed", function () {
 			console.log("Element " + mm_id + " was destroyed");
 			
-			wnd_implementation_entity_info.destroy();
+			//$modal_implementation_entity_info.destroy();
 
 			
 			
@@ -886,7 +905,8 @@ position: fixed;
 		});
 
 		var tmpl_implementation_entity_info = kendo.template($("#tmpl_implementation_entity_info").html());
-		
+
+		/*
 		wnd_implementation_entity_info = $("#wnd_implementation_entity_info")
 		.kendoWindow({
 			title: "Πληροφορίες Φορέα Υλοποίησης",
@@ -918,6 +938,32 @@ position: fixed;
 			wnd_implementation_entity_info.center().open();
 			wnd_implementation_entity_info.element.parent().css("top", "20px");
 		});
+		*/
+
+		$modal_implementation_entity_info = $("#modal_implementation_entity_info");
+		$modal_implementation_entity_info_content = $("#modal_implementation_entity_info .modal-body");
+		
+		
+		$("#unit-" + mm_id + "-preview").on("click", ".btnShowImplementationEntityInfo", function(e){
+			e.preventDefault();
+						
+			var $btn = $(this);
+			var implementation_entity_id = $btn.data('implementation_entity_id');
+			console.log(implementation_entity_id);
+
+				
+			var implementation_entity = $.grep(staticData.ImplEnt.data, function(item){
+				if (item['implementation_entity_id'] == implementation_entity_id){
+					return item;
+				}
+			});
+
+			
+			$modal_implementation_entity_info_content.html(tmpl_implementation_entity_info(implementation_entity[0]));
+    		
+			$modal_implementation_entity_info.modal('show');
+		});
+		
 		
 
 		

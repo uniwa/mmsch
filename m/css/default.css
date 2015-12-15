@@ -46,19 +46,19 @@ h5 {
 	font-weight: 600;
 }
 
-
+/*
 #unit-details-wrapper.modal {
      display: block;
      position: relative;
 }
-
+*/
 .mode-xs #unit-details-wrapper,
 .mode-sm #unit-details-wrapper,
 .mode-md #unit-details-wrapper
 {
 	/*display:none;*/
 }
-
+/*
 .mode-xs.modal-open #unit-details-wrapper,
 .mode-sm.modal-open #unit-details-wrapper,
 .mode-md.modal-open #unit-details-wrapper,
@@ -68,7 +68,7 @@ h5 {
      margin: 0px auto;
      position: fixed;
 }
-
+*/
 
 
 
