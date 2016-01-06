@@ -324,15 +324,15 @@ var homePageModule = {
 	}
 };
 
-if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|windows phone/i.test(navigator.userAgent.toLowerCase()) )     
-{
+//if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|windows phone/i.test(navigator.userAgent.toLowerCase()) )     
+//{
 	var url = "/m/index.php?auth=1";
 	if (g_isAnonymous){
 		url = "/m/index.php?auth=0";
 	}
    	    
    	window.location = url;
-}
+//}
 
 $(document).ready(function() {
 
