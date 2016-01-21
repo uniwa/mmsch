@@ -510,7 +510,7 @@ function ddls(){
                 	//do nothing
                 }
                 else{
-                	this.dataSource.insert(0, { prefecture_id: -1, prefecture_admin: "--Χωρίς Περιφέρειακή Ενότητα--" });
+                	this.dataSource.insert(0, { prefecture_id: -1, prefecture: "--Χωρίς Περιφέρειακή Ενότητα--" });
                 	this["noneOptionSet"] = 1;
                 }
             }
