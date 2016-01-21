@@ -453,6 +453,7 @@ function ddls(){
                     	if(data.status == 401){
                     		return [];
                     	}
+                        return data.data;
                     },
                     total: "total"
                 }
@@ -465,7 +466,7 @@ function ddls(){
                 $('#src_prefecture').val(value);
 
                 //var ddlMunicipality = $('#src_municipality').data('kendoDropDownList');
-				$("#src_municipality").data('kendoMultiSelect').enable(true);
+                $("#src_municipality").data('kendoMultiSelect').enable(true);
 
                 if (!$.isNumeric( value ) ){
                 	$("#src_municipality").data('kendoMultiSelect').dataSource.filter({});
@@ -499,6 +500,19 @@ function ddls(){
                 //var totalItems = this.dataSource.total();
                 //var lbl = this.element.parent().prev();
                 //lbl.find('.label').html(totalItems);
+            },
+            open: function(e) {
+            	
+            	/**
+            	 * execute only at first time open
+            	 */
+                if (typeof this["noneOptionSet"] != "undefined" ){
+                	//do nothing
+                }
+                else{
+                	this.dataSource.insert(0, { prefecture_id: -1, prefecture_admin: "--Χωρίς Περιφέρειακή Ενότητα--" });
+                	this["noneOptionSet"] = 1;
+                }
             }
         });
 
