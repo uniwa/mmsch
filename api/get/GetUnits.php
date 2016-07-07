@@ -1598,10 +1598,12 @@ function GetUnits(  $mm_id, $registry_no, $source, $name, $special_name, $state,
                             "last_sync"         => ($unit->getLastSync() instanceof \DateTime)? $unit->getLastSync()->format('Y-m-d H:i:s') : null,
                             "last_update"       => ($unit->getLastUpdate() instanceof \DateTime)? $unit->getLastUpdate()->format('Y-m-d H:i:s') : null,
                             "comments"          => $unit->getComments(),
-                            "version"           => $unit->getVersion()
+                            "version"           => $unit->getVersion(),
+                            "api_status"        => 'public'
                         );
             
             if($app->request->userRoles != 'GUEST') {
+                $data["api_status"] = 'private';
                 //LEVELS results================================================
 //                $data["levels"] = array();
 //                foreach ($unit->getLevels() as $level) {
