@@ -1419,8 +1419,8 @@ function GetUnits(  $mm_id, $registry_no, $source, $name, $special_name, $state,
         
 //state=========================================================================
         if (Validator::Exists('state', $params)){
-            $qb->leftjoin('u.state', 'st');
-            CRUDUtils::setFilter($qb, $state, "st", "stateId", "name", "null,id,value", ExceptionMessages::InvalidStateType, ExceptionCodes::InvalidStateType);
+            $qb->leftjoin('u.state', 's');
+            CRUDUtils::setFilter($qb, $state, "s", "stateId", "name", "null,id,value", ExceptionMessages::InvalidStateType, ExceptionCodes::InvalidStateType);
         }
         
 //region_edu_admin==============================================================
