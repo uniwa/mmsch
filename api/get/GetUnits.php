@@ -1413,108 +1413,126 @@ function GetUnits(  $mm_id, $registry_no, $source, $name, $special_name, $state,
 
 //source========================================================================
         if (Validator::Exists('source', $params)){
-            $qb->leftjoin('u.source', 'sr');
+//            $qb->leftjoin('u.source', 'sr');
             CRUDUtils::setFilter($qb, $source, "sr", "sourceId", "name", "null,id,value", ExceptionMessages::InvalidSourceType, ExceptionCodes::InvalidSourceType);
         }
         
 //state=========================================================================
         if (Validator::Exists('state', $params)){
-            $qb->leftjoin('u.state', 's');
+//            $qb->leftjoin('u.state', 's');
             CRUDUtils::setFilter($qb, $state, "s", "stateId", "name", "null,id,value", ExceptionMessages::InvalidStateType, ExceptionCodes::InvalidStateType);
         }
         
 //region_edu_admin==============================================================
         if (Validator::Exists('region_edu_admin', $params)){
-            $qb->leftjoin('u.regionEduAdmin', 'rea');
+//            $qb->leftjoin('u.regionEduAdmin', 'rea');
             CRUDUtils::setFilter($qb, $region_edu_admin, "rea", "regionEduAdminId", "name", "null,id,value", ExceptionMessages::InvalidRegionEduAdminType, ExceptionCodes::InvalidRegionEduAdminType);
         }
         
 //edu_admin=====================================================================
         if (Validator::Exists('edu_admin', $params)){
-            $qb->leftjoin('u.eduAdmin', 'ea');
+//            $qb->leftjoin('u.eduAdmin', 'ea');
             CRUDUtils::setFilter($qb, $edu_admin, "ea", "eduAdminId", "name", "null,id,value", ExceptionMessages::InvalidEduAdminType, ExceptionCodes::InvalidEduAdminType);
         }
         
 //implementation_entity=========================================================
         if (Validator::Exists('implementation_entity', $params)){
-            $qb->leftjoin('u.implementationEntity', 'ie');
+//            $qb->leftjoin('u.implementationEntity', 'ie');
             CRUDUtils::setFilter($qb, $implementation_entity, "ie", "implementationEntityId", "name", "null,id,value", ExceptionMessages::InvalidImplementationEntityType, ExceptionCodes::InvalidImplementationEntityType);
         }
         
 //transfer_area=================================================================
         if (Validator::Exists('transfer_area', $params)){
-            $qb->leftjoin('u.transferArea', 'ta');
+//            $qb->leftjoin('u.transferArea', 'ta');
             CRUDUtils::setFilter($qb, $transfer_area, "ta", "transferAreaId", "name", "null,id,value", ExceptionMessages::InvalidTransferAreaType, ExceptionCodes::InvalidTransferAreaType);
         }
         
 //prefecture====================================================================
         if (Validator::Exists('prefecture', $params)){
-            $qb->leftjoin('u.prefecture', 'p');
+//            $qb->leftjoin('u.prefecture', 'p');
             CRUDUtils::setFilter($qb, $prefecture, "p", "prefectureId", "name", "null,id,value", ExceptionMessages::InvalidPrefectureType, ExceptionCodes::InvalidPrefectureType);
         }
         
 //municipality==================================================================
         if (Validator::Exists('municipality', $params)){
-            $qb->leftjoin('u.municipality', 'm');
+//            $qb->leftjoin('u.municipality', 'm');
             CRUDUtils::setFilter($qb, $municipality, "m", "municipalityId", "name", "null,id,value", ExceptionMessages::InvalidMunicipalityType, ExceptionCodes::InvalidMunicipalityType);
         }
         
 //municipality_community========================================================
         if (Validator::Exists('municipality_community', $params)){
-            $qb->leftjoin('u.municipalityCommunity', 'mc');
+//            $qb->leftjoin('u.municipalityCommunity', 'mc');
             CRUDUtils::setFilter($qb, $municipality_community, "mc", "municipalityCommunityId", "name", "null,id,value", ExceptionMessages::InvalidMunicipalityCommunityType, ExceptionCodes::InvalidMunicipalityCommunityType);
         }
       
 //education_level===============================================================
         if (Validator::Exists('education_level', $params)){
-            $qb->leftjoin('u.educationLevel', 'el');
+//            $qb->leftjoin('u.educationLevel', 'el');
             CRUDUtils::setFilter($qb, $education_level, "el", "educationLevelId", "name", "null,id,value", ExceptionMessages::InvalidEducationLevelType, ExceptionCodes::InvalidEducationLevelType);
         }
         
 //tax_office====================================================================
         if (Validator::Exists('tax_office', $params)){
-            $qb->leftjoin('u.taxOffice', 'to');
+//            $qb->leftjoin('u.taxOffice', 'to');
             CRUDUtils::setFilter($qb, $tax_office, "to", "taxOfficeId", "name", "null,id,value", ExceptionMessages::InvalidTaxOfficeType, ExceptionCodes::InvalidTaxOfficeType);
         }
           
  //category=====================================================================
         if (Validator::Exists('category', $params)){
-            $qb->leftjoin('u.category', 'c');
+//            $qb->leftjoin('u.category', 'c');
             CRUDUtils::setFilter($qb, $category, "c", "categoryId", "name", "null,id,value", ExceptionMessages::InvalidCategoryType, ExceptionCodes::InvalidCategoryType);
         }
         
  //unit_type====================================================================
         if (Validator::Exists('unit_type', $params)){
-            $qb->leftjoin('u.unitType', 'ut');
+//            $qb->leftjoin('u.unitType', 'ut');
             CRUDUtils::setFilter($qb, $unit_type, "ut", "unitTypeId", "name", "null,id,value", ExceptionMessages::InvalidUnitTypeType, ExceptionCodes::InvalidUnitTypeType);
         }
 
  //operation_shift==============================================================
         if (Validator::Exists('operation_shift', $params)){
-            $qb->leftjoin('u.operationShift', 'os');
+//            $qb->leftjoin('u.operationShift', 'os');
             CRUDUtils::setFilter($qb, $operation_shift, "os", "operationShiftId", "name", "null,id,value", ExceptionMessages::InvalidOperationShiftType, ExceptionCodes::InvalidOperationShiftType);
         }
         
  //legal_character==============================================================
         if (Validator::Exists('legal_character', $params)){
-            $qb->leftjoin('u.legalCharacter', 'lc');
+//            $qb->leftjoin('u.legalCharacter', 'lc');
             CRUDUtils::setFilter($qb, $legal_character, "lc", "legalCharacterId", "name", "null,id,value", ExceptionMessages::InvalidLegalCharacterType, ExceptionCodes::InvalidLegalCharacterType);
         } 
         
  //orientation_type=============================================================
         if (Validator::Exists('orientation_type', $params)){
-            $qb->leftjoin('u.orientationType', 'ot');
+//            $qb->leftjoin('u.orientationType', 'ot');
             CRUDUtils::setFilter($qb, $orientation_type, "ot", "orientationTypeId", "name", "null,id,value", ExceptionMessages::InvalidOrientationTypeType, ExceptionCodes::InvalidOrientationTypeType);
         }
         
  //special_type=================================================================
         if (Validator::Exists('special_type', $params)){
-            $qb->leftjoin('u.specialType', 'st');
+//            $qb->leftjoin('u.specialType', 'st');
             CRUDUtils::setFilter($qb, $special_type, "st", "specialTypeId", "name", "null,id,value", ExceptionMessages::InvalidSpecialTypeType, ExceptionCodes::InvalidSpecialTypeType);
         }
         
 //joins=========================================================================
         
+            $qb->leftjoin('u.source', 'sr');
+            $qb->leftjoin('u.state', 's');
+            $qb->leftjoin('u.regionEduAdmin', 'rea');
+            $qb->leftjoin('u.eduAdmin', 'ea');
+            $qb->leftjoin('u.implementationEntity', 'ie');
+            $qb->leftjoin('u.transferArea', 'ta');
+            $qb->leftjoin('u.prefecture', 'p');
+            $qb->leftjoin('u.municipality', 'm');
+            $qb->leftjoin('u.municipalityCommunity', 'mc');
+            $qb->leftjoin('u.educationLevel', 'el');
+            $qb->leftjoin('u.taxOffice', 'to');
+            $qb->leftjoin('u.category', 'c');
+            $qb->leftjoin('u.unitType', 'ut');
+            $qb->leftjoin('u.operationShift', 'os');
+            $qb->leftjoin('u.legalCharacter', 'lc');
+            $qb->leftjoin('u.orientationType', 'ot');
+            $qb->leftjoin('u.specialType', 'st');
+            
 //            $qb->leftjoin('u.hostRelations', 'hr');
 //            $qb->leftjoin('hr.relationType', 'rt');
 //            $qb->leftjoin('u.unitDns', 'ud');
