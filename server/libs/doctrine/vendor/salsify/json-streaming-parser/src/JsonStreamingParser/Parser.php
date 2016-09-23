@@ -162,8 +162,13 @@ class JsonStreamingParser_Parser {
         } elseif ($c === '\\') {
           $this->_state = self::STATE_START_ESCAPE;
         } elseif (($c < "\x1f") || ($c === "\x7f")) {
-          throw new JsonStreamingParser_ParsingError($this->_line_number, $this->_char_number,
-            "Unescaped control character encountered: ".$c);
+
+                if ($c === "\x7f") {
+                        $c = '**x7f**';
+                }else{
+                        throw new JsonStreamingParser_ParsingError($this->_line_number, $this->_char_number, "Unescaped control character encountered: ".$c);
+                }
+
         } else {
           $this->_buffer .= $c;
         }
