@@ -20,11 +20,8 @@ do {
         $message .= $data->message;
 
 	if ($data==null) {
-		$message = 'MyschoolUnitInfoJClient.jar has problem on mm server';
-		break;
-	}
-
-        if ($data->records ==  0 | NULL) {
+		$message = ' MyschoolUnitInfoJClient.jar has problem on mm server ';
+        } else if ($data->records ==  0 || NULL) {
         	$message = " $counter Attempt. Try for sync with MySchool Failed. ";
         } else {
 		$sync_flag=true;
