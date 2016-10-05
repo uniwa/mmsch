@@ -291,9 +291,8 @@ function GetMunicipalityCommunities( $municipality_community_id, $name, $municip
         $pagesize!==Parameters::AllPageSize ? $results->getQuery()->setMaxResults($pagesize) : null;
 
 //data results==================================================================       
-        $count = 0;
-        
-        foreach ($results as $municipalityCommunity)
+        $count = 0;     
+        foreach ($results->getQuery()->getResult() as $municipalityCommunity)
         {
 
             $result["data"][] = array(
@@ -327,7 +326,7 @@ function GetMunicipalityCommunities( $municipality_community_id, $name, $municip
    if ( Validator::IsTrue( $params["debug"]  ) )
    {
         $result["DQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
-        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
+//        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
    }
     
     return $result;

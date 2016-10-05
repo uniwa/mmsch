@@ -234,7 +234,7 @@ function GetTaxOffices( $tax_office,
 
 //data results==================================================================       
         $count = 0;
-        foreach ($results as $row)
+        foreach ($results->getQuery()->getResult() as $row)
         {
 
             $result["data"][] = array(
@@ -265,7 +265,7 @@ function GetTaxOffices( $tax_office,
    if ( Validator::IsTrue( $params["debug"]  ) )
    {
         $result["DQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
-        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
+//        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
    }
     
     return $result;

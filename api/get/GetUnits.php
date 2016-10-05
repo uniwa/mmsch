@@ -1556,7 +1556,7 @@ function GetUnits(  $mm_id, $registry_no, $source, $name, $special_name, $state,
         
         //UNITS results=========================================================
         $count = 0;
-        foreach ($results as $unit)
+        foreach ($results->getQuery()->getResult() as $unit)
         {
             
             $data = array(
@@ -1739,7 +1739,8 @@ function GetUnits(  $mm_id, $registry_no, $source, $name, $special_name, $state,
    if ( Validator::IsTrue( $params["debug"]  ) )
    {
         $result["DQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
-        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
+//        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
+//        $result["SQL_PAGINATION"] =  trim(preg_replace('/\s\s+/', ' ', $results->getQuery()->getSQL()));
    }
       
    return UnitsExt::exportResults($export, $result);

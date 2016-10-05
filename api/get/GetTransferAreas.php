@@ -312,7 +312,7 @@ function GetTransferAreas( $transfer_area, $edu_admin, $region_edu_admin,
 
 //data results==================================================================       
         $count = 0;
-        foreach ($results as $row)
+        foreach ($results->getQuery()->getResult() as $row)
         {
 
             $result["data"][] = array(
@@ -348,7 +348,7 @@ function GetTransferAreas( $transfer_area, $edu_admin, $region_edu_admin,
    if ( Validator::IsTrue( $params["debug"]  ) )
    {
         $result["DQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
-        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
+//        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
    }
     
     return $result;

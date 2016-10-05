@@ -453,7 +453,7 @@ function GetExtLogEntries( $id, $action, $logged_at, $object_id, $object_class, 
 
 //data results==================================================================
         $count = 0;
-        foreach ($results as $extlog)
+        foreach ($results->getQuery()->getResult() as $extlog)
         {
             $result["data"][] = array(
                                         "id"            => $extlog->getId(),
@@ -490,7 +490,7 @@ function GetExtLogEntries( $id, $action, $logged_at, $object_id, $object_class, 
    if ( Validator::IsTrue( $params["debug"]  ) )
    {
         $result["DQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
-        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
+//        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
    }
     
     return $result;

@@ -329,7 +329,7 @@ function GetRelations( $host_mm_id, $guest_mm_id, $relation_type,
 
 //data results==================================================================       
         $count = 0;
-        foreach ($results as $row)
+        foreach ($results->getQuery()->getResult() as $row)
         {
 
             $result["data"][]  = array(
@@ -376,7 +376,7 @@ function GetRelations( $host_mm_id, $guest_mm_id, $relation_type,
    if ( Validator::IsTrue( $params["debug"]  ) )
    {
         $result["DQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getDQL()));
-        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
+//        $result["SQL"] =  trim(preg_replace('/\s\s+/', ' ', $qb->getQuery()->getSQL()));
    }
     
     return $result;
