@@ -14,6 +14,8 @@ $message = $data = null;
 $sync_flag = false;
 
 do {
+    
+        $kill_prv_process = shell_exec("ps -ef | grep MyschoolUnitInfoJClient | grep -v grep | awk '{print $2}' | xargs kill");    
         $data = exec('cd '.__DIR__.'/../myschool_client && "'.$Options['javaBin'].'" -Dfile.encoding=UTF-8 -jar MyschoolUnitInfoJClient.jar units '.getcwd().'/'.$Options["dbUnits"]);
         $data = json_decode($data);
         //var_dump($data);die();
