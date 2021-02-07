@@ -7,9 +7,13 @@ $isAnonymous = @ $_GET['is_anonymous'];
 						<div class="ribbon-menu">
 							<div class="pull-right">
 								<div class="btn-group">
+									<button id="btnExportCsv" class="k-button"><i class="fa fa-download fa-1x">&nbsp</i>Εξαγωγή σε CSV</button>
+								</div>
+
+								<div class="btn-group">
 									<button id="btnShowColumnChooser" class="k-button dropdown-toggle btn-popover" data-toggle="dropdown"><i class="fa fa-th fa-1x">&nbsp</i>Επιλογή Στηλών</button>									
 								</div>
-									
+
 								<div class="btn-group">
 		  							<button type="button" class="k-button btn-popover"  id="btnShowDlgSearch"><i class="fa fa-search fa-1x">&nbsp</i>Αναζήτηση...</button>		  								
 								</div>
@@ -694,6 +698,7 @@ $isAnonymous = @ $_GET['is_anonymous'];
 
 							console.log("destroyed");
 
+                            $("body").off('click', "#btnExport" );
 							$("body").off('click', "#btnShowColumnChooser" );
 							$("body").off('click', "#btnApplyColms" );
 							$("body").off('click', "#grid-units .k-grid-content tr[role='row'].k-master-row" );

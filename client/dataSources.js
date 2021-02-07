@@ -25,7 +25,15 @@ var tsUnits = {
         url: apiUrl + "units",
         type: "GET",
         data: {},
-        dataType: "json"
+        dataType: "json",
+        beforeSend: function (e, request) {
+            $("body").off('click', "#btnExportCsv" );
+            $('body').on('click', '#btnExportCsv', function(ev) {
+                $.getJSON(request.url + '&export=csv', function(data) {
+                    window.location = data.tmp_csv_filepath;
+                });
+            });
+        }
     },
     parameterMap: function(data, type) {
         /*
