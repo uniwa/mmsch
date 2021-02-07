@@ -698,7 +698,6 @@ $isAnonymous = @ $_GET['is_anonymous'];
 
 							console.log("destroyed");
 
-                            $("body").off('click', "#btnExport" );
 							$("body").off('click', "#btnShowColumnChooser" );
 							$("body").off('click', "#btnApplyColms" );
 							$("body").off('click', "#grid-units .k-grid-content tr[role='row'].k-master-row" );
