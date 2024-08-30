@@ -280,11 +280,13 @@ class UserRoles {
      * 
      * @return string The user role (GUEST|ADMIN|USER)
      */
-     public static function getRole($user) {
-         
+     public static function getRole($user) { 
+        $admin_uid = array("ktsiolis","sus_ws","crm_ws","dns_ws");
+        //var_dump($user['memberof'][0]);
+
         if(!isset($user)) {
             return 'GUEST';
-        } else if(isset($user['memberof']) && str_replace(' ', '', $user['memberof'][0]) == 'cn=Admins,ou=teiath,ou=partners,ou=units,dc=sch,dc=gr') {
+        } else if(isset($user['memberof']) && isset($user['uid']) && str_replace(' ', '', $user['memberof'][0]) == 'cn=Admins,ou=teiath,ou=partners,ou=units,dc=sch,dc=gr' && in_array($user['uid'][0],$admin_uid)) {
            return 'ADMIN';
         }
         return 'USER';

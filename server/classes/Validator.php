@@ -203,7 +203,7 @@ class Validator {
      * @return bool Always true.
      * 
      */
-    public static function toNull($value)
+    public static function toNull($value = null)
     {
         return null;
     }
@@ -640,6 +640,12 @@ class Validator {
     public static function ToUpper($value){
         return (strtoupper($value));        
     }
+
+public static function ToUpperWithoutAccents($string, $enc = "utf-8") {
+    return strtr(mb_strtoupper($string, $enc),
+      array('Ά' => 'Α', 'Έ' => 'Ε', 'Ί' => 'Ι', 'Ή' => 'Η', 'Ύ' => 'Υ', 'Ό' => 'Ο', 'Ώ' => 'Ω', 'ΐ' => 'Ϊ', 'ΰ' => 'Ϋ'
+      ));
+}
 
 }
 

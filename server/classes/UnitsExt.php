@@ -86,6 +86,7 @@ class UnitsExt {
            $objPHPExcel->getActiveSheet()->setCellValue("F$i", $lab_data["email"]);
            $objPHPExcel->getActiveSheet()->setCellValue("G$i", $lab_data["fax_number"],PHPExcel_Cell_DataType::TYPE_STRING);
            $objPHPExcel->getActiveSheet()->setCellValue("H$i", $lab_data["street_address"]);
+           $objPHPExcel->getActiveSheet()->setCellValue("H$i", $lab_data["country"],PHPExcel_Cell_DataType::TYPE_STRING);
            $objPHPExcel->getActiveSheet()->setCellValue("I$i", $lab_data["postal_code"],PHPExcel_Cell_DataType::TYPE_STRING);
            $objPHPExcel->getActiveSheet()->setCellValue("J$i", $lab_data["tax_number"],PHPExcel_Cell_DataType::TYPE_STRING);
    //        $objPHPExcel->getActiveSheet()->setCellValue("K$i", $lab_data["area_team_number"]);
@@ -93,9 +94,13 @@ class UnitsExt {
    //        $objPHPExcel->getActiveSheet()->setCellValue("M$i", $lab_data["groups_count"]);
    //        $objPHPExcel->getActiveSheet()->setCellValue("N$i", $lab_data["students_count"]);
            $objPHPExcel->getActiveSheet()->setCellValue("N$i", $lab_data["municipality_community"]);
+           $objPHPExcel->getActiveSheet()->setCellValue("N$i", $lab_data["pointsCategory"],PHPExcel_Cell_DataType::TYPE_STRING);
+           $objPHPExcel->getActiveSheet()->setCellValue("N$i", $lab_data["inaccessible"]);
+           $objPHPExcel->getActiveSheet()->setCellValue("N$i", $lab_data["studentsSum"]);
            $objPHPExcel->getActiveSheet()->setCellValue("O$i", $lab_data["latitude"],PHPExcel_Cell_DataType::TYPE_STRING);
            $objPHPExcel->getActiveSheet()->setCellValue("P$i", $lab_data["longitude"],PHPExcel_Cell_DataType::TYPE_STRING);
            $objPHPExcel->getActiveSheet()->setCellValue("Q$i", $lab_data["positioning"]);
+
            $objPHPExcel->getActiveSheet()->setCellValue("R$i", $lab_data["creation_fek"],PHPExcel_Cell_DataType::TYPE_STRING);
            $objPHPExcel->getActiveSheet()->setCellValue("S$i", $lab_data["last_update"]);
            $objPHPExcel->getActiveSheet()->setCellValue("T$i", $lab_data["last_sync"]);      
@@ -193,6 +198,10 @@ class UnitsExt {
                             "u.faxNumber"           => "fax_number",
                             "u.phoneNumber"         => "phone_number",
                             "u.email"               => "email",
+                            "u.country"             => "country",
+                            "u.pointsCategory"      => "pointsCategory",
+                            "u.inaccessible"        => "inaccessible",
+                            "u.studentsSum"         => "studentsSum",
                             //"u.studentsCount"       => "students_count",
                             //"u.groupsCount"         => "groups_count",
                             //"u.levelsCount"         => "levels_count",
