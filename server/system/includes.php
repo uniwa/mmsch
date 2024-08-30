@@ -99,6 +99,7 @@ require_once ('../api/get/GetUnitDns.php');
 require_once ('../api/get/GetUnitTypes.php');
 require_once ('../api/get/GetUnitWorkers.php');
 require_once ('../api/get/GetUnits.php');
+require_once ('../api/get/GetUnitsGeoJSON.php');
 //require_once ('../api/get/GetUnitsOld.php');
 require_once ('../api/get/GetWorkerPositions.php');
 require_once ('../api/get/GetWorkerSpecializations.php');
