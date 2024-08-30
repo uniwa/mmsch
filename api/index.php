@@ -79,6 +79,8 @@ $app->map('/connections', Authentication, UserRolesPermission, ConnectionsContro
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/units', Authentication, UserRolesPermission, UnitsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
+$app->map('/units.geojson', UnitsController)
+    ->via(MethodTypes::GET);
 $app->map('/unit_dns', Authentication, UserRolesPermission, UnitDnsController)
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 $app->map('/unit_network_subnet_types', Authentication, UserRolesPermission, UnitNetworkSubnetTypesController)
@@ -162,7 +164,7 @@ function PrepareResponse()
 
     $app->contentType('application/json');
     $app->response()->headers()->set('Content-Type', 'application/json; charset=utf-8');
-    $app->response()->headers()->set('X-Powered-By', 'ΤΕΙ Αθήνας');
+    $app->response()->headers()->set('X-Powered-By', 'Uniwa');
     $app->response()->setStatus(200);
 }
 
@@ -214,28 +216,32 @@ function Authentication()
 
     try
     {
-        if(isset($app->request->headers['Php-Auth-User']) && isset($app->request->headers['Php-Auth-Pw']) && $app->request->headers['Php-Auth-User'] != 'anonymous') {
+        if (isset($app->request->headers['Php-Auth-User']) && isset($app->request->headers['Php-Auth-Pw']) && $app->request->headers['Php-Auth-User'] != 'anonymous') {
             $apcKey = 'mm_auth_'.md5($app->request->headers['Php-Auth-User'].$app->request->headers['Php-Auth-Pw']);
-            if(!($userObj = apc_fetch($apcKey))) {
+            if (!($userObj = apcu_fetch($apcKey))) {
+                $ldap_attributes = array('*','memberof');                  
                 $ldap = new \Zend\Ldap\Ldap($ldapOptions);
                 $ldap->bind('uid='.$app->request->headers['Php-Auth-User'].',ou=people,dc=sch,dc=gr', $app->request->headers['Php-Auth-Pw']);
-                $result = $ldap->search('(&(objectClass=*)(uid='.$app->request->headers['Php-Auth-User'].'))', null, \Zend\Ldap\Ldap::SEARCH_SCOPE_ONE);
-                if($result->count() == 1) {
+                $result = $ldap->search('(&(objectClass=*)(uid='.$app->request->headers['Php-Auth-User'].'))', null, \Zend\Ldap\Ldap::SEARCH_SCOPE_ONE, $ldap_attributes);
+                //$result = $ldap->search('(&(objectClass=*)(uid='.$app->request->headers['Php-Auth-User'].'))', null, \Zend\Ldap\Ldap::SEARCH_SCOPE_ONE);
+		 if ($result->count() == 1) {
                     $userObj = $result->getFirst();
-                    apc_store($apcKey, $userObj, 3600); // Cache for 1 hour to prevent requests on every call
+                    apcu_store($apcKey, $userObj, 3600); // Cache for 1 hour to prevent requests on every call
                 } else {
                     throw new Exception(ExceptionMessages::UserAccesDenied, ExceptionCodes::UserAccesDenied); // Multiple users with this username?? Fail
                 }
             }
             // userObj has all the user attributes now - We can check roles
-            $app->request->user = $userObj;
+            //var_dump($userObj['memberof']);
+           
+           $app->request->user = $userObj;
         } else {
             // Guest access
         }
     }
     catch (Exception $e)
     {
-        if($e instanceof \Zend\Ldap\Exception\LdapException) {
+        if ($e instanceof \Zend\Ldap\Exception\LdapException) {
             $result["message"] = "[".$app->request()->getMethod()."][".__FUNCTION__."]:Invalid credentials";
         } else {
             $result["message"] = "[".$app->request()->getMethod()."][".__FUNCTION__."]:".$e->getMessage();
@@ -1662,52 +1668,63 @@ function UnitsController()
     switch ( strtoupper( $app->request()->getMethod() ) )
     {
         case MethodTypes::GET :
-            $result = GetUnits(
-                $params["mm_id"],
-                $params["registry_no"],
-                $params["source"],
-                $params["name"],
-                $params["special_name"],
-                $params["state"],
-                $params["region_edu_admin"],
-                $params["edu_admin"],
-                $params["implementation_entity"],
-                $params["transfer_area"],
-                $params["prefecture"],
-                $params["municipality"],
-                $params["municipality_community"],
-                $params["education_level"],
-                $params["phone_number"],
-                $params["email"],
-                $params["fax_number"],
-                $params["street_address"],
-                $params["postal_code"],
-                $params["tax_number"],
-                $params["tax_office"],
-                $params["area_team_number"],
-                $params["category"],
-                $params["unit_type"],
-                $params["operation_shift"],
-                $params["legal_character"],
-                $params["orientation_type"],
-                $params["special_type"],
-                $params["levels_count"],
-                $params["groups_count"],
-                $params["students_count"],
-                $params["latitude"],
-                $params["longitude"],
-                $params["positioning"],
-                $params["creation_fek"],
-                $params["last_update"],
-                $params["last_sync"],
-                $params["comments"],
-                $params["pagesize"],
-                $params["page"],
-                $params["orderby"],
-                $params["ordertype"],
-                $params["searchtype"],
-                $params["export"]
-            );
+            $method = $app->request()->getPathInfo() === '/units.geojson' ? 'GetUnitsGeoJSON' : 'GetUnits';
+            $cacheKey = md5($method.json_encode($params).$app->request()->getPathInfo());
+            if (!($result = apcu_fetch($cacheKey)) || $method == 'GetUnits') {
+                $result = $method(
+                    $params["mm_id"],
+                    $params["registry_no"],
+                    $params["source"],
+                    $params["name"],
+                    $params["special_name"],
+                    $params["state"],
+                    $params["region_edu_admin"],
+                    $params["edu_admin"],
+                    $params["implementation_entity"],
+                    $params["transfer_area"],
+                    $params["prefecture"],
+                    $params["municipality"],
+                    $params["municipality_community"],
+                    $params["education_level"],
+                    $params["phone_number"],
+                    $params["email"],
+                    $params["fax_number"],
+                    $params["street_address"],
+                    $params["postal_code"],
+                    $params["tax_number"],
+                    $params["tax_office"],
+                    $params["area_team_number"],
+                    $params["category"],
+                    $params["unit_type"],
+                    $params["operation_shift"],
+                    $params["legal_character"],
+                    $params["orientation_type"],
+                    $params["special_type"],
+                    $params["levels_count"],
+                    $params["groups_count"],
+                    $params["students_count"],
+                    $params["latitude"],
+                    $params["longitude"],
+                    $params["country"],
+                    $params["pointsCategory"],
+                    $params["inaccessible"],
+                    $params["studentsSum"],
+                    $params["positioning"],
+                    $params["creation_fek"],
+                    $params["last_update"],
+                    $params["last_sync"],
+                    $params["comments"],
+                    $params["pagesize"],
+                    $params["page"],
+                    $params["orderby"],
+                    $params["ordertype"],
+                    $params["searchtype"],
+                    $params["export"]
+                );
+                apcu_store($cacheKey, $result, 3600); // Cache for 1 hour to prevent requests on every call
+            }
+          //  $app->etag(md5(json_encode($result)));
+          //  $app->expires('+1 week');
             break;
         case MethodTypes::POST :
             $parameters = array_keys($params);
@@ -1744,6 +1761,10 @@ function UnitsController()
                 in_array ("students_count", $parameters) ? $params["students_count"] : _MISSED_,
                 in_array ("latitude", $parameters) ? $params["latitude"] : _MISSED_,
                 in_array ("longitude", $parameters) ? $params["longitude"] : _MISSED_,
+                in_array ("country", $parameters) ? $params["country"] : _MISSED_,
+                in_array ("pointsCategory", $parameters) ? $params["pointsCategory"] : _MISSED_,
+                in_array ("inaccessible", $parameters) ? $params["inaccessible"] : _MISSED_,
+                in_array ("studentsSum", $parameters) ? $params["studentsSum"] : _MISSED_,
                 in_array ("positioning", $parameters) ? $params["positioning"] : _MISSED_,
                 in_array ("creation_fek", $parameters) ? $params["creation_fek"] : _MISSED_,
                 in_array ("last_update", $parameters) ? $params["last_update"] : _MISSED_,
@@ -1787,6 +1808,10 @@ function UnitsController()
                 in_array ("students_count", $parameters) ? $params["students_count"] : _MISSED_,
                 in_array ("latitude", $parameters) ? $params["latitude"] : _MISSED_,
                 in_array ("longitude", $parameters) ? $params["longitude"] : _MISSED_,
+                in_array ("country", $parameters) ? $params["country"] : _MISSED_,
+                in_array ("pointsCategory", $parameters) ? $params["pointsCategory"] : _MISSED_,
+                in_array ("inaccessible", $parameters) ? $params["inaccessible"] : _MISSED_,
+                in_array ("studentsSum", $parameters) ? $params["studentsSum"] : _MISSED_,
                 in_array ("positioning", $parameters) ? $params["positioning"] : _MISSED_,
                 in_array ("creation_fek", $parameters) ? $params["creation_fek"] : _MISSED_,
                 in_array ("last_update", $parameters) ? $params["last_update"] : _MISSED_,
@@ -2210,6 +2235,10 @@ function UnitsOldController()
                 $params["students_count"],
                 $params["latitude"],
                 $params["longitude"],
+                $params["country"],
+                $params["pointsCategory"],
+                $params["inaccessible"],
+                $params["studentsSum"],
                 $params["positioning"],
                 $params["creation_fek"],
                 $params["last_update"],

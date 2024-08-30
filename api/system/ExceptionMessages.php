@@ -1275,7 +1275,11 @@ class ExceptionMessages
     const MissingUnitLongitudeParam = 'Το Γεωγραφικό Μήκος της Μονάδας είναι υποχρεωτικό πεδίο';
     const MissingUnitLongitudeValue = 'Το Γεωγραφικό Μήκος της Μονάδας πρέπει να έχει τιμή';
     const InvalidUnitLongitudeType = 'Το Γεωγραφικό Μήκος της Μονάδας πρέπει να είναι αλφαριθμητικό';
+    const InvalidUnitCountryType = 'Η Χώρα της Μονάδας πρέπει να είναι αριθμητικό';
     const InvalidUnitLongitudeArray = 'Το Γεωγραφικό Μήκος της Μονάδας δεν μπορεί να έχει πολλαπλές τιμές';
+    const InvalidUnitPointsCategoryType = 'Η Κατηγορία Μοριοδότησης της Μονάδας δεν είναι σωστή';
+    const InvalidUnitInaccessibleType = 'Η Προσβασιμότητα της Μονάδας δεν είναι σωστή';
+    const InvalidUnitStudentsSumType = 'Το Πλήθος των Μαθητών της Μονάδας δεν είναι σωστό';
     
     const MissingUnitPositioningParam = 'Η Κτηριακή Θέση της Μονάδας είναι υποχρεωτικό πεδίο';
     const MissingUnitPositioningValue = 'Η Κτηριακή Θέση της Μονάδας πρέπει να έχει τιμή';

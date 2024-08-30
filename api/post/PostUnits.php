@@ -53,8 +53,8 @@ header("Content-Type: text/html; charset=utf-8");
  *                  "area_team_number": ``, "category": ``, "unit_type": ``, "operation_shift": ``, 
  *                  "legal_character": ``, "orientation_type": ``, "special_type": ``, 
  *                  "levels_count": ``, "groups_count": ``, "students_count": ``, "latitude": ``,
- *                  "longitude": ``, "positioning": ``, "creation_fek": ``, "last_update": ``, 
- *                  "last_sync": ``, "comments": `` },
+ *                  "longitude": ``, "positioning": ``, "creation_fek": ``, "inaccessible": ``, "studentsSum": ``,
+ *                  "last_update": ``, "last_sync": ``, "comments": `` },
  * "mm_id": ``,
  * "status": 200,
  * "message": "[POST][units]:success"
@@ -841,7 +841,10 @@ header("Content-Type: text/html; charset=utf-8");
  *
  * @throws InvalidUnitLongitudeType {@see ExceptionMessages::InvalidUnitLongitudeType}
  * <br>{@see ExceptionCodes::InvalidUnitLongitudeType}
- * 
+ *
+ * @throws InvalidUnitCountryType {@see ExceptionMessages::InvalidUnitCountryType}
+ * <br>{@see ExceptionCodes::InvalidUnitCountryType}
+ *
  * @throws MissingUnitPositioningParam {@see ExceptionMessages::MissingUnitPositioningParam}
  * <br>{@see ExceptionCodes::MissingUnitPositioningParam}
  *
@@ -901,7 +904,7 @@ function PostUnits( $registry_no, $source, $name, $special_name, $state, $region
                     $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code, 
                     $tax_number, $tax_office, $area_team_number, $category, $unit_type, $operation_shift, 
                     $legal_character, $orientation_type, $special_type, $levels_count, $groups_count, 
-                    $students_count, $latitude, $longitude, $positioning, $creation_fek, $last_update, $last_sync, 
+                    $students_count, $latitude, $longitude, $country, $pointsCategory, $inaccessible, $studentsSum, $positioning, $creation_fek, $last_update, $last_sync,
                     $comments ) {
     
     global $app, $entityManager;
@@ -1009,6 +1012,18 @@ function PostUnits( $registry_no, $source, $name, $special_name, $state, $region
 
     //$latitude=================================================================
     CRUDUtils::entitySetParam($unit, $latitude, 'UnitLatitude', 'latitude' , $params, false, true );
+
+    //$country==================================================================
+    CRUDUtils::entitySetParam($unit, $country, 'UnitCountry', 'country' , $params, false, true );
+
+    //$pointsCategory
+    CRUDUtils::entitySetParam($unit, $pointsCategory, 'UnitPointsCategory', 'pointsCategory' , $params, false, true );
+
+    //$inaccessible
+    CRUDUtils::entitySetParam($unit, $inaccessible, 'UnitInaccessible', 'inaccessible' , $params, false, true );
+
+    //$studentsSum
+    CRUDUtils::entitySetParam($unit, $studentsSum, 'UnitStudentsSum', 'studentsSum' , $params, false, true );
 
     //$longitude================================================================
     CRUDUtils::entitySetParam($unit, $longitude, 'UnitLongitude', 'longitude' , $params, false, true );

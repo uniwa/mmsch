@@ -236,10 +236,18 @@ function GetRegionEduAdmins( $region_edu_admin,
         $count = 0;
         foreach ($results->getQuery()->getResult() as $row)
         {
+          $active = false;
+          $active_region_edu_admins = array(29,56,57,58,59,60,61,62,63,64,65,66,67,68,69);
+          if (in_array($row->getRegionEduAdminId(), $active_region_edu_admins)) 
+	  {
+          	$active = true;	
+          }
+ 
 
             $result["data"][] = array(
                                         "region_edu_admin_id"     => $row->getRegionEduAdminId(),
-                                        "region_edu_admin"        => $row->getName()
+                                        "region_edu_admin"        => $row->getName(),
+                                        "active"                  => $active
                                      );
             $count++;
         }

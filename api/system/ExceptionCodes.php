@@ -1170,7 +1170,7 @@ class ExceptionCodes
     const MissingUnitTypeValue = 500;
     /** {@see ExceptionMessages::InvalidUnitTypeValue} */   
     const InvalidUnitTypeValue = 500;
-    /** {@see ExceptionMessages::InvalidUnitTypeType */   
+    /** {@see ExceptionMessages::InvalidUnitTypeType} */
     const InvalidUnitTypeType = 500;
     /** {@see ExceptionMessages::InvalidUnitTypeArray} */   
     const InvalidUnitTypeArray = 500; 
@@ -2176,7 +2176,14 @@ class ExceptionCodes
     const InvalidUnitLongitudeType = 500;
     /** {@see ExceptionMessages::InvalidUnitLongitudeArray} */   
     const InvalidUnitLongitudeArray = 500;
-    
+    /** {@see ExceptionMessages::InvalidUnitCountryType} */
+    const InvalidUnitCountryType = 500;
+    /** {@see ExceptionMessages::InvalidUnitCountryArray} */
+    const InvalidUnitInaccessibleType = 500;
+    /** {@see ExceptionMessages::InvalidUnitInaccesibleArray} */
+    const InvalidUnitStudentsSumType = 500;
+    /** {@see ExceptionMessages::InvalidUnitPointsCategoryType} */
+    const InvalidUnitPointsCategoryType = 500;
     /** {@see ExceptionMessages::MissingUnitPositioningParam} */   
     const MissingUnitPositioningParam = 500;
     /** {@see ExceptionMessages::MissingUnitPositioningValue} */   

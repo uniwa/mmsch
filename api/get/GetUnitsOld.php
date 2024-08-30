@@ -2959,6 +2959,7 @@ function GetUnitsOld(
                 "special_type"             => $row["special_type"],
                 "latitude"                 => $row["latitude"],
                 "longitude"                => $row["longitude"],
+                "country"                  => $row["country"],
                 "positioning"              => $row["positioning"],
                 "creation_fek"             => $row["creation_fek"],
                 "last_sync"                => $row["last_sync"],

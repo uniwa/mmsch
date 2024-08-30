@@ -54,7 +54,7 @@ header("Content-Type: text/html; charset=utf-8");
  *                  "area_team_number": ``, "category": ``, "unit_type": ``, "operation_shift": ``, 
  *                  "legal_character": ``, "orientation_type": ``, "special_type": ``, 
  *                  "levels_count": ``, "groups_count": ``, "students_count": ``, "latitude": ``,
- *                  "longitude": ``, "positioning": ``, "creation_fek": ``, "last_update": ``, 
+ *                  "longitude": ``, "positioning": ``, "creation_fek": ``, "inaccessible": ``, "studentsSum": ``, "last_update": ``,
  *                  "last_sync": ``, "comments": `` },
  * "mm_id": ``,
  * "status": 200,
@@ -438,7 +438,17 @@ header("Content-Type: text/html; charset=utf-8");
  * <br>
  * <br>Το Φ.Ε.Κ. (Δημιουργίας) της Μονάδας
  * <br>Η τιμή της παραμέτρου μπορεί να είναι : string
- * 
+ *
+ * @param string $inaccessible Δυσπρόσιτο
+ * <br>
+ * <br>Ορίζει αν η Μονάδα είναι δυσπρόσιτη
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : int
+ *
+ * @param string $studentsSum Σύνολο μαθητών της Μονάδας
+ * <br>
+ * <br>Σύνολο μαθητών της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : int
+ *
  * @param datetime $last_update Ημερομηνία Τελευταίας Ενημέρωσης
  * <br>
  * <br>Η Ημερομηνία Τελευταίας Ενημέρωσης την Μονάδας
@@ -933,7 +943,7 @@ function PutUnits(  $mm_id, $registry_no, $source, $name, $special_name, $state,
                     $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code, 
                     $tax_number, $tax_office, $area_team_number, $category, $unit_type, $operation_shift, 
                     $legal_character, $orientation_type, $special_type, $levels_count, $groups_count, 
-                    $students_count, $latitude, $longitude, $positioning, $creation_fek, $last_update, $last_sync, 
+                    $students_count, $latitude, $longitude, $country, $pointsCategory, $inaccessible, $studentsSum, $positioning, $creation_fek, $last_update, $last_sync,
                     $comments ) {
     
     global $app, $entityManager, $db;
@@ -1073,6 +1083,18 @@ function PutUnits(  $mm_id, $registry_no, $source, $name, $special_name, $state,
     //$longitude================================================================
     CRUDUtils::entitySetParam($unit, $longitude, 'UnitLongitude', 'longitude' , $params, false, true );
 
+    //$country==================================================================
+    CRUDUtils::entitySetParam($unit, $country, 'UnitCountry', 'country' , $params, false, true );
+
+    //$pointsCategory
+    CRUDUtils::entitySetParam($unit, $pointsCategory, 'UnitPointsCategory', 'pointsCategory' , $params, false, true );
+
+    //$inaccessible
+    CRUDUtils::entitySetParam($unit, $inaccessible, 'UnitInaccessible', 'inaccessible' , $params, false, true );
+
+    //$studentsSum
+    CRUDUtils::entitySetParam($unit, $studentsSum, 'UnitStudentsSum', 'studentsSum' , $params, false, true );
+
     //$positioning==============================================================
     CRUDUtils::entitySetParam($unit, $positioning, 'UnitPositioning', 'positioning' , $params, false, true );
 
@@ -1097,7 +1119,7 @@ function PutUnits(  $mm_id, $registry_no, $source, $name, $special_name, $state,
             $mailSubject = "Ενημέρωση Μονάδας";
 
             $sql = "SELECT system_mail_rule_id, title, mailto, mailcc, mailfrom, subject "
-                . "FROM system_mail_rules WHERE title = '".mysql_escape_string($mailSubject)."'";
+                . "FROM system_mail_rules WHERE title = ".$db->quote($mailSubject)."";
             $stmt = $db->query( $sql );
             $rows = $stmt->fetch(PDO::FETCH_ASSOC);
 

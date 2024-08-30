@@ -130,8 +130,12 @@ header("Content-Type: text/html; charset=utf-8");
  *              "special_type": ``,
  *              "latitude": ``,
  *              "longitude": ``,
+ *              "country": ``,
+ *              "pointsCategory: ``,
  *              "positioning": ``,
  *              "creation_fek": ``,
+ *              "inaccessible": ``,
+ *              "studentsSum": ``,
  *              "last_sync": ``,
  *              "last_update": ``,
  *              "comments": ``,
@@ -808,24 +812,6 @@ header("Content-Type: text/html; charset=utf-8");
  *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
  *    </li>
  * </ul>
- *
- * @param mixed $students_count Πλήθος Μαθητών
- * <br>
- * <br>Το Πλήθος των Μαθητών της Μονάδας
- * <br>Η τιμή της παραμέτρου μπορεί να είναι : mixed{string|null|array[string|null]}
- * <ul>
- *    <li>string
- *       <br>Αλφαριθμητική : Η αναζήτηση γίνεται με το Πλήθος των Μαθητών της Μονάδας
- *       <br>Η αναζήτηση στον Όνομα γίνεται με τον Τύπο {@see SearchEnumTypes::Exact}
- *    </li>
- *    <li>null
- *       <br>Null : Η αναζήτηση γίνεται με την επιλογή κενή τιμής
- *    </li>
- *    <li>array[integer|string|null]
- *       <br>Σύνολο από Αριθμητικές ή Αλφαριθμητικές ή Null τιμές διαχωρισμένες με κόμμα
- *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
- *    </li>
- * </ul>
  * 
  * @param mixed $latitude Γεωγραφικό Πλάτος
  * <br>
@@ -897,7 +883,18 @@ header("Content-Type: text/html; charset=utf-8");
  *       <br>Η αναζήτηση γίνεται με οποιαδήποτε από αυτές τις τιμές
  *    </li>
  * </ul>
- * 
+ *
+ * @param string $inaccessible Δυσπρόσιτο
+ * <br>
+ * <br>Ορίζει αν η Μονάδα είναι δυσπρόσιτη
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : int
+ *
+ * @param string $studentsSum Σύνολο μαθητών της Μονάδας
+ * <br>
+ * <br>Σύνολο μαθητών της Μονάδας
+ * <br>Η τιμή της παραμέτρου μπορεί να είναι : int
+ *
+ *
  * @param string $last_update Ημερομηνία Τελευταίας Ενημέρωσης 
  * <br>
  * <br>Η Ημερομηνία Τελευταίας Ενημέρωσης της Μονάδας
@@ -1278,7 +1275,7 @@ header("Content-Type: text/html; charset=utf-8");
 function GetUnits(  $mm_id, $registry_no, $source, $name, $special_name, $state, $region_edu_admin, $edu_admin, $implementation_entity,
                     $transfer_area, $prefecture, $municipality, $municipality_community, $education_level, $phone_number, $email, $fax_number, $street_address, $postal_code,
                     $tax_number, $tax_office, $area_team_number, $category, $unit_type, $operation_shift, $legal_character, $orientation_type,
-                    $special_type, $levels_count, $groups_count, $students_count, $latitude, $longitude, $positioning, $creation_fek, $last_update, $last_sync, $comments,
+                    $special_type, $levels_count, $groups_count, $students_count, $latitude, $longitude, $country, $pointsCategory, $inaccessible, $studentsSum, $positioning, $creation_fek, $last_update, $last_sync, $comments,
                     $pagesize, $page, $orderby, $ordertype, $searchtype, $export ) 
 {
   
@@ -1385,7 +1382,27 @@ function GetUnits(  $mm_id, $registry_no, $source, $name, $special_name, $state,
         if (Validator::Exists('longitude', $params)){
             CRUDUtils::setFilter($qb, $longitude, "u", "longitude", "longitude", "null,value", ExceptionMessages::InvalidUnitLongitudeType, ExceptionCodes::InvalidUnitLongitudeType);
         }
-        
+
+//country==============================================================
+        if (Validator::Exists('country', $params)){
+            CRUDUtils::setFilter($qb, $country, "u", "country", "country", "null,value", ExceptionMessages::InvalidUnitCountryType, ExceptionCodes::InvalidUnitCountryType);
+        }
+
+//pointsCategory
+        if (Validator::Exists('pointsCategory', $params)){
+            CRUDUtils::setFilter($qb, $pointsCategory, "u", "pointsCategory", "pointsCategory", "null,value", ExceptionMessages::InvalidUnitPointsCategoryType, ExceptionCodes::InvalidUnitPointsCategoryType);
+        }
+
+//inaccessible
+        if (Validator::Exists('inaccessible', $params)){
+            CRUDUtils::setFilter($qb, $inaccessible, "u", "inaccessible", "inaccessible", "null,value", ExceptionMessages::InvalidUnitInaccessibleType, ExceptionCodes::InvalidUnitInaccessibleType);
+        }
+
+//studentsSum
+        if (Validator::Exists('studentsSum', $params)){
+            CRUDUtils::setFilter($qb, $studentsSum, "u", "studentsSum", "studentsSum", "null,value", ExceptionMessages::InvalidUnitStudentsSumType, ExceptionCodes::InvalidUnitStudentsSumType);
+        }
+
 //positioning==============================================================
         if (Validator::Exists('positioning', $params)){
             CRUDUtils::setFilter($qb, $positioning, "u", "positioning", "positioning", "null,value", ExceptionMessages::InvalidUnitPositioningType, ExceptionCodes::InvalidUnitPositioningType);
@@ -1571,7 +1588,7 @@ function GetUnits(  $mm_id, $registry_no, $source, $name, $special_name, $state,
                             "state_id"                  => Validator::IsNull($unit->getState()) ? Validator::ToNull() : $unit->getState()->getStateId(),
                             "state"                     => Validator::IsNull($unit->getState()) ? Validator::ToNull() : $unit->getState()->getName(),
                             //"area_team_number"      => $unit->getAreaTeamNumber(),
-                            "street_address"        => $unit->getStreetAddress(),
+                            "street_address"        => Validator::IsTrue($params['uppercase']) ? Validator::ToUpperWithoutAccents($unit->getStreetAddress()) : $unit->getStreetAddress(), //$unit->getStreetAddress(),
                             "postal_code"           => $unit->getPostalCode(),
                             "fax_number"            => $unit->getFaxNumber(),
                             "phone_number"          => $unit->getPhoneNumber(),
@@ -1611,6 +1628,10 @@ function GetUnits(  $mm_id, $registry_no, $source, $name, $special_name, $state,
                             "special_type"             => Validator::IsNull($unit->getSpecialType()) ? Validator::ToNull() : $unit->getSpecialType()->getName(),
                             "latitude"          => $unit->getLatitude(),
                             "longitude"         => $unit->getLongitude(),
+                            "country"           => $unit->getCountry(),
+                            "pointsCategory"    => $unit->getPointsCategory(),
+                            "inaccessible"      => $unit->getInaccessible(),
+                            "studentsSum"       => $unit->getStudentsSum(),
                             "positioning"       => $unit->getPositioning(),
                             "creation_fek"      => $unit->getCreationFek(),
                             "last_sync"         => ($unit->getLastSync() instanceof \DateTime)? $unit->getLastSync()->format('Y-m-d H:i:s') : null,
