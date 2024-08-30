@@ -22,13 +22,13 @@ $whatsnew = trim(file_get_contents_utf8('whatsnew.txt'));
 
 <link rel="shortcut icon" href="" />
 
-<title>MMSCH</title>
+<title>ΜΜ ΠΣΔ</title>
 
 <link rel="stylesheet" type="text/css" media="screen" href="client/vendors/bootstrap334/css/bootstrap.css" >
 
 <script type="text/javascript" src="client/vendors/kendo/js/jquery.min.js"></script>
 <script type="text/javascript" src="client/vendors/bootstrap334/js/bootstrap.js"></script>
-
+<script data-cookie-notice='{ "learnMoreLinkEnabled": true, "learnMoreLinkHref": "https://www.sch.gr/aboutcookies" }' src="client/js/cookie.notice.js"></script>
 
 <style>
 .sch_logo_text {
@@ -135,6 +135,12 @@ $whatsnew = trim(file_get_contents_utf8('whatsnew.txt'));
 						</div>
 						
 					</div>
+
+                                       <div class="row">
+                                                <div class="col-md-12">
+                                                        <a href="/hlp/term_of_use_mm.pdf" target="_blank">Όροι χρήσης</a> | <a href="/hlp/user_guide_mm_ver6.pdf" target="_blank">Οδηγός χρήστη</a> | <a href="https://www.sch.gr/dataprivacy/short.php" target="_blank">Προστασία Προσωπικών Δεδομένων</a>
+                                                </div>
+                                        </div>
 					
 				</div>
 				
@@ -144,7 +150,7 @@ $whatsnew = trim(file_get_contents_utf8('whatsnew.txt'));
 					
 					<div class="row">
 						<div class="col-md-12">
-						<center><img src="/img/icon_lighter_shading.jpg" class="" /></center>
+						<center><img src="/img/mm_sch.png" class="" /></center>
 						</div>	
 					</div>
 					
@@ -165,8 +171,10 @@ $whatsnew = trim(file_get_contents_utf8('whatsnew.txt'));
 					<div class="row">
 						<div class="col-md-12">
 							<div class="pull-right">
-							<strong>Υποστηρίζεται από το ΤΕΙ Αθήνας<br/>
-							Επικοινωνία: mm@sch.gr</strong>
+							<strong>Υποστηρίζεται από το Πανεπιστήμιο Δυτικής Αττικής<br><br>
+							Για προβλήματα ή απορίες επικοινωνήστε μαζί μας στο email: mm@sch.gr<br>
+							Μπορείτε επίσης, να χρησιμοποιείτε και το online σύστημα καταγραφής προβλημάτων στη διεύθυνση <a href="https://helpdesk.sch.gr/?category_id=9508" target="_blank">https://helpdesk.sch.gr</a><br><br>
+							</strong>
 							</div>
 						</div>
 					</div>

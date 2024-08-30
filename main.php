@@ -98,7 +98,8 @@ if (isset($user["l"])){
 		g_FY = "<?php echo $FY; ?>";
 	}  
 </script>
- 
+<script data-cookie-notice='{ "learnMoreLinkEnabled": true, "learnMoreLinkHref": "https://www.sch.gr/aboutcookies" }' src="client/js/cookie.notice.js"></script> 
+
 <style type="text/css">
 	
 	div#sidebar-inner {
@@ -863,11 +864,11 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 		</div>
 		
 		<div class="pull-left">
-			<span style="font-size:16px;font-weight:bold; text-shadow: 1px 1px 2px #111111; color: #fff;">&nbsp;Πανελλήνιο Σχολικό Δίκτυο -</span> 
+		<span style="font-size:16px;font-weight:bold; text-shadow: 1px 1px 2px #111111; color: #fff;">&nbsp;Πανελλήνιο Σχολικό Δίκτυο -</span> 
 		</div>
 		
 		<div class="pull-left">
-			<span style="font-size:16px;font-weight:bold; text-shadow: 1px 1px 2px #111111; color: #fff;">&nbsp;Μητρώο Μονάδων <sub class="label label-danger">ΒΕΤΑ Version</sub></span> 
+			<span style="font-size:16px;font-weight:bold; text-shadow: 1px 1px 2px #111111; color: #fff;">&nbsp;Μητρώο Μονάδων</span> 
 		</div>
 		<!-- 
 		<div class="pull-right">
@@ -875,7 +876,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 		</div>
 		 -->
 		<div class="pull-right">
-			<span style="font-size:16px;font-weight:bold; text-shadow: 1px 1px 2px #111111; color: #fff;">&nbsp;&nbsp;&nbsp;&nbsp;ΤΕΙ ΑΘΗΝΑΣ&nbsp;&nbsp;</span> 
+			<span style="font-size:16px;font-weight:bold; text-shadow: 1px 1px 2px #111111; color: #fff;">&nbsp;&nbsp;&nbsp;&nbsp;ΠΑ.Δ.Α.&nbsp;&nbsp;</span> 
 		</div>
 		<!-- 
 		<div class="pull-right">
@@ -891,7 +892,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
     			<i class="fa fa-user fa-1x"></i>&nbsp;&nbsp;<span id="vUsername"></span>&nbsp;&nbsp;<span class="caret"></span>
     		</button>
   			<ul class="dropdown-menu" role="menu">
-    			<li><a href="/hlp/user_guide_frontend_ver3.pdf" target="_blank"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
+    			<li><a href="/hlp/user_guide_mm_ver6.pdf" target="_blank"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
     			<?php if ($isFY) : ?>
     			<li><a href="/client/stats/statistic.php?implementation_entity=<?php echo $FY; ?>" target="_blank"><i class="fa fa-bar-chart fa-1x"></i>&nbsp;&nbsp;Στατιστικα</a></li>
     			<?php endif; ?>
