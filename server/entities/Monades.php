@@ -15,6 +15,14 @@ class Monades
     /**
      * @var integer
      *
+     * @ORM\Column(name="id", type="string", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="AA", type="integer", nullable=false)
      */
     private $aa;

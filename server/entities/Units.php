@@ -171,6 +171,38 @@ class Units
     /**
      * @var string
      *
+     * @ORM\Column(name="country", type="string", length=2, nullable=true)
+     * @Gedmo\Versioned
+     */
+    private $country = 'GR';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pointsCategory", type="string", length=255, nullable=true)
+     * @Gedmo\Versioned
+     */
+    private $pointsCategory;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="inaccessible", type="integer", nullable=true)
+     * @Gedmo\Versioned
+     */
+    private $inaccessible;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="studentsSum", type="integer", nullable=true)
+     * @Gedmo\Versioned
+     */
+    private $studentsSum;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="positioning", type="string", length=255, nullable=true)
      * @Gedmo\Versioned
      */
@@ -577,6 +609,38 @@ class Units
 
     public function setLongitude($longitude) {
         $this->longitude = $longitude;
+    }
+
+    public function getCountry() {
+        return $this->country;
+    }
+
+    public function setCountry($country) {
+        $this->country = $country;
+    }
+
+    public function getPointsCategory() {
+        return $this->pointsCategory;
+    }
+
+    public function setPointsCategory($pointsCategory) {
+        $this->pointsCategory = $pointsCategory;
+    }
+
+    public function getInaccessible() {
+        return $this->inaccessible;
+    }
+
+    public function setInaccessible($inaccessible) {
+        $this->inaccessible = $inaccessible;
+    }
+
+    public function getStudentsSum() {
+        return $this->studentsSum;
+    }
+
+    public function setStudentsSum($studentsSum) {
+        $this->studentsSum = $studentsSum;
     }
 
     public function getPositioning() {
