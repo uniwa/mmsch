@@ -14,18 +14,18 @@ $message = $data = null;
 $sync_flag = false;
 
 do {
-        $check_proccess = shell_exec("ps -ef | grep MyschoolUnitInfoJClient | grep -v grep");
+        $check_proccess = shell_exec("ps -ef | grep MyschoolUnitInfoClient | grep -v grep");
         if ($check_proccess!=null) {
-            shell_exec("ps -ef | grep MyschoolUnitInfoJClient | grep -v grep | awk '{print $2}' | xargs kill");    
+            shell_exec("ps -ef | grep MyschoolUnitInfoClient | grep -v grep | awk '{print $2}' | xargs kill");    
         }
-        
-        $data = exec('cd '.__DIR__.'/../myschool_client && "'.$Options['javaBin'].'" -Dfile.encoding=UTF-8 -jar MyschoolUnitInfoJClient.jar units '.getcwd().'/'.$Options["dbUnits"]);
+
+        $data = exec('php /IS/web/hosting/hosts/main/mm/server/myschool_client/MyschoolUnitInfoClient.php units /IS/web/hosting/hosts/main/mm/server/data/survey_units.txt');
         $data = json_decode($data);
         //var_dump($data);die();
         $message .= $data->message;
 
 	if ($data==null) {
-		$message = ' MyschoolUnitInfoJClient.jar has problem on mm server ';
+		$message = ' MyschoolUnitInfoClient connection problem. Return null ';
         } else if ($data->records ==  0 || NULL) {
         	$message = " $counter Attempt. Try for sync with MySchool Failed. ";
         } else {
@@ -50,47 +50,53 @@ if ($sync_flag == false) {
 }
 
 $sql = "INSERT INTO system_sync_logs SET "
-     . "title = '".  mysql_escape_string($data->title)."',"
-     . "message = '".  mysql_escape_string($message)."',"
-     . "records = '".  mysql_escape_string($data->records)."',"
-     . "start_date = '".  mysql_escape_string($data->start_date)."',"
-     . "start_time = '".  mysql_escape_string($data->start_time)."',"
-     . "time = '".  mysql_escape_string($data->time)."'";
+     . "title = ".  $db->quote($data->title).","
+     . "message = ".  $db->quote($message).","
+     . "records = ". $db->quote($data->records).","
+     . "start_date = ".  $db->quote($data->start_date).","
+     . "start_time = ".  $db->quote($data->start_time).","
+     . "time = ".  $db->quote($data->time)."";
 
 //echo "\n\n".$sql."\n\n";
 $stmt = $db->query( $sql );
-
 if ($sync_flag == false) { exit;}
+
+//START SYNC------------------
+//exit;
 
 //action if sync_flag is TRUE
 $data    = json_decode(sync_survey_units());
 $message = $data->message;
 
 $sql = "INSERT INTO system_sync_logs SET "
-     . "title = '".  mysql_escape_string($data->title)."',"
-     . "message = '".  mysql_escape_string($message)."',"
-     . "records = '".  mysql_escape_string($data->records)."',"
-     . "installed = '".  mysql_escape_string($data->installed)."',"
-     . "updated = '".  mysql_escape_string($data->updated)."',"
-     . "skipped = '".  mysql_escape_string($data->skipped)."',"
-     . "errors = '".  mysql_escape_string($data->errors)."',"
-     . "start_date = '".  mysql_escape_string($data->start_date)."',"
-     . "start_time = '".  mysql_escape_string($data->start_time)."',"
-     . "time = '".  mysql_escape_string($data->time)."'";
+     . "title = ".  $db->quote($data->title).","
+     . "message = ".  $db->quote($message).","
+     . "records = ".  $db->quote($data->records).","
+     . "installed = ".  $db->quote($data->installed).","
+     . "updated = ".  $db->quote($data->updated).","
+     . "skipped = ".  $db->quote($data->skipped).","
+     . "errors = ".  $db->quote($data->errors).","
+     . "start_date = ".  $db->quote($data->start_date).","
+     . "start_time = ".  $db->quote($data->start_time).","
+     . "time = ".  $db->quote($data->time)."";
 
 //echo "\n\n".$sql."\n\n";
 $stmt = $db->query( $sql );        
 
+//exit;
+
 //=logging results and send mail
 $sql = "SELECT system_mail_rule_id, title, mailto, mailcc, mailfrom, subject "
-     . "FROM system_mail_rules WHERE title = '".mysql_escape_string($data->title)."'";
+     . "FROM system_mail_rules WHERE title = ".$db->quote($data->title)."";
 $stmt = $db->query( $sql );  
 
 $rows = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ( ( $stmt->rowCount() > 0 ) && $rows["mailto"] )
 {
-    SendMail($rows["mailto"], $rows["mailcc"], $rows["mailfrom"], $rows["subject"], "<pre>".$message."</pre>");
+    //SendMail($rows["mailto"], $rows["mailcc"], $rows["mailfrom"], $rows["subject"], "<pre>".$message."</pre>");
+    SendMail('ktsiolis@uniwa.gr', '', 'dbsch@uniwa.gr', 'MM-Myschool daily sync', "<pre>".$message."</pre>");
+    SendMail('krantzos@uniwa.gr', '', 'dbsch@uniwa.gr', 'MM-Myschool daily sync', "<pre>".$message."</pre>");
 }
     
 ?>
