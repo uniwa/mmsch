@@ -59,7 +59,7 @@ function sync_survey_units()
             $blockRowsErrors, $blockRowsInstalled, $blockRowsUpdated, $blockRowsSkiped,
             $logMessage, $errorMessages, $last_sync);
         try {
-            $parser = new JsonStreamingParser_Parser($stream, $listener);
+            $parser = new JsonStreamingParser\Parser($stream, $listener);
             $parser->parse();
         } catch (Exception $e) {
             fclose($stream);
@@ -117,7 +117,7 @@ function sync_survey_units()
     return json_encode($result);
 }
 
-class UnitsParseListener implements \JsonStreamingParser_Listener {
+class UnitsParseListener implements JsonStreamingParser\Listener {
     private $_level;
     private $_stack;
     private $_keyStack;
@@ -255,6 +255,9 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 units.last_sync as last_sync,
                 units.last_update as last_update,
                 units.tax_number as tax_number,
+                units.pointsCategory as pointsCategory,
+                units.inaccessible as inaccessible,
+                units.studentsSum as studentsSum,
                 tax_offices.name as tax_office,
                 units.creation_fek as creation_fek,
                 units.latitude as latitude,
@@ -279,7 +282,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 left join tax_offices on  units.tax_office_id = tax_offices.tax_office_id
                 left join special_types on  units.special_type_id = special_types.special_type_id
                 left join unit_dns on units.mm_id = unit_dns.mm_id
-                WHERE units.registry_no = '".mysql_escape_string(trim($mySchoolRegistryNo))."' and (units.source_id = 1 OR units.source_id = 5)";
+                WHERE units.registry_no = ".$db->quote(trim($mySchoolRegistryNo))." and (units.source_id = 1 OR units.source_id = 5)";
 
          $stmt = $db->query( $sql );
          $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -297,7 +300,6 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
         $this->isError = false;
 
 
-
       if($this->isIgnored($unit)) {
             return true;
         }
@@ -309,7 +311,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             ob_get_flush(); ob_flush(); flush();
         }
 
-        if (($this->rowToStop <> 0 ) && ($this->totalRowsCounter == $this->rowToStop)) break;
+        if (($this->rowToStop <> 0 ) && ($this->totalRowsCounter == $this->rowToStop)) {return;}
 
         if ((trim($unit["Perifereia"]) <> "ΣΥΝΤΟΝΙΣΤΙΚΟ ΓΡΑΦΕΙΟ ΕΚΚΛΗΣΙΑΣΤΙΚΩΝ") &&
             (trim($unit["Perifereia"]) <> "ΣΥΝΤΟΝΙΣΤΙΚΟ ΓΡΑΦΕΙΟ ΜΕΙΟΝΟΤΙΚΩΝ") &&
@@ -385,9 +387,9 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
                 if(!isset($unit_type_id)) {
                     //$sql = "DELETE FROM units "
-                    //     . "WHERE registry_no = '".mysql_escape_string(trim($unit["RegistryNo"]))."' and (source_id = 1 OR source_id = 5)";
+                    //     . "WHERE registry_no = ".$db->quote(trim($unit["RegistryNo"]))." and (source_id = 1 OR source_id = 5)";
                     //$stmt = $db->query( $sql );
-                    //$row = $stmt->execute(PDO::FETCH_ASSOC);
+                    //$row = $stmt->execute(PDO::FETCH_ASSOC);           
                     return true;
                 }
             }
@@ -410,9 +412,21 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             {
 
             $ckDate = trim($unit["LastUpdated"]);
-	    if (strpos($ckDate,'.') == false) $ckDate = $ckDate.'.0000';
-              
+	    if (strpos($ckDate,'.') == false) 
+            {
+		$ckDate = $ckDate.'.0000';
+	    }
+	    else
+ 	    {
+                if (strlen($ckDate) > 26)
+                {
+                  $ckDate = mb_substr($ckDate, 0, 26);
+                }
+	    }              
+
+
             $lastUpdate = \DateTime::createFromFormat('Y-m-d\TH:i:s.u', $ckDate);
+            $inaccessible = filter_var(trim($unit["Inaccessible"]), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
                 $params = array(
                     "registry_no"           => trim($unit["RegistryNo"]),
                     "source"                => "MySchool",
@@ -441,17 +455,21 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                     "last_sync"             => $this->lastSync, // This is today's date
                     "last_update"           => $lastUpdate instanceof \DateTime ? $lastUpdate->format('Y-m-d H:i:s') : null,
                     "tax_number"            => trim($unit["SchoolAFM"]),
+                    "pointsCategory"        => trim($unit["PointsCategory"]),
+                    "inaccessible"          => $inaccessible ? 1 : 0,
+                    "studentsSum"           => trim($unit["StudentsSum"]),
                     "tax_office"            => $this->a_tax_offices[ $tax_office_id ],
                     "creation_fek"          => trim($unit["SchoolCreationFEK"]),
                     "latitude"              => trim($unit["Latitude"]),
                     "longitude"             => trim($unit["Longitude"]),
                 );
 
-                //echo "<pre>"; var_dump( $unit ); echo "</pre>";
-
+               // echo "<pre>"; var_dump( $unit ); echo "</pre>";
+              //  echo trim($unit["RegistryNo"]); 
                 $sql = "SELECT mm_id, last_sync FROM units "
-                     . "WHERE registry_no = '".mysql_escape_string(trim($unit["RegistryNo"]))."' and (source_id = 1 OR source_id = 5)";
-                //echo "<br><br>".$sql."<br><br>";
+                     . "WHERE registry_no = ".$db->quote(trim($unit["RegistryNo"]))." and (source_id = 1 OR source_id = 5)";
+               
+	     //	echo "<br><br>".$sql."<br><br>";
 
                 $stmt = $db->query( $sql );
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -464,13 +482,15 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
 
 		    if(!($lastUpdate instanceof \DateTime) || ($lastSync->format('Y-m-d H:i:s') >= $lastUpdate->format('Y-m-d H:i:s'))) {
 		    // We already have the latest version, skip the unit
-                        //echo ' -CASE1- mm_id = '.$row["mm_id"].' : lastSync(db) >= lastUpdate(txt) OR lastUpdate(txt) not DateTime format- '. PHP_EOL;
+                    //    echo ' -CASE1- mm_id = '.$row["mm_id"].' : lastSync(db) >= lastUpdate(txt) OR lastUpdate(txt) not DateTime format- '. PHP_EOL;
                         $this->blockRowsSkiped++;
                         $this->totalRowsSkipped++;
                         return true;
                     }
 
-                 	$dbUnitData =	$paramsCleared = $checkData = null;                     
+//Comment below for full sync, uncomment for general use
+///*
+                 	$dbUnitData = $paramsCleared = $checkData = null;                     
                  	$dbUnitData = $this->compareUnits($unit["RegistryNo"]);                
                  	foreach ($params as $key => $parameter){
                  		$paramsCleared[$key] = $this->transforToNull($parameter);
@@ -480,18 +500,62 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 	$checkData = array_diff_assoc($paramsCleared,$dbUnitData);
                
                 	if ((count($checkData) == 1) && (array_key_exists('last_sync', $checkData))){
-                        	echo ' -CASE2- mm_id = '.$row["mm_id"].' : lastSync(txt) is only changed key/value '. PHP_EOL;
+                        	//echo ' -CASE2- mm_id = '.$row["mm_id"].' : lastSync(txt) is only changed key/value '. PHP_EOL;
                         	$this->blockRowsSkiped++;
                         	$this->totalRowsSkipped++;
+                       		if ((trim($unit["Manager"]) != 'null') && (trim($unit["Manager"]["TaxNumber"]) != ""))
+                                {
+
+                                        $sql = "SELECT `unit_workers`.unit_worker_id FROM `unit_workers`
+                                                INNER JOIN `workers` ON `workers`.worker_id = `unit_workers`.worker_id
+                                                WHERE `unit_workers`.mm_id = " . $db->quote(trim($row['mm_id'])) . " AND `workers`.tax_number = " . $db->quote(trim($unit["Manager"]["TaxNumber"])) . "";
+                                        //echo "<br><br>".$sql."<br><br>";
+
+                                        $stmt = $db->query( $sql );
+                                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                                        if (!$row["unit_worker_id"])
+                                        {
+                                                echo " addWorker with tax number " . $unit["Manager"]["TaxNumber"];
+                                                $this->addWorker($params, $unit["Manager"], 'ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ');
+                                        }
+                                }
+                                else if ((trim ($unit["Manager"]) == 'null'))
+                                {
+                                         $this->preDeleteUnitWorker($params);
+                                }
+
+
                         	return true;
                         }
 
                 	if ((count($checkData) == 2) && (array_key_exists('last_update', $checkData))){
-		 		echo  ' -CASE3- mm_id = '.$row["mm_id"].' : lastSync(txt) AND lastUpdate(txt) is only changed key/value '. PHP_EOL;
+		 		//echo  ' -CASE3- mm_id = '.$row["mm_id"].' : lastSync(txt) AND lastUpdate(txt) is only changed key/value '. PHP_EOL;
                         	$this->blockRowsSkiped++;
                         	$this->totalRowsSkipped++;
+			    	if ((trim($unit["Manager"]) != 'null') && (trim($unit["Manager"]["TaxNumber"]) != ""))
+			    	{
+
+ 					$sql = "SELECT `unit_workers`.unit_worker_id FROM `unit_workers`
+						INNER JOIN `workers` ON `workers`.worker_id = `unit_workers`.worker_id
+						WHERE `unit_workers`.mm_id = " . $db->quote(trim($row['mm_id'])) . " AND `workers`.tax_number = " . $db->quote(trim($unit["Manager"]["TaxNumber"])) . "";
+					//echo "<br><br>".$sql."<br><br>";
+
+			  		$stmt = $db->query( $sql );
+					$row = $stmt->fetch(PDO::FETCH_ASSOC);
+					if (!$row["unit_worker_id"])
+					{
+			    			echo " addWorker with tax number " . $unit["Manager"]["TaxNumber"];
+						$this->addWorker($params, $unit["Manager"], 'ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ');
+                                        }
+			    	}
+		                else if ((trim ($unit["Manager"]) == 'null'))
+                                {
+                                         $this->preDeleteUnitWorker($params);
+                                }
+
                         	return true;
 			}    
+
 
                         //var_dump($checkData);
                         //echo '-------------';
@@ -504,7 +568,8 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                         //var_dump($params);
                         //echo '-------------';
                         //var_dump($paramsCleared);
-
+//*/
+//Comment above for full sync
                 }
 
                 $curl = curl_init($Options["ServerURL"]."/units");
@@ -518,7 +583,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
                 $data = curl_exec($curl);
                 $data = json_decode( $data );
 
-                //echo "<pre>"; var_dump( $data ); echo "</pre>";
+             //  echo "<pre>"; var_dump( $data ); echo "</pre>";
 
                 $isNew = is_null($params["mm_id"]);
 
@@ -543,9 +608,13 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             }
 
 //= Workers ====================================================================
-            if ((!$this->isError) && (trim ($unit["Manager"]) != 'null') && (trim ($unit["Manager"]["RegistryNo"]) != ""))
+            if ((!$this->isError) && (trim ($unit["Manager"]) != 'null') && (trim ($unit["Manager"]["TaxNumber"]) != "")) //changed from RegistryNo
             {
                 $this->addWorker($params, $unit["Manager"], 'ΥΠΕΥΘΥΝΟΣ ΜΟΝΑΔΑΣ');
+            }
+            else if ((!$this->isError) && (trim ($unit["Manager"]) == 'null'))
+            {
+               $this->preDeleteUnitWorker($params);
             }
 
             if ( ! $this->isError )
@@ -586,9 +655,10 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             "source" => "MySchool",
         );
 
-        $sql = "SELECT worker_id FROM workers "
-             . "WHERE registry_no = '".mysql_escape_string(trim($worker["RegistryNo"]))."'";
+        //$sql = "SELECT worker_id FROM workers "
+        //     . "WHERE registry_no = ".$db->quote(trim($worker["RegistryNo"]))."";
 
+        $sql = "SELECT worker_id FROM workers WHERE tax_number = ".$db->quote(trim($worker["TaxNumber"]))."";
         //echo "<br><br>".$sql."<br><br>";
 
         $stmt = $db->query( $sql );
@@ -633,7 +703,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
         );
 
         $sql = "SELECT unit_worker_id FROM unit_workers "
-             . "WHERE worker_id = '".mysql_escape_string(trim($data->worker_id))."' AND mm_id = '".mysql_escape_string(trim($unit['mm_id']))."'";
+             . "WHERE worker_id = ".$db->quote(trim($data->worker_id))." AND mm_id = ".$db->quote(trim($unit['mm_id']))."";
 
         //echo "<br><br>".$sql."<br><br>";
 
@@ -671,6 +741,59 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             $this->errorMessages[] = "[Error at UnitWorkers Function] registry_no : ".$unit["RegistryNo"]." => ".$data->status." : ".$data->message;
         }
     }
+
+    public function preDeleteUnitWorker($unit) {
+        global $db,$Options;
+
+        $sql = "SELECT unit_worker_id FROM unit_workers WHERE mm_id = ".$db->quote(trim($unit['mm_id']))."";
+        //echo "<br><br>".$sql."<br><br>";
+
+        $stmt = $db->query( $sql );
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ( $row["unit_worker_id"] )
+        {
+             echo "[Warning at UnitWorkers] unit : " . $unit["mm_id"] . " has no unit worker. Delete unit worker id = " .  $row["unit_worker_id"] ;
+             $this->deleteUnitWorker($row["unit_worker_id"]);
+        }
+    }
+
+    private function deleteUnitWorker($unit_worker_id) {
+       	global $db, $Options;
+       
+
+        if  ($unit_worker_id > 0)
+        {
+            $params["unit_worker_id"] = $unit_worker_id;
+        }
+            
+       	$curl = curl_init($Options["ServerURL"]."/unit_workers");
+       	curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+       	curl_setopt($curl, CURLOPT_USERPWD, $Options["ServerAdminUserName"].":".$Options["ServerAdminPassWord"]);
+       	curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
+       	curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+       	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $data = curl_exec($curl);
+	$data = json_decode( $data );
+
+	//echo "<pre>"; var_dump( $data ); echo "</pre>";
+
+	if ($data->status == 200 )
+	{
+		//$unit_worker_id = $data->unit_worker_id;
+	}
+	else
+	{
+		$this->isError = true;
+
+		$this->blockRowsErrors++;
+		$this->totalRowsErrors++;
+
+		$this->errorMessages[] = "[Error at UnitWorkers Function] Delete unit_worker_id : ". $row['unit_worker_id'] ." => ".$data->status." : ". $data->message;
+	}
+    } 
+   
 
     private function isIgnored($unit) {
         $ignoredRegistryNos = array(
@@ -1940,7 +2063,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             '02907018',
             '02907019',
             '03005000',
-            '0301040',
+            //'0301040',
             '03117003',
             '03117004',
             '03117005',
@@ -2064,7 +2187,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             '03507000',
             '03507002',
             '03507003',
-            '0351040',
+            //'0351040',
             '03606000',
             '03606001',
             '03706000',
@@ -2467,8 +2590,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             '105',
             '170599',
             '5012017-39',
-            '7054033',
-            '7311031',
+            //'7311031',
             '9050114',
             '9520568',
             '9480005',
@@ -2492,16 +2614,14 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             '9010472',
             '9410022',
             '9520969',
-            '9521248',
             '0106575',
             '9520636',
             '9380188',
             '9080386',
             '9350764',
-            '9020146',
+            //'9020146',
             '9107444',
             '9060705',
-            '9230116',
             '9111111',
             '9520867',
             '9060578',
@@ -2516,7 +2636,7 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             '9160166',
             '9050284',
             '0616011',
-            '1061001',
+            //'1061001',
             '0637010',
             '944350',
             '944351',
@@ -2528,11 +2648,10 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             '9450379',
             '9450384',
             '9470033',
-            '9520285',
             '9531872',
             '9580105',
             '9952078',
-            '9999999',
+            //'9999999',
             'aacdefgh',
             'abcdefg',
             'agnos77',
@@ -2543,7 +2662,87 @@ class UnitsParseListener implements \JsonStreamingParser_Listener {
             'palio195902',
             'r566656',
             'sge98',
-            'sivit97',
+            //'sivit97',
+		'7710001',
+		'7710002',
+		'7710003',
+		'7710004',
+		'7710005',
+		'7720001',
+		'7720002',
+		'7720003',
+		'7720004',
+		'7720005',
+		'7720006',
+		'7720007',
+		'7720008',
+		'7720009',
+		'7720010',
+		'7720011',
+		'7720012',
+		'7720013',
+		'7720014',
+		'7720015',
+		'7720016',
+		'7720017',
+		'7720018',
+		'7720019',
+		'7720020',
+		'7730001',
+		'7730002',
+		'7730003',
+		'7740001',
+		'7740002',
+		'7740003',
+		'7740004',
+		'7740005',
+		'7740006',
+		'7740007',
+		'7740008',
+		'7740009',
+		'7740010',
+		'7740011',
+		'7740012',
+		'7740013',
+		'7740014',
+		'7740015',
+		'7750001',
+		'7750002',
+		'7750003',
+		'7750004',
+                '0000001',
+                '0000002',
+		'0000003',
+		'0000004',
+		'0000005',
+		'0000006',
+		'0000007',
+		'0000008',
+		'0000009',
+		'0000010',
+		'0000011',
+		'0000012',
+		'0000013',
+		'0000014',
+		'0000015',
+		'0000016',
+		'0000017',
+		'0000018',
+		'0000019',
+		'0000020',
+		'0000021',
+		'0000022',
+		'0000023',
+		'0000024',
+		'0000025',
+		'0000026',
+		'0000031',
+		'0000032',
+		'0000033',
+		'0000034',
+		'0000035',
+		'0000036',
+		'0000037'
         );
 
         if(array_search(trim($unit["RegistryNo"]), $ignoredRegistryNos, true) !== false) {
