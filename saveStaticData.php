@@ -5,7 +5,7 @@ require_once ('server/libs/phpCAS/CAS.php');
 if(!isset($_GET['auth']) || $_GET['auth'] != '0') {
     if(!isset($casOptions["NoAuth"]) || $casOptions["NoAuth"] != true) {
         // initialize phpCAS using SAML
-        phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'');
+        phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'','https://mm.sch.gr');
         // no SSL validation for the CAS server, only for testing environments
         phpCAS::setNoCasServerValidation();
         // handle backend logout requests from CAS server

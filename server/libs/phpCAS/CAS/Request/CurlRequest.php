@@ -17,7 +17,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * PHP Version 5
+ * PHP Version 7
  *
  * @file     CAS/Request/CurlRequest.php
  * @category Authentication
@@ -67,7 +67,7 @@ implements CAS_Request_RequestInterface
         /*********************************************************
          * initialize the CURL session
         *********************************************************/
-        $ch = $this->_initAndConfigure();
+        $ch = $this->initAndConfigure();
 
         /*********************************************************
          * Perform the query
@@ -75,7 +75,9 @@ implements CAS_Request_RequestInterface
         $buf = curl_exec($ch);
         if ( $buf === false ) {
             phpCAS::trace('curl_exec() failed');
-            $this->storeErrorMessage('CURL error #'.curl_errno($ch).': '.curl_error($ch));
+            $this->storeErrorMessage(
+                'CURL error #'.curl_errno($ch).': '.curl_error($ch)
+            );
             $res = false;
         } else {
             $this->storeResponseBody($buf);
@@ -84,7 +86,9 @@ implements CAS_Request_RequestInterface
 
         }
         // close the CURL session
-        curl_close($ch);
+        if (PHP_VERSION_ID < 80000) {
+            curl_close($ch);
+        }
 
         phpCAS::traceEnd($res);
         return $res;
@@ -95,23 +99,16 @@ implements CAS_Request_RequestInterface
      * This method should NOT be used outside of the CurlRequest or the
      * CurlMultiRequest.
      *
-     * @return resource The cURL handle on success, false on failure
+     * @return resource|false The cURL handle on success, false on failure
      */
-    private function _initAndConfigure()
+    public function initAndConfigure()
     {
         /*********************************************************
          * initialize the CURL session
         *********************************************************/
         $ch = curl_init($this->url);
 
-        if (version_compare(PHP_VERSION, '5.1.3', '>=')) {
-            //only avaible in php5
-            curl_setopt_array($ch, $this->_curlOptions);
-        } else {
-            foreach ($this->_curlOptions as $key => $value) {
-                curl_setopt($ch, $key, $value);
-            }
-        }
+        curl_setopt_array($ch, $this->_curlOptions);
 
         /*********************************************************
          * Set SSL configuration
@@ -120,13 +117,14 @@ implements CAS_Request_RequestInterface
             if ($this->validateCN) {
                 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
             } else {
-                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 1);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
             }
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
             curl_setopt($ch, CURLOPT_CAINFO, $this->caCertPath);
             phpCAS::trace('CURL: Set CURLOPT_CAINFO ' . $this->caCertPath);
         } else {
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         }
 
         /*********************************************************
@@ -164,6 +162,11 @@ implements CAS_Request_RequestInterface
             curl_setopt($ch, CURLOPT_POSTFIELDS, $this->postBody);
         }
 
+        /*********************************************************
+         * Set User Agent
+         *********************************************************/
+        curl_setopt($ch, CURLOPT_USERAGENT, 'phpCAS/' . phpCAS::getVersion());
+
         return $ch;
     }
 
@@ -176,7 +179,7 @@ implements CAS_Request_RequestInterface
      *
      * @return void
      */
-    private function _storeResponseBody ($body)
+    public function _storeResponseBody ($body)
     {
         $this->storeResponseBody($body);
     }
@@ -184,12 +187,12 @@ implements CAS_Request_RequestInterface
     /**
      * Internal method for capturing the headers from a curl request.
      *
-     * @param handle $ch     handle of curl
+     * @param resource $ch     handle of curl
      * @param string $header header
      *
-     * @return void
+     * @return int
      */
-    private function _curlReadHeaders ($ch, $header)
+    public function _curlReadHeaders ($ch, $header)
     {
         $this->storeResponseHeader($header);
         return strlen($header);

@@ -39,7 +39,7 @@ class TokenParser
      *
      * @var int
      */
-    private $numTokens = 0;
+    private $numTokens;
 
     /**
      * The current array pointer.
@@ -48,21 +48,32 @@ class TokenParser
      */
     private $pointer = 0;
 
+    /**
+     * @param string $contents
+     */
     public function __construct($contents)
     {
         $this->tokens = token_get_all($contents);
+
+        // The PHP parser sets internal compiler globals for certain things. Annoyingly, the last docblock comment it
+        // saw gets stored in doc_comment. When it comes to compile the next thing to be include()d this stored
+        // doc_comment becomes owned by the first thing the compiler sees in the file that it considers might have a
+        // docblock. If the first thing in the file is a class without a doc block this would cause calls to
+        // getDocBlock() on said class to return our long lost doc_comment. Argh.
+        // To workaround, cause the parser to parse an empty docblock. Sure getDocBlock() will return this, but at least
+        // it's harmless to us.
+        token_get_all("<?php\n/**\n *\n */");
+
         $this->numTokens = count($this->tokens);
-        $this->pointer = 0;
     }
 
     /**
      * Gets the next non whitespace and non comment token.
      *
-     * @param $docCommentIsComment
-     *     If TRUE then a doc comment is considered a comment and skipped.
-     *     If FALSE then only whitespace and normal comments are skipped.
+     * @param boolean $docCommentIsComment If TRUE then a doc comment is considered a comment and skipped.
+     *                                     If FALSE then only whitespace and normal comments are skipped.
      *
-     * @return array The token if exists, null otherwise.
+     * @return array|null The token if exists, null otherwise.
      */
     public function next($docCommentIsComment = TRUE)
     {
@@ -82,34 +93,41 @@ class TokenParser
     }
 
     /**
-     * Parse a single use statement.
+     * Parses a single use statement.
      *
      * @return array A list with all found class names for a use statement.
      */
     public function parseUseStatement()
     {
+
+        $groupRoot = '';
         $class = '';
         $alias = '';
         $statements = array();
         $explicitAlias = false;
         while (($token = $this->next())) {
-            $isNameToken = $token[0] === T_STRING || $token[0] === T_NS_SEPARATOR;
+            $isNameToken = $token[0] === T_STRING || $token[0] === T_NS_SEPARATOR || $token[0] === T_NAME_QUALIFIED || $token[0] === T_NAME_FULLY_QUALIFIED;
             if (!$explicitAlias && $isNameToken) {
                 $class .= $token[1];
-                $alias = $token[1];
+                $alias = false === strrpos($token[1], '\\') ? $token[1] : substr($token[1], strrpos($token[1], '\\') + 1);
             } else if ($explicitAlias && $isNameToken) {
                 $alias .= $token[1];
             } else if ($token[0] === T_AS) {
                 $explicitAlias = true;
                 $alias = '';
             } else if ($token === ',') {
-                $statements[strtolower($alias)] = $class;
+                $statements[strtolower($alias)] = $groupRoot . $class;
                 $class = '';
                 $alias = '';
                 $explicitAlias = false;
             } else if ($token === ';') {
-                $statements[strtolower($alias)] = $class;
+                $statements[strtolower($alias)] = $groupRoot . $class;
                 break;
+            } else if ($token === '{' ) {
+                $groupRoot = $class;
+                $class = '';
+            } else if ($token === '}' ) {
+                continue;
             } else {
                 break;
             }
@@ -119,9 +137,10 @@ class TokenParser
     }
 
     /**
-     * Get all use statements.
+     * Gets all use statements.
      *
      * @param string $namespaceName The namespace name of the reflected class.
+     *
      * @return array A list with all found use statements.
      */
     public function parseUseStatements($namespaceName)
@@ -146,7 +165,7 @@ class TokenParser
     }
 
     /**
-     * Get the namespace.
+     * Gets the namespace.
      *
      * @return string The found namespace.
      */
@@ -161,9 +180,9 @@ class TokenParser
     }
 
     /**
-     * Get the class name.
+     * Gets the class name.
      *
-     * @return string The foundclass name.
+     * @return string The found class name.
      */
     public function parseClass()
     {

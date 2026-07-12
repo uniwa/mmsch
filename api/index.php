@@ -17,98 +17,98 @@ $app = new \Slim\Slim();
 
 $app->config('debug', true);
 
-$app->map('/categories', Authentication, UserRolesPermission, CategoriesController)
+$app->map('/categories', 'Authentication', 'UserRolesPermission', 'CategoriesController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/edu_admins', Authentication, UserRolesPermission, EduAdminsController)
+$app->map('/edu_admins', 'Authentication', 'UserRolesPermission', 'EduAdminsController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/education_levels', Authentication, UserRolesPermission, EducationLevelsController)
+$app->map('/education_levels', 'Authentication', 'UserRolesPermission', 'EducationLevelsController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/groups', Authentication, UserRolesPermission, GroupsController)
+$app->map('/groups', 'Authentication', 'UserRolesPermission', 'GroupsController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/implementation_entities', Authentication, UserRolesPermission, ImplementationEntitiesController)
+$app->map('/implementation_entities', 'Authentication', 'UserRolesPermission', 'ImplementationEntitiesController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/ldaps', Authentication, UserRolesPermission, LDapsController)
+$app->map('/ldaps', 'Authentication', 'UserRolesPermission', 'LDapsController')
     ->via(MethodTypes::GET);
-$app->map('/ldap_entries', Authentication, UserRolesPermission, LDapEntriesController)
+$app->map('/ldap_entries', 'Authentication', 'UserRolesPermission', 'LDapEntriesController')
     ->via(MethodTypes::GET);
-$app->map('/legal_characters', Authentication, UserRolesPermission, LegalCharactersController)
+$app->map('/legal_characters', 'Authentication', 'UserRolesPermission', 'LegalCharactersController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/levels', Authentication, UserRolesPermission, LevelsController)
+$app->map('/levels', 'Authentication', 'UserRolesPermission', 'LevelsController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/municipality_communities', Authentication, UserRolesPermission, MunicipalityCommunitiesController)
+$app->map('/municipality_communities', 'Authentication', 'UserRolesPermission', 'MunicipalityCommunitiesController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/municipalities', Authentication, UserRolesPermission, MunicipalitiesController)
+$app->map('/municipalities', 'Authentication', 'UserRolesPermission', 'MunicipalitiesController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/operation_shifts', Authentication, UserRolesPermission, OperationShiftsController)
+$app->map('/operation_shifts', 'Authentication', 'UserRolesPermission', 'OperationShiftsController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/orientation_types', Authentication, UserRolesPermission, OrientationTypesController)
+$app->map('/orientation_types', 'Authentication', 'UserRolesPermission', 'OrientationTypesController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/prefectures', Authentication, UserRolesPermission, PrefecturesController)
+$app->map('/prefectures', 'Authentication', 'UserRolesPermission', 'PrefecturesController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/region_edu_admins', Authentication, UserRolesPermission, RegionEduAdminsController)
+$app->map('/region_edu_admins', 'Authentication', 'UserRolesPermission', 'RegionEduAdminsController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/relations', Authentication, UserRolesPermission, RelationsController)
+$app->map('/relations', 'Authentication', 'UserRolesPermission', 'RelationsController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/relation_types', Authentication, UserRolesPermission, RelationTypesController)
+$app->map('/relation_types', 'Authentication', 'UserRolesPermission', 'RelationTypesController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/school_committees', Authentication, UserRolesPermission, SchoolCommitteesController)
+$app->map('/school_committees', 'Authentication', 'UserRolesPermission', 'SchoolCommitteesController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/sources', Authentication, UserRolesPermission, SourcesController)
+$app->map('/sources', 'Authentication', 'UserRolesPermission', 'SourcesController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/special_types', Authentication, UserRolesPermission, SpecialTypesController)
+$app->map('/special_types', 'Authentication', 'UserRolesPermission', 'SpecialTypesController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/states', Authentication, UserRolesPermission, StatesController)
+$app->map('/states', 'Authentication', 'UserRolesPermission', 'StatesController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/tax_offices', Authentication, UserRolesPermission, TaxOfficesController)
+$app->map('/tax_offices', 'Authentication', 'UserRolesPermission', 'TaxOfficesController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/transfer_area_municipalities', Authentication, UserRolesPermission, TransferAreaMunicipalitiesController)
+$app->map('/transfer_area_municipalities', 'Authentication', 'UserRolesPermission', 'TransferAreaMunicipalitiesController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/transfer_areas', Authentication, UserRolesPermission, TransferAreasController)
+$app->map('/transfer_areas', 'Authentication', 'UserRolesPermission', 'TransferAreasController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/circuit_types', Authentication, UserRolesPermission, CircuitTypesController)
+$app->map('/circuit_types', 'Authentication', 'UserRolesPermission', 'CircuitTypesController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/cpes', Authentication, UserRolesPermission, CpesController)
+$app->map('/cpes', 'Authentication', 'UserRolesPermission', 'CpesController')
     ->via(MethodTypes::GET);
-$app->map('/workers', Authentication, UserRolesPermission, WorkersController)
+$app->map('/workers', 'Authentication', 'UserRolesPermission', 'WorkersController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/circuits', Authentication, UserRolesPermission, CircuitsController)
+$app->map('/circuits', 'Authentication', 'UserRolesPermission', 'CircuitsController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/unit_workers', Authentication, UserRolesPermission, UnitWorkersController)
+$app->map('/unit_workers', 'Authentication', 'UserRolesPermission', 'UnitWorkersController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/connections', Authentication, UserRolesPermission, ConnectionsController)
+$app->map('/connections', 'Authentication', 'UserRolesPermission', 'ConnectionsController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/units', Authentication, UserRolesPermission, UnitsController)
+$app->map('/units', 'Authentication', 'UserRolesPermission', 'UnitsController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/units.geojson', UnitsController)
+$app->map('/units.geojson', 'UnitsController')
     ->via(MethodTypes::GET);
-$app->map('/unit_dns', Authentication, UserRolesPermission, UnitDnsController)
+$app->map('/unit_dns', 'Authentication', 'UserRolesPermission', 'UnitDnsController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/unit_network_subnet_types', Authentication, UserRolesPermission, UnitNetworkSubnetTypesController)
+$app->map('/unit_network_subnet_types', 'Authentication', 'UserRolesPermission', 'UnitNetworkSubnetTypesController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/unit_network_subnets', Authentication, UserRolesPermission, UnitNetworkSubnetsController)
+$app->map('/unit_network_subnets', 'Authentication', 'UserRolesPermission', 'UnitNetworkSubnetsController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/unit_network_objects', Authentication, UserRolesPermission, UnitNetworkObjectsController)
+$app->map('/unit_network_objects', 'Authentication', 'UserRolesPermission', 'UnitNetworkObjectsController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/connection_unit_network_subnets', Authentication, UserRolesPermission, ConnectionUnitNetworkSubnetsController)
+$app->map('/connection_unit_network_subnets', 'Authentication', 'UserRolesPermission', 'ConnectionUnitNetworkSubnetsController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/unit_types', Authentication, UserRolesPermission, UnitTypesController)
+$app->map('/unit_types', 'Authentication', 'UserRolesPermission', 'UnitTypesController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/worker_positions', Authentication, UserRolesPermission, WorkerPositionsController)
+$app->map('/worker_positions', 'Authentication', 'UserRolesPermission', 'WorkerPositionsController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
-$app->map('/worker_specializations', Authentication, UserRolesPermission, WorkerSpecializationsController)
+$app->map('/worker_specializations', 'Authentication', 'UserRolesPermission', 'WorkerSpecializationsController')
     ->via(MethodTypes::GET, MethodTypes::POST, MethodTypes::PUT, MethodTypes::DELETE);
 
-$app->map('/crm_data', Authentication, UserRolesPermission, CrmDataController)
+$app->map('/crm_data', 'Authentication', 'UserRolesPermission', 'CrmDataController')
     ->via(MethodTypes::GET);
-$app->map('/statistic_units', Authentication, UserRolesPermission, StatisticUnitsController)
+$app->map('/statistic_units', 'Authentication', 'UserRolesPermission', 'StatisticUnitsController')
     ->via(MethodTypes::GET);
-$app->map('/ext_log_entries', Authentication, UserRolesPermission, ExtLogEntriesController)
+$app->map('/ext_log_entries', 'Authentication', 'UserRolesPermission', 'ExtLogEntriesController')
     ->via(MethodTypes::GET);
-$app->map('/check_required_values', Authentication, UserRolesPermission, CheckRequiredValuesController)
+$app->map('/check_required_values', 'Authentication', 'UserRolesPermission', 'CheckRequiredValuesController')
     ->via(MethodTypes::GET);
-$app->map('/units_old', Authentication, UserRolesPermission, UnitsOldController)
+$app->map('/units_old', 'Authentication', 'UserRolesPermission', 'UnitsOldController')
     ->via(MethodTypes::GET);
-$app->map('/del_ext_log', Authentication, UserRolesPermission, DelExtLog)
+$app->map('/del_ext_log', 'Authentication', 'UserRolesPermission', 'DelExtLog')
     ->via(MethodTypes::GET);
 
 $app->get('/docs/*', function () use ($app) {

@@ -17,7 +17,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * PHP Version 5
+ * PHP Version 7
  *
  * @file     CAS/Language/German.php
  * @category Authentication
@@ -99,7 +99,7 @@ class CAS_Languages_German implements CAS_Languages_LanguageInterface
      */
     public function getYouWereNotAuthenticated()
     {
-        return '<p>Sie wurden nicht angemeldet.</p><p>Um es erneut zu versuchen klicken Sie <a href="%s">hier</a>.</p><p>Wenn das Problem bestehen bleibt, kontkatieren Sie den <a href="mailto:%s">Administrator</a> dieser Seite.</p>';
+        return '<p>Sie wurden nicht angemeldet.</p><p>Um es erneut zu versuchen klicken Sie <a href="%s">hier</a>.</p><p>Wenn das Problem bestehen bleibt, kontaktieren Sie den <a href="mailto:%s">Administrator</a> dieser Seite.</p>';
     }
 
     /**

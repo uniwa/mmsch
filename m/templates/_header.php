@@ -4,7 +4,7 @@ require_once ('../server/libs/phpCAS/CAS.php');
 if(!isset($_GET['auth']) || $_GET['auth'] != '0') {
     if(!isset($casOptions["NoAuth"]) || $casOptions["NoAuth"] != true) {
         // initialize phpCAS using SAML
-        phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'');
+        phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'','https://mm.sch.gr');
         // no SSL validation for the CAS server, only for testing environments
         phpCAS::setNoCasServerValidation();
         // handle backend logout requests from CAS server
@@ -631,7 +631,7 @@ function evalLexicalId(cacheData, model_id, value, return_value){
 								<i class="caret"></i>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-right icons-right">
-			    					<li><a href="/hlp/user_guide_frontend_ver3.pdf" target="_blank"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
+			    					<li><a href="/hlp/user_guide_mm.pdf" target="_blank"><i class="fa fa-question fa-1x"></i>&nbsp;&nbsp;Οδηγός Χρήσης</a></li>
 			    					<?php if ($isFY) : ?>
 			    					<li><a href="../client/stats/statistic.php?implementation_entity=<?php echo $FY; ?>" target="_blank"><i class="fa fa-bar-chart fa-1x"></i>&nbsp;&nbsp;Στατιστικα</a></li>
 			    					<?php endif; ?>

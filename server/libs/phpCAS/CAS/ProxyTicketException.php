@@ -17,7 +17,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * PHP Version 5
+ * PHP Version 7
  *
  * @class    CAS/ProxyTicketException.php
  * @category Authentication
@@ -60,7 +60,10 @@ implements CAS_Exception
         PHPCAS_SERVICE_PT_BAD_SERVER_RESPONSE,
         );
         if (!in_array($code, $ptCodes)) {
-            trigger_error('Invalid code '.$code.' passed. Must be one of PHPCAS_SERVICE_PT_FAILURE, PHPCAS_SERVICE_PT_NO_SERVER_RESPONSE, or PHPCAS_SERVICE_PT_BAD_SERVER_RESPONSE.');
+            trigger_error(
+                'Invalid code '.$code
+                .' passed. Must be one of PHPCAS_SERVICE_PT_FAILURE, PHPCAS_SERVICE_PT_NO_SERVER_RESPONSE, or PHPCAS_SERVICE_PT_BAD_SERVER_RESPONSE.'
+            );
         }
 
         parent::__construct($message, $code);

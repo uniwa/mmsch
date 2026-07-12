@@ -182,14 +182,15 @@ class Validator {
             return true;
         }
         
-        // strings with 'null' means blanks
-        if (strtolower(trim($value)) == "null" ) {
-            return true;
-        }
 
         // non-strings are not blank: int, float, object, array, resource, etc
         if (! is_string($value)) {
             return false;
+        }
+
+        // strings with 'null' means blanks
+        if (strtolower(trim($value)) == "null" ) {
+            return true;
         }
         
         // strings that trim down to exactly nothing are blank

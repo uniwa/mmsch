@@ -2,7 +2,7 @@
 require_once ('../../server/config.php');
 require_once ('../../server/libs/phpCAS/CAS.php');
 
-phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'');
+phpCAS::client(SAML_VERSION_1_1,$casOptions["Url"],$casOptions["Port"],'','https://mm.sch.gr');
 phpCAS::setNoCasServerValidation();
 phpCAS::handleLogoutRequests(array($casOptions["Url"]));
 if(isset($_GET['logout']) && $_GET['logout'] == 'true') {
@@ -112,8 +112,18 @@ $convert_fy = array(
                                             {"unit_type_id": 39,"name": "HELPDESK ΦΟΡΕΩΝ ΥΛΟΠΟΙΗΣΗΣ ΤΟΥ ΠΣΔ","initials": "ΦΥ","category_id": 3,"education_level_id": 4},
                                             {"unit_type_id": 40,"name": "ΟΜΟΣΠΟΝΔΙΑ","initials": "ΟΜ","category_id": 7,"education_level_id": 4},
                                             {"unit_type_id": 41,"name": "ΕΛΜΕ","initials": "ΕΛΜΕ","category_id": 7,"education_level_id": 4},
-                                            {"unit_type_id": 42,"name": "ΜΟΝΑΔΕΣ ΑΛΛΩΝ ΥΠΟΥΡΓΕΙΩΝ","initials": "ΜΑΥΠ","category_id": 7,"education_level_id": 4}
-                                        ];
+                                            {"unit_type_id": 42,"name": "ΜΟΝΑΔΕΣ ΑΛΛΩΝ ΥΠΟΥΡΓΕΙΩΝ","initials": "ΜΑΥΠ","category_id": 7,"education_level_id": 4},
+                                            {"unit_type_id": 43,"name": "ΔΗΜΟΤΙΚΕΣ ΒΙΒΛΙΟΘΗΚΕΣ","initials": "ΔΜΒ","category_id": 7,"education_level_id": 4},
+                                            {"unit_type_id": 44,"name": "ΕΝΙΑΙΟ ΕΙΔΙΚΟ ΕΠΑΓΓΕΛΜΑΤΙΚΟ ΓΥΜΝΑΣΙΟ-ΛΥΚΕΙΟ","initials": "ΕΕΕ","category_id": 1,"education_level_id": 2},
+                                            {"unit_type_id": 45,"name": "ΕΚΚΛΗΣΙΑΣΤΙΚΟ","initials": "ΕΚΛ","category_id": 7,"education_level_id": 4},
+                                            {"unit_type_id": 46,"name": "ΚΕΣΥ","initials": "ΚΕΣΥ","category_id": 2,"education_level_id": 4},
+					    {"unit_type_id": 47,"name": "ΤΜΗΜΑ ΕΛΛΗΝΙΚΗΣ ΓΛΩΣΣΑΣ","initials": "ΤΕΓ","category_id": 7,"education_level_id": 4},
+					    {"unit_type_id": 48,"name": "ΣΥΝΤΟΝΙΣΤΙΚΕΣ ΜΟΝΑΔΕΣ ΕΚΠΑΙΔΕΥΣΗΣ ΕΞΩΤΕΡΙΚΟΥ","initials": "ΣΜΕΞ","category_id": 8,"education_level_id": 4},
+					    {"unit_type_id": 49,"name": "ΠΕ.Κ.Ε.Σ","initials": "ΠΕ.Κ.Ε.Σ","category_id": 2,"education_level_id": 4},
+                                            {"unit_type_id": 50,"name": "ΚΕ.Δ.Α.Σ.Υ.","initials": "ΚΕ.Δ.Α.Σ.Υ.","category_id": 2,"education_level_id": 4},
+                                            {"unit_type_id": 51,"name": "ΕΠΑΓΓΕΛΜΑΤΙΚΗ ΣΧΟΛΗ ΚΑΤΑΡΤΙΣΗΣ","initials": "ΕΣΚ","category_id": 2,"education_level_id": 4},
+                                            {"unit_type_id": 52,"name": "ΣΧΟΛΕΣ ΑΝΩΤΕΡΗΣ ΕΠΑΓΓΕΛΜΑΤΙΚΗΣ ΚΑΤΑΡΤΙΣΗΣ","initials": "Σ.Α.Ε.Κ.","category_id": 1,"education_level_id": 3}
+					 ];
                        var edu_admins = [];
                        
                        for (i = 0; i < results.length; i++) {

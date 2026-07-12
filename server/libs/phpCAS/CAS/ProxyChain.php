@@ -17,7 +17,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * PHP Version 5
+ * PHP Version 7
  *
  * @file     CAS/ProxyChain.php
  * @category Authentication
@@ -59,7 +59,8 @@ implements CAS_ProxyChain_Interface
      */
     public function __construct(array $chain)
     {
-        $this->chain = array_values($chain);	// Ensure that we have an indexed array
+        // Ensure that we have an indexed array
+        $this->chain = array_values($chain);
     }
 
     /**
@@ -78,17 +79,25 @@ implements CAS_ProxyChain_Interface
                 $proxy_url = $list[$i];
                 if (preg_match('/^\/.*\/[ixASUXu]*$/s', $search)) {
                     if (preg_match($search, $proxy_url)) {
-                        phpCAS::trace("Found regexp " .  $search . " matching " . $proxy_url);
+                        phpCAS::trace(
+                            "Found regexp " .  $search . " matching " . $proxy_url
+                        );
                     } else {
-                        phpCAS::trace("No regexp match " .  $search . " != " . $proxy_url);
+                        phpCAS::trace(
+                            "No regexp match " .  $search . " != " . $proxy_url
+                        );
                         $mismatch = true;
                         break;
                     }
                 } else {
                     if (strncasecmp($search, $proxy_url, strlen($search)) == 0) {
-                        phpCAS::trace("Found string " .  $search . " matching " . $proxy_url);
+                        phpCAS::trace(
+                            "Found string " .  $search . " matching " . $proxy_url
+                        );
                     } else {
-                        phpCAS::trace("No match " .  $search . " != " . $proxy_url);
+                        phpCAS::trace(
+                            "No match " .  $search . " != " . $proxy_url
+                        );
                         $mismatch = true;
                         break;
                     }
