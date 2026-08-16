@@ -26,8 +26,23 @@ if ($response === false) {
 }
 
 
+// Allow the map front-end to read this from production, from staging, and
+// from a developer's machine. The response carries no credentials and the
+// data is public, so a local origin is a testing convenience rather than an
+// exposure. Anything else gets the previous fixed header, unchanged.
+$allowedOrigins = [
+    'https://maps.sch.gr',
+    'https://mmsch.uniwa.gr',
+];
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $allowedOrigins, true) || preg_match('#^http://localhost(:\d+)?$#', $origin)) {
+    header("Access-Control-Allow-Origin: $origin");
+    header('Vary: Origin');
+} else {
+    header("Access-Control-Allow-Origin: https://maps.sch.gr");
+}
+
 // Output the response
-header("Access-Control-Allow-Origin: https://maps.sch.gr");
 header('Content-Type: application/json');
 echo $response;
 ?>
