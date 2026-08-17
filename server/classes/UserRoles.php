@@ -282,7 +282,15 @@ class UserRoles {
      */
      public static function getRole($user) { 
         $admin_uid = array("ktsiolis","sus_ws","crm_ws","dns_ws");
-        //var_dump($user['memberof'][0]);
+        
+
+
+//if ($user['uid'][0] == 'crm_ws')
+//{
+//var_dump('3333');
+//var_dump($user['memberof']);
+//}
+
 
         if(!isset($user)) {
             return 'GUEST';
