@@ -365,23 +365,35 @@ function GetEduAdmins( $edu_admin, $region_edu_admin, $implementation_entity, $p
         $results->getQuery()->setFirstResult($pagesize * ($page-1));
         $pagesize!==Parameters::AllPageSize ? $results->getQuery()->setMaxResults($pagesize) : null;
 
-//data results==================================================================       
+//data results==================================================================
         $count = 0;
+
+        /* parent_rdn and third_level_dns describe the LDAP and DNS naming behind
+           each directorate. They are of no use to an anonymous caller and are
+           published nowhere else, so they are withheld from GUEST. */
+        $isGuest = UserRoles::getRole(isset($app->request->user) ? $app->request->user : null) === 'GUEST';
+
         foreach ($results->getQuery()->getResult() as $eduadmin)
         {
 
-            $result["data"][] = array(
+            $row = array(
                                         "edu_admin_id"                   => $eduadmin->getEduAdminId(),
                                         "edu_admin"                      => $eduadmin->getName(),
                                         "registry_no"                    => $eduadmin->getRegistryNo(),
                                         "parent_rdn"                     => $eduadmin->getParentRdn(),
-                                        "third_level_dns"                => $eduadmin->getThirdLevelDns(), 
+                                        "third_level_dns"                => $eduadmin->getThirdLevelDns(),
                                         "region_edu_admin_id"            => Validator::IsNull($eduadmin->getRegionEduAdmin()) ? Validator::ToNull() : $eduadmin->getRegionEduAdmin()->getRegionEduAdminId(),
                                         "region_edu_admin_name"          => Validator::IsNull($eduadmin->getRegionEduAdmin()) ? Validator::ToNull() : $eduadmin->getRegionEduAdmin()->getName(),
                                         "implementation_entity_id"       => Validator::IsNull($eduadmin->getImplementationEntity()) ? Validator::ToNull() : $eduadmin->getImplementationEntity()->getImplementationEntityId(),
                                         "implementation_entity"          => Validator::IsNull($eduadmin->getImplementationEntity()) ? Validator::ToNull() : $eduadmin->getImplementationEntity()->getName(),
                                         "implementation_entity_initials" => Validator::IsNull($eduadmin->getImplementationEntity()) ? Validator::ToNull() : $eduadmin->getImplementationEntity()->getInitials()
                                      );
+
+            if ($isGuest) {
+                unset($row["parent_rdn"], $row["third_level_dns"]);
+            }
+
+            $result["data"][] = $row;
             $count++;
         }
         $result["count"] = $count;

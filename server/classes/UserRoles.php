@@ -53,43 +53,43 @@ class UserRoles {
                                                     'DELETE' => array('ADMIN')
                                                  ),
         'special_types'                  => array(
-                                                    'GET' => array('USER', 'ADMIN'),
+                                                    'GET' => array('GUEST', 'USER', 'ADMIN'),
                                                     'POST' => array('ADMIN'),
                                                     'PUT' => array('ADMIN'),
                                                     'DELETE' => array('ADMIN')
                                                  ),
         'legal_characters'               => array(
-                                                    'GET' => array('USER', 'ADMIN'),
+                                                    'GET' => array('GUEST', 'USER', 'ADMIN'),
                                                     'POST' => array('ADMIN'),
                                                     'PUT' => array('ADMIN'),
                                                     'DELETE' => array('ADMIN')
                                                  ),
         'orientation_types'              => array(
-                                                    'GET' => array('USER', 'ADMIN'),
+                                                    'GET' => array('GUEST', 'USER', 'ADMIN'),
                                                     'POST' => array('ADMIN'),
                                                     'PUT' => array('ADMIN'),
                                                     'DELETE' => array('ADMIN')
                                                  ),
         'operation_shifts'               => array(
-                                                    'GET' => array('USER', 'ADMIN'),
+                                                    'GET' => array('GUEST', 'USER', 'ADMIN'),
                                                     'POST' => array('ADMIN'),
                                                     'PUT' => array('ADMIN'),
                                                     'DELETE' => array('ADMIN')
                                                  ),
         'unit_types'                     => array(
-                                                    'GET' => array('USER', 'ADMIN'),
+                                                    'GET' => array('GUEST', 'USER', 'ADMIN'),
                                                     'POST' => array('ADMIN'),
                                                     'PUT' => array('ADMIN'),
                                                     'DELETE' => array('ADMIN')
                                                  ),
         'education_levels'               => array(
-                                                    'GET' => array('USER', 'ADMIN'),
+                                                    'GET' => array('GUEST', 'USER', 'ADMIN'),
                                                     'POST' => array('ADMIN'),
                                                     'PUT' => array('ADMIN'),
                                                     'DELETE' => array('ADMIN')
                                                  ),
         'region_edu_admins'              => array(
-                                                    'GET' => array('USER', 'ADMIN'),
+                                                    'GET' => array('GUEST', 'USER', 'ADMIN'),
                                                     'POST' => array('ADMIN'),
                                                     'PUT' => array('ADMIN'),
                                                     'DELETE' => array('ADMIN')
@@ -107,7 +107,7 @@ class UserRoles {
                                                     'GET' => array('USER', 'ADMIN')
                                                  ),
         'edu_admins'                     => array(
-                                                    'GET' => array('USER', 'ADMIN'),
+                                                    'GET' => array('GUEST', 'USER', 'ADMIN'),
                                                     'POST' => array('ADMIN'),
                                                     'PUT' => array('ADMIN'),
                                                     'DELETE' => array('ADMIN')
@@ -131,7 +131,7 @@ class UserRoles {
                                                     'DELETE' => array('ADMIN')
                                                  ),
         'municipalities'                 => array(
-                                                    'GET' => array('USER', 'ADMIN'),
+                                                    'GET' => array('GUEST', 'USER', 'ADMIN'),
                                                     'POST' => array('ADMIN'),
                                                     'PUT' => array('ADMIN'),
                                                     'DELETE' => array('ADMIN')
