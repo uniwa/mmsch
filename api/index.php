@@ -1828,7 +1828,38 @@ function UnitsController()
 
     PrepareResponse();
 
-    $app->response()->setBody( toGreek( json_encode( $result ) ) );
+    $payload = toGreek( json_encode( $result ) );
+
+    /* The unit list is rebuilt from Myschool once a day, yet every visitor
+       re-downloaded it on every visit -- around 379 KB gzipped, with no
+       caching headers at all. Let the browser keep it, and offer an ETag so a
+       revalidation costs no body.
+
+       private rather than public: this response reflects the caller's Origin
+       and carries a load-balancer cookie, so a shared cache must not hand it
+       to a different user. max-age is deliberately shorter than the server's
+       own one-hour APCu cache. */
+    if ($app->request()->getPathInfo() === '/units.geojson' &&
+        strtoupper($app->request()->getMethod()) === MethodTypes::GET)
+    {
+        $etag = '"' . md5($payload) . '"';
+        $app->response()->headers()->set('ETag', $etag);
+        $app->response()->headers()->set('Cache-Control', 'private, max-age=900');
+        $app->response()->headers()->set('Vary', 'Origin');
+
+        /* mod_deflate appends -gzip to the ETag it sends, so the value coming
+           back will not match ours verbatim. */
+        $sent = isset($_SERVER['HTTP_IF_NONE_MATCH']) ? trim($_SERVER['HTTP_IF_NONE_MATCH']) : '';
+        $sent = str_replace('-gzip"', '"', $sent);
+
+        if ($sent !== '' && $sent === $etag) {
+            $app->response()->setStatus(304);
+            $app->response()->setBody('');
+            return;
+        }
+    }
+
+    $app->response()->setBody( $payload );
 }
 
 //##########################################################################################################################
